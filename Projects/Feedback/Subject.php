@@ -3,18 +3,10 @@
 	if(isset($_POST['subject_info'])){
 		$id = mysqli_real_escape_string($db, $_POST['courseid']);
 		$name = mysqli_real_escape_string($db, $_POST['name']);
-		$credit = mysqli_real_escape_string($db, $_POST['credit']);
 		$sem = $_POST['sem'];
 		$branch = $_POST['branch'];
-		$cb = isset($_POST['cb'])?1:0;
-		$int = mysqli_real_escape_string($db, $_POST['int']);
-		$ext = mysqli_real_escape_string($db, $_POST['ext']);
-		$tw = mysqli_real_escape_string($db, $_POST['tw']);
-		$oral = mysqli_real_escape_string($db, $_POST['oral']);
-		$dur = mysqli_real_escape_string($db, $_POST['dur']);
-		$total = mysqli_real_escape_string($db, $_POST['total']);
 
-		$qu = "INSERT INTO subject(sub_id, sub_name, sub_credits, sub_sem, sub_dept, sub_choicebased, sub_internal, sub_external, sub_termwork, sub_oral, sub_total, sub_duration) VALUES ('$id','$name','$credit','$sem','$branch','$cb','$int','$ext','$tw','$oral','$total','$dur');";
+		$qu = "INSERT INTO subject(sub_id, sub_name, sub_sem, sub_dept) VALUES ('$id','$name','$sem','$branch');";
 		mysqli_query($db, $qu);
 		
 		header('location: Subject.php');

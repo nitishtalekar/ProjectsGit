@@ -6,18 +6,11 @@
 		$mname = mysqli_real_escape_string($db, $_POST['mname']);
 		$lname = mysqli_real_escape_string($db, $_POST['lname']);
 		$tid = mysqli_real_escape_string($db, $_POST['tid']);
-		$pwd = mysqli_real_escape_string($db, $_POST['pwd']);
-		$pwd2 = mysqli_real_escape_string($db, $_POST['pwd2']);
-		$email = mysqli_real_escape_string($db, $_POST['email']);
-		$phone = mysqli_real_escape_string($db, $_POST['phone']);
 		$gen = $_POST['gender'];
-		$dob = mysqli_real_escape_string($db, $_POST['dob']);
 		$dept = $_POST['dept'];
-		$doj = mysqli_real_escape_string($db, $_POST['doj']);
-		$priv = $_POST['privilage'];
 		$name = $title." ".$fname." ".$mname." ".$lname;
 
-		$query = "INSERT INTO teacher(teacher_id, password, teacher_name, teacher_mail, teacher_phone, teacher_gen, teacher_dob, teacher_dept, teacher_doj) VALUES ('$tid','$pwd','$name','$email','$phone','$gen','$dob','$dept','$doj')";
+		$query = "INSERT INTO teacher(teacher_id, teacher_name, teacher_gen,teacher_dept) VALUES ('$tid','$name','$gen','$dept')";
     mysqli_query($db, $query);
 		header('location: index.php');
 	}
