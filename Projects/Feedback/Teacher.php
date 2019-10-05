@@ -1,4 +1,4 @@
-<?php require('../dbconnect.php');
+<?php require('dbconnect.php');
 	
 	if(isset($_POST['teacher_info'])){
 		$title = mysqli_real_escape_string($db, $_POST['title']);
@@ -29,28 +29,28 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="../style/forms/images/icons/favicon.ico"/>
+	<link rel="icon" type="image/png" href="style/forms/images/icons/favicon.ico"/>
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../style/forms/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/vendor/bootstrap/css/bootstrap.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../style/forms/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../style/forms/fonts/iconic/css/material-design-iconic-font.min.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../style/forms/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/vendor/animate/animate.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../style/forms/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../style/forms/vendor/animsition/css/animsition.min.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../style/forms/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/vendor/select2/select2.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../style/forms/vendor/daterangepicker/daterangepicker.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../style/forms/vendor/noui/nouislider.min.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/vendor/noui/nouislider.min.css">
 <!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="../style/forms/css/util.css">
-	<link rel="stylesheet" type="text/css" href="../style/forms/css/main.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/css/util.css">
+	<link rel="stylesheet" type="text/css" href="style/forms/css/main.css">
 <!--===============================================================================================-->
 </head>
 <body>
@@ -63,6 +63,11 @@
 					Teachers Information
 				</span>
 
+				<div class="wrap-input100 validate-input bg1" data-validate="Please Fill Field">
+					<span class="label-input100">Teacher ID</span>
+					<input class="input100" type="text" name="tid" placeholder="Enter Teachers ID">
+				</div>
+				
 				<div class="wrap-input100 input100-select bg1">
 					<span class="label-input100">Title</span>
 					<div>
@@ -93,22 +98,9 @@
 					<input class="input100" type="text" name="lname" placeholder="Last Name">
 				</div>
 				
-				<div class="wrap-input100 validate-input bg1" data-validate="Please Fill Field">
-					<span class="label-input100">Teacher ID</span>
-					<input class="input100" type="text" name="tid" placeholder="Enter Teachers ID">
-				</div>
-
-				<div class="wrap-input100 validate-input bg1 rs1-wrap-input100" data-validate="Please Fill Field">
-					<span class="label-input100">Email</span>
-					<input class="input100" type="text" name="email" placeholder="Enter Your Email ">
-				</div>
-
-				<div class="wrap-input100 bg1 rs1-wrap-input100" data-validate="Please Fill Field">
-					<span class="label-input100">Phone</span>
-					<input class="input100" type="text" name="phone" placeholder="Enter Number Phone">
-				</div>
 				
-				<div class="wrap-input100 input100-select bg1 rs1-wrap-input100">
+				
+				<div class="wrap-input100 input100-select bg1">
 					<span class="label-input100">Gender</span>
 					<div>
 						<select class="js-select2" name="gender" required>
@@ -119,10 +111,6 @@
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
-				</div>
-				<div class="wrap-input100 bg1 rs1-wrap-input100">
-					<span class="label-input100">D.O.B</span>
-					<input class="input100" type="date" name="dob" placeholder="DOB">
 				</div>
 				
 				<div class="wrap-input100 input100-select bg1">
@@ -141,29 +129,10 @@
 					</div>
 				</div>
 
-				<div class="wrap-input100 bg1">
-					<span class="label-input100">Date of Joining</span>
-					<input class="input100" type="date" name="doj" placeholder="DOB">
-				</div>
-				
-				<div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Role</span>
-					<div>
-						<select class="js-select2" name="privilage" required>
-							<option selected disabled value="">Choose Role</option>
-							<option value="Result Analysis">Result Analysis</option>
-							<option value="Timetable">Timetable</option>
-							<option value="Internship">Internship</option>
-							<option value="Certicication">Certicication</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
-				</div>
-
 				<div class="container-contact100-form-btn">
 					<button type="submit" class="contact100-form-btn" name="teacher_info">
 						<span>
-							Submit
+							Add
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 					</button>
@@ -175,14 +144,14 @@
 
 
 <!--===============================================================================================-->
-	<script src="../style/forms/vendor/jquery/jquery-3.2.1.min.js"></script>
+	<script src="style/forms/vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../style/forms/vendor/animsition/js/animsition.min.js"></script>
+	<script src="style/forms/vendor/animsition/js/animsition.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../style/forms/vendor/bootstrap/js/popper.js"></script>
-	<script src="../style/forms/vendor/bootstrap/js/bootstrap.min.js"></script>
+	<script src="style/forms/vendor/bootstrap/js/popper.js"></script>
+	<script src="style/forms/vendor/bootstrap/js/bootstrap.min.js"></script>
 <!--===============================================================================================-->
-	<script src="../style/forms/vendor/select2/select2.min.js"></script>
+	<script src="style/forms/vendor/select2/select2.min.js"></script>
 	<script>
 		$(".js-select2").each(function(){
 			$(this).select2({
@@ -192,12 +161,12 @@
 		})
 	</script>
 <!--===============================================================================================-->
-	<script src="../style/forms/vendor/daterangepicker/moment.min.js"></script>
-	<script src="../style/forms/vendor/daterangepicker/daterangepicker.js"></script>
+	<script src="style/forms/vendor/daterangepicker/moment.min.js"></script>
+	<script src="style/forms/vendor/daterangepicker/daterangepicker.js"></script>
 <!--===============================================================================================-->
-	<script src="../style/forms/vendor/countdowntime/countdowntime.js"></script>
+	<script src="style/forms/vendor/countdowntime/countdowntime.js"></script>
 <!--===============================================================================================-->
-	<script src="../style/forms/js/main.js"></script>
+	<script src="style/forms/js/main.js"></script>
 
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
