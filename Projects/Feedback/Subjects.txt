@@ -1,0 +1,118 @@
+FE
+Engineering Maths - 1
+Engineering Physics - 1 
+Engineering Chemistry – 1
+Engineering Mechanics
+BEE
+
+COMPS
+Applied Mathematics
+Object Oriented Programming Methodology
+Data Structures
+Digital Logic Desing & Analysis
+Discrete Mathematics 
+Electronic Ckts
+Business Communication & Ethics
+Computer Network
+Database Management System
+Microprocessor
+Theory Of Computer Science
+Web Design (Lab)
+Advanced Algorithms
+Multimedia Systems
+Artificial Intelligence And Soft Computing
+Digital Signal And Image Processing
+Mobile Communication And
+Big Data Analytics
+Management Information Systems
+Cyber Security Laws
+
+MECH
+Thermodynamics
+Strength Of Material
+Computer Aided Machine Drawing
+Production Process
+Material Technology
+Applied Mathematics-II
+Internal Combustion Engines
+Heat Transfer
+Dynamics Of Machinery
+Mechanical Measurements & Control
+Design Of Jigs & Fixtures
+Press Tool Design
+Manufacturing Science Lab
+Business Communication And Ethics
+Production, Planning Control
+Cad/Cam/Cae
+Vii Machine Design-I
+Automobile Engineering
+Energy Audit & Management
+Operation Research
+
+EXTC
+Digital System Design
+Circuit Theory and Networks
+Electronic Instrumentation and Control
+OOP using JAVA Laboratory
+Applied Mathematics III
+Electronic Devices and Circuits-I
+Digital System Design
+Circuit Theory and Networks
+Electronic Instrumentation and Control
+Microprocessor & Peripherals Interfacing
+Digital Communication
+Electromagnetic Engineering 
+Discrete Time Signal Processing
+Microelectronics
+Data Compression and Encryption
+Business Communication & Ethics
+Microprocessor & Peripherals Interfacing
+Electromagnetic Engineering
+Discrete Time Signal Processing
+Mobile Communication System
+Optical Communication
+Microwave Engineering
+Cyber Security and Laws
+Big Data Analytics
+Embedded System
+
+INSTRU
+Analog Electronics
+Transducers-
+Electrical Networks
+Digital Electronics
+OOPM
+Applied Maths - III
+Application of microprocessors.
+Signal System
+Control System Design
+Control System Components
+Business Communication and Ethics
+Advanced Sensors
+FOI
+Biomedical Instru
+Industrial Automation
+Reliability Engineering
+Industrial Process Control
+Image Processing
+
+IT
+Data Structures & Analysis
+Database Management System
+Applied Mathematics-lII
+Logic Design
+Java Programming
+Principles of Communications
+Microcontroller & Embedded Programming
+E-Commerce & E-Business
+Advanced Database Management Technology
+Internet Programming
+Business Communication and Ethics
+Cryptography & Network Security
+Management Information System
+Artificial Intelligence
+Infrastructure Security
+Soft Computing
+Enterprise Network Design
+Software Testing Quality Assurance
+
