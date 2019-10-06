@@ -1,4 +1,5 @@
 FE
+Prof. A.G.Ingole
 Prof. B. B. Sawant
 Prof. Rohini Ghule
 Prof. Rahul Chaurasiya
@@ -9,7 +10,6 @@ Dr. Mala Chatterjee
 Dr. Neeta Kapse 
 Dr. Pallavi Mahalle
 Prof. R.N.Shanmukha
-Prof. S. D. Gaikwad
 Prof.Priyanka Deshmukh
 Prof. Chetan Rane
 Prof. Nikhil V S
@@ -20,7 +20,6 @@ Prof. Sanjana Repal
 Prof. Prasad Soman
 Prof.Shashikant Patil
 COMPS
-Prof.Rohini Ghule
 Prof. Dilip Dalgade
 Prof.Dipak Gaikar
 Prof.Preeti Satao
@@ -91,13 +90,10 @@ Prof.P.N.Sonar
 Prof.S.S.Repal
 Prof.M.K.Ahirrao 
 Prof. S.K.Gabhane
-Prof.A.G.Ingole
 Dr.S.D.Deshmukh
 Prof.S.V.Kulkarni
 Prof.A.R.Sagale
 Prof.S.S. Repal
-Prof.M.K.Ahirrao
-Prof.A.G.Ingole
 Prof.S.D.Patil
 Prof.P.S.Patil
 Prof.N.J.Balur
@@ -128,10 +124,8 @@ Prof.N.S.Chame
 Prof.S.D.Sadala
 Prof.G.K.Shende
 Dr. Rinku Sharma
-Prof.Anuja Kadam
 Prof.V.Kamalakar
 Prof.Anuja Kadam
-Prof. Vinita Vartak 
 Prof.R.G.Sharma
 Prof.G.K.Shende
 Prof.D.Joshi Jain
@@ -156,4 +150,3 @@ Dr. S.B.Wankhade
 Prof. Govind Wakure
 Prof. Nilesh Rathod
 Prof. Yogita Ganage
-
