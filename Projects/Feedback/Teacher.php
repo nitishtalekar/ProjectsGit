@@ -1,5 +1,5 @@
 <?php require('dbconnect.php');
-	
+
 	if(isset($_POST['teacher_info'])){
 		$title = mysqli_real_escape_string($db, $_POST['title']);
 		$fname = mysqli_real_escape_string($db, $_POST['fname']);
@@ -12,7 +12,7 @@
 
 		$query = "INSERT INTO teacher(teacher_id, teacher_name, teacher_gen,teacher_dept) VALUES ('$tid','$name','$gen','$dept')";
     mysqli_query($db, $query);
-		header('location: index.php');
+		header('location: Teacher.php');
 	}
 
 ?>
@@ -60,7 +60,7 @@
 					<span class="label-input100">Teacher ID</span>
 					<input class="input100" type="text" name="tid" placeholder="Enter Teachers ID">
 				</div>
-				
+
 				<div class="wrap-input100 input100-select bg1">
 					<span class="label-input100">Title</span>
 					<div>
@@ -75,24 +75,24 @@
 						<div class="dropDownSelect2"></div>
 					</div>
 				</div>
-				
+
 				<div class="wrap-input100 bg1 rs2-wrap-input100" data-validate="Please Fill Field">
 					<span class="label-input100">First Name</span>
 					<input class="input100" type="text" name="fname" placeholder="First Name">
 				</div>
-				
+
 				<div class="wrap-input100 bg1 rs2-wrap-input100" data-validate="Please Fill Field">
 					<span class="label-input100">Middle Name</span>
 					<input class="input100" type="text" name="mname" placeholder="Middle Name">
 				</div>
-				
+
 				<div class="wrap-input100 bg1 rs2-wrap-input100" data-validate="Please Fill Field">
 					<span class="label-input100">Last Name</span>
 					<input class="input100" type="text" name="lname" placeholder="Last Name">
 				</div>
-				
-				
-				
+
+
+
 				<div class="wrap-input100 input100-select bg1">
 					<span class="label-input100">Gender</span>
 					<div>
@@ -105,7 +105,7 @@
 						<div class="dropDownSelect2"></div>
 					</div>
 				</div>
-				
+
 				<div class="wrap-input100 input100-select bg1">
 					<span class="label-input100">Branch</span>
 					<div>

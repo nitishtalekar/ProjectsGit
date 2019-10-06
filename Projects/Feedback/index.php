@@ -1,6 +1,6 @@
-<?php require('../dbconnect.php');
+<?php require('dbconnect.php');
 
-  
+
   if(isset($_POST['feedback_intro'])){
     $dept = $_POST['dept'];
     $sem = $_POST['sem'];
@@ -51,7 +51,7 @@
 				<span class="contact100-form-title">
 					Feedback
 				</span>
-				
+
 				<div class="wrap-input100">
 					<center><label class="label-inputx">ENTER INFORMATION</label></center>
 				</div>
@@ -70,7 +70,7 @@
 						<div class="dropDownSelect2"></div>
 					</div>
 				</div>
-        
+
         <div class="wrap-input100 input100-select bg1 validate-input" data-validate="Please Fill Field">
 					<span class="label-input100">Semester</span>
 					<div>
@@ -88,7 +88,7 @@
 						<div class="dropDownSelect2"></div>
 					</div>
 				</div>
-        
+
         <div class="wrap-input100 input100-select bg1 validate-input" data-validate="Please Fill Field">
 					<span class="label-input100">Division</span>
 					<div>
@@ -106,8 +106,8 @@
 						<div class="dropDownSelect2"></div>
 					</div>
 				</div>
-				
-				
+
+
 				<div class="container-contact100-form-btn">
 					<button type="submit" class="contact100-form-btn" name="feedback_intro">
 						<span>
