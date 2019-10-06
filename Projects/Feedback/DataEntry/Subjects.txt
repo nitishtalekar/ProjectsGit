@@ -1,0 +1,110 @@
+FE
+Engineering Maths - 1:1
+Engineering Physics - 1:1
+Engineering Chemistry - 1:1
+Engineering Mechanics:1
+BEE:1
+COMPS
+Applied Mathematics::3
+Object Oriented Programming Methodology:3
+Data Structures:3
+Digital Logic Desing & Analysis:3
+Discrete Mathematics:3 
+Electronic Ckts:3
+Business Communication & Ethics:5
+Computer Network::5
+Database Management System:5
+Microprocessor:5
+Theory Of Computer Science:5
+Web Design (Lab):5
+Advanced Algorithms:5
+Multimedia Systems:5
+Artificial Intelligence And Soft Computing:7
+Digital Signal And Image Processing:7
+Mobile Communication And Computation:7
+Big Data Analytics:7
+Management Information Systems:7
+Cyber Security Laws:7
+MECH
+Thermodynamics:3
+Strength Of Material:3
+Computer Aided Machine Drawing:3
+Production Process:3
+Material Technology:3
+Applied Mathematics:3
+Internal Combustion Engines:5
+Heat Transfer:5
+Dynamics Of Machinery:5
+Mechanical Measurements & Control:5
+Design Of Jigs & Fixtures:5
+Press Tool Design:5
+Manufacturing Science Lab:5
+Business Communication And Ethics:5
+Production, Planning Control:7
+Cad/Cam/Cae:7
+Vii Machine Design-I:7
+Automobile Engineering:7
+Energy Audit & Management:7
+Operation Research:7
+EXTC
+Digital System Design:3
+Circuit Theory and Networks:3
+Electronic Instrumentation and Control:3
+OOP using JAVA Laboratory:3
+Applied Mathematics:3
+Electronic Devices and Circuits-I:3
+Digital System Design:3
+Circuit Theory and Networks:3
+Electronic Instrumentation and Control:3
+Microprocessor & Peripherals Interfacing:5
+Digital Communication:5
+Electromagnetic Engineering:5 
+Discrete Time Signal Processing:5
+Microelectronics:5
+Data Compression and Encryption:5
+Business Communication & Ethics:5
+Discrete Time Signal Processing:5
+Mobile Communication System:7
+Optical Communication:7
+Microwave Engineering:7
+Cyber Security and Laws:7
+Big Data Analytics:7
+Embedded System:7
+INSTRU
+Analog Electronics:3
+Transducers:3
+Electrical Networks:3
+Digital Electronics:3
+OOPM:3
+Applied Maths:3
+Application of microprocessors:5
+Signal System:5
+Control System Design:5
+Control System Components:5
+Business Communication and Ethics:5
+Advanced Sensors:5
+FOI:5
+Biomedical Instrumentation:7
+Industrial Automation:7
+Reliability Engineering:7
+Industrial Process Control:7
+Image Processing:7
+IT
+Data Structures & Analysis:3
+Database Management System:3
+Applied Mathematics-:3
+Logic Design:3
+Java Programming:3
+Principles of Communications:3
+Microcontroller & Embedded Programming:5
+E-Commerce & E-Business:5
+Advanced Database Management Technology:5
+Internet Programming:5
+Business Communication and Ethics:5
+Cryptography & Network Security:5
+Management Information System:7
+Artificial Intelligence:7
+Infrastructure Security:7
+Soft Computing:7
+Enterprise Network Design:7
+Software Testing Quality Assurance:7
