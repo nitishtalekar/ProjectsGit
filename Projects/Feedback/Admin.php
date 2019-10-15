@@ -1,19 +1,23 @@
 <?php require('dbconnect.php');
 
+$_SESSION['admin'] = 0;
 
-  if(isset($_POST['feedback_intro'])){
-    $dept = $_POST['dept'];
-    $sem = $_POST['sem'];
-    $div = $_POST['div'];
-    $_SESSION['Dept'] = $dept;
-    $_SESSION['Sem'] = $sem;
-    $_SESSION['Div'] = $div;
-    $_SESSION['iter'] = 0;
-    $_SESSION['qu'] = array();
-		header('location: Feedback.php');
-	}
+if(isset($_POST['admin'])){
+  $id = mysqli_real_escape_string($db, $_POST['id']);
+  $pwd = mysqli_real_escape_string($db, $_POST['pwd']);
+  
+  echo $id;
+  echo $pwd;
+  
+  $q = "SELECT * from admin WHERE admin_id='$id' AND password='$pwd';";
+  $result = mysqli_query($db, $q);
+  
+  if(mysqli_num_rows($result) == 1){
+    $_SESSION['admin'] = 1;
+    header('location: AdminPage.php');
+  }
+}
 ?>
-
 <html lang="en">
 <head>
 	<title>Feedback</title>
@@ -48,71 +52,30 @@
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action="index.php" method="POST" enctype="multipart/form-data">
+			<form class="contact100-form validate-form" action="Admin.php" method="POST" enctype="multipart/form-data">
 				<span class="contact100-form-title">
 					Feedback
 				</span>
 
 				<div class="wrap-input100">
-					<center><label class="label-inputx">ENTER INFORMATION</label></center>
+					<center><label class="label-inputx">ADMINISTRATOR</label></center>
 				</div>
-        <div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Branch</span>
-					<div>
-						<select class="js-select2" name="dept" required>
-							<option selected disabled value="">Choose Department</option>
-							<option value="Applied Sciences">Applied Sciences</option>
-							<option value="Mechanical Engineering">Mechanical Engineering</option>
-							<option value="Computer Engineering">Computer Engineering</option>
-							<option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
-							<option value="Instumentation Engineering">Instumentation Engineering</option>
-							<option value="Information Technology">Information Technology</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
+        
+        <div class="wrap-input100 bg1" data-validate="Please Fill Field">
+					<span class="label-input100">Login ID</span>
+					<input class="input100" type="text" name="id" placeholder="ADMINISTRATOR ID">
 				</div>
-
-        <div class="wrap-input100 input100-select bg1 validate-input" data-validate="Please Fill Field">
-					<span class="label-input100">Semester</span>
-					<div>
-						<select class="js-select2" name="sem" required>
-							<option selected disabled value="">Choose Semester</option>
-              <option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
-				</div>
-
-        <div class="wrap-input100 input100-select bg1 validate-input" data-validate="Please Fill Field">
-					<span class="label-input100">Division</span>
-					<div>
-						<select class="js-select2" name="div" required>
-							<option selected disabled value="">Choose Division</option>
-              <option value="A">A</option>
-              <option value="B">B</option>
-              <option value="C">C</option>
-              <option value="D">D</option>
-              <option value="E">E</option>
-              <option value="F">F</option>
-              <option value="G">G</option>
-              <option value="nun">--</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
+        
+        <div class="wrap-input100 bg1" data-validate="Please Fill Field">
+					<span class="label-input100">Password</span>
+					<input class="input100" type="password" name="pwd" placeholder="ENTER PASSWORD">
 				</div>
 
 
 				<div class="container-contact100-form-btn">
-					<button type="submit" class="contact100-form-btn" name="feedback_intro">
+					<button type="submit" class="contact100-form-btn" name="admin">
 						<span>
-							Next
+							Login
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 					</button>
@@ -120,8 +83,9 @@
 			</form>
 		</div>
 	</div>
-
+  
   <?php require "include/footer.php"?>
+
 
 
 	<!--===============================================================================================-->

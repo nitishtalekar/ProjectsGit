@@ -1,20 +1,29 @@
 <?php require('dbconnect.php');
+	
+	$sem = $_SESSION['Sem'];
+	$branch = $_SESSION['Branch'];
+	$div = $_SESSION['Div'];
 
-	if(isset($_POST['subject_info'])){
-		$name = mysqli_real_escape_string($db, $_POST['name']);
-		$sem = $_POST['sem'];
-		$branch = $_POST['branch'];
-
-		$qu = "INSERT INTO subject(sub_name, sub_sem, sub_dept) VALUES ('$name','$sem','$branch');";
+	if(isset($_POST['teaching_cont'])){
+		$subj = $_POST['subject'];
+		$proff = $_POST['prof'];
+		$el = isset($_POST['elec'])?'1':'0';
+		$rp = isset($_POST['rep'])?'1':'0';
+		$stat = $el.$rp;
+		
+		$qu = "INSERT INTO teaching(dept, sem, lec_div, teacher_id, sub_id,status) VALUES ('$branch','$sem','$div','$proff','$subj','$stat');";
 		mysqli_query($db, $qu);
 		
-		header('location: Subject.php');
+		header('location: Teaching2.php');
+	}
+	if(isset($_POST['teaching_back'])){
+		header('location: Teaching.php');
 	}
 
 ?>
 <html lang="en">
 <head>
-	<title>Subjects</title>
+	<title>Teaching</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -41,61 +50,81 @@
 	<link rel="stylesheet" type="text/css" href="style/forms/css/util.css">
 	<link rel="stylesheet" type="text/css" href="style/forms/css/main.css">
 <!--===============================================================================================-->
+
 </head>
 <body>
 
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action="Subject.php" method="POST" enctype="multipart/form-data">
+			<form class="contact100-form validate-form" action="Teaching2.php" method="POST" enctype="multipart/form-data">
 				<span class="contact100-form-title">
-					Subjects
+					Teaching Information
 				</span>
 				
-				<div class="wrap-input100 bg1">
-					<span class="label-input100">Course Name</span>
-					<input class="input100" type="text" name="name" placeholder="Course Name">
-				</div>
 				
-				<div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Branch</span>
-					<div>
-						<select class="js-select2" name="branch" required>
-							<option selected disabled value="">Choose Department</option>
-							<option value="Applied Sciences">Applied Sciences</option>
-							<option value="Mechanical Engineering">Mechanical Engineering</option>
-							<option value="Computer Engineering">Computer Engineering</option>
-							<option value="Electronics and Telecommunication">Electronics and Telecommunication</option>
-							<option value="Instumentation Engineering">Instumentation Engineering</option>
-							<option value="Information Technology">Information Technology</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
-				</div>
-				
-				<div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Semester</span>
-					<div>
-						<select class="js-select2" name="sem" required>
-							<option selected disabled value="">Choose Sem</option>
-							<option value="1">1</option>
-							<option value="2">2</option>
-							<option value="3">3</option>
-							<option value="4">4</option>
-							<option value="5">5</option>
-							<option value="6">6</option>
-							<option value="7">7</option>
-							<option value="8">8</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
-				</div>
-				
-				<div class="container-contact100-form-btn">
-					<button type="submit" class="contact100-form-btn" name="subject_info">
+				<?php 
+					$qu = "SELECT * FROM subject WHERE sub_sem='$sem' AND sub_dept='$branch';";
+					$result = mysqli_query($db, $qu);
+						echo "<div class='wrap-input100 input100-select bg1 validate-input' data-validate='Please Fill Field'>";
+							echo "<span class='label-input100'>Subject</span>";
+							echo "<div>";
+								echo "<select class='js-select2' name=subject >";
+									echo "<option selected disabled value=''>Choose Subject</option>";
+									while($row = mysqli_fetch_assoc($result)){
+									echo "<option value=".$row['sub_id'].">".$row['sub_name']."</option>";
+								}
+								echo "</select>";
+								echo "<div class='dropDownSelect2'></div>";
+						echo "</div>";
+					echo "</div>";
+					?>
+					
+					<?php 
+						$qu = "SELECT * FROM teacher";
+						$result = mysqli_query($db, $qu);
+							echo "<div class='wrap-input100 input100-select bg1 validate-input' data-validate='Please Fill Field'>";
+								echo "<span class='label-input100'>Professor</span>";
+								echo "<div>";
+									echo "<select class='js-select2' name=prof >";
+										echo "<option selected disabled value=''>Choose Professor</option>";
+										while($row = mysqli_fetch_assoc($result)){
+										echo "<option value=".$row['teacher_id'].">".$row['teacher_name']."</option>";
+									}
+									echo "</select>";
+									echo "<div class='dropDownSelect2'></div>";
+							echo "</div>";
+						echo "</div>";
+						?>
+						
+						<div class="wrap-input100 bg1 rs1-wrap-input100">
+							<center>
+								<label class="label-inputx">Elective</label>
+								<input class="input50" type="checkbox" name="elec" placeholder="Elective">
+							</center>
+						</div>
+						<div class="wrap-input100 bg1 rs1-wrap-input100">
+							<center>
+								<label class="label-inputx">Repeated</label>
+								<input class="input50" type="checkbox" name="rep" placeholder="Repeat">
+							</center>
+						</div>
+						
+
+
+				<div class="container-contact100-form-btn rs1-wrap-input10">
+					<button type="submit" class="contact100-form-btn" name="teaching_cont">
 						<span>
-							Add
+							Continue
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+				
+				<div class="container-contact100-form-btn rs1-wrap-input10">
+					<button type="submit" class="contact100-form-btn" name="teaching_back">
+						<span>
+							Back
 						</span>
 					</button>
 				</div>

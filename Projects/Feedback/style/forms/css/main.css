@@ -171,7 +171,8 @@ iframe {
 
 .bg0 {background-color: #fff;}
 .bg1 {background-color: #f7f7f7;}
-
+.bg2 {background-color: #e0e0e0;}
+.bg3 {background-color: #4f4e4e;}
 
 /*//////////////////////////////////////////////////////////////////
 [ Contact ]*/
@@ -276,7 +277,7 @@ iframe {
   font-family: Montserrat-SemiBold;
   font-size: 20px;
   color: #393939;
-  line-height: 1.5;
+  /* line-height: 1.5; */
   text-transform: uppercase;
 }
 .label-inputx2 {
@@ -284,6 +285,20 @@ iframe {
   font-size: 18px;
   color: #393939;
   line-height: 1.5;
+  text-transform: uppercase;
+}
+.label-inputx3 {
+  font-family: Montserrat-SemiBold;
+  font-size: 15px;
+  color: #393939;
+  /* line-height: 1.5; */
+  text-transform: uppercase;
+}
+.label-inputx4 {
+  font-family: Montserrat-SemiBold;
+  font-size: 25px;
+  color:white;
+  /* line-height: 1.5; */
   text-transform: uppercase;
 }
 

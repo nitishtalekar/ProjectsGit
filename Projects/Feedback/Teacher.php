@@ -2,15 +2,9 @@
 
 	if(isset($_POST['teacher_info'])){
 		$title = mysqli_real_escape_string($db, $_POST['title']);
-		$fname = mysqli_real_escape_string($db, $_POST['fname']);
-		$mname = mysqli_real_escape_string($db, $_POST['mname']);
-		$lname = mysqli_real_escape_string($db, $_POST['lname']);
-		$tid = mysqli_real_escape_string($db, $_POST['tid']);
-		$gen = $_POST['gender'];
+		$name = mysqli_real_escape_string($db, $_POST['name']);
 		$dept = $_POST['dept'];
-		$name = $title." ".$fname." ".$mname." ".$lname;
-
-		$query = "INSERT INTO teacher(teacher_id, teacher_name, teacher_gen,teacher_dept) VALUES ('$tid','$name','$gen','$dept')";
+		$query = "INSERT INTO teacher(teacher_name,teacher_dept) VALUES ('$name','$dept')";
     mysqli_query($db, $query);
 		header('location: Teacher.php');
 	}
@@ -56,54 +50,10 @@
 					Teachers Information
 				</span>
 
-				<div class="wrap-input100 validate-input bg1" data-validate="Please Fill Field">
-					<span class="label-input100">Teacher ID</span>
-					<input class="input100" type="text" name="tid" placeholder="Enter Teachers ID">
-				</div>
 
-				<div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Title</span>
-					<div>
-						<select class="js-select2" name="title" required>
-							<option selected disabled value="">Choose Title</option>
-							<option value="Prof." >Prof.</option>
-							<option value="Dr.">Dr.</option>
-							<option value="Mr.">Mr.</option>
-							<option value="Mrs.">Mrs.</option>
-							<option value="Ms.">Ms.</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
-				</div>
-
-				<div class="wrap-input100 bg1 rs2-wrap-input100" data-validate="Please Fill Field">
-					<span class="label-input100">First Name</span>
-					<input class="input100" type="text" name="fname" placeholder="First Name">
-				</div>
-
-				<div class="wrap-input100 bg1 rs2-wrap-input100" data-validate="Please Fill Field">
-					<span class="label-input100">Middle Name</span>
-					<input class="input100" type="text" name="mname" placeholder="Middle Name">
-				</div>
-
-				<div class="wrap-input100 bg1 rs2-wrap-input100" data-validate="Please Fill Field">
-					<span class="label-input100">Last Name</span>
-					<input class="input100" type="text" name="lname" placeholder="Last Name">
-				</div>
-
-
-
-				<div class="wrap-input100 input100-select bg1">
-					<span class="label-input100">Gender</span>
-					<div>
-						<select class="js-select2" name="gender" required>
-							<option selected disabled value="">Choose Gender</option>
-							<option value="Male">Male</option>
-							<option value="Female">Female</option>
-							<option value="Other">Others</option>
-						</select>
-						<div class="dropDownSelect2"></div>
-					</div>
+				<div class="wrap-input100 bg1" data-validate="Please Fill Field">
+					<span class="label-input100">Name</span>
+					<input class="input100" type="text" name="name" placeholder="Full Name">
 				</div>
 
 				<div class="wrap-input100 input100-select bg1">

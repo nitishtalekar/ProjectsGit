@@ -1,20 +1,17 @@
 <?php require('dbconnect.php');
 
-	if(isset($_POST['subject_info'])){
-		$name = mysqli_real_escape_string($db, $_POST['name']);
-		$sem = $_POST['sem'];
-		$branch = $_POST['branch'];
+	if(isset($_POST['teaching_1'])){
+		$_SESSION['Sem'] = $_POST['sem'];
+		$_SESSION['Branch'] = $_POST['branch'];
+		$_SESSION['Div'] = $_POST['div'];
 
-		$qu = "INSERT INTO subject(sub_name, sub_sem, sub_dept) VALUES ('$name','$sem','$branch');";
-		mysqli_query($db, $qu);
-		
-		header('location: Subject.php');
+		header('location: Teaching2.php');
 	}
 
 ?>
 <html lang="en">
 <head>
-	<title>Subjects</title>
+	<title>Teaching</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -47,15 +44,10 @@
 
 	<div class="container-contact100">
 		<div class="wrap-contact100">
-			<form class="contact100-form validate-form" action="Subject.php" method="POST" enctype="multipart/form-data">
+			<form class="contact100-form validate-form" action="Teaching.php" method="POST" enctype="multipart/form-data">
 				<span class="contact100-form-title">
-					Subjects
+					Teaching Information
 				</span>
-				
-				<div class="wrap-input100 bg1">
-					<span class="label-input100">Course Name</span>
-					<input class="input100" type="text" name="name" placeholder="Course Name">
-				</div>
 				
 				<div class="wrap-input100 input100-select bg1">
 					<span class="label-input100">Branch</span>
@@ -91,10 +83,28 @@
 					</div>
 				</div>
 				
+				<div class="wrap-input100 input100-select bg1 validate-input" data-validate="Please Fill Field">
+					<span class="label-input100">Division</span>
+					<div>
+						<select class="js-select2" name="div" required>
+							<option selected disabled value="">Choose Division</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+              <option value="nun">--</option>
+						</select>
+						<div class="dropDownSelect2"></div>
+					</div>
+				</div>
+				
 				<div class="container-contact100-form-btn">
-					<button type="submit" class="contact100-form-btn" name="subject_info">
+					<button type="submit" class="contact100-form-btn" name="teaching_1">
 						<span>
-							Add
+							Next
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 					</button>
