@@ -4,18 +4,34 @@
 
 <h1>{{dice}}</h1>
 
+
+<p id="demo"></p>
+<p id="demo1"></p>
+
+{% if valid == 2 %}
+
+<script type="text/javascript">
+  // alert("hu");
+  myFunction();
+</script>
+
 <form action="/pictionary/board/" method="post"  enctype="multipart/form-data">
   {% csrf_token %}
   {{form.as_p}}
+  <!-- <button id = "st" onclick="myFunction()">Start timer</button> -->
   <button type="submit" name="correct" onclick="nextturn()">CORRECT</button>
   <button type="submit" id = "wrong" name="wrong" onclick="nextturn()" style="display: none;">WRONG</button>
 </form>
+{% endif %}
 
+
+{% if valid == 0 %}
 <form action="/pictionary/board/" method="post"  enctype="multipart/form-data">
   {% csrf_token %}
   {{form2.as_p}}
   <button type="submit" name="roll">ROLL</button>
 </form>
+{% endif %}
 
 <h3>{{score}}</h3><br>
 
@@ -24,9 +40,15 @@
 
 <b><u>TURN: {{turn}}</u></b>
 
-<p id="demo"></p>
-<p id="demo1"></p>
 
-<button onclick="myFunction()">Show card</button>
+{% if valid == 1 %}
+
+<form action="/pictionary/board/" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form3.as_p}}
+  <button type="submit" name="sc">SHOW CARD</button>
+</form>
+{% endif %}
+
 
 {% endblock content %}

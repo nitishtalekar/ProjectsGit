@@ -6,12 +6,14 @@ from . import views
 
 # Create your views here.
 def home(request):
+
     p = request.session['players']
     n = request.session['nop']
     t = request.session['turn']
     if request.method == "POST":
         form = Btnform(request.POST)
         form2 = Rollform(request.POST)
+        form3 = Cardform(request.POST)
         if form.is_valid():
             if 'correct' in request.POST:
                 request.session['score'][t] = request.session['score'][t]+request.session['dice']
@@ -21,10 +23,17 @@ def home(request):
                 request.session['score'][t] = request.session['score'][t]
                 request.session['dice'] = 0
                 request.session['turn'] = (request.session['turn'] + 1)%n
+            request.session['valid'] = 0;
         if form2.is_valid():
             if 'roll' in request.POST:
                 request.session['dice'] = r.choice([i for i in range(1,7)])
                 request.session['turn'] = request.session['turn']
+                request.session['valid'] = 1;
+        if form3.is_valid():
+            if 'sc' in request.POST:
+                # request.session['dice'] = r.choice([i for i in range(1,7)])
+                # request.session['turn'] = request.session['turn']
+                request.session['valid'] = 2;
         dice = request.session['dice']
         score = request.session['score']
     else:
@@ -35,7 +44,9 @@ def home(request):
         request.session['dice'] = 0
         dice = request.session['dice']
     t = request.session['turn']
-    return render(request,'pictionary/home.html',{'dice':dice,'score':score,'form':form,'form2':form2,'players':p,'nop':n,'turn':t})
+    # valid = 1
+    valid = request.session['valid']
+    return render(request,'pictionary/home.html',{'dice':dice,'score':score,'form':form,'form2':form2,'players':p,'nop':n,'turn':t,'valid':valid})
 
 def login(request):
     if request.method == "POST":
@@ -57,11 +68,13 @@ def login(request):
                 ind = ind+1
             request.session['players'] = players
             nop = len(players)
+            request.session['valid'] = 0
             request.session['nop'] = nop
             request.session['score'] = [0 for i in range(request.session['nop'])]
             request.session['turn'] = 0
             request.session['dice'] = 0
-        return HttpResponseRedirect('/board/')
+
+        return HttpResponseRedirect('/pictionary/board/')
     else:
         login = Loginform()
         return render(request,'pictionary/login.html',{'login':login})

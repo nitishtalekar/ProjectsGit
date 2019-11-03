@@ -1,6 +1,10 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
+
+    <script src="{% static 'js/timer.js' %}"></script>
     <meta charset="utf-8">
     <title>PICTIONARY</title>
   </head>
@@ -10,9 +14,7 @@
   {% block content %}{% endblock content %}
 
     <!-- first load django static tag. -->
-    {% load staticfiles %}
 
-    <script src="{% static 'js/timer.js' %}"></script>
 
 
   </body>
