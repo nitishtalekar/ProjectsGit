@@ -6,8 +6,14 @@
   </head>
   <body>
     PICTIONARY<br><br>
-    
-    {% block content %}{% endblock content %}
-      
+
+  {% block content %}{% endblock content %}
+
+    <!-- first load django static tag. -->
+    {% load staticfiles %}
+
+    <script src="{% static 'js/timer.js' %}"></script>
+
+
   </body>
 </html>

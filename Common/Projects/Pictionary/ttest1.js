@@ -1,5 +1,14 @@
 
-var audio = new Audio('aa.mp3');
+// var audio = new Audio('aa.mp3');
+
+function nextturn(){
+
+  // clearInterval(x);
+  document.getElementById("demo2").innerHTML = "hi";
+  // audio.stop();
+
+}
+
 
 function myFunction() {
 var now1 = new Date().getTime();
@@ -29,8 +38,10 @@ var x = setInterval(function() {
   // If the count down is over, write some text
   if (distance < 0) {
     clearInterval(x);
-    audio.play();
-    document.getElementById("demo").innerHTML = "EXPIRED";
+    document.getElementById("demo").innerHTML = "";
+    document.getElementById("wrong").click();
+    // document.getElementById("demo").innerHTML = "yo";
+    // nextturn();
   }
 }, 1000);
 

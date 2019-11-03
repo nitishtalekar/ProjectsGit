@@ -1,0 +1,11 @@
+{% extends 'pictionary/base.html' %}
+
+{% block content %}
+
+<form action="/pictionary/" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  {{login.as_p}}
+  <button type="submit" name="play">PLAY</button>
+</form>
+
+{% endblock content %}

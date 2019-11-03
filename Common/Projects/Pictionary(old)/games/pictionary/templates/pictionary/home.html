@@ -1,0 +1,27 @@
+{% extends 'pictionary/base.html' %}
+
+{% block content %}
+
+<h1>{{dice}}</h1>
+
+<form action="/pictionary/" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form.as_p}}
+  <button type="submit" name="correct">CORRECT</button>
+  <button type="submit" name="wrong">WRONG</button>
+</form>
+
+<form action="/pictionary/" method="post"  enctype="multipart/form-data">
+  {% csrf_token %}
+  {{form2.as_p}}
+  <button type="submit" name="roll">ROLL</button>
+</form>
+
+<h3>{{score}}</h3><br>
+
+<h2>{{players}}</h2>
+<h2>NUMBER : {{nop}}</h2>
+
+<b><u>TURN: {{turn}}</u></b>
+
+{% endblock content %}

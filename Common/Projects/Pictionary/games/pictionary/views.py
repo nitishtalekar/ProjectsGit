@@ -5,7 +5,7 @@ from django.http import HttpResponse
 from . import views
 
 # Create your views here.
-def home(request,k):
+def home(request):
     p = request.session['players']
     n = request.session['nop']
     t = request.session['turn']
@@ -36,7 +36,7 @@ def home(request,k):
         dice = request.session['dice']
     t = request.session['turn']
     return render(request,'pictionary/home.html',{'dice':dice,'score':score,'form':form,'form2':form2,'players':p,'nop':n,'turn':t})
-    
+
 def login(request):
     if request.method == "POST":
         login = Loginform(request.POST)
@@ -44,16 +44,16 @@ def login(request):
         ind = 0
         if login.is_valid():
             if login.cleaned_data['team1']:
-                players.append((ind , login.cleaned_data['team1'],login.cleaned_data['color1']))
+                players.append((ind , login.cleaned_data['team1'],'Red'))
                 ind = ind+1
             if login.cleaned_data['team2']:
-                players.append((ind , login.cleaned_data['team2'],login.cleaned_data['color2']))
+                players.append((ind , login.cleaned_data['team2'],'Yellow'))
                 ind = ind+1
             if login.cleaned_data['team3']:
-                players.append((ind , login.cleaned_data['team3'],login.cleaned_data['color3']))
+                players.append((ind , login.cleaned_data['team3'],'Blue'))
                 ind = ind+1
             if login.cleaned_data['team4']:
-                players.append((ind , login.cleaned_data['team4'],login.cleaned_data['color4']))
+                players.append((ind , login.cleaned_data['team4'],'Green']))
                 ind = ind+1
             request.session['players'] = players
             nop = len(players)
@@ -61,7 +61,7 @@ def login(request):
             request.session['score'] = [0 for i in range(request.session['nop'])]
             request.session['turn'] = 0
             request.session['dice'] = 0
-        return home(request,0)
-    else:        
+        return HttpResponseRedirect('/board/')
+    else:
         login = Loginform()
         return render(request,'pictionary/login.html',{'login':login})
