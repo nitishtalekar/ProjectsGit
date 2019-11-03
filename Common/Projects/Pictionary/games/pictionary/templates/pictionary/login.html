@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="/pictionary/" method="post"  enctype="multipart/form-data">
+<form action="/pictionary/board/" method="post"  enctype="multipart/form-data">
   {% csrf_token %}
   {{login.as_p}}
   <button type="submit" name="play">PLAY</button>

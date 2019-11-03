@@ -1,7 +1,7 @@
 from django.shortcuts import render
 import random as r
 from .forms import *
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from . import views
 
 # Create your views here.
