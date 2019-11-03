@@ -46,9 +46,15 @@
 <form action="/pictionary/board/" method="post"  enctype="multipart/form-data">
   {% csrf_token %}
   {{form3.as_p}}
-  <button type="submit" name="sc">SHOW CARD</button>
+  <button type="submit" name="showcard">SHOW CARD</button>
 </form>
 {% endif %}
+
+<br>
+
+{{Card}}<br>
+
+<b>{{Word}}</b>
 
 
 {% endblock content %}
