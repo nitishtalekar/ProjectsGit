@@ -53,7 +53,7 @@ def login(request):
                 players.append((ind , login.cleaned_data['team3'],'Blue'))
                 ind = ind+1
             if login.cleaned_data['team4']:
-                players.append((ind , login.cleaned_data['team4'],'Green']))
+                players.append((ind , login.cleaned_data['team4'],'Green'))
                 ind = ind+1
             request.session['players'] = players
             nop = len(players)
