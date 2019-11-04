@@ -1,8 +1,34 @@
 {% extends 'pictionary/base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <h1>{{dice}}</h1>
+
+{% if dice == 1 %}
+<img src="{% static 'img/dice1.png' %}" alt="" style="width:5%;height:5%">
+{% endif %}
+
+{% if dice == 2 %}
+<img src="{% static 'img/dice2.png' %}" alt="" style="width:5%;height:5%">
+{% endif %}
+
+{% if dice == 3 %}
+<img src="{% static 'img/dice3.png' %}" alt="" style="width:5%;height:5%">
+{% endif %}
+
+{% if dice == 4 %}
+<img src="{% static 'img/dice4.png' %}" alt="" style="width:5%;height:5%">
+{% endif %}
+
+{% if dice == 5 %}
+<img src="{% static 'img/dice5.png' %}" alt="" style="width:5%;height:5%">
+{% endif %}
+
+{% if dice == 6 %}
+<img src="{% static 'img/dice6.png' %}" alt="" style="width:5%;height:5%">
+{% endif %}
 
 
 <p id="demo"></p>
@@ -11,7 +37,6 @@
 {% if valid == 2 %}
 
 <script type="text/javascript">
-  // alert("hu");
   myFunction();
 </script>
 
