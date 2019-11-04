@@ -14,6 +14,7 @@ def home(request):
     cards = ''
     word = ''
     win = [0,""]
+    x = 0
     if request.method == "POST":
         form = Btnform(request.POST)
         form2 = Rollform(request.POST)
@@ -50,7 +51,8 @@ def home(request):
                 c_no2 = r.choice(request.session['card_index'])
                 request.session['card_index'].remove(c_no2)
                 cards = [[c[c_no1].card_title,c[c_no1].card_object,c[c_no1].card_action,c[c_no1].card_movie,c[c_no1].card_all],[c[c_no2].card_title,c[c_no2].card_object,c[c_no2].card_action,c[c_no2].card_movie,c[c_no2].card_all]]
-                word = [cards[0][((request.session['player_data'][t][0]+request.session['dice']-1)%5)],cards[1][((request.session['player_data'][t][0]+request.session['dice']-1)%5)]]
+                x = (request.session['player_data'][t][0]+request.session['dice']-1)%5
+                word = [cards[0][x],cards[1][x]]
                 request.session['valid'] = 2;
         dice = request.session['dice']
         # score = request.session['score']
@@ -64,20 +66,22 @@ def home(request):
         request.session['dice'] = 0
         dice = request.session['dice']
     t = request.session['turn']
+    pd = request.session['player_data']
+    p_turn = pd[t][1]
     # valid = 1
     valid = request.session['valid']
-    pd = request.session['player_data']
+    gen = request.session['genre'][x]
     p_dict = {
         'dice':dice,
         'form':form,
         'form2':form2,
-        'nop':range(n),
         'turn':t,
         'valid':valid,
-        'Card':cards,
         'Word':word,
         'pd' : pd,
-        'win' : win}
+        'win' : win,
+        'p_turn':p_turn,
+        'gen':gen}
     return render(request,'pictionary/home.html',p_dict)
 
 def login(request):
@@ -85,39 +89,34 @@ def login(request):
         login = Loginform(request.POST)
         players = []
         colors = []
-        ind = 0
         if login.is_valid():
             if login.cleaned_data['team1']:
                 players.append(login.cleaned_data['team1'])
-                colors.append('red')
-                ind = ind+1
+                colors.append('#ba3c3c')
             if login.cleaned_data['team2']:
                 players.append(login.cleaned_data['team2'])
-                colors.append('gold')
-                ind = ind+1
+                colors.append('#cac831')
             if login.cleaned_data['team3']:
                 players.append(login.cleaned_data['team3'])
-                colors.append('blue')
-                ind = ind+1
+                colors.append('#2f9ca4')
             if login.cleaned_data['team4']:
                 players.append(login.cleaned_data['team4'])
-                colors.append('green')
-                ind = ind+1
+                colors.append('#3b9829')
             # request.session['players'] = players
             # request.session['colors'] = colors
             nop = len(players)
             request.session['valid'] = 0
             request.session['nop'] = nop
-            request.session['score'] = [0 for i in range(request.session['nop'])]
+            # request.session['score'] = [0 for i in range(request.session['nop'])]
             request.session['turn'] = 0
             request.session['dice'] = 0
             request.session['player_data'] = []
+            request.session['genre'] = ['Person/Place/Animal','Objects','Actions','Movies','Random']
             for i in range(nop):
                 request.session['player_data'].append([0,players[i],colors[i],0])
-            # request.seession['player_data'].append(players)
-            # request.seession['player_data'].append(request.session['score'])
-            # request.seession['player_data'].append(colors)
             request.session['card_index'] = [i for i in range(Cards.objects.all().count())]
+            if nop == 0:
+                return HttpResponseRedirect('/pictionary/')
         return HttpResponseRedirect('/pictionary/board/')
     else:
         login = Loginform()

@@ -15,7 +15,7 @@ function nextturn(){
 function myFunction() {
 var now1 = new Date().getTime();
 var countDownDate = new Date(now1).getTime();
-countDownDate = countDownDate + 10000;
+countDownDate = countDownDate + 30000;
 //document.getElementById("demo1").innerHTML = countDownDate;
 
 // Update the count down every 1 second
@@ -46,7 +46,7 @@ var x = setInterval(function() {
     setTimeout(function() {
   //your code to be executed after 1 second
   document.getElementById("wrong").click();
-}, 3200);
+}, 3000);
 
   }
 }, 1000);

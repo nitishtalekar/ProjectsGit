@@ -14,6 +14,31 @@
   background-color: #304e81;
 }
 
+.bodywhite{
+  color:white;
+}
+
+.up{
+  text-transform: uppercase;
+  font-size: 20px;
+}
+.up_l{
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.cards{
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.gen{
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+
+
 .aligning{
   display: flex;
   align-items: center;
@@ -26,12 +51,27 @@
 }
 
 .dice{
-  height: 5%;
-  width: 5%;
-  border-radius: 50%;
+  height: 12%;
+  width: 12%;
+  /* border-radius: 50%; */
+}
+
+.btns{
+  color:white;
+  /* text-decoration: underline; */
+  background-color: #383838;
+  /* border-radius: 5px; */
+  font-size: 24px;
+  border-color: #383838;
+  /* box-shadow: none; */
 }
 
 .container3{
   width: 90%;
   margin: auto;
+}
+
+.winner{
+  text-transform: uppercase;
+  font-size: 50px;
 }
