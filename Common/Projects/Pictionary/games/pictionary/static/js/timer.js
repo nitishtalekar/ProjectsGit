@@ -1,11 +1,13 @@
+// {% load staticfiles %}
 
-// var audio = new Audio('aa.mp3');
+var audio = new Audio("../../static/js/aa.mp3");
+
 
 
 function nextturn(){
 
   clearInterval(x);
-  // audio.stop();
+  audio.stop();
 
 }
 
@@ -13,7 +15,7 @@ function nextturn(){
 function myFunction() {
 var now1 = new Date().getTime();
 var countDownDate = new Date(now1).getTime();
-countDownDate = countDownDate + 17000;
+countDownDate = countDownDate + 10000;
 //document.getElementById("demo1").innerHTML = countDownDate;
 
 // Update the count down every 1 second
@@ -38,8 +40,14 @@ var x = setInterval(function() {
   // If the count down is over, write some text
   if (distance < 0) {
     clearInterval(x);
+    audio.play();
+
     document.getElementById("demo").innerHTML = "";
-    document.getElementById("wrong").click();
+    setTimeout(function() {
+  //your code to be executed after 1 second
+  document.getElementById("wrong").click();
+}, 3200);
+
   }
 }, 1000);
 
