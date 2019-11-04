@@ -1,0 +1,26 @@
+#success_message{ display: none;}
+
+.container2{
+  width: 40%;
+  margin: auto;
+}
+
+.blu{
+  background-color: #183c79;
+  box-shadow: 5px 10px;
+}
+
+body{
+  background-color: #304e81;
+}
+
+.aligning{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.con{
+  width: 100%;
+  height: 100vh;
+}
