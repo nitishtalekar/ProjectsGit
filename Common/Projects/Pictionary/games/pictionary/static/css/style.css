@@ -10,7 +10,7 @@
   box-shadow: 5px 10px;
 }
 
-body{
+.body1{
   background-color: #304e81;
 }
 
@@ -29,4 +29,9 @@ body{
   height: 5%;
   width: 5%;
   border-radius: 50%;
+}
+
+.container3{
+  width: 90%;
+  margin: auto;
 }

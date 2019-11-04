@@ -8,6 +8,7 @@ import random as r
 # Create your views here.
 def home(request):
     p = request.session['players']
+    col = request.session['colors']
     n = request.session['nop']
     t = request.session['turn']
     cards = []
@@ -53,27 +54,33 @@ def home(request):
     t = request.session['turn']
     # valid = 1
     valid = request.session['valid']
-    return render(request,'pictionary/home.html',{'dice':dice,'score':score,'form':form,'form2':form2,'players':p,'nop':n,'turn':t,'valid':valid,'Card':cards,'Word':word})
+    return render(request,'pictionary/home.html',{'dice':dice,'score':score,'form':form,'form2':form2,'players':p,'colors':col,'nop':range(n),'turn':t,'valid':valid,'Card':cards,'Word':word})
 
 def login(request):
     if request.method == "POST":
         login = Loginform(request.POST)
         players = []
+        colors = []
         ind = 0
         if login.is_valid():
             if login.cleaned_data['team1']:
-                players.append((ind , login.cleaned_data['team1'],'Red'))
+                players.append(login.cleaned_data['team1'])
+                colors.append('red')
                 ind = ind+1
             if login.cleaned_data['team2']:
-                players.append((ind , login.cleaned_data['team2'],'Yellow'))
+                players.append(login.cleaned_data['team2'])
+                colors.append('gold')
                 ind = ind+1
             if login.cleaned_data['team3']:
-                players.append((ind , login.cleaned_data['team3'],'Blue'))
+                players.append(login.cleaned_data['team3'])
+                colors.append('blue')
                 ind = ind+1
             if login.cleaned_data['team4']:
-                players.append((ind , login.cleaned_data['team4'],'Green'))
+                players.append(login.cleaned_data['team4'])
+                colors.append('green')
                 ind = ind+1
             request.session['players'] = players
+            request.session['colors'] = colors
             nop = len(players)
             request.session['valid'] = 0
             request.session['nop'] = nop
