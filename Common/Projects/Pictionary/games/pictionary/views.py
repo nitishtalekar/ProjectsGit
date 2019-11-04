@@ -24,17 +24,17 @@ def home(request):
                 # request.session['score'][t] = request.session['score'][t]+request.session['dice']
                 request.session['player_data'][t][0] = request.session['player_data'][t][0]+request.session['dice']
 
-                if request.session['player_data'][t][0] >= 10:
+                if request.session['player_data'][t][0] >= 25:
                     win[0] = 1
                     win[1] = request.session['player_data'][t][1]
 
-                request.session['player_data'][t][3] = request.session['player_data'][t][0]*10
+                request.session['player_data'][t][3] = request.session['player_data'][t][0]*4
                 request.session['dice'] = 0
                 request.session['turn'] = (request.session['turn'] + 1)%n
             elif 'wrong' in request.POST:
                 # request.session['score'][t] = request.session['score'][t]
                 request.session['player_data'][t][0] = request.session['player_data'][t][0]
-                request.session['player_data'][t][3] = request.session['player_data'][t][0]*10
+                request.session['player_data'][t][3] = request.session['player_data'][t][0]*4
                 request.session['dice'] = 0
                 request.session['turn'] = (request.session['turn'] + 1)%n
             request.session['valid'] = 0;
