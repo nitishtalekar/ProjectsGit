@@ -7,23 +7,33 @@ import random as r
 
 # Create your views here.
 def home(request):
-    p = request.session['players']
-    col = request.session['colors']
+    # p = request.session['players']
+    # col = request.session['colors']
     n = request.session['nop']
     t = request.session['turn']
-    cards = []
+    cards = ''
     word = ''
+    win = [0,""]
     if request.method == "POST":
         form = Btnform(request.POST)
         form2 = Rollform(request.POST)
         form3 = Cardform(request.POST)
         if form.is_valid():
             if 'correct' in request.POST:
-                request.session['score'][t] = request.session['score'][t]+request.session['dice']
+                # request.session['score'][t] = request.session['score'][t]+request.session['dice']
+                request.session['player_data'][t][0] = request.session['player_data'][t][0]+request.session['dice']
+
+                if request.session['player_data'][t][0] >= 10:
+                    win[0] = 1
+                    win[1] = request.session['player_data'][t][1]
+
+                request.session['player_data'][t][3] = request.session['player_data'][t][0]*10
                 request.session['dice'] = 0
                 request.session['turn'] = (request.session['turn'] + 1)%n
             elif 'wrong' in request.POST:
-                request.session['score'][t] = request.session['score'][t]
+                # request.session['score'][t] = request.session['score'][t]
+                request.session['player_data'][t][0] = request.session['player_data'][t][0]
+                request.session['player_data'][t][3] = request.session['player_data'][t][0]*10
                 request.session['dice'] = 0
                 request.session['turn'] = (request.session['turn'] + 1)%n
             request.session['valid'] = 0;
@@ -40,10 +50,12 @@ def home(request):
                 c_no2 = r.choice(request.session['card_index'])
                 request.session['card_index'].remove(c_no2)
                 cards = [[c[c_no1].card_title,c[c_no1].card_object,c[c_no1].card_action,c[c_no1].card_movie,c[c_no1].card_all],[c[c_no2].card_title,c[c_no2].card_object,c[c_no2].card_action,c[c_no2].card_movie,c[c_no2].card_all]]
-                word = [cards[0][((request.session['score'][t]+request.session['dice']-1)%5)],cards[1][((request.session['score'][t]+request.session['dice']-1)%5)]]
+                word = [cards[0][((request.session['player_data'][t][0]+request.session['dice']-1)%5)],cards[1][((request.session['player_data'][t][0]+request.session['dice']-1)%5)]]
                 request.session['valid'] = 2;
         dice = request.session['dice']
-        score = request.session['score']
+        # score = request.session['score']
+        pd = request.session['player_data']
+
     else:
         form = Btnform()
         form2 = Rollform()
@@ -54,7 +66,19 @@ def home(request):
     t = request.session['turn']
     # valid = 1
     valid = request.session['valid']
-    return render(request,'pictionary/home.html',{'dice':dice,'score':score,'form':form,'form2':form2,'players':p,'colors':col,'nop':range(n),'turn':t,'valid':valid,'Card':cards,'Word':word})
+    pd = request.session['player_data']
+    p_dict = {
+        'dice':dice,
+        'form':form,
+        'form2':form2,
+        'nop':range(n),
+        'turn':t,
+        'valid':valid,
+        'Card':cards,
+        'Word':word,
+        'pd' : pd,
+        'win' : win}
+    return render(request,'pictionary/home.html',p_dict)
 
 def login(request):
     if request.method == "POST":
@@ -79,14 +103,20 @@ def login(request):
                 players.append(login.cleaned_data['team4'])
                 colors.append('green')
                 ind = ind+1
-            request.session['players'] = players
-            request.session['colors'] = colors
+            # request.session['players'] = players
+            # request.session['colors'] = colors
             nop = len(players)
             request.session['valid'] = 0
             request.session['nop'] = nop
             request.session['score'] = [0 for i in range(request.session['nop'])]
             request.session['turn'] = 0
             request.session['dice'] = 0
+            request.session['player_data'] = []
+            for i in range(nop):
+                request.session['player_data'].append([0,players[i],colors[i],0])
+            # request.seession['player_data'].append(players)
+            # request.seession['player_data'].append(request.session['score'])
+            # request.seession['player_data'].append(colors)
             request.session['card_index'] = [i for i in range(Cards.objects.all().count())]
         return HttpResponseRedirect('/pictionary/board/')
     else:
