@@ -79,6 +79,7 @@
 </center>
 {% endif %}
 
+
 <center>
 <p id="demo" class="up_l"></p>
 </center>
@@ -86,7 +87,7 @@
 {% if valid == 2 and win.0 == 0 %}
 
 <script type="text/javascript">
-  myFunction();
+  timer();
 </script>
 
 <center>
@@ -105,7 +106,7 @@
 <form action="/pictionary/board/" method="post"  enctype="multipart/form-data">
   {% csrf_token %}
   {{form.as_p}}
-  <!-- <button id = "st" onclick="myFunction()">Start timer</button> -->
+  <!-- <button id = "st" onclick="timer()">Start timer</button> -->
   <button type="submit" name="correct" class="btns" onclick="nextturn()">CORRECT</button>
   <button type="submit" id = "wrong" name="wrong" onclick="nextturn()" style="display: none;">WRONG</button>
 </form>

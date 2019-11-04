@@ -12,10 +12,10 @@ function nextturn(){
 }
 
 
-function myFunction() {
+function timer() {
 var now1 = new Date().getTime();
 var countDownDate = new Date(now1).getTime();
-countDownDate = countDownDate + 30000;
+countDownDate = countDownDate + 92000;
 //document.getElementById("demo1").innerHTML = countDownDate;
 
 // Update the count down every 1 second
@@ -35,7 +35,7 @@ var x = setInterval(function() {
   var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
   // Output the result in an element with id="demo"
-  document.getElementById("demo").innerHTML = minutes + "m " + seconds + "s ";
+  document.getElementById("demo").innerHTML = "TIMER: " + minutes + "m " + seconds + "s ";
 
   // If the count down is over, write some text
   if (distance < 0) {
