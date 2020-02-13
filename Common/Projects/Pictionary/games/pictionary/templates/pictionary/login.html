@@ -16,10 +16,15 @@
 <body class="body1">
 <!-- partial:index.partial.html -->
 <!-- <div class="jumbotron2 jumbotron align-items-center"> -->
-<div class="con aligning">
-<div class="container2">
-<h1 style="color:white">PICTIONARY</h1>
-    <form class="well form-horizontal blu" action="/pictionary/" method="post"  enctype="multipart/form-data">
+
+<div class="container ">
+
+<h1 style="color:white" class="text-center" >PICTIONARY</h1>
+  <div class="con aligning" style="">
+
+
+
+<form class="well form-horizontal blu  " action="/pictionary/" method="post"  enctype="multipart/form-data" style="width:600px;margin-top:10px;">
       {% csrf_token %}
 <fieldset>
 
@@ -28,63 +33,67 @@
 
 <!-- Text input-->
 
-<div class="form-group">
-  <label class="col-md-4 control-label">Red Team:</label>  
+
+
+
+<div class="form-group ">
+  <label class="col-md-4 control-label ">Red Team:</label>
   <div class="col-md-5">
   <div class="input-group">
     {{login.team1}}
   <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="color:red"></i></span>
   <!-- <input  name="red_team" placeholder="Red Team" class="form-control"  type="text"> -->
-    
+
     </div>
   </div>
 </div>
 
+
 <div class="form-group">
-  <label class="col-md-4 control-label">Yellow Team:</label>  
+  <label class="col-md-4 control-label">Yellow Team:</label>
   <div class="col-md-5">
   <div class="input-group">
     {{login.team2}}
   <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="color:gold"></i></span>
   <!-- <input  name="yellow_team" placeholder="Yellow Team" class="form-control"  type="text"> -->
-  
+
     </div>
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label">Blue Team:</label>  
+  <label class="col-md-4 control-label">Blue Team:</label>
   <div class="col-md-5">
   <div class="input-group">
     {{login.team3}}
   <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="color:blue"></i></span>
   <!-- <input  name="blue_team" placeholder="Blue Team" class="form-control"  type="text"> -->
-  
+
     </div>
   </div>
 </div>
 
 <div class="form-group">
-  <label class="col-md-4 control-label">Green Team:</label>  
+  <label class="col-md-4 control-label">Green Team:</label>
   <div class="col-md-5">
   <div class="input-group">
     {{login.team4}}
   <span class="input-group-addon"><i class="glyphicon glyphicon-user" style="color:green"></i></span>
   <!-- <input  name="green_team" placeholder="Green Team" class="form-control"  type="text"> -->
-  
+
     </div>
   </div>
 </div>
 <!-- Button -->
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
-  <div class="col-md-4"><br>
+  <div class="col-md-5"><br>
     <center><button type="submit" class="btn btn-primary" name='play'>PLAY PICTIONARY</button></center>
   </div>
 </div>
 
 </fieldset>
-</form>
+</form></div>
 </div>
     </div><!-- /.container -->
 <!-- partial -->
