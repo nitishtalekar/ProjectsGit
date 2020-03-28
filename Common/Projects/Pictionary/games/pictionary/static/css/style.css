@@ -40,13 +40,13 @@
 
 
 .aligning{
-  display: flex;
+  display: block;
   align-items: center;
   justify-content: center;
 }
 
 .con{
-  width: 100%;
+   width: 75%; 
   height: 100vh;
 }
 
