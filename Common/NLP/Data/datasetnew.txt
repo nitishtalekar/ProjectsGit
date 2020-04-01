@@ -1,0 +1,819 @@
+
+Go	検索
+Hi	こんにちは
+Run	実行
+Wow	すごい
+Fire	ほのお
+Help	ヘルプ
+Stop	停止
+Wait	待機する
+Begin	開始
+Go on	そのまま
+Hello	へのメッセージ
+Hurry	急ぐ
+I ran	走った
+I see	そうかぁ
+I try	うれしいね
+I won	俺が勝った
+Relax	リラックス
+Shoot	芽
+Smile	いい写真が欲しかったら
+Attack	アタック
+Cheers	よろしくお願いします
+Eat it	いいから食べなさい
+Eat up	食べなさい
+Freeze	フリーズ
+Got it	持っています
+He ran	走った。 - どうして水の中に落ちてしまったの？
+Hop in	乗りなよ
+Hug me	ぎゅーして。
+I fell	ええ
+I know	わかってる
+I lied	- 嘘をついた
+I lost	ゲームは　わたしの負けです。
+I paid	金を支払った
+I sang	私 歌ったの
+I swim	私は泳ぎます
+I'm 19	１９歳です。
+I'm OK	まあね
+I'm up	効くわね　応援よろしく
+No way	- 無理だ 5人?
+Really	本当に
+Thanks	ありがとうございます。
+Try it	試してみる
+We try	私たちは、試す。
+We won	-俺達だよ！
+Why me	なんで俺？
+Ask Tom	トムに聞いて。
+Awesome	素晴らしいブログ ツール
+Be cool	クールに
+Be fair	公平である
+Be kind	親切にすること
+Be nice	いい子になれ
+Beat it	今夜はビート・イット
+Call me	えーと... 私は...
+Come in	入って
+Come on	行こう
+Get Tom	トムをゲット
+Get out	外に出る
+Go away	立ち去って
+Go home	アディ　早く
+Goodbye	またの機会に宜しくお願いいたします
+Hang on	つかまって
+He came	彼は来ました。
+He quit	かれは辞めた
+He runs	彼は走る。
+Help me	助けてください
+Help us	何てこった
+Hi, Tom	あら　トム
+Hit Tom	トムをヒット
+Hold it	すぐ出ましょ！
+Hold on	抱き締めてくれたら
+Hug Tom	ハグトム
+I agree	同意します
+I cried	私は泣いてしまいました！
+I snore	私はいびきをかきます
+I'll go	- わかった　行くよ
+I'm bad	-！
+I'm fat	私は太っています
+I'm hit	やられた、ア〜！
+I'm mad	私が怒ってんだ
+I'm new	転校生。
+I'm old	ほら、年寄りだから
+I'm sad	私は苦しい
+I'm shy	私は恥ずかしがり屋です
+I'm wet	びしょ濡れよ
+It's OK	平気か？
+It's me	"おいっ　私だ"
+Join us	参加しよう
+Keep it	Keep it.
+Kiss me	キスして
+Lock it	鍵を閉めて
+Open up	活発になる
+Perfect	感動
+Pull it	さあ
+Push it	おさえろ
+See you	じゃあ
+Show me	表示する
+Shut up	閉じ込める
+So long	あまりにも。
+Stop it	- やめて
+Take it	- 取れ
+Tell me	私のことが見えなくても
+Tom ate	トムは食べた
+Tom ran	トムは走った
+Tom won	トムは勝った。
+Wait up	待ってください
+Wake up	ウェークアップ
+Wash up	手を洗いなさい。
+We lost	"ダメだった"
+Welcome	ログインユーザーㅤ
+Who ate	誰が食べた
+Who ran	誰が走った
+Who won	どっちが勝った？
+You run	逃げるのよ.
+You won	あなたのね
+Am I fat	私は太っていますか
+Ask them	彼らに尋ねる
+Back off	- 下がれ
+Be a man	男性
+Be brave	勇気をもって
+Be brief	簡潔に？
+Be still	じっとして
+Call Tom	トムに電話
+Can I go	いるの？
+Cheer up	ヤァ！
+Cool off	頭を冷やせ。
+Cuff him	彼を逮捕しろ
+Don't go	- 行かないでくれ
+Drive on	駆動オン
+Find Tom	トムを探す
+Fix this	なんとかしろ。
+Get away	あっち行け
+Get down	今だ　入れ!
+Get lost	帰りな
+Get real	わかった？
+Go ahead	どうぞ
+Grab Tom	トムをつかむ
+Grab him	捕まえろ。
+Have fun	面白さ
+He spoke	彼は話した
+He tries	彼がやってみるんだ。
+Help Tom	トムを助けて
+How cute	（静流） かわいい
+How deep	どれ位 向こうから？
+How nice	いいね
+Humor me	いいから
+Hurry up	急ぐ
+I can go	もういいですか？
+I did it	私がやった
+I get by	による
+I get it	- そだよ
+I got it	OK
+I helped	私が手伝ったの
+I jumped	そして私は跳んだ。
+I nodded	うなずいた
+I refuse	否認
+I resign	私は辞任する
+I shaved	剃っちゃったよ 引っかかるので
+I smiled	私は微笑んだ
+I stayed	彼のそばに
+I use it	私はそれを使います。
+I waited	私は待ちました
+I yawned	あくびをした
+I'll pay	私はお金を払います。
+I'll try	- やってみる
+I'm a DJ	私は
+I'm back	戻ったよ
+I'm bald	禿頭である。
+I'm busy	- ああ　忙しい
+I'm deaf	ムカツクな
+I'm fair	私は公平だ。
+I'm fine	大丈夫です
+I'm free	無料奉仕です
+I'm full	お腹がいっぱい。
+I'm game	- やろう
+I'm good	わかった
+I'm here	俺はここにいる
+I'm home	ただいま〟〟〟
+I'm late	your name please ?
+I'm lost	もう終わりだ
+I'm mean	私はいじわるです
+I'm next	私は次のよ。
+I'm okay	「大丈夫です。」
+I'm rich	リッチだ！
+I'm safe	ここは安全だし」
+I'm sick	僕は病気だ
+I'm sure	確かに
+I'm tall	私は背が高い。
+I'm thin	私は薄いです
+I'm tidy	私は整頓されています
+I'm ugly	- 顔はおなじだろ！
+I'm weak	私は弱いよ
+I'm well	いいわよ
+It helps	助かったわ
+It hurts	- 怪我しているみたい
+It works	通じた。
+It's Tom	次のメッセージ トムです
+It's his	奴だ
+It's hot	ホットね
+It's new	それは新しいわ 6時間ほどで小腸に穴を開ける
+It's sad	悲しいわ
+Keep out	プライバシー
+Kiss Tom	キス・トム
+Leave us	- 大丈夫ですか？
+Let's go	どんな
+Look out	本が　危ない
+Marry me	私と結婚してください
+May I go	もういいかしら？
+Save Tom	トムを救う
+She came	彼女は来た
+She lied	ウソだぞ
+She runs	彼女は走ってる。
+Sit down	- いいから座れ
+Speak up	声を上げる
+Stand up	ç«ã¡ä¸ãã
+Stop Tom	トムを止めて
+Take Tom	トムを取る
+Taste it	それを味わいます
+Tell Tom	トムに言う
+Terrific	そうか！
+They won	奴らの勝ちだ
+Tom came	トムが来た
+Tom died	トムは死んだ。
+Tom fell	トムは落ちた
+Tom knew	トムは知っていた
+Tom left	トムが去った
+Tom lied	トムは嘘をついた
+Tom lies	トムは嘘をつく
+Tom lost	トムは負けた
+Tom paid	トムは払った
+Tom quit	トムはやめた
+Tom swam	トムは泳いだ
+Tom wept	トムは涙を流した。
+Tom's up	トムはアップ
+Too late	遅いぞ
+Touch it	さあ
+Trust me	信じてくれ
+Try hard	頑張ろうぜ
+Try some	飲んでみろ
+Try this	こうよ
+Use this	"これを使って　急いで"
+Warn Tom	トムに警告
+Watch me	見ててくれ
+Watch us	あたしらを見なよ
+We agree	意見が一致している。
+We tried	やってみた
+We'll go	じゃあ行こう
+We're OK	心配ないって
+What for	何に使うのか：
+What fun	楽しみね
+Who am I	私は誰？
+Who came	だれが来たって？
+Who died	今朝死体で見つかった
+Who fell	誰が倒れた
+Who quit	誰がやめた
+Who swam	誰が泳いだ
+Who's he	"彼"とは？
+Write me	レビューを書く
+You lost	損をしました。
+Aim. Fire	目的。火
+Am I dead	. 僕死んだ.
+Am I late	- 遅刻かな？
+Answer me	答えてちょうだい。
+Be seated	じゃ　お座り下さい
+Birds fly	鳥は飛ぶ。
+Bless you	お大事に
+Call home	「家に電話」か
+Calm down	お願いです しっかりなさってください
+Can I eat	食べてもいいですか
+Can we go	いこうぜ？
+Catch Tom	トムをキャッチ
+Chill out	― 逃げんのか コラ！ ― いい加減にしろって
+Come back	戻る
+Come here	- こっちに来い
+Come home	帰ってきてくれ
+Come over	"だから来てね"
+Come soon	すぐに来る
+Cool down	落ち着いて。
+Did I win	勝った？
+Do it now	今すぐ
+Dogs bark	犬の樹皮
+Don't ask	don't ask 尋ねるな
+Don't cry	大人の女は
+Don't die	- 死ぬなよ
+Don't lie	- 嘘をつくな
+Don't run	Don't run.
+Excuse me	失礼
+Fantastic	ほぅ。
+Feel this	これを感じて
+Follow me	フォローしてください。
+Forget it	キャンセル
+Get ready	準備をして
+Go for it	- だからここに来たって言う訳さ
+Go get it	マイケル、あなたはボールを返したいです
+Go inside	マジ　変よ
+Go to bed	- 寝なさい
+Goodnight	グッドナイト
+Grab that	それを持て 早くしろ！
+Hands off	手を離せ
+Have some	それじゃ皆さん
+He is ill	彼は病気です
+He is old	彼は年を取っている。
+He smiled	彼は微笑みました
+He's a DJ	彼はＤＪです。
+He's fast	彼は速い
+He's good	あいつは　やり手だ
+He's lazy	あいつは　怠け者だ
+He's rich	- お金持ちね
+He's sexy	彼は、セクシーだ。
+Here I am	- ああそうだ
+Here's $5	５ドルをやる。
+Hold fire	待機しろ
+Hold this	これを持って
+How awful	なんだって
+How is it	(紗絵子)どう？
+How weird	- どれくらい？
+Humor Tom	トムの機嫌をとれ。
+I am lost	喫煙
+I am okay	大丈夫だ。
+I am sure	よーく分かってる
+I am tall	私は背が高い。
+I am well	調子は良好です
+I can fly	私は飛べます。
+I can run	私は走ることができる。
+I can ski	スキーができます。
+I can win	勝てる
+I changed	変更された
+I cheated	インチキだ
+I clapped	私は拍手しました
+I fainted	そのあと気を失ってた
+I fear so	残念ながらどうもそうらしい。
+I gave up	俺はやめるよ
+I get you	私はあなたの事が分かっている。
+I giggled	くすくす笑いました
+I give in	私の負けだ。
+I got mad	私は怒ったんだ。
+I had fun	楽しんだ
+I hit Tom	トムを叩いた。
+I hope so	そうだといいんだけど...
+I hung up	私は電話を切った
+I knew it	（山田） 知ってたけど
+I laughed	私は笑った
+I like it	好き
+I lost it	なくしたの
+I love it	ステキ〜
+I made it	それを作られました。
+I may win	勝つかもしれない
+I mean it	- 本気だ
+I met Tom	トムに会った
+I met him	彼に会った
+I miss it	ここを逃げ出し、
+I promise	約束する。
+I said no	ダメだ
+I saw Tom	トムを見た
+I saw him	- Tell me you saw his face!
+I saw one	見た
+I saw you	見たんだ
+I see Tom	トムが見える。
+I took it	オレが撮ったやつだ
+I want it	- 欲しい
+I was new	私は新しい
+I was shy	私は恥ずかしがり屋でした
+I will go	- 出てくよ
+I woke up	もう一度
+I'd do it	夜のうちに火を放ち
+I'd leave	私は去ります
+I'll call	コール
+I'll come	私が行く
+I'll cook	作ってあげる
+I'll help	- 支援します
+I'll live	大丈夫だ
+I'll obey	従います
+I'll quit	やめます
+I'll sing	まず　俺が歌う。
+I'll stay	- 僕が残るよ
+I'll stop	OK 止めるよ
+I'll talk	わかった　話すから
+I'll wait	僕は　待ってる
+I'll walk	いいえ　診療所は遠くないから
+I'm a man	♪僕は一人の男だ
+I'm angry	- 怒ってるの
+I'm awake	そんな感じなの.
+I'm blind	目が見えない！
+I'm bored	ひまだ。
+I'm broke	カネがないんだ
+I'm crazy	俺は狂ってる
+I'm cured	良いぞ！
+I'm drunk	男性 酔ってる
+I'm dying	もうすぐ死ぬわ
+I'm early	早かった？
+I'm first	私が一番。
+I'm going	必要に応じて
+I'm happy	俺は幸せだ
+I'm lying	私は嘘をついています
+I'm needy	私は困っています
+I'm obese	私は肥満です
+I'm picky	私はうるさいですよ
+I'm ready	覚悟はできてるわ
+I'm right	- 僕の思ったとおりだ
+I'm sober	酒はやめた
+I'm sorry	ごめんなさい
+I'm stuck	ん？ 取れない
+I'm tired	私は疲れている
+I'm tough	私はタフです
+I'm upset	僕は動揺しています
+I'm yours	僕は　お前のもの
+I've lost	負けました
+Ignore it	ほっといてよ
+Is Tom OK	トムは大丈夫ですか
+Is Tom in	トムはいる
+Is he Tom	彼はトムですか
+Is it bad	それは悪いこと？
+Is it far	遠いのかしら？
+Is it hot	暑い?
+Is it new	目新しいですか？
+It burned	燃えた
+It snowed	雪が降った。
+It stinks	くさいっ くさい!
+It worked	『君たちは　クビだ！ 』 あれは有効よ
+It's 3:30	３時半です。
+It's 7:45	７時４５分です。
+It's 8:30	早いな
+It's 9:15	９時１５分です。
+It's a TV	それはテレビだ。
+It's cold	冷たい
+It's cool	- いいんだ
+It's dark	暗い
+It's easy	かんたんよ。
+It's fair	万人に公正だ
+It's free	無料です。
+It's hard	初めて座った
+It's here	来た な
+It's late	もう日が高い
+It's mine	俺のものだ
+It's okay	おっおっおっ
+It's open	あいてる
+It's ours	- 私たちのよ
+It's over	良いぞ もう終わる
+It's sand	砂です
+It's true	それは本当だ
+It's work	グレーズで殺人だ 私は
+Jump down	飛び降りる
+Just swim	泳ぐだけ
+Keep away	あっち行って
+Keep back	- 下がれ！
+Keep calm	Keep Calm and Carry On
+Keep cool	冷静さを保ってください。
+Keep down	尺には尺を
+Keep that	あげればいい
+Keep them	- あげますよ
+Keep warm	保温
+Leave Tom	脱退
+Leave now	すぐ出ろ
+Let it be	♪ Let it be
+Let me be	させて
+Let me go	じゃ 行くよ
+Let me in	入るよ
+Let us go	引きなさい
+Let's eat	食べよう
+Let's see	さあ、見てみましょう。
+Let's try	やってみましょう。
+Lie still	じっとしてて
+Listen up	みんな 聞いで！
+Look away	あっちを見てろ
+Look back	後ろを見ろ。
+Look down	見なさい
+Look here	ここを見て
+Loosen it	縄をほどいて！
+Loosen up	意地張るな
+Move over	ちょっと見せて
+Nice shot	- ナイス・ショットだ
+Of course	もちろん
+Please go	- もう帰って
+Put it on	かぶれ
+Read this	これを見て
+Say "aah.	「アー」といってください。
+Say hello	-ハローと言って
+See below	下記参照
+Seize him	取り押さえろ
+Seriously	本当に
+She cried	その子泣いてた.
+She tried	彼女はやってみた。
+She walks	彼女は歩く。
+Sign here	ここにサインしろ
+Sign this	sign this これにサインしなさい
+Sit by me	私に座る
+Sit still	じっとしてろ！
+Sit there	座って
+Sit tight	じっとしてろ
+Start now	今すぐ開始
+Stay away	あっち行け
+Stay back	- 下がれ
+Stay calm	落ち着いてください。
+Stay cool	冷静にな
+Stay down	じっとしてろ
+Stay thin	太らないように。
+Step back	さがれ
+Stop here	ここで止めて
+Stop that	るとめ
+Stop them	止めろ！
+Take care	時節柄、どうぞご自愛ください。
+Are you hurt	あなたは傷ついている
+Are you lost	忘れました?
+Are you okay	大丈夫ですか
+Are you rich	あなたは
+Are you sick	体調がすぐれませんか
+Are you sure	よろしいですか？
+Are you tall	あなたは
+Are you tidy	あなたは
+Are you well	- 元気にしてるか？
+Ask Mary out	メアリーに尋ねる
+Be attentive	行き届きます
+Be objective	客観的になる
+Be realistic	何だって？
+Beef, please	ビーフをお願いします。
+Boil one egg	卵を一つ茹でてよ。
+Bring backup	バックアップをもたらす
+Bring him in	彼を中へ
+Call me back	そして私に連絡を
+Call the FBI	- FBIを呼べ！
+Can I go now	私は今行くことができますか？
+Can I try it	着ていい？
+Can Tom walk	トムは歩けますか
+Can you come	どう来ない？
+Can you cook	料理ができますか
+Can you help	助けてください
+Can you move	動ける?
+Can you read	Can you read?
+Can you swim	もちろんさ
+Can you walk	- 歩けるか？
+Come and see	来て
+Come at once	すぐに来て下さい。
+Come back in	次のプレイまでの時間:
+Come forward	- -お進み下さい --
+Come help me	Come help me.
+Come in, Tom	入って、トム
+Come on down	こっちへおいで
+Come on home	家に来て
+Come on, Tom	よせよ　トム！
+Come outside	- 表に出ろ
+Come quickly	早く来て
+Come up here	こっちだ
+Come with me	俺と共に来い
+Come with us	- 一緒に
+Count to ten	10まで数えます
+Cut that out	やめて。
+Deal with it	- 彼らも現代人だ
+Describe Tom	説明
+Did Tom come	トムは来た？
+Did Tom fall	トムは落ちた
+Did Tom help	トムは助けた？
+Did Tom know	トムは知っていましたか
+Did Tom mind	トムは気にしましたか
+Did Tom pray	トムは祈った
+Did Tom sing	トムは歌った
+Did Tom stay	トムは泊まりましたか
+Did Tom swim	トムは泳ぎましたか
+Did Tom vote	トムは投票した
+Did you call	お呼びですか。
+Did you help	あなたは…しましたか
+Did you sign	あなたは…しましたか
+Did you sing	あなたは…しましたか
+Did you vote	あなたは…しましたか
+Do I look OK	おかしくない？
+Do it Monday	月曜日にやる
+Do it anyway	とにかくそれを行う
+Do it for me	私のために
+Do they know	天使は知っている
+Do you agree	同意しますか
+Do you drink	お酒は飲みますか
+Do you smoke	タバコは吸​​いますか
+Do you teach	何を教えていますか
+Do your best	ベストを尽くせ。
+Do your duty	義務を果たす
+Does it hurt	- 痛むの？
+Does it show	表示されますか
+Does it work	- 動くの？
+Don't ask me	（竹本） な... 何でこっちに振るんですか
+Don't be sad	悲しくないよね
+Don't be shy	はずかしがらず
+Don't bug me	私を悩ませないで
+Don't forget	忘れないでくれ
+Don't get up	- 座っててくれ
+Don't go yet	だめ、行かないで。
+Don't let go	放さないで
+Don't scream	叫ぶんじゃない
+Drive faster	もっとはやく！
+Drive safely	安全運転で
+Drive slowly	ゆっくり運転しなさい。
+Drop the gun	- あと5分で着く 銃を捨てろ
+Easy does it	あわてずに
+Examine them	それらを調べる
+Examine this	これを調べる
+Fish, please	魚をお願いします。
+Food is food	食べ物は食べ物です
+Get my rifle	私のライフルを入手
+Get the book	ブックを手に入れよう
+Get upstairs	上の階も探せ
+Ghosts exist	幽霊は存在する。
+Give it back	- 返して
+Give me half	半分ください
+Give me that	- おい！
+Give me time	時間をください。
+Go around it	着陸復行
+Go away, Tom	離れて、トム
+Go there now	今すぐ開く
+Go to school	学校へ行きなさい。
+Good evening	こんばんは
+Good for you	あっそう
+Grab my hand	手を握れ
+Grow up, Tom	育って、トム
+Hand it over	"それを渡せ"
+Happy Easter	ハッピー・イースター！
+Has Tom come	トムは来ましたか
+Has Tom gone	トムは行ってしまった
+Has Tom quit	トムは辞めた？
+Have a donut	ドーナツをどうぞ
+Have a drink	ドリンクを持っている。
+Have a snack	おやつを食べる
+Have a taste	味わえ
+Have another	旦那 いけるじゃねーの どうぞ どうぞ
+Have courage	勇気を出して。
+He avoids me	彼は私を避けます
+He can do it	大丈夫!
+He could die	彼は死ぬことができた
+He denied it	彼はそれを否定した
+He dozed off	彼は居眠りをした。
+He dumped me	彼は私を捨てた
+He got angry	彼は怒った。
+He had a dog	彼は犬を飼っていた
+He has a car	彼は自家用車を持っている。
+He has a dog	彼は犬を飼っている。
+He has money	お金を持ってる
+He hates her	彼は彼女を恨んでいる。
+He helps her	彼は彼女を手伝います。
+He is a poet	彼は詩人だ。
+He is asleep	彼は眠っている。
+He is chubby	彼はぽっちゃりです
+He is cranky	機嫌が悪いのです。
+He is driven	彼はやる気満々です。
+He is eating	彼は食事中だ。
+He is heroic	彼は英雄的です
+He is not in	彼は外出しています。
+He just left	もういない
+He kicked it	彼はそれを蹴飛ばした。
+He let us go	彼は私たちを行かせました
+He lost face	彼は面目を失った。
+He loved her	パパはママを愛してた
+He loves her	彼は彼女が好きだ。
+He needs you	あなたが必要なのよ
+He runs fast	彼は走るのが速い。
+He seems ill	彼は病気のようだ。
+He succeeded	彼は成功した。
+He was alone	彼は一人ぼっちだった。
+He was brave	彼は勇敢だった。
+He was great	素晴らしいパパだった
+He was lucky	彼は運が良かった。
+He was naive	彼は世間知らずだった
+He was wrong	しかし間違っていた
+He was young	彼は若かった
+He will come	きっと来るよ
+He will wait	彼は待ちます
+He will walk	彼は歩くつもりだ。
+He's a bigot	彼は偏見です
+He's dieting	彼はダイエットしています
+He's in pain	人が苦しんでるのに笑うとは
+He's my hero	彼は私のヒーローです
+He's too old	彼は年上すぎる
+Hello, girls	お帰り
+Help Tom out	トムを助けて
+Here you are	どうぞ。
+Hey, wait up	待ってよ！
+Honesty pays	正直さ
+How arrogant	何様だ？
+How barbaric	野蛮な方法
+How dare you	- 神ではなくお前の言葉だ
+How exciting	エキサイティングだ
+How horrible	最不良
+How pathetic	なんてザマだ
+How romantic	これは　ロマンティックだこと
+How touching	感動的だね。
+I admire Tom	トムに感心する
+I admire you	あなたには感服いたします
+I almost won	ほぼ勝ちました
+I always win	- いつでも勝つ
+I am Chinese	私は中国人です。
+I am a nurse	- 私は看護師です
+I am ashamed	恥じていました。
+I am at home	うちにいます。
+I am baffled	私は困惑しています
+I am curious	私は好奇心が強い
+I am praying	私は祈っています
+I apologized	謝った
+I ate apples	りんごを食べた
+I ate caviar	私はキャビアを食べた。
+I bit my lip	私は唇を噛んだ。
+I broke that	壊した
+I burp a lot	げっぷがよく出ます。
+I called Tom	私はトムに電話した。
+I called him	彼に電話した。
+I can manage	- 私がします
+I can try it	私はそれを試すことができます
+I can't draw	（ダイアナ）ストローは？
+I can't help	僕は手伝えない
+I can't move	"動けないよ！"
+I can't read	エジプトのスフィンクスじゃあるまいし
+I can't sing	- 歌えない
+I can't stay	- もたない
+I can't swim	泳げないんだ
+I can't talk	機密事項だ
+I can't wait	それが楽しみよ
+I can't walk	歩けない
+I cried, too	私も泣いた
+I cut myself	切り傷をしてしまった
+I deserve it	それに値する
+I detest Tom	トムを嫌う
+I didn't lie	嘘はついてない
+I didn't pay	払わななかった。
+I didn't win	勝てなかった
+I do hope so	全くそうなってほしものですよ。
+I do my best	得意なんだ
+I do want it	それが是非欲しい。
+I don't care	私は気にしないでください
+I don't know	わからない
+I don't mind	あ 車はいいんですけど
+I don't read	yomanai
+I don't sing	信じてない
+I drank milk	私は牛乳を飲みました。
+I drink beer	私はビールを飲む
+I drink milk	牛乳を飲む
+I drink wine	私はワインを飲みます
+I eat cheese	私はチーズを食べます
+I enjoy life	みたいな意味なんですけれども
+I feel alive	生きていることを実感する。
+I feel dizzy	目眩がする
+I feel great	すごく気分がいいよ
+I feel happy	私は幸せだ。
+I felt giddy	めまい感
+I felt naked	裸になった
+I found them	これを見つけたんで...
+I go jogging	ジョギングに行く
+I go to work	仕事に取りかかる
+I had doubts	私はいぶかしく思った。
+I hate beans	豆嫌い
+I hate liars	嘘つきは嫌い
+I hate sushi	寿司が嫌いです。
+I hate tests	テストが嫌い
+I hate those	私はそれらが嫌いです
+I have a car	車でいます
+I have a dog	犬を飼ってる
+I have a map	地図があります
+I have a pen	私はペンを持っている。
+I have hives	じんましんが出ました。
+I have money	- 50ドル持ってます
+I have proof	証拠があるわ
+I have to go	じゃあ 行くね
+I have water	水があります
+I hear music	音楽が聞こえる。
+I helped Tom	トムを助けた
+I hope I win	いっぱいかつといいね
+I hugged Tom	トムを抱きしめた
+I hugged her	彼女を抱きしめた。
+I improvised	即興で来た
+I keep a dog	私は犬を一匹飼ってます。
+I let him go	I let him go 私が 彼を 逃がしてしまった
+I like books	- 本が好きなの
+I like bread	私はパンが好きです
+I like candy	キャンディが好きです
+I like girls	そうね 女の子みたいに
+I like pizza	-ピザが好きなんだ
+I like sugar	砂糖が好き
+I like sushi	寿司が好きです。
+I like these	私は、この子たちが好きだ
+I like women	私は女性が好き
+I live alone	ひとりだよ
+I lost a bet	期待はずれ
+I love books	本は大好き
+I love bread	パンが大好き
+I love games	ゲームが大好きだ。
+I love jokes	-ジョーク大好きだ
+I love money	私はお金が大好き。
+I love pizza	ピザが大好き
+I love trips	旅行が好きです。
+I loved that	それで良かった
+I made a bet	私は賭けをしました
+I made it up	作り話にしたのに
+I made these	私が作った
+I missed you	どうしてた？
+I must hurry	私は急がなければなりません
+I must study	私は勉強しなければなりません。
+I need a cab	タクシーが必要です
+I need a car	車が必要なんだ
+I need a hug	抱きしめてほしい
+I need a job	仕事を下さい
+I need a map	地図が欲しい
+I need a nap	昼寝したい
+I need money	おカネがいるの
+I need paint	ペンキが必要
+I need proof	- 証拠が要る
+I need sleep	寝かせてほしいよ
+I need water	水をちょうだい
+I often read	私はよく読んだ
+I phoned him	- 僕が呼んだんだ
+I play piano	私はピアノを弾きます。
+I rarely cry	めったに泣かない
+I read a lot	私はたくさん読みます
+I read books	僕は本をよみます。
+I see a book	本を見ます
+I see a lion	ライオンが見える
+I see a star	星が見える
+I seldom cry	私はめったに泣かない
+I sell fruit	果物を売る
+I slept fine	私は元気に寝ました
+I smelled it	匂いがした
+I suppose so	あり得ますね
+I swim a lot	私はたくさん泳ぎます
+I sympathize	良く分かります
+I talk a lot	私はたくさん話します
+I teased Tom	トムをからかった
