@@ -32,7 +32,7 @@ def jap_clean(text,kuro_server):
         x = token.getSurfaceForm()+"--"+token.getAllFeatures()[0]
         a.append(x)
     # print(a)
-    return " ".join(a);
+    return " ".join(a)
     
 
 # clean a list of lines
