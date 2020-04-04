@@ -5,6 +5,7 @@ import os
 import glob
 import re
 import numpy as np
+import random as r
 
 # Keras
 from keras.applications.imagenet_utils import preprocess_input, decode_predictions
@@ -100,6 +101,14 @@ jpn_vocab_size = len(jpn_tokenizer.word_index) + 1
 jpn_length = max_length(dataset[:, 1])
 ml = max(eng_length, jpn_length)
 
+file = open('text/jpn_text.txt', mode='rt', encoding='utf-8')
+text = file.readlines()
+file.close()
+
+elist = []
+jlist = []
+l = [i for i in range(10)]
+
 # Define a flask app
 app = Flask(__name__)
 
@@ -134,11 +143,18 @@ def model_predict(s):
 @app.route('/', methods=['GET'])
 def index():
     # Main page
-    return render_template('index.html',translate="TRANSLATION HERE")
+    global elist,jlist
+    elist = []
+    jlist = []
+    for i in range(10):
+        x = r.randint(0,len(text))
+        elist.append(text[x].split('\t')[0])
+        jlist.append(text[x].split('\t')[1][:-1])
+    return render_template('index.html',translate="TRANSLATION HERE",ewords=elist,jwords=jlist,l = l)
 
 
 @app.route('/predict', methods=['GET', 'POST'])
-def login():
+def predict():
     if request.method == 'POST':
 
         w = request.form['word']
@@ -146,9 +162,9 @@ def login():
         x = array(s).reshape(1,)
         trainX = encode_sequences(jpn_tokenizer, ml, x)
         translation = predict_sequence(model,eng_tokenizer,trainX)
-        t = translation
-
-        return render_template('index.html',translate=t)   
+        translate = translation
+        
+        return  render_template('index.html',translate=translate,ewords=elist,jwords=jlist,l = l)   
     
     #return render_template('landing.html',username=u,img=imgs,title=ts,gen=GenList,topimg=imgstop,toptit=tstop,gen1=g1tit,gen2=g2tit,gimg1=g1img,gimg2=g2img)
 

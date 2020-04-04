@@ -1,0 +1,6500 @@
+Go.	行け
+Go.	行きなさい
+Hi.	こんにちは
+Hi.	もしもし
+Hi.	やっほー
+Hi.	こんにちは
+Run.	走れ
+Run.	走って
+Who?	誰
+Wow!	すごい
+Wow!	ワォ
+Wow!	わぉ
+Wow!	おー
+Fire!	火事だ
+Fire!	火事
+Fire!	撃て
+Help!	助けて
+Help!	助けてくれ
+Jump!	飛び越えろ
+Jump!	跳べ
+Jump!	飛び降りろ
+Jump!	飛び跳ねて
+Jump!	ジャンプして
+Jump.	跳べ
+Jump.	飛び跳ねて
+Jump.	ジャンプして
+Stop!	やめろ
+Stop!	止まれ
+Wait!	待って
+Go on.	続けて
+Go on.	進んで
+Go on.	進め
+Go on.	続けろ
+Hello!	こんにちは
+Hello!	もしもし
+Hello!	こんにちは
+Hurry!	急げ
+I see.	なるほど
+I see.	なるほどね
+I see.	わかった
+I see.	わかりました
+I see.	そうですか
+I see.	そうなんだ
+I see.	そっか
+I try.	頑張ってみる
+I try.	やってみる
+I try.	試してみる
+I try.	やってみよう
+I try.	トライしてみる
+I won!	俺の勝ちー
+I won!	勝ったぁ
+I won!	勝ったぞ
+I won!	私の勝ち
+I won!	私が勝ち
+Oh no!	なんてこった
+Oh no!	なんてことだ
+Oh no!	しまった
+Oh no!	あー、しまった
+Oh no!	うわ、しまった
+Oh no!	何てことだ
+Relax.	落ち着いて
+Relax.	くつろいで
+Relax.	リラックスして
+Relax.	楽にしてください
+Shoot!	撃て
+Smile.	はい、チーズ
+Smile.	にっこり笑って
+Cheers!	乾杯
+Freeze!	動くな
+Get up.	起きなさい
+Get up.	起きなさい
+Get up.	起きろ
+Go now.	さあ、行っといで
+Got it!	捕まえた
+Got it!	分かった
+He ran.	彼は走った
+He ran.	彼が走った
+Hop in.	乗れよ
+Hop in.	さあ乗って
+Hug me.	抱きしめて
+Hug me.	ぎゅーして
+I know.	分かってる
+I know.	分かってます
+I left.	出発し
+I lost.	負けた・・・
+I paid.	払いました
+I quit.	私、辞めます
+I quit.	やめた
+I'm 19.	１９歳です
+I'm OK.	大丈夫ですよ
+I'm OK.	私は大丈夫です
+I'm up.	起きてるよ
+Listen.	聞きなさい
+Listen.	聞いて
+No way!	馬鹿な
+No way!	あり得ねぇー
+No way!	とんでもない
+No way!	とんでもございません
+No way!	とんでもありません
+Really?	本当
+Really?	本当に
+Really?	本気
+Thanks.	ありがとうございます
+Thanks.	お疲れさまでした
+Thanks.	ありがとう
+We try.	私たちは努力しております
+We won.	俺らの勝ちー
+We won.	勝ったぞ
+Why me?	何でわたしなの
+Why me?	どうして私なの
+Ask Tom.	トムに聞きなさい
+Ask Tom.	トムに聞いて
+Ask Tom.	トムに聞いてごらん
+Awesome!	すごいぞ
+Be calm.	落ち着いて
+Be cool.	落ち着いて
+Be cool.	冷静に
+Be fair.	フェアに行こうぜ
+Be nice.	お行儀よくしなさい
+Be nice.	優しくしてあげなさい
+Beat it.	どっか行け
+Call me.	連絡をちょうだい
+Call me.	電話してね
+Call us.	お電話ください
+Come in.	入っておいでよ
+Come in.	お入りください
+Come in.	入ってきなさい
+Come in.	入って
+Come in.	入れ
+Come on.	おいで
+Come on.	おいおい
+Get Tom.	トムを連れてきて
+Get out!	出て行け
+Get out!	出ていけ
+Get out!	出ろ
+Get out.	出て行け
+Get out.	出ていけ
+Get out.	外に出ろ
+Get out.	消え失せろ
+Get out.	出ろ
+Go away!	向こうへ行け
+Go away!	あっちへ行け
+Go away!	離れろ
+Go away.	向こうへ行け
+Go away.	どっか行け
+Go away.	あっちへ行け
+Go away.	消え失せろ
+Go home.	帰りなさい
+Go slow.	ゆっくり、ゆっくり
+Go slow.	慌てない、慌てない
+Goodbye!	さようなら
+Goodbye!	さようなら
+Hang on!	頑張れ
+Hang on.	切らないで
+He came.	彼は来ました
+He quit.	やめた
+He runs.	彼は走る
+Help me!	助けてくれ
+Help me!	助けて
+Help me.	助けてくれ
+Help me.	助けて
+Help me.	手伝ってよ
+Help me.	助けてください
+Help me.	手伝って
+Help us.	手伝って
+Hi, Tom.	ハーイ、トム
+Hi, Tom.	やぁ、トム
+Hit Tom.	トムを殴れ
+Hold it!	動かないで
+Hold it!	待って
+Hold it!	じっとして
+Hold on.	お待ちください
+Hug Tom.	トムを抱きしめて
+Hug Tom.	トムにハグして
+Hug Tom.	トムをハグして
+I agree.	賛成です
+I agree.	同感です
+I agree.	そう思います
+I agree.	まったくです
+I tried.	やってはみた
+I tried.	やってみた
+I'll go.	行くよ
+I'll go.	私が行きます
+I'm Tom.	トムと申します
+I'm Tom.	トムといいます
+I'm Tom.	私はトムです
+I'm fat.	私は太っている
+I'm fat.	俺はデブだ
+I'm old.	私ももう年だ
+I'm sad.	悲しいです
+I'm shy.	私は引っ込み思案です
+It's OK.	大丈夫ですよ
+It's me!	僕だよ
+It's me!	私よ
+It's me.	私ですが
+It's me.	僕だよ
+Join us.	仲間になって
+Keep it.	取っておいて
+Me, too.	僕もだよ
+Me, too.	私もそうです
+Me, too.	私も
+Open up.	開けてくれ
+Open up.	開けろ
+Perfect!	バッチリ
+Perfect!	完璧
+Perfect!	パーフェクト
+See you!	また会おう
+See you.	じゃ、またねっ
+See you.	じゃあ、またね
+See you.	また会おう
+Show me.	見せて
+Show me.	ちょっと見せて
+Shut up!	黙ってて
+Skip it.	やめておけ
+So long.	さようなら
+Stop it.	やめなさい
+Stop it.	やめろ
+Stop it.	いいかげんにして
+Stop it.	やめろよ
+Take it.	これ取っておいて
+Tell me.	教えて
+Tom ate.	トムは食べた
+Tom ran.	トムは走った
+Tom won.	トムは勝った
+Tom won.	トムの勝ち
+Wait up.	待って
+Wake up!	目を覚ませよ
+Wake up!	起きなさい
+Wake up!	起きて
+Wake up!	起きろ
+Wake up.	目を覚ませよ
+Wake up.	起きなさい
+Wake up.	起きて
+Wake up.	起きなさい
+Wash up.	手を洗いなさい
+Wash up.	顔を洗いなさい
+We know.	私たちは知ってる
+We know.	僕たちは知ってる
+We know.	俺たちは知ってる
+We lost.	負けた・・・
+Welcome.	こんにちは
+Welcome.	いらっしゃい
+Welcome.	ようこそ
+Who ran?	誰が走ったの
+Who won?	誰が勝ったの
+Why not?	どうしてダメなの
+Why not?	ぜひそうしよう
+You run.	君が走れ
+You won.	あんたの勝ちだ
+You won.	おまえの勝ちだ
+Am I fat?	俺、太ってるかな
+Back off!	下がっていろ
+Back off!	引っ込んでて
+Be a man.	男になれよ
+Be quiet.	黙っていなさい
+Be quiet.	静かに
+Be quiet.	少し静かにしていなさい
+Be quiet.	静かにしなさい
+Be quiet.	静かにしてなさい
+Be quiet.	お静かに
+Be still.	じっとしてて
+Call Tom.	トムに電話して
+Call Tom.	トムを呼んで
+Cheer up!	元気出して
+Cheer up!	元気を出せよ
+Cheer up!	元気出せよ
+Cheer up!	元気出しなよ
+Cheer up.	元気出して
+Cheer up.	元気出しなよ
+Cool off!	頭を冷やせ
+Don't go.	行くんじゃない
+Don't go.	行かないで
+Find Tom.	トムを探してきて
+Find Tom.	トムを見つけて
+Get away!	向こうへ行け
+Get down!	床に伏せろ
+Get lost!	どっか行け
+Get lost.	出て行け
+Get lost.	どっか行け
+Get real!	冷静に考えて見ろよ
+Go ahead!	どうぞ、お先に
+Go ahead.	どうぞお話し下さい
+Go ahead.	どうぞ、お先に
+Good job!	お疲れ様でした
+Good job!	お疲れさまでした
+Good job!	よくやった
+Grab Tom.	トムを捕まえろ
+Have fun.	楽しんでね
+Have fun.	楽しんできなさい
+He tries.	彼がやってみるんだ
+Help Tom.	トムを助けてやって
+How cute!	なんて可愛いんでしょう
+How cute!	かわいい
+How deep?	どのくらい深い
+Hurry up.	急ぎなさい
+Hurry up.	さあ、急いで
+Hurry up.	急げ
+I did it.	やった
+I did it.	やってやった
+I forgot.	忘れました
+I forgot.	忘れた
+I got it.	了解
+I resign.	辞めます
+I resign.	辞職します
+I use it.	私がそれを使います
+I yawned.	あくびをした
+I'll pay.	僕のおごりですよ
+I'll pay.	僕が払っとこう
+I'll pay.	私のおごりだ
+I'll pay.	私が払います
+I'll pay.	私が払いましょう
+I'll try.	頑張ってみる
+I'll try.	トライします
+I'll try.	やってみる
+I'm busy.	僕は忙しい
+I'm busy.	私は忙しい
+I'm busy.	忙しいです
+I'm cool.	俺はクールだ
+I'm cool.	俺はいかしてる
+I'm fair.	私は公平だ
+I'm fine.	私は大丈夫です
+I'm fine.	私は元気です
+I'm free.	私は暇だ
+I'm free.	暇ですよ
+I'm free.	私は自由の身だ
+I'm free.	手は空いていますよ
+I'm free.	時間はあります
+I'm full.	もう満腹です
+I'm full.	お腹がいっぱいです
+I'm full.	お腹いっぱいだ
+I'm lost.	道に迷ってしまった
+I'm poor.	私は貧乏です
+I'm sick.	病気です
+I'm tall.	私は背が高い
+I'm well.	大丈夫ですよ
+I'm well.	私は大丈夫です
+I'm well.	私は元気です
+It hurts.	痛い
+It's Tom.	トムだ
+It's new.	それは新しいです
+It's odd.	妙だな
+Keep out.	立ち入りを禁ず
+Leave it.	放っておけ
+Leave it.	放っておきなさいよ
+Leave it.	やめておけ
+Let's go!	行くよ
+Let's go!	さあ、行くぞ
+Look out!	危ない
+Marry me.	私と結婚して
+Speak up!	はっきり言いなさい
+Stand up!	立ちなさい
+Stand up!	起立
+Stand up.	立ちなさい
+Stand up.	起立
+Tell Tom.	トムに教えて
+Tell Tom.	トムに伝えて
+Terrific!	すごいぞ
+Terrific!	素晴らしい
+They won.	彼らは勝った
+Tom came.	トムが来た
+Tom died.	トムは死んだ
+Tom fell.	トムは落ちた
+Tom knew.	トムは知った
+Tom left.	トムはさった
+Tom lied.	トムは嘘をついた
+Tom lies.	トムは嘘をつく
+Tom lost.	トムが負けた
+Tom paid.	トムは払った
+Tom quit.	トムはやめた
+Tom swam.	トムは泳いだ
+Tom wept.	トムは涙を流した
+Tom wept.	トムは泣きました
+Tom wept.	トムは泣いた
+Too late.	遅すぎる
+Trust me.	信じてくれよ
+Trust me.	信用してください
+Try hard.	精一杯やってみなさい
+Use this.	これ使って
+Warn Tom.	トムに警告します
+Warn Tom.	トムに警告する
+Warn Tom.	トムに警告してください
+Warn Tom.	トムに警告しなさい
+We agree.	意見が一致している
+What for?	何のために
+What for?	何に使うの
+Who came?	誰が来た
+Who came?	誰が来ましたか
+Who died?	誰が死んだの
+Who quit?	誰がやめるの
+Who's he?	彼は誰
+After you.	お先にどうぞ
+Birds fly.	鳥は飛ぶ
+Call home!	家に電話して
+Calm down!	落ち着いて
+Calm down!	落ちついて
+Calm down!	落ち着けよ
+Calm down!	落ち着け
+Calm down!	落ち着いて
+Calm down.	落ち着けよ
+Calm down.	落ち着いて
+Calm down.	落ちつけよ
+Calm down.	落ちつきな
+Calm down.	落ちついて
+Calm down.	頭を冷やせよ
+Calm down.	頭を冷やせ
+Calm down.	落ち着け
+Calm down.	落ち着いて
+Catch him.	彼を捕まえて
+Catch him.	彼を捕まえろ
+Chill out.	落ち着いて
+Come back.	戻っておいで
+Come here.	ちょっと来て
+Come here.	こちらに来なさい
+Come here.	こっちへ来なさい
+Come here.	ここへ来なさい
+Come here.	こっちに来て
+Come here.	こっちに来いよ
+Come here.	こっちへおいで
+Come here.	こっちおいで
+Come home.	家に来て
+Come home.	家に来いよ
+Come home.	帰ってきなさい
+Come home.	帰ってこい
+Come home.	家に戻ってきなさい
+Come over!	私の家に来て下さい
+Come over!	家においでよ
+Come over!	遊びに来いよ
+Come over!	家に来てよ
+Come soon.	すぐ来て
+Cool down.	落ち着いて
+Cool down.	頭を冷やせ
+Did I win?	勝った
+Dogs bark.	犬が吠える
+Don't ask.	聞かないでくれ
+Don't cry.	泣かないで
+Don't die.	死なないで
+Don't lie.	嘘をつくな
+Excuse me.	失礼しました
+Excuse me.	あのー、失礼ですが
+Excuse me.	すみません
+Excuse me?	もう一度お願いします
+Fantastic!	すごいぞ
+Fantastic!	お見事
+Fantastic!	素晴らしい
+Follow me.	私についてきて
+Follow me.	ついてきて
+Forget it.	忘れて
+Get going.	さあ行った、行った
+Go to bed.	もう寝なさい
+Good luck.	元気でね
+Good luck.	頑張れよ
+Goodnight.	おやすみなさい
+Hands off.	触るな
+He is old.	彼は年を取っている
+He's a DJ.	彼はＤＪです
+He's lazy.	彼は尻が重い
+Here's $5.	５ドルをやる
+How awful!	ああ恐い
+How is it?	景気はどうですか
+Humor Tom.	トムの機嫌をとれ
+I am full.	お腹がいっぱいです
+I am full.	お腹いっぱいだ
+I am lost.	道に迷ってしまった
+I am sure.	確かだよ
+I am sure.	そのことを確信している
+I am tall.	私は背が高い
+I can run.	私は走ることができる
+I can ski.	私はスキーの仕方を知っています
+I fainted.	私は気を失いました
+I give in.	私の負けだ
+I give up.	降参します
+I give up.	お手上げだ
+I got mad.	私は怒ったんだ
+I had fun.	楽しかった
+I have it.	持っています
+I hit Tom.	トムを叩いた
+I hope so.	そうだといいけど
+I hope so.	私もそう願います
+I laughed.	私は笑ってしまった
+I like it.	それ好き
+I like it.	気に入ってます
+I mean it!	本気だよ
+I mean it.	本気で言ってるんです
+I met him.	私は彼に会った
+I must go.	行かなくちゃ
+I promise.	約束するよ
+I relaxed.	僕はリラックスした
+I said no.	ダメだって言ったでしょ
+I said no.	違うってば
+I said so.	そう言っておいたはずだ
+I saw him.	私は彼に会った
+I saw him.	彼を見た
+I see Tom.	トムが見える
+I want it.	これが欲しい
+I was mad.	私は怒り狂っていたんだ
+I will go.	行くよ
+I will go.	私が行きます
+I'd agree.	私は同意するだろう
+I'll help.	お手伝いしますよ
+I'll help.	私は手伝うよ
+I'll help.	手伝うよ
+I'll pass.	私は通ります
+I'll quit.	私はやめます
+I'm a boy.	僕、男だよ
+I'm a cop.	私は警官だ
+I'm alone.	一人だ
+I'm alone.	私は一人だ
+I'm awake.	起きてるよ
+I'm bored.	退屈しちゃったよ
+I'm brave.	私は勇敢だ
+I'm broke.	文無しなんだ
+I'm broke.	金欠なんだ
+I'm clean.	私は潔白だ
+I'm clean.	私は清潔だ
+I'm dizzy.	くらくらする
+I'm dizzy.	酔った
+I'm drunk.	酔った
+I'm dying.	もう死にそう
+I'm early.	早かった
+I'm first.	私が一番
+I'm fussy.	私は几帳面なんだ
+I'm fussy.	私は細かいんだ
+I'm happy.	私は幸福です
+I'm happy.	私は幸せだ
+I'm happy.	私は幸せです
+I'm lucky.	私はついている
+I'm ready.	準備ができました
+I'm smart.	俺って、頭いい
+I'm smart.	私って冴えてる
+I'm sober.	私は酔っていない
+I'm sorry.	悪かった
+I'm sorry.	どうも失礼
+I'm sorry.	御免なさい
+I'm sorry.	すみません
+I'm tired.	疲れているんだ
+I'm tired.	疲れました
+I'm tired.	疲れたよ
+I'm tired.	疲れたなあ
+I'm tired.	私は疲れた
+I'm young.	僕は若い
+Is he Tom?	彼はトムですか
+Is it far?	そこって遠いですか
+It stinks.	超臭いよ
+It worked.	動いた
+It worked.	うまく行った
+It's 2:30.	2時半です
+It's 3:30.	３時半です
+It's 7:45.	７時４５分です
+It's 9:15.	９時１５分です
+It's cold.	寒い
+It's cold.	寒っ
+It's cool.	カッコいい
+It's easy.	楽勝だよ
+It's free.	無料です
+It's free.	それは無料です
+It's here.	ここにあります
+It's late.	もう遅いわよ
+It's mine.	それ、私の
+It's mine.	それ、私のです
+It's okay.	大丈夫、大丈夫
+It's work.	それが仕事です
+Jump down.	飛び降りろ
+Keep away.	離れてて
+Keep back.	下がってて
+Keep warm.	あったかくしてなさい
+Let me go!	私に行かせて
+Let me go!	私に行かせてください
+Let me in.	中に入れてよ
+Let me in.	中に入れて
+Let me in.	私も参加させてください
+Let me in.	私も入れてください
+Let me in.	中に入れてください
+Let's try.	やってみようよ
+Listen up.	よく聞きなさい
+Look back!	後ろを見ろ
+May I eat?	食べてもいいですか
+Of course!	もちろんだよ
+Of course!	もちろん
+Of course!	もちろん
+Of course.	もちろんだよ
+Of course.	もちろんさ
+Of course.	もちろん
+Of course.	もちろん
+Open fire!	撃て
+Pardon me?	もう一度お願いします
+Pipe down!	静かに
+Pipe down!	静かにしなさい
+Pipe down.	静かに
+Pipe down.	静かにしなさい
+Read this.	これを読みなさい
+Read this.	これを読んで
+Say "aah."	「アー」といってください
+See above.	前述参照のこと
+Seriously?	本気
+She cried.	彼女は泣いた
+She tried.	彼女は試した
+She tried.	彼女はやってみた
+Sign here.	ここでサインして
+Sit there.	そこにお座り
+Stay away.	近づくな
+Stay away.	どいてろ
+Stay calm.	落ち着いて
+Stay calm.	落ちついて
+Stay calm.	静かにしてなさい
+Step back.	下がって
+Stop that!	やめなさい
+Stop that!	やめろ
+Stop that.	やめなさい
+Stop that.	やめろ
+Take care!	用心しなさい
+Take care!	気を付けてね
+Take care!	お気をつけて
+Take care!	気をつけて
+Take care.	用心しなさい
+Take care.	気を付けてね
+Take care.	お体を大切に
+Take care.	お気をつけて
+Take care.	気をつけて
+Take mine.	私のをどうぞ
+Take this.	これ使って
+Take this.	これにしなよ
+Thank you.	ありがとうございます
+Thank you.	お疲れさまでした
+Thank you.	ありがとう
+That's OK.	それでいいよ
+That's it.	図星です
+That's it.	そういうこと
+Then what?	じゃあ何
+They left.	彼らは去った
+They lied.	彼らは嘘をついた
+They lost.	彼らは負けた
+They swam.	彼らは泳いだ
+Time's up.	時間終了
+Tom cooks.	トムは料理する
+Tom cried.	トムは涙を流した
+Tom cried.	トムは泣いていた
+Tom drank.	トムは飲んだ
+Tom drove.	トムは運転した
+Tom knits.	トムは編み物をする
+Tom knows.	トムは知っている
+Tom moved.	トムは動いた
+Tom moved.	トムは引っ越した
+Tom slept.	トムは寝ていた
+Tom slept.	トムは眠っていた
+Tom spoke.	トムは話した
+Tom stood.	トムは立った
+Tom tried.	トムは挑戦した
+Tom tried.	トムはやってみた
+Tom tries.	トムは挑戦する
+Tom waved.	トムは手を振った
+Tom waved.	トムは手をふった
+Try again.	もう１度やってみなさい
+Try again.	もう一度やってみて
+Try again.	もう一回やってみて
+Turn left.	左に曲がって
+Wait here.	ここで待って
+Watch out!	危ない
+Watch out!	気をつけて
+We did it!	成功だ
+We did it.	やった
+We forgot.	忘れた
+We talked.	僕らは話した
+We waited.	僕らは待った
+We're men.	私たちは男です
+We've won!	勝った
+Well done!	お見事
+Well done!	よくやった
+Well done!	上出来
+Well done.	お見事
+Well done.	よくやった
+What's up?	変わりない
+What's up?	何が起こったんだ
+Who cares?	知るもんか
+Who is he?	彼は誰
+Who is it?	誰
+Who is it?	どなた
+Who is it?	どなたさまでしょうか
+Who knows?	誰にも分からないよ
+Who knows?	分からないよ
+Who'll go?	誰が行くの
+Who's Tom?	トムって誰
+Who's she?	彼女は誰ですか
+Wonderful!	すごいぞ
+Wonderful!	素晴らしい
+Write Tom.	トムに手紙を書きなよ
+All aboard!	ご乗車願います
+Am I clear?	何言っているか分かる
+Am I clear?	私の言ってること、わかります
+Am I fired?	俺、クビですか
+Am I right?	私、正しい
+Am I wrong?	俺は間違っているのか
+Are you OK?	大丈夫ですか
+Are you OK?	大丈夫
+Are you in?	いる
+Be careful!	気をつけて
+Be careful.	用心しなさい
+Be careful.	気を付けてね
+Be careful.	気をつけて
+Be on time.	時間に遅れないで
+Be patient.	辛抱しなさい
+Be serious.	ふざけないで
+Be serious.	真面目におやり
+Birds sing.	鳥は歌います
+Birds sing.	鳥が囀る
+Birds sing.	鳥は鳴く
+Bottoms up!	乾杯
+Can I come?	私も行ってもいい
+Can I help?	手伝おうか
+Can I help?	手伝おうか
+Carry this.	これ運んで
+Choose one.	一つ選んで
+Come again.	また来てね
+Come along.	さあ、一緒に来いよ
+Come along.	いっしょに来なさい
+Come along.	私達と一緒に来なさい
+Come on in!	入っておいでよ
+Come on in!	さあ、入って入って
+Come on in.	入っておいでよ
+Come quick!	早く来い
+Come quick!	早く来なさい
+Come quick!	早くいらっしゃい
+Come quick!	早くおいで
+Cut it out!	やめなさい
+Cut it out!	やめろ
+Cut it out.	いい加減にしろよ
+Cut it out.	いいかげんにして
+Deal me in.	混ぜて
+Definitely!	もちろんだよ
+Definitely!	もちろん
+Did Tom go?	トムは行った
+Did we win?	勝った
+Do come in.	さあどうぞお入りください
+Do come in.	入って
+Do you ski?	スキーは滑る
+Don't come.	来ないで
+Don't look.	見ないで
+Don't move!	動かないで
+Don't move!	じっとして
+Don't move!	動くな
+Don't move.	動かないで
+Don't move.	動かないで
+Don't push.	押すなよ
+Don't quit.	やめちゃダメ
+Don't talk!	話しかけるな
+Don't talk!	黙っていなさい
+Don't talk.	黙っていなさい
+Don't wait.	待つな
+Eat slowly.	ゆっくり食べて
+Fill it up.	満タンにしてください
+Find a job.	仕事を見つけろ
+Fire burns.	火は燃える
+Follow Tom.	トムに従え
+Forget him.	彼の事は忘れなさい
+Forgive me.	許して
+Forgive us.	お許しを
+Get moving.	さあ行った、行った
+Get to bed.	ベッドへいけ
+Give it up.	諦めろ
+Go on home.	帰りなさい
+Go see Tom.	トムに会ってきて
+Go to work.	仕事に行きなさい
+Go wash up.	洗ってきて
+God exists.	神は存在する
+Good night.	おやすみなさい
+He ate out.	彼は外食した
+He gave in.	彼は降参した
+He gave up.	彼は降参した
+He hung up.	彼は電話を切った
+He is a DJ.	彼はＤＪです
+He is kind.	優しい人です
+He is kind.	いい人です
+He is kind.	彼は親切な人です
+He is lazy.	彼は尻が重い
+He is nice.	彼はいい人です
+He is nice.	いい人です
+He is sick.	彼は病気です
+He made it.	彼は成功した
+He's lying.	彼はうそをついている
+He's lying.	彼は嘘をついている
+He's smart.	利口だね
+He's smart.	彼は頭がいい
+Heat it up.	温めて
+Help me up.	上がるの手伝って
+Help me up.	起き上がるの手伝って
+Help me up.	立ち上がるの手伝って
+Here he is!	あっ、来た来た
+Here it is.	はいどうぞ
+Here it is.	ほら、ここにあるよ
+Here we go.	さあ、行くぞ
+Hey, relax.	落ちつきな
+Hold still.	じっとしてて
+How clever!	賢い
+How lovely!	かわいい
+How tragic!	悲惨
+How's work?	仕事はどう
+How's work?	どう、仕事は
+Hurry back.	急いで戻れ
+Hurry home.	早く家に帰って来なさい
+I admit it.	それは認める
+I am a boy.	僕、男だよ
+I am a man.	俺は人間だ
+I am happy.	私は幸福です
+I am happy.	私は幸せだ
+I am happy.	私は幸せです
+I broke it.	私が壊した
+I built it.	私が作ったんです
+I can read.	私は読むことができます
+I can sing.	歌える
+I can sing.	歌が歌える
+I can stay.	私は残れます
+I can swim.	私は泳げます
+I can swim.	私は泳ぐことが出来ます
+I can wait.	待てます
+I can walk.	私は走ることができる
+I can walk.	歩ける
+I can't go.	私は行かれません
+I can't go.	私は行けません
+I disagree.	私はそうは思いません
+I disagree.	そうは思いません
+I disagree.	反
+I doubt it.	私はそれを疑った
+I eat here.	ここで食べます
+I eat here.	私はここで食べます
+I envy Tom.	トムが羨ましいよ
+I envy her.	あの子が羨ましい
+I envy her.	羨ましい
+I envy him.	羨ましい
+I envy you.	いいなあ
+I envy you.	羨ましい
+I feel bad.	気分が悪い
+I feel bad.	私は気分が悪い
+I feel old.	私も年をとったなあ
+I found it.	見つかった
+I found it.	見つけた
+I got busy.	忙しくなった
+I got lost.	道に迷ってしまいました
+I got sick.	悪酔いしました
+I got sick.	病気になった
+I hate Tom.	私はトムが嫌いだ
+I have one.	持っています
+I know Tom.	トムは知っている
+I know her.	彼女を知っている
+I like Tom.	トムは好きだ
+I like Tom.	トムの事は気に入っている
+I like him.	彼が好きです
+I like tea.	私はお茶が好きです
+I like you.	君が好きだ
+I liked it.	気に入りました
+I liked it.	それ、いいね
+I love her.	彼女に恋している
+I love her.	彼女のことが好きだ
+I love her.	彼女のことが大好きです
+I love you.	大好きだよ
+I love you.	君が好きだ
+I love you.	私はあなたを愛しています
+I miss Tom.	トムが居たらと思う
+I miss you.	会えなくて淋しい
+I miss you.	君がいなくて寂しいよ
+I must run.	走ったほうがよさそうだ
+I need Tom.	トムが必要だ
+I need Tom.	私にはトムが必要です
+I need you.	君が必要だ
+I need you.	あなたが必要なんです
+I panicked.	パニクったわ
+I promised.	私は約束した
+I think so.	私はそう思います
+I think so.	そう思いますよ
+I think so.	そう思います
+I want you.	君が欲しい
+I was lost.	迷っていた
+I was rude.	私は無礼だった
+I was shot.	撃たれたんです
+I was weak.	私は弱かった
+I will try.	トライします
+I will try.	やってみる
+I work out.	私は運動する
+I work out.	運動します
+I'd accept.	同意すると思うよ
+I'll be OK.	大丈夫です
+I'll do it.	僕がやります
+I'll do it.	私がちゃんとやりますから
+I'll do it.	私がやります
+I'll go in.	私が中に入る
+I'm 30 now.	私は今30歳です
+I'm a twin.	私は双子です
+I'm amused.	楽しんでるよ
+I'm biased.	私は先入観に縛られている
+I'm biased.	私は公平ではない
+I'm coming.	今、行くわ
+I'm coming.	すぐ参ります
+I'm coming.	いま行くよ
+I'm direct.	私は単刀直入なんです
+I'm eating.	今食事中
+I'm for it.	賛成
+I'm honest.	ほんとだってば
+I'm hungry!	おなか空いた
+I'm hungry!	ああ、お腹が空いた
+I'm hungry!	お腹がすいた
+I'm hungry!	腹が減った
+I'm hungry!	お腹が減った
+I'm hungry.	おなか空いた
+I'm hungry.	おなかペコペコだ
+I'm hungry.	お腹が減った
+I'm joking.	冗談だよ
+I'm lonely.	淋しいです
+I'm pooped.	疲れたなあ
+I'm scared.	私、怖い
+I'm single.	独身です
+I'm sleepy!	眠い
+I'm sleepy.	眠い
+I'm sleepy.	あー、眠い
+I'm so fat.	僕はすごく太ってる
+I'm thirty.	私は今30歳です
+I'm twelve.	12歳です
+I've eaten.	食べ
+Ignore Tom.	トムのことなど気にするな
+Is Tom mad?	トム怒ってるかな
+Is he busy?	彼は忙しいですか
+Is he tall?	彼は背が高いですか
+Is it free?	無料なのですか
+Is it free?	ただなの
+Is it true?	それ本当
+Is that so?	そうなんですか
+Is that so?	そうなの
+It happens.	よくあることだよ
+It's cheap.	安いね
+It's empty.	空っぽだ
+It's funny.	変なの
+It's my CD.	俺のＣＤじゃねえか
+It's my CD.	それは私のCDです
+It's on me.	僕のおごりですよ
+It's on me.	私のおごりだ
+It's weird.	妙だな
+It's weird.	気色悪いー
+It's windy.	風が強いな
+Just do it.	いいからやれよ
+Just relax.	とにかく落ち着いて
+Keep going.	そのまま続けて
+Keep it up!	その調子で続けて
+Keep it up.	その調子でがんばって
+Keep quiet!	静かにしていなさい
+Keep quiet.	静かにしていなさい
+Keep still.	じっとしてて
+Lean on me.	寄りかかっていいよ
+Lean on me.	当てにしていいよ
+Let Tom in.	トムを入れてあげて
+Let him in.	中に入れてあげて
+Let him in.	お入り頂きなさい
+Let him in.	中に入ってもらって
+Let me die.	死なせてくれ
+Let me out!	出してくれ
+Let me out.	出してくれ
+Let me pay.	払わせてください
+Let me pay.	私が払いましょう
+Let me see.	見せて
+Let me see.	どれどれ
+Let me try.	私にやらせて
+Let's pray.	お祈りしましょう
+Let's sing.	さあ歌おう
+Let's swim.	さあ泳ごう
+Let's work.	仕事をしよう
+Lighten up.	気楽にいけよ
+Look at it.	これ見て
+Look at me.	私を見なさい
+Look at me.	私を見て
+Never mind!	心配するな
+Never mind!	気にするな
+Never mind!	何でもない
+No problem!	問題ないよ
+No problem!	大丈夫ですよ
+No problem!	お安い御用です
+No problem.	問題ないよ
+No problem.	大丈夫ですよ
+No problem.	了解
+No problem.	問題なし
+Once again.	もう一回
+Please sit.	座りなよ
+Quiet down.	お静かに
+Say cheese.	はい、チーズ
+Say please.	「お願い」って言えよ
+Say please.	やって欲しいなら、頼めよ
+She smiled.	彼女はにっこり笑った
+She smiled.	彼女は微笑みました
+She's busy.	彼女は忙しい
+Sing along.	さあ、みんなで歌いましょう
+Stand back!	下がってろ
+Stay awake.	眠っちゃダメ
+Stay quiet.	黙ってて
+Stay still.	じっとしてて
+Stay there.	そこにいて
+Step aside.	ちょっとどいて
+Study hard.	しっかり勉強して下さい
+Take a bus.	バスに乗りなさい
+Talk to me!	話してよ
+Talk to me!	話せよ
+That hurts.	痛いです
+That hurts.	痛い
+That'll do.	それで結構です
+That's all.	それだけです
+That's new.	それは新しいです
+They tried.	彼らは挑戦した
+This is it.	さあ、着きましたよ
+This is it.	これで最後だ
+This is it.	以上です
+This is it.	これで決まりだ
+This is it.	これだよ
+This is it.	これなんです
+This works.	これは効くわ
+This'll do.	これでもいいや
+Time flies.	時のたつのは早いものだ
+Time is up.	時間終了
+Time is up.	はい、そこまで
+Tom agreed.	トムは賛成した
+Tom agrees.	トムは賛成する
+Tom ate it.	トムはそれを食べた
+Tom danced.	トムは踊った
+Tom drinks.	トムはお酒を飲む
+Tom drives.	トムは車を運転します
+Tom failed.	トムは失敗した
+Tom forgot.	トムは忘れた
+Tom fought.	トムは喧嘩した
+Tom fought.	トムは闘った
+Tom helped.	トムは手伝った
+Tom is mad.	トムは狂ってる
+Tom is new.	トムは新人だ
+Tom is out.	トムがいません
+Tom is wet.	トムは濡れてる
+Tom jumped.	トムはジャンプした
+Tom looked.	トムは見た
+Tom nodded.	トムは頷いた
+Tom phoned.	トムは電話をかけた
+Tom sighed.	トムはため息をついた
+Tom smiled.	トムは微笑んだ
+Tom smokes.	トムはタバコを吸う
+Tom talked.	トムは話した
+Tom waited.	トムは待っていた
+Tom winked.	トムはウィンクした
+Tom yawned.	トムはあくびした
+Tom yelled.	トムは大声で叫んだ
+Tom's deaf.	トムは耳が聞こえない
+Tom's died.	トムは死んだ
+Try it out.	やってみて
+Turn right.	右に曲がって
+Wait a bit.	ちょっと待って
+We are men.	私たちは男です
+We'll walk.	歩いていくよ
+We're boys.	私たちは男です
+We're sunk.	八方塞がりだ
+What is it?	何ですか
+What is it?	それは何ですか
+What's new?	変わりはないかい
+What's new?	何か変わりはない
+Where am I?	僕はどこにいるの
+Where am I?	ここどこ
+Where am I?	ここはどこ
+Who is Tom?	トムって誰
+Who is she?	彼女は誰ですか
+Who's next?	次は誰
+Who's that?	あれ誰
+Wood burns.	木は燃えます
+You can go.	行ってもよろしい
+You decide.	あなたが決めて
+You did it!	やったね
+You may go.	行ってもよい
+You may go.	行ってもよろしい
+You'll see.	今にわかる
+You'll see.	まあ見てなよ
+You're bad.	悪い子ね
+You're bad.	おまえ、ワルだな
+You're bad.	いけない人
+You've won.	あなたが勝った
+All is well.	万事上手くいってます
+All is well.	万事よろしい
+Am I hungry!	ああ、お腹が空いた
+Anyone hurt?	誰かケガした
+Anyone hurt?	誰か怪我した
+Are you mad?	怒ってるの
+Are you sad?	悲しいですか
+Are you sad?	悲しいの
+Ask anybody.	誰にでもいいから訊いてみてください
+Be punctual.	遅れるなよ
+Be punctual.	時間に遅れないで
+Be punctual.	時間厳守で
+Be yourself.	自分らしくあれ
+Call me Tom.	トムと呼んで
+Can I begin?	始めていい
+Come inside.	入っておいでよ
+Contact Tom.	トムと連絡を取りなさい
+Cook for me.	僕に料理を作って
+Count me in.	私も仲間に入れて
+Count on me.	任せて
+Did Tom die?	トムは死んだ
+Did Tom try?	トムは試したの
+Did Tom win?	トムは勝った
+Did you win?	勝った
+Do as I say.	言うとおりにして
+Do it again!	もう一度おやり
+Do it again.	もう一度やって
+Do it later.	後でやって
+Do it right.	ちゃんとやって
+Do you care?	それが問題
+Do you fish?	釣りはしますか
+Don't cheat.	ズルをするなよ
+Don't panic!	慌てるな
+Don't shoot!	撃たないで
+Don't shoot.	撃たないで
+Don't shout.	怒鳴るなよ
+Don't shout.	怒鳴らないで
+Don't stare.	じろじろ見るな
+Don't worry.	心配するな
+Don't worry.	心配しなくていいよ
+Don't worry.	気にすんなって
+Don't worry.	心配しないでください
+Forgive Tom.	トムを許してやれよ
+Forgive Tom.	トムを許してあげたら
+Get changed.	服を着替えなさい
+Get dressed.	着替えて
+Get in here!	こっちに入って
+Get serious.	冗談はやめて
+Get to work!	仕事にかかれ
+Go find Tom.	トムを探してきて
+Go help Tom.	トムを手伝ってきて
+Go straight.	まっすぐ行け
+Go to sleep.	眠りなさい
+Go to sleep.	もう寝なさい
+Have a seat.	座りなよ
+He can come.	彼は来る事が出来る
+He can come.	彼なら来られる
+He can come.	彼は来れる
+He can swim.	彼は泳げる
+He grew old.	彼は年老いた
+He grew old.	彼は年を取った
+He has guts.	彼は腹が据わっている
+He is alone.	彼は一人っきりである
+He is eight.	彼は８歳だ
+He is happy.	彼は幸せだ
+He is hated.	彼はひどく嫌われている
+He is lying.	彼はうそをついている
+He is lying.	彼は嘘を言っている
+He is nasty.	あいつは嫌な奴だ
+He stood up.	彼は立ち上がりました
+He was busy.	彼は忙しかった
+He's a liar.	彼はうそつきだ
+He's asleep.	彼は眠っている
+He's not in.	彼は外出しています
+He's strong.	彼は強い
+He's stupid.	彼はばかだ
+Here I come.	すぐ参ります
+Here I come.	いま、行きます
+Here we are!	さあ着いたぞ
+Here we are.	はい、着きました
+Here we are.	着きましたよ
+How are you?	元気ですか
+How are you?	元気
+How are you?	ご機嫌いかが
+How are you?	お元気ですか
+How strange!	変だなあ
+I also went.	私も行った
+I am a twin.	私は双子です
+I am coming.	いま行くよ
+I am coming.	いま、行きます
+I am taller.	私の方が背が高い
+I apologize.	お詫びします
+I apologize.	御免なさい
+I apologize.	すみません
+I can do it.	私ならできる
+I can't say.	何とも言えない
+I can't win.	勝てない
+I feel cold.	寒気がする
+I feel cold.	寒いなあ
+I feel fine.	僕はいい気分だ
+I feel fine.	気分爽快だよ
+I feel sick.	気分が悪い
+I got bored.	もう飽きたわ
+I got tired.	私は疲れた
+I hate dogs.	犬は大嫌い
+I have time.	私は時間がある
+I like blue.	私は青色が好きです
+I like blue.	青が好きだ
+I like both.	私はどちらも好きです
+I like cake.	私はケーキが好きだ
+I like dogs.	私は犬が好きです
+I like jazz.	僕はジャズが好きだ
+I like jazz.	私はジャズが好きです
+I like rock.	私はロックが好きです
+I like snow.	私は雪が好きです
+I like this.	私はこれが好きです
+I live here.	私はここに住んでいます
+I lost face.	私は面目を失った
+I lost face.	私は、面目丸潰れだ
+I love math.	私は数学が大好きです
+I love rock.	私はロックが好きです
+I made this.	僕はこれを作った
+I messed up.	失敗した
+I need help.	助けてください
+I overslept.	寝過ごしちゃった
+I overslept.	私は寝坊した
+I saw a UFO.	私はＵＦＯを見ました
+I saw a dog.	犬を見かけました
+I saw a dog.	犬を見たんだ
+I smell gas.	ガスの臭いがする
+I surrender.	降参します
+I trust him.	私は彼を信用しています
+I trust you.	任せるよ
+I trust you.	信じているよ
+I want Mary.	私はメアリーが欲しいです
+I want more.	もっと欲しい
+I want this.	これが欲しい
+I was fired.	仕事クビになった
+I was moved.	とても感動したわ
+I was tired.	私は疲れた
+I was tired.	私は疲れていた
+I was wrong.	私が間違っていました
+I was wrong.	私が間違ってました
+I went, too.	私も行った
+I will help.	お手伝いしますよ
+I won't cry.	泣くもんか
+I won't die.	死ぬもんか
+I won't lie.	嘘などつくもんか
+I'll attend.	出席します
+I'll get in.	僕は中に入ろう
+I'll get it.	私が出ます
+I'm a baker.	私はパン屋です
+I'm a nurse.	私は看護師です
+I'm a woman.	私は女だ
+I'm a woman.	私は女性です
+I'm at home.	僕は家にいるよ
+I'm careful.	僕は注意深い
+I'm certain.	確かだよ
+I'm certain.	そのことを確信している
+I'm chicken.	俺は気が小さい
+I'm chicken.	僕は意気地なしだ
+I'm curious.	私は好奇心旺盛なのです
+I'm excited.	ワクワクするなあ
+I'm fasting.	断食中です
+I'm frantic!	目が回るほど忙しいよ
+I'm healthy.	私は体は健康です
+I'm in jail.	私は服役中だ
+I'm in luck.	私はついている
+I'm jealous.	羨ましいなあ
+I'm kidding.	冗談だよ
+I'm leaving.	それじゃお先に失礼します
+I'm leaving.	今から行くよ
+I'm married.	私は結婚しています
+I'm no fool.	僕は馬鹿なんかじゃないぞ
+I'm no hero.	私は英雄などではない
+I'm no liar.	私、嘘つきじゃないもん
+I'm not Tom.	私はトムじゃない
+I'm not sad.	悲しくなんかない
+I'm not shy.	私は内気ではない
+I'm patient.	僕は我慢強いたちだ
+I'm selfish.	私って自己中だな
+I'm serious.	本気だよ
+I'm so full.	もう満腹です
+I'm starved.	お腹がぺこぺこです
+I'm starved.	おなかがすいて死にそうだ
+I'm starved.	ものすごくお腹がすいている
+I'm starved.	超腹減った
+I'm starved.	めっちゃお腹すいた
+I'm stuffed.	お腹がいっぱいです
+I'm the CEO.	私がここの最高責任者です
+I'm the law.	俺がルールブックだ
+I'm thirsty.	喉が渇いた
+I'm thirsty.	のどが渇いた
+I'm thirsty.	喉がかわいた
+I'm thirsty.	のど渇いた
+I'm trapped.	閉じ込められてしまった
+I'm unlucky.	ついてないや
+I'm useless.	俺って役立たずだな
+I'm worried.	心配だわ
+Is Tom back?	トムは戻っていますか
+Is Tom busy?	トムは忙しいでしょうか
+Is Tom cool?	トムってカッコいい
+Is Tom cute?	トムってかわいい
+Is Tom done?	トムおわた
+Is Tom good?	トムっていいヤツ
+Is Tom here?	トムはここにいますか
+Is Tom nuts?	トムってバカ
+Is Tom safe?	トムは無事だろうか
+Is Tom sane?	トムは正気なんだろうか
+Is Tom sick?	トムは病気なの
+Is Tom well?	トムは元気してる
+Is he right?	彼は正しいですか
+Is it Tom's?	これ、トムのですか
+Is it clean?	これってきれいかな
+Is it clear?	分かりますか
+Is it dirty?	これって汚いかな
+Is it foggy?	霧が出ていますか
+Is it foggy?	霧は出ていますか
+Is it legal?	それって合法的なんだろうか
+Is it yours?	それ、あなたの
+Is that Tom?	あれはトムかな
+Is that all?	話はそれだけ
+Is that all?	それで全部
+It can't be!	そんなのありえないよ
+It cost $30.	それは30ドルする
+It is on me.	私のおごりだ
+It is on me.	それは僕のおごりだ
+It is on me.	今日は私が
+It may rain.	雨が降るかもしれない
+It may snow.	雪が降るかもしれません
+It was cold.	寒かった
+It was cold.	冷たかった
+It was dark.	暗かった
+It was easy.	簡単だった
+It was fate.	そうなる運命だったんだよ
+It's 50 yen.	５０円です
+It's Monday.	月曜日です
+It's Monday.	今日は月曜ですね
+It's a deal.	よし、それで手を打とう
+It's a fake.	それは贋物よ
+It's a joke.	冗談ですよ
+It's a joke.	冗談だよ
+It's broken.	それは壊れている
+It's chilly.	肌寒いです
+It's cloudy.	曇っています
+It's ironic.	皮肉だな
+It's locked.	鍵がかかっている
+It's my job.	それが仕事です
+It's my job.	それは私の仕事です
+It's normal.	そんなものだよ
+It's secret.	それは秘密です
+It's so big.	随分と大きいな
+It's urgent.	至急お願いします
+It's urgent.	緊急です
+Jump across.	飛び越えろ
+Just get up.	とにかく起きろ
+Just try it.	まあ試してごらんよ
+Let Tom try.	トムにやらせてあげて
+Let me help.	手伝わせて
+Let me know.	私に知らせて
+Let me know.	ご一報ください
+Let's begin.	さぁ始めましょう
+Let's begin.	さあ、始めましょう
+Let's begin.	始めましょう
+Let's dance.	さあ踊ろう
+Let's drink.	さあ飲もうじゃないか
+Let's hurry.	急ぎましょう
+Let's party!	さあ、みんなで盛り上がろう
+Let's relax.	リラックスしよう
+Let's start!	さぁ始めましょう
+Let's start!	始めましょう
+Let's start.	始めましょう
+Life is fun.	人生は楽しい
+Look at Tom.	トムを見てごらん
+Look at him.	彼を見て
+Look closer.	よく見て
+Make a wish.	願い事をして
+Many thanks.	本当にありがとう
+May I begin?	始めていい
+May I smoke?	煙草を吸ってもいいですか
+Money talks.	金がものを言う
+No one came.	誰も来なかった
+No one came.	誰一人来なかった
+No one died.	誰も死ななかった
+Nobody came.	誰も来なかった
+Nobody died.	誰も死ななかった
+Nobody knew.	誰も知らなかった
+Now go home.	さあ家に帰りなさい
+Now move on.	さあ、進んで、進んで
+Now you try.	じゃあ今度はあなたがやってみて
+One is blue.	一つは青
+Pick a date.	日にちを選んで
+Please come.	来て下さい
+Please sing.	歌ってください
+Please wait.	お待ちください
+Pray for me.	私のために祈ってて
+Put it back.	元の場所に戻して
+Release Tom.	トムを釈放しなさい
+Release him.	彼を釈放して
+Say nothing.	何も言うな
+Settle down!	落ち着いて
+She bit him.	彼女は彼に噛みついた
+She bit him.	彼女は彼を噛んだ
+She hit him.	彼女は彼をぶった
+She is kind.	彼女は親切だ
+She is kind.	彼女はやさしい
+She's a dog.	この子は犬よ
+She's a dog.	あの女は不細工だ
+She's a fox.	あの女は実にセクシーだ
+Should I go?	私は行くべきでしょうか
+Show me how.	どうやってやるのか教えて
+Stand still!	動かないで
+Stand still!	じっとして
+Stay in bed.	寝てなさい
+Stop crying.	泣くのはよせよ
+Take a rest.	休息しろ
+Tea, please.	お茶をお願いします
+Tea, please.	紅茶をください
+Tell Tom no.	トムに「ダメ」と伝えて
+That was it.	そういうことだったのか
+That worked.	うまくいった
+That's cool.	それはいいね
+That's free.	無料です
+That's mine.	それ、私の
+That's mine.	それ、私のです
+That's okay.	それでいいよ
+They called.	彼らは電話した
+They danced.	彼らは踊った
+They smiled.	彼らは笑った
+They waited.	彼らは待った
+They walked.	彼らは歩いた
+They yelled.	彼らは叫んだ
+Tom blushed.	トムは赤くなった
+Tom clapped.	トムは拍手した
+Tom escaped.	トムは逃げた
+Tom fainted.	トムは気を失った
+Tom frowned.	トムは眉をひそめた
+Tom got fat.	トムは太った
+Tom got mad.	トムは怒った
+Tom got mad.	トムは腹を立てた
+Tom had fun.	トムは楽しんだ
+Tom has won.	トムは勝った
+Tom hung up.	トムは電話を切った
+Tom is cool.	トムは格好いい
+Tom is dead.	トムは死んだ
+Tom is fast.	トムは足が速い
+Tom is kind.	トムは親切だ
+Tom is late.	トムが遅刻している
+Tom is lazy.	トムは怠け者
+Tom is poor.	トムは貧しい
+Tom is slow.	トムは足が遅い
+Tom is weak.	トムは弱い
+Tom is well.	トムは元気
+Tom kneeled.	トムはひざまずいた
+Tom laughed.	トムは笑った
+Tom left me.	トムに振られちゃった
+Tom listens.	トムは聞く
+Tom noticed.	トムは気が付いた
+Tom prepaid.	トムは前払いした
+Tom refused.	トムは断った
+Tom relaxed.	トムはリラックスした
+Tom retired.	トムは引退した
+Tom said hi.	トムはやあと言った
+Tom shouted.	トムは大声で叫んだ
+Tom sneezed.	トムはくしゃみをした
+Tom stopped.	トムはやめた
+Tom teaches.	トムは教える
+Tom's dying.	トムは死にかけている
+Tom's happy.	トムは幸せだ
+Tom's lying.	トムは嘘をついている
+Tom's older.	トムのほうが年上です
+Tom's right.	トムの言うとおりだ
+Tom's smart.	トムは頭がいい
+Tom's smart.	トムは頭が良い
+Tom's smart.	トムは賢い
+Try that on.	あれ着てみて
+Try that on.	あれを試着してごらん
+Try this on.	これ着てみて
+Try this on.	これを試着してごらん
+Turn around.	振り向いて
+Turn it off.	それ消して
+Wake Tom up.	トムを起こしてきて
+We did this.	僕らはこれをやった
+We're happy.	私たちは幸福です
+What a pity!	残念だ
+What a pity!	かわいそうに
+What a pity!	残念
+What's that?	何ですか
+What's that?	それは何ですか
+What's that?	あれは何ですか
+What's that?	それ何
+What's this?	何ですか
+What's this?	これ何
+Where's Tom?	トムはどこ
+Who is next?	次は誰
+Who's there?	そこにいるのは誰だ
+Whose is it?	それ、誰の
+Why is this?	どうしてでしょう
+Wood floats.	木が浮く
+Yes, I know.	はい知っています
+You must go.	君が行くのだ
+You're nuts!	馬鹿だな、おまえ
+You're nuts!	馬鹿だな、おまえら
+You're sick!	お前ってひでえ野郎だ
+Act your age.	年相応にふるまえ
+All is quiet.	あたりは静かだ
+Am I correct?	私、正しい
+Anybody hurt?	誰かケガした
+Anybody hurt?	誰か怪我した
+Anything new?	何かあった
+Are you dead?	死んじゃったの
+Are you free?	暇ですか
+Are you full?	お腹いっぱいになった
+Are you full?	お腹いっぱい
+Are you here?	いる
+Are you home?	君は家にいますか
+Are you lost?	道に迷ったんですか
+Are you okay?	大丈夫ですか
+Are you sure?	本当
+Are you sure?	本気
+Are you well?	元気
+Be merciless.	冷徹であれ
+Beef, please.	牛肉にしてください
+Beef, please.	ビーフをお願いします
+Boil one egg.	卵を一つ茹でてよ
+Can you come?	来られますか
+Can you come?	来れそう
+Can you swim?	君は泳げますか
+Can you swim?	泳げますか
+Can you swim?	あなたは泳ぐ事が出来ますか
+Can you walk?	歩ける
+Come and see.	見に来て
+Come anytime.	いつでも来て
+Come at once.	すぐに来て下さい
+Come help me.	助けに来てください
+Come quickly!	早く来い
+Come quickly!	早く来なさい
+Come quickly.	早く来なさい
+Come quickly.	早くおいで
+Come with me.	私といっしょに来なさい
+Come with me.	私と来て
+Come with me.	私について来て
+Come with us.	さあ、一緒に来いよ
+Come with us.	いっしょに来なさい
+Come with us.	私達と一緒に来なさい
+Cut that out!	いいかげんにして
+Did Tom call?	トムから電話があった
+Do I look OK?	おかしくない
+Do I look OK?	変じゃない
+Do it Monday.	月曜日にしなさい
+Do it Monday.	月曜日にして
+Do you drink?	お酒は飲みますか
+Do you drink?	お酒は飲まれますか
+Do you drink?	あなたは酒を飲みますか
+Do you smoke?	煙草を吸いますか
+Do you smoke?	たばこは吸いますか
+Don't ask me.	俺に聞くなよ
+Don't be mad.	怒るなよ
+Don't be mad.	怒らないで
+Don't be sad.	悲しまないで下さい
+Don't kid me!	人をからかわないで
+Don't slouch.	うつむかないで
+Drive safely.	気をつけて運転してください
+Drive safely.	安全運転してください
+Drive safely.	安全運転してくださいね
+Drive safely.	安全運転してね
+Drive safely.	安全運転しなさい
+Drive safely.	安全運転でお願いします
+Drive slowly.	ゆっくり運転しなさい
+Ghosts exist.	幽霊は存在する
+Give me that.	それ取って
+Give me time.	時間をください
+Good evening.	こんばんは
+Good for you.	良かったですね
+Have a drink.	まあ一杯飲んで
+He can do it.	彼ならできる
+He dozed off.	彼は居眠りをした
+He got angry.	彼は腹をたてた
+He got angry.	彼は腹を立てた
+He got angry.	彼は怒った
+He has a car.	彼は車を持っている
+He has a dog.	彼は犬を飼っている
+He helps her.	彼は彼女を手伝います
+He is a poet.	彼は詩人だ
+He is asleep.	彼は眠っている
+He is not in.	彼は外出しています
+He kicked it.	彼はそれを蹴飛ばした
+He left home.	彼は家をでた
+He lost face.	彼は面目を失った
+He loves her.	彼は彼女に恋している
+He loves her.	彼は彼女が好きだ
+He runs fast.	彼は速く走る
+He runs fast.	彼は走るのが速い
+He seems ill.	彼は病気らしい
+He seems ill.	彼は病気のようだ
+He succeeded.	彼は成功した
+He was alone.	彼は一人ぼっちだった
+He was brave.	彼は勇敢だった
+He was lucky.	彼は運が良かった
+He will come.	彼は来るだろう
+He will walk.	彼は歩くつもりだ
+He's out now.	彼は今いません
+Hey, wait up!	おい、待てよ
+Hey, wait up!	ちょっと、待ってよ
+How's school?	学校はどう
+How's school?	どう、学校は
+How's school?	学校はどうですか
+How's school?	どうですか、学校は
+I admire Tom.	トムに憧れている
+I admire you.	あなたに憧れてるの
+I am Chinese.	私は中国人です
+I am a nurse.	私は看護師です
+I am a woman.	私は女だ
+I am a woman.	私は女性です
+I am curious.	私は好奇心旺盛なのです
+I am working.	仕事中です
+I apologized.	謝った
+I ate caviar.	私はキャビアを食べた
+I called Tom.	私はトムに電話した
+I called him.	彼に電話した
+I can't swim.	私は泳げません
+I can't talk.	私は話すことができない
+I did see it.	見たよ
+I don't care.	ちっとも構いませんよ
+I don't care.	気にしていないよ
+I don't know.	知らない
+I don't know.	分からないよ
+I don't know.	知りません
+I don't know.	俺は知らないよ
+I don't know.	わかりません
+I don't mind.	私は構いませんよ
+I drank milk.	私は牛乳を飲みました
+I enjoyed it.	楽しかった
+I feel alive.	生きていることを実感する
+I feel awful.	気持ちが悪い
+I feel awful.	最悪の気分
+I feel dizzy.	めまいがします
+I feel funny.	なんとなく変な気分
+I feel great.	絶好調です
+I feel great.	元気です
+I feel happy.	私は幸福です
+I feel happy.	私は幸せだ
+I feel happy.	私は幸せに感じる
+I feel tired.	疲れたー
+I got caught.	捕まりました
+I had doubts.	私はいぶかしく思った
+I had doubts.	私は疑いを持った
+I had doubts.	私は疑問を抱いた
+I had doubts.	私は疑問を感じた
+I had doubts.	私は疑問を持った
+I had doubts.	私は疑問に思った
+I had doubts.	私は疑念を抱いた
+I hate liars.	嘘つきは嫌いです
+I have a dog.	私は犬を飼っている
+I have a son.	息子が一人います
+I have plans.	予定があるんだ
+I have to go.	行かなくちゃ
+I have to go.	行かないと
+I have to go.	そろそろおいとましなければなりません
+I have twins.	私には双子の子供がいる
+I hear music.	音楽が聞こえる
+I hugged her.	彼女を抱きしめた
+I just moved.	私は引っ越してきたばかりです
+I keep a dog.	私は犬を一匹飼ってます
+I like chess.	私はチェスが好きです
+I like girls.	僕は女の子が好きです
+I like music.	私は音楽が好きです
+I like sushi.	寿司が好きです
+I love opera.	私はオペラが大好きだ
+I love trips.	私は旅行が好きです
+I love trips.	旅行が好きです
+I missed you.	さみしかったよ
+I must study.	勉強しなくっちゃ
+I need a cab.	タクシーをつかまえないと
+I need a job.	仕事が必要だ
+I need a nap.	少し眠らないと
+I need money.	ぼくはお金がいる
+I need sleep.	睡眠をとったほうがよさそうだ
+I need to go.	行かなくちゃ
+I passed out.	私は気を失いました
+I phoned him.	彼に電話した
+I play piano.	私はピアノを弾きます
+I read a lot.	読書家のほうです
+I suppose so.	そう思いますよ
+I talk a lot.	私ってお喋りなの
+I teased Tom.	トムをからかった
+I took risks.	敢えてやってみた
+I took risks.	敢えて危ない橋を渡ることにした
+I tried hard.	頑張ってはみたんだ
+I understand.	了解しました
+I understand.	分かってるよ
+I understand.	分かってる
+I understand.	分かった
+I understand.	なるほど
+I understand.	わかったぞ
+I understand.	わかります
+I understand.	分かる
+I understood.	分かりました
+I understood.	了解です
+I want a job.	仕事が欲しい
+I want a lot.	たくさん欲しい
+I want facts.	事実が知りたい
+I want money.	お金が欲しい
+I want these.	これが欲しい
+I warned you.	だから言ったでしょ
+I was hungry.	おなかが空いた
+I wimped out.	意気地がなかったんだ
+I won't lose!	負けない
+I wonder who.	誰かしら
+I wonder why.	なぜなんだろう
+I'll ask Tom.	トムに訊いてみようっと
+I'll ask Tom.	トムに聞いてみます
+I'll ask Tom.	トムにお願いしようかな
+I'll ask Tom.	トムに頼むことにします
+I'll ask Tom.	私からトムにお願いしておきます
+I'll be back.	また戻ってきます
+I'll be back.	また来ます
+I'll be fine.	大丈夫です
+I'll be here.	ここにいるよ
+I'll be late.	遅れます
+I'll be late.	遅刻します
+I'll be late.	遅くなります
+I'll do that.	僕がやります
+I'll do this.	僕がやります
+I'll sue you.	訴えてやる
+I'll take it.	これ、買います
+I'll take it.	これにします
+I'll take it.	これください
+I'm a banker.	私は銀行員です
+I'm a coward.	俺は気が小さい
+I'm a coward.	僕は意気地なしだ
+I'm a doctor.	私は医者です
+I'm a doctor.	私は医師です
+I'm busy now.	私は今忙しい
+I'm busy now.	今、忙しいの
+I'm busy now.	今、手がはなせません
+I'm busy now.	ちょうど今は忙しい
+I'm eighteen.	私は十八歳です
+I'm famished.	おなかがすいて死にそうだ
+I'm famished.	ものすごくお腹がすいている
+I'm famished.	超腹減った
+I'm famished.	お腹すいて死にそう
+I'm fine now.	もう大丈夫です
+I'm free now.	私は今暇です
+I'm freezing.	寒くて凍えそうだ
+I'm hungover.	二日酔いだ
+I'm in Perth.	僕はパースにいます
+I'm innocent.	私は無実だ
+I'm innocent.	俺は無実だ
+I'm pregnant.	妊娠しています
+I'm so sorry.	本当にごめんなさい
+I'm so sorry.	お気の毒に
+I'm starving.	おなかがすいて死にそうだ
+I'm starving.	ものすごくお腹がすいている
+I'm starving.	超腹減った
+I'm starving.	めっちゃお腹すいた
+I'm starving.	お腹すいて死にそう
+I'm very fat.	僕はすごく太ってる
+I'm worn out.	疲れたなあ
+I'm worn out.	もうくたくただよ
+I'm worn out.	くたくたに疲れた
+I've decided.	決めました
+I've retired.	引退しました
+I've seen it.	私はそれを見たのです
+I've seen it.	見たことがあります
+Is that true?	本当
+Is that true?	本当なの
+Is that true?	それ本当
+Is this love?	恋かな
+Is this love?	ひょっとして、これって恋かしら
+Is this mine?	これ、私のですか
+It is a book.	それは本です
+It isn't bad.	そう悪くはない
+It was night.	夜だった
+It went well.	うまくいった
+It's a waste.	そんなの無駄だよ
+It's amazing.	すごいですね
+It's amazing.	すごいじゃない
+It's awesome.	素晴らしいですね
+It's bedtime.	寝る時間よ
+It's bedtime.	寝る時間ですよ
+It's garbage.	これはゴミです
+It's hailing.	雹が降っています
+It's no joke.	笑い事ではない
+It's not bad.	そう悪くはない
+It's nothing.	何でもない
+It's obvious.	見るからに明らかだよ
+It's perfect.	完璧だ
+It's perfect.	完璧
+It's pouring.	土砂降りです
+It's raining.	雨が降っている
+It's snowing.	雪がふっています
+It's snowing.	雪が降っています
+It's so cool.	かっこいいな
+It's so cute.	かわいいなー
+It's so dark.	ずいぶんと暗いな
+It's so easy.	簡単、簡単
+It's so hard.	難しいわ
+It's so rare.	ずいぶんと珍しいですね
+It's strange.	妙だな
+It's suicide.	これは自殺ですよ
+It's the law.	法律ですから
+It's too big.	大きすぎるわ
+It's too far.	遠すぎるわ
+It's too hot.	暑すぎ
+It's too hot.	暑くてかなわんわ
+It's too hot.	暑すぎる
+It's too old.	古すぎるわ
+It's working.	動いてる、動いてる
+Just ask Tom.	トムに聞いてごらん
+Just be calm.	まあ落ち着け
+Just be cool.	まあ冷静になれよ
+Just do that.	とにかくやれよ
+Just go away.	とにかく失せろ
+Just go home.	とにかく家に帰りなさい
+Just help me.	ちょっと手伝って
+Just say yes.	うんと言ってよ
+Just shut up.	いいから黙って
+Just stop it.	とにかくやめろよ
+Just take it.	まあ受け取って
+Keep dancing.	踊り続けて
+Keep digging.	そのまま掘り続けて
+Keep reading.	読み続けて
+Keep running.	走り続けて
+Keep singing.	歌い続けて
+Keep smiling.	笑顔を続けて
+Keep smiling.	笑顔を絶やさないで
+Keep talking.	話し続けて
+Keep up, Tom.	トム、遅れないでついてきて
+Keep walking.	歩き続けて
+Keep working.	働き続けなさい
+Keep writing.	書き続けて
+Knock it off.	やめなさい
+Knock it off.	いいかげんにして
+Let Tom know.	トムに知らせろ
+Let Tom live.	トムを生かしておけ
+Let Tom rest.	トムを休ませてやりなさい
+Let go of me!	私から手を離せ
+Let me do it.	私にやらせてください
+Let me speak.	ちょっといいですか
+Let me think.	ちょっと考えさせて
+Let's go eat.	食事に行きましょう
+Let's go now.	そろそろ行きましょうか
+Let's go out.	さあ出かけよう
+Let's listen.	聞こう
+Let's not go.	行くのはやめよう
+Let's review.	見直しをしようじゃないか
+Life is hard.	人生は苦なり
+Life's short.	人生は短い
+Listen to me.	私の言うことを聞きなさい
+Look at that!	あれを見て
+Look at this.	これ見て
+Look at this.	これを見て
+Look closely.	よく見て
+Make a guess.	当ててみて
+Mary came in.	メアリーが入ってきた
+Mary giggled.	メアリーはクックッと笑った
+Mary is tall.	メアリーは背が高い
+May I cut in?	お話し中すみません
+Men cry, too.	男だって泣くことくらいあるさ
+Move quietly.	そーっと動かしてね
+My arm hurts.	腕が痛む
+My eyes hurt.	目が痛いです
+My eyes hurt.	目が痛い
+My eyes itch.	目がかゆいです
+My feet hurt.	足が痛い
+My jaw hurts.	あごが痛い
+My leg hurts.	足が痛い
+My legs hurt.	足が痛い
+No one cares.	誰も気にしやしないよ
+No one knows.	誰にも分からない
+No one spoke.	誰も口を開かなかった
+Nobody knows.	それは誰にも分からない
+Now drink up.	さあ飲み干して
+Now have fun.	さあ楽しんで
+Now let's go.	さあ行こう
+Now lie down.	さあ横になって
+Now sit down.	さあ座って
+Open the box.	箱を開けて
+Play it cool.	落ちついて
+Please go on.	どうぞ続けて
+Please hurry!	頼むから、急いで
+Please hurry.	急いでください
+Please leave.	出ていけ
+Please relax.	落ちつけよ
+Pull it open.	手前にひいて開けてください
+Put it there.	そこに置いて
+Say it again.	もう一度言って
+See you soon!	またすぐ会おうね
+See you soon!	さようなら
+See you soon!	ではまた近いうちに
+See you soon!	ではまた近々
+See you soon.	ではまた近々
+See you then.	じゃあその時に
+See you then.	じゃあまた
+Set Tom free.	トムを放せ
+Shame on you!	恥を知れ
+Shame on you!	この恥知らず
+Shame on you!	恥を知りなさい
+Shame on you.	恥を知れ
+She is a fox.	色っぽい女性
+She is a fox.	いい女だ
+She is eight.	彼女は８才だ
+She is eight.	彼女は八つだ
+She is happy.	彼女は幸せです
+She is lucky.	彼女はついている
+She is lucky.	彼女は運がいい
+She is quiet.	彼女は無口です
+She is quiet.	物静かな人だな
+She is wrong.	彼女は間違っている
+She is wrong.	彼女のいうことは間違っている
+She is young.	あの子はまだ若い
+She knows me.	彼女は私を知っている
+She liked it.	彼女はそれが好きでした
+She may come.	彼女は来るかもしれない
+She needs it.	彼女はそれが必要です
+She sued him.	彼女は彼を訴えた
+She was busy.	彼女は忙しかった
+She went out.	彼女は外出した
+Show me that.	それを見せて
+Someone came.	誰かがやってきた
+Speak softly.	小さい声で話してください
+Stay at home.	君は家にいなさい
+Stop humming.	鼻歌を歌うのはやめろ
+Stop reading.	読むのを止めなさい
+Stop smoking.	たばこを吸うのをやめなさい
+Stop talking.	おしゃべりをやめなさい
+Stop the car.	車を止めて
+Take it easy!	無理しないでね
+Take it easy.	落ち着けよ
+Take it easy.	落ち着いて
+Take it easy.	落ちつけよ
+Take it easy.	落ちついて
+Take it easy.	無理しないでね
+Take it easy.	もっと気楽に生きなよ
+Take it easy.	落ち着いて
+Thanks a lot.	本当にありがとう
+Thanks a lot.	本当にありがとう
+Thanks a lot.	ほんとありがとう
+That is mine.	あれが私のです
+That is mine.	それ、私のです
+That will do.	それで結構です
+That's crazy.	そんな馬鹿な
+That's great.	それはすごい
+That's my CD.	それは私のCDです
+That's right!	その通り
+That's right.	その通り
+That's right.	そういうことです
+That's right.	そうです
+That's weird.	変なのー
+That's wrong.	違う
+They cheered.	彼らは応援した
+They escaped.	彼らは逃げた
+They laughed.	彼らは笑った
+They refused.	彼らは断った
+They relaxed.	彼らはリラックスした
+They shot me.	その人たちが私を撃ったんです
+They're here.	彼らはここにいる
+They're here.	彼らなら、ここにいるよ
+This is cute.	これ、可愛いな
+This is easy.	これは簡単です
+This is food.	これは食べ物です
+This is free.	無料です
+This is free.	これ無料です
+This is good.	これはいいです
+This is true.	これは本当です
+Tom approved.	トムは承認した
+Tom canceled.	トムはキャンセルした
+Tom finished.	トムは終わった
+Tom got busy.	トムは忙しくなった
+Tom hates me.	トムは私のことが大嫌いなんです
+Tom insisted.	トムは主張した
+Tom is crazy.	トムはクレイジーだ
+Tom is crazy.	トムは頭のネジが飛んでいる
+Tom is crazy.	トムはきちがいだ
+Tom is dying.	トムは死にかけている
+Tom is happy.	トムは幸せだ
+Tom is heavy.	トムは重い
+Tom is lying.	トムは嘘をついている
+Tom is older.	トムのほうが年上です
+Tom is smart.	トムは頭がいい
+Tom is smart.	トムは頭が良い
+Tom is smart.	トムは賢い
+Tom is stoic.	トムはストイックだ
+Tom isn't in.	トムはいません
+Tom isn't in.	トムがいません
+Tom listened.	トムは聞いた
+Tom needs me.	トムは私を必要としています
+Tom promised.	トムは約束した
+Tom ran home.	トムは家に走りました
+Tom resigned.	トムは退職した
+Tom sat down.	トムは座った
+Tom saw Mary.	トムはメアリーを見かけた
+Tom saw them.	トムは彼らを見かけた
+Tom shrugged.	トムは肩をすくめた
+Tom vanished.	トムは行方不明になった
+Tom was home.	トムは家にいた
+Tom was hurt.	トムは怪我を負わされた
+Tom's thirty.	トムは30歳です
+Tom, wake up.	トム、起きなさい
+Try it again.	もう１度やってみなさい
+Try to guess.	当ててみて
+Unbelievable!	あり得ねぇー
+Wake up, Tom.	トム、起きなさい
+We are happy.	私たちは幸福です
+We can do it.	私たちならできる
+We could die.	僕らは死ぬかもしれない
+We made this.	僕らはこれを作った
+We overslept.	俺ら、寝坊したな
+We overslept.	わたしたち、寝過ごしちゃったみたい
+We succeeded!	成功だ
+We surrender.	降参します
+What is love?	恋って何ですか
+What is love?	恋愛って何ですか
+What is that?	何ですか
+What is that?	それは何ですか
+What is that?	あれは何ですか
+What is that?	それ何
+What is this?	何ですか
+What is this?	これ何
+Where are we?	我々はどこにいますか
+Who are they?	あの人たちは誰
+Who built it?	誰がそれを造ったのですか
+Who told Tom?	誰がトムに話したの
+Who's absent?	誰がいないの
+Why quit now?	なぜ今やめる
+Years passed.	年月が経った
+You are late.	遅刻したね
+You are rich.	あんた金持ちだね
+You look fat.	太って見えるよ
+You'll be OK.	大丈夫だよ
+You're lucky.	君たち、ラッキーだなあ
+You're lying.	嘘つけ
+You're lying.	嘘おっしゃい
+You're lying.	嘘つけ
+You're right.	あなたは正しい
+You're right.	おっしゃる通りです
+You're weird.	おまえ、変わってるな
+You're weird.	あんた変だよ
+You're young.	若いなあ
+Zip your lip.	お口チャックしてください
+Zip your lip.	口チャックして
+Air the futon.	蒲団を干して下さい
+Any questions?	質問はありますか
+Anything else?	他に何かありますか
+Are you angry?	怒ってるの
+Are you awake?	起きてる
+Are you crazy?	気は確かか
+Are you crazy?	気は確かかい
+Are you happy?	あなたは幸せですか
+Are you ready?	用意はいいかい
+Are you ready?	準備できてる
+Are you ready?	準備はできましたか
+Are you tired?	疲れた
+Are you tired?	疲れちゃったの
+Are you twins?	あなたがたは双子ですか
+Ask Tom again.	もう一回トムに訊いてみて
+Beat the eggs.	卵をよくかき混ぜます
+Beware of dog.	猛犬注意
+Boys run fast.	男の子達は速く走る
+Call me later.	後で電話して
+Call me later.	あとで電話ちょうだい
+Call the cops.	警察を呼んで
+Can I ask why?	理由聞いてもいい
+Can I come in?	入ってもいいですか
+Can I go, too?	私も行ってもいい
+Can I hug you?	ぎゅーしていい
+Check, please.	勘定お願いします
+Check, please.	勘定書を頼むよ
+Check, please.	勘定書をお願いします
+Check, please.	勘定書を持ってきてくれ
+Check, please.	お勘定して下さい
+Check, please.	お会計お願いします
+Check, please.	お勘定お願いします
+Come right in.	お入りください
+Did Tom reply?	トムから返事来た
+Do it quickly.	さっさとやりなさい
+Do you follow?	分かりますか
+Does Tom know?	トムは知っているの
+Don't be late.	遅れるなよ
+Don't be long.	早く帰ってきなさいよ
+Don't be long.	早く帰ってきなさい
+Don't be long.	すぐ戻ってこいよ
+Don't be mean.	意地悪しないで
+Don't be rash.	無茶なことするなよ
+Don't be rash.	無茶なことをするな
+Don't be rude.	失礼のないようにしなさい
+Don't do this.	これはしてはいけません
+Don't do this.	これをやっちゃだめだよ
+Don't get fat.	太っては駄目ですよ
+Don't get mad.	腹を立てるな
+Don't get mad.	かっかしないで
+Don't get mad.	かっかするな
+Don't get mad.	かっかするなよ
+Don't give up!	諦めないで
+Don't give up!	あきらめるな
+Don't give up!	諦めちゃ駄目だ
+Don't give up!	諦めてはいけません
+Don't give up.	諦めないで
+Don't give up.	降参するな
+Don't give up.	あきらめるな
+Don't give up.	諦めちゃ駄目だ
+Don't give up.	諦めてはいけません
+Don't hang up!	切らないで
+Don't hang up.	切らないで
+Don't hate me.	私を憎むな
+Don't rush me.	急かさないで
+Don't sass me.	偉そうな口をたたくな
+Don't sass me.	生意気を言うんじゃない
+Eat something.	何か食べて
+Finish eating.	食べ終えなさい
+Fry me an egg.	卵を焼いてくれ
+Get a move on!	急ぎなさい
+Get a move on.	急ぎなさい
+Get a move on.	急げ
+Get over here.	こちらに来なさい
+Get over here.	こっちに来て
+Get over here.	こっちに来いよ
+Get over here.	こっちへおいで
+Get over here.	こっちおいで
+Give him time.	彼を長い目で見てやりなさい
+Give me a hug.	抱きしめて
+Give me a hug.	ぎゅーして
+Go over there.	向こうへ行け
+Have some tea.	お茶でもどうぞ
+He came first.	彼が最初に来た
+He can't read.	彼は読めません
+He can't swim.	彼は水泳が出来ない
+He can't swim.	彼は泳ぐことが出来ません
+He can't swim.	彼は泳げない
+He dug a hole.	彼は穴を掘った
+He eats a lot.	彼はたくさん食べる
+He fooled her.	彼は彼女を騙した
+He grows rice.	彼は稲を育てている
+He has a book.	彼は本を持っている
+He has a cold.	彼は風邪をひいている
+He hugged her.	彼は彼女を抱きしめた
+He is English.	彼はイギリス人です
+He is foolish.	彼はばかだ
+He is foolish.	彼は愚かだ
+He is my boss.	彼は私の上司です
+He is out now.	彼はいま外出中だ
+He is skating.	彼はスケートをしている
+He killed him.	彼はその男を殺した
+He lied to me.	彼は私に嘘をついた
+He looks pale.	彼は青い顔をしている
+He looks pale.	彼は顔色が悪い
+He looks well.	彼は元気そうだ
+He made me go.	彼は私を行かせた
+He seems kind.	彼は親切そうだ
+He shot at me.	あいつ僕をめがけて撃ったんだよ
+He tries hard.	彼は精一杯努力している
+He walks fast.	彼は歩くのが速い
+He was crying.	彼は泣いていた
+He went crazy.	彼は気が狂った
+He's annoying.	彼はうっとうしいやつだ
+He's in Tokyo.	彼は東京にいます
+He's studying.	彼は勉強中です
+He's too busy.	彼は忙しすぎるんだよ
+He's very ill.	彼はとても具合が悪い
+Here or to go?	こちらで召し上がりますか、それともお持ち帰りですか
+Hi, everybody.	みなさん、こんにちは
+His nose bled.	彼は鼻血を出した
+Hold the door.	戸を押さえてくれ
+How about you?	君はどうだい
+How about you?	あなたはどう
+How beautiful!	なんてきれいなこと
+How do I look?	私って、どう見えますか
+How old is he?	何歳ですか
+How was lunch?	昼食はどうだった
+How was lunch?	昼食はいかがでしたか
+Hurry up, Tom.	急いで、トム
+I admired Tom.	トムに憧れていた
+I am American.	私はアメリカ人です
+I am Japanese.	私は日本人です
+I am a Muslim.	私はムスリムです
+I am busy now.	今、忙しいの
+I am busy now.	ちょうど今は忙しい
+I am to blame.	私が悪いんです
+I believe you.	僕は君を信じる
+I can see Tom.	トムが見える
+I can't dance.	私は踊れません
+I can't do it.	俺には無理だ
+I can't do it.	私にはできません
+I can't sleep.	眠れないんですよ
+I did nothing.	何もしなかった
+I didn't care.	私は構わなかった
+I didn't mind.	私は構わなかった
+I do think so.	本当にそう思います
+I don't agree.	私はそうは思いません
+I don't agree.	そうは思いません
+I don't drink.	私は酒類は飲みません
+I don't drink.	わたしはアルコールを飲みません
+I enjoy chess.	私はチェスが好きです
+I feel unwell.	気分が悪い
+I felt hungry.	空腹を感じた
+I felt lonely.	私は孤独を感じた
+I felt lonely.	私は寂しかった
+I got thirsty.	喉が渇いた
+I hate French.	フランス語が憎い
+I hate coffee.	私はコーヒーが大嫌いです
+I have a cold.	風邪をひきました
+I have a cold.	私は風邪をひいた
+I have a cold.	かぜを引いているんだ
+I have a twin.	私には双子の兄がいる
+I have had it.	もうたくさんだ
+I know French.	私はフランス語を知ってる
+I lied to you.	あなたに嘘をついた
+I like French.	フランス語が好きです
+I like apples.	私は林檎が好きです
+I like apples.	私はりんごが好きです
+I like coffee.	コーヒーが好きです
+I like horses.	私は馬が好きです
+I like movies.	私は映画が好きです
+I like sports.	スポーツをするのが好き
+I like sweets.	僕は甘党だ
+I like tennis.	私はテニスが好き
+I like tennis.	テニスが好きです
+I like trains.	電車が好きだ
+I like winter.	私は冬が好きです
+I like yellow.	私は黄色が好きです
+I love French.	フランス語が堪らなく好きです
+I love Monday!	月曜日が大好き
+I love apples.	私はりんごが大好きです
+I love coffee.	コーヒーが好きです
+I love movies.	私は映画が大好きです
+I made supper.	私は夕食を作った
+I must go now.	もう行かねばなりません
+I must go now.	もう行かなければなりません
+I must go now.	もう行かなくちゃ
+I must go now.	そろそろおいとましなければなりません
+I need coffee.	コーヒーが必要なんだ
+I ought to go.	行くべきだ
+I read a book.	私は本を読みました
+I saw a plane.	飛行機が見えた
+I see a house.	家が見えます
+I see a house.	家が見える
+I sold a book.	私は本を売った
+I think I can.	出来ると思います
+I took a walk.	散歩をした
+I use Firefox.	私はFirefoxを使ってます
+I use Firefox.	私はファイアフォックスを使っています
+I use Firefox.	火狐使いです
+I want a boat.	私はボートが欲しい
+I want a book.	私は本が欲しい
+I want to cry.	泣きたいよ
+I want to die.	死にたい
+I was at home.	私は家にいた
+I was bullied.	私はいじめにあった
+I was bullied.	私はいじめられた
+I was careful.	僕は注意深かった
+I'll buy this.	これ、買います
+I'll eat here.	ここで食べます
+I'll eat here.	私はここで食べます
+I'll go first.	私が最初に行きます
+I'll help you.	お手伝いしますよ
+I'll help you.	手伝ってあげるよ
+I'll kill him.	あいつの息の根を止めてやる
+I'll miss you.	寂しくなります
+I'll stop you.	あなたを止める
+I'll tell you.	私が話しましょう
+I'm a patient.	私は患者です
+I'm a student.	私は学生です
+I'm afraid so.	残念ながらそのようです
+I'm all right.	私は大丈夫
+I'm beautiful.	私は美しい
+I'm easygoing.	私ってのんきなの
+I'm efficient.	私はできる人間だ
+I'm efficient.	私は切れ者だ
+I'm exhausted.	疲れたなあ
+I'm exhausted.	もうヘトヘトです
+I'm exhausted.	くたくたに疲れました
+I'm exhausted.	私は大変疲れています
+I'm exhausted.	もうくたくただよ
+I'm exhausted.	すっごく疲れた
+I'm exhausted.	くたくたに疲れた
+I'm exhausted.	へとへとに疲れた
+I'm exhausted.	疲れたー
+I'm expecting.	妊娠しています
+I'm flattered.	そう言っていただけると嬉しいです
+I'm home, Mom!	ただいま、お母さん
+I'm home, Tom.	トム、ただいま
+I'm impatient.	私は気が短いんだ
+I'm impatient.	待ちきれない
+I'm in Boston.	私はボストンにいます
+I'm in Boston.	ボストンに来ています
+I'm in Boston.	ボストンなう
+I'm in charge.	担当は私です
+I'm just lazy.	私はただずぼらなだけです
+I'm not a kid.	子ども扱いするなよ
+I'm not a kid.	もう子どもじゃないんだから
+I'm not alone.	私は一人じゃない
+I'm not angry!	怒ってなんかいませんってば
+I'm not angry.	怒ってませんよ
+I'm not drunk.	私は酔っていない
+I'm not lying.	私は嘘をついていません
+I'm on a diet.	今ダイエット中なの
+I'm on a diet.	ダイエット中です
+I'm satisfied.	満足です
+I'm satisfied.	満足しています
+I'm so hungry.	めっちゃ腹ペコだわ
+I'm surprised.	驚いた
+I'm too short.	私は背が低すぎる
+I'm unmarried.	まだ未婚です
+I'm very busy.	目が回るほど忙しいよ
+I'm very busy.	大変、忙しいです
+I'm very busy.	私はとても忙しい
+I'm voting no.	反対票を投じるつもりだ
+I've found it.	見つかった
+I've got time.	私は時間がある
+Is Tom around?	トムは近くにいる
+Is Tom asleep?	トムは眠ってるの
+Is Tom famous?	トムって有名なの
+Is Tom guilty?	トムが犯人なんだろうか
+Is Tom lonely?	トムは寂しいんだろうか
+Is Tom nearby?	トムは近くにいる
+Is Tom stupid?	トムってバカ
+Is he at home?	彼は家にいますか
+Is he correct?	彼は正しいですか
+Is it raining?	雨降ってる
+Is it serious?	かなり悪いですか
+Is it too big?	大きすぎる
+Is that Tom's?	あれはトムの
+Is that a cat?	あれはネコですか
+Is that right?	そうなんですか
+Is that right?	そうなの
+Is that yours?	それ、あなたの
+Is there more?	もっとありますか
+Is this Tom's?	これ、トムのですか
+Is this Tom's?	これトムの
+Is this yours?	これ、あなたのですか
+Isn't it cool?	これ、カッコよくね
+Isn't it cute?	これ、かわいくない
+Isn't it hard?	これ、難しくないか
+Isn't it hard?	これ、難しくね
+Isn't it nice?	これ、よくなくない
+Isn't it true?	ほんとじゃないの
+Isn't it true?	マジだよね
+Isn't it true?	本当なんじゃないですか
+Isn't that so?	違いますか
+Isn't that so?	そうじゃない
+It hurts here.	ここが痛い
+It is raining.	雨が降っている
+It is snowing.	雪がふっています
+It isn't mine.	それは私のではありません
+It isn't mine.	それ、私のじゃありません
+It might rain.	雨が降るかもしれない
+It smells bad.	超臭いよ
+It won't hurt.	痛くはありません
+It won't open.	開きそうにないわ
+It won't work.	もう、動かないだろうね
+It's 2:30 now.	いま二時半
+It's 8:00 p.m.	午後八時です
+It's a secret.	それは秘密です
+It's all true.	全部本当のことです
+It's annoying.	鬱陶しいなあ
+It's business.	それが仕事です
+It's dark now.	あたりはもう暗い
+It's exciting.	スリルがあるなあ
+It's for free.	無料です
+It's for sale.	売りものです
+It's freezing.	凍えるようだわ
+It's homemade.	自家製です
+It's improved.	良くなりました
+It's instinct.	直感です
+It's midnight.	もう真夜中だ
+It's my fault.	私の責任です
+It's my money.	それは私の金だ
+It's my treat.	僕のおごりですよ
+It's my treat.	私のおごりだ
+It's not easy.	簡単ではないな
+It's not fair.	ずるい
+It's not fair.	そんなの不公平だよ
+It's not hard.	難しくはない
+It's not here.	ここにはないか
+It's not mine.	それ私のじゃありません
+It's not true.	それ違うよ
+It's not true.	それ嘘だよ
+It's outdated.	それは時代遅れです
+It's possible.	可能性がなくはない
+It's possible.	それもあり得る
+It's so quiet.	ずいぶんと静かだな
+It's so sweet.	めっちゃカワイイ
+It's so weird.	めっちゃ変
+It's terrible.	こりゃひどいわ
+It's too easy.	朝飯前だ
+It's too hard.	難しすぎる
+It's too late.	遅すぎる
+It's too loud.	大きすぎるわ
+It's too loud.	派手すぎるよ
+It's unlikely.	それはありそうにないな
+It's very new.	それはとても新しいです
+It's very odd.	それ、すごく変
+It's very old.	ずいぶんと古いな
+Just a minute.	少々お待ち下さい
+Just a minute.	少々おまちください
+Just a minute.	少し待って下さい
+Just a minute.	ちょっと待って下さい
+Just a minute.	ちょっと待ってね
+Just a minute.	ちょっとお待ち下さい
+Just don't go.	とにかく行くな
+Just enjoy it.	ただ楽しめばいいんだよ
+Just find Tom.	とにかくトムを探してきて
+Just get back.	とにかく戻ってこい
+Just hurry up.	とにかく急げ
+Just touch it.	まあ触ってみてよ
+Just trust me.	とにかく私を信じて
+Keep climbing.	そのまま登り続けて
+Keep in touch!	連絡を取り合おう
+Keep in touch!	連絡ちょうだい
+Keep in touch.	連絡を取り合おう
+Keep in touch.	連絡ちょうだい
+Keep in touch.	連絡してね
+Keep in touch.	便りをください
+Keep it quiet.	他言は無用だ
+Keep it quiet.	ここだけの話にしておいて
+Keep paddling.	漕ぎ続けて
+Leave it here.	ここに置いておいて
+Let Tom relax.	トムをリラックスさせて
+Let go of Tom.	トムを放せ
+Let him do it.	やらせてあげなよ
+Let me finish.	最後まで言わせてください
+Let me see it.	ちょっと見せて下さい
+Let me try it.	僕にやらせて
+Let's ask him.	あの人に頼んでみよう
+Let's ask him.	あの人にきいてみよう
+Let's be fair.	フェアに行こうぜ、フェアに
+Let's give up.	もう諦めようよ
+Let's go home.	家へ帰りましょう
+Let's just go.	とにかく行ってみよう
+Let's move it.	これを動かそう
+Let's open it.	開けてみよう
+Let's try one.	一つ食べてみよう
+Life is short.	人生は短い
+Life is sweet.	人生は楽しい
+Life is tough.	人生は苦なり
+Lock the door.	ドアをロックして
+Lock the door.	ドアに鍵をかけて
+Lock the gate.	門にかぎを掛けなさい
+Look at these.	これ見てよ
+Look at those.	あれを見て
+Love is blind.	恋は本来盲目である
+Love is crazy.	愛は狂気
+Make a choice.	好きなの選んで
+Make it quick.	急いでやって
+Make it short.	手短におねがい
+Make your bed.	ベッドメイキングをしなさい
+Make your bed.	ベッドを整えて
+Man is mortal.	人は必ず死ぬ
+Mary is a fox.	メアリーは実にセクシーだ
+Mary is a mom.	メアリーは母親です
+Mary is weird.	メアリーは変わっている
+May I ask why?	理由を聞いてもいい
+May I ask why?	理由聞いてもいい
+May I come in?	入ってもよろしいですか
+May I come in?	入ってもいいですか
+May I go home?	私は帰宅してもよいですか
+May I go, too?	私も行ってもいい
+May we go now?	もう行ってもいい
+Meet me there.	そこで落ち合おう
+Memorize this.	これを暗記しなさい
+My back aches.	背中が痛い
+My back hurts.	背中が痛い
+My back hurts.	背中が痛む
+My eyes smart.	目がヒリヒリします
+My foot hurts.	足が痛い
+My head aches.	頭痛がする
+My head aches.	頭痛がします
+My head aches.	頭が痛いんです
+My head aches.	頭が痛いな
+My head aches.	頭が痛い
+My head aches.	頭痛い
+My head hurts.	頭痛がする
+My head hurts.	頭痛がします
+My head hurts.	頭が痛いんです
+My head hurts.	頭が痛いな
+My head hurts.	頭が痛い
+My head hurts.	頭痛い
+My name's Tom.	トムと申します
+My name's Tom.	トムといいます
+My name's Tom.	私の名前はトムです
+Never give up.	ネバー・ギブ・アップ
+Never give up.	絶対投げ出したらダメ
+No one's died.	誰も死ななかった
+No, thank you.	いえ、結構です
+Nobody's died.	誰も死ななかった
+OK, calm down.	まあ落ち着け
+Oh, I'm sorry.	あら、申し訳ございません
+Oh, I'm sorry.	あっ、すみません
+Oh, I'm sorry.	あっ、ごめんなさい
+Only Tom left.	トムだけ去った
+Open the door.	ドアを開けなさい
+Open the gate.	門を開けなさい
+Open the gate.	開門しなさい
+Pace yourself.	自分のペースでやりなさい
+Pick a number.	数字を一つ選んで
+Please fix it.	なおして下さい
+Please get in.	乗ってください
+Please get in.	どうぞお乗り下さい
+Please listen.	お願い、よく聞いて
+Quit gambling.	ギャンブルはやめなさい
+Quit gambling.	賭け事はやめなさい
+Quit gambling.	賭け事はもうやめなよ
+Read after me.	わたしに続いて読みなさい
+Read it again.	もう一度読んで
+Read this now.	今すぐこれを読んで
+Ring the bell.	鐘を鳴らせ
+Roll the dice.	サイを振れ
+Say something.	何か言ってよ
+Say something.	何か一言お願いします
+See you again.	さようなら
+See you later.	また会おう
+Send me there.	私をそこにやって下さい
+Shake my hand.	握手しようぜ
+She avoids me.	彼女は私を避けている
+She bent down.	彼女は腰をかがめた
+She came last.	彼女は最後にきた
+She can skate.	彼女はスケートが出来る
+She can't ski.	彼女はスキーが出来ない
+She dumped me.	彼女は僕を捨てた
+She got angry.	彼女は怒った
+She hated him.	彼女は彼を嫌っていた
+She hates him.	彼女は彼が大嫌いです
+She helps him.	彼女が彼を手伝います
+She helps him.	彼女が彼に手を貸します
+She hired him.	彼女が彼を雇っていました
+She is French.	彼女はフランス人だ
+She is a twin.	彼女は双子です
+She is active.	彼女は行動的です
+She is crying.	彼女は泣いている
+She is gentle.	彼女はやさしい
+She just left.	彼女はたった今でかけました
+She likes him.	彼女は彼が好きです
+She likes him.	彼女は彼のことが好きです
+She looks sad.	彼女は悲しそうだ
+She loves Tom.	彼女はトムを愛している
+She loves him.	彼女は彼を愛しています
+She loves him.	彼女は彼のことを愛している
+She obeys him.	彼女は彼の言いなりだ
+She wants him.	彼女は彼が欲しい
+She was brave.	彼女は勇ましかった
+She was brave.	彼女は勇敢だった
+She was naive.	彼女はナイーブだった
+She was young.	彼女は若かった
+She went home.	彼女は帰宅した
+She went home.	彼女は家に帰った
+She's a cutie.	彼女は可愛い
+She's awesome.	彼女は素晴らしい
+She's dieting.	彼女はダイエットをしている
+She's dieting.	彼女はダイエット中だ
+She's my type.	彼女は私のタイプだ
+Show yourself.	姿をあらわせ
+Shut the book.	本を閉じて
+Shut the door.	戸を閉めろ
+Shut the door.	ドアを閉めて
+Shut the door.	ドアを閉めて
+Shut the door.	ドア閉めて
+Shut the gate.	門を閉じて
+Speak quietly.	小さい声で話してください
+Stand at ease!	休め
+Start running.	走り始めなさい
+Start singing.	歌い始めなさい
+Start writing.	書き始めなさい
+Stay positive.	前向きに考えよう
+Stir the soup.	スープをかき混ぜなさい
+Stop gambling.	ギャンブルはやめなさい
+Stop gambling.	賭け事はやめなさい
+Suit yourself.	好きにしてください
+Take a cookie.	クッキーをお一つどうぞ
+Take me there.	そこに私を連れてって
+Thanks anyway.	とにかく有難う
+That's a book.	それは本です
+That's a fake.	それは贋物よ
+That's a joke.	冗談だよ
+That's a tree.	あれは木です
+That's better.	良くなりました
+That's broken.	それは壊れている
+That's enough.	いい加減にしろよ
+That's not it.	違う
+That's unfair.	それは公平ではない
+That's unreal.	それは非現実的だ
+The cup broke.	カップが割れた
+The sun is up.	日が出ている
+They canceled.	彼らはキャンセルした
+They loved it.	彼らはそれに好かれています
+They loved it.	彼らはそれが好きでした
+They shot Tom.	そいつらがトムを撃ったんだ
+They vanished.	彼らは姿を消した
+They're tired.	彼らは疲れている
+This is a DVD.	これはDVD
+This is a pun.	これは駄洒落です
+This is weird.	これは変だ
+This is wrong.	これは間違っている
+Time is money.	時は金なり
+Tom applauded.	トムは拍手した
+Tom can do it.	トムならできる
+Tom can do it.	トムがやれば
+Tom disagreed.	トムは異議を唱えた
+Tom exercised.	トムは運動した
+Tom exercises.	トムは運動する
+Tom fell down.	トムは落っこちた
+Tom fell down.	トムが落っこちた
+Tom got angry.	トムは怒った
+Tom got angry.	トムは腹を立てた
+Tom graduated.	トムは卒業した
+Tom has moved.	トムは引っ越した
+Tom hates you.	トムはあなたのことを嫌っています
+Tom hesitated.	トムは躊躇した
+Tom hurt Mary.	トムはメアリーを傷つけた
+Tom is a hunk.	トムはイケメンだ
+Tom is a poet.	トムは詩人だ
+Tom is absent.	トムは休んでいる
+Tom is absent.	トムはお休みです
+Tom is absent.	トムはいません
+Tom is crying.	トムが泣いている
+Tom is honest.	トムは正直者だ
+Tom is joking.	トムは冗談を言っている
+Tom is not in.	トムはいません
+Tom is not in.	トムがいません
+Tom is single.	トムは独り身です
+Tom is single.	トムは独身です
+Tom is thirty.	トムは30歳です
+Tom isn't shy.	トムは恥ずかしがり屋ではない
+Tom left town.	トムは街を離れた
+Tom left town.	トムは、町を後にした
+Tom overslept.	トムは寝坊した
+Tom recovered.	トムは回復した
+Tom set me up.	トムは私を罠にはめた
+Tom was blind.	トムは目が見えなかった
+Tom was drunk.	トムは酔っていた
+Tom was dying.	トムは死にかけていた
+Tom was fired.	トムは首になった
+Tom went pale.	トムは青ざめた
+Tom's correct.	トムが正解
+Tom's serious.	トムは真剣だ
+Use your head.	頭を使え
+Wait a minute.	ちょっと待って
+Wait a minute.	ちょっと待て
+Wait a moment.	ちょっと待って
+Wait a moment.	しばらくお待ちください
+Wait a moment.	ちょっと待て
+Wait a second.	ちょっと待って
+Wait till six.	６時まで待ちなさい
+Water, please.	水をください
+Water, please.	お水をください
+Wax the floor.	床にワックスをかけなさい
+We could read.	僕らは読めた
+We need money.	私達はお金が必要です
+We understand.	分かる
+We were wrong.	僕らが間違ってました
+We're careful.	僕らは注意深い
+We're in luck.	僕らはついてるよ
+We're married.	私たちは結婚している
+We're married.	私たちは夫婦だ
+We've arrived.	はい、着きました
+We've arrived.	さあ着いたぞ
+We've arrived.	さあ、着きましたよ
+We've arrived.	着きましたよ
+We've seen it.	私たちはそれを見たことがある
+What a relief!	やれや
+What a relief!	ああ、ほっとした
+What happened?	何が起きたの
+What happened?	何が起こったんだ
+What happened?	何が起こったのですか
+What happened?	何が起こったの
+What happened?	何があったの
+What happened?	どうしました
+What is a UFO?	ユーフォーって何
+What's inside?	何が入ってるの
+What's inside?	中身は何なの
+When was that?	それはいつでしたか
+Where are you?	どこにいますか
+Where was Tom?	トムはどこにいましたか
+Where were we?	どこまで話しましたか
+Which is mine?	私のはどれ
+Who said that?	誰がそんなこと言ったの
+Whose is this?	これ誰の
+Whose is this?	これは誰のものですか
+Whose is this?	これ誰のですか
+Will she come?	彼女は来るだろうか
+You all right?	大丈夫
+You are lying.	嘘をついているね
+You can do it.	できるよ
+You can do it.	大丈夫、出来ますよ
+You can do it.	君ならできる
+You can do it.	あなたがやれば
+You can relax.	リラックスしていいよ
+You look busy.	忙しそうですね
+You look pale.	顔色がわるいですよ
+You look sick.	体調が悪そうですよ
+You need rest.	少し休んだほうがいい
+You seem busy.	忙しそうですね
+You should go.	君は行ったほうがよい
+You should go.	あなたは行ったほうがいい
+You were sick.	あなたは病気だっ
+You're a liar.	嘘つけ
+You're a liar.	嘘つけ
+You're a liar.	君は嘘つきだ
+You're joking!	嘘だろ
+Zip your lips.	お口チャックしてください
+Zip your lips.	口チャックして
+A beer, please.	ビールをください
+A beer, please.	ビールひとつお願いします
+A coke, please.	コークをください
+A coke, please.	コーラひとつお願いします
+Act like a man.	男らしく振る舞いなさい
+Allow me to go.	私に行かせて
+Am I safe here?	ここなら安全なのですか
+Are you asleep?	寝てるの
+Are you crying?	泣いているの
+Are you famous?	あなたは有名ですか
+Are you hungry?	お腹が空いているのですか
+Are you hungry?	お腹は空いていますか
+Are you joking?	冗談でしょ
+Are you single?	独身ですか
+Are you sleepy?	眠いですか
+Are you sleepy?	眠い
+Are you sleepy?	眠いの
+Are you sleepy?	眠いんですか
+Are you stupid?	お前は馬鹿か
+Are you two OK?	二人とも、大丈夫
+Aren't you hot?	暑くないんですか
+Aren't you hot?	暑くないの
+Aren't you sad?	悲しくないの
+Autumn is here.	秋になりました
+Be nice to her.	彼女に優しくしてあげなさいよ
+Both are alive.	２人共生きている
+Bring Tom back.	トムを連れ戻してきて
+Bring Tom here.	トムをここに連れてきて
+Bring a shovel.	シャベル持ってきて
+Bring me money.	金を持って来い
+Can I eat this?	これを食べていいですか
+Can I help you?	手伝おうか
+Can I help you?	何か手伝いましょうか
+Can I help you?	手伝おうか
+Can I see that?	それを見ることができますか
+Can I sit down?	座ってもいいですか
+Can I sit here?	ここに座ってもいいですか
+Can I sit here?	ここ座ってもいいですか
+Can I sit here?	ここ座っていいですか
+Can I sit here?	ここ座ってもいい
+Can I tell Tom?	トムに話してもいい
+Can I touch it?	これ、触ってもいい
+Clean the room.	部屋を片付けなさい
+Clean the room.	部屋を片づけて
+Clean the room.	部屋を掃除しなさい
+Close the book.	本を閉じなさい
+Close the book.	本を閉じて
+Close the door.	戸を閉めろ
+Close the door.	ドアを閉めて
+Close the door.	ドアを閉めて
+Close the door.	ドア閉めて
+Close the gate.	門を閉めて
+Coffee, please.	コーヒーをください
+Coffee, please.	コーヒーください
+Coffee, please.	コーヒーをお願いします
+Come back home.	家に戻ってきなさい
+Come back soon.	早く帰ってきなさいよ
+Come back soon.	早く帰ってきなさい
+Come back soon.	すぐ戻ってこいよ
+Come back soon.	すぐに戻ってね
+Come over here.	こっちに来て
+Come over here.	こっちに来いよ
+Come over here.	こっちへおいで
+Come over here.	こっちおいで
+Cows eat grass.	牛は草を食べる
+Dad isn't home.	父は家にいません
+Dinner's ready!	夕食ができたよ
+Dinner's ready.	夕食ができたよ
+Dinner's ready.	食事ですよ
+Do as you like.	好きにしてください
+Do as you like.	お好きなように
+Do you hate me?	私のこと嫌いなの
+Do you hear me?	聞いてるの
+Do you love me?	僕のこと好き
+Do you love me?	私を愛してる
+Do you read me?	聞こえますか
+Do you recycle?	再利用するの
+Do you recycle?	リサイクルするの
+Does Tom drink?	トムは飲んでる
+Dogs are smart.	犬は賢い
+Don't be angry.	怒るなよ
+Don't be angry.	怒らないで
+Don't be silly.	馬鹿なことを言うな
+Don't be silly.	ふざける
+Don't be tardy.	遅刻するなよ
+Don't blame me.	僕のせいにするなよ
+Don't blame me.	私のせいにしないでよ
+Don't run away.	逃げるな
+Don't say that.	そんなこと言うなよ
+Don't show off.	格好つけるな
+Don't show off.	見せびらかすなよ
+Don't stand up.	立ち上がってはいけません
+Don't tell Tom.	トムには絶対に言うなよ
+Don't tell Tom.	トムには内緒だよ
+Don't tell Tom.	トムには言わないでね
+Don't tell Tom.	トムには言うなよ
+Don't touch it.	触るな
+Don't touch me.	私に触らないで
+Drop me a line.	手紙をくださいね
+Drop your guns!	銃を落とせ
+Drop your guns.	銃を落とせ
+Enjoy yourself.	楽しんでね
+Everybody lies.	みんなは嘘をつく
+Get on the bus.	バスに乗りなさい
+Get out of bed!	起きなさい
+Get out of bed!	ベッドから出なさい
+Get out of bed.	起きなさい
+Give it a rest.	いいかげんにして
+Give it to her.	それを彼女に与えなさい
+Give it to him.	それを彼に与えなさい
+Give me a shot.	一杯ください
+Go wake Tom up.	トムを起こしてきて
+Good afternoon.	こんにちは
+Hand me my mug.	私のマグカップ取って
+Hand me my mug.	私のマグカップを取ってくれる
+Happy New Year!	明けましておめでとう
+Happy New Year!	よいお年を
+Happy New Year!	あけおめ
+Happy birthday!	お誕生日おめでとうございます
+Happy birthday!	誕生日おめでとう
+Have you eaten?	食べたことあるの
+Have you eaten?	食べたの
+He accelerated.	彼はスピードを上げた
+He became rich.	彼は金持ちになった
+He came by bus.	彼はバスできました
+He came by car.	彼は車できた
+He can't count.	彼は数を数えることができない
+He can't do it.	彼にはそれはすることができない
+He cannot swim.	彼は水泳が出来ない
+He cannot swim.	彼は泳ぐことが出来ません
+He doesn't lie.	彼は嘘など言わない
+He felt uneasy.	彼は不安になった
+He felt uneasy.	彼は不安な気持ちだった
+He flew a kite.	彼はたこを揚げた
+He has a lunch.	彼は弁当を持っている
+He has changed.	彼は変わってしまった
+He hated lying.	彼は嘘をつくことが大嫌いだった
+He is American.	彼はアメリカ人です
+He is Japanese.	彼は日本人です
+He is a doctor.	彼は医者だ
+He is a genius.	彼は天才だ
+He is a golfer.	彼はゴルファーだ
+He is a writer.	彼は作家です
+He is an actor.	彼は俳優です
+He is delicate.	彼は繊細だ
+He is in Tokyo.	彼は東京にいます
+He is outgoing.	彼は外向的だ
+He is powerful.	彼は強い
+He is powerful.	彼はたくましい
+He is well off.	彼は暮し向きが良い
+He keeps a cat.	彼は猫を飼っている
+He lay face up.	彼は仰向けに寝ていた
+He learns fast.	彼は覚えが早い
+He lives alone.	彼は一人で住んでいます
+He lives alone.	彼は一人暮らしです
+He looked well.	彼は元気そうだった
+He looks tired.	彼は疲れているようだ
+He looks young.	彼は若そうだ
+He looks young.	彼は若く見える
+He loves music.	彼は音楽がたいへん好きである
+He must be out.	彼はいないだろう
+He needs money.	彼はお金が必要だ
+He sang a song.	彼が歌を歌った
+He scolded her.	彼は彼女をしかった
+He seems happy.	彼は幸福であるようだ
+He seems happy.	彼は幸せそうだ
+He seems tired.	彼は疲れているように見える
+He sells fruit.	彼は果物を売る
+He slapped her.	彼は彼女を殴った
+He slapped her.	彼は彼女をひっぱたいた
+He surrendered.	彼は降参した
+He talks a lot.	彼はよくしゃべる
+He talks a lot.	彼はよくしゃべる人だ
+He wants to go.	彼は行きたがっています
+He was at home.	彼は家にいた
+He was hard up.	彼はお金に非常に困っていた
+He was hard up.	彼は金に窮していた
+He was patient.	彼は辛抱強かった
+He was thirsty.	彼の喉はかわいていた
+He went abroad.	彼は外国へ行った
+He went to bed.	彼は寝た
+He will not go.	彼は行かないだろう
+He's a big boy.	彼は大物だぜ
+He's a bit shy.	こいつ、ちょっと引っ込み思案なんだ
+He's a bit shy.	あいつはちょっとシャイなんだ
+He's an author.	彼は作家です
+His head ached.	彼は頭痛がした
+Hit the brakes!	ブレーキをかけろ
+How did we win?	私達はどうやって勝ったの
+How high is it?	どのくらい高い
+How high is it?	高さはどれくらい
+How much is it?	いくらですか
+How old is Tom?	トムは何歳ですか
+How old is Tom?	トムはいくつですか
+How's your dad?	お父さんはお元気ですか
+I am Hungarian.	私はハンガリー人です
+I am a student.	私は学生です
+I am in London.	僕は今ロンドンにいます
+I am in London.	私はロンドンにいます
+I am too short.	私は背が低すぎる
+I ate too much.	食べ過ぎた
+I bike to work.	自転車で通勤しています
+I broke my leg.	私は足を骨折した
+I can hear Tom.	トムの声がする
+I can hear Tom.	トムの声が聞こえる
+I can see that.	わかります
+I count on Tom.	トムをあてにしているんだ
+I didn't do it.	僕はやっていない
+I dislike eggs.	卵は嫌いです
+I don't get it.	どうも合点がいかない
+I don't recall.	覚えていない
+I don't recall.	覚えていないんだ
+I drank coffee.	コーヒーを飲んだよ
+I drank coffee.	コーヒーを飲みました
+I drank coffee.	コーヒー飲んだよ
+I drink coffee.	コーヒーを飲みます
+I get off here.	ここで降ります
+I go to school.	私は学校に通っています
+I got a suntan.	私は日焼けをした
+I got divorced.	私は離婚した
+I had a stroke.	私は脳卒中を起こした
+I had to agree.	私は賛同しなければならなかった
+I had to agree.	私は同意せざるを得なかった
+I hate Mondays.	月曜日が嫌い
+I hate dancing.	踊るのが大っ嫌い
+I hate karaoke.	カラオケが大嫌い
+I hate waiting.	待つのって大嫌い
+I hate working.	仕事は嫌いだ
+I have a cough.	せきが出ます
+I have a dream.	私には夢がある
+I have a dream.	私には夢があります
+I have a fever.	熱があるんです
+I have an idea.	私には考えがある
+I have an idea.	私に１つアイデアがあるのですが
+I have an idea.	ひとつ、意見があるんですが
+I have hiccups.	しゃっくりが出ている
+I have hiccups.	しゃっくりが出てる
+I have hiccups.	しゃっくり出てる
+I have no idea.	全然わかりません
+I have no idea.	わかりません
+I have no kids.	私は子供がいません
+I have no time.	私には時間がありません
+I have to wait.	僕は待たなければいけない
+I have to work.	仕事しなきゃ
+I hope so, too.	私もそう願います
+I keep a diary.	日記をつける
+I keep a diary.	日記をつけています
+I kept running.	走り続けた
+I kept singing.	僕は歌い続けた
+I like fishing.	釣りが好きだ
+I like history.	私は歴史が好きだ
+I like singing.	私は歌が好きだ
+I like to sing.	私は歌を歌うのが好きだ
+I like to sing.	私は歌が好きだ
+I love lasagna.	私はラザニアが大好物なんだ
+I love my city.	私は自分の町が好きです
+I made Tom cry.	トムを泣かせてしまった
+I made Tom cry.	トムを泣かせてやった
+I may be wrong.	私は間違っているかもしれない
+I met a friend.	私は友達に会った
+I met a friend.	友達に会った
+I must buy one.	１台買わなければならない
+I must go back.	戻らなくては
+I must go home.	私は帰宅しなければいけません
+I must go home.	家に帰らなくちゃ
+I must go home.	家に帰らなきゃ
+I must see Tom.	トムに会わなくては
+I need a favor.	頼みたいことがあるのですが
+I need a favor.	ちょっとお願いしてもいいですか
+I need a knife.	包丁が必要だ
+I need a knife.	ナイフが必要だ
+I need friends.	私には友達が必要です
+I need my cane.	杖がないと困る
+I need my keys.	鍵がないと
+I need surgery.	手術を受けなくてはならない
+I need to rest.	休まなくては
+I need to work.	私は働かなくてはならない
+I needed money.	私には金が必要だった
+I often hiccup.	よくしゃっくりが出る
+I often travel.	私はよく旅行します
+I own this car.	この車は私のです
+I punished Tom.	私はトムにお仕置きをした
+I quit smoking.	私はタバコを吸うのをやめた
+I quit smoking.	禁煙中なんです
+I ran upstairs.	私は二階に駆け上がった
+I really tried.	本当にやってみたんだ
+I said drop it!	やめてって言ってるでしょ
+I said drop it!	やめろと言ったらやめろ
+I said get out!	出ていけって言ってるだろ
+I said get out!	「出て行け」と言ったはずだ
+I said get out.	出ていけって言ってるだろ
+I said get out.	「出て行け」と言ったはずだ
+I said go away.	失せろと言ったはずだ
+I said go away.	あっちへ行けって言ってるだろ
+I said go home.	家に帰りなさいと言ったはずです
+I said shut up!	だから黙れってば
+I said shut up!	黙れっつってんだろ
+I said shut up.	だから黙れってば
+I said shut up.	黙れっつってんだろ
+I said stop it!	やめろと言ってるだろうが
+I saw a friend.	友達に会った
+I saw five men.	私は5人の男性を見ました
+I saw her home.	私は彼女を家まで送った
+I saw her swim.	私は彼女が泳ぐのを見た
+I saw him jump.	私は彼がジャンプするのを見た
+I saw it on TV.	それ、テレビで見たわ
+I should relax.	僕はリラックスすべきだ
+I sneeze a lot.	よくくしゃみが出ます
+I speak French.	フランス語が出来ます
+I study Korean.	私は韓国語を勉強します
+I study Korean.	私は朝鮮語を勉強します
+I study Korean.	私はハングルを勉強します
+I study Korean.	私は韓国語を勉強している
+I teach French.	フランス語を教えている
+I travel a lot.	私はよく旅行する
+I turned right.	私は右折した
+I turned right.	私は右に曲がった
+I turned right.	僕は右に折れた
+I usually walk.	たいてい歩いて行きます
+I want a chair.	椅子が一つ欲しい
+I want a donut.	ドーナツが一つ欲しい
+I want a glass.	コップが一つ欲しい
+I want a knife.	ナイフが一丁欲しい
+I want a puppy.	犬が一匹欲しい
+I want details.	詳細が欲しい
+I want details.	もっと詳しく知りたい
+I want to help.	役に立ちたいんだ
+I want to know.	知りたいんだ
+I want to live.	生きたい
+I want to rest.	休みたい
+I was a member.	私は会員でした
+I was an idiot.	間抜けだったわ
+I was captured.	捕まってしまった
+I was careless.	不注意だったわ
+I was confused.	混乱してしまった
+I was impolite.	私は無礼だった
+I was mistaken.	私が間違ってました
+I was mistaken.	勘違いしてたわ
+I was welcomed.	私は歓迎をうけた
+I will sue you.	あなたを訴えます
+I'll go change.	服を着替えに行ってくる
+I'll go change.	ちょっと着替えてくるね
+I'll handle it.	私がなんとかしよう
+I'll manage it.	何とかします
+I'll pay today.	今日払うよ
+I'll phone Tom.	トムに電話するよ
+I'll phone you.	電話するよ
+I'll see to it.	僕が面倒を見ます
+I'll see to it.	私がちゃんとやりますから
+I'll see to it.	私がそれを引き受けます
+I'll stay home.	僕は家にいるよ
+I'll stay home.	私は家にいるつもりだ
+I'll treat you.	君におごってやるよ
+I'll treat you.	おごるよ
+I'll try again.	もう一度やってみる
+I'll try again.	もう一回やってみる
+I'll wait here.	ここで待ってるね
+I'm a bit busy.	ちょっと忙しい
+I'm a civilian.	私は一般人です
+I'm a freshman.	新人です
+I'm a freshman.	一年生です
+I'm a musician.	私は音楽家です
+I'm a musician.	私はミュージシャンです
+I'm a prisoner.	私は囚われの身だ
+I'm a prisoner.	私は捕虜です
+I'm a prisoner.	私は囚人です
+I'm a salesman.	私は営業マンです
+I'm a stuntman.	私はスタントマンです
+I'm afraid not.	残念だけど、そうは思えない
+I'm against it.	私は反対です
+I'm all for it.	大賛成です
+I'm alone here.	ここでは独りぼっちだ
+I'm behind him.	彼の後ろにいる
+I'm busy today.	今日は忙しい
+I'm doing fine.	元気でやってるよ
+I'm free today.	私は今日はひまです
+I'm in the car.	僕は車にいます
+I'm mad at Tom.	僕はトムに怒っている
+I'm mad at you.	私はあなたに怒っているんです
+I'm no quitter.	私は少々の事ではあきらめない
+I'm not a baby.	僕は赤ちゃんじゃない
+I'm not a hero.	私は英雄などではない
+I'm not afraid.	怖くなんてないさ
+I'm not guilty.	私は無実だ
+I'm not hungry.	お腹は空いていません
+I'm not scared.	怖くなんてないさ
+I'm not sleepy.	眠くないよ
+I'm out of gas.	ガス欠です
+I'm sure of it.	そのことを確信している
+I'm thirty now.	私は今30歳です
+I'm undressing.	私は服を脱いでいる
+I'm vegetarian.	僕はベジタリアンだ
+I'm very angry.	私は大変腹立たしい
+I'm very happy.	すごくうれしいです
+I'm very short.	私はとても背が低い
+I'm very sorry.	本当にゴメンよ
+I'm very sorry.	大変申し訳ありません
+I'm very tired.	くたくたに疲れました
+I'm very tired.	私は大変疲れています
+I'm very tired.	すっごく疲れた
+I've messed up.	失敗した
+I've seen that.	私はそれを見たのです
+I've seen that.	私はそれを見たことがある
+Is anyone here?	誰かいるの
+Is anyone hurt?	誰もケガしてない
+Is anyone hurt?	誰か怪我した
+Is he American?	彼はアメリカ人ですか
+Is he Japanese?	日本人ですか
+Is he Japanese?	彼は日本人ですか
+Is he sleeping?	彼は寝ているのですか
+Is he sleeping?	彼寝てる
+Is it for here?	こちらで召し上がりますか
+Is it my fault?	私の責任
+Is it possible?	可能性あるかな
+Is it possible?	そんなのってありえる
+Is she married?	彼女は結婚していますか
+Is this French?	これはフランス語ですか
+Is this edible?	これは食べられる物ですか
+Is this edible?	これ食べられるんですか
+Isn't it black?	黒くないのですか
+Isn't it black?	それは黒くありませんか
+It is Saturday.	土曜日だよ
+It sounds good.	それは　音が素晴らしい
+It was nothing.	何でもないよ
+It was raining.	雨が降っていた
+It's OK to cry.	泣いてもいいよ
+It's all right!	大丈夫ですよ
+It's all white.	真っ白です
+It's beyond me.	それは私の手に余る
+It's dangerous!	危ない
+It's hot today.	今日は暑いですね
+It's hot today.	今日は暑い
+It's not funny.	笑い事じゃない
+It's over here.	ここにあります
+It's so simple.	それはとても単純です
+It's so stupid.	それは愚の骨頂だ
+It's the truth.	本当ですよ
+It's this book.	この本です
+It's too large.	大きすぎるわ
+It's too small.	小さすぎる
+It's too small.	小さすぎます
+It's too small.	これ小さすぎるよ
+It's up to you.	君次第だよ
+It's up to you.	あなた次第です
+It's very cold.	ひどく冷えるなあ
+It's very good.	とてもいいよ
+It's your book.	あなたの本です
+It's your book.	これは君の本だよ
+It's your move.	君の番だよ
+It's your turn.	君の番だよ
+Just sign here.	ここにサインをお願いします
+Keep listening.	聞いてください
+Leave it to me.	僕に任せてください
+Leave it to me.	任せろよ
+Leave it to me.	任せて
+Leave it to me.	私に任せなさい
+Leave it to me.	俺に任せろ
+Leave it to me.	任せて
+Leave it to us.	任せて
+Leave me alone!	ひとりにさせて
+Leave me alone!	放っておいて
+Leave me alone!	放っておいてくれ
+Leave me alone.	ひとりにさせて
+Leave me alone.	放っておいて
+Lend me a hand.	手を貸してください
+Let me explain.	説明させてください
+Let me explain.	説明させて
+Let us go home.	家へ帰りましょう
+Let's hurry up.	急ぎましょう
+Let's play tag.	鬼ごっこしよう
+Let's watch TV.	テレビみようよ
+Listen to this!	聞いて、聞いて
+Look after Tom.	トムの面倒を見てて
+Louder, please.	もっと大きい声で言ってください
+Lying is wrong.	嘘を付くのは悪いことだ
+Make it larger.	もっと大きくして
+Many fish died.	たくさんの魚が死んだ
+Mary likes you.	メアリーはあなたが好きなのよ
+May I eat this?	これを食べていいですか
+May I eat this?	これ食べてもいい
+May I help you?	何かお探しですか
+May I help you?	ご用件をうけたまわりましょうか
+May I join you?	一緒に行っていいですか
+May I join you?	ご一緒してもよろしいですか
+May I kiss you?	キスしていい
+May I kiss you?	チューしていい
+May I sit down?	座ってもいいですか
+May I sit here?	ここに座ってもいいですか
+May I sit here?	ここに座ってもいいですか
+May I sit here?	ここ座ってもいいですか
+May I sit here?	ここ座っていいですか
+May I sit here?	ここ座っていい
+May I sit here?	ここ座ってもいい
+May I use that?	それを使ってもよろしいでしょうか
+Might is right.	力は正義なり
+Mind your step.	足元に気をつけて
+Move along now.	立ち止まるな
+My jaw is sore.	あごが痛い
+My name is Tom.	トムと申します
+My name is Tom.	トムといいます
+My name is Tom.	私の名前はトムです
+My tummy hurts.	お腹痛い
+Nobody's happy.	誰もうれしくない
+Now go on home.	さあ家に帰りなさい
+Now step aside.	ちょっとどいて
+Only God knows.	神のみぞが知る
+Open your eyes.	目を開けて
+Pitch the ball.	そのボール投げて
+Please come in.	どうぞ、お入り下さい
+Please come in.	さあどうぞお入りください
+Please come in.	お入りください
+Please help me.	私を手伝ってください
+Please help me.	助けてください
+Please help me.	どうか助けてください
+Please hold on.	お待ちください
+Prices went up.	物価が上がった
+Rise and shine.	起きなさい
+Say it clearly.	はっきり言いなさい
+See you Monday.	月曜日に会おう
+See you Monday.	月曜日に会いましょう
+See you around.	またお会いしましょう
+Shall we begin?	さぁ始めましょう
+Shall we begin?	始めましょうか
+Shall we start?	始めましょうか
+She adores him.	彼女は彼に憧れている
+She called him.	彼女は彼に電話した
+She came alone.	彼女は一人で来た
+She can't swim.	彼女は泳げない
+She choked him.	彼女は彼の息の根を止めた
+She choked him.	彼女は彼を絞殺した
+She choked him.	彼女は彼を絞め殺した
+She cooks well.	彼女は料理がうまい
+She dumped him.	彼女は彼を振った
+She fooled him.	彼女は彼をだました
+She fooled him.	彼女は彼を欺いた
+She fooled him.	彼女は彼をたぶらかした
+She gave money.	彼女はお金を与えた
+She grew roses.	彼女は薔薇を栽培した
+She grew roses.	彼女は薔薇を育てた
+She helped him.	彼女は彼を手伝った
+She helped him.	彼女は彼に手を貸した
+She helped him.	彼女は彼を助けた
+She hugged him.	彼女は彼を抱きしめた
+She is a nurse.	彼女は看護婦です
+She is a nurse.	彼女は看護師です
+She is awkward.	彼女は不器用である
+She is dieting.	彼女はダイエットをしている
+She is out now.	彼女は今外出中です
+She isn't poor.	彼女は貧乏ではない
+She kicked him.	彼女は彼を蹴った
+She kicked him.	彼女は彼を蹴っ飛ばした
+She kicked him.	彼女は彼を蹴飛ばした
+She kissed him.	彼女は彼にキスをした
+She likes wine.	彼女はぶどう酒が好きだ
+She loves cats.	彼女はネコが大好きだ
+She might come.	彼女は来るかもしれない
+She misses him.	彼女は彼が恋しい
+She misses him.	彼女は彼がいなくて寂しい
+She shot a gun.	彼女は銃を撃った
+She sings well.	彼女は上手に歌を歌う
+She sings well.	彼女は歌がうまい
+She types well.	彼女はタイプがうまい
+She was crying.	彼女は泣いていた
+She works hard.	彼女はよく働く
+She's divorced.	彼女は離婚している
+She's innocent.	彼女は無実だ
+She's stubborn.	彼女は強情です
+She's stubborn.	彼女は意地っ張りだ
+Shut your eyes.	目を閉じなさい
+Shut your eyes.	目を閉じてごらん
+Sing us a song.	私たちに歌を歌ってよ
+Someone called.	電話があったよ
+Sorry I'm late.	遅れてごめん
+Sorry I'm late.	遅くなってごめんなさい
+Spring is here.	もう春がきている
+Stay behind me.	後ろにいてね
+Stay out of it.	口出ししないで
+Stop grumbling.	愚痴はやめろよ
+Take your time.	ゆっくり時間を掛けなさい
+Thanks a bunch.	本当にありがとう
+Thanks a bunch.	本当にありがとう
+That isn't Tom.	あの人はトムじゃないです
+That was close.	おしい
+That was wrong.	あれは間違いだった
+That's amazing!	そいつは凄い
+That's my book.	あれは私の本です
+That's my line!	それは私の台詞だよ
+That's my line!	それはこっちの台詞だよ
+That's my line.	それは私の台詞だよ
+That's my line.	それはこっちの台詞だよ
+That's strange.	変ですね
+That's strange.	変だなあ
+That's the way.	その調子だよ
+That's the way.	それはよくあることだよ
+That's too bad.	残念ですが
+That's too bad.	それは困ったね
+That's too bad.	お気の毒に
+That's too bad.	それは残念だね
+That's too bad.	それは残念だよ
+The dog barked.	犬が吠えた
+The price rose.	物価が上がった
+Their eyes met.	目と目が合った
+They asked him.	彼らは彼に聞きました
+They can do it.	彼らならできる
+They hated Tom.	彼らはトムを嫌っていた
+They quarreled.	彼らは言い争いをした
+Think about it.	考えておいて
+This is a book.	これは本です
+This is a joke.	冗談だよ
+This is a joke.	これは冗談
+This is my bag.	私のかばんです
+This is my car.	これは私の車です
+This is my car.	これは私の自動車です
+This is my cat.	これは私の猫です
+This is simple.	これは簡単です
+Throw the ball.	そのボール投げて
+Ticket, please.	切符を拝見いたします
+Time to get up.	起きる時間よ
+Tom apologized.	トムは謝った
+Tom ate dinner.	トムは夕食を食べた
+Tom built this.	トムがこれを建てた
+Tom can fix it.	トムはそれを直せる
+Tom can't read.	トムは字が読めない
+Tom can't swim.	トムは泳げない
+Tom can't walk.	トムは歩けません
+Tom can't work.	トムは働けない
+Tom fell apart.	トムは精神的に乱れた
+Tom found Mary.	トムはメアリーを見つけた
+Tom got fatter.	トムはデブった
+Tom got fatter.	トムは太った
+Tom has a boat.	トムはボートを持っている
+Tom has brains.	トムは頭がいい
+Tom hated Mary.	トムはメアリーが嫌いだった
+Tom hates Mary.	トムはメアリーを嫌っている
+Tom is a coach.	トムはコーチです
+Tom is a guest.	トムは客だ
+Tom is correct.	トムが正解
+Tom is curious.	トムは好奇心旺盛だ
+Tom is curious.	トムは興味津々だ
+Tom is dancing.	トムが踊っている
+Tom is my name.	トムと申します
+Tom is my name.	トムといいます
+Tom is praying.	トムは祈っている
+Tom is reading.	トムは本を読んでいる
+Tom is serious.	トムは真剣だ
+Tom is singing.	トムは歌っている
+Tom is snoring.	トムはいびきをかいている
+Tom is talking.	トムが話している
+Tom is yawning.	トムはあくびをしている
+Tom isn't here.	トムはいません
+Tom isn't here.	トムがいません
+Tom isn't sick.	トムは病気じゃない
+Tom kept quiet.	トムは黙っていた
+Tom knows more.	トムはもっと知っている
+Tom lied to me.	トムは私に嘘をついた
+Tom likes Mary.	トムはメアリーが好きです
+Tom likes cats.	トムは猫が好き
+Tom looks fine.	トムは元気そう
+Tom looks pale.	トムは顔色が悪い
+Tom looks rich.	トムはお金持ちに見える
+Tom looks sick.	トムは具合が悪そうだ
+Tom loved Mary.	トムはメアリーを愛していた
+Tom loves Mary.	トムはメアリーを愛している
+Tom loves cats.	トムは猫を愛している
+Tom loves dogs.	トムは犬が大好きだ
+Tom misses you.	トムは君のことが恋しいんだ
+Tom needs help.	トムは助けを必要としている
+Tom passed out.	トムは気を失った
+Tom remembered.	トムは思い出した
+Tom seems nice.	トムはいい人そうだ
+Tom set a trap.	トムはわなを仕掛けた
+Tom shed tears.	トムは涙を流した
+Tom swims well.	トムは水泳が得意だ
+Tom swims well.	トムは泳ぐのが上手い
+Tom understood.	トムはわかった
+Tom understood.	トムは理解した
+Tom was asleep.	トムは寝ていた
+Tom was asleep.	トムは眠っていた
+Tom was beaten.	トムは打ち負かされた
+Tom was clever.	トムは賢かった
+Tom was crying.	トムは泣いていた
+Tom works hard.	トムはよく働く
+Tom's laughing.	トムが笑ってる
+Tom's swimming.	トムは泳いでいる
+Try to explain.	説明してみて
+Turn up the TV.	テレビの音大きくして
+Wait. Don't go.	待って。行かないでよ
+War isn't good.	戦争はよくない
+Was Tom killed?	トムは殺されたの
+Wash your face.	顔を洗いなさい
+We drank a lot.	私たちはたくさんお酒を飲んだ
+We've seen him.	私たちは彼と会ったことがある
+Well, let's go.	さあ、行くぞ
+What a big dog!	なんて大きな犬なんでしょう
+What a big dog!	なんちゅうでかい犬なんだよ
+What do we owe?	我々には何の恩義がありますか
+What do we owe?	私たちには何の借金がありますか
+What do you do?	ご職業は何ですか
+What do you do?	お仕事は何をされてるんですか
+What's his job?	あの男の人は仕事は何をなさってるんですか
+What's it like?	それはどんな感じなの
+When do we eat?	いつ食べるの
+Where are they?	彼らはどこですか
+Where is Paris?	パリはどこにありますか
+Where were you?	どこにいたの
+Where's Boston?	ボストンってどこにあるんですか
+Where's my car?	私の車はどこ
+Where's my son?	息子はどこかしら
+Who broke this?	これを壊したのはだれですか
+Who broke this?	誰がこれを壊したのですか
+Who found this?	誰がこれを見つけたの
+Who killed Tom?	誰がトムを殺したのだろう
+Who lives here?	誰がここに住んでいるの
+Who would care?	誰も気にしませんよ
+Who wrote this?	誰がこれを書いたの
+Who's on watch?	誰が当番ですか
+Who's speaking?	どちらさまでしょうか
+Who's that boy?	あの少年は誰ですか
+Who's that boy?	あの男の子は誰
+Who's that guy?	誰だ？　あいつ
+Who's this guy?	この男の人、誰
+Who's this guy?	この男は誰なんだ
+Who's with Tom?	トムと一緒にいるのは誰ですか
+Whose are they?	それ、誰の
+Why do you ask?	なんで聞くの
+Why do you lie?	どうしてあなたは嘘をつくの
+Why is Tom wet?	なぜトムは濡れているの
+Wipe your feet.	足を拭きなさい
+Yes, I know it.	はい知っています
+You are morons.	あんたたちバカね
+You flatter me.	お世辞がお上手ね
+You look bored.	退屈そうだね
+You look happy.	嬉しそうだね
+You look tired.	お疲れのようですね
+You need sleep.	睡眠をとったほうがいい
+You're in luck.	あなたは運がいい
+You're kidding!	嘘だろ
+You're my type.	あなたは私の好みのタイプです
+You're welcome.	どう致しまして
+You're welcome.	どういたしまして
+You've done it!	あなた、やっちゃったじゃない
+3 times 5 is 15.	３かける５は１５
+Am I alone here?	私しか居ないのか
+Am I boring you?	退屈じゃないですか
+Are these yours?	これらはあなたの物ですか
+Are you OK, Tom?	トム、大丈夫
+Are you at home?	君は家にいますか
+Are you excited?	興奮してる
+Are you guys OK?	みんな、大丈夫
+Are you kidding?	冗談でしょ！
+Are you kidding?	人をからかわないで
+Are you married?	結婚していますか
+Are you over 18?	あなたは18歳以上ですか
+Are you relaxed?	リラックスしてる
+Are you serious?	本気ですか
+Are you serious?	本気
+Are you serious?	君は本気でそう言うのか
+Are you serious?	それ本気で言ってる
+Aren't you cold?	ちょっと寒くないですか
+Aren't you cold?	寒くないの
+Ask me anything!	何でも聞いて
+Balls are round.	ボールは丸い
+Be careful, Tom!	気をつけて、トム
+Be careful, Tom.	気をつけて、トム
+Bees make honey.	蜂は蜂蜜を作ります
+Behave yourself.	行儀よくしなさい
+Behave yourself.	お行儀よくしなさい
+Bring that here.	それ持って来て
+Call me anytime.	いつでもお電話ください
+Call me anytime.	いつでもご連絡ください
+Call the police!	警察を呼んで
+Can I bring Tom?	トム連れてきてもいい
+Can I come, too?	私も行ってもいい
+Can I get a dog?	犬を飼ってもいい
+Can I stay here?	ここにいてもいいですか
+Can Tom help us?	トムは私たちを手伝うことができますか
+Can you do that?	君にあれができますか
+Can you do that?	それできる
+Can you find it?	見つけられますか
+Can you hear me?	聞こえますか
+Can you hear me?	聞こえますか
+Can you hear us?	聞こえますか
+Can you help me?	私を助けてくれますか
+Clean your room.	自分の部屋を掃除しなさい
+Close your book.	本を閉じなさい
+Close your eyes.	目を閉じなさい
+Close your eyes.	目を閉じてごらん
+Come and see me.	遊びに来なさい
+Congratulations!	おめでとうございます
+Congratulations!	おめでとう
+Crows are black.	カラスは黒い
+Did Tom do that?	トムがそれやったの
+Did Tom respond?	トムから返事来た
+Did Tom say why?	トムは理由を言いましたか
+Did Tom see you?	トムはあなたに会いましたか
+Did he go there?	彼はそこへ行きましたか
+Did you ask Tom?	トムに聞いたの
+Did you ask Tom?	トムに尋ねましたか
+Did you miss me?	わたしがいなくて淋しいと思った
+Didn't you know?	知らなかったの
+Dinner is ready.	夕飯の支度が出来ました
+Dinner is ready.	夕食の用意が出来ました
+Dinner is ready.	夕食ができたよ
+Dinner is ready.	夕御飯ができました
+Dinner is ready.	ディナーの用意ができました
+Do you feel bad?	気分悪いの
+Do you know her?	彼女を知っていますか
+Do you know him?	彼のお知り合いですか
+Do you know why?	なんでか知ってる
+Do you like rap?	ラップは好き
+Do you love Tom?	トムのこと愛してるの
+Don't be absurd.	ばかげたことを言うな
+Don't be afraid.	恐れるな
+Don't be stupid.	ふざける
+Don't follow me.	着いて来ないでよ
+Don't get angry.	腹を立てるな
+Don't get angry.	腹を立てないで
+Don't get angry.	怒るなよ
+Don't get angry.	かっかしないで
+Don't get angry.	かっかするな
+Don't get angry.	かっかするなよ
+Don't lie to me.	私に嘘を言わないで
+Don't lie to me.	私にうそは言わないで
+Don't lie to me.	私に嘘をつかないで
+Don't lie to us.	私たちには嘘をつかないで
+Don't overdo it.	あんまり無理するなよ
+Don't start yet.	まだ始めないで
+Don't tell lies.	うそを言うな
+Don't trust him.	彼を信用するな
+Drive carefully.	注意深く運転してください
+Drive carefully.	安全運転してね
+Drive carefully.	安全運転しなさい
+Drive carefully.	慎重に運転してください
+Eat more slowly.	もっとゆっくり食べなさい
+Enjoy your trip.	楽しい旅を
+Enjoy your trip.	楽しいご旅行を
+Enjoy your trip.	旅行、楽しんできてね
+Everyone dreams.	みんな夢を見る
+Everyone smiled.	みんな笑った
+Everyone waited.	みんな待った
+Fasten the gate.	門にかぎを掛けなさい
+Follow that car.	あの車を追ってくれ
+Get me some ice.	氷を少し持ってきて
+Get my tool box.	私の工具箱を持ってきて
+Give me a break.	勘弁してくれ
+Give me a break.	勘弁してよ
+Give me a break.	いいかげんにして
+Give me a towel.	タオルとって
+Give us a break.	勘弁してくれ
+Go and find Tom.	トムを探してきて
+Go and help Tom.	トムを手伝ってきて
+Go back to work.	仕事に戻りなさい
+Go home quickly.	早く家に帰りなさい
+Go to sleep now.	もう寝なさい
+Great, isn't it?	すごいじゃない
+Has he come yet?	彼はもう来たかい
+Has he come yet?	彼はもう来ましたか
+Have a nice day.	良い一日を
+He acts quickly.	彼は動作がはやい
+He began to cry.	彼は泣き出した
+He began to run.	彼は走り出した
+He bought a car.	彼は車を買った
+He bought a hat.	彼は帽子を買った
+He did his best.	彼は最善をつくした
+He drinks a lot.	彼は大酒飲みだ
+He felt at home.	彼はくつろいだ
+He felt at home.	彼はくつろいだ気分になった
+He gave up hope.	彼は望みを捨てた
+He hardly works.	彼はほとんど働かない
+He has bad eyes.	彼は目が悪い
+He has gone mad.	彼は気が狂った
+He has gone out.	彼は外出してしまった
+He has ten cows.	彼は牛を十頭飼っている
+He has two cats.	彼は、二匹猫を飼っている
+He has two cats.	彼は猫を二匹飼っています
+He is a bad boy.	彼はいけない子だ
+He is a painter.	彼は画家だ
+He is a student.	彼は学生です
+He is a teacher.	彼は教師です
+He is depressed.	彼は落ち込んでいる
+He is off today.	彼は今日は休みです
+He is unmarried.	彼は結婚してないです
+He is very kind.	彼は非常に親切だ
+He is very kind.	彼はとても親切です
+He is very sick.	彼はとても具合が悪い
+He just arrived.	彼がちょうど到着しました
+He kept singing.	彼は歌いつづけた
+He kept talking.	彼は話しつづけた
+He likes soccer.	彼はサッカーが好きだ
+He likes sweets.	彼は甘いものが好きだ
+He likes tigers.	彼は虎が好き
+He likes to run.	彼は走るのが好きだ
+He looked young.	彼は若く見えた
+He looks strong.	彼は強そうにみえる
+He looks strong.	彼は強そうだ
+He lost his job.	彼は失業してしまった
+He lost his job.	彼は失業した
+He loves soccer.	彼はサッカーが大変好きです
+He loves trains.	彼は電車が大好きです
+He made a robot.	彼はロボットを作った
+He mentioned it.	彼はそれについて話した
+He mentioned it.	彼はそのことについて語った
+He plays soccer.	彼はサッカーをしている
+He plays soccer.	彼はサッカーをする
+He pressured me.	彼は私に圧力をかけた
+He quit smoking.	彼は喫煙をやめた
+He quit smoking.	彼は煙草をやめた
+He quit smoking.	彼はたばこをやめた
+He reads Arabic.	彼はアラビア語を読みます
+He seems honest.	彼は正直そうだ
+He stared at me.	彼は私をにらんだ
+He tires easily.	彼は疲れやすい
+He walks slowly.	彼はゆっくりと歩く
+He was cheating.	彼は浮気していた
+He was innocent.	彼は無実だった
+He was very old.	彼はとても年老いていた
+He went to Nara.	彼は奈良に行った
+He wore glasses.	彼は眼鏡をかけていた
+He writes books.	彼は作家です
+He'll come soon.	彼はすぐ来ます
+He's a big liar.	彼は大ボラふきだ
+He's a big liar.	彼は大嘘つきだ
+He's a comedian.	彼は三枚目だ
+He's a good man.	彼はいい人です
+He's antisocial.	彼は非社交的だ
+He's dead drunk.	彼は酔いつぶれている
+He's her friend.	彼は彼女の友達です
+He's kind to me.	彼は私に親切だ
+He's not a liar.	彼は嘘つきではない
+He's not stupid.	彼は馬鹿ではない
+He's over forty.	彼は40過ぎです
+He's very angry.	彼はかんかんに怒っている
+He's very timid.	彼はとても臆病だ
+He's well built.	彼は体格が良い
+Help me, please.	助けてくれ
+Help me, please.	私を手伝ってください
+Help me, please.	助けてください
+Help me, please.	どうか助けてください
+Hi! How are you?	やあ！元気
+Hi. How are you?	やあ！元気
+Hold on, please.	少々お待ち下さい
+Hold on, please.	少し待って下さい
+Hold on, please.	ちょっとお待ち下さい
+Hold on, please.	そのままでお待ちください
+How about 12:45?	１２時４５分はどうでしょう
+How about 12:45?	12時45分とかどう
+How fascinating!	すごく面白そうですね
+How is everyone?	皆さんはお元気
+How is your dad?	お父さんはお元気ですか
+How old are you?	おいくつですか
+How old are you?	何歳ですか
+How old are you?	あなたの年齢は何歳ですか
+How old are you?	歳はいくつですか
+How's Tom doing?	トムはどうしてる
+How's the taste?	味はいかがですか
+How's your cold?	風邪の具合はどうですか
+I ache all over.	体中が痛む
+I ache all over.	私は全身が痛い
+I ache all over.	体中が痛い
+I ache all over.	全身に痛みがある
+I am a Japanese.	私は日本人である
+I am a Japanese.	私は日本人です
+I am a poor man.	私は貧しい男です
+I am busy today.	今日は忙しい
+I am from Egypt.	私はエジプト出身です
+I am not afraid.	怖くなんてないさ
+I appreciate it.	私は感謝しています
+I bit my tongue.	舌噛んだ
+I bought a book.	私は本を買いました
+I called Tom up.	私はトムに電話した
+I called him up.	彼に電話した
+I can sing well.	私は歌が上手いです
+I can't bear it.	我慢できない
+I can't do that.	私にはできません
+I can't do this.	私にはできません
+I can't do this.	これはできません
+I can't hear it.	聞こえないよ
+I caught a cold.	風邪をひきました
+I caught a cold.	私は風邪をひいた
+I caught a cold.	風邪ひいた
+I checked twice.	二度確認しました
+I chickened out.	意気地がなかったんだ
+I cycle to work.	自転車で通勤しています
+I didn't see it.	わたしはそれを見ていません
+I don't need it.	必要ありません
+I don't need it.	いらないです
+I don't need it.	いりません
+I escaped death.	九死に一生を得ました
+I feel nauseous.	吐き気がします
+I feel relieved.	安心しました
+I felt isolated.	私は孤独を感じた
+I felt left out.	無視された気がした
+I found the cat.	猫をみつけた
+I get the point.	了解しました
+I go every year.	毎年行きます
+I got a sunburn.	私は日焼けをした
+I got a sunburn.	日焼けしちゃっ
+I got sunburned.	私は日焼けをした
+I got sunburned.	日焼けしちゃっ
+I got up at six.	私は6時に起きた
+I hate politics.	私は政治が大嫌いだ
+I hate reptiles.	爬虫類が大嫌い
+I hate studying.	私は勉強が嫌いだ
+I hate them all.	みんな嫌い
+I hate tomatoes.	トマトが大嫌い
+I have bad eyes.	私は目が悪い
+I have no fever.	熱はありません
+I have no money.	金欠なんだ
+I have ten pens.	私はペンを１０本持っています
+I have ten pens.	私は十本のペンを持っています
+I have to study.	勉強しなくっちゃ
+I have two cars.	僕は車を２台持っている
+I have two cats.	私は猫を2匹飼っています
+I heard screams.	悲鳴が聞こえた
+I hurt my elbow.	ひじを痛めました
+I know his name.	彼の名前を知っています
+I like baseball.	私は野球が好きだ
+I like football.	アメフトが好きです
+I like football.	サッカーが好きです
+I like it a lot.	とっても好きよ
+I like your car.	私は君の車が好きだ
+I like your car.	私はあなたの車が好きです
+I live in Japan.	私は日本に住んでいます
+I love comedies.	私はコメディが好きです
+I love eggplant.	私はナスが好きです
+I love you, Tom.	トム大好き
+I love you, Tom.	大好きだよ、トム
+I love your car.	私は君の車が好きだ
+I need his help.	彼の助けが欲しい
+I need somebody.	誰かきてくれ
+I owe you a lot.	あなたのおかげです
+I played tennis.	私はテニスをしました
+I run every day.	私は毎日走ります
+I slept soundly.	ぐっすり寝ました
+I think so, too.	私もそう思う
+I think so, too.	私もそんな気がする
+I took her home.	私は彼女を家まで送った
+I want a friend.	友達が欲しい
+I want a guitar.	ギターが欲しいです
+I want a refund.	返金して欲しい
+I want that bag.	あの鞄が欲しい
+I want to sleep.	僕は寝たい
+I want to sleep.	眠りたいんだ
+I was a teacher.	私は教師でした
+I was satisfied.	満足しました
+I was too small.	私は小さすぎた
+I will help you.	お手伝いしますよ
+I will help you.	手伝ってあげるよ
+I will stop you.	あなたを止める
+I'd like a book.	本を下さい
+I'd like a fork.	フォークを下さい
+I'll admit that.	それは認める
+I'll buy a Ford.	フォード車を買うつもりです
+I'll call later.	後でお電話いたします
+I'll call later.	あとで電話するね
+I'll come by 10.	１０時までに来ます
+I'll do my best.	全力を尽くします
+I'll do my best.	出来るだけがんばります
+I'll fix it now.	今から直します
+I'll go ask Tom.	トムに訊いてくるよ
+I'll go ask Tom.	トムに訊いてきますね
+I'll pay for it.	僕が払っとこう
+I'll pay for it.	ここは私が出します
+I'm a bit drunk.	私は少し酔っている
+I'm a bit tipsy.	私は少し酔っている
+I'm a bit tired.	少し疲れた
+I'm a bit tired.	私は少し疲れている
+I'm a good cook.	料理は得意です
+I'm a housewife.	私は主婦です
+I'm a night owl.	僕は夜型なんだ
+I'm a night owl.	私は夜型の人間です
+I'm a policeman.	私は警官だ
+I'm a professor.	私は大学教授です
+I'm able to run.	私は走ることができる
+I'm able to ski.	私はスキーの仕方を知っています
+I'm almost done.	ほぼ終わった
+I'm begging you.	頼むよー
+I'm cleaned out.	私は一文無しになった
+I'm color-blind.	色盲です
+I'm cooperative.	私は協調性がある
+I'm going to go.	行くよ
+I'm going to go.	あとで行くね
+I'm here to win.	私は勝つために、ここにいるんだ
+I'm just joking.	ほんの冗談だよ
+I'm just joking.	冗談ですよ
+I'm leaving now.	今出かける所なんですよ
+I'm leaving now.	今から出ます
+I'm leaving now.	今から行くよ
+I'm left-handed.	僕は左利きです
+I'm not chicken.	びびってなんかないよ
+I'm not chicken.	怖くなんてないさ
+I'm on duty now.	今勤務中です
+I'm pretty sure.	間違いないと思うよ
+I'm sick of Tom.	トムにはもううんざりだ
+I'm so worn out.	すっごく疲れた
+I'm the bad one.	悪いのは私です
+I'm tied up now.	今、忙しいの
+I'm tied up now.	今、手がはなせません
+I'm very hungry.	お腹がぺこぺこです
+I'm very hungry.	ものすごくお腹がすいている
+I'm very hungry.	超腹減った
+I'm very lonely.	私はとても寂しい
+I'm very sleepy.	すごく眠い
+I'm watching TV.	わたしはテレビを見ています
+I've got a cold.	風邪をひきました
+I've got a cold.	かぜを引いているんだ
+I've had enough.	十分頂きました
+I've had enough.	もうたくさんだ
+I've missed you.	さみしかったよ
+Is Tom a genius?	トムは天才ですか
+Is Tom with you?	トムは貴方といっしょですか
+Is anybody here?	誰かいるの
+Is anybody home?	誰か家にいますか
+Is anybody hurt?	誰か怪我した
+Is everybody OK?	みんな、大丈夫
+Is he a teacher?	彼は先生ですか
+Is he breathing?	呼吸は
+Is he breathing?	彼は息をしていますか
+Is it good news?	それは良いニュースなのか
+Is it not black?	それは黒くありませんか
+Is it too small?	小さすぎる
+Is she Japanese?	日本人ですか
+Is she Japanese?	彼女は日本人ですか
+Is she a doctor?	彼女は医者ですか
+Is there a cafe?	カフェがありますか
+Is this a dream?	これは夢なのか
+Is today Monday?	今日は月曜日ですか
+It could be fun.	それは楽しそう
+It doesn't hurt.	痛くはありません
+It is seven now.	今７時です
+It is up to you.	あなた次第です
+It is up to you.	それはあなた次第です
+It is up to you.	あなたにお任せします
+It isn't a game.	遊びじゃないんだ
+It isn't a joke.	冗談じゃねえよ
+It snowed a lot.	雪がたくさん降った
+It sounds great!	いい案だ
+It tastes moldy.	かび臭い味がする
+It was handmade.	それはハンドメイドでした
+It was handmade.	手作りだった
+It was my fault.	私の責任です
+It was worth it.	やった甲斐はあった
+It'll rain soon.	今にも雨が降りそうだ
+It'll rain soon.	まもなく雨になるだろう
+It's OK with me.	私はいいですよ
+It's a nice day.	晴れています
+It's a nice day.	いい天気です
+It's a pheasant.	あれはキジです
+It's a surprise.	びっくりだ
+It's about time.	そろそろ時間だ
+It's already 11.	もう１１時だ
+It's already 11.	もう11時だ
+It's already 11.	もう11時だよ
+It's fine today.	今日は天気が良い
+It's impossible.	絶対無理だね
+It's incredible!	そいつは凄い
+It's news to me.	それは初耳だ
+It's not a game.	遊びじゃないんだ
+It's not a joke.	冗談じゃねえよ
+It's not my day.	今日はついてないな
+It's okay to go.	行ってもよい
+It's really hot.	暑すぎ
+It's time to go.	出かける時間よ
+It's too flashy.	派手すぎるよ
+It's two-thirty.	2時半です
+It's very humid.	湿度がすごく高いですね
+Just wrap it up.	それを包んで下さい
+Keep on smiling.	いつも笑顔でね
+Keep on smiling.	笑顔を続けて
+Keep on working.	働き続けなさい
+Keep the change.	おつりは取っておいてください
+Large, isn't it?	広いな
+Lemons are sour.	レモンは酸っぱい
+Let me check it.	見てみましょう
+Let me help you.	手伝わせてください
+Let me see that.	それを見せて
+Let me see that.	それ見せて
+Let's eat pizza.	ピザを食べよう
+Let's eat sushi.	お寿司を食べましょう
+Let's get going.	さあ、始めましょう
+Let's get going.	そろそろ行きましょうか
+Let's go by bus.	バスで行きましょう
+Let's go by car.	車で行こう
+Let's rest here.	ここで少し休もう
+Let's rest here.	ここで休みましょう
+Let's rest here.	ここで、休もう
+Let's stop here.	今日はこれでおしまいにしよう
+Let's talk soon.	近いうちに話そう
+Let's try again.	もう一回やってみよう
+Look behind you.	後ろを見ろ
+Make it smaller.	もっと小さくして
+Man, I'm hungry.	ああ、お腹が空いた
+Mary's my niece.	メアリーは私の姪です
+May I come, too?	私も行ってもいい
+May I feel this?	これ触ってもいいですか
+May I try it on?	試着できますか
+May I try it on?	それを着てみてもいいですか
+Maybe next time.	やっぱり、やめとく
+Merry Christmas!	メリークリスマス
+Merry Christmas!	メリークリスマス
+Mom, I'm hungry.	ママ、おなかすいた
+My father is in.	父は家にいる
+My hat blew off.	帽子がふきとばされた
+My throat hurts.	喉が痛い
+Never tell lies.	決して嘘をついてはいけません
+Never tell lies.	うそを言ってはいけないよ
+Nice seeing you!	会えて嬉しかったよ
+No one can tell.	誰にも分からない
+No one has died.	誰も死ななかった
+Nobody has died.	誰も死ななかった
+Open the bottle.	ビンをあけてください
+Open the window.	窓を開けて
+Please call him.	彼に電話して下さい
+Please continue.	話し続けて
+Please continue.	どうぞ続けて
+Please don't go.	行かないでください
+Please fix that.	そこを訂正してください
+Please fix this.	なおして下さい
+Please fix this.	これを直して下さい
+Please hurry up!	お願い、急いで
+Please sit down.	座りなよ
+Please sit down.	お座り下さい
+Please sit down.	お掛けください
+Please sit here.	こちらにお掛けください
+Please sit here.	こちらにおかけください
+Please stand up.	立って下さい
+Please take one.	自由にお持ち下さい
+Please, tell me.	どうぞ、私に話して下さい
+Please, tell me.	お願い、私に話して
+Put your hat on.	帽子をかぶりなさい
+Raise your hand.	手を上げなさい
+Remove your hat.	帽子を脱ぎなさい
+Remove your hat.	帽子を取りなさい
+See you at 2:30.	2時半に会おう
+See you at 2:30.	2時半に会いましょう
+She adores cats.	彼女はネコが大好きだ
+She got up late.	彼女は起きるのが遅れた
+She got up late.	彼女は遅く起きた
+She is Japanese.	彼女は日本人女性です
+She is Japanese.	彼女は日本人です
+She is a genius.	彼女は天才です
+She is a runner.	彼女は走者です
+She is a typist.	彼女はタイピストです
+She is not tall.	彼女は背が高くありません
+She is stubborn.	彼女は強情です
+She is too weak.	彼女は弱すぎる
+She lives alone.	彼女は一人で住んでいます
+She lives alone.	彼女は一人暮らしです
+She looked away.	彼女は目をそらした
+She looks happy.	彼女は幸せに見えます
+She looks happy.	彼女は幸せそうに見える
+She looks happy.	彼女は幸せそうだ
+She looks young.	彼女は若く見える
+She lost a book.	彼女は本を失くしました
+She lost a book.	彼女は本を紛失しました
+She married him.	彼女は彼と結婚した
+She pinched him.	彼女は彼をつねった
+She talks a lot.	彼女はよくしゃべる
+She was my boss.	彼女は私の上司でした
+She was perfect.	彼女は完全無欠だった
+She woke him up.	彼女は彼を起こした
+She worked hard.	彼女は一生懸命働いた
+She's assertive.	彼女は気が強い
+She's beautiful.	美人だなあ
+She's depressed.	彼女は落ち込んでいる
+She's in danger.	彼女は危険にさらされている
+She's my sister.	彼女は私の姉です
+She's on a diet.	彼女はダイエット中だ
+She's on a roll.	彼女はついている
+She's seventeen.	彼女は１７歳です
+Sheep eat grass.	羊は草を食べる
+Shut your mouth.	口を閉じなさい
+Sit up straight.	きちんと座りなさい
+So far, so good.	今のところは順調だよ
+So far, so good.	今のところ順調だ
+Someone help me.	誰か手伝って
+Sorry, I forgot.	ごめん、忘れちゃった
+Sorry, I forgot.	ごめんなさい、忘れました
+Sorry, I'm late.	すみません、遅くなりまして
+Spanish is easy.	スペイン語は簡単です
+Spring has come.	もう春がきている
+Spring has come.	春が来た
+Steal the money.	金を盗め
+Stop doing that.	やめろ
+Summer has come.	夏がやってきた
+Supper is ready.	夕飯の支度が出来ました
+Supper is ready.	夕食ができたよ
+That car is his.	あの自動車は彼のものです
+That dog is big.	あの犬は大きい
+That is a table.	あれはテーブルです
+That is his car.	あの自動車は彼のものです
+That isn't fair.	それは公平ではない
+That settles it.	これで決まりだ
+That's a pencil.	あれは鉛筆です
+That's my fault.	私の責任です
+That's not fair.	そんなのずるいよ
+That's not fair.	それは公平ではない
+That's not mine.	それ私のじゃありません
+That's terrible.	それはひどいな
+That's too much!	すごいじゃない
+The boy is kind.	その少年は親切だ
+The boy is nice.	その少年は親切だ
+The car stopped.	車は止まった
+The dog is dead.	犬は死んでいるよ
+The door opened.	ドアが開いた
+The food's here.	食べ物が届きました
+The leaves fell.	葉が落ちた
+The light is on.	明かりがついている
+The room is hot.	部屋が暑い
+The sky is blue.	空は青い
+The sun has set.	日が沈んでしまった
+There's no soap.	石鹸がありません
+There's no soap.	石鹸がないです
+There's no soap.	石鹸がないよ
+They are actors.	彼らは俳優です
+They are pretty.	彼女達はかわいい
+They feared you.	彼らはあなたを怖がっていた
+They live there.	彼らはそこにすんでいる
+They live there.	彼らはあそこに住んでいる
+They understood.	彼らは理解した
+This is his car.	これは彼の車です
+This is my baby.	この子が私の赤ちゃんなんだよ
+This is my book.	これは私の本です
+This is reality.	これは現実です
+This is strange.	これは変だ
+This is useless.	これは役に立たない
+This isn't fair.	それは公平ではない
+This isn't salt.	これは塩ではない
+This isn't true.	これは真実ではない
+This won't burn.	これは燃えません
+Time for dinner.	夕飯の時間ですよ
+To each his own.	十人十色
+Today is Monday.	今日は月曜日です
+Today is Monday.	今日は月曜ですね
+Tom already ate.	トムはもう食べた
+Tom already ate.	トムはもう食べてしまった
+Tom betrayed me.	トムは私を裏切った
+Tom bit his lip.	トムは唇をかんだ
+Tom blacked out.	トムは気を失った
+Tom called Mary.	トムはメアリーに電話した
+Tom called Mary.	トムはメアリーを呼んだ
+Tom caught Mary.	トムはメアリーを捕まえた
+Tom chased Mary.	トムはメアリーを追いかけた
+Tom disappeared.	トムは行方不明になった
+Tom fell asleep.	トムは眠りに落ちた
+Tom fooled Mary.	トムはメアリーを騙した
+Tom got injured.	トムは怪我をした
+Tom got nervous.	トムは緊張した
+Tom has no time.	トムは時間がない
+Tom has rabbits.	トムはウサギを飼っている
+Tom hugged Mary.	トムはメアリーを抱き締めた
+Tom is a genius.	トムは天才です
+Tom is a priest.	トムは司祭だ
+Tom is confused.	トムは戸惑っている
+Tom is coughing.	トムは咳払いしている
+Tom is handsome.	トムはハンサムだ
+Tom is handsome.	トムはイケメンだ
+Tom is handsome.	トムは男前だ
+Tom is home now.	トムは今、家にいます
+Tom is laughing.	トムが笑ってる
+Tom is my buddy.	トムは私の友人です
+Tom is my buddy.	トムは私の友達だ
+Tom is my buddy.	トムは僕の友達です
+Tom is my uncle.	トムは私の叔父です
+Tom is rational.	トムって合理的だよね
+Tom is rich now.	トムは今裕福だ
+Tom is stubborn.	トムは頭が固い
+Tom is swimming.	トムは泳いでいる
+Tom is thinking.	トムは考えている
+Tom is unafraid.	トムは恐れない
+Tom kept crying.	トムは泣き続けた
+Tom kicked Mary.	トムがメアリーを蹴った
+Tom killed Mary.	トムがメアリーを殺した
+Tom kissed Mary.	トムがメアリーにキスした
+Tom let me down.	トムは私の期待を裏切った
+Tom lit a match.	トムはマッチを擦った
+Tom lit a match.	トムはマッチに火をつけた
+Tom looked well.	トムは元気そうだった
+Tom ought to go.	トムは行くべきだ
+Tom phoned Mary.	トムはメアリーに電話した
+Tom saw it, too.	トムもそれを見た
+Tom seemed cool.	トムはクールに見えた
+Tom seems bored.	トムは退屈しているようだ
+Tom seems bored.	トムは退屈しているみたい
+Tom should wait.	トムは待つべきだ
+Tom speaks fast.	トムは早口だ
+Tom talks a lot.	トムはよくしゃべる
+Tom teased Mary.	トムはメアリーをからかった
+Tom teased Mary.	トムはメアリーをいじめた
+Tom teased Mary.	トムはメアリーにちょっかいを出した
+Tom trusts Mary.	トムはメアリーを信頼している
+Tom turned pale.	トムは青ざめた
+Tom understands.	トムは分かってる
+Tom understands.	トムは分かっている
+Tom volunteered.	トムはボランティアをした
+Tom was at home.	トムは家にいた
+Tom was bullied.	トムはいじめにあった
+Tom was bullied.	トムはいじめられた
+Tom was in love.	トムは恋をしていた
+Tom was my hero.	トムは私のヒーローでした
+Tom was pleased.	トムは喜んだ
+Tom was waiting.	トムは待っていた
+Tom was yawning.	トムはあくびをしていた
+Tom wasn't rich.	トムは金持ちではなかった
+Tom went to bed.	トムは寝た
+Tom writes well.	トムは文章がうまい
+Tom's boat sank.	トムのボートが沈んだ
+Tom's my cousin.	トムは私のいとこです
+Tom's my friend.	トムは私の友達だ
+Tom's my friend.	トムは俺の友達だ
+Tom's my friend.	トムは私の友達です
+Tom's my friend.	トムは僕の友達です
+Tom, be careful!	トム、気をつけて
+Try not to yawn.	あくびをしないようにしなさい
+Wait one moment.	ちょっと待って
+Wait one moment.	ちょっと待て
+Wait one second.	ちょっと待って
+Wait over there.	向こうで待っていてね
+Walls have ears.	壁に耳あり
+Wash your hands.	手を洗いなさい
+Watch and learn.	よく見て学べ
+Watch carefully.	注意深く見なさい
+Watch your head!	頭に気をつけて
+Watch your head!	頭上にご注意ください
+Watch your head!	頭に気をつけて
+Watch your head.	頭上にご注意ください
+Watch your head.	頭に気をつけて
+Watch your step.	足下に注意して下さい
+Watch your step.	足元に気をつけて
+Watch your step.	段差注
+Watch your step.	足元にご注意ください
+We all did well.	みんなよくやった
+We all like Tom.	僕たちはみんな、トムが好き
+We all love Tom.	私たちは皆、トムを愛している
+We all love you.	私たちは皆、あなたを愛しています
+We are his sons.	私たちは、彼の息子です
+We eat raw fish.	僕らは生魚を食べる
+We have to wait.	我々は待たなくてはならない
+We love picnics.	私たちはピクニックが大好きです
+We love you all.	我々は、あなた方を全員愛しています
+We planted rice.	私たちは田植えをしました
+We study French.	フランス語を勉強している
+We want it back.	我々はそれを取り戻したい
+We're in Boston.	私たちはボストンにいます
+We're in a rush.	わたしたちは急いでいます
+What am I to do?	私は何をすればいいの
+What did Tom do?	トムは何をしたのですか
+What did he say?	彼は何と言いましたか
+What do you see?	何が見えるの
+What is he like?	彼はどんな人ですか
+What is missing?	何がなくなっているんですか
+What shall I do?	私は何をすればいいの
+What time is it?	何時ですか
+What time is it?	何時でしょうか
+What time is it?	いま何時ですか
+What time is it?	何時ですか
+What was stolen?	何を盗まれましたか
+What's Tom like?	トムってどんな人
+What's going on?	どうしたの
+What's going on?	どうなってるの
+What's happened?	何が起こったのですか
+What's happened?	何が起こったの
+What's happened?	何があったの
+What's his name?	彼の名前は何ですか
+What's his name?	彼の名前は
+What's its name?	名前は何ですか
+What's so funny?	何がそんなにおかしいの
+What's the time?	いま何時ですか
+What's the time?	何時ですか
+What's your job?	ご職業は何ですか
+What's your job?	お仕事は何をなさってるんですか
+What's your job?	お仕事は何をされているんですか
+What's your job?	お仕事は何をされてるんですか
+When can we eat?	僕らはいつ食事ができるのかな
+When did Tom go?	トムはどこに行ったの
+Where did he go?	彼はどこに行った
+Where is Boston?	ボストンってどこにあるんですか
+Where is my car?	私の車はどこにありますか
+Where's the bag?	鞄はどこですか
+Where's the dog?	犬はどこだろう
+Where's the key?	鍵はどこだろう
+Which leg hurts?	どっちの脚が痛むの
+Who did you see?	誰に会ったの
+Who is that boy?	あの少年は誰ですか
+Who is that boy?	あの男の子は誰
+Who is that man?	あの男性は誰ですか
+Who is that man?	あの男の人は誰ですか
+Who is that man?	あの人誰
+Who is that man?	あの人は誰ですか
+Who wants to go?	誰が行きたいですか
+Who's that girl?	あの少女は誰ですか
+Whose are these?	これ誰のですか
+Why did you cry?	どうして泣いたの
+Why did you lie?	なぜ嘘をついたの
+Why did you lie?	なぜ嘘などついたのですか
+Why did you lie?	なんで嘘ついたの
+Why do you care?	どうして気になるの
+Why is Tom here?	なぜトムがここにいるの
+Will he recover?	彼は回復しますか
+Write something.	何か書きなさい
+You have cancer.	あなたは癌です
+You have cancer.	あなたには癌があります
+You have to eat.	食べなきゃダメだ
+You lied to Tom.	トムに嘘をつきましたね
+You look sleepy.	眠そうだね
+You look stupid.	馬鹿みたい
+You may go home.	あなたは家に帰ってもよろしい
+You promised me.	あなた約束したじゃない
+You should quit.	辞めるべきだよ
+You'd better go.	あなたは行ったほうがいい
+You'll get lost.	迷子になってしまいますよ
+You're an angel.	君は天使のような人だ
+You're bleeding.	血が出ているじゃない
+You're blushing.	顔赤いよ
+You're my enemy.	おまえは俺の敵だ
+You're my woman.	おまえは俺の女だ
+You're so bossy.	お前、随分偉そうだな
+You're so bossy.	あなた、随分偉ぶっているじゃないの
+You're so picky.	あなたって本当に細かいわね
+You're so picky.	お前、いちいちうるさいなあ
+You're the boss.	あなたがボスだよ
+You've grown up.	あなたは成長しました
+Your bag's open.	バッグが開いてるよ
+Your bag's open.	かばん開いてますよ
+5 is less than 8.	５は８より少ない
+92 minus 9 is 83.	９２引く９は８３です
+A deal is a deal.	約束は約束だ
+A fuse has blown.	ヒューズが飛んだ
+Any seat will do.	どの席でもかまいません
+Are they friends?	彼らは友達なんですか
+Are we safe here?	ここなら安全なのですか
+Are we there yet?	まだ着かないの
+Are you Japanese?	日本人ですか
+Are you Japanese?	日本の方ですか
+Are you a doctor?	あなたは医者ですか
+Are you an idiot?	お前は馬鹿か
+Are you free now?	いま暇
+Are you going in?	入りますか
+Are you new here?	こちらは初めてですか
+Are you pregnant?	あなたは妊婦さんですか
+Are you pregnant?	あなたは妊娠していますか
+Are you sleeping?	寝てるの
+Are you still up?	まだ起きてる
+Aren't you happy?	君はしあわせじゃないのかい
+Aren't you tired?	君は疲れていないのですか
+At last, he came.	ついに彼はやって来た
+Attention please!	こちらにご注目ください
+Breathe normally.	普通に呼吸して
+Brush your teeth.	歯磨きをしなさい
+Business is slow.	景気は悪いね
+Can I borrow $30?	30ドル貸してもらえないかな
+Can I borrow $30?	30ドル借りてもいい
+Can I borrow $30?	30ドル貸してもらえない
+Can I rest a bit?	ちょっと休憩してもいいですか
+Can rabbits swim?	ウサギは泳ぐことができますか
+Can we trust her?	彼女は信用が置けるだろうか
+Can you call Tom?	トムに電話してもらえる
+Can you eat this?	これ食べられるんですか
+Cherries are red.	サクランボは赤い
+Choose carefully.	慎重に選びなさい
+Close the drawer.	ひきだしを閉じて
+Close the window.	窓を閉めて
+Close your books.	本を閉じなさい
+Close your mouth.	口を閉じなさい
+Come and help me.	助けに来てください
+Come and help us.	来て手伝って下さい
+Come home at six.	６時に帰ってきなさい
+Come to my house.	家に来てよ
+Consider it done.	まかせてちょうだい
+Could I help you?	御用はございませんか
+Did you call Tom?	トムに電話した
+Did you call Tom?	トムに電話しましたか
+Did you kill Tom?	お前がトムを殺したのか
+Did you see that?	あなたはそれを見ましたか
+Did you tell Tom?	トムには話したの
+Do what you like.	好きにしてください
+Do what you like.	好きなことをしなさい
+Do what you want.	好きにしてください
+Do what you want.	ご自分のやりたいことをやってください
+Do what you want.	お好きなように
+Do you feel sick?	気分悪いの
+Do you like fish?	魚は好きですか
+Do you like snow?	雪は好きですか
+Do you live here?	ここに住んでるの
+Do you trust Tom?	トムのことを信頼していますか
+Do you trust her?	彼女を信用しているのか
+Do you want kids?	子供が欲しい
+Don't be so lazy.	そんなにだらだらするな
+Don't be so mean.	そんなに意地悪言わないでよ
+Don't come again.	二度と来るな
+Don't deceive me.	私を騙さないで下さい
+Don't drink that.	それは飲まないでください
+Don't forget Tom.	トムを忘れるな
+Don't leave town.	町を出ないでください
+Don't look at me.	こっち見ないで
+Don't look at me.	こっち見ないでよ
+Don't look at me.	こっち見ないでください
+Don't look at me.	こっち見ないでくださいよ
+Don't look at us.	こっち見ないで
+Don't look at us.	こっち見ないでよ
+Don't look at us.	こっち見ないでください
+Don't look at us.	こっち見ないでくださいよ
+Don't lose heart.	がっかりしないで
+Don't make me go.	行かせないで
+Don't make noise.	音を立てないでください
+Don't mention it.	お礼には及びません
+Don't oppose him.	彼に逆らうな
+Don't talk to me!	私に話しかけないで
+Don't talk to me.	私に話しかけないで
+Don't tell on me.	僕の告げ口をするな
+Don't touch that.	触るな
+Don't touch this.	これに触らないでください
+Dreams come true.	夢はかないます
+Eat meals slowly.	食事はゆっくりとるようにしなさい
+Either day is OK.	どちらの日でも結構です
+Everybody smiled.	みんな笑った
+Everyone had fun.	みんな楽しんだ
+Everyone laughed.	皆が笑っていた
+Everyone laughed.	みんな笑った
+Everything is OK.	万事よろしい
+Everything is OK.	何もかも順調だよ
+For what purpose?	何のために
+Forget about her.	彼女のことなら　忘れてしまいなさい
+Fry me some eggs.	卵を焼いてくれ
+Get in here, Tom.	トム、ここに入っておいで
+Get on the horse.	馬に乗りなさい
+Give him a break!	そっとしておやりなさいよ
+Give me a minute.	もう少し待ってください
+Give me the book.	その本をとってくれ
+Give me the book.	その本ちょうだい
+Give that to him.	彼にそれをやろう
+Give them to her.	それを彼女に与えなさい
+Give them to him.	それを彼に与えなさい
+Glad you like it.	お気に召してよかったです
+Go milk the cows.	牛にミルクをやりに行って
+Go when you want.	行きたいときに行きなさい
+Good luck to you!	お元気で
+Hand me that bag.	あのバッグを取ってくれる
+Has Tom returned?	トムは戻っていますか
+Have a good time.	楽しんでね
+Have a good time.	楽しんできてね
+Have a good time.	楽しんできなさい
+Have a good time.	楽しいひとときを
+Have a good time.	素敵な時間をお過ごしください
+Have a nice time.	楽しんできてください
+Have a nice trip!	楽しいご旅行を
+Have a nice trip.	良い旅を
+Have a safe trip.	安全な旅を
+Have a safe trip.	行ってらっしゃい
+Have a seat, Tom.	トム、座りなよ
+Have some coffee?	コーヒー飲みますか
+Have you met him?	彼に会ったことはあるの
+He ate all of it.	彼は全部平らげた
+He began running.	彼は走り始めた
+He began singing.	彼は歌い始めた
+He began to sing.	彼は歌い始めた
+He behaved badly.	彼は行儀が悪かった
+He broke the law.	彼は法を犯した
+He can read well.	彼は十分字が読める
+He can swim fast.	彼は速く泳げる
+He can swim well.	彼は上手に泳げる
+He can swim well.	彼は泳ぎがうまい
+He can't do that.	彼にはそれはすることができない
+He can't read it.	彼は読めません
+He caught a cold.	彼は風邪にかかった
+He comes at noon.	彼は正午にやって来る
+He fell backward.	彼は仰向けに倒れた
+He fixed the net.	彼は網を張った
+He gave a speech.	彼は演説した
+He gave it to me.	彼は私にそれをくれた
+He gave it to me.	あの人がそれをわたしにくれたの
+He gets up early.	彼は早起きだ
+He has been busy.	彼はずっと忙しい
+He has big hands.	彼は手が大きい
+He has blue eyes.	彼は目が青い
+He has long legs.	彼は足が長い
+He hates spiders.	彼はクモが大嫌いだ
+He heard a shout.	彼は叫び声を聞いた
+He is a kind boy.	彼は親切な少年だ
+He is dead drunk.	彼は酔いつぶれている
+He is her friend.	彼は彼女の友達です
+He is in trouble.	彼は困っている
+He is my brother.	彼は私の兄です
+He is my brother.	彼は私の弟です
+He is my teacher.	彼は私の先生です
+He is not stupid.	彼は馬鹿ではない
+He is overweight.	彼は肥満体だ
+He is overweight.	彼は太り過ぎている
+He is overweight.	彼は太りすぎよ
+He is past forty.	彼は40過ぎです
+He is still here.	彼はまだここにいる
+He is unsociable.	彼はつきあいが悪い
+He is unsociable.	彼は非社交的だ
+He is very angry.	彼はかんかんに怒っている
+He is very brave.	彼はたいへん勇敢だ
+He keeps a diary.	彼は日記を付けている
+He likes animals.	彼は動物が好きだ
+He likes fishing.	彼は釣りが好きだ
+He likes oranges.	彼はオレンジが好き
+He likes to cook.	彼は調理が好きです
+He likes to swim.	彼は泳ぐのが好きです
+He likes to swim.	彼は水泳が好きです
+He looked around.	彼は周りを見渡した
+He looked around.	彼は左右を見回した
+He looks healthy.	彼は健康そうだ
+He loves animals.	彼は動物が好きだ
+He loves fishing.	彼は釣りが大好きだ
+He loves to fish.	彼は釣りが大好きです
+He moves quickly.	彼は素早い
+He must be tired.	彼は疲れているに違いないよ
+He must love you.	彼はきっと君が好きなんだ
+He must love you.	きっと愛しているね
+He played tennis.	彼はテニスをした
+He put up a flag.	彼は旗をかかげた
+He ran into debt.	彼は借金をこしらえた
+He remained dumb.	彼は黙ったままだった
+He seems healthy.	彼は健康そうだ
+He shall have it.	彼にそれをやろう
+He slept all day.	彼は一日中眠った
+He slept an hour.	彼は１時間ねむった
+He slept soundly.	彼はぐっすりと眠った
+He threw his toy.	彼は自分のおもちゃを投げました
+He turned around.	彼はぐるりとふりかえった
+He was acquitted.	彼は無罪になった
+He was perplexed.	彼は戸惑っていた
+He was very poor.	彼はひどく貧乏だった
+He wears glasses.	彼は眼鏡をかけている
+He's a bit naive.	あいつってちょっと単純だよな
+He's a gentleman.	彼は紳士である
+He's a smart boy.	彼は頭のよい子だ
+He's always busy.	彼はいつも忙しい
+He's at her side.	彼は彼女の側にいます
+He's intelligent.	彼は頭がいい
+He's not at home.	家にはいない
+He's not my type.	彼は私のタイプではない
+He's over thirty.	彼は３０歳を越えている
+He's still young.	彼はまだ若い
+He's unconscious.	意識がありません
+He's very stingy.	彼はとてもけちだ
+He's very strong.	彼はとても丈夫だ
+He's watching TV.	彼はテレビを見ています
+He's watching TV.	彼はテレビで見ている
+Here is your dog.	あなたの犬はここにいます
+Hold on a second.	少々おまちください
+Hold on a second.	ちょっとお待ち下さい
+Hold your tongue!	黙っていなさい
+Horses eat grass.	馬は草を食べる
+How are you, Tom?	トム、ごきげんいかがですか
+How are you, Tom?	トム、元気ですか
+How are you, Tom?	元気ですか、トム
+How can you tell?	なんで知ってるの
+How embarrassing!	ああ恥ずかしい
+How embarrassing!	ばつが悪いったらありゃしない
+How is Tom doing?	トムはどうしてる
+How is the salad?	サラダのお味はいかがですか
+How is your life?	暮らしはどうですか
+How much is that?	いくらですか
+How much is this?	これいくらですか
+How tall are you?	身長何センチ
+How tall you are!	すっごく背が高いね
+How was the game?	試合はどうだった
+How was the trip?	旅行どうだった
+How was the trip?	旅行どうでしたか
+How was the trip?	旅行どうでした
+How was your day?	今日はどうだった
+How was your day?	今日はどんな日でしたか
+How you've grown!	大きくなったね
+How're you doing?	調子はどうですか
+How're you doing?	元気ですか
+How's that again?	もう一度おっしゃってください
+How's work going?	どう、仕事は
+I agree with Tom.	私はトムに賛成です
+I agree with you.	賛成です
+I agree with you.	僕は君と同意見だ
+I agree with you.	同感です
+I agree with you.	私はあなたに賛成だ
+I agree with you.	私も賛成です
+I also like cake.	私はケーキも好きだ
+I am a bit drunk.	私は少し酔っている
+I am a housewife.	私は主婦です
+I am a professor.	私は教授です
+I am a professor.	私は大学教授です
+I am an engineer.	私はエンジニアです
+I am from Brazil.	私はブラジルの出身です
+I am from France.	フランスから来ました
+I am on duty now.	今勤務中です
+I am only joking.	ほんの冗談だよ
+I am only joking.	ほんの冗談です
+I am out of work.	私は失業中だ
+I am very hungry.	お腹がぺこぺこです
+I believe in God.	私は神を信じます
+I believe in him.	私は彼を信用しています
+I believe in you.	君を信じているからね
+I bought a watch.	私は時計を買いました
+I bought a watch.	私は腕時計を買った
+I can't hear you.	聞こえませんよ
+I can't remember.	思い出せない
+I can't remember.	思い出せません
+I can't remember.	覚えていない
+I can't remember.	覚えていません
+I can't remember.	覚えていないんだ
+I can't see well.	物がよく見えません
+I can't see well.	私は物がよく見えません
+I can't stand it.	我慢できない
+I can't tell you.	それについてはあんたには言えやしないよ
+I caught the flu.	インフルエンザにかかりました
+I could be wrong.	私は間違っているかもしれない
+I couldn't sleep.	眠ることができなかった
+I did it for you.	あなたのためにしました
+I didn't like it.	好きにはなれなかった
+I don't know her.	私は彼女を知りません
+I don't know him.	彼のことを知らない
+I don't know yet.	まだ分かりません
+I don't like her.	私は彼女が好きではない
+I don't like him.	あいつは苦手だ
+I don't like him.	彼は好きじゃない
+I don't love her.	私は彼女を愛していない
+I don't mean you.	あなたのことをさして言っているのではない
+I don't remember.	思い出せません
+I don't remember.	覚えていない
+I don't remember.	覚えていません
+I don't remember.	覚えていないんだ
+I don't think so.	私はそうは思いません
+I don't think so.	そうは思いません
+I don't think so.	そんなことないと思うよ
+I don't think so.	そうは思わないけど
+I enjoyed myself.	楽しかった
+I feel lethargic.	力が出ません
+I feel something.	何か感じる
+I feel very cold.	とても寒いですね
+I feel very sick.	すごく具合が悪いのです
+I found my shoes.	私の靴を見つけました
+I get up at 6:30.	私は六時半に起きる
+I get up at 7:00.	私は七時に起きる
+I had a flu shot.	インフルエンザの予防接種をしました
+I hate chemistry.	化学が嫌いだ
+I have a big dog.	僕は大きな犬を飼っている
+I have a brother.	兄がいます
+I have a problem.	困ってるんだよね
+I have been busy.	私はずっと忙しい
+I have some news.	いくつか報告があります
+I have some time.	時間はあります
+I have sore feet.	足が痛い
+I have to go now.	僕はもう行かなくちゃ
+I have to go now.	もう行かねばなりません
+I have to go now.	もう行かなければなりません
+I have to go now.	もう行かなくちゃ
+I have to go now.	もう行かないと
+I have to go now.	そろそろ失礼しなくては
+I have to go now.	そろそろおいとましなければなりません
+I heard a scream.	僕は叫び声を聞いた
+I heard a scream.	私は叫び声を聞いた
+I heard a scream.	叫び声が聞こえた
+I keep a journal.	日誌をつける
+I keep a journal.	日誌をつけています
+I know it myself.	自分でもそれが解っているんだけと
+I like Australia.	オーストラリアが好きだ
+I like chocolate.	私はチョコレートが好きです
+I like chocolate.	チョコが好きだ
+I like his music.	彼の音楽が好きです
+I like red roses.	私は赤いバラが好きです
+I like this book.	この本が好きです
+I like to travel.	私は旅行が好きです
+I like to travel.	旅行が好きです
+I like traveling.	私は旅行が好きです
+I like traveling.	旅行が好きです
+I like you a lot.	君のことが大好きなんだ
+I like you a lot.	あなたのことが大好きです
+I live in Boston.	ボストンに住んでいます
+I live in Boston.	私はボストンに住んでいます
+I lost my camera.	カメラをなくしました
+I lost the watch.	時計をなくしました
+I love Australia.	オーストラリアが大好きだ
+I love this book.	この本が大好きです
+I love this song.	私はこの歌が大好きだ
+I made a mistake.	私が間違っていました
+I made a mistake.	間違えちゃった
+I made a mistake.	間違えました
+I made him do so.	私は彼にそうさせました
+I made it myself.	自分で作りました
+I might be wrong.	私は間違っているかもしれない
+I must get going.	そろそろおいとましなければなりません
+I must leave now.	もう行かねばなりません
+I must leave now.	もう行かなくちゃ
+I must leave now.	そろそろおいとましなければなりません
+I need a new car.	新しい自動車が必要です
+I need more time.	もっと時間が必要だ
+I need some soap.	石けんをください
+I need your help.	君の助けが必要なんだ
+I no longer care.	もう気にしてないよ
+I play the piano.	私はピアノを弾きます
+I read the label.	私はラベルを読みます
+I really like it.	とっても好きよ
+I said I'm sorry.	だから謝ってるじゃない
+I said I'm sorry.	ごめんって言ったじゃん
+I said stay back.	後ろに下がっているように言ったよね
+I sold the books.	私は本を売った
+I told the truth.	私は真実を言った
+I understand now.	判ってきた
+I waited an hour.	私は１時間待った
+I waited for Tom.	私はトムを待った
+I walk every day.	私は毎日歩きます
+I want Mary back.	メアリーに帰ってきてほしい
+I want beef, too.	僕もビーフをお願いします
+I want some help.	ちょっとばかり助けが欲しい
+I want the truth.	真実が知りたい
+I want to go out.	外出したいな
+I was 13 in 2003.	2003年、私は13歳だった
+I was young once.	わたしもかつては若かった
+I washed my feet.	私は自分の足を洗った
+I will see to it.	私が面倒をみます
+I wish I'd known.	知ってたらよかったんだけど
+I won't allow it!	そんなことはさせないぞ
+I won't be quiet.	僕は黙らないぞ
+I won't help you.	手伝いませんよ
+I work on Sunday.	私は日曜日に働く
+I work under her.	私は彼女の下で働いている
+I'll back you up.	僕がバックアップするよ
+I'll be in touch.	また連絡します
+I'll be punished.	僕は罰を受けるだろう
+I'll do the rest.	残りは僕がやるよ
+I'll eat it here.	ここで食べます
+I'll go find Tom.	トムを探しに行ってきます
+I'll pay my bill.	自分の勘定は自分で払います
+I'll treasure it.	大切にします
+I'll try my best.	頑張ってみるよ
+I'll wash dishes.	お皿を洗います
+I'm 18 years old.	私は十八歳です
+I'm 30 years old.	私は今30歳です
+I'm OK with that.	問題なしです
+I'm OK with that.	それでオッケーです
+I'm a bank clerk.	私は銀行員です
+I'm a bit hungry.	ちょっと小腹がすいたな
+I'm a cartoonist.	私は漫画家です
+I'm a vegetarian.	僕はベジタリアンだ
+I'm able to swim.	私は泳げます
+I'm able to swim.	私は泳ぐことが出来ます
+I'm angry at you.	私はあなたに怒っているんです
+I'm at the hotel.	今、ホテル
+I'm baking a pie.	今、パイを焼いてるとこ
+I'm best at math.	数学が一番得意です
+I'm disappointed.	がっかりだよ
+I'm dissatisfied.	私は不満です
+I'm feeling sick.	私は気分が悪い
+I'm free tonight.	今夜は暇です
+I'm from America.	アメリカから来ました
+I'm from the FBI.	FBIのものですが
+I'm going to bed.	もう寝ます
+I'm going to try.	やってみる
+I'm going to try.	やってみるつもりだ
+I'm good at math.	数学が得意です
+I'm good at math.	私は数学が得意だ
+I'm good at this.	僕はこれが得意だ
+I'm in my office.	事務所にいます
+I'm in the attic.	屋根裏部屋にいるよ
+I'm just kidding.	ほんの冗談だよ
+I'm just kidding.	ほんの冗談です
+I'm just kidding.	冗談ですよ
+I'm just kidding.	冗談を言ってるだけです
+I'm just looking.	見ているだけだ
+I'm just looking.	ちょっと見ているだけです
+I'm just looking.	ただ見ているだけです
+I'm just looking.	見ているだけです
+I'm just looking.	見てるだけです
+I'm killing time.	時間をつぶしているだけです
+I'm not a member.	私は会員ではない
+I'm not busy now.	私は今暇です
+I'm not her type.	僕は彼女の好みのタイプではない
+I'm not like Tom.	僕はトムとは違う
+I'm not like Tom.	僕はトムみたいな人間ではない
+I'm not like you.	俺はお前とは違うんだ
+I'm not so brave.	僕はそんなに勇敢じゃない
+I'm not so happy.	私はそれほど幸せではありません
+I'm on the phone.	電話中です
+I'm on your side.	僕はあなたの側につきます
+I'm ready to die.	死ぬ覚悟はできている
+I'm really sorry.	本当にごめんなさいね
+I'm really sorry.	本当にごめんなさい
+I'm really tired.	もうヘトヘトです
+I'm really tired.	くたくたに疲れました
+I'm really tired.	私は大変疲れています
+I'm really tired.	もうくたくただよ
+I'm really tired.	すっごく疲れた
+I'm really tired.	くたくたに疲れた
+I'm really tired.	へとへとに疲れた
+I'm sick of this.	これにはうんざりしている
+I'm sorry I lied.	ごめんなさい。嘘をつきました
+I'm still sleepy.	まだ眠たい
+I'm still sleepy.	まだ眠いです
+I'm still sleepy.	まだ眠いよ
+I'm super hungry.	超腹減った
+I'm sure of that.	そのことを確信している
+I've got a fever.	熱があるんです
+I've lied to you.	あなたに嘘をついた
+I've lost my bag.	鞄をなくしてしまった
+Is Tom awake yet?	トムはもう起きました
+Is anybody there?	誰かいるの
+Is everything OK?	変わりない
+Is he still here?	彼はまだここにいますか
+Is it OK if I go?	私も行ってもいい
+Is it really bad?	かなり悪いですか
+Is that a riddle?	なぞなぞか何かかい
+Is that my fault?	私のせい
+Is that my fault?	私の失敗
+Is that my fault?	私の責任
+Is that your cat?	それはあなたの猫ですか
+Is this 223-1374?	電話番号、２２３—１３７４、ですよね
+Is this about me?	これは私についてですか
+Is this for sale?	これ、売り物ですか
+Is this my fault?	私の責任
+Is your dog mean?	あなたの犬って凶暴
+Is your mom home?	お母さんはいらっしゃいますか
+It began to snow.	雪が降り出した
+It is fine today.	今日はいい天気だ
+It is not my day.	今日はついてないな
+It is pitch dark.	真っ暗闇だ
+It needs washing.	洗う必要がある
+It was necessary.	それは必要だっ
+It won't be hard.	難しくはないさ
+It'll snow today.	今日は雪です
+It's April first.	四月一日です
+It's a clear day.	晴れています
+It's a good idea.	いい考えだ
+It's a nice idea.	それは良い考えです
+It's a nice idea.	それはいいアイデアだ
+It's a sunflower.	それはひまわりです
+It's a sunny day.	天気は上々だ
+It's a windy day.	風の強い日です
+It's almost time.	そろそろ時間だ
+It's become dark.	暗くなってきた
+It's boiling hot.	うだるような暑さだ
+It's frozen hard.	かたく凍っている
+It's gotten dark.	暗くなってきた
+It's interesting.	面白いですね
+It's just a cold.	風邪ですね
+It's magnificent.	立派ですね
+It's no big deal.	大騒ぎする程でもない
+It's no big deal.	大したことじゃないんだよ
+It's no big deal.	大したことじゃない
+It's no big deal.	大したことじゃないよ
+It's now my turn.	さあ今度は僕の番だ
+It's pretty cold.	かなり寒い
+It's quite humid.	湿度がすごく高いですね
+It's rainy today.	今日は雨降りです
+It's second-hand.	中古だよ
+It's supper time.	夕飯の時間ですよ
+It's supper time.	夕食の時間ですよ
+It's unnecessary.	その必要はありません
+It's very bright.	すごく明るい
+It's windy today.	今日は風が強い
+It's worth a try.	それはやってみる価値があるね
+Japan is in Asia.	日本はアジアにあります
+Just look at him.	彼を見て
+Keep the dog out.	犬を中に入れるな
+Leave this to me.	任せて
+Leave this to me.	私に任せなさい
+Leave this to me.	俺に任せろ
+Let go of my arm!	腕を放して
+Let me handle it.	私に任せなさい
+Let me repair it.	私に修理させて下さい
+Let me try again.	もっかいやらして
+Let's eat dinner.	夕食にしましょう
+Let's eat supper.	夕食にしましょう
+Let's go by taxi.	タクシーで行こうよ
+Let's go dancing.	踊りに行きませんか
+Let's have lunch.	お昼にしよう
+Let's have sushi.	お寿司を食べましょう
+Let's talk later.	今後話をしよう
+Listen carefully.	耳を澄ませてごらん
+Listen carefully.	よく聞きなさい
+Lower your voice.	小さい声で話してください
+Make way, please.	道を空けてください
+Make your choice.	君の好きなものを選びなさい
+Mary is a mother.	メアリーは母親です
+Mary slapped Tom.	メアリーはトムにビンタをした
+Mary, I love you.	メアリー好き
+May I call later?	後で電話しても良いですか
+May I come again?	また来てもいい
+May I feel these?	これ触ってもいいですか
+May I open a can?	缶を開けてもいいですか
+May I smoke here?	ここでタバコを吸ってもいいですか
+May I touch this?	これ触ってもいいですか
+My car is German.	私の車はドイツ製です
+My eyes are sore.	目が痛いです
+My father is out.	父は外出している
+My father smokes.	父はたばこを吸う
+My feet get cold.	足が冷えます
+My mother is out.	母は外出しています
+My neck is stiff.	肩こりがある
+My nose is itchy.	鼻がむずむずします
+My pulse is fast.	脈がはやいです
+My stomach hurts.	おなかが痛い
+My stomach hurts.	お腹痛い
+My sunburn hurts.	日焼けして痛い
+My sunburn hurts.	日焼けが痛い
+My sunburn hurts.	日焼けでヒリヒリする
+Never tell a lie.	決して嘘をついてはいけません
+Never tell a lie.	うそを言ってはいけないよ
+Nice to meet you.	お会いできて嬉しいです
+Nice to meet you.	初めまして
+No need to worry.	心配ないよ
+No one likes war.	戦争が好きな人は、いな
+No one will care.	誰も気にしやしないよ
+No one will know.	誰にも分からないよ
+No one will know.	誰も知らないでしょう
+No pain, no gain.	労なくして益なし
+No pain, no gain.	苦は楽の種
+No pain, no gain.	痛みなくして得るものなし
+No, I'm not well.	いいえ、体調は良くないんです
+Nobody knows why.	理由は誰も分からない
+Nobody knows why.	理由は誰にも分からない
+Nobody likes war.	戦争が好きな人は、いな
+Nobody showed up.	誰も来なかった
+Nothing happened.	何事も起こらなかった
+Nothing happened.	何も起きなかった
+Now I'm done for.	参ったなあ
+Now it's my turn.	さあ今度は僕の番だ
+Oh, I'm so sorry.	あっ、ごめんなさい
+Oh, just my luck!	クソッ！また失敗だ
+Our plan is made.	計画はできた
+Please be polite.	行儀良くしてください
+Please be polite.	礼儀正しくしてください
+Please be seated.	お座り下さい
+Please don't ask.	聞かないでくれ
+Please don't cry.	お願いだから泣かないで
+Please don't cry.	お願い、泣かないで
+Please don't die!	死なないで
+Please don't die!	お願い、死なないで
+Please let me go.	私に行かせてください
+Please phone him.	彼に電話して下さい
+Please pull over.	車を停めてください
+Please sign here.	ここにサインをお願いします
+Rabbits can swim.	ウサギは泳げる
+Raise your hands.	手を上げなさい
+Red wine, please.	赤ワインをお願いします
+Rome is in Italy.	ローマはイタリアにある
+Scary, wasn't it?	怖かったよね
+See you tomorrow.	明日お会いしましょう
+See you tomorrow.	また明日
+Shall I help you?	手伝おうか
+Shall we go home?	家に帰りましょうか
+She became happy.	彼女は幸福になった
+She became happy.	彼女は幸せになった
+She began crying.	彼女は泣き始めた
+She came at once.	彼女はすぐやってきた
+She despised him.	彼女は彼を軽蔑した
+She despises him.	彼女は彼を軽蔑している
+She didn't reply.	彼女は返答しなかった
+She didn't reply.	彼女は答えなかった
+She didn't reply.	彼女は返事をしなかった
+She died in 1960.	彼女は１９６０年に死んだ
+She died in 1960.	彼女は1960年に亡くなりました
+She disliked him.	彼女は彼を嫌っていた
+She has gone out.	彼女は行ってしまった
+She has gone out.	彼女は出かけてしまった
+She has gone out.	彼女は出て行ってしまった
+She is a pianist.	彼女はピアニストです
+She is a student.	彼女は学生だ
+She is a teacher.	彼女は先生です
+She is a teacher.	彼女は教師だ
+She is beautiful.	美人だなあ
+She is easygoing.	彼女はのんきだ
+She is easygoing.	彼女はおおらかだ
+She is mad at me.	彼女は私に怒っています
+She is obstinate.	彼女は強情です
+She is on a diet.	彼女はダイエットをしている
+She is very busy.	彼女は非常に忙しい
+She is very busy.	彼女は大変忙しい
+She is very busy.	彼女はとても忙しい
+She is very wise.	彼女はとても賢い人だ
+She kept working.	彼女は働き続けた
+She looked at me.	彼女は私を見た
+She lost her way.	彼女は道に迷った
+She loves coffee.	彼女はコーヒーが大好きです
+She may not come.	彼女は来ないかもしれない
+She must be sick.	彼女は病気に違いない
+She rejected him.	彼女は彼を拒んだ
+She rode a camel.	彼女はらくだに乗った
+She said goodbye.	彼女は「さようなら」と言った
+She smiled at me.	彼女が私に微笑んだ
+She smokes a lot.	彼女はたばこをたくさん吸う
+She stared at me.	彼女は私をじっと見た
+She stood by him.	彼女は彼のそばに立っていた
+She studies hard.	彼女は熱心に勉強する
+She took my hand.	彼女は私の手を取った
+She was homesick.	彼女は故郷が恋しくてたまらなかった
+She was in agony.	彼女は苦痛に悶え苦しんでいた
+She was promoted.	彼女は昇格した
+She was promoted.	彼女は昇進した
+She wrote in ink.	彼女はインクで書いた
+She's helping me.	彼女は私を助けている
+She's insatiable.	彼女は強欲だ
+She's not a liar.	彼女は嘘つきではない
+She's very upset.	彼女はとても動揺している
+Sit down, please.	どうぞおかけになってください
+Sit down, please.	お座り下さい
+Sit down, please.	どうぞおかけください
+Size does matter.	大きさが大事なのだ
+Somebody help me.	誰か助けて
+Somebody help me.	誰か手伝って
+Somebody laughed.	誰かが笑った
+Sorry to be late.	遅くなってごめんなさい
+Sorry, I am late.	すみません、遅くなりまして
+Spring is coming.	もう春がきている
+Stand up, please.	立って下さい
+Stop showing off!	格好つけるな
+Stop showing off!	見せびらかすのはやめろ
+Take care of Tom.	トムの面倒を見てて
+Thank you kindly.	本当にありがとう
+Thanks very much.	本当にありがとう
+That baby is Tom.	その赤ちゃんはトムっていうの
+That car is hers.	あの車は彼女のです
+That helps a lot.	とても助かります
+That is a pencil.	あれは鉛筆です
+That should help.	役に立つでしょう
+That's his house.	あれは彼の家だ
+That's his house.	あれは彼の家です
+That's how it is.	そういうものなんです
+That's our house.	あれは私たちの家です
+That's so stupid.	バカだ
+That's the point.	それが重要な点です
+That's very easy.	こんなこと、お安いご用ですよ
+That's wonderful!	それはすごい
+That's wonderful.	それはすごい
+The bag is empty.	袋は空っぽだ
+The bill, please.	勘定お願いします
+The bill, please.	勘定書をお願いします
+The bill, please.	お勘定して下さい
+The bill, please.	お会計お願いします
+The book is easy.	その本は易しい
+The book is easy.	その本は簡単です
+The boy was full.	少年は満腹だった
+The can is empty.	缶は空っぽだ
+The car is ready.	車は用意してあります
+The cat is black.	猫は黒いんだ
+The curtain fell.	幕が下りた
+The curtain rose.	幕があがった
+The dog is dying.	その犬は死に掛けている
+The dog is dying.	犬は死にかけている
+The dog is smart.	犬は賢い
+The dog is white.	その犬は白いです
+The food is cold.	料理が冷めてしまっています
+The food is cold.	料理が冷えてます
+The food is cold.	料理が冷えてしまっている
+The food is good.	あの食品はいいです
+The line is busy.	ただいまお話中です
+The moon has set.	月が沈んだ
+The party's over.	パーティーは終わった
+The room was hot.	その部屋は暑かった
+The sea was calm.	海は静かだった
+The sky is clear.	晴れています
+There's no hurry.	急ぐ必要はありません
+There's no hurry.	急がなくてもいいよ
+There's no knife.	ナイフがない
+There's no proof.	証拠がありません
+There's no sugar.	砂糖がないよ
+They disappeared.	彼らは姿を消した
+They got married.	二人は結婚した
+They had no food.	彼らには何も食べるものがなかった
+They took a walk.	彼らは散歩した
+They won the day.	彼らは勝った
+They'll remember.	彼らは思い出すでしょう
+They're a couple.	彼らは夫婦だ
+They're a couple.	彼らはカップルだ
+They're fighting.	彼らは戦っている
+Things went well.	うまくいった
+This book is old.	この本は古い
+This is Room 839.	８３９号室です
+This is Room 839.	839号室なんですけど
+This is a secret.	このことは秘密だよ
+This is a secret.	これは秘密
+This is above me.	これは私には分からない
+This is horrible.	あり得ねぇー
+This is my fault.	私の責任です
+This is not salt.	これは塩ではない
+This is not true.	これは真実ではない
+This is too long.	これは長すぎます
+This is too long.	これでは長すぎます
+This isn't funny.	笑い事じゃないよ
+This isn't funny.	笑い事じゃない
+This man is dead.	この男は死んでいる
+This man is dead.	この男性は死亡しています
+This should help.	役に立つでしょう
+This tastes good.	これはいい味してる
+Tom almost cried.	トムは泣き出しそうになった
+Tom arrived last.	トムは最後に到着した
+Tom asked me out.	トムが私をデートに誘った
+Tom ate his fill.	トムはたらふく食べた
+Tom ate his fill.	トムは心ゆくまで楽しんだ
+Tom avoided Mary.	トムはメアリーを避た
+Tom began crying.	トムは泣き出した
+Tom began to cry.	トムは泣き出した
+Tom bounced back.	トムは元気を取り戻した
+Tom came to help.	トムが手伝いに来た
+Tom can run fast.	トムは速く走れる
+Tom can't refuse.	トムは断ることができない
+Tom cheated Mary.	トムはメアリーを騙した
+Tom didn't drown.	トムは溺死しなかった
+Tom doesn't play.	トムは遊びません
+Tom got a tattoo.	トムはタトゥーを入れた
+Tom got some pie.	トムはパイを少しもらった
+Tom has a rabbit.	トムはウサギを飼っている
+Tom has bad eyes.	トムは目が悪い
+Tom hit a triple.	トムは三塁打を打った
+Tom hurt himself.	トムは怪我をした
+Tom is a student.	トムは生徒です
+Tom is a student.	トムは学生です
+Tom is a trucker.	トムはトラックの運転手をしている
+Tom is an orphan.	トムは孤児です
+Tom is conceited.	トムは天狗になっている
+Tom is conceited.	トムはうぬぼれている
+Tom is easygoing.	トムはのんきだ
+Tom is excellent.	トムは素晴らしい
+Tom is forgetful.	トムは忘れっぽい
+Tom is impulsive.	トムは直情的だ
+Tom is my friend.	トムは私の友人です
+Tom is reluctant.	トムは渋っている
+Tom is sensitive.	トムは感受性豊かだ
+Tom is shirtless.	トムは上半身裸だ
+Tom is talkative.	トムはおしゃべりだ
+Tom is unmarried.	トムは独り身です
+Tom is unmarried.	トムは独身です
+Tom is very kind.	トムはとても親切だ
+Tom is very tall.	トムはとても背が高い
+Tom isn't afraid.	トムは恐れない
+Tom isn't asleep.	トムは寝ていない
+Tom isn't scared.	トムは恐れない
+Tom isn't stupid.	トムは馬鹿じゃない
+Tom likes French.	トムはフランス語が好きだ
+Tom likes cheese.	トムはチーズが好きです
+Tom likes orange.	トムはオレンジ色好きだ
+Tom lives nearby.	トムはこの近くに住んでる
+Tom looked happy.	トムは幸せそうだった
+Tom lost his job.	トムは首になった
+Tom married Mary.	トムはメアリーと結婚した
+Tom never laughs.	トムは決して笑わない
+Tom ought to win.	トムが勝つに決まってる
+Tom probably won.	トムは多分勝った
+Tom quit smoking.	トムはたばこをやめた
+Tom quit smoking.	トムは煙草をやめた
+Tom reads slowly.	トムは本を読むのが遅い
+Tom said nothing.	トムは何も言わなかった
+Tom saw a doctor.	トムは医者に診てもらった
+Tom saw a doctor.	トムは病院に行った
+Tom scolded Mary.	トムはメアリーを叱った
+Tom seemed happy.	トムは幸せそうだった
+Tom seemed tough.	トムはタフなように見える
+Tom should relax.	トムはリラックスすべきだ
+Tom slapped Mary.	トムはメアリーを平手打ちした
+Tom slugged Mary.	トムはメアリーを殴った
+Tom spoke French.	トムはフランス語が出来た
+Tom spoke French.	トムはフランス語を話した
+Tom stayed quiet.	トムは黙っていた
+Tom tickled Mary.	トムはメアリーをくすぐった
+Tom tricked Mary.	トムはメアリーを騙した
+Tom walks slowly.	トムはゆっくり歩く
+Tom walks slowly.	トムは歩くのが遅い
+Tom walks slowly.	トムは足が遅い
+Tom was arrested.	トムが逮捕された
+Tom was sleeping.	トムは寝ていた
+Tom was sleeping.	トムは眠っていた
+Tom wasn't angry.	トムは怒っていなかった
+Tom wasn't right.	トムは正しくなかった
+Tom won the race.	トムはレースに勝った
+Tom won't listen.	トムは聞こうとしない
+Tom's not asleep.	トムは寝ていない
+Try it once more.	もう１度やってみなさい
+Try it once more.	もう一度やってみて
+Try it once more.	もう一回やってみて
+Turn off the gas.	ガスを止めなさい
+Turn off the gas.	ガスを止めろ
+Turn off the gas.	ガスを切っておいてちょうだい
+Turn off the gas.	ガスの元栓を閉めなさい
+Turn to the left.	左を向いてください
+Wait right there.	すぐそこで待ってて
+Walk ahead of me.	私の前を歩きなさい
+Walk more slowly.	もっとゆっくり歩きなさい
+Was Tom murdered?	トムは殺されたの
+Watch yourselves!	君らで見なさい
+We arrived first.	我々は最初に着いた
+We close at 2:30.	2時半に閉まる
+We depend on you.	あなたのこと頼りにしていますよ
+We depend on you.	お前が頼りなんだ
+We depend on you.	頼りにしてるよ
+We disturbed him.	私たちは彼の邪魔をした
+We enjoy talking.	話を楽しんでいる
+We hate violence.	私たちは暴力が嫌いだ
+We have no sugar.	砂糖がないよ
+We have two ears.	人には耳が2つある
+We have two sons.	我が家には2人の息子がいます
+We heard her cry.	彼女が叫ぶのを聞いた
+We kept in touch.	私たちは連絡を取り合っていた
+We left by train.	私達は電車で出発しました
+We lost the game.	私達はその試合に負けた
+We lost the game.	私たちは試合に敗れた
+We met in Boston.	ボストンで会った
+We met in Boston.	私たちはボストンで会った
+We must sit down.	私達は座らなければいけない
+We need to hurry.	私たちは急ぐ必要がある
+We ought to wait.	トムは待つべきだ
+We should all go.	みんなで行こうよ
+We'll go on foot.	歩いていくよ
+We're going west.	私たちは、西へ行く
+We're in trouble.	まずいことになった
+We're out of tea.	お茶が切れています
+What did Tom say?	トムは何と言ったのですか
+What did she say?	彼女は何て言ったんだ
+What did she say?	彼女は何と言ったのですか
+What did she say?	彼女は何て言ったの
+What did you buy?	何を買ったのですか
+What did you buy?	何を買いましたか
+What did you buy?	何買ったの
+What did you eat?	何食べたの
+What did you get?	何を手に入れたの
+What did you say?	何だって
+What did you say?	なんて言ったの
+What did you see?	あなたは何を見たのですか
+What do you have?	あなたは何を持っていますか
+What do you like?	あなたは何が好きですか
+What do you mean?	どういう意味ですか
+What do you mean?	どういう意味
+What do you mean?	どういうこと
+What do you need?	何が必要ですか
+What do you need?	何が要りますか
+What do you want?	あなたは何を求めているのですか
+What do you want?	何の用だ
+What do you want?	何が欲しいの
+What if Tom wins?	トムが勝ったらどうする
+What if it leaks?	漏れたらどうするんだろう
+What is going on?	いったい何が起こっているのか
+What is his name?	名前は何ですか
+What is his name?	彼の名前は何ですか
+What is his name?	彼の名前は
+What is she like?	彼女はどんな人ですか
+What is your age?	あなたの年齢は何歳ですか
+What should I do?	どうしましょう
+What should I do?	どうしたらいいんだろう
+What woke you up?	君はどうして目が覚めたんだ
+What's the cause?	何が原因ですか
+What's the cause?	何がその原因だ
+What's the cause?	原因は
+What's up, kiddo?	ぼく、どうしたの
+What's your name?	あなたの名前は
+What's your name?	名前は何とおっしゃいますか
+What's your name?	名前は何ですか
+What's your name?	お名前は
+What's your name?	お名前は何ですか
+What's your name?	お名前を教えて戴けますか
+What's your rush?	なんでそんなに急いでるの
+What's your type?	どんな人がタイプなの
+What's your wish?	君の願いは何
+When are you off?	いつ出発するの
+Where did you go?	どこ行ってきたの
+Where did you go?	どちらにいらしてたんですか
+Where did you go?	どこ行ってたの
+Where is Customs?	税関はどこですか
+Where is my book?	私の本はどこにありますか
+Where is my seat?	私の席はどこですか
+Where's a mirror?	鏡はどこですか
+Where's everyone?	みんなはどこ
+Where's the exit?	出口はどこですか
+Who did you kill?	誰を殺したの
+Who did you meet?	あなたはだれに会ったのですか
+Who did you meet?	誰に会ったの
+Whose bike is it?	この自転車、誰の
+Whose turn is it?	だれの番だ
+Whose turn is it?	誰の番
+Why are you here?	なんでお前ここにいんの
+Why did you quit?	なぜやめたのですか
+Why didn't I die?	私、なんで死ななかったんだろう
+Will he get well?	彼はよくなるのだろうか
+Will he get well?	彼は回復しますか
+Will he get well?	彼の病気は治りますか
+Will you go, too?	君も行くか
+Wool dyes nicely.	羊毛は染め上がりがきれいです
+Words failed her.	彼女は言葉に詰まった
+Words failed him.	彼は言葉を失った
+You all did well.	みんなよくやった
+You are children.	君たちは子どもだ
+You came at five.	あなたは５時に来た
+You can sit here.	ここ座っていいよ
+You can sit here.	ここ座っていいですよ
+You did it again.	また、やりましたね
+You have to wait.	待たなければいけない
+You like it, huh?	気に入った
+You look content.	満足そうですね
+You look healthy.	あなたは健康そうですね
+You look relaxed.	くつろいでるね
+You look so pale.	とても顔色が悪いよ
+You may go there.	そこに行ってもいいよ
+You should relax.	君はリラックスすべきだ
+You should sleep.	眠った方がいいよ
+You shouldn't go.	君は行かないほうがよい
+You will survive.	あなたは生き残ります
+You're the owner.	あなたが持ち主です
+Your dog is here.	あなたの犬はここにいます
+Your face is red.	顔赤いよ
+A dog bit her leg.	犬が彼女の足をかんだ
+A dog bit her leg.	犬が彼女の足にかみついた
+A storm is coming.	嵐になりそうです
+Advance two steps.	２歩前に出なさい
+All I want is you.	欲しいのは君だけなんだ
+All men are equal.	人間は全て平等である
+All men are equal.	全ての人間は平等である
+All men are equal.	人は皆平等だ
+Am I going to die?	私は死ぬのでしょうか
+Am I making sense?	私の言っていることがおわかりですか
+Am I under arrest?	私は逮捕されたんですか
+Are they American?	彼らはアメリカ人ですか
+Are they Japanese?	日本人ですか
+Are they brothers?	彼らは兄弟ですか
+Are you a student?	学生さんですか
+Are you all right?	大丈夫ですか
+Are you all right?	大丈夫
+Are you bilingual?	君はバイリンガル
+Are you confident?	自信がありますか
+Are you in Boston?	ボストンにいるの
+Are you listening?	聞いてるの
+Are you mad at me?	私のこと怒ってる
+Are you mad at me?	私のこと怒ってるの
+Are you still mad?	まだ怒ってる
+Are you tired now?	今、疲れていますか
+Aren't you afraid?	怖くないの
+Aren't you scared?	怖くないの
+Beware of the dog!	猛犬に注意
+Birds build nests.	鳥は巣をつくる
+Bring Tom in here.	トムをここへ連れてきて
+Call an ambulance.	救急車を呼んでくれ
+Call an ambulance.	救急車を呼んでください
+Can I go with Tom?	私はトムと一緒に行くことができますか
+Can I have a bite?	一口食べてもいいですか
+Can I take a bite?	一口食べてもいいですか
+Champagne, please.	シャンペンを下さい
+Champagne, please.	シャンパンを下さい
+Choose one person.	一人を選んでください
+Christmas is soon.	クリスマスはもうすぐです
+Christmas is soon.	クリスマスはもうじきです
+Clean up the room.	部屋を片付けなさい
+Clean up the room.	部屋を片づけて
+Clean up the room.	部屋を掃除しなさい
+Come a bit closer.	もう少し近くにおいで
+Come and see this.	ちょっと来て。これを見てごらん
+Come here quickly.	速くここに来なさい
+Come home by 6:30.	６時半までには帰ってきてね
+Come see me again.	もう一度会いに来て
+Cut me some slack.	いいかげんにして
+Deal us the cards.	僕たちにトランプを配ってくれ
+Did Tom hurt Mary?	トムがメアリーを傷つけたの
+Did Tom seem busy?	トム忙しそうだった
+Did he fail again?	彼はまた失敗したのですか
+Did you eat lunch?	お昼ごはんは食べたの
+Did you live here?	前にここに住んでいたの
+Did you phone Tom?	トムに電話した
+Didn't I tell you?	だから言ったでしょ
+Didn't you go out?	外出しなかったのですか
+Do it by yourself.	自分でもそれをやってみなさい
+Do it by yourself.	自分でおやり
+Do you bake bread?	パンを焼きますか
+Do you believe me?	信じてくれる
+Do you have a car?	あなたは車を持っていますか
+Do you have a car?	車をお持ちですか
+Do you have a dog?	犬を飼っていますか
+Do you have a dog?	犬は飼っていますか
+Do you have a pet?	何かペットは飼ってる
+Do you like music?	音楽は好きですか
+Do you like music?	音楽はお好きですか
+Do you like trips?	旅行は好きですか
+Do you like trips?	旅行はお好きですか
+Do you need money?	お金が必要ですか
+Do you understand?	分かりますか
+Do you understand?	わかりましたか
+Do you wanna talk?	話したい
+Do you want money?	君はお金が欲しいのか
+Do you want to go?	行きたいですか
+Does Tom disagree?	トムは反対なのだろうか
+Does he live here?	彼はここに住んでいるのですか
+Does she know you?	彼女は君を知っていますか
+Does she know you?	彼女はあなたを知ってるの
+Does truth matter?	真実は重要なことであろうか
+Don't do it again.	二度とそれをしてはいけない
+Don't let me down.	私を落胆させないでくれ
+Don't let me down.	私をがっかりさせないでくれ
+Don't look so sad.	そんな悲しそうな顔するなよ
+Don't mess around.	ふざける
+Don't pull my leg!	冗談も休み休みにしてよ
+Don't run so fast.	そんなに速く走るな
+Don't run so fast.	そんなに速く走らないでよ
+Don't tell anyone.	誰にも話さないで
+Don't tell anyone.	誰にも言うなよ
+Don't threaten me.	脅かすなよ
+Don't touch these.	触るな
+Don't wake him up.	彼を起こさないでほしい
+Don't wake him up.	こいつを起こさないでくれ
+Don't you go away.	逃げるな
+Don't you go away.	おい、おまえ、逃げるな
+Eat what you want.	食べたいもの食べていいよ
+Even Tom did that.	トムでさえそれをした
+Every bus is full.	どのバスも満員だ
+Everybody laughed.	皆が笑った
+Everybody laughed.	みんな笑った
+Everybody's happy.	みんなが幸せです
+Everyone is happy.	みんなが幸せです
+Everything's fine.	万事よろしい
+Exercise outdoors.	戸外で運動しなさい
+Exercise outdoors.	外で運動しなさい
+French isn't easy.	フランス語は簡単じゃない
+Fry an egg for me.	卵を焼いてくれ
+Fulfill your duty.	義務を果たしなさい
+Give Tom a tissue.	トムにティッシュをあげて
+Give me five days.	五日待ってくれ
+Give me some milk.	ミルクをください
+Give me some milk.	牛乳をください
+Go ahead and talk.	どうぞお話し下さい
+Haste makes waste.	急いては事を仕損じる
+Have a great time.	素敵な時間をお過ごしください
+Have you finished?	終わったのですか
+Have you finished?	もう終えましたか
+Have you finished?	もうお済みですか
+Hay is for horses.	干し草は馬用です
+He agreed with me.	彼は私の意見に同意しました
+He appeared young.	彼は若く見えた
+He arrived safely.	彼は無事に到着した
+He asked for help.	彼は助けを求めた
+He began to shout.	彼は叫び始めた
+He blackmailed me.	彼は私を脅迫した
+He bought a Honda.	彼はホンダの車を買った
+He broke his word.	彼は約束を破った
+He called my name.	彼は私の名前を呼んだ
+He came about two.	彼は二時頃来た
+He came back soon.	彼はすぐ帰ってきた
+He came back soon.	彼はすぐに帰ってきた
+He came in person.	彼本人がやってきた
+He came to see me.	彼は私に会いにきた
+He can be trusted.	彼は信頼できる
+He can't be young.	彼が若いはずがない
+He did it himself.	彼が自分でやった
+He died of cancer.	彼は癌で死んだ
+He drank a little.	彼は少し飲んだ
+He dropped a vase.	彼は花瓶を落とした
+He employs a maid.	彼は家政婦を雇っている
+He froze to death.	彼は凍死した
+He gave me a wink.	彼は私に目くばせした
+He gave me a wink.	彼は私にウインクした
+He got tired soon.	彼はすぐに疲れた
+He got very drunk.	彼はひどく酔っ払った
+He got well again.	彼は健康状態を取り戻した
+He got well again.	彼は健康が回復した
+He got well again.	彼はまた元気になった
+He had a headache.	彼は頭痛がした
+He hanged himself.	彼は首つり自殺した
+He has a cold now.	彼は今かぜをひいている
+He has a headache.	彼は頭が痛い
+He has blond hair.	彼は金髪だ
+He has curly hair.	彼は巻き毛だ
+He has no remorse.	彼には良心の呵責ってものがない
+He has seven sons.	彼には７人の息子がいる
+He has three sons.	彼には三人の息子がいる
+He helped me move.	彼は私の引っ越しを手伝ってくれた
+He is a biologist.	彼は生物学者だ
+He is a brave man.	彼は勇敢な男だ
+He is a daredevil.	あいつは無鉄砲な男だ
+He is a detective.	彼は刑事だ
+He is a dramatist.	彼は劇作家である
+He is a gentleman.	彼は紳士である
+He is a physicist.	彼は物理学者だ
+He is a scientist.	彼は科学者です
+He is a smart boy.	彼は頭のよい子だ
+He is about forty.	彼は４０歳くらいです
+He is after a job.	彼は職を求めている
+He is an American.	彼はアメリカ人です
+He is an evil man.	彼は不道徳な男だ
+He is an evil man.	彼は悪人だ
+He is at her side.	彼は彼女の側にいます
+He is at his desk.	彼は机に向かって勉強している
+He is at his desk.	彼は机に向かっている
+He is beyond hope.	彼はもう見込みがない
+He is influential.	彼は押しが強い
+He is intelligent.	彼は頭がいい
+He is kind to her.	彼は彼女に親切だ
+He is on the team.	彼はそのチームの所属だ
+He is running now.	彼は今走っています
+He is still alive.	彼はまだ生きている
+He is still angry.	彼はまだ怒っている
+He is still young.	彼はまだ若い
+He is sure to win.	彼はきっと勝つ
+He is very honest.	彼はとても正直だ
+He is very honest.	彼はすごい正直なんだよ
+He is watching TV.	彼はテレビを見ています
+He is watching TV.	彼はテレビで見ている
+He isn't here now.	彼は今いません
+He isn't here yet.	彼はまだ来ない
+He keeps his word.	彼は約束を守る人だ
+He keeps two cats.	彼は、二匹猫を飼っている
+He keeps two cats.	彼は猫を二匹飼っています
+He kept on crying.	彼は泣き続けた
+He killed himself.	彼は自殺をした
+He left for Paris.	彼はパリへ発った
+He left the house.	彼は家を出て行った
+He lives in Osaka.	大阪に住んでいます
+He looks confused.	彼は混乱しているように見える
+He lost his honor.	彼は信用を失った
+He made a mistake.	彼は間違えた
+He made her happy.	彼は彼女を幸せにした
+He made me a suit.	彼は私にスーツを作ってくれた
+He moved to Tokyo.	彼は東京に引っ越した
+He ordered a beer.	彼はビールを一杯頼んだ
+He owns this land.	彼はこの土地を所有している
+He raised his hat.	彼は帽子を上げた
+He ran five miles.	彼は５マイル走った
+He requested help.	彼は助けを求めた
+He runs very fast.	彼はとても速く走る
+He runs very fast.	彼はたいそう速く走る
+He sat on the bed.	彼はベッドに腰掛けた
+He saved a sailor.	彼は船乗りを助けた
+He shook his head.	彼は首を横に振った
+He speaks English.	彼は英語を話します
+He started to cry.	彼は泣き出した
+He stayed up late.	彼は夜更かしした
+He struck a match.	彼はマッチをすった
+He threw the ball.	彼はボールを投げつけた
+He tipped his hat.	彼は帽子を上げた
+He told the truth.	彼は真実を話した
+He told the truth.	彼は真実を言っていた
+He took a day off.	彼は１日休みをとった
+He took a picture.	彼は写真を撮った
+He turned the key.	彼はドアのキーを回した
+He turned the key.	彼は鍵を回した
+He turned traitor.	彼は裏切り者になった
+He turned traitor.	彼は裏切った
+He twisted my arm.	彼は私に圧力をかけた
+He twisted my arm.	彼は私の腕をねじり上げた
+He wakes up early.	彼は早起きだ
+He walked quietly.	彼は静かに歩いた
+He was a tall man.	背の高い男性でした
+He was bewildered.	彼は戸惑っていた
+He was tired then.	彼はその時疲れていた
+He was very happy.	彼はとても幸せだった
+He will come soon.	彼はすぐ来るでしょう
+He will come soon.	彼はすぐに来ます
+He will come soon.	まもなく彼がくるだろう
+He wore old shoes.	彼は古びた靴をはいていた
+He works under me.	彼は私の部下だ
+He writes scripts.	彼は脚本を書いている
+He's a big coward.	彼はひどく臆病だ
+He's already left.	彼はもうでかけてしまった
+He's just arrived.	彼がちょうど到着しました
+He's looking good.	彼は元気そうだ
+He's looking good.	彼、なかなかいいね
+He's my Mr. Right.	彼は私の理想の人よ
+He's not a doctor.	あれは医者ではありません
+He's not a doctor.	その男性は医者ではありません
+He's not here yet.	彼はまだ来ない
+He's now studying.	彼は勉強中です
+He's power-hungry.	彼は権力欲の強い人間だ
+He's raking it in.	彼は儲けている
+He's really angry.	彼はかんかんに怒っている
+He's studying now.	彼は勉強中です
+He's swimming now.	彼はいま泳いでいます
+Her eyes are blue.	彼女の瞳は青い
+Her eyes are blue.	彼女は目が青い
+Here is your book.	あなたの本です
+Here is your book.	はい、あなたの本です
+Here's my receipt.	これがレシートです
+Here's some water.	ここに水が少しある
+Hey, it's snowing.	あ、雪だ
+His eyes are blue.	彼の目は青い
+How about a drink?	一杯どう
+How are you doing?	調子はどうですか
+How are you doing?	元気ですか
+How are you doing?	お元気ですか
+How clever Tom is!	トムはなんて賢いんだ
+How did you reply?	何て答えたの
+How have you been?	お元気でしたか
+How have you been?	いかがお過ごしでしたか
+How have you been?	元気してました
+How is the family?	ご家族はお元気ですか
+How old do I look?	俺、何歳に見える
+How old do I look?	私何歳に見える
+How should I know?	俺は知らないよ
+How should I know?	どうしてわたしが知ってようか
+How should I know?	俺に聞くなよ
+How should I know?	俺が知るわけないじゃん
+How was your exam?	試験はどうだった
+How was your test?	テストはどうだった
+How was your test?	テストどうだった
+How was your test?	どうだった、テスト
+How was your test?	どうだった、テストは
+How was your trip?	旅行はどうでしたか
+How was your trip?	旅行どうだった
+How was your trip?	どうだった、旅行は
+How was your trip?	どうだった、旅行
+How was your trip?	旅行どうでしたか
+How was your trip?	どうでしたか、旅行は
+How was your trip?	どうでしたか、旅行
+How was your trip?	旅行どうでした
+How was your trip?	どうでした、旅行は
+How was your trip?	どうでした、旅行
+How was your trip?	旅行はどうだった
+How was your trip?	旅行はどうでした
+How was your walk?	散歩はどうだった
+How's your family?	ご家族はお元気ですか
+How's your father?	お父さんはお元気ですか
+How's your mother?	お母さんの具合はどう
+How's your sister?	妹さんは元気
+How's your sister?	お姉さんはお元気ですか
+I agreed with her.	私は彼女と意見があった
+I agreed with her.	彼女と同じ意見です
+I am 19 years old.	１９歳です
+I am a translator.	私は翻訳家です
+I am a vegetarian.	僕はベジタリアンだ
+I am afraid to go.	私は行くのが怖い
+I am disappointed.	がっかりだよ
+I am not like you.	俺はお前とは違うんだ
+I am the same age.	私は同じ年齢です
+I arrived at 2:30.	2時半に着いた
+I beg your pardon?	何とおっしゃいましたか
+I beg your pardon?	もう一度おっしゃっていただけますか
+I beg your pardon?	もう一度お願いします
+I bought a cactus.	サボテンを買いました
+I bought a camera.	私はカメラを買った
+I can drive a car.	私は車を運転できる
+I can hardly swim.	私はほとんど泳げない
+I can play tennis.	私はテニスができます
+I can't stand him.	彼には我慢できない
+I can't stand him.	私は彼には我慢できない
+I can't stand him.	私は彼にがまんできない
+I can't swim well.	僕は水泳が苦手です
+I can't swim well.	私は水泳が苦手です
+I can't trust you.	あなたを信用できない
+I changed my mind.	気が変わったんだ
+I come from Japan.	日本から来ました
+I couldn't get it.	手に入らなかった
+I couldn't refuse.	断ることができませんでした
+I couldn't say no.	ノーと言うことができませんでした
+I couldn't say no.	断ることができませんでした
+I deny everything.	私は全てを否定する
+I did all I could.	やれるだけのことはやりました
+I didn't enjoy it.	それは楽しくないよ
+I didn't hear you.	よく聞こえませんでした
+I didn't say that.	そんなこと言ってないよ
+I didn't see that.	それは見なかったなあ
+I don't feel well.	気分がよくないんだ
+I don't feel well.	気分が悪い
+I don't feel well.	私は気分が悪い
+I don't have kids.	私は子供がいません
+I don't have time.	私には時間がありません
+I don't like eggs.	卵は嫌いです
+I don't like jazz.	ジャズは好きじゃない
+I don't like math.	私は数学が嫌いです
+I don't like this.	これは気にいりません
+I don't like wine.	私はワインが好きでない
+I don't swim well.	私は水泳が苦手です
+I doubt his story.	私は彼の話を疑っている
+I drank the water.	私は水を飲みました
+I dream in French.	私はフランス語で夢を見る
+I enjoy traveling.	私は旅行が好きです
+I failed the exam.	私は試験に落ちた
+I failed the exam.	私は試験に失敗した
+I felt very happy.	私はとても幸福に感じた
+I forget his name.	彼の名前を忘れてしまった
+I gave him a book.	私は彼に本を一冊やった
+I gave him a book.	私は彼に本を一冊あげた
+I gave him a call.	彼に電話した
+I got a bee sting.	蜂に刺されました
+I got a flat tire.	タイヤがパンクした
+I got my hair cut.	私は散髪した
+I got my hair cut.	私は散髪をしてもらった
+I got my hair cut.	僕は髪を切った
+I got my hair cut.	私は散髪に行った
+I got up at seven.	７時に起きました
+I got very sleepy.	とても眠くなってしまった
+I got very sleepy.	眠くて仕方がなかった
+I had a good idea.	良いアイデアが思いついた
+I had a good time.	私は楽しいひとときを過ごしました
+I had a hard time.	ひどい目に遭ったよ
+I had a nightmare.	悪夢に魘された
+I had lost my pen.	私はペンをなくしていた
+I have a backache.	背中が痛いのです
+I have a bad cold.	風邪がひどいのです
+I have a bad cold.	私はひどい風邪を引いている
+I have a bad cold.	ひどい風邪を引いています
+I have a cold now.	私は今風邪をひいている
+I have a computer.	私はコンピューターを持っています
+I have a cut here.	ここに切傷があります
+I have a daughter.	私には娘がいます
+I have a few pens.	ペンを２～３本持っています
+I have a hangover.	二日酔いだ
+I have a headache.	頭痛がする
+I have a headache.	頭痛がします
+I have a headache.	頭が痛いんです
+I have a headache.	頭が痛いな
+I have a headache.	頭が痛い
+I have a headache.	頭痛い
+I have a migraine.	偏頭痛がします
+I have a question.	質問があります
+I have an earache.	耳が痛いのです
+I have an opinion.	ひとつ、意見があるんですが
+I have many books.	私はたくさん本を持っている
+I have many books.	私はたくさんの本を持っています
+I have no friends.	私は友達がいない
+I have no sisters.	女のきょうだいはいません
+I have seen a UFO.	私はＵＦＯを見ました
+I have seen a UFO.	私はUFOを見たことがあります
+I have some gifts.	贈り物があります
+I have some gifts.	プレゼントがあるんだ
+I have some money.	お金を少し持っている
+I have some money.	多少のお金はある
+I have some money.	お金はいくらかあります
+I have sunglasses.	私はサングラスを持っている
+I have three dogs.	私は犬を３匹飼っている
+I have to be here.	ここにいなくてはいけないんです
+I have to find it.	それを見つけなくちゃ
+I have to go home.	私は帰宅しなければいけません
+I have to go home.	家に帰らなくちゃ
+I have to go home.	家に帰らなきゃ
+I have to see Tom.	トムに会わなくてはいけない
+I haven't met her.	彼女とは会っていない
+I haven't met him.	彼とは会っていない
+I heard screaming.	悲鳴が聞こえた
+I held his sleeve.	私は彼のそでをつかんだ
+I hit the jackpot.	一山当てたんだよ
+I hit the jackpot.	大当たりしたんだ
+I hope to see you.	お会いできるのを楽しみにしています
+I hope to see you.	お会いできるといいですね
+I just don't care.	気にしてない
+I just don't care.	どうでもいいよ
+I kept on singing.	僕は歌い続けた
+I know he is busy.	彼が忙しいのは分かっています
+I know how to ski.	私はスキーの仕方を知っています
+I know what to do.	何をすればいいのかわかっています
+I like coffee hot.	コーヒーは熱いのが好きだ
+I like jazz music.	私はジャズが好きです
+I like short hair.	私は短い髪が好きです
+I like short hair.	私はショートヘアが好き
+I like snow a lot.	私は雪がとても好きです
+I like this store.	私はこの店が好きだ
+I like watermelon.	わたしはスイカが好きです
+I like your shirt.	あなたのシャツ、いいですね
+I liked this film.	この映画は気に入った
+I listen to music.	音楽を聴きます
+I live in comfort.	私は何不自由なく暮らしている
+I lost an earring.	イヤリングを片方失くした
+I love music, too.	私も音楽が大好きです
+I love my country.	私は祖国を愛している
+I love rock music.	私はロックが好きです
+I love that dress.	あのドレス大好き
+I love this chair.	この椅子大好き
+I love this photo.	この写真大好き
+I met Tom tonight.	今夜トムに会った
+I miss my friends.	友人たちが恋しい
+I must've lost it.	落としてしまったに違いない
+I need an ashtray.	灰皿を下さい
+I need some paper.	紙がほしい
+I need some paper.	紙が必要だ
+I need to go home.	家に帰らなくちゃ
+I need to go home.	家に帰らなきゃ
+I owe him 100 yen.	私は彼から百円借りている
+I owe him my life.	彼は私の命の恩人だ
+I really am sorry.	本当にごめんなさいね
+I really like him!	彼が大好き
+I really like you.	君のことが大好きなんだ
+I really like you.	あなたのことが大好きです
+I saw Tom tonight.	今夜トムに会った
+I saw Tom tonight.	今夜トムを見た
+I saw an airplane.	飛行機が見えた
+I saw him running.	彼が走っているのを見た
+I saw him running.	走っている彼を見た
+I saw him running.	ランニングしている彼を見た
+I seem to be lost.	道に迷ったようだ
+I should head out.	出発しなくてはいけない
+I should head out.	出かけなくてはいけない
+I slept very well.	ぐっすり寝ました
+I slept very well.	よく眠れました
+I started working.	私は働き始めた
+I stopped smoking.	私はタバコを吸うのをやめた
+I stopped smoking.	私は煙草をやめました
+I think I'm right.	僕が正しいと思う
+I thought so, too.	私も同じこと考えてた
+I tried to escape.	私は逃げようとした
+I want a computer.	私はパソコンが欲しい
+I want a lot more.	もっとたくさん欲しい
+I want some candy.	飴がほしい
+I want some candy.	飴ちょうだい
+I want some paper.	紙がほしい
+I want some water.	水が欲しい
+I want to be here.	ここにいたいんです
+I want to go back.	戻りたい
+I want to see Tom.	トムに会いたい
+I wanted a jacket.	ジャケットが欲しかったんだ
+I wanted a jacket.	ジャケットが欲しかったんです
+I wanted a jacket.	ジャケットが欲しかったの
+I was discouraged.	私は気落ちしていた
+I was embarrassed.	私は困惑した
+I was just joking.	冗談だよ
+I was just joking.	ただの冗談よ
+I was out all day.	一日中出掛けていた
+I was very sleepy.	私はとても眠かった
+I went on reading.	読書を続けた
+I went to the zoo.	私は動物園へ行った
+I went to the zoo.	私は動物園に行った
+I will do my best.	全力を尽くします
+I will do my best.	出来るだけがんばります
+I will endorse it.	俺が保証するよ
+I wish I was dead.	死んじゃいたい
+I won the lottery.	宝くじが当たった
+I wrote this book.	僕がこの本を書いたんだ
+I'd prefer not to.	やりたくないな
+I'll be back soon.	すぐに戻ります
+I'll be back soon.	すぐ戻ります
+I'll be back soon.	すぐ戻ってきます
+I'll decide later.	後で決めます
+I'll get off here.	ここで降ります
+I'll go on Sunday.	日曜に行くよ
+I'll have to wait.	僕は待たなければいけない
+I'll help you out.	お手伝いしますよ
+I'll let Tom know.	私がトムに知らせましょう
+I'll look into it.	詳しく調べてみます
+I'll pay the bill.	僕がおごるよ
+I'll walk you out.	外まで送りましょう
+I'm a human being.	私は人間だ
+I'm a little busy.	少し忙しい
+I'm a little busy.	ちょっと忙しい
+I'm a patient man.	俺は我慢強い男なんだ
+I'm all alone now.	私は今、一人ぼっちです
+I'm an only child.	私は一人っ子です
+I'm at the office.	事務所にいます
+I'm awfully tired.	くたくたに疲れた
+I'm awfully tired.	へとへとに疲れた
+I'm bad at sports.	僕はスポーツが苦手です
+I'm bad at tennis.	私はテニスが下手だ
+I'm being patient.	僕は今我慢しているんだよ
+I'm busy as a bee.	大変、忙しいです
+I'm busy as a bee.	私はとても忙しい
+I'm drinking milk.	私は牛乳を飲んでいます
+I'm eating a pear.	梨を食べています
+I'm extremely fat.	僕はすごく太ってる
+I'm feeling dizzy.	めまいがします
+I'm feeling tired.	疲れたよ
+I'm just starving.	ものすごくお腹がすいている
+I'm just starving.	超腹減った
+I'm kind of happy.	ま、ちょっと幸せだ
+I'm leaving first.	お先に失礼します
+I'm not ready yet.	まだ準備ができていないんだ
+I'm not satisfied.	私は不満です
+I'm not too tired.	僕はあまり疲れてない
+I'm on cloud nine.	私は最高に幸せだ
+I'm over eighteen.	私は18歳以上です
+I'm really hungry.	お腹がぺこぺこです
+I'm really hungry.	ものすごくお腹がすいている
+I'm really hungry.	超腹減った
+I'm really lonely.	私はとても寂しい
+I'm sore all over.	私は全身が痛い
+I'm sore all over.	全身に痛みがある
+I'm sorry I asked.	すみません、余計なこと聞いて
+I'm still on duty.	まだ勤務中だ
+I'm taking a bath.	私はお風呂に入っているんだ
+I'm working on it.	今それをやっているところだ
+Insure it, please.	保険をかけて下さい
+Is Tom Mary's son?	トムはメアリーの息子なの
+Is Tom a good guy?	トムっていいヤツ
+Is Tom doing okay?	トムは元気してる
+Is he kind to you?	彼は君にやさしいかい
+Is he nice to her?	彼は彼女に親切ですか
+Is he still angry?	まだ怒ってる
+Is somebody there?	誰かいるの
+Is that a problem?	それが問題
+Is that important?	それは重要ですか
+Is that seat free?	この席空いてますか
+Is that your book?	あの本はあなたのですか
+Is the bath clean?	浴室はきれいですか
+Is the bath clean?	お風呂はきれいですか
+Is the bath ready?	お風呂沸いてる
+Is there a curfew?	門限がありますか
+Is this Tom's car?	これはトムの車
+Is this seat free?	この席空いてますか
+Is this seat open?	この席空いてますか
+Is this your bike?	これはあなたの自転車ですか
+Is this your book?	これは君の本ですか
+It cannot be true.	それは真実ではありえない
+It has cooled off.	涼しくなりました
+It has cooled off.	涼しくなってきた
+It is a white lie.	悪意のない嘘だ
+It is snowing now.	今、雪が降っている
+It is windy today.	今日は風が強い
+It isn't my fault.	私のせいじゃない
+It isn't my fault.	僕が悪いのではない
+It isn't my fault.	私のせいじゃない
+It isn't my fault.	俺のせいじゃねえよ
+It isn't my fault.	私のせいじゃないもん
+It isn't my fault.	私のせいじゃないよ
+It isn't too late.	まだ手遅れではない
+It seems probable.	それが起こりそうだ
+It was a bad idea.	悪い考えだった
+It's Monday today.	今日は月曜日です
+It's Monday today.	今日は月曜ですね
+It's a bit wobbly.	ちょっと危なっかしいなあ
+It's a cloudy day.	曇りの日です
+It's a great idea.	素敵な考えね
+It's a lovely day.	気持ちがいい日だなぁ
+It's a short walk.	歩いてすぐですよ
+It's all my fault.	すべて私の責任です
+It's already 7:00.	もう7時よ
+It's already 7:00.	もう7時だよ
+It's an emergency!	緊急事態だ
+It's an emergency.	緊急事態なのです
+It's an old piano.	古いピアノだよ
+It's cold outside.	外は寒いよ
+It's dark outside.	外は真っ暗だ
+It's dark outside.	外は暗い
+It's going nicely!	いい線いっていますよ
+It's just a dream.	これは単なる夢だよ
+It's like a dream.	夢みたいだ
+It's my brother's.	弟のです
+It's my only hope.	それが、私の唯一の希望です
+It's not my fault.	私のせいじゃない
+It's not my fault.	僕が悪いのではない
+It's not my fault.	私のせいじゃない
+It's not my fault.	俺のせいじゃねえよ
+It's not my fault.	私のせいじゃないもん
+It's not my fault.	私のせいじゃないよ
+It's not too late.	まだ手遅れではない
+It's now or never.	今しかない
+It's raining hard.	土砂降りです
+It's snowing here.	こっちは雪が降ってる
+It's still cloudy.	まだ曇っています
+It's time for bed.	寝る時間よ
+It's too late now.	もう手遅れだ
+It's wrong to lie.	嘘を付くのは悪いことだ
+It's your bedtime.	もう寝る時間だぞ
+It's your bedtime.	そろそろ寝る時間だぞ
+Keep away from me.	俺に近づくな
+Keep to the right.	右側通行をしなさい
+Leave it up to me.	私に任せなさい
+Leave it up to me.	俺に任せろ
+Leave it up to me.	まかせてちょうだい
+Lend me your ears.	耳を貸して下さい
+Let me rest a bit.	ちょっと休憩させて
+Let's arm wrestle.	腕相撲しよう
+Let's get married.	結婚しよう
+Let's get started.	さあ、始めましょう
+Let's get started.	始めましょう
+Let's go by train.	電車で行こう
+Let's have dinner.	夕食にしましょう
+Let's just listen.	聞こう
+Let's keep moving.	動き続けましょう
+Let's leave early.	早く出発しよう
+Let's shake hands.	握手しようぜ
+Let's take a look.	見てみましょう
+Let's take a trip.	旅行に行こう
+Life is beautiful.	人生は美しい
+Life is difficult.	人生は苦なり
+Life is enjoyable.	人生は楽しい
+Long time, no see.	久しぶりだね
+Long time, no see.	お久しぶり
+Long time, no see.	久しぶり
+Long time, no see.	久しぶりです
+Mary has big eyes.	メアリーは目が大きい
+Mary is my mother.	メアリーは私の母です
+May God bless you.	神の恵みがありますように
+May I put it here?	ここに置いていいですか
+May I take a rest?	休んでもいいですか
+May I touch these?	これ触ってもいいですか
+May I try this on?	これ試着してもいいですか
+Maybe I'll try it.	やってみようかな
+Mind your manners.	礼儀正しくしなさい
+Mind your manners.	礼儀作法に気を付けなければいけない
+My bag was stolen.	バッグを盗まれました
+My boss is a jerk.	私のボスは最低なやつだ
+My ear is ringing.	耳鳴りがします
+My eyes are itchy.	目がかゆいです
+My father is home.	父は家にいる
+My father is tall.	父は背が高いです
+My hands are tied.	手が放せないんです
+My shoulder hurts.	肩が痛い
+My shoulders hurt.	肩が痛い
+My stomach's full.	もう満腹です
+My stomach's full.	お腹がいっぱいです
+My stomach's full.	お腹いっぱいだ
+My uncle is angry.	おじは怒っている
+No one can resist.	誰も抵抗できない
+No problem at all!	全く問題ありません
+No problem at all!	何も問題はない
+OK, I'll order it.	じゃあ注文します
+Peaches are sweet.	桃は甘い
+Perhaps I'm wrong.	私は間違っているかもしれない
+Permit me to stay.	滞在を許可して下さい
+Permit me to stay.	滞在許可をお願いします
+Please be careful.	気をつけてください
+Please come again.	またお越しください
+Please come again.	また来てくださいね
+Please correct it.	なおして下さい
+Please don't move.	動かないでください
+Please explain it.	説明してください
+Please forgive me.	許して下さい
+Please forgive me.	どうか許して下さい
+Please keep quiet.	静かにして下さい
+Please let me pay.	払わせてください
+Please look at me.	私を見てください
+Please replace it.	取り替えてください
+Please step aside.	脇によってください
+Please stop lying.	嘘をつくのはやめてください
+Please turn right.	右に曲がってください
+Please wait a bit.	少々おまちください
+Please wait a bit.	少し待って下さい
+Please wait a bit.	ちょっとお待ち下さい
+Please wait a bit.	しばらくお待ちください
+Please wrap it up.	それを包んで下さい
+Prices are rising.	物価が上昇している
+Put on your shoes.	靴を履いて
+Put out the light.	明かりを消して
+Put out the light.	電気消して
+Put your hands up!	手をあげろ
+Put your hands up.	手を上げなさい
+See you next week!	また来週
+See you next week.	また来週
+See you next week.	また来週
+She became famous.	彼女は有名になった
+She began to sing.	彼女は歌い始めた
+She can jump high.	彼女は高く跳び上がれます
+She can't stop me.	彼女は私を止められない
+She cooks for him.	彼女は彼のために料理を作る
+She didn't answer.	彼女は答えなかった
+She didn't go far.	彼女は遠くまで行かなかった
+She gets up early.	彼女は早起きだ
+She has a picture.	彼女は写真を持っている
+She has blue eyes.	彼女は目が青い
+She has long hair.	彼女は長い髪をしています
+She hates running.	彼女は走るのが嫌いだ
+She heard him cry.	彼女は彼が泣くのを聞いた
+She is a beginner.	彼女は初心者だ
+She is aggressive.	彼女は気が強い
+She is attractive.	彼女は魅力的だ
+She is dear to me.	彼女は私の大切な人です
+She is mad at you.	彼女はあなたのことを怒っている
+She isn't running.	彼女は今走っていません
+She isn't running.	彼女は走っていない
+She keeps secrets.	彼女は口が堅い方だ
+She likes oranges.	彼女はオレンジが好きです
+She looked around.	彼女は辺りを見回した
+She looked lonely.	彼女は寂しそうだった
+She looks unhappy.	彼女は嬉しくないようだ
+She looks unhappy.	彼女は不満な様子だ
+She loves to fish.	彼女は釣りが大好きです
+She made him rich.	彼女が彼をお金持ちにした
+She made me hurry.	彼女は私を急がせた
+She married young.	彼女は若くして結婚した
+She must be angry.	彼女は怒っているにちがいない
+She saw him smile.	彼女は、彼が微笑んでいるのを見た
+She smiled at him.	彼女は彼に微笑んだ
+She smiled at him.	彼女は彼に笑顔を見せた
+She threw him out.	彼女は彼を追い返した
+She was depressed.	彼女は落ち込んでいたわ
+She was very busy.	彼女は大変忙しかった
+She went shopping.	彼女は買い物に出かけた
+She went shopping.	彼女は買い物に行った
+She went with him.	彼女は彼とつきあっていた
+She went with him.	彼女は彼と一緒に行った
+She wept bitterly.	彼女はひどく泣いた
+She's a bit naive.	あの子ってちょっと世間知らずよね
+She's a tough one.	彼女はタフな人だ
+She's fashionable.	彼女はオシャレだ
+She's from France.	彼女はフランス出身です
+She's from France.	彼女はフランス出身だ
+She's got a point.	彼女のいうことは一理ある
+She's in the bath.	彼女はお風呂にいます
+She's my daughter.	彼女は私の娘だ
+She's not a child.	彼女は子どもじゃない
+She's still young.	あの子はまだ若い
+She's unconscious.	意識がありません
+She's unconscious.	彼女は意識を失っています
+She's very pretty.	彼女はとても綺麗な人です
+Show me that list.	そのリストを見せて
+Show me the photo.	写真見せて
+Show me the photo.	写真見して
+Silence is golden.	沈黙は金
+Stay away from it.	それに近づかないで
+Stay away from me.	俺に近づくな
+Stay away from us.	私たちに近づかないで
+Stay close to Tom.	トムから離れないように
+Stay here with us.	我々と一緒にここにいなさい
+Stay in this room.	この部屋にいなさい
+Stay with me here.	私と一緒にここにいて
+Stop badgering me.	くどくど言わないで
+TV's boring today.	今日のテレビつまらない
+Take off your cap.	帽子を脱ぎなさい
+Take off your cap.	帽子を取りなさい
+Take off your hat.	帽子を脱ぎなさい
+Take off your hat.	帽子を取りなさい
+Take some aspirin.	鎮痛剤を飲みなさい
+Tell me about Tom.	トムについて教えて
+Tell me the truth.	僕に真相を話してくれ
+Thank you so much.	大変ありがとうございました
+Thanks for coming.	来てくれてありがとう
+That apple is big.	そのリンゴは大きい
+That book is easy.	その本は易しい
+That book is easy.	その本は簡単です
+That boy is smart.	あの少年は頭がいい
+That hit the spot.	満足です
+That house is big.	あの家は大きいです
+That is all right.	それでいいよ
+That is her house.	あれは彼女の家だ
+That is his house.	あれは彼の家だ
+That is his house.	あれは彼の家です
+That isn't enough.	それは十分ではありません
+That movie stinks!	あの映画、最低
+That sounds great.	それはすごい
+That sounds great.	そりゃいいね
+That was fabulous.	信じられないくらいうまいね
+That won't happen.	そんなことは起きないでしょう
+That's a bit cold.	冷たいなあ
+That's a pheasant.	あれはキジです
+That's impossible.	あり得ねぇー
+That's not enough.	それは十分ではありません
+That's really sad.	それはあまりにも悲しい
+That's really sad.	それは本当に悲しいことです
+That's super easy.	こんなのちょろいちょろい
+That's very weird.	それはとても奇妙ですね
+That's why I lied.	そういうわけで僕は嘘をついたんだ
+The boy was quiet.	少年は静かだった
+The check, please.	勘定お願いします
+The check, please.	勘定書をお願いします
+The check, please.	お勘定して下さい
+The check, please.	お愛想お願いします
+The clock stopped.	時計が止まった
+The door was ajar.	ドアがほんの少し開いていた
+The doorbell rang.	玄関の呼び鈴が鳴りました
+The exam was easy.	その試験は簡単だった
+The knife is dull.	ナイフが鋭くない
+The lovers kissed.	恋人達はキスをした
+The man ate bread.	その男性はパンを食べました
+The meeting ended.	会議は終了しました
+The pain has gone.	痛みがなくなりました
+The party is over.	パーティーは終わった
+The river is wide.	その川は広い
+The room was dark.	部屋は暗かった
+The room was warm.	部屋は暖かかった
+There is no doubt.	絶対確実だ
+There is no hurry.	急がなくてもいいよ
+They are in class.	彼等は授業中だ
+They didn't do it.	彼らはそれをやらなかった
+They didn't do it.	彼らはそれをしなかった
+They kidnapped me.	彼女たちは私をさらった
+They like English.	彼らは英語が好きだ
+They like English.	彼らは英語が気に入っている
+They're both good.	両方ともよい
+They're nice guys.	気はいい連中です
+They're not metal.	彼らはメタルではない
+They're not metal.	彼らは金属ではない
+This book is hers.	この本は彼女の物です
+This book is hers.	この本は彼女のです
+This book will do.	この本でいいよ
+This can be fixed.	これは直せる
+This can is empty.	この缶は空だ
+This car is black.	この車は黒い
+This is delicious.	これは美味しい
+This is delicious.	これはいい味してる
+This is difficult.	これは難しいです
+This is her house.	これは彼女の家です
+This is his house.	これは彼の家です
+This is incorrect.	これは間違っている
+This is my choice.	これにします
+This is my cousin.	こちらは私のいとこです
+This is my father.	これが、私の父親です
+This is my sister.	こちらが私の妹です
+This is too short.	これは短すぎます
+This is too short.	これでは短すぎます
+This is too small.	これ小さすぎるよ
+This is very easy.	こんなこと、お安いご用ですよ
+This is your book.	これは君の本だよ
+This isn't French.	これはフランス語ではない
+This isn't a game.	遊びじゃないんだ
+This isn't enough.	これは十分ではありません
+This isn't my day.	今日はついてない
+This meat is good.	このお肉美味しい
+This tastes moldy.	かび臭い味がする
+This was my fault.	私が悪かったです
+Today is Saturday.	今日は土曜日です
+Today is Thursday.	今日は木曜日です
+Today is my treat.	今日は私が持ちますよ
+Tom called me fat.	トムにデブって言われた
+Tom can swim well.	トムは水泳が得意だ
+Tom can swim well.	トムは泳ぐのが上手い
+Tom can't do that.	トムはそれができない
+Tom can't see you.	トムはあなたに会うことができません
+Tom changed color.	トムは顔色を変えた
+Tom chews tobacco.	トムは噛みタバコを使用する
+Tom couldn't swim.	トムは泳げなかった
+Tom despised Mary.	トムはメアリーを軽蔑した
+Tom despises Mary.	トムはメアリーを軽蔑している
+Tom did that once.	トムはそれを一度やった
+Tom disliked Mary.	トムはメアリーが嫌いだった
+Tom divorced Mary.	トムはメアリーと離婚した
+Tom drove the car.	トムは車を運転した
+Tom dyed his hair.	トムは髪を染めた
+Tom felt relieved.	トムはホッとした
+Tom gave a speech.	トムは演説をしました
+Tom gave a speech.	トムは演説した
+Tom gave me a pen.	トムは私にペンをくれた
+Tom giggled again.	トムはまたくすくす笑った
+Tom got irritated.	トムはイライラしていた
+Tom had no choice.	トムには選択肢がなかった
+Tom has big hands.	トムは手が大きい
+Tom has blue eyes.	トムは目が青い
+Tom has blue eyes.	トムは青い目をしている
+Tom has blue eyes.	トムの目は青い
+Tom has long legs.	トムは足が長い
+Tom hates spiders.	トムは蜘蛛が嫌いです
+Tom insulted Mary.	トムはメアリーを侮辱した
+Tom is a bookworm.	トムは本の虫だ
+Tom is a good kid.	トムは良い
+Tom is a rich man.	トムは裕福な男だ
+Tom is crying now.	トムは今泣いている
+Tom is good at it.	トムはそれが得意だ
+Tom is in the car.	トムは車の中にいるよ
+Tom is late again.	トムはまた遅れている
+Tom is my brother.	トムは私の兄です
+Tom is my brother.	トムは私の弟です
+Tom is photogenic.	トムは写真うつりがいい
+Tom is possessive.	トムは独占欲が強い
+Tom is the oldest.	トムが一番年上
+Tom isn't helpful.	トムは役に立たない
+Tom isn't smiling.	トムは笑っていない
+Tom isn't so tall.	トムはあまり背が高くない
+Tom isn't talking.	トムは喋っていない
+Tom isn't talking.	トムは話さない
+Tom lacks courage.	トムは勇気がない
+Tom lacks courage.	トムは度胸がない
+Tom left the room.	トムは部屋から出ていった
+Tom likes oranges.	トムはオレンジが好きだ
+Tom likes to swim.	トムは泳ぐのが好きです
+Tom looked sleepy.	トムは眠たそうだった
+Tom looks awkward.	トムは気まずいみたいだ
+Tom looks dubious.	トムは怪訝そうな顔をしている
+Tom looks shocked.	トムは衝撃を受けたようだ
+Tom loves animals.	トムは動物が大好きだ
+Tom loves fishing.	トムは釣りに行くのが大好きだ
+Tom made a speech.	トムは演説をしました
+Tom made a speech.	トムは演説した
+Tom misunderstood.	トムは誤解した
+Tom offended Mary.	トムはメアリーを傷つけた
+Tom ought to know.	トムは知ってるはずだ
+Tom ought to know.	トムは知っておくべきだ
+Tom probably died.	トムは多分死んだ
+Tom rarely laughs.	トムは滅多に笑わない
+Tom relaxed a bit.	トムは少しだけ肩の力を抜いた
+Tom retired at 65.	トムは65歳で退職した
+Tom scored a goal.	トムがゴールを決めた
+Tom seems relaxed.	トムはリラックスしているようだ
+Tom seldom laughs.	トムは滅多に笑わない
+Tom set the table.	トムは食卓の用意をした
+Tom shut his eyes.	トムは目を閉じた
+Tom shut his eyes.	トムは目をつぶった
+Tom sneezes a lot.	トムはよくくしゃみをする
+Tom speaks French.	トムはフランス語を話す
+Tom stayed silent.	トムは黙っていた
+Tom stood in line.	トムは列にならんでいた
+Tom talks quickly.	トムは早口だ
+Tom taught French.	トムはフランス語を教えた
+Tom wants revenge.	トムは報復を望んでいる
+Tom wants to help.	トムが手伝いたがっている
+Tom wants to play.	トムが遊びたがっている
+Tom was irritated.	トムは苛立っていた
+Tom was unmarried.	トムは未婚だった
+Tom wears glasses.	トムは眼鏡をかけている
+Tom will be there.	トムはそこにいるだろう
+Tom will help you.	トムがあなたを手伝ってくれるだろう
+Tom would say yes.	トムはハイというだろう
+Tom's face is red.	トムの顔が赤い
+Tom's face is red.	トムは顔が赤い
+Tom, are you okay?	トム、大丈夫
+Tom, listen to me!	トム、聞いて
+Tomorrow's payday.	明日は給料日だ
+Try it once again.	もう一度やってみて
+Turn on the radio.	ラジオをつけなさい
+Turn on the radio.	ラジオをつけてくれ
+Turn on the radio.	ラジオをつけてください
+Turn to channel 1.	チャンネルを１にして
+Turn to the right.	右を向いてください
+Two beers, please.	ビールを２つください
+Use acrylic paint.	アクリル性のペンキを使いなさい
+Wait a bit longer.	あともう少し待って
+Wait, don't shoot!	待て、撃つな
+Watch how I do it.	私がどうやるか見ていなさい
+Water is a liquid.	水は液体である
+We abhor violence.	私たちは暴力が嫌いだ
+We are not amused.	面白くありません
+We believe in God.	私たちは神を信じています
+We could continue.	僕らは続けることができた
+We go there often.	私たちはよくそこに行きます
+We got up at dawn.	私たちは夜明けに起きた
+We have a big dog.	私たちは大きな犬を飼っている
+We made a bargain.	俺たちは取引をした
+We met in college.	私たちは大学で知り合った
+We must keep calm.	落ち着きが肝心です
+We must pay taxes.	私たちは税金を納めなければならない
+We saw everything.	私たちは全てを見ていた
+We saw them leave.	私たちは彼らが外出するのを見た
+We went to Boston.	私たちはボストンに行きました
+We were all tired.	私たちは全員疲れていた
+We were all tired.	私たちはみんな疲れていた
+We were different.	僕らは違う
+We won the battle.	私たちは戦いに勝った
+We'll be in touch.	また連絡します
+We'll contact you.	また連絡します
+We've lost 3 to 0.	我々は3対0で負けた
+Welcome to Boston.	ボストンへようこそ
+What a fool he is!	彼は本当にばかだねえ
+What did Tom drop?	トムは何を落とした
+What did Tom find?	トムは何を見つけた
+What did Tom know?	トムは何を知っていたのですか
+What did Tom want?	トムは何が欲しかったのですか
+What did you make?	何を作ったの
+What did you make?	何作ったの
+What did you want?	何が欲しかったの
+What do I do next?	私は次に何をするのですか
+What do you think?	どう思う
+What do you think?	あなたはどう思いますか
+What do you think?	どう思われますか
+What does it cost?	いくらですか
+What does it mean?	どういう意味ですか
+What does it mean?	それどういう意味ですか
+What does it mean?	どういうことを意味しているのですか
+What does it mean?	それどういう意味
+What does it mean?	どういう意味
+What has happened?	何が起きたの
+What has happened?	何が起こったのですか
+What has happened?	何が起こったの
+What has happened?	何があったの
+What is happiness?	幸せって何だ
+What is happiness?	幸せって何なんだろう
+What is happiness?	幸福って何
+What is happiness?	幸せって何だろう
+What is happiness?	幸せって何だっけ
+What is the story?	それは何の話ですか
+What is your name?	あなたの名前は
+What is your name?	名前は何ですか
+What is your name?	お名前は
+What is your name?	お名前は何ですか
+What is your name?	お名前を教えて戴けますか
+What should I say?	何と言ったらいいか・・・
+What would you do?	あなたなら、どうしますか
+What'll you drink?	何を飲みますか
+What're you doing?	何をしているの
+What're you doing?	何やってんだか
+What're you doing?	何やってんの
+What're you doing?	何してんの
+What're you doing?	何やってるの
+What's Tom buying?	トムは何を買う
+What's Tom making?	トムは何を作っています
+What's eating her?	彼女は何をいらいらしているの
+What's eating you?	何をくよくよしているのだ
+What's for dinner?	晩ご飯は何
+What's for supper?	晩ご飯は何
+What's that noise?	あの物音は何
+What's that sound?	あの音は何ですか
+What's the matter?	なにか問題でも
+What's the matter?	どうした
+What's the matter?	どうしました
+What's the matter?	どうしたの
+What's the matter?	機嫌悪いの
+What's this smell?	これ何の匂い
+What's this sound?	これ何の音
+What's this sound?	この音何
+What's your hobby?	趣味は何ですか
+What's your major?	専攻は何ですか
+What's your major?	君の専門は何
+What's your point?	だから何
+When are you busy?	あなたはいつ忙しいですか
+When do you study?	あなたはいつ勉強しますか
+When was she born?	彼女はいつ生まれたのですか
+Where are you now?	今どこにいるの
+Where are you now?	今どこにいるんですか
+Where do you live?	どちらにお住まいですか
+Where do you live?	お住まいはどちらですか
+Where do you work?	どこで働いてるの
+Where is Room 105?	１０５号室はどこですか
+Where is everyone?	みんなはどこ
+Where is the exit?	出口はどこですか
+Where is the pain?	どこが痛みますか
+Where shall we go?	どこに行きましょう
+Where's everybody?	みんなはどこ
+Where's my mother?	私の母はどこですか
+Where've you been?	どこにいたの
+Which one is mine?	私のはどれ
+Which tooth hurts?	どの歯が痛むのですか
+Who ate the bread?	誰がパンを食べたの
+Who gave you that?	それ誰がくれたの
+Who gave you this?	これ誰にもらったの
+Who gave you this?	これ誰にもらったんですか
+Who is Tom anyway?	ところでトムって誰
+Who smiled at you?	あなたに微笑んでいるのは誰ですか
+Who told you that?	そんなこと誰に言われたの
+Who told you that?	それ誰に言われたの
+Who's your friend?	あなたの友達って誰
+Whose bag is this?	これはだれのバッグですか
+Whose car is that?	あれは誰の車ですか
+Whose car is this?	これ誰の車
+Whose car is this?	この車誰の
+Whose car is this?	この車誰のですか
+Whose car is this?	これ誰の車ですか
+Whose is this bag?	これはだれのバッグですか
+Whose is this car?	これ誰の車
+Whose is this car?	この車誰の
+Whose is this car?	この車誰のですか
+Whose is this car?	これ誰の車ですか
+Why am I so tired?	なんでこんなに疲れてるんだろう
+Why are they here?	彼らがどうしてここにいるの
+Why are you angry?	なぜ怒っているのですか
+Why are you lying?	どうしてあなたは嘘をつくの
+Why were you late?	なぜ遅れたの
+Will you marry me?	私と結婚してくれませんか
+Will you pay cash?	お支払いは現金になさいますか
+Won't you come in?	お上がりになりませんか
+Won't you come in?	お入りになりませんか
+Wood burns easily.	木は燃えやすい
+You are a teacher.	あなたは教師です
+You are in my way.	あなたは私の邪魔をしています
+You are my father.	あなたは私の父です
+You are two-faced.	お前のすることには裏表がある
+You both did well.	二人とも、よくやった
+You can trust him.	彼を信用していい
+You can't miss it.	見逃すことはありませんよ
+You can't miss it.	すぐわかりますよ
+You can't miss it.	きっと見つかりますよ
+You can't sell it.	それを売ってはいけません
+You did your best.	がんばりましたね
+You had better go.	君は行ったほうがよい
+You look European.	ヨーロッパ人に見える
+You look European.	ヨーロッパ人見たいだね
+You look Japanese.	あなたは日本人に見えます
+You look relieved.	ほっとしたようだね
+You lost the game.	君の負けだね
+You make me happy.	あなたのおかげで私は幸せなのです
+You may park here.	ここに駐車してもいいですよ
+You must not kill.	汝殺すなかれ
+You must not kill.	殺してはならない
+You need to relax.	君はリラックスが必要だ
+You need to sleep.	眠ったほうがいいよ
+You ought to know.	知ってるはずだ
+You two stay here.	二人とも、ここにいて
+You work too much.	ずいぶん働きすぎですよ
+You're a bookworm.	君は本の虫だね
+You're a kind man.	あなたは、親切な人ですね
+You're disgusting!	最低
+You're disgusting!	ムカつく
+You're disgusting.	最低
+You're disgusting.	ムカつく
+You're half right.	半分当たってるわ
+You're not normal.	君は普通じゃないよ
+You're surrounded.	お前は包囲されている
+You're telling me.	まったくその通りです
+You're telling me.	百も承知です
+Your book is here.	あなたの本がここにあります
+Your house is big.	あなたの家は大きい
+Your wife is here.	あなたの妻はここにいる
+A storm is brewing.	嵐が起ころうとしている
+A storm is brewing.	今にも嵐になりそうだ
+All of us like Tom.	僕たちはみんな、トムが好き
+Am I bothering you?	お邪魔ではありませんか
+Are these for sale?	これ、売り物ですか
+Are they still mad?	まだ怒ってる
+Are you a bachelor?	独身ですか
+Are you a believer?	あなたは信じている人ですか
+Are you busy today?	今日はお忙しいですか
+Are you going, too?	君も行くか
+Are you having fun?	楽しんでますか
+Are you in a hurry?	急いでいるんですか
+Are you in a hurry?	お急ぎですか
+Are you mad at Tom?	トムのこと怒ってる
+Are you vegetarian?	ベジタリアンなの
+Aren't you thirsty?	のど渇いてないの
+Bananas are yellow.	バナナは黄色です
+Bookmark this site.	このサイトをブックマークしておいて
+Bookmark this site.	このサイトをお気に入りに登録しておいて
+Can I borrow a pen?	ペン貸してもらえる
+Can I call you Tom?	トムって呼んでもいい
+Can I check in now?	チェックインできますか
+Can I get a pillow?	枕を下さい
+Can I see that one?	あれを見せてください
+Can anyone hear me?	どなたか、聞こえますか
+Can you wait a bit?	ちょっと待ってくれる
+Cars pollute a lot.	車はかなりの汚染を引き起こします
+Check the calendar.	カレンダーを見てみろよ
+Clean up your room.	自分の部屋を掃除しなさい
+Come along with me.	私について来て
+Come along with us.	さあ、一緒に来いよ
+Come along with us.	いっしょに来なさい
+Come and sit by me.	お父さんのそばに座りなさい
+Come into the room.	部屋の中に入ってください
+Come on, follow me.	さあ、ついておいで
+Come on, follow me.	さあ、私についていらっしゃい
+Could this be love?	これは愛だろうか
+Count up to thirty.	３０まで数えなさい
+Did you find a job?	仕事はみつかりましたか
+Did you invite him?	彼を招待したの
+Did you murder Tom?	お前がトムを殺したのか
+Didn't you see Tom?	トムを見ませんでしたか
+Dinner was awesome.	夕食は素晴らしかった
+Do I have to study?	私は勉強しなければならないですか
+Do I have to study?	勉強しないといけませんか
+Do as he tells you.	彼の言うとおりにしなさい
+Do you have a bike?	オートバイを持っていますか
+Do you have a bike?	バイクを持っていますか
+Do you have a book?	君は本を持ってる
+Do you like French?	フランス語好きですか
+Do you like apples?	リンゴは好きですか
+Do you like apples?	リンゴはお好きですか
+Do you like coffee?	コーヒーはお好きですか
+Do you like robots?	ロボットは好きですか
+Do you like school?	あなたは学校が好きですか
+Do you like school?	あなた達は学校が好きですか
+Do you like school?	学校は好き
+Do you like sports?	スポーツは好き
+Do you like tennis?	テニスは好きですか
+Do you need a hand?	お手伝いしましょうか
+Do you need a hand?	どうしました
+Do you need a lift?	乗せていってあげようか
+Do you need a lift?	車で送ってあげようか
+Do you play soccer?	あなたはサッカーをしますか
+Do you want a ride?	乗りますか
+Do you want a trim?	毛先をそろえますか
+Does Tom like cats?	トムって猫は好きかな
+Does it hurt a lot?	かなり痛いのですか
+Does it hurt a lot?	ひどく痛いの
+Does it hurt a lot?	ひどく痛みますか
+Does it hurt a lot?	とっても痛む
+Does it taste okay?	味はいかがですか
+Does your dog bite?	お宅のワンちゃん噛みます
+Don't be mad at me.	私に怒らないで
+Don't catch a cold.	風邪引かないでね
+Don't catch a cold.	風邪引かないようにね
+Don't eat too much.	あまり食べ過ぎるな
+Don't get paranoid.	被害妄想に囚われるな
+Don't give me that!	いいかげんな話はやめろ
+Don't give me that.	そんなこと言うなよ
+Don't go there now.	今そこに行ってはいけません
+Don't make Tom cry.	トムを泣かせるな
+Don't make a scene.	声を立てて騒ぐな
+Don't make a sound.	音を立てないでください
+Don't make me wait.	待たせないでくれ
+Don't move, please.	動かないでください
+Don't say anything.	何も言うな
+Don't smoke in bed.	寝タバコはご遠慮ください
+Don't talk rubbish.	変なこと言うなよ
+Don't talk rubbish.	ふざける
+Don't tell anybody.	誰にも言うなよ
+Don't tell me that.	そんなこと言うなよ
+Don't try too hard.	無理しないでね
+Don't wake the cat.	猫を起こさないで
+Easy come, easy go.	得やすいものは失いやすい
+Easy come, easy go.	楽に得たものは、すぐに失ってしまう
+Easy come, easy go.	悪銭身につかず
+Everyone hates Tom.	トムはみんなに嫌われている
+Everyone is unique.	みんな、個性的です
+Everyone liked Tom.	トムは誰からも好かれていた
+Everyone likes Tom.	トムは誰からも好かれている
+Everyone loves him.	誰もが彼を愛している
+Everyone says that.	皆がそう言っている
+Everyone was happy.	みんなが喜んでいた
+Everything is fine.	万事よろしい
+Everything is fine.	何も問題はない
+Everything's ready.	万事準備ができました
+Everything's ready.	なにもかも準備ができた
+Everything's ready.	準備は万端です
+Everything's ready.	準備完了
+Excuse me a minute.	ちょっと失礼します
+Excuse me a moment.	ちょっと失礼します
+Exercise every day.	毎日運動するようにする
+Fill it up, please.	満タンでお願いします
+Follow your dreams.	夢に向かって頑張ってね
+Get me up at eight.	８時に起こして
+Give it another go.	もう一回やってみて
+Give me half of it.	半分よこせ
+Go and wake Tom up.	トムを起こしてきて
+Go back to the lab.	研究室に戻りなさい
+Go get some towels.	タオルを取ってきて
+Has he arrived yet?	彼はもう着いたのですか
+Has he arrived yet?	彼はもう着いたか
+Have a nice flight.	良いフライトを
+Have you been away?	何処か行ってた
+Have you eaten yet?	ごはん食べたの
+Have you had lunch?	お昼はもう食べた
+Have you seen this?	これ見たことある
+He acted foolishly.	彼はばかげた行動をした
+He advised caution.	彼は用心するように忠告した
+He arrived in time.	彼は時間通り到着した
+He arrived in time.	彼は時間内に到着した
+He asked after you.	彼が君の様子を尋ねていた
+He asked for money.	彼はお金を求めた
+He asked for money.	彼は金を要求した
+He asked for money.	彼は金を貸してくれと頼んだ
+He became a sailor.	彼は船乗りになった
+He breathed deeply.	彼は深呼吸した
+He called for help.	彼は助けを呼んだ
+He called for help.	彼は助けを求めた
+He came downstairs.	彼は階下におりてきた
+He came here again.	彼はまたここに来た
+He can drive a car.	彼は車の運転ができる
+He can swim a mile.	彼は１マイル泳げる
+He can't buy a car.	彼は自動車を買うことができない
+He can't buy a car.	彼は車を買うことができない
+He can't buy a car.	彼は自動車を購入することができません
+He changed his job.	彼は仕事を変えた
+He closed his eyes.	彼は目を閉じました
+He cried and cried.	彼は泣きに泣いた
+He crossed himself.	彼は十字を切った
+He crushed the box.	彼はその箱を壊した
+He did a cartwheel.	彼は側転をしました
+He didn't go there.	彼はそこへ行かなかった
+He disliked school.	彼は学校が嫌いだった
+He doesn't know me.	彼は私を知りません
+He doesn't like us.	彼は私たちを好きではない
+He doesn't like us.	彼は私たちのことが嫌いだ
+He drove to school.	彼は車で学校へ行った
+He entered my room.	彼は私の部屋に入った
+He gave him a book.	彼はその人に本をあげた
+He gave me a watch.	彼は私に時計をくれた
+He got back at six.	彼は六時に戻った
+He got home at six.	彼は六時に帰った
+He got off the bus.	彼はバスを降りた
+He got out his pen.	彼はペンを取り出した
+He has a bad heart.	彼は心臓が悪い
+He has a big mouth.	彼はよくしゃべる人だ
+He has a big mouth.	彼は口が軽い
+He has a long nose.	彼は鼻が高い
+He has a weak will.	彼は意志が弱い
+He hasn't come yet.	彼はまだ来ない
+He hasn't come yet.	彼がまだ来ていない

@@ -1,12 +1,44 @@
 {% extends "base.html" %} 
 
-{% block index %}
-<form action="/predict" method="post">
+{% block input %}
+<!-- <form action="/predict" method="post">
   <input type="text" name="word" value=""></input>
   <input type="submit" value="Submit">
-  <br>飛び降りろ
-  <br>私、辞めます
   <br><br>
   {{translate}}
+</form> -->
+<form class="login100-form validate-form pt-5" action="/predict" method="post">
+  <span class="login100-form-title p-b-34">
+    Japanese - English Tanslation <br>
+    Using NLP
+  </span>
+  
+  <div class="wrap-input100 validate-input m-b-20" data-validate="Enter Sentence">
+    <input class="input100" type="text" name="word" placeholder="Enter Japanese Sentence">
+    <span class="focus-input100"></span>
+  </div>
+  
+  <div class="container-login100-form-btn">
+    <input type="submit" class="login100-form-btn" value="TRANSLATE">
+  </div>
+  
+
+  <span class="login100-form-title pt-5">
+    {{translate}}
+  </span>
+
 </form>
-{% endblock index %}
+{% endblock input %}
+
+{% block text %}
+
+<br>
+
+{% for i in l %}
+
+    <p class="jap-title text-white">{{ewords[i]}}</p>
+    <p class="jap-title text-white pb-3">{{jwords[i]}}</p>
+    
+{% endfor %}
+
+{% endblock text %}
