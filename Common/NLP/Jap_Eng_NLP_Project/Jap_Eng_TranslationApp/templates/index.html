@@ -1,0 +1,12 @@
+{% extends "base.html" %} 
+
+{% block index %}
+<form action="/predict" method="post">
+  <input type="text" name="word" value=""></input>
+  <input type="submit" value="Submit">
+  <br>飛び降りろ
+  <br>私、辞めます
+  <br><br>
+  {{translate}}
+</form>
+{% endblock index %}
