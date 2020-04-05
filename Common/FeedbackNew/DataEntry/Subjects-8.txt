@@ -1,0 +1,104 @@
+FE
+Engineering Maths - 2:2
+Engineering Physics - 2:2
+Engineering Chemistry - 2:2
+Engineering Graphics:2
+C - Programming:2
+PCE - 1:2
+COMPS
+Applied Mathematics:4
+Analysis Of Algorithm:4
+Computer Organization & Architecture:4
+Operating System:4
+Computer graphics:4
+Open Source Lab (Python):4
+System Programming and Compiler Construction:6
+Software Engineering:6
+Data Warehouse and Mining:6
+Cryptography and System Security:6
+Machine Learning:6
+Natural Language Processing:8
+Human Machine Interaction:8
+Distributed Computing:8
+CCL (Lab):8
+PM:8
+DBM:8
+RM:8
+MECH
+Kinematics of Machinery:4
+Fluid Mechanics:4
+Industrial Electronics:4
+Database Information and Retrival:4
+Product Planning - 2:4
+Applied Mathematics:4
+Refrigeration and Airconditioning:6
+Machine Design - 1:6
+Metrology and Quality Engineering:6
+Finite Element Analysis:6
+Industrial Automation:6
+Mechatronics:6
+Design pf Mechanical Systems:8
+Power Engineering:8
+Industrial Engineering and Management:8
+Rapid Prototyping:8
+Project Management:8
+Research Management:8
+Finance Management:8
+EXTC
+Principles of Communication:4
+Signals and Systems:4
+Electronic Devices and Circuits-II:4
+Linear Integrated Circuits:4
+Applied Mathematics:4
+IPVM:6
+Antennas and Wave Propagation:6
+Computer Communication Networks:6
+Database Management System:6
+DVLS I:6
+Satellite Communication:8
+Network Management in Telecommunication:8
+Wireless Network:8
+Finance Management:8
+Enterprise Development Management:8
+Research Metrology:8
+R.F.D.:8
+INSTRU
+Transducer-II:4
+Feedback Control System:4
+Analytical Instrumentation:4
+Signal Conditioning circuit Design:4
+Application Software Practice:4
+Applied Mathematics:4
+Process Instrumentation Systems:6
+Industrial data communication:6
+Digital Signal Processing :6
+Advanced Control System:6
+Electrical Machines and Drives:6
+Biomedical sensors and signal processing:6
+Nuclear Instrumentation:6
+Instrumentation Project Documentation and Execution:8
+Instrument and system design:8
+Power plant instrumentation:8
+Internet of Things:8
+Environment Management:8
+Research Methodology:8
+Project Management:8
+Digital Business Managment:8
+IT
+Automata Theory:4
+Python:4
+Applied Mathematics-:4
+Computer Networks:4
+Computer Organization and Architecture:4
+Operating System:4
+Cloud Computing & Services:6
+Software Engineering with Project Management:6
+Advance Internet Programming:6
+Green IT:6
+Data Mining and Business Intelligence:6
+Wireless Networks:6
+Knowledge Management:8
+Big Data Analytics:8
+Internet of Everything:8
+Research Methodology:8
+Finance Management:8
