@@ -1,12 +1,6 @@
 {% extends "base.html" %} 
 
 {% block input %}
-<!-- <form action="/predict" method="post">
-  <input type="text" name="word" value=""></input>
-  <input type="submit" value="Submit">
-  <br><br>
-  {{translate}}
-</form> -->
 <form class="login100-form validate-form pt-5" action="/predict" method="post">
   <span class="login100-form-title p-b-34">
     Japanese - English Tanslation <br>
@@ -22,23 +16,56 @@
     <input type="submit" class="login100-form-btn" value="TRANSLATE">
   </div>
   
-
-  <span class="login100-form-title pt-5">
+  {% if col == 'blue' %}
+  <span class="login100-form-title pt-5" style="color:blue">
+    {{w}}<br><br>
     {{translate}}
   </span>
+  
+  {% elif col == 'red' %}
+  <span class="login100-form-title pt-5" style="color:red">
+    {{w}}<br><br>
+    {{translate}}
+  </span>
+  
+  {% else %}
+  <span class="login100-form-title pt-5" >
+    {{w}}<br><br>
+    {{translate}}
+  </span>
+  {%endif%}
 
 </form>
 {% endblock input %}
 
 {% block text %}
 
-<br>
-
-{% for i in l %}
-
-    <p class="jap-title text-white">{{ewords[i]}}</p>
-    <p class="jap-title text-white pb-3">{{jwords[i]}}</p>
+      {% if bg == '1' %}
+          <div class="login100-more" style="background-image: url('../static/images/Japan.png');opacity:0.6">
+      {% elif bg == '2' %}
+          <div class="login100-more" style="background-image: url('../static/images/Japan2.png');opacity:0.6">
+      {% elif bg == '3' %}
+          <div class="login100-more" style="background-image: url('../static/images/Japan3.png');opacity:0.6">
+      {% else %}
+          <div class="login100-more" style="background-image: url('../static/images/Japan4.png');opacity:0.6">
+      {%endif%}
     
-{% endfor %}
+      <div class="centered">
+        <center>
+          <br>
+      
+          {% for i in l %}
+      
+              <p class="jap-title text-white text-uppercase">{{ewords[i]}}</p>
+              <p class="jap-title text-white pb-3">{{jwords[i]}}</p>
+              
+          {% endfor %}
+            <a href="/" class="btn btn-dark">REFRESH</a>
+            <br><br>
+      </center>
+      
+      </div>
+      
+    </div>
 
 {% endblock text %}

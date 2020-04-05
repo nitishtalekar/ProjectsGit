@@ -45,6 +45,7 @@ def jap_clean(text):
         for token in tokens:
             x = token.getSurfaceForm()+"。"+token.getAllFeatures()[0]
             a.append(x)
+        kuro_server.close()
     # print(a)
     return " ".join(a);
     
@@ -61,6 +62,10 @@ def word_for_id(integer, tokenizer):
 		if index == integer:
 			return word
 	return None
+    
+def jap_check(text):
+    return bool(re.match("^[a-zA-Z0-9]+[$!.?, ']", text))
+        
 
 # generate target given source sequence
 def predict_sequence(model, tokenizer, source):
@@ -108,6 +113,7 @@ file.close()
 elist = []
 jlist = []
 l = [i for i in range(10)]
+bg = '0'
 
 # Define a flask app
 app = Flask(__name__)
@@ -115,21 +121,8 @@ app = Flask(__name__)
 # Model saved with Keras model.save()
 MODEL_PATH = 'models/jpn_eng.h5'
 
-# Load your trained model
-# model = tf.keras.models.load_model(MODEL_PATH)
-# model.compile(loss="categorical_crossentropy", optimizer='sgd', metrics=["accuracy"])
-# model._make_predict_function()          # Necessary
-
 model = load_model(MODEL_PATH)
 
-# model = joblib.load(MODEL_PATH)
-
-print('Model loaded. Start serving...')
-
-# You can also use pretrained model from Keras
-# Check https://keras.io/applications/
-# from keras.applications.resnet50 import ResNet50
-# model = ResNet50(weights='imagenet')
 print('Model loaded. Check http://127.0.0.1:5000/')
 
 
@@ -150,7 +143,11 @@ def index():
         x = r.randint(0,len(text))
         elist.append(text[x].split('\t')[0])
         jlist.append(text[x].split('\t')[1][:-1])
-    return render_template('index.html',translate="TRANSLATION HERE",ewords=elist,jwords=jlist,l = l)
+        col = 'blue'
+        bg1 = r.randint(1,4)
+        global bg
+        bg = str(bg1)
+    return render_template('index.html',translate="TRANSLATION",w='SENTENCE',ewords=elist,jwords=jlist,l=l,col=col,bg=bg)
 
 
 @app.route('/predict', methods=['GET', 'POST'])
@@ -158,30 +155,23 @@ def predict():
     if request.method == 'POST':
 
         w = request.form['word']
-        s = jap_clean(w)
-        x = array(s).reshape(1,)
-        trainX = encode_sequences(jpn_tokenizer, ml, x)
-        translation = predict_sequence(model,eng_tokenizer,trainX)
-        translate = translation
+        check = jap_check(w)
+        if check == True:
+            translate = "INVALID"
+            w = "NOT A JAPANESE SENTENSE"
+            col = 'red'
+        else:
+            s = jap_clean(w)
+            x = array(s).reshape(1,)
+            trainX = encode_sequences(jpn_tokenizer, ml, x)
+            translation = predict_sequence(model,eng_tokenizer,trainX)
+            translate = translation
+            col = 'black'
+            
+        global bg
         
-        return  render_template('index.html',translate=translate,ewords=elist,jwords=jlist,l = l)   
+        return  render_template('index.html',translate=translate,w=w,ewords=elist,jwords=jlist,l=l,col=col,bg=bg)   
     
-    #return render_template('landing.html',username=u,img=imgs,title=ts,gen=GenList,topimg=imgstop,toptit=tstop,gen1=g1tit,gen2=g2tit,gimg1=g1img,gimg2=g2img)
-
-# @app.route('/info', methods=['GET'])
-# def info():
-#     try:
-#         d = "select * from diseases where Disease_Name=%s;"
-#         global disease_name
-#         cur.execute(d,disease_name)
-#         disease_data = cur.fetchall()
-#         # print(disease_data)
-#         name = disease_data[0][1]
-#         symp = disease_data[0][2]
-#         prec = disease_data[0][3]
-#     except Exception as e:
-#         print("ERROR=",e)
-#     return render_template('plant-info.html',n=name,s=symp,p=prec)
 
 if __name__ == '__main__':
     # app.run(port=5002, debug=True)
