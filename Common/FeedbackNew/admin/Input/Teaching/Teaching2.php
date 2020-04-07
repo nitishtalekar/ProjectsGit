@@ -4,12 +4,18 @@ if(empty($_SESSION['admin'])){
   header('location: index.php');
 }
 
+  if($_SESSION['i'] == count($_SESSION['sublist'])){
+
+    header('location: Teaching.php');
+
+  }
+
 	$sem = $_SESSION['Sem'];
 	$branch = $_SESSION['Branch'];
 	$div = $_SESSION['Div'];
 
 	if(isset($_POST['teaching_cont'])){
-		$subj = $_POST['subject'];
+		$subj = $_SESSION['subidlist'][$_SESSION['i']];
 		$proff = $_POST['prof'];
 		$el = isset($_POST['elec'])?'1':'0';
 		$rp = isset($_POST['rep'])?'1':'0';
@@ -17,6 +23,8 @@ if(empty($_SESSION['admin'])){
 
 		$qu = "INSERT INTO teaching(dept, sem, lec_div, teacher_id, sub_id,status) VALUES ('$branch','$sem','$div','$proff','$subj','$stat');";
 		mysqli_query($db, $qu);
+
+    $_SESSION['i'] = $_SESSION['i'] + 1;
 
 		header('location: Teaching2.php');
 	}
@@ -65,21 +73,36 @@ if(empty($_SESSION['admin'])){
 
 
 				<?php
-					$qu = "SELECT * FROM subject WHERE sub_sem='$sem' AND sub_dept='$branch';";
-					$result = mysqli_query($db, $qu);
-						echo "<div class='wrap-input100 input100-select bg1 validate-input' data-validate='Please Fill Field'>";
-							echo "<span class='label-input100'>Subject</span>";
-							echo "<div>";
-								echo "<select class='js-select2' name=subject >";
-									echo "<option selected disabled value=''>Choose Subject</option>";
-									while($row = mysqli_fetch_assoc($result)){
-									echo "<option value=".$row['sub_id'].">".$row['sub_name']."</option>";
-								}
-								echo "</select>";
-								echo "<div class='dropDownSelect2'></div>";
-						echo "</div>";
-					echo "</div>";
+					// $qu = "SELECT * FROM subject WHERE sub_sem='$sem' AND sub_dept='$branch';";
+					// $result = mysqli_query($db, $qu);
+					// 	echo "<div class='wrap-input100 input100-select bg1 validate-input' data-validate='Please Fill Field'>";
+					// 		echo "<span class='label-input100'>Subject</span>";
+					// 		echo "<div>";
+					// 			echo "<select class='js-select2' name=subject >";
+					// 				echo "<option selected disabled value=''>Choose Subject</option>";
+					// 				while($row = mysqli_fetch_assoc($result)){
+					// 				echo "<option value=".$row['sub_id'].">".$row['sub_name']."</option>";
+					// 			}
+					// 			echo "</select>";
+					// 			echo "<div class='dropDownSelect2'></div>";
+					// 	echo "</div>";
+					// echo "</div>";
 					?>
+
+
+          <div class="wrap-input100">
+            <center><label class="label-inputx"><?php echo  $_SESSION['Branch']; ?></label></center>
+          </div>
+
+          <div class="wrap-input100">
+  					<center><label class="label-inputx"><?php echo "Semester - ".$_SESSION['Sem']."  Division - ".$_SESSION['Div']; ?></label></center>
+  				</div>
+
+
+
+          <div class="wrap-input100 bg3">
+  					<center><label class="label-inputx text-white"><?php echo  $_SESSION['sublist'][$_SESSION['i']]; ?></label></center>
+  				</div>
 
 					<?php
 						$qu = "SELECT * FROM teacher";

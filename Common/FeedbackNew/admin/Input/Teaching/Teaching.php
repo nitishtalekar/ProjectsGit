@@ -10,6 +10,30 @@ if(empty($_SESSION['admin'])){
 		$_SESSION['Branch'] = $_POST['branch'];
 		$_SESSION['Div'] = $_POST['div'];
 
+
+    $sem1= mysqli_real_escape_string($db, $_POST['sem']);
+		$dept= mysqli_real_escape_string($db,$_POST['branch']);
+
+    $q = "SELECT * FROM subject WHERE sub_dept = '$dept' AND sub_sem = '$sem1';";
+    $results= mysqli_query($db, $q);
+
+    // echo $q;
+
+    $su_arr = array();
+    $su_id = array();
+
+    while($row = mysqli_fetch_assoc($results)){
+
+      array_push($su_arr,$row['sub_name']);
+      array_push($su_id,$row['sub_id']);
+
+    }
+
+    $_SESSION['sublist'] = $su_arr;
+    $_SESSION['subidlist'] = $su_id;
+    $_SESSION['i'] = 0;
+
+
 		header('location: Teaching2.php');
 	}
 
