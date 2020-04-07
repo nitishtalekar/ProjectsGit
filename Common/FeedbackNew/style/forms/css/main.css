@@ -194,10 +194,10 @@ iframe {
 }
 
 .wrap-contact100 {
-  width: 1200px;
+  width: 920px;
   background: #fff;
   border-radius: 10px;
-  overflow: visible;
+  overflow: hidden;
   padding: 62px 55px 90px 55px;
 }
 
@@ -249,10 +249,6 @@ iframe {
   width: calc((100% - 30px) / 3);
 }
 
-.rs5-wrap-input100 {
-  width: calc((100% - 30px) / 5);
-}
-
 .fb1-wrap-input100 {
   width: calc((100% - 30px) / 2);
   border: 1px solid #e6e6e6;
@@ -284,16 +280,6 @@ iframe {
   /* line-height: 1.5; */
   text-transform: uppercase;
 }
-
-.label-inputr {
-  font-family: Montserrat-SemiBold;
-  font-size: 15px;
-  color: #393939;
-  line-height: 2;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
 .label-inputx2 {
   font-family: Montserrat-SemiBold;
   font-size: 18px;
@@ -325,13 +311,6 @@ iframe {
   color: #555555;
   line-height: 1.2;
   padding-right: 15px;
-}
-
-.options{
-  height:20px; 
-  width:20px; 
-  vertical-align: middle;
-  cursor: pointer;
 }
 
 

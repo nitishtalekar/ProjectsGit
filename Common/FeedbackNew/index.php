@@ -1,80 +1,16 @@
 <?php require('dbconnect.php');
 
+
   if(isset($_POST['feedback_intro'])){
     $dept = $_POST['dept'];
     $sem = $_POST['sem'];
     $div = $_POST['div'];
-    echo $dept;
-    echo $sem;
-    echo $div;
     $_SESSION['Dept'] = $dept;
     $_SESSION['Sem'] = $sem;
     $_SESSION['Div'] = $div;
-    $_SESSION['iteration'] = 0; 
-    $_SESSION['queries'] = array();
-    
-    $info = array();
-    $counts = array();
-    
-    //No Dependancy
-    $query = "SELECT * FROM teaching WHERE dept='$dept' AND sem='$sem' AND lec_div='$div' AND status='00';";
-    $results = mysqli_query($db, $query);
-    while($row = mysqli_fetch_assoc($results)){
-    	$tid = $row['teacher_id'];
-  		$qu_t = "SELECT * FROM teacher WHERE teacher_id='$tid';";
-  		$res_t = mysqli_query($db, $qu_t);
-  		$row_t = mysqli_fetch_assoc($res_t);
-      $sid = $row['sub_id'];
-  		$qu_s = "SELECT * FROM subject WHERE sub_id='$sid';";
-  		$res_s = mysqli_query($db, $qu_s);
-  		$row_s = mysqli_fetch_assoc($res_s);
-      $info_temp = $tid."%".$sid."---".$row_t['teacher_name']."%".$row_s['sub_name'];
-      array_push($info,$info_temp);
-      }
-    array_push($counts,count($info));  
-      
-    //Multiple Teachers  
-    $query = "SELECT * FROM teaching WHERE dept='$dept' AND sem='$sem' AND lec_div='$div' AND status='01';";
-    $results = mysqli_query($db, $query);
-    while($row = mysqli_fetch_assoc($results)){
-    	$tid = $row['teacher_id'];
-  		$qu_t = "SELECT * FROM teacher WHERE teacher_id='$tid';";
-  		$res_t = mysqli_query($db, $qu_t);
-  		$row_t = mysqli_fetch_assoc($res_t);
-      $sid = $row['sub_id'];
-  		$qu_s = "SELECT * FROM subject WHERE sub_id='$sid';";
-  		$res_s = mysqli_query($db, $qu_s);
-  		$row_s = mysqli_fetch_assoc($res_s);
-      $info_temp = $tid."%".$sid."---".$row_t['teacher_name']."%".$row_s['sub_name'];
-      array_push($info,$info_temp);
-      }
-    array_push($counts,count($info));
-    
-    //elective
-    $query = "SELECT * FROM teaching WHERE dept='$dept' AND sem='$sem' AND lec_div='$div' AND status LIKE '10%';";
-    $results = mysqli_query($db, $query);
-    if(mysqli_num_rows($results)>0){
-      $_SESSION['elective'] = 1;
-    }
-    else{
-      $_SESSION['elective'] = 0;
-    }
-      
-      
-		$_SESSION['info'] = $info;
-    $_SESSION['counts'] = $counts;
-    
-    header('location: Feedback.php');
-    // 
-    for($i=0;$i<count($info);$i++){
-      echo $info[$i];
-      echo '<br>';
-    }
-    for($i=0;$i<2;$i++){
-      echo $counts[$i];
-      echo '<br>';
-    }
-    
+    $_SESSION['iter'] = 0;
+    $_SESSION['qu'] = array();
+		header('location: Feedback.php');
 	}
 ?>
 
@@ -106,40 +42,6 @@
 		<link rel="stylesheet" type="text/css" href="style/forms/css/util.css">
 		<link rel="stylesheet" type="text/css" href="style/forms/css/main.css">
 	<!--===============================================================================================-->
-  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
-      <!-- <script src="jquery.min.js"></script> -->
-  
-  <script type="text/javascript">
-  $(document).ready(function(){
-    selection();
-    // changes(x,y);
-  });
-  function changes(x,y){      
-      var deptID = x;
-      if(deptID){
-        $.ajax({
-            type:'POST',
-            url:'ajaxfb.php',
-            data:'deptid='+deptID+y,
-            success:function(html){
-                $(y).html(html);
-                console.log("successful");
-            }
-        });   
-      }
-      else{
-          $(y).html('<option disabled selected value="">Select Department First</option>');
-      }
-  }
-  function selection(x) {
-    changes(x,'#division');
-    changes(x,'#semester');
-  }
-  
-  </script>
-
 </head>
 <body>
 
@@ -157,7 +59,7 @@
         <div class="wrap-input100 input100-select bg1">
 					<span class="label-input100">Branch</span>
 					<div>
-						<select class="js-select2" name="dept" id="department" onchange="selection(this.value);" required>
+						<select class="js-select2" name="dept" required>
 							<option selected disabled value="">Choose Department</option>
 							<option value="Applied Sciences">Applied Sciences</option>
 							<option value="Mechanical Engineering">Mechanical Engineering</option>
@@ -173,7 +75,16 @@
         <div class="wrap-input100 input100-select bg1 validate-input" data-validate="Please Fill Field">
 					<span class="label-input100">Semester</span>
 					<div>
-						<select class="js-select2" name="sem" id="semester">
+						<select class="js-select2" name="sem" required>
+							<option selected disabled value="">Choose Semester</option>
+              <option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
@@ -182,29 +93,35 @@
         <div class="wrap-input100 input100-select bg1 validate-input" data-validate="Please Fill Field">
 					<span class="label-input100">Division</span>
 					<div>
-						<select class="js-select2" name="div" id="division">
+						<select class="js-select2" name="div" required>
+							<option selected disabled value="">Choose Division</option>
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+              <option value="E">E</option>
+              <option value="F">F</option>
+              <option value="G">G</option>
+              <option value="nun">--</option>
 						</select>
 						<div class="dropDownSelect2"></div>
 					</div>
 				</div>
 
+
 				<div class="container-contact100-form-btn">
 					<button type="submit" class="contact100-form-btn" name="feedback_intro">
 						<span>
-							Go To Feedback
+							Next
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 					</button>
 				</div>
 			</form>
 		</div>
-	</div>    
-  </div>
-  
-<?php require "include/footer.php"?>
+	</div>
 
-  
-
+  <?php require "include/footer.php"?>
 
 
 	<!--===============================================================================================-->

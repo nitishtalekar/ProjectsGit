@@ -3,17 +3,16 @@
   
   if(isset($_POST['complete_fb'])){
     
-    $cnt = count($_SESSION['queries']);
+    $cnt = count($_SESSION['qu']);
     
     for ($i=0; $i < $cnt ; $i++) {
-      $q = $_SESSION['queries'][$i];
-      echo $q;
-      // mysqli_query($db, $q);
+      $q = $_SESSION['qu'][$i];
+      mysqli_query($db, $q);
     }
-    // $q1 = $_SESSION['inst_fb'];
-    // mysqli_query($db, $q1);
+    $q1 = $_SESSION['inst_fb'];
+    mysqli_query($db, $q1);
     
-		// header('location: index.php');
+		header('location: index.php');
 	}
 ?>
 
