@@ -22,7 +22,7 @@ $results= mysqli_query($db, $q);
 ?>
 <html lang="en">
 <head>
-	<title>Subjects</title>
+	<title>Feedback</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->
@@ -59,7 +59,7 @@ $results= mysqli_query($db, $q);
 				<span class="contact100-form-title">
 					Delete Questions
 				</span>
-        
+
         <div class="wrap-input100">
           <center><label class="label-inputx">DELETE QUESTION WHICH ARE NOT ACTIVE</label></center>
         </div>

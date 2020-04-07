@@ -1,19 +1,18 @@
 <?php require($_SERVER['DOCUMENT_ROOT']."/FeedbackNew/dbconnect.php");
 
-  
+
   if(isset($_POST['complete_fb'])){
-    
+
     $cnt = count($_SESSION['queries']);
-    
+
     for ($i=0; $i < $cnt ; $i++) {
       $q = $_SESSION['queries'][$i];
-      echo $q;
-      // mysqli_query($db, $q);
+      mysqli_query($db, $q);
     }
     // $q1 = $_SESSION['inst_fb'];
     // mysqli_query($db, $q1);
-    
-		// header('location: index.php');
+
+		header('location: index.php');
 	}
 ?>
 
@@ -55,12 +54,12 @@
 				<span class="contact100-form-title">
 					Feedback
 				</span>
-				
+
 				<div class="wrap-input100">
 					<center><label class="label-inputx">FEEDBACK COMPLETE</label></center>
 				</div>
-				
-				
+
+
 				<div class="container-contact100-form-btn">
 					<button type="submit" class="contact100-form-btn" name="complete_fb">
 						<span>
@@ -72,7 +71,7 @@
 			</form>
 		</div>
 	</div>
-  
+
 <?php include($_SERVER['DOCUMENT_ROOT']."/FeedbackNew/include/footer.php")?>
 
 

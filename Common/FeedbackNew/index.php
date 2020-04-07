@@ -10,12 +10,12 @@
     $_SESSION['Dept'] = $dept;
     $_SESSION['Sem'] = $sem;
     $_SESSION['Div'] = $div;
-    $_SESSION['iteration'] = 0; 
+    $_SESSION['iteration'] = 0;
     $_SESSION['queries'] = array();
-    
+
     $info = array();
     $counts = array();
-    
+
     //No Dependancy
     $query = "SELECT * FROM teaching WHERE dept='$dept' AND sem='$sem' AND lec_div='$div' AND status='00';";
     $results = mysqli_query($db, $query);
@@ -31,9 +31,9 @@
       $info_temp = $tid."%".$sid."---".$row_t['teacher_name']."%".$row_s['sub_name'];
       array_push($info,$info_temp);
       }
-    array_push($counts,count($info));  
-      
-    //Multiple Teachers  
+    array_push($counts,count($info));
+
+    //Multiple Teachers
     $query = "SELECT * FROM teaching WHERE dept='$dept' AND sem='$sem' AND lec_div='$div' AND status='01';";
     $results = mysqli_query($db, $query);
     while($row = mysqli_fetch_assoc($results)){
@@ -49,7 +49,7 @@
       array_push($info,$info_temp);
       }
     array_push($counts,count($info));
-    
+
     //elective
     $query = "SELECT * FROM teaching WHERE dept='$dept' AND sem='$sem' AND lec_div='$div' AND status LIKE '10%';";
     $results = mysqli_query($db, $query);
@@ -59,13 +59,13 @@
     else{
       $_SESSION['elective'] = 0;
     }
-      
-      
+
+
 		$_SESSION['info'] = $info;
     $_SESSION['counts'] = $counts;
-    
+
     header('location: Feedback.php');
-    // 
+    //
     for($i=0;$i<count($info);$i++){
       echo $info[$i];
       echo '<br>';
@@ -74,7 +74,7 @@
       echo $counts[$i];
       echo '<br>';
     }
-    
+
 	}
 ?>
 
@@ -108,15 +108,15 @@
 	<!--===============================================================================================-->
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
     <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
       <!-- <script src="jquery.min.js"></script> -->
-  
+
   <script type="text/javascript">
   $(document).ready(function(){
     selection();
     // changes(x,y);
   });
-  function changes(x,y){      
+  function changes(x,y){
       var deptID = x;
       if(deptID){
         $.ajax({
@@ -127,7 +127,7 @@
                 $(y).html(html);
                 console.log("successful");
             }
-        });   
+        });
       }
       else{
           $(y).html('<option disabled selected value="">Select Department First</option>');
@@ -137,7 +137,7 @@
     changes(x,'#division');
     changes(x,'#semester');
   }
-  
+
   </script>
 
 </head>
@@ -198,12 +198,12 @@
 				</div>
 			</form>
 		</div>
-	</div>    
+	</div>
   </div>
-  
+
 <?php include($_SERVER['DOCUMENT_ROOT']."/FeedbackNew/include/footer.php")?>
 
-  
+
 
 
 
