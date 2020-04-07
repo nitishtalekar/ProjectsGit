@@ -1,18 +1,19 @@
-<?php require('dbconnect.php');
+<?php require($_SERVER['DOCUMENT_ROOT']."/FeedbackNew/dbconnect.php");
 
   
   if(isset($_POST['complete_fb'])){
     
-    $cnt = count($_SESSION['qu']);
+    $cnt = count($_SESSION['queries']);
     
     for ($i=0; $i < $cnt ; $i++) {
-      $q = $_SESSION['qu'][$i];
-      mysqli_query($db, $q);
+      $q = $_SESSION['queries'][$i];
+      echo $q;
+      // mysqli_query($db, $q);
     }
-    $q1 = $_SESSION['inst_fb'];
-    mysqli_query($db, $q1);
+    // $q1 = $_SESSION['inst_fb'];
+    // mysqli_query($db, $q1);
     
-		header('location: index.php');
+		// header('location: index.php');
 	}
 ?>
 
@@ -48,7 +49,7 @@
 <body>
 
 
-	<div class="container-contact100">
+	<div class="container-contact100" style="min-height:calc(100vh - 42px)">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" action="complete.php" method="POST" enctype="multipart/form-data">
 				<span class="contact100-form-title">
@@ -72,7 +73,7 @@
 		</div>
 	</div>
   
-  <?php require "include/footer.php"?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/FeedbackNew/include/footer.php")?>
 
 
 

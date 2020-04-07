@@ -1,4 +1,4 @@
-<?php require('dbconnect.php');
+<?php require($_SERVER['DOCUMENT_ROOT']."/FeedbackNew/dbconnect.php");
 
 $dept = $_SESSION['Dept'];
 $sem = $_SESSION['Sem'];
@@ -50,7 +50,7 @@ $div = $_SESSION['Div'];
 <body>
 
 
-	<div class="container-contact100">
+	<div class="container-contact100" style="min-height:calc(100vh - 42px)">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" action="InstituteFeedback.php" method="POST" enctype="multipart/form-data">
 				<span class="contact100-form-title">
@@ -90,7 +90,7 @@ $div = $_SESSION['Div'];
 		</div>
 	</div>
 
-<?php require "include/footer.php"?>
+<?php include($_SERVER['DOCUMENT_ROOT']."/FeedbackNew/include/footer.php")?>
 
 
 	<!--===============================================================================================-->

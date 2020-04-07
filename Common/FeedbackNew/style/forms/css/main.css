@@ -77,6 +77,7 @@ a:focus {
 
 a:hover {
 	text-decoration: none;
+  color:white;
 }
 
 /*---------------------------------------------*/
@@ -173,13 +174,14 @@ iframe {
 .bg1 {background-color: #f7f7f7;}
 .bg2 {background-color: #e0e0e0;}
 .bg3 {background-color: #4f4e4e;}
+.bg4 {background-color: #817e7e;}
 
 /*//////////////////////////////////////////////////////////////////
 [ Contact ]*/
 
 .container-contact100 {
   width: 100%;  
-  min-height: 100vh;
+  min-height: calc(100vh - 47px - 42px);
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -194,11 +196,11 @@ iframe {
 }
 
 .wrap-contact100 {
-  width: 920px;
+  width: 1200px;
   background: #fff;
   border-radius: 10px;
-  overflow: hidden;
-  padding: 62px 55px 90px 55px;
+  overflow: visible;
+  padding: 62px 55px 30px 55px;
 }
 
 
@@ -249,6 +251,14 @@ iframe {
   width: calc((100% - 30px) / 3);
 }
 
+.rs23-wrap-input100 {
+  width: calc((100% - 30px)*2 / 3);
+}
+
+.rs5-wrap-input100 {
+  width: calc((100% - 30px) / 5);
+}
+
 .fb1-wrap-input100 {
   width: calc((100% - 30px) / 2);
   border: 1px solid #e6e6e6;
@@ -280,6 +290,24 @@ iframe {
   /* line-height: 1.5; */
   text-transform: uppercase;
 }
+
+.label-inputr {
+  font-family: Montserrat-SemiBold;
+  font-size: 15px;
+  color: #393939;
+  line-height: 2;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.label-inputq {
+  font-family: Montserrat-SemiBold;
+  font-size: 14px;
+  color: #393939;
+  /* line-height: 1.5; */
+  text-transform: uppercase;
+}
+
 .label-inputx2 {
   font-family: Montserrat-SemiBold;
   font-size: 18px;
@@ -311,6 +339,13 @@ iframe {
   color: #555555;
   line-height: 1.2;
   padding-right: 15px;
+}
+
+.options{
+  height:20px; 
+  width:20px; 
+  vertical-align: middle;
+  cursor: pointer;
 }
 
 

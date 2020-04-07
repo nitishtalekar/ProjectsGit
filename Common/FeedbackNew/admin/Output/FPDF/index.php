@@ -19,7 +19,7 @@
       } 
     </style>
   </head>
-  <body>
+<body>
     
     
     <div class="d-flex justify-content-center align-items-center" id="main">
