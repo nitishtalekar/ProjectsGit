@@ -1,4 +1,4 @@
-<?php 
+<?php
 require($_SERVER['DOCUMENT_ROOT']."/Shreejit/dbconnect.php");
 $_SESSION['title'] = 'Index';
  ?>
@@ -44,37 +44,80 @@ $_SESSION['title'] = 'Index';
 
 <?php include($_SERVER['DOCUMENT_ROOT']."/Shreejit/include/header.php")?>
 
+
+
   <!-- ======= Hero Section ======= -->
   <section id="hero" class="d-flex justify-cntent-center align-items-center">
     <div id="heroCarousel" class="container carousel carousel-fade" data-ride="carousel">
 
       <!-- Slide 1 -->
-      <div class="carousel-item active">
+
+      <?php
+
+      $query = "SELECT * FROM home WHERE home_tag='1'";
+      $results = mysqli_query($db, $query);
+      $row = mysqli_fetch_assoc($results);
+
+       ?>
+
+       <div class="carousel-item active">
+         <div class="carousel-container">
+           <!-- <img class="animated fadeInDown logo" src="/Shreejit/assets/img/Logo.png" alt=""> -->
+           <h2 class="animated fadeInDown text-uppercase"><?= $row['home_title']; ?></h2>
+           <p class="animated fadeInUp"><?= $row['home_description']; ?></p>
+           <!-- <a href="" class="btn-get-started animated fadeInUp">Read More</a> -->
+         </div>
+       </div>
+
+      <!-- <div class="carousel-item active">
         <div class="carousel-container">
-          <!-- <img class="animated fadeInDown logo" src="/Shreejit/assets/img/Logo.png" alt=""> -->
+          <img class="animated fadeInDown logo" src="/Shreejit/assets/img/Logo.png" alt="">
           <h2 class="animated fadeInDown"><span>WELCOME TO</span><br> YOGA AYURVEDA KARONA</h2>
           <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-          <!-- <a href="" class="btn-get-started animated fadeInUp">Read More</a> -->
+          <a href="" class="btn-get-started animated fadeInUp">Read More</a>
         </div>
-      </div>
+      </div> -->
 
       <!-- Slide 2 -->
-      <div class="carousel-item">
+
+      <?php
+
+      $query = "SELECT * FROM home WHERE home_tag='2'";
+      $results = mysqli_query($db, $query);
+      while($row = mysqli_fetch_assoc($results)){
+
+      ?>
+
+        <div class="carousel-item">
+          <div class="carousel-container">
+            <h2 class="animated fadeInDown text-uppercase"><?= $row['home_title']; ?></h2>
+            <p class="animated fadeInUp"><?= $row['home_description']; ?></p>
+            <a href="<?= $row['home_link']; ?>" class="btn-get-started animated fadeInUp">Read More</a>
+          </div>
+        </div>
+
+        <?php
+
+      }
+
+      ?>
+
+      <!-- <div class="carousel-item">
         <div class="carousel-container">
           <h2 class="animated fadeInDown">Recent Events 1</h2>
           <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
           <a href="" class="btn-get-started animated fadeInUp">Read More</a>
         </div>
-      </div>
-      
+      </div> -->
+
       <!-- Slide 2 -->
-      <div class="carousel-item">
+      <!-- <div class="carousel-item">
         <div class="carousel-container">
           <h2 class="animated fadeInDown">Recent Events 2</h2>
           <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
           <a href="" class="btn-get-started animated fadeInUp">Read More</a>
         </div>
-      </div>
+      </div> -->
 
       <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
@@ -91,11 +134,36 @@ $_SESSION['title'] = 'Index';
 
   <main id="main">
 
+
+
     <!-- ======= Services Section ======= -->
     <section class="services">
       <div class="container">
-
         <div class="row">
+
+        <?php
+
+        $query = "SELECT * FROM home WHERE home_tag='3'";
+        $results = mysqli_query($db, $query);
+        while($row = mysqli_fetch_assoc($results)){
+
+        ?>
+
+          <div class="col-md-12 col-lg-6 d-flex align-items-stretch" data-aos="fade-up">
+            <div class="icon-box icon-box-green">
+              <div class="icon"><i class="<?= $row['home_image']; ?>"></i></div>
+              <h4 class="title"><a href="<?= $row['home_link']; ?>"><?= $row['home_title']; ?></a></h4>
+              <p class="description"><?= $row['home_description']; ?></p>
+            </div>
+          </div>
+
+          <?php
+
+            }
+
+          ?>
+        </div>
+        <!-- <div class="row">
           <div class="col-md-12 col-lg-6 d-flex align-items-stretch" data-aos="fade-up">
             <div class="icon-box icon-box-green">
               <div class="icon"><i class="fa fa-leaf"></i></div>
@@ -110,7 +178,7 @@ $_SESSION['title'] = 'Index';
               <h4 class="title"><a href="">Our Goals</a></h4>
               <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
             </div>
-          </div>
+          </div> -->
 
           <!-- <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
             <div class="icon-box icon-box-green">
@@ -138,7 +206,15 @@ $_SESSION['title'] = 'Index';
       <div class="container">
 
         <div class="row">
-          
+
+          <?php
+
+            $query = "SELECT * FROM home WHERE home_tag='4'";
+            $results = mysqli_query($db, $query);
+            while($row = mysqli_fetch_assoc($results)){
+
+          ?>
+
           <div class="col-lg-8 video-box">
             <img src="/Shreejit/assets/img/Video.png" class="img-fluid" alt="">
             <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-gall="gall-video" data-vbtype="video" data-autoplay="true"></a>
@@ -149,10 +225,10 @@ $_SESSION['title'] = 'Index';
             <div class="icon-box">
               <!-- <div class="icon"><i class="bx bx-fingerprint"></i></div> -->
               <center>
-              <h4 class="title"><a href="">Introduction</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <h4 class="title"><a href="<?= $row['home_link']; ?>"><?= $row['home_title']; ?></a></h4>
+              <p class="description"><?= $row['home_description']; ?></p>
+              <!-- <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p> -->
             </center>
             </div>
 
@@ -163,7 +239,44 @@ $_SESSION['title'] = 'Index';
             </div> -->
 
           </div>
+
+          <?php
+
+            }
+
+          ?>
+
         </div>
+
+        <!-- <div class="row">
+
+
+
+          <div class="col-lg-8 video-box">
+            <img src="/Shreejit/assets/img/Video.png" class="img-fluid" alt="">
+            <a href="https://www.youtube.com/watch?v=jDDaplaOz7Q" class="venobox play-btn mb-4" data-gall="gall-video" data-vbtype="video" data-autoplay="true"></a>
+          </div>
+
+          <div class="col-lg-4 d-flex flex-column justify-content-center p-5">
+
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-fingerprint"></i></div>
+              <center>
+              <h4 class="title"><a href="">Introduction</a></h4>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
+            </center>
+            </div>
+
+            <div class="icon-box">
+              <div class="icon"><i class="bx bx-gift"></i></div>
+              <h4 class="title"><a href="">Nemo Enim</a></h4>
+              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
+            </div>
+
+          </div>
+        </div> -->
 
       </div>
     </section><!-- End Why Us Section -->
@@ -172,12 +285,92 @@ $_SESSION['title'] = 'Index';
     <section class="features">
       <div class="container">
 
+        <?php
+
+          $query = "SELECT * FROM home WHERE home_tag='5'";
+          $results = mysqli_query($db, $query);
+          while($row = mysqli_fetch_assoc($results)){
+
+        ?>
+
         <div class="section-title">
+          <h2><?= $row['home_title']; ?></h2>
+          <p><?= $row['home_description']; ?></p>
+        </div>
+
+        <?php
+
+          }
+
+        ?>
+
+        <!-- <div class="section-title">
           <h2>What the Yoga Ayurveda Karona Offers</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-        
+        </div> -->
+
+
+        <?php
+
+          $query = "SELECT * FROM home WHERE home_tag='6'";
+          $results = mysqli_query($db, $query);
+          $i = 0;
+          while($row = mysqli_fetch_assoc($results)){
+            $img_id = $row['home_image'];
+            $query = "SELECT * FROM images WHERE image_id='$img_id'";
+            $r = mysqli_query($db, $query);
+            $img = mysqli_fetch_assoc($r);
+            if ($i % 2 == 0){
+
+        ?>
+
         <div class="row" data-aos="fade-up">
+          <div class="col-md-5">
+            <img src="<?= $img['image_path']; ?>" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-2">
+            <h1><?= $row['home_title']; ?></h1>
+            <p>
+              <?= $row['home_description']; ?>
+            </p>
+            <a href="<?= $row['home_link']; ?>" class="btn-get-started animated fadeInUp">Explore</a>
+          </div>
+        </div>
+
+        <?php
+
+          }
+          else{
+
+
+         ?>
+
+        <div class="row" data-aos="fade-up">
+          <div class="col-md-5 order-1 order-md-2">
+            <img src="<?= $img['image_path']; ?>" class="img-fluid" alt="">
+          </div>
+          <div class="col-md-7 pt-2 order-2 order-md-1">
+            <h1><?= $row['home_title']; ?></h1>
+            <p>
+              <?= $row['home_description']; ?>
+            </p>
+            <a href="<?= $row['home_link']; ?>" class="btn-get-started animated fadeInUp">Explore</a>
+          </div>
+        </div>
+
+        <?php
+            }
+
+            $i++;
+
+          }
+
+        ?>
+
+
+
+
+        <!-- <div class="row" data-aos="fade-up">
           <div class="col-md-5">
             <img src="/Shreejit/assets/img/features/Default.png" class="img-fluid" alt="">
           </div>
@@ -245,10 +438,10 @@ $_SESSION['title'] = 'Index';
               velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
               culpa qui officia deserunt mollit anim id est laborum
             </p>
-            <a href="" class="btn-get-started animated fadeInUp">Explore</a>  
+            <a href="" class="btn-get-started animated fadeInUp">Explore</a>
           </div>
         </div>
-        
+
         <div class="row" data-aos="fade-up">
           <div class="col-md-5">
             <img src="/Shreejit/assets/img/features/Default.png" class="img-fluid" alt="">
@@ -265,13 +458,13 @@ $_SESSION['title'] = 'Index';
             </ul>
             <a href="" class="btn-get-started animated fadeInUp">Explore</a>
           </div>
-        </div>
+        </div> -->
 
       </div>
     </section><!-- End Features Section -->
 
   </main><!-- End #main -->
-  
+
   <?php include($_SERVER['DOCUMENT_ROOT']."/Shreejit/include/footer.php")?>
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
