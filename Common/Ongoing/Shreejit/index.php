@@ -48,8 +48,7 @@ $_SESSION['title'] = 'Index';
       $querybg = "SELECT * FROM images WHERE image_id='$imgid';";
       $resultsbg = mysqli_query($db, $querybg);
       $rowbg = mysqli_fetch_assoc($resultsbg);
-      
-  
+
    ?>
   
   <style media="screen">
@@ -90,6 +89,14 @@ $_SESSION['title'] = 'Index';
        <div class="carousel-item active">
          <div class="carousel-container">
            <!-- <img class="animated fadeInDown logo" src="/Shreejit/assets/img/Logo.png" alt=""> -->
+           <?php 
+           $imglogo = $row['home_image'];
+           $querylogo = "SELECT * FROM images WHERE image_id='$imglogo';";
+           $resultslogo = mysqli_query($db, $querylogo);
+           $rowlogo = mysqli_fetch_assoc($resultslogo);
+            ?>
+           <img src="<?= $rowlogo['image_path'] ?>" alt="" style="width:20vh">
+           <br><br>
            <h2 class="animated fadeInDown text-uppercase"><?= $row['home_title']; ?></h2>
            <p class="animated fadeInUp"><?= $row['home_description']; ?></p>
            <!-- <a href="" class="btn-get-started animated fadeInUp">Read More</a> -->

@@ -610,8 +610,8 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   background: #008181;
 }
 .sendbtn:hover{
-  /* background: #68A4C4;
-  color: #fff; */
+  /* background: #68A4C4; */
+  color: #fff;
   opacity: 0.7;
   text-decoration: none;
 }

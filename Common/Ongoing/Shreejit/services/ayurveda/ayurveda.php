@@ -87,7 +87,7 @@
             <div class="col-lg-6 pt-4 pt-lg-0" style="text-align:right;">
               <h3><?= $row['ayurveda_longintro']; ?></h3>
               <p class="font-italic">
-                <a href="<?= $pdf['pdf_path']; ?>" target="blank"> Read PDF </a>
+                <a href="<?= $pdf['pdf_path']; ?>" class="sendbtn" target="blank"> Read PDF </a>
               </p>
             </div>
             <div class="col-lg-6">

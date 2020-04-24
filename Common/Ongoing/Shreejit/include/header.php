@@ -19,6 +19,9 @@ if($_SESSION['title'] == 'Contact'){
   $th = '';$tg = '';$ts = '';$tt = '';$tb = '';$tc = 'class="active"';$transparent = '';
 }
 if($_SESSION['title'] == 'Service'){
+  $th = '';$tg = '';$ts = 'class="active"';$tt = '';$tb = '';$tc = '';$transparent = '';
+}
+if($_SESSION['title'] == 'Policy'){
   $th = '';$tg = '';$ts = '';$tt = '';$tb = '';$tc = '';$transparent = '';
 }
  ?>

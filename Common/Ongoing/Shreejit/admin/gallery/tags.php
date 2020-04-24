@@ -1,9 +1,52 @@
-<?php 
-require($_SERVER['DOCUMENT_ROOT']."/Shreejit/dbconnect.php");
-if(empty($_SESSION['admin'])){
-  header('location:index.php');
-}
-$_SESSION['page'] = 'gallery';
+<?php
+  require($_SERVER['DOCUMENT_ROOT']."/Shreejit/dbconnect.php");
+  if(empty($_SESSION['admin'])){
+    header('location:index.php');
+  }
+  $_SESSION['page'] = 'gallery';
+
+  $tag_qu = "SELECT * from tags WHERE tag_page='gallery';";
+  $restag = mysqli_query($db, $tag_qu);
+  $rowtag = mysqli_fetch_assoc($restag);
+  $tagnames = $rowtag['tag_names'];
+  $taglist = explode(';',$tagnames);
+
+  if(isset($_POST['gallery_addtag'])){
+    $sec = mysqli_real_escape_string($db, $_POST['addtag']);
+    array_push($taglist,$sec);
+    $tagstr = join(";",$taglist);
+    $tag_update = "UPDATE tags SET tag_names='$tagstr' WHERE tag_page='gallery';";
+    mysqli_query($db, $tag_update);
+    echo "<script>alert('Added');</script>";
+    header('location:tags.php');
+  }
+
+  if(isset($_POST['gallery_deletetag'])){
+    for($i=0;$i<count($taglist);$i++){
+      if(isset($_POST['deletetag_'.$i])){
+        if (($key = array_search($_POST['deletetag_'.$i], $taglist)) !== false) {
+            unset($taglist[$key]);
+        }
+        $tagstr = join(";",$taglist);
+        $tag_update = "UPDATE tags SET tag_names='$tagstr' WHERE tag_page='gallery';";
+        mysqli_query($db, $tag_update);
+        echo "<script>alert('Removed');</script>";
+        header('location:tags.php');
+      }
+    }
+  }
+
+  if(isset($_POST['tag'])){
+    $tag = mysqli_real_escape_string($db, $_POST['tag']);
+    echo $tag;
+    if(!empty($_POST['iamges'])) {
+      foreach($_POST['images'] as $value){
+        // $qu = "INSERT INTO gallery(gallery_tag) VALUES ('$value') where ;";
+        // mysqli_query($db, $qu);
+        // header('location: gallery.php');
+      }
+    }
+  }
 ?>
 <html lang="en">
 
@@ -47,11 +90,11 @@ $_SESSION['page'] = 'gallery';
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
-          
+
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h5 class="h5 mb-0 text-gray-800 text-capitalize">Add/Delete Tags</h5>
           </div>
-          
+
           <div class="row">
               <div class="col-lg-12">
                 <div class="card shadow mb-4">
@@ -60,34 +103,29 @@ $_SESSION['page'] = 'gallery';
                   </div>
                   <div class="card-body">
                     <div class="d-flex mb-3" style="align-items:center;">
-                      <?php 
-                      $tag_qu = "SELECT * from tags WHERE tag_page='gallery';";
-                      $restag = mysqli_query($db, $tag_qu);
-                      $rowtag = mysqli_fetch_assoc($restag);
-                      $tagnames = $rowtag['tag_names'];
-                      $taglist = explode(';',$tagnames);
+                      <?php
                       for($i=0;$i<count($taglist);$i++){
                         echo '<label class="text-uppercase" style="font-size:15px;">'.$taglist[$i].'&nbsp&nbsp&nbsp</label>';
                       }
                        ?>
                       </div>
-                    <form action="home.php" method="post">
+                    <form action="tags.php" method="post">
                       <div class="d-flex justify-content-around">
-                          <input type="text" name="title" class="form-control bg-light border-0 small" style="width:80%;" placeholder="Enter Tag Name">
-                          <button class="btn btn-primary" type="submit" name = 'section'>
+                          <input type="text" name="addtag" class="form-control bg-light border-0 small" style="width:80%;" placeholder="Enter Tag Name">
+                          <button class="btn btn-primary" type="submit" name = "gallery_addtag">
                             Add New Tag
                           </button>
                       </div>
                     </form>
-                    <form action="home.php" method="post">
+                    <form action="tags.php" method="post">
                       <div class="d-flex justify-content-center">
-                          <?php 
+                          <?php
                           for($i=0;$i<count($taglist);$i++){
-                            echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="checkbox" name="media" value="'.$taglist[$i].'">&nbsp&nbsp'.$taglist[$i].'</label>'; 
+                            echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="checkbox" name="deletetag_'.$i.'" value="'.$taglist[$i].'">&nbsp&nbsp'.$taglist[$i].'</label>';
                           }
-                           ?>                          
+                           ?>
                       </div>
-                      <center><button class="btn btn-primary" type="submit" name = 'section'>
+                      <center><button class="btn btn-primary" type="submit" name = 'gallery_deletetag'>
                         Remove
                       </button></center>
                     </form>
@@ -95,7 +133,7 @@ $_SESSION['page'] = 'gallery';
                 </div>
               </div>
             </div>
-          
+
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h5 class="h5 mb-0 text-gray-800">Tags</h5>
           </div>
@@ -103,8 +141,8 @@ $_SESSION['page'] = 'gallery';
           <!-- Page Heading -->
           <!-- <h1 class="h3 mb-4 text-gray-800">Blank Page</h1> -->
           <div class="row">
-            
-              <?php 
+
+              <?php
               $tagq = "SELECT DISTINCT gallery_tag FROM gallery;";
               $tagres = mysqli_query($db, $tagq);
               while($tagrow = mysqli_fetch_assoc($tagres)){
@@ -117,14 +155,14 @@ $_SESSION['page'] = 'gallery';
                         <a href="#collapse2<?=$tag?>" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                           <h6 class="m-0 font-weight-bold text-primary text-uppercase text-uppercase">Images in <?=$tag?></h6>
                         </a>
-                        <?php 
+                        <?php
                         $tagq2 = "SELECT * FROM gallery WHERE gallery_tag = '$tag';";
                         $tagres2 = mysqli_query($db, $tagq2);
                         ?>
                         <!-- Card Content - Collapse -->
                         <div class="collapse" id="collapse2<?=$tag?>">
                           <div class="img-card-body pt-2" style="height:25vh; overflow-x: hidden; overflow-y:auto;">
-                            <?php 
+                            <?php
                             while($rowimg = mysqli_fetch_assoc($tagres2)){
                               $img_id = $rowimg['gallery_image'];
                               $imgq = "SELECT * FROM images WHERE image_id='$img_id';";
@@ -139,20 +177,20 @@ $_SESSION['page'] = 'gallery';
                       </div>
                     </div>
               <?php  }} ?>
-            
+
           </div>
-        
-  
-            <?php 
+
+
+            <?php
               $qimg = "SELECT * FROM gallery WHERE gallery_tag = 'None' ORDER BY gallery_id DESC";
               $resimg = mysqli_query($db, $qimg);
              ?>
-             
+
              <div class="d-sm-flex align-items-center justify-content-between mb-4">
                <h5 class="h5 mb-0 text-gray-800">Add Media</h5>
              </div>
-             
-        <div class="row"> 
+
+        <div class="row">
              <div class="col-lg-12">
                <form action="tags.php" method="post">
                    <div class="card shadow mb-4">
@@ -167,22 +205,22 @@ $_SESSION['page'] = 'gallery';
                    <div class="col-lg-12">
                                  <div class="card mb-4 mx-2 mt-1">
                                      <div class="img-card-body" style="height:40vh; overflow-x: hidden; overflow-y:auto;">
-                                 <?php 
+                                 <?php
                                  while($rowimg = mysqli_fetch_assoc($resimg)){
                                    $im = $rowimg['gallery_image'];
                                    $imgq = "SELECT * FROM images WHERE image_id = '$im';";
                                    $imgres = mysqli_query($db, $imgq);
                                    $imgrow = mysqli_fetch_assoc($imgres);
                                    $img = $imgrow['image_path'];
-                                   echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="checkbox" name="media" value="'.$imgrow['image_id'].'" required>&nbsp&nbsp<img src="'.$img.'" alt="" style="width:150px"></label>';                    
+                                   echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="checkbox" name="images[]" value="'.$imgrow['image_id'].'" >&nbsp&nbsp<img src="'.$img.'" alt="" style="width:150px"></label>';
                                  }
                                   ?>
                                <!-- </div> -->
                               </div>
                             </div>
-                            
+
                           </div>
-                          <?php 
+                          <?php
                           $tagq = "SELECT DISTINCT gallery_tag FROM gallery;";
                           $tagres = mysqli_query($db, $tagq);
                           while($tagrow = mysqli_fetch_assoc($tagres)){
@@ -190,22 +228,22 @@ $_SESSION['page'] = 'gallery';
                             if($tag != 'None'){
                            ?>
                             <div class="col-lg-3 mx-2 mb-3">
-                              <button class="btn btn-primary text-uppercase" type="submit" name="tag" style="width:100%">
-                                Add to <?=$tag?>
+                              <button class="btn btn-primary text-uppercase" type="submit" name="tag" value="<?= $tag ?>" style="width:100%">
+                                Add to <?= $tag ?>
                               </button>
                             </div>
                           <?php }} ?>
-                          
-                        </div>                                            
+
+                        </div>
                  </div>
                  </form>
                  </div>
                 </div>
             </div>
-             
+
         </div>
-            
-        
+
+
         </div>
         <!-- /.container-fluid -->
 

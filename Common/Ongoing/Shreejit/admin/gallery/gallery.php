@@ -1,9 +1,29 @@
-<?php 
-require($_SERVER['DOCUMENT_ROOT']."/Shreejit/dbconnect.php");
-if(empty($_SESSION['admin'])){
-  header('location:index.php');
-}
-$_SESSION['page'] = 'gallery';
+<?php
+  require($_SERVER['DOCUMENT_ROOT']."/Shreejit/dbconnect.php");
+  if(empty($_SESSION['admin'])){
+    header('location:index.php');
+  }
+  $_SESSION['page'] = 'gallery';
+
+  if(isset($_POST['gallery_addimages'])){
+    if(!empty($_POST['addimages'])) {
+      foreach($_POST['addimages'] as $value){
+        $qu = "INSERT INTO gallery(gallery_image) VALUES ('$value');";
+        mysqli_query($db, $qu);
+        header('location: gallery.php');
+      }
+    }
+  }
+
+  if(isset($_POST['gallery_deleteimages'])){
+    if(!empty($_POST['deleteimages'])) {
+      foreach($_POST['deleteimages'] as $value){
+        $qu = "DELETE FROM gallery WHERE gallery_image = '$value';";
+        mysqli_query($db, $qu);
+        header('location: gallery.php');
+      }
+    }
+  }
 ?>
 <html lang="en">
 
@@ -52,12 +72,12 @@ $_SESSION['page'] = 'gallery';
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h5 class="h5 mb-0 text-gray-800">Gallery Media</h5>
           </div>
-          
-          <?php     
+
+          <?php
             $qimg = "SELECT * FROM images ORDER BY image_id DESC";
             $resimg = mysqli_query($db, $qimg);
            ?>
-           
+
           <div class="row">
             <div class="col-lg-12">
               <form action="gallery.php" method="post">
@@ -68,10 +88,10 @@ $_SESSION['page'] = 'gallery';
               </a>
               <div class="collapse" id="collapseAdd"> -->
                 <div class="img-card-body" style="height:40vh; overflow-x: hidden; overflow-y:auto;">
-                  <?php 
+                  <?php
                   while($rowimg = mysqli_fetch_assoc($resimg)){
                     $img = $rowimg['image_path'];
-                        echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="checkbox" name="media" value="'.$rowimg['image_id'].'" required>&nbsp&nbsp<img src="'.$img.'" alt="" style="width:150px"></label>';                    
+                        echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="checkbox" name="addimages[]" value="'.$rowimg['image_id'].'">&nbsp&nbsp<img src="'.$img.'" alt="" style="width:150px"></label>';
                   }
                    ?>
                 <!-- </div> -->
@@ -79,19 +99,19 @@ $_SESSION['page'] = 'gallery';
             </div>
             </div>
               <div class="col-lg-12">
-                  <button class="btn btn-primary mb-3" type="submit" name = 'home_bg' style="width:100%">
+                  <button class="btn btn-primary mb-3" type="submit" name = 'gallery_addimages' style="width:100%">
                     Add to Gallery
                   </button>
             </form>
             </div>
-              
+
              </div>
-             
-             <?php     
+
+             <?php
                $qimg = "SELECT * FROM gallery ORDER BY gallery_id DESC";
                $resimg = mysqli_query($db, $qimg);
               ?>
-             
+
              <div class="row">
                <div class="col-lg-12">
                  <form action="gallery.php" method="post">
@@ -102,14 +122,14 @@ $_SESSION['page'] = 'gallery';
                  </a>
                  <div class="collapse" id="collapseDel"> -->
                    <div class="img-card-body" style="height:40vh; overflow-x: hidden; overflow-y:auto;">
-                     <?php 
+                     <?php
                      while($rowimg = mysqli_fetch_assoc($resimg)){
                        $img_id = $rowimg['gallery_image'];
                        $imgq = "SELECT * FROM images WHERE image_id='$img_id';";
                        $imgres = mysqli_query($db, $imgq);
                        $imgrow = mysqli_fetch_assoc($imgres);
                        $img = $imgrow['image_path'];
-                           echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="checkbox" name="media" value="'.$imgrow['image_id'].'" required>&nbsp&nbsp<img src="'.$img.'" alt="" style="width:150px"></label>';                    
+                           echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="checkbox" name="deleteimages[]" value="'.$imgrow['image_id'].'">&nbsp&nbsp<img src="'.$img.'" alt="" style="width:150px"></label>';
                      }
                       ?>
                    <!-- </div> -->
@@ -117,17 +137,17 @@ $_SESSION['page'] = 'gallery';
                </div>
                </div>
                  <div class="col-lg-12">
-                     <button class="btn btn-primary mb-3" type="submit" name = 'home_bg' style="width:100%">
+                     <button class="btn btn-primary mb-3" type="submit" name = 'gallery_deleteimages' style="width:100%">
                        Delete from Gallery
                      </button>
                </form>
                </div>
-                 
+
                 </div>
-            
-          
-          
-          
+
+
+
+
 
         </div>
         <!-- /.container-fluid -->

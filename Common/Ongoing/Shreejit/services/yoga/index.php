@@ -50,9 +50,9 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  
-  <?php 
-  
+
+  <?php
+
       $querybg1 = "SELECT * FROM background WHERE bg_page='yoga'";
       $resultsbg1 = mysqli_query($db, $querybg1);
       $rowbg1 = mysqli_fetch_assoc($resultsbg1);
@@ -61,7 +61,7 @@
       $resultsbg = mysqli_query($db, $querybg);
       $rowbg = mysqli_fetch_assoc($resultsbg);
    ?>
-  
+
   <style media="screen">
   #herohead::after {
     content: '';
@@ -69,11 +69,11 @@
     top: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(to right, rgba(0, 128, 129, 0.8), rgba(30, 67, 86, 0.6)), url("<?=$rowbg['image_path']?>") center top no-repeat;
+    background: linear-gradient(to right, rgba(0, 128, 129, 0.8), rgba(30, 67, 86, 0.6)), url("<?= $rowbg['image_path'] ?>") center top no-repeat;
     z-index: 0;
   }
   </style>
-  
+
 </head>
 
 <body>
@@ -81,10 +81,10 @@
 <?php include($_SERVER['DOCUMENT_ROOT']."/Shreejit/include/header.php")?>
 
   <!-- ======= Hero Section ======= -->
-  <section id="herohead" class="d-flex justify-cntent-center align-items-center">
+  <section id="herohead" class="d-flex justify-content-center align-items-center">
         <div class="head-container">
           <h2 class="animated fadeInDown text-uppercase"><?= $s_title ?></h2>
-          <p class="animated fadeInUp"><?= $bg['bg_description']; ?></p>
+          <p class="animated fadeInUp"><?= $rowbg1['bg_description']; ?></p>
           <!-- <a href="" class="btn-get-started animated fadeInUp">Read More</a> -->
         </div>
 
