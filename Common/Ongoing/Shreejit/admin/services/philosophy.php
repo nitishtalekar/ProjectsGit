@@ -127,6 +127,75 @@ for($i=0;$i<$cnt;$i++){
         <div class="container-fluid">
           
           <div class="d-sm-flex align-items-center justify-content-between mb-4">
+            <h5 class="h5 mb-0 text-gray-800 text-capitalize">philosophy Background</h5>
+          </div>
+          
+          <?php
+            $bg_q = "SELECT * FROM background WHERE bg_page = 'philosophy'";
+            $bg_res = mysqli_query($db, $bg_q);
+            $bg = mysqli_fetch_assoc($bg_res);
+            $ch_id = $bg['bg_img'];
+            $cimg_qu = "SELECT * FROM images WHERE image_id = '$ch_id'";
+            $cresimg = mysqli_query($db, $cimg_qu);
+            $checkrow = mysqli_fetch_assoc($cresimg);
+            $checked_img = $checkrow['image_path'];
+            $qimg = "SELECT * FROM images ORDER BY image_id DESC";
+            $resimg = mysqli_query($db, $qimg);
+           ?>
+        <div class="row">
+            <div class="col-lg-11">
+              <form action="philosophy.php" method="post">
+            <div class="card shadow mb-4">
+              <!-- Card Header - Accordion -->
+              <a href="#collapseBg" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                <h6 class="m-0 font-weight-bold text-primary text-uppercase text-uppercase">Select Background Image</h6>
+              </a>
+              <!-- Card Content - Collapse -->
+              <div class="collapse" id="collapseBg">
+                <div class="img-card-body" style="height:25vh; overflow-x: hidden; overflow-y:auto;">
+                  <?php
+                  echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="radio" checked="checked" name="philosophybg" value="'.$bg['bg_img'].'" required>&nbsp&nbsp<img src="'.$checked_img.'" alt="" style="width:200px"></label>';
+                  while($rowimg = mysqli_fetch_assoc($resimg)){
+                    $img = $rowimg['image_path'];
+                    if( $bg['bg_img'] != $rowimg['image_id']){
+                        echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="radio" name="philosophybg" value="'.$rowimg['image_id'].'" required>&nbsp&nbsp<img src="'.$img.'" alt="" style="width:200px"></label>';
+                    }
+
+                  }
+                   ?>
+                </div>
+              </div>
+            </div>
+            </div>
+            <div class="col-lg-1">
+            <button class="btn btn-primary mb-3" type="submit" name = 'philosophy_bg'>
+              Update
+            </button>
+          </form>
+          </div>
+      </div>
+      
+      <div class="row">
+          <div class="col-lg-12">
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary text-uppercase">TAGLINE</h6>
+              </div>
+              <div class="card-body">
+                <form action="philosophy.php" method="post">
+                  <div class="d-flex justify-content-around">
+                      <textarea name="description" class="form-control bg-light border-0 small" style="width:80%;height:8vh"> <?=$bg['bg_description']?> </textarea>
+                      <button class="btn btn-primary" type="submit" name="philosophy_description">
+                        Update
+                      </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+          
+          <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h5 class="h5 mb-0 text-gray-800 text-capitalize">Add/Delete Section In philosophy</h5>
           </div>
           

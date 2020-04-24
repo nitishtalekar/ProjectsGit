@@ -83,10 +83,9 @@ $_SESSION['page'] = 'gallery';
                       <div class="d-flex justify-content-center">
                           <?php 
                           for($i=0;$i<count($taglist);$i++){
-                            echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="checkbox" name="media" value="'.$taglist[$i].'" required>&nbsp&nbsp'.$taglist[$i].'</label>'; 
+                            echo '&nbsp&nbsp<label>&nbsp&nbsp<input class="options" type="checkbox" name="media" value="'.$taglist[$i].'">&nbsp&nbsp'.$taglist[$i].'</label>'; 
                           }
-                           ?>
-                          
+                           ?>                          
                       </div>
                       <center><button class="btn btn-primary" type="submit" name = 'section'>
                         Remove
