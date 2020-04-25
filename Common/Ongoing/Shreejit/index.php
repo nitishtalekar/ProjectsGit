@@ -11,9 +11,21 @@ $_SESSION['title'] = 'Index';
   <title>YogaAyurveda - Index</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
+  
+  <?php
+
+    $queryl = "SELECT * FROM home WHERE home_tag='0'";
+    $resultsl = mysqli_query($db, $queryl);
+    $rowl = mysqli_fetch_assoc($resultsl);
+    $img_idlogos = $rowl['home_image'];
+    $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+    $rlogos = mysqli_query($db, $querylogos);
+    $imglogos = mysqli_fetch_assoc($rlogos);
+
+   ?>
 
   <!-- Favicons -->
-  <link href="/Shreejit/assets/img/favicon.png" rel="icon">
+  <link href="<?=$imglogos['image_path']?>" rel="icon">
   <link href="/Shreejit/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -136,23 +148,6 @@ $_SESSION['title'] = 'Index';
 
       ?>
 
-      <!-- <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animated fadeInDown">Recent Events 1</h2>
-          <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-          <a href="" class="btn-get-started animated fadeInUp">Read More</a>
-        </div>
-      </div> -->
-
-      <!-- Slide 2 -->
-      <!-- <div class="carousel-item">
-        <div class="carousel-container">
-          <h2 class="animated fadeInDown">Recent Events 2</h2>
-          <p class="animated fadeInUp">Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel. Minus et tempore modi architecto.</p>
-          <a href="" class="btn-get-started animated fadeInUp">Read More</a>
-        </div>
-      </div> -->
-
       <a class="carousel-control-prev" href="#heroCarousel" role="button" data-slide="prev">
         <span class="carousel-control-prev-icon bx bx-chevron-left" aria-hidden="true"></span>
         <span class="sr-only">Previous</span>
@@ -184,7 +179,7 @@ $_SESSION['title'] = 'Index';
         ?>
 
           <div class="col-md-12 col-lg-6 d-flex align-items-stretch" data-aos="fade-up">
-            <div class="icon-box icon-box-green">
+            <div class="icon-box icon-box-teal">
               <div class="icon"><i class="<?= $row['home_image']; ?>"></i></div>
               <h4 class="title"><a href="<?= $row['home_link']; ?>"><?= $row['home_title']; ?></a></h4>
               <p class="description"><?= $row['home_description']; ?></p>
@@ -197,39 +192,7 @@ $_SESSION['title'] = 'Index';
 
           ?>
         </div>
-        <!-- <div class="row">
-          <div class="col-md-12 col-lg-6 d-flex align-items-stretch" data-aos="fade-up">
-            <div class="icon-box icon-box-green">
-              <div class="icon"><i class="fa fa-leaf"></i></div>
-              <h4 class="title"><a href="">Our Purpose</a></h4>
-              <p class="description">Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-            </div>
-          </div>
-
-          <div class="col-md-12 col-lg-6 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="100">
-            <div class="icon-box icon-box-green">
-              <div class="icon"><i class="fa fa-globe"></i></div>
-              <h4 class="title"><a href="">Our Goals</a></h4>
-              <p class="description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur</p>
-            </div>
-          </div> -->
-
-          <!-- <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-box icon-box-green">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4 class="title"><a href="">Magni Dolores</a></h4>
-              <p class="description">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
-            </div>
-          </div>
-
-          <div class="col-md-6 col-lg-3 d-flex align-items-stretch" data-aos="fade-up" data-aos-delay="200">
-            <div class="icon-box icon-box-blue">
-              <div class="icon"><i class="bx bx-world"></i></div>
-              <h4 class="title"><a href="">Nemo Enim</a></h4>
-              <p class="description">At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-            </div>
-          </div> -->
-
+      
         </div>
 
       </div>

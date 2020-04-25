@@ -3,6 +3,20 @@ require($_SERVER['DOCUMENT_ROOT']."/Shreejit/dbconnect.php");
 if(empty($_SESSION['admin'])){
   header('location:index.php');
 }
+if(isset($_POST['logout'])){
+  session_destroy();
+  header('location:/Shreejit/admin/index.php');
+}
+if(isset($_POST['change_pwd'])){
+  $new = mysqli_real_escape_string($db, $_POST['newpwd']);
+  $cnew = mysqli_real_escape_string($db, $_POST['cnewpwd']);
+  if($new == $cnew){
+    $adn = $_SESSION['admin_name'];
+    $pwd_q = "UPDATE admin SET password='$new' WHERE admin_name = '$adn';";
+    mysqli_query($db,$pwd_q);
+  }
+}
+
 $_SESSION['page'] = 'blog';
 ?>
 <html lang="en">
@@ -15,7 +29,20 @@ $_SESSION['page'] = 'blog';
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin - YogaAyurveda</title>
+<?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">  <title>Admin - YogaAyurveda</title>
 
   <!-- Custom fonts for this template-->
   <link href="/Shreejit/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -82,25 +109,6 @@ $_SESSION['page'] = 'blog';
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="/Shreejit/assets/vendor/jquery/jquery.min.js"></script>

@@ -16,7 +16,20 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/Shreejit/assets/img/favicon.png" rel="icon">
+  <?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">
   <link href="/Shreejit/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -117,15 +130,16 @@
                 $query = "SELECT * FROM meditation GROUP BY meditation_tag;";
                 $results = mysqli_query($db, $query);
                 while($row = mysqli_fetch_assoc($results)){
+                  if($row['meditation_tag'] != 'None'){
 
                ?>
 
-              <li data-filter=".filter-<?= $row['meditation_tag']; ?>"><?= $row['meditation_tag']; ?></li>
+              <li class="text-capitalize" data-filter=".filter-<?= $row['meditation_tag']; ?>"><?= $row['meditation_tag']; ?></li>
               <!-- <li data-filter=".filter-course">Course</li>
               <li data-filter=".filter-t">Treatment</li> -->
               <?php
 
-                }
+            }}
 
               ?>
             </ul>
@@ -146,16 +160,23 @@
               $query = "SELECT * FROM images WHERE image_id='$img_id'";
               $r = mysqli_query($db, $query);
               $img = mysqli_fetch_assoc($r);
+              if($row['meditation_tag'] == 'None'){
+                $service_tag = 'meditation';
+                echo '<div class="col-lg-4 col-md-6">';
+              }
+              else{
+                $service_tag = $row['meditation_tag'];
+                echo '<div class="col-lg-4 col-md-6 filter-'.$service_tag.'">';
+              }
 
             ?>
 
-            <div class="col-md-4 align-items-stretch filter-<?= $row['meditation_tag']; ?>">
               <div class="card">
                 <div class="card-img">
                   <img src="<?= $img['image_path']; ?>" alt="...">
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title"><a href="meditation.php?meditation=<?= $row['meditation_id']; ?>"><?= $row['meditation_name']; ?></a></h5>
+                  <h5 class="card-title text-uppercase"><a href="meditation.php?meditation=<?= $row['meditation_id']; ?>"><?= $row['meditation_name']; ?></a></h5>
                   <p class="card-text"><?= $row['meditation_shortintro']; ?></p>
                   <div class="read-more"><a href="meditation.php?meditation=<?= $row['meditation_id']; ?>"><i class="icofont-arrow-right"></i> Read More</a></div>
                 </div>

@@ -4,15 +4,6 @@
 
   $s_title = 'Yoga';
 
-  $query = "SELECT * FROM background WHERE bg_page = 'yoga';";
-  $results = mysqli_query($db, $query);
-  $bg = mysqli_fetch_assoc($results);
-
-  $img_id = $bg['bg_img'];
-  $query = "SELECT * FROM images WHERE image_id='$img_id'";
-  $r = mysqli_query($db, $query);
-  $img = mysqli_fetch_assoc($r);
-
  ?>
 <html lang="en">
 
@@ -25,7 +16,20 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/Shreejit/assets/img/favicon.png" rel="icon">
+  <?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">
   <link href="/Shreejit/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -50,7 +54,6 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-
   <?php
 
       $querybg1 = "SELECT * FROM background WHERE bg_page='yoga'";
@@ -73,7 +76,6 @@
     z-index: 0;
   }
   </style>
-
 </head>
 
 <body>
@@ -84,7 +86,7 @@
   <section id="herohead" class="d-flex justify-content-center align-items-center">
         <div class="head-container">
           <h2 class="animated fadeInDown text-uppercase"><?= $s_title ?></h2>
-          <p class="animated fadeInUp"><?= $rowbg1['bg_description']; ?></p>
+          <p class="animated fadeInUp"><?= $rowbg1['bg_description'] ?></p>
           <!-- <a href="" class="btn-get-started animated fadeInUp">Read More</a> -->
         </div>
 
@@ -107,23 +109,6 @@
 
   <main id="main2">
 
-    <!-- <section class="portfolio">
-      <div class="container">
-
-    <div class="row">
-      <div class="col-lg-12">
-        <ul id="portfolio-flters">
-          <li data-filter="*" class="filter-active">All</li>
-          <li data-filter=".filter-app">App</li>
-          <li data-filter=".filter-card">Card</li>
-          <li data-filter=".filter-web">Web</li>
-          <li data-filter=".filter-new">New</li>
-        </ul>
-      </div>
-    </div>
-
-  </div> -->
-
     <!-- ======= Features Section ======= -->
 
     <!-- <div class="section-title">
@@ -133,6 +118,7 @@
 
     <section class="service-details">
       <div class="container">
+
 
         <div class="row">
           <div class="col-lg-12">
@@ -144,21 +130,21 @@
                 $query = "SELECT * FROM yoga GROUP BY yoga_tag;";
                 $results = mysqli_query($db, $query);
                 while($row = mysqli_fetch_assoc($results)){
+                  if($row['yoga_tag'] != 'None'){
 
                ?>
 
-              <li data-filter=".filter-<?= $row['yoga_tag']; ?>"><?= $row['yoga_tag']; ?></li>
+              <li class="text-capitalize" data-filter=".filter-<?= $row['yoga_tag']; ?>"><?= $row['yoga_tag']; ?></li>
               <!-- <li data-filter=".filter-course">Course</li>
               <li data-filter=".filter-t">Treatment</li> -->
               <?php
 
-                }
+            }}
 
               ?>
             </ul>
           </div>
         </div>
-
 
         <form class="" action="index.php" method="post">
 
@@ -174,19 +160,25 @@
               $query = "SELECT * FROM images WHERE image_id='$img_id'";
               $r = mysqli_query($db, $query);
               $img = mysqli_fetch_assoc($r);
+              if($row['yoga_tag'] == 'None'){
+                $service_tag = 'yoga';
+                echo '<div class="col-lg-4 col-md-6">';
+              }
+              else{
+                $service_tag = $row['yoga_tag'];
+                echo '<div class="col-lg-4 col-md-6 filter-'.$service_tag.'">';
+              }
 
             ?>
 
-            <div class="col-md-4 align-items-stretch filter-<?= $row['yoga_tag']; ?>">
               <div class="card">
                 <div class="card-img">
                   <img src="<?= $img['image_path']; ?>" alt="...">
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title"><a href="yoga.php?yoga=<?= $row['yoga_id']; ?>"><?= $row['yoga_name']; ?></a></h5>
+                  <h5 class="card-title text-uppercase"><a href="yoga.php?yoga=<?= $row['yoga_id']; ?>"><?= $row['yoga_name']; ?></a></h5>
                   <p class="card-text"><?= $row['yoga_shortintro']; ?></p>
                   <div class="read-more"><a href="yoga.php?yoga=<?= $row['yoga_id']; ?>"><i class="icofont-arrow-right"></i> Read More</a></div>
-
                 </div>
               </div>
             </div>
@@ -202,84 +194,81 @@
         </form>
 
         <!-- <div class="row">
-          <div class="col-lg-12">
-            <ul id="service-details-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-course">Course</li>
-              <li data-filter=".filter-t">Treatment</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="row service-details-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-
-          <div class="col-md-4 align-items-stretch filter-t">
+          <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
             <div class="card">
               <div class="card-img">
                 <img src="/Shreejit/assets/img/Default.png" alt="...">
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="#">Our Care TREATMENT</a></h5>
-                <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro quisquam laudantium voluptatem. In molestiae earum ab sit esse voluptatem. Eos ipsam cumque ipsum officiis qui nihil aut incidunt aut</p>
+                <h5 class="card-title"><a href="#">Our Mission</a></h5>
+                <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
                 <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
               </div>
             </div>
           </div>
-
-          <div class="col-md-4 align-items-stretch filter-t">
+          <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
             <div class="card">
               <div class="card-img">
                 <img src="/Shreejit/assets/img/Default.png" alt="...">
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="#">Our Care TREATMENT</a></h5>
-                <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro quisquam laudantium voluptatem. In molestiae earum ab sit esse voluptatem. Eos ipsam cumque ipsum officiis qui nihil aut incidunt aut</p>
+                <h5 class="card-title"><a href="#">Our Plan</a></h5>
+                <p class="card-text">Sed ut perspiciatis unde omnis iste natus error sit voluptatem doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo</p>
                 <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
               </div>
             </div>
-          </div>
 
-          <div class="col-md-4 align-items-stretch filter-t">
+          </div>
+          <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
             <div class="card">
               <div class="card-img">
                 <img src="/Shreejit/assets/img/Default.png" alt="...">
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="#">Our Care TREATMENT</a></h5>
-                <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro quisquam laudantium voluptatem. In molestiae earum ab sit esse voluptatem. Eos ipsam cumque ipsum officiis qui nihil aut incidunt aut</p>
+                <h5 class="card-title"><a href="#">Our Vision</a></h5>
+                <p class="card-text">Nemo enim ipsam voluptatem quia voluptas sit aut odit aut fugit, sed quia magni dolores eos qui ratione voluptatem sequi nesciunt Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet</p>
                 <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
               </div>
             </div>
           </div>
-
-          <div class="col-md-4 align-items-stretch filter-t">
+          <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
             <div class="card">
               <div class="card-img">
                 <img src="/Shreejit/assets/img/Default.png" alt="...">
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="#">Our Care TREATMENT</a></h5>
+                <h5 class="card-title"><a href="#">Our Care</a></h5>
                 <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro quisquam laudantium voluptatem. In molestiae earum ab sit esse voluptatem. Eos ipsam cumque ipsum officiis qui nihil aut incidunt aut</p>
                 <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
               </div>
             </div>
           </div>
-
-          <div class="col-md-4 align-items-stretch filter-course">
+          <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
             <div class="card">
               <div class="card-img">
                 <img src="/Shreejit/assets/img/Default.png" alt="...">
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="#">Our Care CCC</a></h5>
+                <h5 class="card-title"><a href="#">Our Care</a></h5>
                 <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro quisquam laudantium voluptatem. In molestiae earum ab sit esse voluptatem. Eos ipsam cumque ipsum officiis qui nihil aut incidunt aut</p>
                 <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
               </div>
             </div>
           </div>
-
-
+          <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
+            <div class="card">
+              <div class="card-img">
+                <img src="/Shreejit/assets/img/Default.png" alt="...">
+              </div>
+              <div class="card-body">
+                <h5 class="card-title"><a href="#">Our Care</a></h5>
+                <p class="card-text">Nostrum eum sed et autem dolorum perspiciatis. Magni porro quisquam laudantium voluptatem. In molestiae earum ab sit esse voluptatem. Eos ipsam cumque ipsum officiis qui nihil aut incidunt aut</p>
+                <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
+              </div>
+            </div>
+          </div>
         </div> -->
+
 
       </div>
     </section><!-- End Service Details Section -->

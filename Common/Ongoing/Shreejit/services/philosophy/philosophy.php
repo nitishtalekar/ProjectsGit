@@ -1,7 +1,7 @@
 <?php
   require($_SERVER['DOCUMENT_ROOT']."/Shreejit/dbconnect.php");
   $_SESSION['title'] = 'Service';
-  $serve_title = 'philosophy1';
+  $serve_title = '';
 
   $id =  $_GET['philosophy'];
   $query = "SELECT * FROM philosophy where philosophy_id = '$id' ";
@@ -19,7 +19,15 @@
   $pdf = mysqli_fetch_assoc($p);
 
   $serve_title = $row['philosophy_name'];
-
+  $s_tag = $row['philosophy_tag'];
+  if($s_tag == 'None'){
+    $s_tag = 'philosophy';
+  }
+  
+  if(isset($_POST['enquiry'])){
+    $get = 'Philosophy-'.$s_tag.':-'.$serve_title;
+    header('location: /Shreejit/contact.php?enq='.strtoupper($get));
+  }
  ?>
 <html lang="en">
 
@@ -32,7 +40,20 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/Shreejit/assets/img/favicon.png" rel="icon">
+  <?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">
   <link href="/Shreejit/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -49,6 +70,7 @@
 
   <!-- Template Main CSS File -->
   <link href="/Shreejit/assets/css/style.css" rel="stylesheet">
+  <link href="/Shreejit/assets/css/sb-admin-2.min.css" rel="stylesheet">
 
   <!-- =======================================================
   * Template Name: Moderna - v2.0.1
@@ -69,29 +91,35 @@
       <div class="container">
 
         <div class="d-flex justify-content-between align-items-center">
-          <h2><?= $serve_title ?></h2>
+          <h2 class="text-uppercase"><?= $s_tag ?> : <?= $serve_title ?></h2>
           <ol>
-            <li><a href="index.php">Home</a></li>
-            <li>Services</li>
-            <li>philosophy</li>
-            <li><?= $serve_title ?></li>
+            <li><a href="/Shreejit/index.php">Home</a></li>
+            <li style="color:#008181">Services</li>
+            <li><a href="index.php">Philosophy</a></li>
+            <li class="text-capitalize"><?= $s_tag ?></li>
+            <li class="text-capitalize"><?= $serve_title ?></li>
           </ol>
         </div>
-
       </div>
+      </section>
 
       <!-- ======= About Section ======= -->
       <section class="about" data-aos="fade-up">
         <div class="container">
+          <div class="row">
+            <div class="col-lg-12 py-3">
+              <center><h1 class="text-uppercase teal"><?= $serve_title ?></h1></center>
+            </div>    
+          </div>
 
           <div class="row">
-            <div class="col-lg-6 pt-4 pt-lg-0" style="text-align:right;">
+            <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-md-1" style="text-align:center;">
               <h3><?= $row['philosophy_longintro']; ?></h3>
               <p class="font-italic">
-                <a href="<?= $pdf['pdf_path']; ?>" target="blank"> Read PDF </a>
+                <center><a href="<?= $pdf['pdf_path']; ?>" class="sendbtn" target="blank" style="width:80%"> Read More Information </a></center>
               </p>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-6 order-1 order-md-2">
               <center><img src="<?= $img['image_path']; ?>" class="img-fluid"  alt=""></center>
             </div>
           </div>
@@ -114,70 +142,26 @@
               <p style="font-size:30px">Rupees</p>
             </div>
 
-            <!-- <div class="col-lg-3 col-6 text-center">
-              <span data-toggle="counter-up">1,463</span>
-              <p>Hours Of Support</p>
-            </div>
-
-            <div class="col-lg-3 col-6 text-center">
-              <span data-toggle="counter-up">15</span>
-              <p>Hard Workers</p>
-            </div> -->
-
           </div>
 
         </div>
       </section><!-- End Facts Section -->
-
-      <section class="portfolio">
+      
+      <section class="about" data-aos="fade-up">
         <div class="container">
-
-          <div class="row portfolio-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
-
-            <div class="col-lg-3 col-md-6 filter-app">
-              <div class="portfolio-item">
-                <img src="/Shreejit/assets/img/Default.png" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h3><a href="/Shreejit/assets/img/Default.png" data-gall="portfolioGallery" class="venobox" title="App 1">App 1</a></h3>
-                  <a href="/Shreejit/assets/img/Default.png" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="icofont-plus"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 filter-new">
-              <div class="portfolio-item">
-                <img src="/Shreejit/assets/img/Default.png" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h3><a href="/Shreejit/assets/img/Default.png" data-gall="portfolioGallery" class="venobox" title="App 1">App 1</a></h3>
-                  <a href="/Shreejit/assets/img/Default.png" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="icofont-plus"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 filter-new">
-              <div class="portfolio-item">
-                <img src="/Shreejit/assets/img/Default.png" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h3><a href="/Shreejit/assets/img/Default.png" data-gall="portfolioGallery" class="venobox" title="App 1">App 1</a></h3>
-                  <a href="/Shreejit/assets/img/Default.png" data-gall="portfolioGallery" class="venobox" title="App 1"><i class="icofont-plus"></i></a>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-3 col-md-6 filter-web">
-              <div class="portfolio-item">
-                <img src="/Shreejit/assets/img/Default.png" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h3><a href="/Shreejit/assets/img/Default.png" data-gall="portfolioGallery" class="venobox" title="Web 3">Web 3</a></h3>
-                  <a href="/Shreejit/assets/img/Default.png" data-gall="portfolioGallery" class="venobox" title="Web 3"><i class="icofont-plus"></i></a>
-                </div>
-              </div>
-            </div>
-
+          <div class="row">
+            <div class="col-lg-12 py-2">
+              <form action="philosophy.php?philosophy=<?=$id?>" method="post">
+              <p class="text-white">
+                <center><button class="sendbtn text-uppercase" name="enquiry" style="width:80%;font-size:20px;">Enquire More</button></center>
+              </p>                
+            </form>
+            </div>    
           </div>
-
         </div>
-      </section><!-- End Portfolio Section -->
+      </section>
+
+<!-- End Portfolio Section -->
 
   </main><!-- End #main -->
 

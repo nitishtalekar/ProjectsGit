@@ -3,6 +3,20 @@ require($_SERVER['DOCUMENT_ROOT']."/Shreejit/dbconnect.php");
 if(empty($_SESSION['admin'])){
   header('location:index.php');
 }
+if(isset($_POST['logout'])){
+  session_destroy();
+  header('location:/Shreejit/admin/index.php');
+}
+if(isset($_POST['change_pwd'])){
+  $new = mysqli_real_escape_string($db, $_POST['newpwd']);
+  $cnew = mysqli_real_escape_string($db, $_POST['cnewpwd']);
+  if($new == $cnew){
+    $adn = $_SESSION['admin_name'];
+    $pwd_q = "UPDATE admin SET password='$new' WHERE admin_name = '$adn';";
+    mysqli_query($db,$pwd_q);
+  }
+}
+
 $_SESSION['page'] = 'contact';
 
 
@@ -11,7 +25,6 @@ if(isset($_POST['phone'])){
   $phone_sp = nl2br($phone);
   $phone_q = "UPDATE contact_us SET Phone='$phone_sp' WHERE 1";
   mysqli_query($db, $phone_q);
-  // header('location: contact.php');
   echo "<script>alert('Updated');</script>"; 
 }
 
@@ -20,7 +33,6 @@ if(isset($_POST['mail'])){
   $mail_sp = nl2br($mail);
   $mail_q = "UPDATE contact_us SET Email='$mail_sp' WHERE 1";
   mysqli_query($db, $mail_q);
-  // header('location: contact.php');
   echo "<script>alert('Updated');</script>"; 
 }
 
@@ -29,7 +41,6 @@ if(isset($_POST['address'])){
   $address_sp = nl2br($address);
   $address_q = "UPDATE contact_us SET Address='$address_sp' WHERE 1";
   mysqli_query($db, $address_q);
-  // header('location: contact.php');
   echo "<script>alert('Updated');</script>"; 
 }
 ?>
@@ -43,7 +54,20 @@ if(isset($_POST['address'])){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin - YogaAyurveda</title>
+<?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">  <title>Admin - YogaAyurveda</title>
 
   <!-- Custom fonts for this template-->
   <link href="/Shreejit/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -136,6 +160,60 @@ if(isset($_POST['address'])){
                 </div>
               </div>
           </div>
+          <div class="row">
+              <div class="col-lg-4">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary text-uppercase">Facebook Page</h6>
+                  </div>
+                  <div class="card-body">
+                    <form action="contact.php" method="post">
+                      <!-- &#13;&#10; -->
+                      <div class="d-flex justify-content-around">
+                          <input type="text" class="form-control bg-light border-0 small" name="fb_text" style="width:60%;" value="<?php $rowcon['Facebook']?>">
+                          <button class="btn btn-primary" type="submit" name = 'facebook'>
+                            Update
+                          </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary text-uppercase">Instagram Handle</h6>
+                  </div>
+                  <div class="card-body">
+                    <form action="contact.php" method="post">
+                      <div class="d-flex justify-content-around">
+                          <input type="text" class="form-control bg-light border-0 small" name="in_text" style="width:60%;" value="<?php $rowcon['Instagram']?>">
+                          <button class="btn btn-primary" type="submit" name = 'insta'>
+                            Update
+                          </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-4">
+                <div class="card shadow mb-4">
+                  <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary text-uppercase">Youtube Channel</h6>
+                  </div>
+                  <div class="card-body">
+                    <form action="contact.php" method="post">
+                      <div class="d-flex justify-content-around">
+                          <input type="text" class="form-control bg-light border-0 small" name="yt_text" style="width:60%;" value="<?php $rowcon['Youtube']?>">
+                          <button class="btn btn-primary" type="submit" name = 'youtube'>
+                            Update
+                          </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+          </div>
           
 
         </div>
@@ -164,25 +242,6 @@ if(isset($_POST['address'])){
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="/Shreejit/assets/vendor/jquery/jquery.min.js"></script>

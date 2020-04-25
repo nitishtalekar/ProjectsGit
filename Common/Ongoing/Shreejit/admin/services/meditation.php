@@ -3,6 +3,21 @@
   if(empty($_SESSION['admin'])){
     header('location:index.php');
   }
+  if(isset($_POST['logout'])){
+    session_destroy();
+    header('location:/Shreejit/admin/index.php');
+  }
+  if(isset($_POST['change_pwd'])){
+    $new = mysqli_real_escape_string($db, $_POST['newpwd']);
+    $cnew = mysqli_real_escape_string($db, $_POST['cnewpwd']);
+    if($new == $cnew){
+      $adn = $_SESSION['admin_name'];
+      $pwd_q = "UPDATE admin SET password='$new' WHERE admin_name = '$adn';";
+      mysqli_query($db,$pwd_q);
+    }
+  }
+
+  
   $_SESSION['page'] = 'services';
 
   $tag_qu = "SELECT * from tags WHERE tag_page='meditation';";
@@ -104,7 +119,20 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin - meditationAyurveda</title>
+<?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">  <title>Admin - YogaAyurveda</title>
 
   <!-- Custom fonts for this template-->
   <link href="/Shreejit/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -340,18 +368,22 @@
                           $cimg_qu = "SELECT * FROM pdf WHERE pdf_id = '$ch_id'";
                           $cresimg = mysqli_query($db, $cimg_qu);
                           $checkrow = mysqli_fetch_assoc($cresimg);
-                          $checked_pdf = $checkrow['pdf_path'];
+                          $xpdfx = $checkrow['pdf_path'];
+                          $tar = explode("/",$xpdfx);
+                          $checked_pdf = array_slice($tar, -1)[0];
                           $qimg = "SELECT * FROM pdf ORDER BY pdf_id DESC";
                           $resimg = mysqli_query($db, $qimg);
                          ?>
                         <div class="col-lg-6">
                       <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                         <label class="text-uppercase" style="font-size:15px;">Change meditation document</label>
-                          <select class="js-example-basic-single custom-select mr-sm-2" name="ypga_pdf_<?=$x?>" style="width:85%;height:10vh;">
+                          <select class="js-example-basic-single custom-select mr-sm-2" name="meditation_pdf_<?=$x?>" style="width:85%;height:10vh;">
                             <?php
                               echo '<option selected value="'.$ch_id.'">'.$checked_pdf.'</option>';
                               while($rowimg = mysqli_fetch_assoc($resimg)){
-                                $pdf = $rowimg['pdf_path'];
+                                $pdfx = $rowimg['pdf_path'];
+                                $tar = explode("/",$pdfx);
+                                $pdf = array_slice($tar, -1)[0];
                                 if($ch_id != $rowimg['pdf_id']){
                                     echo '<option value="'.$rowimg['pdf_id'].'">'.$pdf.'</option>';
                                 }
@@ -475,11 +507,6 @@
 
                       <div class="row">
                         <?php
-                          $ch_id = $row_ser['meditation_pdf'];
-                          $cimg_qu = "SELECT * FROM pdf WHERE pdf_id = '$ch_id'";
-                          $cresimg = mysqli_query($db, $cimg_qu);
-                          $checkrow = mysqli_fetch_assoc($cresimg);
-                          $checked_pdf = $checkrow['pdf_path'];
                           $qimg = "SELECT * FROM pdf ORDER BY pdf_id DESC";
                           $resimg = mysqli_query($db, $qimg);
                          ?>
@@ -490,7 +517,9 @@
                             <?php
                             echo '<option selected disabled value="">Select PDF</option>';
                               while($rowimg = mysqli_fetch_assoc($resimg)){
-                                $pdf = $rowimg['pdf_path'];
+                                $pdfx = $rowimg['pdf_path'];
+                                $tar = explode("/",$pdfx);
+                                $pdf = array_slice($tar, -1)[0];
                                     echo '<option value="'.$rowimg['pdf_id'].'">'.$pdf.'</option>';
                               }
                              ?>
@@ -545,7 +574,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>meditationAyurvedaKarona</span>
+            <span>YogaAyurvedaKarona</span>
           </div>
         </div>
       </footer>
@@ -562,24 +591,6 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
 
 

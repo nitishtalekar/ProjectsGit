@@ -3,6 +3,20 @@
   if(empty($_SESSION['admin'])){
     header('location:index.php');
   }
+  if(isset($_POST['logout'])){
+    session_destroy();
+    header('location:/Shreejit/admin/index.php');
+  }
+  if(isset($_POST['change_pwd'])){
+    $new = mysqli_real_escape_string($db, $_POST['newpwd']);
+    $cnew = mysqli_real_escape_string($db, $_POST['cnewpwd']);
+    if($new == $cnew){
+      $adn = $_SESSION['admin_name'];
+      $pwd_q = "UPDATE admin SET password='$new' WHERE admin_name = '$adn';";
+      mysqli_query($db,$pwd_q);
+    }
+  }
+
   $_SESSION['page'] = 'gallery';
 
   $tag_qu = "SELECT * from tags WHERE tag_page='gallery';";
@@ -24,6 +38,9 @@
   if(isset($_POST['gallery_deletetag'])){
     for($i=0;$i<count($taglist);$i++){
       if(isset($_POST['deletetag_'.$i])){
+        $t = $_POST['deletetag_'.$i];
+        $rt = "UPDATE gallery SET gallery_tag='None' WHERE gallery_tag = '$t';";
+        mysqli_query($db, $rt);
         if (($key = array_search($_POST['deletetag_'.$i], $taglist)) !== false) {
             unset($taglist[$key]);
         }
@@ -31,21 +48,19 @@
         $tag_update = "UPDATE tags SET tag_names='$tagstr' WHERE tag_page='gallery';";
         mysqli_query($db, $tag_update);
         echo "<script>alert('Removed');</script>";
-        header('location:tags.php');
       }
     }
   }
 
   if(isset($_POST['tag'])){
-    $tag = mysqli_real_escape_string($db, $_POST['tag']);
-    echo $tag;
-    if(!empty($_POST['iamges'])) {
+    $tag_id = mysqli_real_escape_string($db, $_POST['tag']);
+    if(!empty($_POST['images'])) {
       foreach($_POST['images'] as $value){
-        // $qu = "INSERT INTO gallery(gallery_tag) VALUES ('$value') where ;";
-        // mysqli_query($db, $qu);
-        // header('location: gallery.php');
+        $qu = "UPDATE gallery SET gallery_tag = '$tag_id' WHERE gallery_image = '$value' ;";
+        mysqli_query($db, $qu);
       }
     }
+    echo "<script>alert('Removed');</script>";
   }
 ?>
 <html lang="en">
@@ -58,7 +73,20 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin - YogaAyurveda</title>
+<?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">  <title>Admin - YogaAyurveda</title>
 
   <!-- Custom fonts for this template-->
   <link href="/Shreejit/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -221,10 +249,11 @@
 
                           </div>
                           <?php
-                          $tagq = "SELECT DISTINCT gallery_tag FROM gallery;";
-                          $tagres = mysqli_query($db, $tagq);
-                          while($tagrow = mysqli_fetch_assoc($tagres)){
-                            $tag = $tagrow['gallery_tag'];
+                          // $tagq = "SELECT DISTINCT gallery_tag FROM gallery;";
+                          // $tagres = mysqli_query($db, $tagq);
+                          // while($tagrow = mysqli_fetch_assoc($tagres)){
+                          for($x=0;$x<count($taglist);$x++){
+                            $tag = $taglist[$x];
                             if($tag != 'None'){
                            ?>
                             <div class="col-lg-3 mx-2 mb-3">
@@ -271,24 +300,6 @@
     <i class="fas fa-angle-up"></i>
   </a>
 
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="/Shreejit/assets/vendor/jquery/jquery.min.js"></script>

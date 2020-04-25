@@ -315,6 +315,10 @@ h1, h2, h3, h4, h5, h6, .font-primary {
   color: #fff;
 }
 
+.teal{
+  color:#008181;
+}
+
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
@@ -774,16 +778,16 @@ section {
   border-color: #ff689b;
 }
 
-.services .icon-box-orange .icon {
-  background: #ffd6b0;
+.services .icon-box-teal .icon {
+  background: #e6fcfc;
 }
 
-.services .icon-box-orange .icon i {
-  color: #eb8221;
+.services .icon-box-teal .icon i {
+  color: #02baba;
 }
 
-.services .icon-box-orange:hover {
-  border-color: #eb8221;
+.services .icon-box-teal:hover {
+  border-color: #008181;
 }
 
 .services .icon-box-cyan .icon {
@@ -1257,7 +1261,7 @@ section {
 }
 
 .service-details .read-more a:hover {
-  color: #237575;
+  color: #008181;
 }
 
 .service-details .card:hover img {

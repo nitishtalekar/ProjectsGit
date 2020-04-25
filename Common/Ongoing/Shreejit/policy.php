@@ -13,7 +13,20 @@ $_SESSION['title'] = 'Policy';
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/Shreejit/assets/img/favicon.png" rel="icon">
+  <?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">
   <link href="/Shreejit/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -69,6 +82,15 @@ $_SESSION['title'] = 'Policy';
             <p>
               <?=$row['rules']?>
             </p>
+            <?php 
+              $pdf_id = $row['rules_pdf'];
+              $query = "SELECT * FROM pdf WHERE pdf_id='$pdf_id'";
+              $p = mysqli_query($db, $query);
+              $pdf = mysqli_fetch_assoc($p);
+             ?>
+             <p class="font-italic">
+               <center><a href="<?= $pdf['pdf_path']; ?>" class="sendbtn" target="blank"> Read More</a></center>
+             </p>
         </div>
         <hr>
           <div id="policy" class="col-md-12 pt-5 pb-5">
@@ -76,6 +98,15 @@ $_SESSION['title'] = 'Policy';
             <p>
               <?=$row['privacy']?>
             </p>
+            <?php 
+              $pdf_id = $row['privacy_pdf'];
+              $query = "SELECT * FROM pdf WHERE pdf_id='$pdf_id'";
+              $p = mysqli_query($db, $query);
+              $pdf = mysqli_fetch_assoc($p);
+             ?>
+             <p class="font-italic">
+               <center><a href="<?= $pdf['pdf_path']; ?>" class="sendbtn" target="blank"> Read More</a></center>
+             </p>
         </div>
         <hr>
         <div id="terms" class="col-md-12 pt-5 pb-5">
@@ -83,6 +114,15 @@ $_SESSION['title'] = 'Policy';
           <p>
             <?=$row['terms']?>
           </p>
+          <?php 
+            $pdf_id = $row['terms_pdf'];
+            $query = "SELECT * FROM pdf WHERE pdf_id='$pdf_id'";
+            $p = mysqli_query($db, $query);
+            $pdf = mysqli_fetch_assoc($p);
+           ?>
+           <p class="font-italic">
+             <center><a href="<?= $pdf['pdf_path']; ?>" class="sendbtn" target="blank"> Read More</a></center>
+           </p>
       </div>
       </div>
     </section><!-- End Features Section -->

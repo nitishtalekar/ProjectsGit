@@ -4,13 +4,6 @@
 
   $s_title = 'Ayurveda';
 
-  if(isset($_POST['card'])){
-
-    $_SESSION['ayurveda'] = $_POST['card'];
-
-    header('location: /Shreejit/services/ayurveda/ayurveda.php');
-
-  }
  ?>
 <html lang="en">
 
@@ -23,7 +16,20 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/Shreejit/assets/img/favicon.png" rel="icon">
+  <?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">
   <link href="/Shreejit/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -113,6 +119,7 @@
     <section class="service-details">
       <div class="container">
 
+
         <div class="row">
           <div class="col-lg-12">
             <ul id="service-details-flters">
@@ -123,15 +130,16 @@
                 $query = "SELECT * FROM ayurveda GROUP BY ayurveda_tag;";
                 $results = mysqli_query($db, $query);
                 while($row = mysqli_fetch_assoc($results)){
+                  if($row['ayurveda_tag'] != 'None'){
 
                ?>
 
-              <li data-filter=".filter-<?= $row['ayurveda_tag']; ?>"><?= $row['ayurveda_tag']; ?></li>
+              <li class="text-capitalize" data-filter=".filter-<?= $row['ayurveda_tag']; ?>"><?= $row['ayurveda_tag']; ?></li>
               <!-- <li data-filter=".filter-course">Course</li>
               <li data-filter=".filter-t">Treatment</li> -->
               <?php
 
-                }
+            }}
 
               ?>
             </ul>
@@ -152,16 +160,23 @@
               $query = "SELECT * FROM images WHERE image_id='$img_id'";
               $r = mysqli_query($db, $query);
               $img = mysqli_fetch_assoc($r);
+              if($row['ayurveda_tag'] == 'None'){
+                $service_tag = 'ayurveda';
+                echo '<div class="col-lg-4 col-md-6">';
+              }
+              else{
+                $service_tag = $row['ayurveda_tag'];
+                echo '<div class="col-lg-4 col-md-6 filter-'.$service_tag.'">';
+              }
 
             ?>
 
-            <div class="col-md-4 align-items-stretch filter-<?= $row['ayurveda_tag']; ?>">
               <div class="card">
                 <div class="card-img">
                   <img src="<?= $img['image_path']; ?>" alt="...">
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title"><a href="ayurveda.php?ayurveda=<?= $row['ayurveda_id']; ?>"><?= $row['ayurveda_name']; ?></a></h5>
+                  <h5 class="card-title text-uppercase"><a href="ayurveda.php?ayurveda=<?= $row['ayurveda_id']; ?>"><?= $row['ayurveda_name']; ?></a></h5>
                   <p class="card-text"><?= $row['ayurveda_shortintro']; ?></p>
                   <div class="read-more"><a href="ayurveda.php?ayurveda=<?= $row['ayurveda_id']; ?>"><i class="icofont-arrow-right"></i> Read More</a></div>
                 </div>

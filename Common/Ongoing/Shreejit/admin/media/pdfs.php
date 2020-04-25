@@ -3,64 +3,84 @@
   if(empty($_SESSION['admin'])){
     header('location:index.php');
   }
+  if(isset($_POST['logout'])){
+    session_destroy();
+    header('location:/Shreejit/admin/index.php');
+  }
+  if(isset($_POST['change_pwd'])){
+    $new = mysqli_real_escape_string($db, $_POST['newpwd']);
+    $cnew = mysqli_real_escape_string($db, $_POST['cnewpwd']);
+    if($new == $cnew){
+      $adn = $_SESSION['admin_name'];
+      $pwd_q = "UPDATE admin SET password='$new' WHERE admin_name = '$adn';";
+      mysqli_query($db,$pwd_q);
+    }
+  }
+
+  
   $_SESSION['page'] = 'pdf';
   $messages = array();
 
   $target_dir = "../../assets/pdf/";
 if(isset($_POST["add_pdf"])) {
 
-  $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-  $uploadOk = 1;
-  $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+  $countfiles = count($_FILES['fileToUpload']['name']);
 
-    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-    // if($check !== false) {
-    //     $message = '<label class="text-uppercase" style="color:green" >'.'File is an PDF'.'</label><br>' ;
-    //     array_push($messages,$message);
-    //     $uploadOk = 1;
-    // } else {
-    //     $message =  '<label class="text-uppercase" style="color:red" >'.'File is not a PDF.'.'</label><br>';
-    //     array_push($messages,$message);
-    //     $uploadOk = 0;
-    // }
-    // Check if file already exists
-    if (file_exists($target_file)) {
-        $message =  '<label class="text-uppercase" style="color:#d1b741" >'.' file already exists. Please Rename your file'.'</label><br>';
-        array_push($messages,$message);
-        $uploadOk = 0;
-    }
-    // Check file size
-    if ($_FILES["fileToUpload"]["size"] > 500000) {
-        $message =  '<label class="text-uppercase" style="color:red" >'.' your file is too large.'.'</label><br>';
-        array_push($messages,$message);
-        $uploadOk = 0;
-    }
-    // Allow certain file formats
-    if($imageFileType != "pdf") {
-        $message =  '<label class="text-uppercase" style="color:red" >'.' only PDF files are allowed.'.'</label><br>';
-        array_push($messages,$message);
-        $uploadOk = 0;
-    }
-    // Check if $uploadOk is set to 0 by an error
-    if ($uploadOk == 0) {
-        $message =  '<label class="text-uppercase" style="color:red" >'.' your file was not uploaded.'.'</label><br>';
-        array_push($messages,$message);
-    // if everything is ok, try to upload file
-    } else {
-        if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-            $message =  '<label class="text-uppercase" style="color:green" >'.'The file "'. basename( $_FILES["fileToUpload"]["name"]). '" has been uploaded.'.'</label><br>';
-            array_push($messages,$message);
-            $tar = explode("/",$target_file);
-            $x = array_slice($tar, -3);
-            $x2 = join("/",$x);
-            // $new_target = $_SERVER['DOCUMENT_ROOT']."/Shreejit/".$x2;
-            $new_target = "/Shreejit/".$x2;
-            $qu = "INSERT INTO pdf (pdf_path) VALUES ('$new_target')";
-            mysqli_query($db, $qu);
-        } else {
-            $message =  '<label class="text-uppercase" style="color:red" >'.' there was an error uploading your file.'.'</label><br>';
-            array_push($messages,$message);
-        }
+  for($i=0;$i<$countfiles;$i++){
+
+    $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"][$i]);
+    $uploadOk = 1;
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+      $check = getimagesize($_FILES["fileToUpload"]["tmp_name"][$i]);
+      // if($check !== false) {
+      //     $message = '<label class="text-uppercase" style="color:green" >'.'File is an PDF'.'</label><br>' ;
+      //     array_push($messages,$message);
+      //     $uploadOk = 1;
+      // } else {
+      //     $message =  '<label class="text-uppercase" style="color:red" >'.'File is not a PDF.'.'</label><br>';
+      //     array_push($messages,$message);
+      //     $uploadOk = 0;
+      // }
+      // Check if file already exists
+      if (file_exists($target_file)) {
+          $message =  '<label class="text-uppercase" style="color:#d1b741" >'.' file already exists. Please Rename your file'.'</label><br>';
+          array_push($messages,$message);
+          $uploadOk = 0;
+      }
+      // Check file size
+      if ($_FILES["fileToUpload"]["size"][$i] > 500000) {
+          $message =  '<label class="text-uppercase" style="color:red" >'.' your file is too large.'.'</label><br>';
+          array_push($messages,$message);
+          $uploadOk = 0;
+      }
+      // Allow certain file formats
+      if($imageFileType != "pdf") {
+          $message =  '<label class="text-uppercase" style="color:red" >'.' only PDF files are allowed.'.'</label><br>';
+          array_push($messages,$message);
+          $uploadOk = 0;
+      }
+      // Check if $uploadOk is set to 0 by an error
+      if ($uploadOk == 0) {
+          $message =  '<label class="text-uppercase" style="color:red" >'.' your file was not uploaded.'.'</label><br>';
+          array_push($messages,$message);
+      // if everything is ok, try to upload file
+      } else {
+          if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"][$i], $target_file)) {
+              $message =  '<label class="text-uppercase" style="color:green" >'.'The file "'. basename( $_FILES["fileToUpload"]["name"][$i]). '" has been uploaded.'.'</label><br>';
+              array_push($messages,$message);
+              $tar = explode("/",$target_file);
+              $x = array_slice($tar, -3);
+              $x2 = join("/",$x);
+              // $new_target = $_SERVER['DOCUMENT_ROOT']."/Shreejit/".$x2;
+              $new_target = "/Shreejit/".$x2;
+              $qu = "INSERT INTO pdf (pdf_path) VALUES ('$new_target')";
+              mysqli_query($db, $qu);
+          } else {
+              $message =  '<label class="text-uppercase" style="color:red" >'.' there was an error uploading your file.'.'</label><br>';
+              array_push($messages,$message);
+          }
+      }
     }
 }
 if(isset($_POST['del_pdf'])){
@@ -90,7 +110,20 @@ if(isset($_POST['del_pdf'])){
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin - YogaAyurveda</title>
+  <?php
+  
+    $queryl = "SELECT * FROM home WHERE home_tag='0'";
+    $resultsl = mysqli_query($db, $queryl);
+    $rowl = mysqli_fetch_assoc($resultsl);
+    $img_idlogos = $rowl['home_image'];
+    $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+    $rlogos = mysqli_query($db, $querylogos);
+    $imglogos = mysqli_fetch_assoc($rlogos);
+  
+   ?>
+  
+  <!-- Favicons -->
+  <link href="<?=$imglogos['image_path']?>" rel="icon">  <title>Admin - YogaAyurveda</title>
 
   <!-- Custom fonts for this template-->
   <link href="/Shreejit/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -158,14 +191,14 @@ if(isset($_POST['del_pdf'])){
                     <form action="pdfs.php" method="post" enctype="multipart/form-data">
                       <div class="input-group mb-3">
                         <div class="custom-file">
-                          <input type="file" class="custom-file-input" name="fileToUpload" id="fileToUpload">
+                          <input type="file" class="custom-file-input" name="fileToUpload[]" id="fileToUpload" multiple>
                           <label class="custom-file-label">Choose file</label>
                         </div>
                         <div class="input-group-append">
                           <button class="btn btn-primary" name="add_pdf" type="submit">Upload</button>
                         </div>
                       </div>
-                      <?php 
+                      <?php
                       for($i=0;$i<count($messages);$i++){
                         echo $messages[$i];
                       }
@@ -196,7 +229,7 @@ if(isset($_POST['del_pdf'])){
                 </a>
                 <!-- Card Content - Collapse -->
                 <div class="collapse" id="collapseLogo">
-                  <div class="img-card-body" style="height:40vh; overflow-x: hidden; overflow-y:auto;">
+                  <div class="img-card-body mt-3" style="height:40vh; overflow-x: hidden; overflow-y:auto;">
                     <?php
                     $x = 0;
                     while($rowimg = mysqli_fetch_assoc($resimg)){
@@ -245,25 +278,6 @@ if(isset($_POST['del_pdf'])){
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="/Shreejit/assets/vendor/jquery/jquery.min.js"></script>

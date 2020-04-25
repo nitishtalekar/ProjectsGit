@@ -2,12 +2,9 @@
   require($_SERVER['DOCUMENT_ROOT']."/Shreejit/dbconnect.php");
   $_SESSION['title'] = 'Services';
 
-  $s_title = 'Retreats';
-
-  // echo   $_SESSION['card'];
+  $s_title = 'Retreat';
 
  ?>
-
 <html lang="en">
 
 <head>
@@ -19,7 +16,20 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/Shreejit/assets/img/favicon.png" rel="icon">
+  <?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">
   <link href="/Shreejit/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -111,7 +121,7 @@
 
         <form class="" action="index.php" method="post">
 
-          <div class="row">
+          <div class="row service-details-container" data-aos="fade-up" data-aos-easing="ease-in-out" data-aos-duration="500">
 
             <?php
 
@@ -123,16 +133,14 @@
               $query = "SELECT * FROM images WHERE image_id='$img_id'";
               $r = mysqli_query($db, $query);
               $img = mysqli_fetch_assoc($r);
-
             ?>
-
-            <div class="col-md-4 d-flex align-items-stretch" data-aos="fade-up">
+            <div class="col-lg-4 col-md-6">
               <div class="card">
                 <div class="card-img">
                   <img src="<?= $img['image_path']; ?>" alt="...">
                 </div>
                 <div class="card-body">
-                  <h5 class="card-title"><a href="retreat.php?retreat=<?= $row['retreat_id']; ?>"><?= $row['retreat_name']; ?></a></h5>
+                  <h5 class="card-title text-uppercase"><a href="retreat.php?retreat=<?= $row['retreat_id']; ?>"><?= $row['retreat_name']; ?></a></h5>
                   <p class="card-text"><?= $row['retreat_shortintro']; ?></p>
                   <div class="read-more"><a href="retreat.php?retreat=<?= $row['retreat_id']; ?>"><i class="icofont-arrow-right"></i> Read More</a></div>
                 </div>
@@ -156,9 +164,9 @@
                 <img src="/Shreejit/assets/img/Default.png" alt="...">
               </div>
               <div class="card-body">
-                <h5 class="card-title"><a href="retreat.php">Our Mission</a></h5>
+                <h5 class="card-title"><a href="#">Our Mission</a></h5>
                 <p class="card-text">Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat</p>
-                <div class="read-more"><a href="retreat.php"><i class="icofont-arrow-right"></i> Read More</a></div>
+                <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> Read More</a></div>
               </div>
             </div>
           </div>

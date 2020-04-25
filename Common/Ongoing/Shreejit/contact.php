@@ -15,6 +15,13 @@
     mysqli_query($db, $q);
     echo "<script>alert('Enquiry Sent');</script>"; 
   }
+  
+  if(isset($_GET['enq'])){
+    $subject = $_GET['enq'];
+  }
+  else{
+    $subject = 'Subject';
+  }
 
  ?>
 <html lang="en">
@@ -28,7 +35,20 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/Shreejit/assets/img/favicon.png" rel="icon">
+  <?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">
   <link href="/Shreejit/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -125,7 +145,7 @@
                           <input type="email" name="mail" class="form-control bg-light border-0 small" style="width:40%;" placeholder="Enter Email Address" required>
                       </div>
                       <div class="d-flex justify-content-around mt-4">
-                          <input type="text" name="subject" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Subject" required>
+                          <input type="text" name="subject" class="form-control bg-light border-0 small" style="width:90%;" value="<?=$subject?>" required>
                       </div>
                       <div class="d-flex justify-content-around mt-4">
                           <textarea name="message" class="form-control bg-light border-0 small" style="width:90%;height:22vh;" placeholder="Enter Message" required></textarea>
@@ -143,60 +163,6 @@
               </form>
             </div>
           </div>
-          
-          <!-- <div class="col-lg-6">
-
-            <div class="row">
-              <div class="col-md-12">
-                <div class="info-box">
-                  <form action="contact.php" method="post" role="form">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                        <div class="validate"></div>
-                      </div>
-                      <div class="col-md-6 form-group">
-                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                        <div class="validate"></div>
-                      </div>
-                    </div>
-                    
-                  </form>                
-                </div>
-              </div>
-          </div>
-
-          <div class="col-lg-6">
-            <div class="info-box">
-
-            <form action="contact.php" method="post" role="form">
-              <div class="form-row">
-                <div class="col-md-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-                  <div class="validate"></div>
-                </div>
-                <div class="col-md-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-                  <div class="validate"></div>
-                </div>
-              </div>
-              <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
-                <div class="validate"></div>
-              </div>
-              <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
-                <div class="validate"></div>
-              </div>
-              <div class="text-center">
-                <button type="submit" class="btn fadeInUp text-uppercase sendbtn">Send Message</button>
-              </div>
-            </form>
-          </div>
-          
-        </div>
-
-        </div> -->
 
       </div>
       

@@ -3,6 +3,21 @@
   if(empty($_SESSION['admin'])){
     header('location:index.php');
   }
+  if(isset($_POST['logout'])){
+    session_destroy();
+    header('location:/Shreejit/admin/index.php');
+  }
+  if(isset($_POST['change_pwd'])){
+    $new = mysqli_real_escape_string($db, $_POST['newpwd']);
+    $cnew = mysqli_real_escape_string($db, $_POST['cnewpwd']);
+    if($new == $cnew){
+      $adn = $_SESSION['admin_name'];
+      $pwd_q = "UPDATE admin SET password='$new' WHERE admin_name = '$adn';";
+      mysqli_query($db,$pwd_q);
+    }
+  }
+  
+  
   $_SESSION['page'] = 'home';
 
 
@@ -10,28 +25,28 @@
     $title = mysqli_real_escape_string($db, $_POST['title']);
     $tq = "UPDATE home SET home_title='$title' WHERE home_tag = '1';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['home_description'])){
     $desc = mysqli_real_escape_string($db, $_POST['description']);
     $tq = "UPDATE home SET home_description='$desc' WHERE home_tag = '1';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['home_logo'])){
     $logo = mysqli_real_escape_string($db, $_POST['logo']);
     $tq = "UPDATE home SET home_image='$logo' WHERE home_tag = '1';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['home_bg'])){
     $img = mysqli_real_escape_string($db, $_POST['homebg']);
     $tq = "UPDATE background SET bg_img='$img' WHERE bg_page = 'home';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['home_pg'])){
@@ -39,35 +54,35 @@
     $home_pg = mysqli_real_escape_string($db, $_POST['home_pg']);
     $tq = "UPDATE home SET home_description='$pg' WHERE home_link = '$home_pg' AND home_tag = '3';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['video_link'])){
     $link = mysqli_real_escape_string($db, $_POST['link']);
     $tq = "UPDATE home SET home_link='$link' WHERE home_tag = '4';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['home_intro'])){
     $intro = mysqli_real_escape_string($db, $_POST['intro']);
     $tq = "UPDATE home SET home_description='$intro' WHERE home_tag = '4';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['video_bg'])){
     $videobg = mysqli_real_escape_string($db, $_POST['videobg']);
     $tq = "UPDATE home SET home_image='$videobg' WHERE home_tag = '4';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['home_service'])){
     $service = mysqli_real_escape_string($db, $_POST['service']);
     $tq = "UPDATE home SET home_description='$service' WHERE home_tag = '5';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['home_service_bg'])){
@@ -75,7 +90,7 @@
     $homeservicebg = mysqli_real_escape_string($db, $_POST['home_service_bg']);
     $tq = "UPDATE home SET home_image='$servicebg' WHERE home_tag = '6' AND home_title = '$homeservicebg';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['home_service_title'])){
@@ -83,7 +98,7 @@
     $homeservicetitle = mysqli_real_escape_string($db, $_POST['home_service_title']);
     $tq = "UPDATE home SET home_title='$servicetitle' WHERE home_tag = '6' AND home_title = '$homeservicetitle';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 
   if(isset($_POST['home_service_description'])){
@@ -91,7 +106,7 @@
     $homeservicedescription = mysqli_real_escape_string($db, $_POST['home_service_description']);
     $tq = "UPDATE home SET home_description='$servicedescription' WHERE home_tag = '6' AND home_title = '$homeservicedescription';";
     mysqli_query($db, $tq);
-    header('location: home.php');
+    echo "<script>alert('Updated');</script>"; 
   }
 ?>
 <html lang="en">
@@ -104,7 +119,20 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Admin - YogaAyurveda</title>
+<?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">  <title>Admin - YogaAyurveda</title>
 
   <!-- Custom fonts for this template-->
   <link href="/Shreejit/assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -580,25 +608,6 @@
   <a class="scroll-to-top rounded" href="#page-top">
     <i class="fas fa-angle-up"></i>
   </a>
-
-  <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="login.html">Logout</a>
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="/Shreejit/assets/vendor/jquery/jquery.min.js"></script>

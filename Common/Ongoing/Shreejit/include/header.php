@@ -31,7 +31,16 @@ if($_SESSION['title'] == 'Policy'){
   <div class="container">
 
     <div class="logo float-left">
-      <h1 class="text-light"><a href="index.php"><span>YOGA AYURVEDA</span></a></h1>
+      
+      <?php
+
+      $querytitle = "SELECT * FROM home WHERE home_tag = '0';";
+      $resultstitle = mysqli_query($db, $querytitle);
+      $rowtitle = mysqli_fetch_assoc($resultstitle);
+
+       ?>
+       
+      <h1 class="text-light text-uppercase"><a href="index.php"><span><?=$rowtitle['home_title']?></span></a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.php"><img src="/Shreejit/assets/img/logo.png" alt="" class="img-fluid"></a>-->
     </div>

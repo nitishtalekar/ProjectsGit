@@ -13,7 +13,20 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="/Shreejit/assets/img/favicon.png" rel="icon">
+  <?php
+
+  $queryl = "SELECT * FROM home WHERE home_tag='0'";
+  $resultsl = mysqli_query($db, $queryl);
+  $rowl = mysqli_fetch_assoc($resultsl);
+  $img_idlogos = $rowl['home_image'];
+  $querylogos = "SELECT * FROM images WHERE image_id='$img_idlogos'";
+  $rlogos = mysqli_query($db, $querylogos);
+  $imglogos = mysqli_fetch_assoc($rlogos);
+
+ ?>
+
+<!-- Favicons -->
+<link href="<?=$imglogos['image_path']?>" rel="icon">
   <link href="/Shreejit/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -75,6 +88,7 @@
                 $query = "SELECT * FROM gallery GROUP BY gallery_tag;";
                 $results = mysqli_query($db, $query);
                 while($row = mysqli_fetch_assoc($results)){
+                  if($row['gallery_tag'] != 'None'){
 
                ?>
 
@@ -82,9 +96,7 @@
               <!-- <li data-filter=".filter-course">Course</li>
               <li data-filter=".filter-t">Treatment</li> -->
               <?php
-
-                }
-
+                }}
               ?>
             </ul>
           </div>
@@ -105,16 +117,24 @@
               $query = "SELECT * FROM images WHERE image_id='$img_id'";
               $r = mysqli_query($db, $query);
               $img = mysqli_fetch_assoc($r);
-
+              if($row['gallery_tag'] == 'None'){
+                $gal_tag = 'Gallery';
+                echo '<div class="col-lg-4 col-md-6">';
+              }
+              else{
+                $gal_tag = $row['gallery_tag'];
+                echo '<div class="col-lg-4 col-md-6 filter-'.$gal_tag.'">';
+              }
+            
+            
             ?>
-
-            <div class="col-lg-4 col-md-6 filter-<?= $row['gallery_tag']; ?>">
               <div class="portfolio-item">
                 <img src="<?= $img['image_path']; ?>" class="img-fluid" alt="">
+                <a href="<?= $img['image_path']; ?>" data-gall="portfolioGallery" class="venobox text-uppercase" title="<?= $gal_tag ?>">
                 <div class="portfolio-info">
-                  <h3><a href="<?= $img['image_path']; ?>" data-gall="portfolioGallery" class="venobox text-uppercase" title="<?= $row['gallery_tag']; ?>"><?= $row['gallery_tag']; ?></a></h3>
-                  <a href="<?= $img['image_path']; ?>" data-gall="portfolioGallery" class="venobox" title="<?= $row['gallery_tag']; ?>"><i class="icofont-plus"></i></a>
+                  <h3 class="text-white"><?= $gal_tag; ?></h3>
                 </div>
+                </a>
               </div>
             </div>
 
