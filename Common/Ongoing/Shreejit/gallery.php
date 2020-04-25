@@ -56,7 +56,7 @@
 
   <?php include($_SERVER['DOCUMENT_ROOT']."/Shreejit/include/header.php")?>
 
-  <main id="main">
+  <main id="main" style="min-height:calc(100vh - 440px)">
 
     <!-- ======= Our Portfolio Section ======= -->
     <section class="breadcrumbs">
