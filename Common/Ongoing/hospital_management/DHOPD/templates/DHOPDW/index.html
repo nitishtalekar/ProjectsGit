@@ -1,0 +1,44 @@
+{% extends 'DHOPDW/base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+  <form method="post">
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" name="login">Login</button>
+
+  </form>
+  {{error}}
+  {{log.priority}}
+  {{log.auth}}
+
+  {% if log.priority == 'A' %}
+
+    <a href="add_user/"><button type="button" name="User">Add User</button></a>
+
+  {% endif %}
+
+  {% if log.auth == '1' or log.auth == '4' or log.auth == '6' or log.auth == '0' %}
+
+    <a href="female/"><button type="button" name="Female">Female</button></a>
+
+  {% endif %}
+
+  {% if log.auth == '2' or log.auth == '4' or log.auth == '5' or log.auth == '0' %}
+
+    <a href="male/"><button type="button" name="Male">Male</button></a>
+
+  {% endif %}
+
+  {% if log.auth == '3' or log.auth == '5' or log.auth == '6' or log.auth == '0' %}
+
+    <a href="room/"><button type="button" name="Room">Room</button></a>
+
+ {% endif %}
+
+
+{% endblock content %}
