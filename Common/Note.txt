@@ -1,3 +1,0 @@
-extracted features are in 4 csv file
-accuracy ka code bhi dala hai using xgboost classifier
-svm nahi chalraha mere ismai bohot time lagraha tha so mai comment kiya hai tu try kar :(
