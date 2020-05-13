@@ -1,0 +1,66 @@
+{% extends 'DHOPDW/base.html' %}
+
+{% block content %}
+
+<h6> Test </h6>
+
+<!-- <form action="/test/" method="post">
+    <label for="your_name">Your name: </label>
+    <input id="your_name" type="text" name="your_name" value="1">
+    <input type="submit" value="OK">
+</form> -->
+
+
+<form name = "form" action = "/DHOPD/test/" method = "POST" >
+  {% csrf_token %}
+
+         <div style = "max-width:470px;">
+            <center>
+               <input type = "text" style = "margin-left:20%;"
+                  placeholder = "Identifiant" name = "username">
+            </center>
+         </div>
+
+         <br>
+
+         <div style = "max-width:470px;">
+            <center>
+               <input type = "password" style = "margin-left:20%;"
+                  placeholder = "password" name = "password">
+            </center>
+         </div>
+
+         <br>
+
+         <div style = "max-width:470px;">
+            <center>
+
+               <button style = "border:0px; background-color:#4285F4; margin-top:8%;
+                  height:35px; width:80%;margin-left:19%;" type = "submit"
+                  value = "Login" >
+                  <strong>Login</strong>
+               </button>
+
+            </center>
+         </div>
+
+      </form>
+
+      {{username}}
+      {{title}}
+      {{f_name}}
+      {{m_name}}
+      {{l_name}}
+      {{addr}}
+      {{number}}
+      {{service}}
+      {{cost}}
+      {{vacc}}
+      {{town}}
+
+
+
+
+
+
+{% endblock content %}

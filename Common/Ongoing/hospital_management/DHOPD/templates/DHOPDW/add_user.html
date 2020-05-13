@@ -1,24 +1,124 @@
 {% extends 'DHOPDW/base.html' %}
 {% load static %}
 
+{% block head %}
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--===============================================================================================-->
+  <!-- <link rel="icon" type="image/png" href="images/icons/favicon.ico"/> -->
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'style/vendor/bootstrap/css/bootstrap.min.css' %}">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'style/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'style/fonts/Linearicons-Free-v1.0.0/icon-font.min.css' %}">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'style/vendor/animate/animate.css' %}">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'style/vendor/css-hamburgers/hamburgers.min.css' %}">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'style/vendor/animsition/css/animsition.min.css' %}">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'style/vendor/select2/select2.min.css' %}">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'style/vendor/daterangepicker/daterangepicker.css' %}">
+  <!--===============================================================================================-->
+  <link rel="stylesheet" type="text/css" href="{% static 'style/css/util.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'style/css/main.css' %}">
+  <!--===============================================================================================-->
+
+{% endblock head %}
+
 {% block content %}
 
 
-  <form method="post">
-    {% csrf_token %}
+  <div class="container">
+    <div class="row">
+        <div class="col-6">
+          <div class="container-login100 fade-in">
+            <div class="wrap-login100 p-t-50 p-b-90">
+              <form class="login100-form validate-form flex-sb flex-w" action = "/DHOPD/add_user/" method = "POST">
 
-    {{ form.as_p }}
+                {% csrf_token %}
 
-    <button type="submit" name="login">Add User</button>
+                <span class="login100-form-title-big pb-4">
+                  Dehankar Hospital
+                </span>
 
-  </form>
-  {{error}}
-  {{u}}
-  {{f}}
-  {{l}}
-  {{p}}
-  {{al}}
-  {{a}}
+                <span class="login100-form-title pb-3">
+                  Add User
+                </span>
+
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "Username is required">
+                  <input class="input100" type="text" name="user_name" placeholder="Username" autocomplete="off">
+                  <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "Firstname is required">
+                  <input class="input100" type="text" name="first_name" placeholder="Firstname" autocomplete="off">
+                  <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "Lastname is required">
+                  <input class="input100" type="text" name="last_name" placeholder="Lastname" autocomplete="off">
+                  <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "MobileNumber is required">
+                  <input class="input100" type="text" name="phon_no" placeholder="MobileNumber" autocomplete="off">
+                  <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-16" data-validate = "Authority is required">
+                  <input type="checkbox" name="authority" value="female">
+                  <label> Child </label><br>
+                  <input type="checkbox" name="authority" value="male">
+                  <label> Doctor </label><br>
+                  <input type="checkbox" name="authority" value="room">
+                  <label> Room </label><br>
+                </div>
+
+                <p style="color:red">{{error}}</p>
+
+
+                <div class="container-login100-form-btn m-t-17">
+                  <button class="login100-form-btn" type = "submit">
+                    Add User
+                  </button>
+                </div>
+
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <div class="container-image fade-in">
+            <img src="{% static 'style/images/login-bg.jpg' %}" alt="" style="width:100%;">
+          </div>
+        </div>
+    </div>
+  </div>
+
+  <div id="dropDownSelect1"></div>
+
+ <!--===============================================================================================-->
+ 	<script src="{% static 'style/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+ <!--===============================================================================================-->
+ 	<script src="{% static 'style/vendor/animsition/js/animsition.min.js' %}"></script>
+ <!--===============================================================================================-->
+ 	<script src="{% static 'style/vendor/bootstrap/js/popper.js' %}"></script>
+ 	<script src="{% static 'style/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+ <!--===============================================================================================-->
+ 	<script src="{% static 'style/vendor/select2/select2.min.js' %}"></script>
+ <!--===============================================================================================-->
+ 	<script src="{% static 'style/vendor/daterangepicker/moment.min.js' %}"></script>
+ 	<script src="{% static 'style/vendor/daterangepicker/daterangepicker.js' %}"></script>
+ <!--===============================================================================================-->
+ 	<script src="{% static 'style/vendor/countdowntime/countdowntime.js' %}"></script>
+ <!--===============================================================================================-->
+ 	<script src="{% static 'style/js/main.js' %}"></script>
 
 
 {% endblock content %}
