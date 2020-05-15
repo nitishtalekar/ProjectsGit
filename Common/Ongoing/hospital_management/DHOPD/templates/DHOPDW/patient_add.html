@@ -248,7 +248,7 @@
               </div>
               <!-- Card Content - Collapse -->
               <!-- <div class="collapse show" id="collapseCardExample"> -->
-              <form action="/DHOPD/patient_add/" method="POST">
+              <form action="/DHOPD/patient_add/?auth=Doctor" method="POST">
                 {% csrf_token %}
 
                 <div class="card-body">
@@ -322,7 +322,7 @@
                   <div class="container">
                     {% for i in service %}
                     <div class="col-4">
-                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ i.service_name }}" value="{{ i.service_name }}">&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }} (Rate) </label>
+                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ i.service_name }}" value="{{ i.service_id }}">&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }} (Rate) </label>
                     </div>
                     {% endfor %}
                   </div>
@@ -334,7 +334,7 @@
                       <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
                         <input type="text" name="vacc" id="vacc" class="form-control bg-light border-0 small" style="width:45%;" placeholder="Enter Vaccine">
                       <label class="text-uppercase" style="font-size:15px;">Amount</label>
-                        <input type="number" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:50%;" placeholder="Enter Amount">
+                        <input type="text" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:50%;" placeholder="Enter Amount">
                     </div>
                   </div>
                   <!-- <div class="container mt-3" id="v_name" style="display:none;">

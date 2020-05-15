@@ -31,11 +31,15 @@ class Patient(models.Model):
     patient_cost = models.CharField(max_length=100)
     patient_date = models.DateField(default=datetime.date.today)
     patient_time = models.TimeField(auto_now_add=True)
-    patient_receipt = models.CharField(max_length=200)
     patient_comment = models.CharField(max_length=200)
 
 class Receipt(models.Model):
     receipt_id = models.AutoField(primary_key=True, max_length=200)
     receipt_patient = models.CharField(max_length=200)
+    receipt_cost = models.CharField(max_length=200)
     receipt_time = models.TimeField(auto_now=True)
     receipt_status = models.CharField(default="-1", max_length=10)
+
+class Vaccine(models.Model):
+    vaccine_id = models.AutoField(primary_key=True, max_length=200)
+    vaccine_name = models.CharField(max_length=200)

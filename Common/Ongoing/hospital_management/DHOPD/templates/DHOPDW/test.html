@@ -57,6 +57,21 @@
       {{cost}}
       {{vacc}}
       {{town}}
+      <br>
+      {% for i in l %}
+      {% with k=forloop.counter %}
+      {{k}}
+      "{{i.k}}" {{forloop.counter}}<br>
+      {% endwith %}
+
+      {% endfor %}
+
+      <br><br>
+
+      {% for i in l %}
+        {{i.1}} {{forloop.counter}}<br>
+      {% endfor %}
+
 
 
 

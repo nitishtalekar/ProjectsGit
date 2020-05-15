@@ -238,7 +238,7 @@
           <h1 class="h3 mb-2 text-gray-800">Patient Waitlist</h1>
 
           <div class="d-flex justify-content-start mb-3 mt-2">
-            <a href="/DHOPD/patient_add/" class="btn btn-primary" style="width:30%">
+            <a href="/DHOPD/patient_add/?auth={{ tag }}" class="btn btn-primary" style="width:30%">
               Add Patient
             </a>
           </div>
@@ -274,42 +274,29 @@
                     </tr>
                   </tfoot>
                   <tbody>
+
+                    {% for i in patient_c %}
                     <tr>
-                      <td>1</td>
-                      <td>Mr. Nitish Pravin Talekar SDSFFDSFSA</td>
-                      <td>A,B,C</td>
-                      <td>100</td>
+                      <td>{{ i.1 }}</td>
+                      <td>{{ i.2 }} {{ i.3 }} {{ i.4 }}</td>
+                      <td>{{ i.9 }}</td>
+                      <td>{{ i.10 }}</td>
                       <td>
-                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#statusModal">
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#statusModal{{ i.0 }}">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                         Waiting
                         </a>
                       </td>
                       <td>
-                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#editModal">
+                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#editModal{{ i.0 }}">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                         Edit
                         </a>
                       </td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Sarvesh</td>
-                      <td>X,Y,Z</td>
-                      <td>500</td>
-                      <td>
-                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#statusModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                        Waiting
-                        </a>
-                      </td>
-                      <td>
-                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#editModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                        Edit
-                        </a>
-                      </td>
-                    </tr>
+                    {% endfor %}
+
+
                   </tbody>
                 </table>
               </div>
@@ -346,13 +333,14 @@
                     </tr>
                   </tfoot>
                   <tbody>
+                    {% for i in patient_w %}
                     <tr>
-                      <td>1</td>
-                      <td>Nitish</td>
-                      <td>A,B,C</td>
-                      <td>100</td>
+                      <td>{{ i.1 }}</td>
+                      <td>{{ i.2 }} {{ i.3 }} {{ i.4 }}</td>
+                      <td>{{ i.9 }}</td>
+                      <td>{{ i.10 }}</td>
                       <td>
-                        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#rev_statusModal">
+                        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#rev_statusModal{{ i.0 }}">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                         Visited
                         </a>
@@ -364,24 +352,8 @@
                         </a>
                       </td>
                     </tr>
-                    <tr>
-                      <td>2</td>
-                      <td>Sarvesh</td>
-                      <td>X,Y,Z</td>
-                      <td>500</td>
-                      <td>
-                        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#rev_statusModal">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                        Visited
-                        </a>
-                      </td>
-                      <td>
-                        <a class="btn btn-primary" href="m-bill.html">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                        Bill
-                        </a>
-                      </td>
-                    </tr>
+                    {% endfor %}
+
                   </tbody>
                 </table>
               </div>
@@ -460,8 +432,8 @@
       </div>
     </div>
   </div>
-
-  <div class="modal fade" id="statusModal" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+{% for i in patient_c %}
+  <div class="modal fade" id="statusModal{{ i.0 }}" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -470,36 +442,44 @@
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Patient "Name" has visited?</div>
+        <div class="modal-body">Patient "{{ i.2 }} {{ i.3 }} {{ i.4 }}" has visited?</div>
         <!-- <hr> -->
+        <form action="/DHOPD/patient_waitlist/?auth={{ tag }}" method="POST">
+          {% csrf_token %}
         <div class="modal-body">
           <center><button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-success" href="login.html">Visited</a></center>
+          <button type="submit" name="status" value="1.{{ i.0 }}" class="btn btn-success">Visited</button></center>
         </div>
+        </form>
       </div>
     </div>
   </div>
-
-  <div class="modal fade" id="rev_statusModal" tabindex="-1" role="dialog" aria-labelledby="rev_statusModalLabel" aria-hidden="true">
+{% endfor %}
+{% for i in patient_w %}
+  <div class="modal fade" id="rev_statusModal{{ i.0 }}" tabindex="-1" role="dialog" aria-labelledby="rev_statusModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="rev_statusModalLabel">Confirm Visited Status?</h5>
+          <h5 class="modal-title" id="rev_statusModalLabel">Confirm Waiting Status?</h5>
           <button class="close" type="button" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">×</span>
           </button>
         </div>
-        <div class="modal-body">Patient "Name" status to waiting?</div>
+        <div class="modal-body">Patient "{{ i.2 }} {{ i.3 }} {{ i.4 }}" status to waiting?</div>
         <!-- <hr> -->
+        <form action="/DHOPD/patient_waitlist/?auth={{ tag }}" method="POST">
+          {% csrf_token %}
         <div class="modal-body">
           <center><button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-warning" href="login.html">Waiting</a></center>
+          <button type="submit" name="status" value="0.{{ i.0 }}" class="btn btn-warning">Waiting</button></center>
         </div>
+        </form>
       </div>
     </div>
   </div>
-
-  <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+{% endfor %}
+{% for i in patient_c %}
+  <div class="modal fade" id="editModal{{ i.0 }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -516,102 +496,139 @@
             </div>
             <!-- Card Content - Collapse -->
             <!-- <div class="collapse show" id="collapseCardExample"> -->
-              <div class="card-body">
-                <!-- This is a collapsable card example using Bootstrap's built in collapse functionality. <strong>Click on the card header</strong> to see the card body collapse and expand! -->
-                <div class="container-fluid">
-                  <div class="row">
-                    <div class="col-3">
-                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                        <label class="text-uppercase" style="font-size:15px;">Title</label>
-                          <select class="js-example-basic-single custom-select mr-sm-2" name="ayurveda_pdf_<?=$x?>" style="width:55%;" required>
-                            <option value="" selected disabled>Select Title</option>
-                            <option value="Mr.">Mr.</option>
-                            <option value="Ms.">Ms.</option>
-                            <option value="Mrs.">Mrs.</option>
-                            <option value="Baby Girl">Baby Girl</option>
-                            <option value="Baby Boy">Baby Boy</option>
-                          </select>
+              <form action="/DHOPD/patient_waitlist/?auth={{ tag }}" method="POST">
+                {% csrf_token %}
+
+                <div class="card-body">
+                  <!-- This is a collapsable card example using Bootstrap's built in collapse functionality. <strong>Click on the card header</strong> to see the card body collapse and expand! -->
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-3">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Title</label>
+                            <select class="js-example-basic-single custom-select mr-sm-2" name="title" style="width:55%;height:10vh" required>
+                              <option value="" selected disabled>Select Title</option>
+                              {% if i.11.0 == 1 %}
+                              <option value="Mr." selected>Mr.</option>
+                              {% else %}
+                              <option value="Mr.">Mr.</option>
+                              {% endif %}
+
+                              {% if i.11.1 == 1 %}
+                              <option value="Ms." selected>Ms.</option>
+                              {% else %}
+                              <option value="Ms.">Ms.</option>
+                              {% endif %}
+
+                              {% if i.11.2 == 1 %}
+                              <option value="Mrs." selected>Mrs.</option>
+                              {% else %}
+                              <option value="Mrs.">Mrs.</option>
+                              {% endif %}
+
+                              {% if i.11.3 == 1 %}
+                              <option value="Baby Girl" selected>Baby Girl</option>
+                              {% else %}
+                              <option value="Baby Girl">Baby Girl</option>
+                              {% endif %}
+
+                              {% if i.11.4 == 1 %}
+                              <option value="Baby Boy" selected>Baby Boy</option>
+                              {% else %}
+                              <option value="Baby Boy">Baby Boy</option>
+                              {% endif %}
+                            </select>
+                          </div>
+                      </div>
+                      <div class="col-3">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">First Name</label>
+                            <input type="text" name="f_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.2}}">
                         </div>
-                    </div>
-                    <div class="col-3">
-                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                        <label class="text-uppercase" style="font-size:15px;">First Name</label>
-                          <input type="text" name="p_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name">
                       </div>
-                    </div>
-                    <div class="col-3">
-                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                        <label class="text-uppercase" style="font-size:15px;">Middle Name</label>
-                          <input type="text" name="p_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name">
+                      <div class="col-3">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Middle Name</label>
+                            <input type="text" name="m_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.3}}">
+                        </div>
                       </div>
-                    </div>
-                    <div class="col-3">
-                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                        <label class="text-uppercase" style="font-size:15px;">Last Name</label>
-                          <input type="text" name="p_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name">
+                      <div class="col-3">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Last Name</label>
+                            <input type="text" name="l_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.4}}">
+                        </div>
                       </div>
+
                     </div>
 
                   </div>
 
-                </div>
+                  <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                    <label class="text-uppercase" style="font-size:15px;">Address</label>
+                      <input type="text" name="addr" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Address" value= "{{i.6}}">
+                  </div>
 
-                <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                  <label class="text-uppercase" style="font-size:15px;">Address</label>
-                    <textarea name="p_addr" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Address"></textarea>
-                </div>
+                  <div class="container-fluid">
+                    <div class="row">
 
-                <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                  <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
-                    <input type="number" name="p_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number">
-                </div>
+                      <div class="col-6">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
+                            <input type="number" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" value="{{i.8}}">
+                        </div>
+                      </div>
 
-                <div class="container">
-                  <div class="row mt-5 mb-2">
-                    <div class="col-3">
-                      <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
+                      <div class="col-6">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Place</label>
+                            <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town" value="{{i.7}}">
+                        </div>
+                      </div>
+
                     </div>
-                    <div class="col-3">
-                      <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
+
+                  </div>
+                  <div class="container">
+                    {% for j in service %}
+                    <div class="col-4">
+                      {% if j.service_id in i.12 %}
+                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ j.service_name }}" value="{{ j.service_id }}" checked>&nbsp;&nbsp;&nbsp;&nbsp;{{j.service_name }} (Rate) </label>
+                      {% else %}
+                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ j.service_name }}" value="{{ j.service_id }}">&nbsp;&nbsp;&nbsp;&nbsp;{{j.service_name }} (Rate) </label>
+                      {% endif %}
                     </div>
-                    <div class="col-3">
-                      <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
-                    </div>
-                    <div class="col-3">
-                      <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
+                    {% endfor %}
+                  </div>
+
+                  {{i.13}}
+                  {{i.14}}
+
+                  <div class="container mt-3" id="v_name" style="display:none;">
+                    <div class="d-flex justify-content-around mb-3">
+                      <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
+                        <input type="text" name="vacc" id="vacc" class="form-control bg-light border-0 small" style="width:45%;" placeholder="Enter Vaccine">
+                      <label class="text-uppercase" style="font-size:15px;">Amount</label>
+                        <input type="text" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:50%;" placeholder="Enter Amount">
                     </div>
                   </div>
-                  <div class="row mt-5">
-                    <div class="col-3">
-                      <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
+                  <!-- <div class="container mt-3" id="v_name" style="display:none;">
+                    <div class="d-flex justify-content-around mb-3 mt-3" >
+                      <label class="text-uppercase" style="font-size:15px;">Amount</label>
+                        <input type="number" name="p_cost" class="form-control bg-light border-0 small" style="width:45%;" placeholder="Enter Amount">
                     </div>
-                    <div class="col-3">
-                      <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
-                    </div>
-                    <div class="col-3">
-                      <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
-                    </div>
-                    <div class="col-3">
-                      <label class="big-label"><input type="checkbox" class="big-check" name="vaccines" id="vaccine-check" value="1">&nbsp;&nbsp;&nbsp;&nbsp;Vaccine</label>
-                    </div>
+                  </div> -->
+
+                  <div class="d-flex justify-content-around mb-3 mt-5">
+                    <button class="btn btn-primary" type="submit" style="width:40%" name='p_view'>
+                      View
+                    </button>
+                    <button class="btn btn-success" type="submit" style="width:40%" value="{{i.0}}" name='pid'>
+                      Add
+                    </button>
                   </div>
                 </div>
-                <div class="container mt-3" id="vaccine" style="display:none;">
-                  <div class="d-flex justify-content-around mb-3 mt-3">
-                    <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
-                      <input type="text" name="p_vacc" class="form-control bg-light border-0 small" style="width:85%;" placeholder="Enter Vaccine">
-                  </div>
-                </div>
-                <div class="d-flex justify-content-center mb-3 mt-5" style="align-items:center;">
-                  <label class="text-uppercase" style="font-size:15px;">Amount</label>&nbsp;&nbsp;&nbsp;
-                    <input type="number" name="p_name" class="form-control bg-light border-0 small" style="width:45%;" placeholder="Enter Amount">
-                </div>
-                <div class="d-flex justify-content-around mb-3 mt-5">
-                  <button class="btn btn-success" type="submit" style="width:90%" name='p_add'>
-                    Update
-                  </button>
-                </div>
-              </div>
+
+                </form>
             <!-- </div> -->
           </div>
         </div>
@@ -622,7 +639,7 @@
       </div>
     </div>
   </div>
-
+{% endfor %}
   <!-- <div class="modal fade" id="billModal" tabindex="-1" role="dialog" aria-labelledby="billModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -738,9 +755,28 @@
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
         </div>
       </div>
-    </div> -->
-  </div>
+    </div>
+  </div>-->
+  <script type="text/javascript">
+  $(document).ready(function () {
+      $('#Vaccine').change(function () {
+          if (!this.checked){
+            $('#v_name').fadeOut('fast');
+            $('#vacc').removeAttr('required');
+            $('#cost').removeAttr('required');
+          }
+          //  ^
+          else{
+              $('#v_name').fadeIn('fast');
+              $('#vacc').attr('required', '');
+              $('#cost').attr('required', '');
+            }
 
+      });
+      });
+
+
+  </script>
   <script src="{% static 'style/vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'style/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'style/vendor/bootstrap/js/popper.js' %}"></script>
@@ -752,7 +788,6 @@
           $('.js-example-basic-single').select2();
       });
   </script>
-
   <!-- Core plugin JavaScript-->
   <script src="{% static 'style/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
 

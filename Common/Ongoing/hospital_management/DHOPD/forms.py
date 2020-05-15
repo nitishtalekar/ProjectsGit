@@ -27,3 +27,7 @@ class AddPatientForm(forms.Form):
     service = forms.CharField(widget=forms.CheckboxSelectMultiple())
     vacc = forms.CharField(required=False)
     cost = forms.CharField(required=False)
+    pid = forms.CharField(required=False)
+
+class WVForm(forms.Form):
+    status = forms.CharField()
