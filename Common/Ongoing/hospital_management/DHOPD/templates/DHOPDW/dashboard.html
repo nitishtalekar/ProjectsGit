@@ -27,7 +27,7 @@
 
   <!-- Sidebar -->
   <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion pt-5" id="accordionSidebar">
-
+  
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
       <div class="sidebar-brand-icon rotate-n-15">
@@ -35,32 +35,38 @@
       </div>
       <div class="sidebar-brand-text mx-3">Dehankar Hospital</div>
     </a>
-
+  
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
-
+  
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
       <a class="nav-link" href="/DHOPD/dashboard/">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
-
+    {% if log.priority == 'A' %}
+    <li class="nav-item">
+      <a class="nav-link" href="/DHOPD/add_user/">
+        <i class="fa fa-users"></i>
+        <span>Manage Users</span></a>
+    </li>
+    {% endif %}
+  
     <!-- Divider -->
     <hr class="sidebar-divider">
-
+  
     <!-- Heading -->
     <div class="sidebar-heading">
       Service
     </div>
-
+  
     <!-- Nav Item - Pages Collapse Menu -->
-
     {% if log.auth == '2' or log.auth == '4' or log.auth == '5' or log.auth == '0' %}
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fa fa-user-md"></i>
-        <span>Male Doctor</span>
+        <span>Doctor</span>
       </a>
       <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
@@ -72,12 +78,12 @@
       </div>
     </li>
     {% endif %}
-
+  
     {% if log.auth == '1' or log.auth == '4' or log.auth == '6' or log.auth == '0' %}
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-        <i class="fa fa-female"></i>
-        <span>Female Doctor</span>
+        <i class="fa fa-child"></i>
+        <span>Child Doctor</span>
       </a>
       <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
@@ -89,7 +95,7 @@
       </div>
     </li>
     {% endif %}
-
+  
     {% if log.auth == '3' or log.auth == '5' or log.auth == '6' or log.auth == '0' %}
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
@@ -106,41 +112,37 @@
       </div>
     </li>
     {% endif %}
-
-    <!-- Nav Item - Utilities Collapse Menu -->
-
+  
     <!-- Divider -->
     <hr class="sidebar-divider">
-
+  
     <!-- Heading -->
     <div class="sidebar-heading">
       Reports
     </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
-
+  
     <!-- Nav Item - Charts -->
     <li class="nav-item">
       <a class="nav-link" href="charts.html">
         <i class="fas fa-fw fa-table"></i>
         <span>Overall Report</span></a>
     </li>
-
+  
     <!-- Nav Item - Tables -->
     <li class="nav-item">
       <a class="nav-link" href="tables.html">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Graphs</span></a>
     </li>
-
+  
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-
+  
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
       <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-
+  
   </ul>
   <!-- End of Sidebar -->
 
@@ -160,66 +162,21 @@
 
         <h1 class="h3 mb-2 text-gray-800 pt-3">Dehankar Hospital OPD</h1>
 
-        <!-- Topbar Search -->
-        <!-- <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-          <div class="input-group">
-            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-            <div class="input-group-append">
-              <button class="btn btn-dark" type="button">
-                <i class="fas fa-search fa-sm"></i>
-              </button>
-            </div>
-          </div>
-        </form> -->
-
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
-
-          <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-          <!-- <li class="nav-item dropdown no-arrow d-sm-none">
-            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <i class="fas fa-search fa-fw"></i>
-            </a> -->
-            <!-- Dropdown - Messages -->
-            <!-- <div class="dropdown-menu dropdown-menu-right p-3 shadow animated grow-in" aria-labelledby="searchDropdown">
-              <form class="form-inline mr-auto w-100 navbar-search">
-                <div class="input-group">
-                  <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                  <div class="input-group-append">
-                    <button class="btn btn-dark" type="button">
-                      <i class="fas fa-search fa-sm"></i>
-                    </button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </li> -->
-
-          <!-- Nav Item - Alerts -->
-
-
-          <!-- Nav Item - Messages -->
-
-          {% if log.priority == 'A' %}
-
-          <div class="d-flex justify-content-around mb-3 mt-5">
-            <a href="/DHOPD/add_user/">
-            <button class="btn btn-primary" type="button" style="width:100%" name='p_view'>
-              Add User
-            </button>
-            </a>
-
-          {% endif %}
+          
 
 
           <div class="topbar-divider d-none d-sm-block"></div>
+          
+          
 
           <!-- Nav Item - User Information -->
           <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ log.fname }}</span>
-              <!-- <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
-            </a>
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="btn btn-dark"><i class="fa fa-user"></i> &nbsp; &nbsp; {{ log.fname }}</span>
+              </a>
+            
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
               <a class="dropdown-item" href="#">
@@ -252,7 +209,126 @@
 
         <!-- Page Heading -->
         <div class="container-flex">
-          HELLLO
+          <div class="container">
+              <div class="row d-flex justify-content-around">
+                
+                  <div class="col-xl-8 col-md-6 mb-4">
+                    <div class="card border-left-dark shadow h-100 py-3">
+                      <a href="/DHOPD/add_user/">
+                      <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                          <div class="col">
+                            <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Manage Users</div></center>
+                          </div>
+                          <div class="col-auto mr-5">
+                            <i class="fa fa-users fa-2x text-dark"></i>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+                  </div>
+                  
+              </div>
+            
+            <div class="row d-flex justify-content-around">
+              
+              <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-dark shadow h-100 py-3">
+                  <a href="/DHOPD/patient_waitlist?auth=Doctor">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col">
+                        <!-- <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Doctor</div> -->
+                        <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Doctor</div></center>
+                      </div>
+                      <div class="col-auto mr-5">
+                        <i class="fas fa-user-md fa-2x text-dark"></i>
+                      </div>
+                    </div>
+                  </div>
+                  </a>
+                </div>
+              </div>
+              
+              <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-dark shadow h-100 py-3">
+                  <a href="/DHOPD/patient_waitlist?auth=Child">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col">
+                        <!-- <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Doctor</div> -->
+                        <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Child Doctor</div></center>
+                      </div>
+                      <div class="col-auto mr-5">
+                        <i class="fas fa-child fa-2x text-dark"></i>
+                      </div>
+                    </div>
+                  </div>
+                  </a>
+                </div>
+              </div>
+
+              <div class="col-xl-4 col-md-6 mb-4">
+                <div class="card border-left-dark shadow h-100 py-3">
+                  <a href="/DHOPD/patient_waitlist?auth=Room">
+                  <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                      <div class="col">
+                        <!-- <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Doctor</div> -->
+                        <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Rooms</div></center>
+                      </div>
+                      <div class="col-auto mr-5">
+                        <i class="fas fa-bed fa-2x text-dark"></i>
+                      </div>
+                    </div>
+                  </div>
+                  </a>
+                </div>
+              </div>
+              
+            </div>
+            
+            <div class="row d-flex justify-content-around">
+              
+                <div class="col-xl-6 col-md-6 mb-4">
+                  <div class="card border-left-dark shadow h-100 py-3">
+                    <a href="">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col">
+                          <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Charts</div></center>
+                        </div>
+                        <div class="col-auto mr-5">
+                          <i class="fas fa-fw fa-table fa-2x text-dark"></i>
+                        </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                
+                <div class="col-xl-6 col-md-6 mb-4">
+                  <div class="card border-left-dark shadow h-100 py-3">
+                    <a href="">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col">
+                          <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Graphs</div></center>
+                        </div>
+                        <div class="col-auto mr-5">
+                          <i class="fas fa-fw fa-chart-area fa-2x text-dark"></i>
+                        </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                </div>
+                
+            </div>
+            
+            
+          </div>
         </div>
 
       <!-- </div> -->
@@ -265,7 +341,7 @@
     <footer class="sticky-footer bg-white">
       <div class="container my-auto">
         <div class="copyright text-center my-auto">
-          <span>Copyright &copy; Your Website 2019</span>
+          <span>Dehankar Hospital</span>
         </div>
       </div>
     </footer>

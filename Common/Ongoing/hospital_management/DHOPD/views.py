@@ -73,7 +73,8 @@ def user(request):
     if'log' in request.session:
         if request.method == "POST":
             form = AddUserForm(request.POST)
-            d = {'form':form}
+            log = Users.objects.get(user_id = request.session['log'])
+            d = {'form':form,'log':log}
             if form.is_valid():
                 u = form.cleaned_data['user_name']
                 f = form.cleaned_data['first_name']
@@ -95,7 +96,8 @@ def user(request):
             return render(request, 'DHOPDW/add_user.html', d)
         else:
             form =AddUserForm()
-            d = {'form':form}
+            log = Users.objects.get(user_id = request.session['log'])
+            d = {'form':form,'log':log}
             return render(request, 'DHOPDW/add_user.html', d)
 
     return render(request, 'DHOPDW/index.html')
@@ -105,6 +107,7 @@ def user(request):
 def test(request):
     username = "not logged in"
     print("\nyoyoyoyoyoy\n")
+    tag = request.GET['auth']
     l=[['0','1','3'],['!','@','3'],[['0','1','i','ji'],'$','*']]
     if request.method == "POST":
       #Get the posted form
@@ -114,13 +117,13 @@ def test(request):
           print(MyLoginForm.cleaned_data['password'])
     else:
         MyLoginForm = TestForm()
-    return render(request, 'DHOPDW/test.html', {"username" : username, 'l':l})
+    return render(request, 'DHOPDW/test.html', {"username" : username, 'l':l, 'log':Users.objects.get(user_id = request.session['log'])})
 
 def padd(request):
     if 'log' in request.session:
         log = Users.objects.get(user_id = request.session['log'])
         service = Service.objects.all()
-        d_dash = {'log':log,'service':service,'sl':service.count()}
+        d_dash = {'log':log,'service':service,'sl':service.count(),'tag':request.GET['auth']}
         tag = request.GET['auth']
         if request.method == "POST":
             print("\nyoyoyoy\n")
@@ -160,7 +163,7 @@ def padd(request):
                     print(obj.patient_id)
                     Receipt.objects.create(receipt_patient=obj.patient_id, receipt_cost=tcost)
                 # print(service,cost,vacc)
-                d = {'title':title, 'f_name':f_name,'m_name':m_name,'l_name':l_name,'addr':addr,'number':number,'service':service,'cost':cost,'vacc':vacc,"town":town}
+                d = {'title':title, 'f_name':f_name,'m_name':m_name,'l_name':l_name,'addr':addr,'number':number,'service':service,'tcost':tcost,'vacc':vacc,"town":town,'tag':tag,'ser':service.split(';')}
                 return render(request, 'DHOPDW/test.html', d)
         else:
             AddPatient = AddPatientForm()
@@ -171,7 +174,7 @@ def padd(request):
 def pbill(request):
     if 'log' in request.session:
         log = Users.objects.get(user_id = request.session['log'])
-        d_dash = {'log':log}
+        d_dash = {'log':log,'tag':request.GET['auth']}
         return render(request, 'DHOPDW/patient_bill.html',d_dash)
 
     return render(request, 'DHOPDW/index.html')

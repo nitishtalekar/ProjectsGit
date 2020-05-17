@@ -1,6 +1,7 @@
-{% extends 'DHOPDW/base.html' %}
-{% load static %}
-{% block head %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -11,18 +12,18 @@
   <title>Dehankar - Add Patient - Male</title>
 
   <!-- Custom fonts for this template-->
-  <link href="{% static 'style/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="style/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-
+  
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-
+  
   <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
   <!-- Custom styles for this template-->
-  <link href="{% static 'style/css/sb-admin-2.min.css' %}" rel="stylesheet">
-  <link href="{% static 'style/css/sb-admin-2.css' %}" rel="stylesheet">
-
+  <link href="style/css/sb-admin-2.min.css" rel="stylesheet">
+  <link href="style/css/sb-admin-2.css" rel="stylesheet">
+  
   <style media="screen">
     .big-check{
       height:20px;
@@ -34,26 +35,23 @@
       vertical-align: center;
     }
   </style>
-
+  
   <script type="text/javascript">
   $(document).ready(function () {
       $('#vaccine-check').change(function () {
-          if (!this.checked)
+          if (!this.checked) 
           //  ^
              $('#vaccine').fadeOut('fast');
-          else
+          else 
               $('#vaccine').fadeIn('fast');
       });
       });
-
+          
   </script>
 
-  {% endblock head %}
+</head>
 
-
-  {% block content %}
-  <body id="page-top">
-
+<body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -73,18 +71,11 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item">
-        <a class="nav-link" href="/DHOPD/dashboard/">
+      <li class="nav-item active">
+        <a class="nav-link" href="dashboard.html">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
-      {% if log.priority == 'A' %}
-      <li class="nav-item">
-        <a class="nav-link" href="/DHOPD/add_user/">
-          <i class="fa fa-users"></i>
-          <span>Manage Users</span></a>
-      </li>
-      {% endif %}
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -95,90 +86,50 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      
-      {% if log.auth == '2' or log.auth == '4' or log.auth == '5' or log.auth == '0' %}
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fa fa-user-md"></i>
-          <span>Doctor</span>
+          <span>Male Doctor</span>
         </a>
-        {% if tag == 'Doctor' %}
         <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        {% else %}
-        <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        {% endif %}
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
-            <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
-            <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
-            
-            {% if tag == 'Doctor' %}
-            <a class="collapse-item active1" href="/DHOPD/patient_bill?auth=Doctor">Generate Bill</a>
-            {% else %}
-            <a class="collapse-item" href="/DHOPD/patient_bill?auth=Doctor">Generate Bill</a>
-            {% endif %}
-            
-            
+            <a class="collapse-item" href="m-waitlist.html">Waiting List</a>
+            <a class="collapse-item active1" href="m-add.html">Add Patient</a>
+            <a class="collapse-item" href="m-bill.html">Generate Bill</a>
           </div>
         </div>
       </li>
-      {% endif %}
-
-      {% if log.auth == '1' or log.auth == '4' or log.auth == '6' or log.auth == '0' %}
+      
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fa fa-child"></i>
-          <span>Child Doctor</span>
+          <i class="fa fa-female"></i>
+          <span>Female Doctor</span>
         </a>
-        {% if tag == 'Child' %}
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        {% else %}
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        {% endif %}
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
-            <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Child">Waiting List</a>
-            <a class="collapse-item" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
-            
-            {% if tag == 'Child' %}
-            <a class="collapse-item active1" href="/DHOPD/patient_bill?auth=Child">Generate Bill</a>
-            {% else %}
-            <a class="collapse-item" href="/DHOPD/patient_bill?auth=Child">Generate Bill</a>
-            {% endif %}
-            
-            
+            <a class="collapse-item" href="f-waitlist.html">Waiting List</a>
+            <a class="collapse-item" href="f-add.html">Add Patient</a>
+            <a class="collapse-item" href="f-bill.html">Generate Bill</a>
           </div>
         </div>
       </li>
-      {% endif %}
-
-      {% if log.auth == '3' or log.auth == '5' or log.auth == '6' or log.auth == '0' %}
+      
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fa fa-bed"></i>
           <span>Room</span>
         </a>
-        {% if tag == 'Room' %}
-        <div id="collapseThree" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        {% else %}
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-        {% endif %}
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
-            <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Room">Waiting List</a>
-            <a class="collapse-item" href="/DHOPD/patient_add?auth=Room">Add Patient</a>
-          
-            {% if tag == 'Room' %}
-            <a class="collapse-item active1" href="/DHOPD/patient_bill?auth=Room">Generate Bill</a>
-            {% else %}
-            <a class="collapse-item" href="/DHOPD/patient_bill?auth=Room">Generate Bill</a>
-            {% endif %}
-            
-            
+            <a class="collapse-item" href="r-waitlist.html">Waiting List</a>
+            <a class="collapse-item" href="r-add.html">Add Patient</a>
+            <a class="collapse-item" href="r-bill.html">Generate Bill</a>
           </div>
         </div>
       </li>
-      {% endif %}
 
       <!-- Nav Item - Utilities Collapse Menu -->
 
@@ -230,20 +181,21 @@
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
           </button>
-
+          
           <h1 class="h3 mb-2 text-gray-800 pt-3">Dehankar Hospital OPD</h1>
 
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
-            
+          
+
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="btn btn-dark"><i class="fa fa-user"></i> &nbsp; &nbsp; {{ log.fname }}</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Username</span>
+                <!-- <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
               </a>
-              
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -276,27 +228,15 @@
 
           <!-- Page Heading -->
           <div class="container-fluid">
-
-            <h1 class="h3 mb-2 text-gray-800">Generate Bill</h1>
-            <div class="d-flex justify-content-start mb-3" style="align-items:center;">
-              <label class="text-uppercase" style="font-size:15px;">Search</label>&nbsp;&nbsp;&nbsp;&nbsp;
-                <select class="js-example-basic-single custom-select mr-sm-2" name="ayurveda_pdf_<?=$x?>" style="width:55%;height:10vh" required>
-                  <option value="" selected disabled>Select Patient Name</option>
-                  <option value="Mr.">Mr.</option>
-                  <option value="Ms.">Ms.</option>
-                  <option value="Mrs.">Mrs.</option>
-                  <option value="Baby Girl">Baby Girl</option>
-                  <option value="Baby Boy">Baby Boy</option>
-                </select>
-              </div>
-
+            
+            <h1 class="h3 mb-2 text-gray-800">Add a New Patient</h1>
+            
             <!-- Collapsable Card Example -->
             <div class="card shadow mb-4">
               <!-- Card Header - Accordion -->
               <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary text-uppercase">Final Edit Information</h6>
+                <h6 class="m-0 font-weight-bold text-primary text-uppercase">Add Patient</h6>
               </div>
-
               <!-- Card Content - Collapse -->
               <!-- <div class="collapse show" id="collapseCardExample"> -->
                 <div class="card-body">
@@ -334,21 +274,21 @@
                             <input type="text" name="p_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name">
                         </div>
                       </div>
-
+                      
                     </div>
-
-                  </div>
-
+                    
+                  </div>          
+                  
                   <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                     <label class="text-uppercase" style="font-size:15px;">Address</label>
                       <textarea name="p_addr" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Address"></textarea>
                   </div>
-
+                  
                   <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                     <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
                       <input type="number" name="p_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number">
                   </div>
-
+                  
                   <div class="container">
                     <div class="row mt-5 mb-2">
                       <div class="col-3">
@@ -390,8 +330,11 @@
                       <input type="number" name="p_name" class="form-control bg-light border-0 small" style="width:45%;" placeholder="Enter Amount">
                   </div>
                   <div class="d-flex justify-content-around mb-3 mt-5">
-                    <button class="btn btn-primary" type="submit" style="width:70%" name='p_add'>
-                      Generate Bill
+                    <button class="btn btn-primary" type="submit" style="width:40%" name='p_view'>
+                      View
+                    </button>
+                    <button class="btn btn-success" type="submit" style="width:40%" name='p_add'>
+                      Add
                     </button>
                   </div>
                 </div>
@@ -409,7 +352,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Dehankar Hospital</span>
+            <span>Copyright &copy; Your Website 2019</span>
           </div>
         </div>
       </footer>
@@ -444,7 +387,7 @@
       </div>
     </div>
   </div>
-
+  
   <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -462,7 +405,7 @@
             <input type="text" class="form-control bg-light border-0 small" name="newpwd" style="width:80%;" placeholder="Enter New Password"><br>
             <input type="text" class="form-control bg-light border-0 small" name="cnewpwd" style="width:80%;" placeholder="Confirm New Password"><br>
           <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
-          <button class="btn btn-primary" name="change_pwd" type="submit">Change</button>
+          <button class="btn btn-primary" name="change_pwd" type="submit">Change</button>          
         </center>
         </div>
         </form>
@@ -472,12 +415,12 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="{% static 'style/vendor/jquery/jquery.min.js' %}"></script>
-  <script src="{% static 'style/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
-  <script src="{% static 'style/vendor/bootstrap/js/popper.js' %}"></script>
-  <script src="{% static 'style/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
-  <script src="{% static 'style/vendor/select2/select2.min.js' %}"></script>
-
+  <script src="style/vendor/jquery/jquery.min.js"></script>
+  <script src="style/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="style/vendor/bootstrap/js/popper.js"></script>
+  <script src="style/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="style/vendor/select2/select2.min.js"></script>
+  
   <script type="text/javascript">
         $(document).ready(function() {
           $('.js-example-basic-single').select2();
@@ -485,11 +428,11 @@
   </script>
 
   <!-- Core plugin JavaScript-->
-  <script src="{% static 'style/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="style/vendor/jquery-easing/jquery.easing.min.js"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="{% static 'style/js/sb-admin-2.min.js' %}"></script>
+  <script src="style/js/sb-admin-2.min.js"></script>
 
 </body>
 
-{% endblock content %}
+</html>

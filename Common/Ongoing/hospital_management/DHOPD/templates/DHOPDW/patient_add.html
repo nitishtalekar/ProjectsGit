@@ -63,11 +63,18 @@
       <hr class="sidebar-divider my-0">
 
       <!-- Nav Item - Dashboard -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="/DHOPD/dashboard/">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Dashboard</span></a>
       </li>
+      {% if log.priority == 'A' %}
+      <li class="nav-item">
+        <a class="nav-link" href="/DHOPD/add_user/">
+          <i class="fa fa-users"></i>
+          <span>Manage Users</span></a>
+      </li>
+      {% endif %}
 
       <!-- Divider -->
       <hr class="sidebar-divider">
@@ -78,17 +85,28 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
+      
       {% if log.auth == '2' or log.auth == '4' or log.auth == '5' or log.auth == '0' %}
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fa fa-user-md"></i>
-          <span>Male Doctor</span>
+          <span>Doctor</span>
         </a>
+        {% if tag == 'Doctor' %}
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        {% else %}
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        {% endif %}
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
             <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
+            
+            {% if tag == 'Doctor' %}
+            <a class="collapse-item active1" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
+            {% else %}
             <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
+            {% endif %}
+            
             <a class="collapse-item" href="/DHOPD/patient_bill?auth=Doctor">Generate Bill</a>
           </div>
         </div>
@@ -98,14 +116,24 @@
       {% if log.auth == '1' or log.auth == '4' or log.auth == '6' or log.auth == '0' %}
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fa fa-female"></i>
-          <span>Female Doctor</span>
+          <i class="fa fa-child"></i>
+          <span>Child Doctor</span>
         </a>
+        {% if tag == 'Child' %}
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        {% else %}
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        {% endif %}
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
             <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Child">Waiting List</a>
+            
+            {% if tag == 'Child' %}
+            <a class="collapse-item active1" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
+            {% else %}
             <a class="collapse-item" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
+            {% endif %}
+            
             <a class="collapse-item" href="/DHOPD/patient_bill?auth=Child">Generate Bill</a>
           </div>
         </div>
@@ -114,15 +142,25 @@
 
       {% if log.auth == '3' or log.auth == '5' or log.auth == '6' or log.auth == '0' %}
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
           <i class="fa fa-bed"></i>
           <span>Room</span>
         </a>
+        {% if tag == 'Room' %}
+        <div id="collapseThree" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        {% else %}
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        {% endif %}
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
             <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Room">Waiting List</a>
+            
+            {% if tag == 'Room' %}
+            <a class="collapse-item active1" href="/DHOPD/patient_add?auth=Room">Add Patient</a>
+            {% else %}
             <a class="collapse-item" href="/DHOPD/patient_add?auth=Room">Add Patient</a>
+            {% endif %}
+            
             <a class="collapse-item" href="/DHOPD/patient_bill?auth=Room">Generate Bill</a>
           </div>
         </div>
@@ -185,26 +223,15 @@
           <!-- Topbar Navbar -->
           <ul class="navbar-nav ml-auto">
 
-            {% if log.priority == 'A' %}
-
-            <div class="d-flex justify-content-around mb-3 mt-5">
-              <a href="/DHOPD/add_user/">
-              <button class="btn btn-primary" type="button" style="width:100%" name='p_view'>
-                Add User
-              </button>
-              </a>
-
-            {% endif %}
-
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{ log.fname }}</span>
-                <!-- <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60"> -->
+                <span class="btn btn-dark"><i class="fa fa-user"></i> &nbsp; &nbsp; {{ log.fname }}</span>
               </a>
+              
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -232,8 +259,6 @@
         </nav>
         <!-- End of Topbar -->
 
-        <!-- Begin Page Content -->
-        <!-- <div class="container-fluid"> -->
 
           <!-- Page Heading -->
           <div class="container-fluid">
@@ -247,12 +272,10 @@
                 <h6 class="m-0 font-weight-bold text-primary text-uppercase">Add Patient</h6>
               </div>
               <!-- Card Content - Collapse -->
-              <!-- <div class="collapse show" id="collapseCardExample"> -->
               <form action="/DHOPD/patient_add/?auth=Doctor" method="POST">
                 {% csrf_token %}
 
                 <div class="card-body">
-                  <!-- This is a collapsable card example using Bootstrap's built in collapse functionality. <strong>Click on the card header</strong> to see the card body collapse and expand! -->
                   <div class="container-fluid">
                     <div class="row">
                       <div class="col-3">
@@ -286,9 +309,7 @@
                             <input type="text" name="l_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name">
                         </div>
                       </div>
-
                     </div>
-
                   </div>
 
                   <div class="d-flex justify-content-around mb-3" style="align-items:center;">
@@ -312,37 +333,27 @@
                             <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town">
                         </div>
                       </div>
-
                     </div>
-
                   </div>
-
-
 
                   <div class="container">
-                    {% for i in service %}
-                    <div class="col-4">
-                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ i.service_name }}" value="{{ i.service_id }}">&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }} (Rate) </label>
-                    </div>
+                    <div class="row">
+                    {% for i in service %}              
+                      <div class="col-4 mt-3">
+                        <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ i.service_name }}" value="{{ i.service_id }}">&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }} (Rate) </label>
+                      </div>
                     {% endfor %}
+                    </div>
                   </div>
 
-
-
-                  <div class="container mt-3" id="v_name" style="display:none;">
+                  <div class="container-fluid mt-3" id="v_name" style="display:none;">
                     <div class="d-flex justify-content-around mb-3">
                       <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
-                        <input type="text" name="vacc" id="vacc" class="form-control bg-light border-0 small" style="width:45%;" placeholder="Enter Vaccine">
+                        <input type="text" name="vacc" id="vacc" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Vaccine">
                       <label class="text-uppercase" style="font-size:15px;">Amount</label>
-                        <input type="text" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:50%;" placeholder="Enter Amount">
+                        <input type="text" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Amount">
                     </div>
                   </div>
-                  <!-- <div class="container mt-3" id="v_name" style="display:none;">
-                    <div class="d-flex justify-content-around mb-3 mt-3" >
-                      <label class="text-uppercase" style="font-size:15px;">Amount</label>
-                        <input type="number" name="p_cost" class="form-control bg-light border-0 small" style="width:45%;" placeholder="Enter Amount">
-                    </div>
-                  </div> -->
 
                   <div class="d-flex justify-content-around mb-3 mt-5">
                     <button class="btn btn-primary" type="submit" style="width:40%" name='p_view'>
@@ -369,7 +380,7 @@
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
-            <span>Copyright &copy; Your Website 2019</span>
+            <span>Dehankar Hospital</span>
           </div>
         </div>
       </footer>
