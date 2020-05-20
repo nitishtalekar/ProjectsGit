@@ -7,6 +7,14 @@ $(document).ready(function() {
     ordering:  false
   });
   $('#dataTablesearch').DataTable({
-    ordering:  true
+    ordering:  true ,
+    "columns": [
+    null,
+    { "width": "20%" },
+    { "width": "30%" },
+    null,
+    null,
+    null
+  ]
   });
 });
