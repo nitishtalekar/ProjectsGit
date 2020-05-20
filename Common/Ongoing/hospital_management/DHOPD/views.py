@@ -4,6 +4,7 @@ from DHOPD.forms import *
 from .models import *
 import re
 from datetime import datetime
+from num2words import num2words
 
 
 
@@ -65,7 +66,8 @@ def patient_info(patient):
         temp.append(allsid)                                                                 #11
         temp.append(", ".join(vacc))                                                        #12
         temp.append(", ".join(cost))                                                        #13
-        temp.append(i.patient_date)
+        temp.append(i.patient_date)                                                         #14
+        temp.append(Receipt.objects.get(receipt_patient=i.patient_id).receipt_id)           #15
         patient_detail.append(temp)
 
     return patient_detail
@@ -120,17 +122,14 @@ def user(request):
                 f = form.cleaned_data['first_name']
                 l = form.cleaned_data['last_name']
                 p = form.cleaned_data['phon_no']
-                print(form.cleaned_data['authority'])
                 a = auth_code(form.cleaned_data['authority'])
                 p_add = form.cleaned_data['p_add'].split('.')
                 d = {'form':form, 'log':log, 'user':users}
                 if p_add[0] == 'delete':
-                    print(p_add[1])
                     Users.objects.filter(user_id=p_add[1]).delete()
                     return render(request, 'DHOPDW/add_user.html', d)
 
                 if p_add[0] == 'update':
-                    print(p_add[1])
                     Users.objects.filter(user_id=p_add[1]).update(user_name=u, fname=f, lname=l, password=p, pno=p, priority='U', auth=a)
                     return render(request, 'DHOPDW/add_user.html', d)
 
@@ -140,11 +139,9 @@ def user(request):
                 if log1.count() == 1:
                     error = 'User name already exists....'
                     d = {'form':form,'error':error,'log':log, 'user':users}
-                    print(d)
                     return render(request, 'DHOPDW/add_user.html', d)
                 else:
                     add_user = Users.objects.create(user_name=u, fname=f, lname=l, password=p, pno=p, priority='U', auth=a)
-                    print(add_user)
                     return render(request, 'DHOPDW/add_user.html',d)
                 return render(request, 'DHOPDW/add_user.html',d)
         else:
@@ -166,7 +163,6 @@ def test(request):
       MyLoginForm = TestForm(request.POST)
       if MyLoginForm.is_valid():
           username = MyLoginForm.cleaned_data['username']
-          print(MyLoginForm.cleaned_data['password'])
     else:
         MyLoginForm = TestForm()
     return render(request, 'DHOPDW/test.html', {"username" : username, 'l':l, 'log':Users.objects.get(user_id = request.session['log'])})
@@ -174,8 +170,8 @@ def test(request):
 def padd(request):
     if 'log' in request.session:
         log = Users.objects.get(user_id = request.session['log'])
-        service = Service.objects.all()
-        d_dash = {'log':log,'service':service,'sl':service.count(),'tag':request.GET['auth']}
+        serviceall = Service.objects.all()
+        d_dash = {'log':log,'service':serviceall,'sl':serviceall.count(),'tag':request.GET['auth']}
         tag = request.GET['auth']
         if request.method == "POST":
             AddPatient = AddPatientForm(request.POST)
@@ -202,20 +198,17 @@ def padd(request):
                     cost = cost + c
 
                 tcost = sum(list(map(float, cost)))
-                # print(tcost)
+                
                 cost = ";".join(cost)
-                # print(cost)
+            
                 service = service + s
                 service = ";".join(service)
-                # print(service)
                 if tag == 'Doctor':
                     Patient.objects.create(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_address=addr, patient_town=town, patient_phone=number, patient_services=service, patient_status="0", patient_cost=cost)
                     obj= Patient.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
-                    print(obj.patient_id)
                     Receipt.objects.create(receipt_patient=obj.patient_id, receipt_cost=tcost)
-                # print(service,cost,vacc)
-                d = {'title':title, 'f_name':f_name,'m_name':m_name,'l_name':l_name,'addr':addr,'number':number,'service':service,'tcost':tcost,'vacc':vacc,"town":town,'tag':tag,'ser':service.split(';')}
-                return render(request, 'DHOPDW/test.html', d)
+                d = {'service':serviceall,'log':log,'sl':serviceall.count(),'tag':tag}
+                return render(request, 'DHOPDW/patient_add.html', d)
         else:
             AddPatient = AddPatientForm()
         return render(request, 'DHOPDW/patient_add.html',d_dash)
@@ -226,7 +219,6 @@ def pbill(request):
     if 'log' in request.session:
         log = Users.objects.get(user_id = request.session['log'])
         pid = request.GET['pid']
-        print(pid)
         d_dash = {'log':log,'tag':request.GET['auth']}
         return render(request, 'DHOPDW/patient_bill.html',d_dash)
 
@@ -268,12 +260,9 @@ def pwaitlist(request):
 
 
                 tcost = sum(list(map(float, cost)))
-                # print(tcost)
                 cost = ";".join(cost)
-                # print(cost)
                 service = service + s
                 service = ";".join(service)
-                # print(title,f_name,m_name,l_name,addr,number,service,cost,town,pid)
                 if tag == 'Doctor':
                     Patient.objects.filter(patient_id=pid).update(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_address=addr, patient_town=town, patient_phone=number, patient_services=service, patient_status="0", patient_cost=cost)
                     obj= Patient.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
@@ -336,7 +325,6 @@ def psearch(request):
             fromd = Patient.objects.all()[0].patient_date
             fd = fromd.strftime('%Y-%m-%d')
             tod = datetime.today().strftime('%Y-%m-%d')
-            print(tod)
         if request.method == "POST":
             search = SearchForm(request.POST)
             if search.is_valid():
@@ -348,7 +336,9 @@ def psearch(request):
                     d_dash = {'log':log,'tag':tag,'patient':patient, 'fromd':fromd, 'tod':tod}
                 else:
                     patient = patient_info([Patient.objects.get(patient_id=pid)])
-                    return render(request, 'DHOPDW/print_bill.html', {'patient':patient})
+                    number = float(patient[0][9])
+                    words = num2words(number)
+                    return render(request, 'DHOPDW/print_bill.html', {'patient':patient,'log':log,'words':words})
 
         else:
             search = SearchForm()
@@ -374,7 +364,6 @@ def service(request):
                 s_name = ser.cleaned_data['s_name']
                 s_cost = ser.cleaned_data['s_cost']
                 sid = ser.cleaned_data['sid'].split('.')
-                print(sid)
                 if service == 'Doctor':
                     if sid[0] == 'update':
                         Service.objects.filter(service_id=sid[1]).update(service_name=s_name, service_cost=s_cost)

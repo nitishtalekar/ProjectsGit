@@ -52,18 +52,45 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
+    <li class="nav-item active">
       <a class="nav-link" href="/DHOPD/dashboard/">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
-
     {% if log.priority == 'A' %}
-    <li class="nav-item active">
+    <li class="nav-item">
       <a class="nav-link" href="/DHOPD/add_user/">
         <i class="fa fa-users"></i>
         <span>Manage Users</span></a>
     </li>
+    
+    <li class="nav-item active">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServ" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fa fa-server"></i>
+        <span>Manage Service</span>
+      </a>
+      <div id="collapseServ" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Options</h6>
+          {% if service == 'Doctor' %}
+          <a class="collapse-item active1" href="/DHOPD/add_service/?service=Doctor">Doctor Services</a>
+          {% else %}
+          <a class="collapse-item" href="/DHOPD/add_service/?service=Doctor">Doctor Services</a>
+          {% endif %}
+          
+          {% if service == 'Hospital' %}
+          <a class="collapse-item active1" href="/DHOPD/add_service/?service=Hospital">Hospital Services</a>
+          {% else %}
+          <a class="collapse-item" href="/DHOPD/add_service/?service=Hospital">Hospital Services</a>
+          {% endif %}
+          
+          
+          
+        </div>
+      </div>
+    </li>
+        
+    
     {% endif %}
 
     <!-- Divider -->
@@ -79,14 +106,14 @@
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fa fa-user-md"></i>
-        <span>Doctor</span>
+        <span>Dr. Shrish Dehankar</span>
       </a>
       <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Options</h6>
           <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
           <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
-          <a class="collapse-item" href="/DHOPD/patient_bill?auth=Doctor">Generate Bill</a>
+          <a class="collapse-item" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
         </div>
       </div>
     </li>
@@ -103,7 +130,7 @@
           <h6 class="collapse-header">Options</h6>
           <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Child">Waiting List</a>
           <a class="collapse-item" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
-          <a class="collapse-item" href="/DHOPD/patient_bill?auth=Child">Generate Bill</a>
+          <a class="collapse-item" href="/DHOPD/patient_search?auth=Child">Search Patient</a>
         </div>
       </div>
     </li>
@@ -120,13 +147,11 @@
           <h6 class="collapse-header">Options</h6>
           <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Room">Waiting List</a>
           <a class="collapse-item" href="/DHOPD/patient_add?auth=Room">Add Patient</a>
-          <a class="collapse-item" href="/DHOPD/patient_bill?auth=Room">Generate Bill</a>
+          <a class="collapse-item" href="/DHOPD/patient_search?auth=Room">Search Patient</a>
         </div>
       </div>
     </li>
     {% endif %}
-
-    <!-- Nav Item - Utilities Collapse Menu -->
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -135,8 +160,6 @@
     <div class="sidebar-heading">
       Reports
     </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
@@ -223,7 +246,7 @@
       <!-- Begin Page Content -->
       <div class="container-fluid" style="min-height: calc(100vh - 175px)">
 
-        <h1 class="h3 mb-2 text-gray-800">Manage Users</h1>
+        <h1 class="h3 mb-2 text-gray-800">Manage Services</h1>
 
         <div class="container-fluid">
           <div class="row">
@@ -241,19 +264,17 @@
                 </a>
                 <div class="collapse" id="collapse{{i.service_id}}">
                 <div class="card-body">
-                <!-- Card Content - Collapse -->
-                <!-- <div class="collapse show" id="collapseCardExample"> -->
-                    <!-- This is a collapsable card example using Bootstrap's built in collapse functionality. <strong>Click on the card header</strong> to see the card body collapse and expand! -->
+                
                     <div class="container-fluid">
                       <div class="row">
 
-                        <div class="col-4">
+                        <div class="col-12">
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                             <label class="text-uppercase" style="font-size:15px;">Service Name</label>
                               <input type="text" name="s_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.service_name}}" required>
                           </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12">
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                             <label class="text-uppercase" style="font-size:15px;">Service Cost</label>
                               <input type="number" name="s_cost" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.service_cost}}" required>
@@ -265,7 +286,7 @@
                     </div>
 
 
-                    <div class="d-flex justify-content-around mb-3 mt-5">
+                    <div class="d-flex justify-content-around mb-3 mt-3">
                       <button class="btn btn-primary" type="submit" style="width:40%" name='sid' value="update.{{i.service_id}}">
                         Update
                       </button>
@@ -286,7 +307,7 @@
 
         </div>
 
-        <h1 class="h3 mb-2 text-gray-800">Add Users</h1>
+        <h1 class="h3 mb-2 text-gray-800">Add Services</h1>
 
         <!-- Collapsable Card Example -->
         <div class="card shadow mb-4">
@@ -305,7 +326,7 @@
               <div class="container-fluid">
                 <div class="row">
 
-                  <div class="col-4">
+                  <div class="col-6">
                     <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                       <label class="text-uppercase" style="font-size:15px;">Service Name</label>
                         <input type="text" name="s_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Servicename" required>

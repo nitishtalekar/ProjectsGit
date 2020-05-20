@@ -1,13 +1,14 @@
 {% extends 'DHOPDW/base.html' %}
 {% load static %}
 {% block head %}
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dehankar - Waitlist 1234</title>
+    <title>Dehankar - Waitlist</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'style/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -39,6 +40,7 @@
         vertical-align: center;
       }
     </style>
+    
   {% endblock head %}
 
 
@@ -96,7 +98,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Service 1234
+        Service
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -280,10 +282,6 @@
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Patient Waitlist</h1>
 
-          {{fd}}
-
-          {{tod}}
-
 
           <div class="card shadow mb-4">
               <a href="#collapseDate" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
@@ -313,7 +311,7 @@
             <div class="collapse show" id="collapseWait">
             <div class="card-body">
               <div class="table-responsive pt-3 px-2">
-                <form action="/DHOPD/patient_search/?auth=Doctor" method="POST">
+                <form action="/DHOPD/patient_search/?auth=Doctor" method="POST" target="_blank">
                   {% csrf_token %}
                 <table class="table table-bordered" id="dataTablesearch" width="100%" cellspacing="0">
                   <thead>
@@ -345,14 +343,6 @@
                       <td>{{ i.8 }}</td>
                       <td>{{ i.9 }}</td>
                       <td>{{i.14}}</td>
-                      <!-- <td>
-                        <center>
-                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#statusModal{{ i.0 }}">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                        Waiting
-                        </a>
-                        </center>
-                      </td> -->
                       <td>
                         <center>
                         <button type="submit" name="pid" class="btn btn-primary" value="{{i.0}}">

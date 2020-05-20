@@ -57,13 +57,28 @@
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
     </li>
-
     {% if log.priority == 'A' %}
     <li class="nav-item active">
       <a class="nav-link" href="/DHOPD/add_user/">
         <i class="fa fa-users"></i>
         <span>Manage Users</span></a>
     </li>
+    
+    <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServ" aria-expanded="true" aria-controls="collapseTwo">
+        <i class="fa fa-server"></i>
+        <span>Manage Service</span>
+      </a>
+      <div id="collapseServ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div class="bg-white py-2 collapse-inner rounded">
+          <h6 class="collapse-header">Options</h6>
+          <a class="collapse-item" href="/DHOPD/add_service/?service=Doctor">Doctor Services</a>
+          <a class="collapse-item" href="/DHOPD/add_service/?service=Hospital">Hospital Services</a>
+        </div>
+      </div>
+    </li>
+        
+    
     {% endif %}
 
     <!-- Divider -->
@@ -79,14 +94,14 @@
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fa fa-user-md"></i>
-        <span>Doctor</span>
+        <span>Dr. Shrish Dehankar</span>
       </a>
       <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Options</h6>
           <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
           <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
-          <a class="collapse-item" href="/DHOPD/patient_bill?auth=Doctor">Generate Bill</a>
+          <a class="collapse-item" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
         </div>
       </div>
     </li>
@@ -103,7 +118,7 @@
           <h6 class="collapse-header">Options</h6>
           <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Child">Waiting List</a>
           <a class="collapse-item" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
-          <a class="collapse-item" href="/DHOPD/patient_bill?auth=Child">Generate Bill</a>
+          <a class="collapse-item" href="/DHOPD/patient_search?auth=Child">Search Patient</a>
         </div>
       </div>
     </li>
@@ -120,13 +135,11 @@
           <h6 class="collapse-header">Options</h6>
           <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Room">Waiting List</a>
           <a class="collapse-item" href="/DHOPD/patient_add?auth=Room">Add Patient</a>
-          <a class="collapse-item" href="/DHOPD/patient_bill?auth=Room">Generate Bill</a>
+          <a class="collapse-item" href="/DHOPD/patient_search?auth=Room">Search Patient</a>
         </div>
       </div>
     </li>
     {% endif %}
-
-    <!-- Nav Item - Utilities Collapse Menu -->
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -135,8 +148,6 @@
     <div class="sidebar-heading">
       Reports
     </div>
-
-    <!-- Nav Item - Pages Collapse Menu -->
 
     <!-- Nav Item - Charts -->
     <li class="nav-item">
@@ -247,19 +258,19 @@
                     <div class="container-fluid">
                       <div class="row">
 
-                        <div class="col-4">
+                        <div class="col-12">
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                             <label class="text-uppercase" style="font-size:15px;">Username</label>
-                              <input type="text" name="user_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.user_name}}" required>
+                              <input type="text" name="user_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.user_name}}" required readonly>
                           </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12">
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                             <label class="text-uppercase" style="font-size:15px;">First Name</label>
                               <input type="text" name="first_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.fname}}" required>
                           </div>
                         </div>
-                        <div class="col-4">
+                        <div class="col-12">
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                             <label class="text-uppercase" style="font-size:15px;">Last Name</label>
                               <input type="text" name="last_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.lname}}" required>
@@ -270,12 +281,7 @@
 
                     </div>
 
-                    <!-- <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                      <label class="text-uppercase" style="font-size:15px;">Address</label>
-                        <textarea name="p_addr" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Address"></textarea>
-                    </div> -->
-
-                    <div class="d-flex justify-content-around mb-3 mt-5" style="align-items:center;">
+                    <div class="d-flex justify-content-around mb-3 mt-2" style="align-items:center;">
                       <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
                         <input type="number" name="phon_no" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.pno}}" required>
                     </div>
