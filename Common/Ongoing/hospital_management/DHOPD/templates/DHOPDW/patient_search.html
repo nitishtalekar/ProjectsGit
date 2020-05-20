@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dehankar - Waitlist - Male</title>
+    <title>Dehankar - Waitlist 1234</title>
 
     <!-- Custom fonts for this template-->
     <link href="{% static 'style/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
@@ -19,6 +19,8 @@
     <!-- Custom styles for this template-->
     <link href="{% static 'style/css/sb-admin-2.min.css' %}" rel="stylesheet">
     <link href="{% static 'style/css/sb-admin-2.css' %}" rel="stylesheet">
+
+    <!-- 1234 -->
 
     <!-- Custom styles for this page -->
     <link href="{% static 'style/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
@@ -41,7 +43,7 @@
 
 
   {% block content %}
-  
+
   <body id="page-top">
 
   <!-- Page Wrapper -->
@@ -73,7 +75,7 @@
           <i class="fa fa-users"></i>
           <span>Manage Users</span></a>
       </li>
-      
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServ" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fa fa-server"></i>
@@ -94,7 +96,7 @@
 
       <!-- Heading -->
       <div class="sidebar-heading">
-        Service
+        Service 1234
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
@@ -277,19 +279,19 @@
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Patient Waitlist</h1>
-          
+
           {{fd}}
 
           {{tod}}
-          
-          
+
+
           <div class="card shadow mb-4">
               <a href="#collapseDate" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                 <h6 class="m-0 font-weight-bold text-primary text-uppercase">Search By Date</h6>
               </a>
               <div class="collapse" id="collapseDate">
               <div class="card-body">
-                
+
                 <form action="/DHOPD/patient_search/?auth=Doctor" method="POST">
                   <div class="d-flex justify-content-around">
                     <input type="date" class="form-control bg-light border-0 small" name="fromd" value="{{fd}}" style="width:30%" required>
@@ -297,7 +299,7 @@
                     <button type="submit" class="btn btn-primary" name="pid" value="date" style="width:30%"> Search </button>
                   </div>
                   {% csrf_token %}
-                  
+
                 </form>
                 </div>
               </div>
