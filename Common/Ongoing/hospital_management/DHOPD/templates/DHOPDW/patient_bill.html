@@ -35,18 +35,39 @@
     }
   </style>
 
-  <script type="text/javascript">
-  $(document).ready(function () {
-      $('#vaccine-check').change(function () {
-          if (!this.checked)
-          //  ^
-             $('#vaccine').fadeOut('fast');
-          else
-              $('#vaccine').fadeIn('fast');
-      });
+
+
+    <script type="text/javascript">
+    $(document).ready(function () {
+        $('#Vaccine').change(function () {
+            if (!this.checked){
+              $('#v_name').fadeOut('fast');
+              $('#vacc').removeAttr('required');
+              $('#cost').removeAttr('required');
+            }
+            //  ^
+            else{
+                $('#v_name').fadeIn('fast');
+                $('#vacc').attr('required', '');
+                $('#cost').attr('required', '');
+              }
+
+        });
+
+        $('#p_add_btn').click(function() {
+        checked = $("input[type=checkbox]:checked").length;
+
+        if(!checked) {
+          alert("You must check at least one checkbox.");
+          return false;
+        }
+
       });
 
-  </script>
+        });
+
+
+    </script>
 
   {% endblock head %}
 
@@ -120,10 +141,10 @@
         <!-- <div class="container-fluid"> -->
 
           <!-- Page Heading -->
-          <div class="container">
+          <div class="container" style="min-height: calc(100vh - 180px)">
 
             <h1 class="h3 mb-2 text-gray-800">Generate Bill</h1>
-            
+
 
             <!-- Collapsable Card Example -->
             <div class="card shadow mb-4">
@@ -134,102 +155,136 @@
 
               <!-- Card Content - Collapse -->
               <!-- <div class="collapse show" id="collapseCardExample"> -->
+              <form action="/DHOPD/patient_bill/?pid={{pid}}&auth={{tag}}" method="POST">
+                {% csrf_token %}
+
                 <div class="card-body">
-                  <!-- This is a collapsable card example using Bootstrap's built in collapse functionality. <strong>Click on the card header</strong> to see the card body collapse and expand! -->
                   <div class="container-fluid">
                     <div class="row">
                       <div class="col-3">
                         <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                           <label class="text-uppercase" style="font-size:15px;">Title</label>
-                            <select class="js-example-basic-single custom-select mr-sm-2" name="ayurveda_pdf_<?=$x?>" style="width:55%;height:10vh" required>
+                            <select class="js-example-basic-single custom-select mr-sm-2" name="title" style="width:55%;height:10vh" required>
                               <option value="" selected disabled>Select Title</option>
+                              {% if patient.0.10.0 == 1 %}
+                              <option value="Mr." selected>Mr.</option>
+                              {% else %}
                               <option value="Mr.">Mr.</option>
+                              {% endif %}
+
+                              {% if patient.0.10.1 == 1 %}
+                              <option value="Ms." selected>Ms.</option>
+                              {% else %}
                               <option value="Ms.">Ms.</option>
+                              {% endif %}
+
+                              {% if patient.0.10.2 == 1 %}
+                              <option value="Mrs." selected>Mrs.</option>
+                              {% else %}
                               <option value="Mrs.">Mrs.</option>
+                              {% endif %}
+
+                              {% if patient.0.10.3 == 1 %}
+                              <option value="Baby Girl" selected>Baby Girl</option>
+                              {% else %}
                               <option value="Baby Girl">Baby Girl</option>
+                              {% endif %}
+
+                              {% if patient.0.10.4 == 1 %}
+                              <option value="Baby Boy" selected>Baby Boy</option>
+                              {% else %}
                               <option value="Baby Boy">Baby Boy</option>
+                              {% endif %}
                             </select>
                           </div>
                       </div>
                       <div class="col-3">
                         <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                           <label class="text-uppercase" style="font-size:15px;">First Name</label>
-                            <input type="text" name="p_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name">
+                            <input type="text" name="f_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter FirstName" value="{{patient.0.1}}">
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                           <label class="text-uppercase" style="font-size:15px;">Middle Name</label>
-                            <input type="text" name="p_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name">
+                            <input type="text" name="m_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter MiddleName" value="{{patient.0.2}}">
                         </div>
                       </div>
                       <div class="col-3">
                         <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                           <label class="text-uppercase" style="font-size:15px;">Last Name</label>
-                            <input type="text" name="p_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name">
+                            <input type="text" name="l_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter LastName" value="{{patient.0.3}}">
                         </div>
                       </div>
-
                     </div>
-
                   </div>
 
                   <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                     <label class="text-uppercase" style="font-size:15px;">Address</label>
-                      <textarea name="p_addr" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Address"></textarea>
+                      <textarea name="addr" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Address">{{patient.0.6}}</textarea>
                   </div>
 
-                  <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                    <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
-                      <input type="number" name="p_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number">
+                  <div class="container-fluid">
+                    <div class="row">
+
+                      <div class="col-6">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
+                            <input type="tel" pattern="[0-9]{10}" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" value="{{patient.0.7}}" required>
+                        </div>
+                      </div>
+
+                      <div class="col-6">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Place</label>
+                            <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town" value="{{patient.0.6}}" required>
+                        </div>
+                      </div>
+                    </div>
                   </div>
 
                   <div class="container">
-                    <div class="row mt-5 mb-2">
-                      <div class="col-3">
-                        <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
+                    <div class="row">
+                    {% for i in service %}
+                      <div class="col-4 mt-3">
+                        {% if i.service_id in patient.0.11 %}
+                        <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ i.service_name }}" value="{{ i.service_id }}" checked>&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }} (Rate) </label>
+                        {% else %}
+                        <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ i.service_name }}" value="{{ i.service_id }}" >&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }} (Rate) </label>
+                        {% endif %}
                       </div>
-                      <div class="col-3">
-                        <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
-                      </div>
-                      <div class="col-3">
-                        <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
-                      </div>
-                      <div class="col-3">
-                        <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
-                      </div>
-                    </div>
-                    <div class="row mt-5">
-                      <div class="col-3">
-                        <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
-                      </div>
-                      <div class="col-3">
-                        <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
-                      </div>
-                      <div class="col-3">
-                        <label class="big-label"><input type="checkbox" class="big-check" name="" value="">&nbsp;&nbsp;&nbsp;&nbsp;Consultation (Rate) </label>
-                      </div>
-                      <div class="col-3">
-                        <label class="big-label"><input type="checkbox" class="big-check" name="vaccines" id="vaccine-check" value="1">&nbsp;&nbsp;&nbsp;&nbsp;Vaccine</label>
-                      </div>
+                    {% endfor %}
                     </div>
                   </div>
-                  <div class="container mt-3" id="vaccine" style="display:none;">
-                    <div class="d-flex justify-content-around mb-3 mt-3">
+
+                  {% if 8 in patient.0.11 %}
+                  <div class="container-fluid mt-3" id="v_name">
+                    <div class="d-flex justify-content-around mb-3">
                       <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
-                        <input type="text" name="p_vacc" class="form-control bg-light border-0 small" style="width:85%;" placeholder="Enter Vaccine">
+                        <input type="text" name="vacc" id="vacc" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Vaccine" value="{{patient.0.12}}">
+                      <label class="text-uppercase" style="font-size:15px;">Amount</label>
+                        <input type="text" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Amount" value="{{patient.0.13}}">
                     </div>
                   </div>
-                  <div class="d-flex justify-content-center mb-3 mt-5" style="align-items:center;">
-                    <label class="text-uppercase" style="font-size:15px;">Amount</label>&nbsp;&nbsp;&nbsp;
-                      <input type="number" name="p_name" class="form-control bg-light border-0 small" style="width:45%;" placeholder="Enter Amount">
+                  {% else %}
+                  <div class="container-fluid mt-3" id="v_name" style="display:none;">
+                    <div class="d-flex justify-content-around mb-3">
+                      <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
+                        <input type="text" name="vacc" id="vacc" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Vaccine" value="{{patient.0.12}}">
+                      <label class="text-uppercase" style="font-size:15px;">Amount</label>
+                        <input type="text" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Amount" value="{{patient.0.13}}">
+                    </div>
                   </div>
+                  {% endif %}
+
                   <div class="d-flex justify-content-around mb-3 mt-5">
-                    <button class="btn btn-primary" type="submit" style="width:70%" name='p_add'>
-                      Generate Bill
+                    <button class="btn btn-primary" type="submit" style="width:90%" name='p_add' id="p_add_btn" onclick="return confirm('Are you sure you want to Print?')">
+                      Update and Generate Bill
                     </button>
                   </div>
                 </div>
+
+                </form>
               <!-- </div> -->
             </div>
           </div>

@@ -99,7 +99,7 @@
           <i class="fa fa-users"></i>
           <span>Manage Users</span></a>
       </li>
-      
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServ" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fa fa-server"></i>
@@ -129,7 +129,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fa fa-user-md"></i>
-          <span>Doctor</span>
+          <span>Dr. Shrish Dehankar</span>
         </a>
         {% if tag == 'Doctor' %}
         <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -416,7 +416,7 @@
                       </td>
                       <td>
                         <center>
-                        <a class="btn btn-primary" href="/DHOPD/patient_bill/?pid={{i.0}}">
+                        <a class="btn btn-primary" href="/DHOPD/patient_bill/?pid={{i.0}}&auth={{tag}}" target="_blank">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                         Bill
                         </a>

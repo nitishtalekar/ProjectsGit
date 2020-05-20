@@ -177,6 +177,62 @@ def padd(request):
             AddPatient = AddPatientForm(request.POST)
             if AddPatient.is_valid():
                 title = AddPatient.cleaned_data['title']
+                f_name = AddPatient.cleaned_data['f_name'].title()
+                m_name = AddPatient.cleaned_data['m_name'].title()
+                l_name = AddPatient.cleaned_data['l_name'].title()
+                addr = AddPatient.cleaned_data['addr'].title()
+                number = AddPatient.cleaned_data['number']
+                service = AddPatient.cleaned_data['service']
+                c = AddPatient.cleaned_data['cost'].split(',')
+                vacc = AddPatient.cleaned_data['vacc'].split(',')
+                town = AddPatient.cleaned_data['town']
+                service = re.findall(r"\'(.+?)\'", service)
+                cost = [Service.objects.get(service_id = i).service_cost for i in service]
+                s = []
+                if '8' in service:
+                    for i in vacc:
+                        if Vaccine.objects.filter(vaccine_name = i.title()).count() == 0:
+                            Vaccine.objects.create(vaccine_name=i.title())
+                        v = "8." + str(Vaccine.objects.get(vaccine_name = i).vaccine_id)
+                        s.append(v)
+                    cost = cost + c
+
+                tcost = sum(list(map(float, cost)))
+
+                cost = ";".join(cost)
+
+                service = service + s
+                service = ";".join(service)
+                if tag == 'Doctor':
+                    Patient.objects.create(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_address=addr, patient_town=town, patient_phone=number, patient_services=service, patient_status="0", patient_cost=cost)
+                    obj= Patient.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
+                    Receipt.objects.create(receipt_patient=obj.patient_id, receipt_cost=tcost)
+                d = {'service':serviceall,'log':log,'sl':serviceall.count(),'tag':tag}
+                return render(request, 'DHOPDW/patient_add.html', d)
+        else:
+            AddPatient = AddPatientForm()
+        return render(request, 'DHOPDW/patient_add.html',d_dash)
+
+    return render(request, 'DHOPDW/index.html')
+
+def pbill(request):
+    if 'log' in request.session:
+        log = Users.objects.get(user_id = request.session['log'])
+        pid = request.GET['pid']
+        tag = request.GET['auth']
+        patient = patient_info([Patient.objects.get(patient_id = pid)])
+        serviceall = Service.objects.all()
+        d_dash = {'log':log,'tag':request.GET['auth'],'service':serviceall, 'patient':patient, 'pid':pid}
+        stat = Receipt.objects.get(receipt_patient=pid).receipt_status
+        if stat == '0':
+            patient = patient_info([Patient.objects.get(patient_id=pid)])
+            number = float(patient[0][9])
+            words = num2words(number)
+            return render(request, 'DHOPDW/print_bill.html',{'patient':patient,'log':log,'words':words})
+        if request.method == "POST":
+            AddPatient = AddPatientForm(request.POST)
+            if AddPatient.is_valid():
+                title = AddPatient.cleaned_data['title']
                 f_name = AddPatient.cleaned_data['f_name']
                 m_name = AddPatient.cleaned_data['m_name']
                 l_name = AddPatient.cleaned_data['l_name']
@@ -197,29 +253,23 @@ def padd(request):
                         s.append(v)
                     cost = cost + c
 
+
                 tcost = sum(list(map(float, cost)))
-                
                 cost = ";".join(cost)
-            
                 service = service + s
                 service = ";".join(service)
                 if tag == 'Doctor':
-                    Patient.objects.create(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_address=addr, patient_town=town, patient_phone=number, patient_services=service, patient_status="0", patient_cost=cost)
+                    Patient.objects.filter(patient_id=pid).update(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_address=addr, patient_town=town, patient_phone=number, patient_services=service, patient_status="1", patient_cost=cost)
                     obj= Patient.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
-                    Receipt.objects.create(receipt_patient=obj.patient_id, receipt_cost=tcost)
-                d = {'service':serviceall,'log':log,'sl':serviceall.count(),'tag':tag}
-                return render(request, 'DHOPDW/patient_add.html', d)
+                    Receipt.objects.filter(receipt_patient=obj.patient_id).update(receipt_cost=tcost)
+                    Receipt.objects.filter(receipt_patient=obj.patient_id).update(receipt_status='0')
+
+                patient = patient_info([Patient.objects.get(patient_id=pid)])
+                number = float(patient[0][9])
+                words = num2words(number)
+                return render(request, 'DHOPDW/print_bill.html',{'patient':patient,'log':log,'words':words})
         else:
             AddPatient = AddPatientForm()
-        return render(request, 'DHOPDW/patient_add.html',d_dash)
-
-    return render(request, 'DHOPDW/index.html')
-
-def pbill(request):
-    if 'log' in request.session:
-        log = Users.objects.get(user_id = request.session['log'])
-        pid = request.GET['pid']
-        d_dash = {'log':log,'tag':request.GET['auth']}
         return render(request, 'DHOPDW/patient_bill.html',d_dash)
 
     return render(request, 'DHOPDW/index.html')

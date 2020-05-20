@@ -75,7 +75,7 @@
           <i class="fa fa-users"></i>
           <span>Manage Users</span></a>
       </li>
-      
+
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServ" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fa fa-server"></i>
@@ -105,7 +105,7 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
           <i class="fa fa-user-md"></i>
-          <span>Doctor</span>
+          <span>Dr. Shrish Dehankar</span>
         </a>
         {% if tag == 'Doctor' %}
         <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -287,7 +287,7 @@
                 <h6 class="m-0 font-weight-bold text-primary text-uppercase">Add Patient</h6>
               </div>
               <!-- Card Content - Collapse -->
-              <form action="/DHOPD/patient_add/?auth=Doctor" method="POST">
+              <form action="/DHOPD/patient_add/?auth={{tag}}" method="POST">
                 {% csrf_token %}
 
                 <div class="card-body">
@@ -474,7 +474,7 @@
             }
 
       });
-      
+
       $('#p_add_btn').click(function() {
       checked = $("input[type=checkbox]:checked").length;
 
@@ -484,7 +484,7 @@
       }
 
     });
-    
+
       });
 
 

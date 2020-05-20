@@ -4522,13 +4522,13 @@ input[type="button"].btn-block {
 }
 
 .bill-label{
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: black;
   font-weight:bold;
   font-size: 25px;
 }
 .bill-label2{
-  text-transform: uppercase;
+  text-transform: capitalize;
   color: black;
   font-size: 18px;
 }
@@ -9910,7 +9910,7 @@ a:focus {
 }
 
 .container-flex {
-  width: 100%;  
+  width: 100%;
   min-height: 70vh;
   display: -webkit-box;
   display: -webkit-flex;
