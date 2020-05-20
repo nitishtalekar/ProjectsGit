@@ -38,30 +38,6 @@
     }
   </style>
 
-  <script type="text/javascript">
-  $(document).ready(function () {
-      // console.log('BCCCCCCCC !');
-    });
-
-    function vaccineelement(cb,x){
-      console.log("VACCCCCCC");
-      console.log(cb.checked);
-      vn = '#v_name'+x;
-      vacc = '#vacc'+x;
-      vcost = '#cost'+x;
-      if (cb.checked){
-        $(vn).fadeIn('fast');
-        $(vacc).attr('required', '');
-        $(vcost).attr('required', '');
-      }
-      else{
-        $(vn).fadeOut('fast');
-        $(vacc).removeAttr('required');
-        $(vcost).removeAttr('required');
-        }
-    }
-
-  </script>
 
   {% endblock head %}
 
@@ -123,15 +99,17 @@
         {% endif %}
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
+            <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
+            <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
 
             {% if tag == 'Doctor' %}
-            <a class="collapse-item active1" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
+            <a class="collapse-item active1" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
             {% else %}
-            <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
+            <a class="collapse-item" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
             {% endif %}
 
-            <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
-            <a class="collapse-item" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
+
+
           </div>
         </div>
       </li>
@@ -283,33 +261,42 @@
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
+          <form action="/DHOPD/patient_search/?auth=Doctor" method="POST">
+            {% csrf_token %}
+            <input type="date" name="fromd" value="{{fromd}}" required>
+            {{fromd}}
+            {{tod}}
+            <input type="date" name="tod" value="{{tod}}" required>
+
+            <button type="submit" name="pid" value="date"> Search </button>
+
+          </form>
+
+
 
           <!-- Page Heading -->
           <h1 class="h3 mb-2 text-gray-800">Patient Waitlist</h1>
 
-          <div class="d-flex justify-content-start mb-4 mt-3">
-            <a href="/DHOPD/patient_add/?auth={{ tag }}" class="btn btn-primary" style="width:100%">
-              Add Patient
-            </a>
-          </div>
 
           <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <a href="#collapseWait" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-              <h6 class="m-0 font-weight-bold text-primary text-uppercase">Waitlist</h6>
+              <h6 class="m-0 font-weight-bold text-primary text-uppercase">Search Patient</h6>
             </a>
             <div class="collapse show" id="collapseWait">
             <div class="card-body">
               <div class="table-responsive pt-3 px-2">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <form action="/DHOPD/patient_search/?auth=Doctor" method="POST">
+                  {% csrf_token %}
+                <table class="table table-bordered" id="dataTablesearch" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Patient ID</th>
                       <th>Name</th>
                       <th>Services</th>
                       <th>Cost</th>
-                      <th>Status</th>
-                      <th>Edit</th>
+                      <th>Date</th>
+                      <th>Bill</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -318,103 +305,46 @@
                       <th>Name</th>
                       <th>Services</th>
                       <th>Cost</th>
-                      <th>Status</th>
-                      <th>Edit</th>
+                      <th>Date</th>
+                      <th>Bill</th>
                     </tr>
                   </tfoot>
                   <tbody>
 
-                    {% for i in patient_c %}
+                    {% for i in patient %}
                     <tr>
                       <td>{{ forloop.counter }}</td>
                       <td>{{ i.1 }} {{ i.2 }} {{ i.3 }}</td>
                       <td>{{ i.8 }}</td>
                       <td>{{ i.9 }}</td>
-                      <td>
+                      <td>{{i.14}}</td>
+                      <!-- <td>
                         <center>
                         <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#statusModal{{ i.0 }}">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                         Waiting
                         </a>
                         </center>
-                      </td>
+                      </td> -->
                       <td>
                         <center>
-                        <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#editModal{{ i.0 }}">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                        Edit
-                        </a>
-                        </center>
-                      </td>
-                    </tr>
-                    {% endfor %}
-
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="card shadow mb-4">
-            <a href="#collapseVisited" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-              <h6 class="m-0 font-weight-bold text-success text-uppercase">Visited</h6>
-            </a>
-            <div class="collapse" id="collapseVisited">
-            <div class="card-body">
-              <div class="table-responsive pt-3 px-2">
-                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Patient ID</th>
-                      <th>Name</th>
-                      <th>Services</th>
-                      <th>Cost</th>
-                      <th>Status</th>
-                      <th>Bill</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>Patient ID</th>
-                      <th>Name</th>
-                      <th>Services</th>
-                      <th>Cost</th>
-                      <th>Status</th>
-                      <th>Bill</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    {% for i in patient_w %}
-                    <tr>
-                      <td>{{ forloop.counter }}</td>
-                      <td>{{ i.1 }} {{ i.2 }} {{ i.3 }}</td>
-                      <td>{{ i.8 }}</td>
-                      <td>{{ i.9 }}</td>
-                      <td>
-                        <center>
-                        <a class="btn btn-success" href="#" data-toggle="modal" data-target="#rev_statusModal{{ i.0 }}">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                        Visited
-                        </a>
-                        </center>
-                      </td>
-                      <td>
-                        <center>
-                        <a class="btn btn-primary" href="/DHOPD/patient_bill/?pid={{i.0}}">
+                        <button type="submit" name="pid" class="btn btn-primary" value="{{i.0}}">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
                         Bill
-                        </a>
+                        </button>
                         </center>
                       </td>
                     </tr>
                     {% endfor %}
+
                   </tbody>
                 </table>
+                </form>
               </div>
             </div>
           </div>
         </div>
+
 
         </div>
         <!-- /.container-fluid -->
@@ -498,7 +428,7 @@
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
-                <div class="modal-body">Patient "{{ i.1 }} {{ i.2 }} {{ i.3 }}" has visited?</div>
+                <div class="modal-body">Patient "{{ i.2 }} {{ i.3 }} {{ i.4 }}" has visited?</div>
                 <!-- <hr> -->
                 <form action="/DHOPD/patient_waitlist/?auth={{ tag }}" method="POST">
                   {% csrf_token %}
@@ -522,7 +452,7 @@
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
-                <div class="modal-body">Patient "{{ i.1 }} {{ i.2 }} {{ i.3 }}" status to waiting?</div>
+                <div class="modal-body">Patient "{{ i.2 }} {{ i.3 }} {{ i.4 }}" status to waiting?</div>
                 <!-- <hr> -->
                 <form action="/DHOPD/patient_waitlist/?auth={{ tag }}" method="POST">
                   {% csrf_token %}
@@ -566,31 +496,31 @@
                                   <label class="text-uppercase" style="font-size:15px;">Title</label>
                                     <select class="js-example-basic-single custom-select mr-sm-2" name="title" style="width:55%;height:10vh" required>
                                       <option value="" selected disabled>Select Title</option>
-                                      {% if i.10.0 == 1 %}
+                                      {% if i.11.0 == 1 %}
                                       <option value="Mr." selected>Mr.</option>
                                       {% else %}
                                       <option value="Mr.">Mr.</option>
                                       {% endif %}
 
-                                      {% if i.10.1 == 1 %}
+                                      {% if i.11.1 == 1 %}
                                       <option value="Ms." selected>Ms.</option>
                                       {% else %}
                                       <option value="Ms.">Ms.</option>
                                       {% endif %}
 
-                                      {% if i.10.2 == 1 %}
+                                      {% if i.11.2 == 1 %}
                                       <option value="Mrs." selected>Mrs.</option>
                                       {% else %}
                                       <option value="Mrs.">Mrs.</option>
                                       {% endif %}
 
-                                      {% if i.10.3 == 1 %}
+                                      {% if i.11.3 == 1 %}
                                       <option value="Baby Girl" selected>Baby Girl</option>
                                       {% else %}
                                       <option value="Baby Girl">Baby Girl</option>
                                       {% endif %}
 
-                                      {% if i.10.4 == 1 %}
+                                      {% if i.11.4 == 1 %}
                                       <option value="Baby Boy" selected>Baby Boy</option>
                                       {% else %}
                                       <option value="Baby Boy">Baby Boy</option>
@@ -601,19 +531,19 @@
                               <div class="col-3">
                                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                                   <label class="text-uppercase" style="font-size:15px;">First Name</label>
-                                    <input type="text" name="f_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.1}}">
+                                    <input type="text" name="f_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.2}}">
                                 </div>
                               </div>
                               <div class="col-3">
                                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                                   <label class="text-uppercase" style="font-size:15px;">Middle Name</label>
-                                    <input type="text" name="m_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.2}}">
+                                    <input type="text" name="m_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.3}}">
                                 </div>
                               </div>
                               <div class="col-3">
                                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                                   <label class="text-uppercase" style="font-size:15px;">Last Name</label>
-                                    <input type="text" name="l_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.3}}">
+                                    <input type="text" name="l_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.4}}">
                                 </div>
                               </div>
 
@@ -623,7 +553,7 @@
 
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                             <label class="text-uppercase" style="font-size:15px;">Address</label>
-                              <textarea name="addr" class="form-control bg-light border-0 small" style="width:90%;" >{{ i.6 }}</textarea>
+                              <textarea name="addr" class="form-control bg-light border-0 small" style="width:90%;" >{{i.6}}</textarea>
                           </div>
 
                           <div class="container-fluid">
@@ -632,14 +562,14 @@
                               <div class="col-6">
                                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                                   <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
-                                    <input type="number" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" value="{{ i.7 }}">
+                                    <input type="number" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" value="{{i.8}}">
                                 </div>
                               </div>
 
                               <div class="col-6">
                                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                                   <label class="text-uppercase" style="font-size:15px;">Place</label>
-                                    <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town" value="{{ i.6 }}">
+                                    <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town" value="{{i.7}}">
                                 </div>
                               </div>
 
@@ -651,7 +581,7 @@
 
                             {% for j in service %}
                             <div class="col-4 mt-3">
-                              {% if j.service_id in i.11 %}
+                              {% if j.service_id in i.12 %}
                                   {% if j.service_name == 'Vaccine' %}
                                   <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ j.service_name }}" value="{{ j.service_id }}" onclick="vaccineelement(this,{{ i.0 }})" checked>&nbsp;&nbsp;&nbsp;&nbsp;{{j.service_name }} (Rate) </label>
                                   {% else %}
@@ -668,22 +598,22 @@
                             {% endfor %}
                           </div>
                         </div>
-                        {% if 8 in i.11 %}
+                        {% if 8 in i.12 %}
                         <div class="container mt-3" id="v_name{{ i.0 }}">
                           <div class="d-flex justify-content-around mb-3">
                             <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
-                              <input type="text" name="vacc" id="vacc{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.12}}'>
+                              <input type="text" name="vacc" id="vacc{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.13}}'>
                             <label class="text-uppercase" style="font-size:15px;">Amount</label>
-                              <input type="text" name="cost" id="cost{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.13}}'>
+                              <input type="text" name="cost" id="cost{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.14}}'>
                           </div>
                         </div>
                         {% else %}
                         <div class="container mt-3" style="display:none;" id="v_name{{ i.0 }}">
                           <div class="d-flex justify-content-around mb-3">
                             <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
-                              <input type="text" name="vacc" id="vacc{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.12}}'>
+                              <input type="text" name="vacc" id="vacc{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.13}}'>
                             <label class="text-uppercase" style="font-size:15px;">Amount</label>
-                              <input type="text" name="cost" id="cost{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.13}}'>
+                              <input type="text" name="cost" id="cost{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.14}}'>
                           </div>
                         </div>
                         {% endif %}
@@ -713,26 +643,6 @@
 
 
 
-  <!-- <script type="text/javascript">
-  $(document).ready(function () {
-      $('#Vaccine').change(function () {
-          if (!this.checked){
-            $('#v_name').fadeOut('fast');
-            $('#vacc').removeAttr('required');
-            $('#cost').removeAttr('required');
-          }
-          //  ^
-          else{
-              $('#v_name').fadeIn('fast');
-              $('#vacc').attr('required', '');
-              $('#cost').attr('required', '');
-            }
-
-      });
-      });
-
-
-  </script> -->
 
   <script src="{% static 'style/vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'style/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

@@ -227,19 +227,19 @@
 
         <div class="container-fluid">
           <div class="row">
-            {% for i in user %}
+            {% for i in services %}
 
             <div class="col-6">
-              <form action = "/DHOPD/add_user/" method = "POST">
+              <form action = "/DHOPD/add_service/?service={{service}}" method = "POST">
 
                 {% csrf_token %}
               <!-- Collapsable Card Example -->
               <div class="card shadow mb-4">
                 <!-- Card Header - Accordion -->
-                <a href="#collapse{{i.user_id}}" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                  <h6 class="m-0 font-weight-bold text-primary text-uppercase">User {{forloop.counter}}</h6>
+                <a href="#collapse{{i.service_id}}" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary text-uppercase">Service {{forloop.counter}}</h6>
                 </a>
-                <div class="collapse" id="collapse{{i.user_id}}">
+                <div class="collapse" id="collapse{{i.service_id}}">
                 <div class="card-body">
                 <!-- Card Content - Collapse -->
                 <!-- <div class="collapse show" id="collapseCardExample"> -->
@@ -249,20 +249,14 @@
 
                         <div class="col-4">
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                            <label class="text-uppercase" style="font-size:15px;">Username</label>
-                              <input type="text" name="user_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.user_name}}" required>
+                            <label class="text-uppercase" style="font-size:15px;">Service Name</label>
+                              <input type="text" name="s_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.service_name}}" required>
                           </div>
                         </div>
                         <div class="col-4">
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                            <label class="text-uppercase" style="font-size:15px;">First Name</label>
-                              <input type="text" name="first_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.fname}}" required>
-                          </div>
-                        </div>
-                        <div class="col-4">
-                          <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                            <label class="text-uppercase" style="font-size:15px;">Last Name</label>
-                              <input type="text" name="last_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.lname}}" required>
+                            <label class="text-uppercase" style="font-size:15px;">Service Cost</label>
+                              <input type="number" name="s_cost" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.service_cost}}" required>
                           </div>
                         </div>
 
@@ -270,65 +264,12 @@
 
                     </div>
 
-                    <!-- <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                      <label class="text-uppercase" style="font-size:15px;">Address</label>
-                        <textarea name="p_addr" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Address"></textarea>
-                    </div> -->
-
-                    <div class="d-flex justify-content-around mb-3 mt-5" style="align-items:center;">
-                      <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
-                        <input type="number" name="phon_no" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.pno}}" required>
-                    </div>
-
-                    <div class="container">
-                      <div class="row mt-5 mb-2">
-                        {% if i.auth == '1' or i.auth == '4' or i.auth == '6' or i.auth == '0' %}
-                        <div class="col-4">
-                          <center>
-                          <label class="big-label"><input type="checkbox" class="big-check" name="authority" value="female" checked>&nbsp; &nbsp; &nbsp; Child </label>
-                          </center>
-                        </div>
-                        {% else %}
-                        <div class="col-4">
-                          <center>
-                          <label class="big-label"><input type="checkbox" class="big-check" name="authority" value="female">&nbsp; &nbsp; &nbsp; Child </label>
-                          </center>
-                        </div>
-                        {% endif %}
-                        {% if i.auth == '2' or i.auth == '4' or i.auth == '5' or i.auth == '0' %}
-                        <div class="col-4">
-                          <center>
-                          <label class="big-label"><input type="checkbox" class="big-check" name="authority" value="male" checked>&nbsp; &nbsp; &nbsp; Doctor </label>
-                          </center>
-                        </div>
-                        {% else %}
-                        <div class="col-4">
-                          <center>
-                          <label class="big-label"><input type="checkbox" class="big-check" name="authority" value="male">&nbsp; &nbsp; &nbsp; Doctor </label>
-                          </center>
-                        </div>
-                        {% endif %}
-                        {% if i.auth == '3' or i.auth == '5' or i.auth == '6' or i.auth == '0' %}
-                        <div class="col-4">
-                          <center>
-                          <label class="big-label"><input type="checkbox" class="big-check" name="authority" value="room" checked>&nbsp; &nbsp; &nbsp; Room </label>
-                          </center>
-                        </div>
-                        {% else %}
-                        <div class="col-4">
-                          <center>
-                          <label class="big-label"><input type="checkbox" class="big-check" name="authority" value="room">&nbsp; &nbsp; &nbsp; Room </label>
-                          </center>
-                        </div>
-                        {% endif %}
-                      </div>
-                    </div>
 
                     <div class="d-flex justify-content-around mb-3 mt-5">
-                      <button class="btn btn-primary" type="submit" style="width:40%" name='p_add' value="update.{{i.user_id}}">
+                      <button class="btn btn-primary" type="submit" style="width:40%" name='sid' value="update.{{i.service_id}}">
                         Update
                       </button>
-                      <button class="btn btn-danger" type="submit" style="width:40%" name='p_add' value="delete.{{i.user_id}}">
+                      <button class="btn btn-danger" type="submit" style="width:40%" name='sid' value="delete.{{i.service_id}}">
                         Delete
                       </button>
                     </div>
@@ -351,11 +292,11 @@
         <div class="card shadow mb-4">
           <!-- Card Header - Accordion -->
           <a href="#collapseAddUser" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-            <h6 class="m-0 font-weight-bold text-primary text-uppercase">Add User</h6>
+            <h6 class="m-0 font-weight-bold text-primary text-uppercase">Add Service</h6>
           </a>
           <div class="collapse show" id="collapseAddUser">
           <div class="card-body">
-            <form action = "/DHOPD/add_user/" method = "POST">
+            <form action = "/DHOPD/add_service/?service={{service}}" method = "POST">
 
               {% csrf_token %}
           <!-- Card Content - Collapse -->
@@ -366,51 +307,22 @@
 
                   <div class="col-4">
                     <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                      <label class="text-uppercase" style="font-size:15px;">Username</label>
-                        <input type="text" name="user_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Usernameame" required>
+                      <label class="text-uppercase" style="font-size:15px;">Service Name</label>
+                        <input type="text" name="s_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Servicename" required>
                     </div>
                   </div>
                   <div class="col-4">
                     <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                      <label class="text-uppercase" style="font-size:15px;">First Name</label>
-                        <input type="text" name="first_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" required>
+                      <label class="text-uppercase" style="font-size:15px;">Service Cost</label>
+                        <input type="number" name="s_cost" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Servicecost" required>
                     </div>
                   </div>
-                  <div class="col-4">
-                    <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                      <label class="text-uppercase" style="font-size:15px;">Last Name</label>
-                        <input type="text" name="last_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" required>
-                    </div>
-                  </div>
+
 
                 </div>
 
               </div>
 
-              <div class="d-flex justify-content-around mb-3 mt-5" style="align-items:center;">
-                <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
-                  <input type="number" name="phon_no" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" required>
-              </div>
-
-              <div class="container">
-                <div class="row mt-5 mb-2">
-                  <div class="col-4">
-                    <center>
-                    <label class="big-label"><input type="checkbox" class="big-check" name="authority" value="female">&nbsp; &nbsp; &nbsp; Child </label>
-                    </center>
-                  </div>
-                  <div class="col-4">
-                    <center>
-                    <label class="big-label"><input type="checkbox" class="big-check" name="authority" value="male">&nbsp; &nbsp; &nbsp; Doctor </label>
-                    </center>
-                  </div>
-                  <div class="col-4">
-                    <center>
-                    <label class="big-label"><input type="checkbox" class="big-check" name="authority" value="room">&nbsp; &nbsp; &nbsp; Room </label>
-                    </center>
-                  </div>
-                </div>
-              </div>
 
               {{error}}
 

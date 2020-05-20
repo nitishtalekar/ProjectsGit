@@ -85,7 +85,7 @@
       </div>
 
       <!-- Nav Item - Pages Collapse Menu -->
-      
+
       {% if log.auth == '2' or log.auth == '4' or log.auth == '5' or log.auth == '0' %}
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
@@ -100,14 +100,14 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
             <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
-            
+
             {% if tag == 'Doctor' %}
             <a class="collapse-item active1" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
             {% else %}
             <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
             {% endif %}
-            
-            <a class="collapse-item" href="/DHOPD/patient_bill?auth=Doctor">Generate Bill</a>
+
+            <a class="collapse-item" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
           </div>
         </div>
       </li>
@@ -127,14 +127,14 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
             <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Child">Waiting List</a>
-            
+
             {% if tag == 'Child' %}
             <a class="collapse-item active1" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
             {% else %}
             <a class="collapse-item" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
             {% endif %}
-            
-            <a class="collapse-item" href="/DHOPD/patient_bill?auth=Child">Generate Bill</a>
+
+            <a class="collapse-item" href="/DHOPD/patient_search?auth=Child">Search Patient</a>
           </div>
         </div>
       </li>
@@ -154,14 +154,14 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
             <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Room">Waiting List</a>
-            
+
             {% if tag == 'Room' %}
             <a class="collapse-item active1" href="/DHOPD/patient_add?auth=Room">Add Patient</a>
             {% else %}
             <a class="collapse-item" href="/DHOPD/patient_add?auth=Room">Add Patient</a>
             {% endif %}
-            
-            <a class="collapse-item" href="/DHOPD/patient_bill?auth=Room">Generate Bill</a>
+
+            <a class="collapse-item" href="/DHOPD/patient_search?auth=Room">Search Patient</a>
           </div>
         </div>
       </li>
@@ -231,7 +231,7 @@
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="btn btn-dark"><i class="fa fa-user"></i> &nbsp; &nbsp; {{ log.fname }}</span>
               </a>
-              
+
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
                 <a class="dropdown-item" href="#">
@@ -323,14 +323,14 @@
                       <div class="col-6">
                         <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                           <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
-                            <input type="number" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number">
+                            <input type="number" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" min="1000000000" max="9999999999" data-error-message="Enter valid mobile number" required>
                         </div>
                       </div>
 
                       <div class="col-6">
                         <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                           <label class="text-uppercase" style="font-size:15px;">Place</label>
-                            <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town">
+                            <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town" required>
                         </div>
                       </div>
                     </div>
@@ -338,7 +338,7 @@
 
                   <div class="container">
                     <div class="row">
-                    {% for i in service %}              
+                    {% for i in service %}
                       <div class="col-4 mt-3">
                         <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ i.service_name }}" value="{{ i.service_id }}">&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }} (Rate) </label>
                       </div>

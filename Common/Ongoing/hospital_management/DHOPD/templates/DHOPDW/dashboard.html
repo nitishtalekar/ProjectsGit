@@ -27,7 +27,7 @@
 
   <!-- Sidebar -->
   <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion pt-5" id="accordionSidebar">
-  
+
     <!-- Sidebar - Brand -->
     <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
       <div class="sidebar-brand-icon rotate-n-15">
@@ -35,10 +35,10 @@
       </div>
       <div class="sidebar-brand-text mx-3">Dehankar Hospital</div>
     </a>
-  
+
     <!-- Divider -->
     <hr class="sidebar-divider my-0">
-  
+
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
       <a class="nav-link" href="/DHOPD/dashboard/">
@@ -50,35 +50,39 @@
       <a class="nav-link" href="/DHOPD/add_user/">
         <i class="fa fa-users"></i>
         <span>Manage Users</span></a>
+
+        <a class="nav-link" href="/DHOPD/add_service/">
+          <i class="fa fa-users"></i>
+          <span>Manage Service</span></a>
     </li>
     {% endif %}
-  
+
     <!-- Divider -->
     <hr class="sidebar-divider">
-  
+
     <!-- Heading -->
     <div class="sidebar-heading">
       Service
     </div>
-  
+
     <!-- Nav Item - Pages Collapse Menu -->
     {% if log.auth == '2' or log.auth == '4' or log.auth == '5' or log.auth == '0' %}
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fa fa-user-md"></i>
-        <span>Doctor</span>
+        <span>Dr. Shrish Dehankar</span>
       </a>
       <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Options</h6>
           <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
           <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
-          <a class="collapse-item" href="/DHOPD/patient_bill?auth=Doctor">Generate Bill</a>
+          <a class="collapse-item" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
         </div>
       </div>
     </li>
     {% endif %}
-  
+
     {% if log.auth == '1' or log.auth == '4' or log.auth == '6' or log.auth == '0' %}
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
@@ -90,12 +94,12 @@
           <h6 class="collapse-header">Options</h6>
           <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Child">Waiting List</a>
           <a class="collapse-item" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
-          <a class="collapse-item" href="/DHOPD/patient_bill?auth=Child">Generate Bill</a>
+          <a class="collapse-item" href="/DHOPD/patient_search?auth=Child">Search Patient</a>
         </div>
       </div>
     </li>
     {% endif %}
-  
+
     {% if log.auth == '3' or log.auth == '5' or log.auth == '6' or log.auth == '0' %}
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseTwo">
@@ -107,42 +111,42 @@
           <h6 class="collapse-header">Options</h6>
           <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Room">Waiting List</a>
           <a class="collapse-item" href="/DHOPD/patient_add?auth=Room">Add Patient</a>
-          <a class="collapse-item" href="/DHOPD/patient_bill?auth=Room">Generate Bill</a>
+          <a class="collapse-item" href="/DHOPD/patient_search?auth=Room">Search Patient</a>
         </div>
       </div>
     </li>
     {% endif %}
-  
+
     <!-- Divider -->
     <hr class="sidebar-divider">
-  
+
     <!-- Heading -->
     <div class="sidebar-heading">
       Reports
     </div>
-  
+
     <!-- Nav Item - Charts -->
     <li class="nav-item">
       <a class="nav-link" href="charts.html">
         <i class="fas fa-fw fa-table"></i>
         <span>Overall Report</span></a>
     </li>
-  
+
     <!-- Nav Item - Tables -->
     <li class="nav-item">
       <a class="nav-link" href="tables.html">
         <i class="fas fa-fw fa-chart-area"></i>
         <span>Graphs</span></a>
     </li>
-  
+
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">
-  
+
     <!-- Sidebar Toggler (Sidebar) -->
     <div class="text-center d-none d-md-inline">
       <button class="rounded-circle border-0" id="sidebarToggle"></button>
     </div>
-  
+
   </ul>
   <!-- End of Sidebar -->
 
@@ -164,19 +168,19 @@
 
         <!-- Topbar Navbar -->
         <ul class="navbar-nav ml-auto">
-          
+
 
 
           <div class="topbar-divider d-none d-sm-block"></div>
-          
-          
+
+
 
           <!-- Nav Item - User Information -->
           <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="btn btn-dark"><i class="fa fa-user"></i> &nbsp; &nbsp; {{ log.fname }}</span>
               </a>
-            
+
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
               <a class="dropdown-item" href="#">
@@ -210,8 +214,9 @@
         <!-- Page Heading -->
         <div class="container-flex">
           <div class="container">
+            {% if log.priority == 'A' %}
               <div class="row d-flex justify-content-around">
-                
+
                   <div class="col-xl-8 col-md-6 mb-4">
                     <div class="card border-left-dark shadow h-100 py-3">
                       <a href="/DHOPD/add_user/">
@@ -228,11 +233,50 @@
                       </a>
                     </div>
                   </div>
-                  
+
               </div>
-            
+
+              <div class="row d-flex justify-content-around">
+
+                  <div class="col-xl-8 col-md-6 mb-4">
+                    <div class="card border-left-dark shadow h-100 py-3">
+                      <a href="/DHOPD/add_service/?service=Doctor">
+                      <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                          <div class="col">
+                            <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Manage Doctor Services</div></center>
+                          </div>
+                          <div class="col-auto mr-5">
+                            <i class="fa fa-users fa-2x text-dark"></i>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+                  </div>
+
+                  <div class="col-xl-8 col-md-6 mb-4">
+                    <div class="card border-left-dark shadow h-100 py-3">
+                      <a href="/DHOPD/add_service/?service=Hospital">
+                      <div class="card-body">
+                        <div class="row no-gutters align-items-center">
+                          <div class="col">
+                            <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Manage Hospital Services</div></center>
+                          </div>
+                          <div class="col-auto mr-5">
+                            <i class="fa fa-users fa-2x text-dark"></i>
+                          </div>
+                        </div>
+                      </div>
+                      </a>
+                    </div>
+                  </div>
+
+              </div>
+              {% endif %}
+
             <div class="row d-flex justify-content-around">
-              
+              {% if log.auth == '2' or log.auth == '4' or log.auth == '5' or log.auth == '0' %}
               <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card border-left-dark shadow h-100 py-3">
                   <a href="/DHOPD/patient_waitlist?auth=Doctor">
@@ -250,7 +294,8 @@
                   </a>
                 </div>
               </div>
-              
+              {% endif %}
+              {% if log.auth == '1' or log.auth == '4' or log.auth == '6' or log.auth == '0' %}
               <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card border-left-dark shadow h-100 py-3">
                   <a href="/DHOPD/patient_waitlist?auth=Child">
@@ -268,7 +313,8 @@
                   </a>
                 </div>
               </div>
-
+              {% endif %}
+              {% if log.auth == '3' or log.auth == '5' or log.auth == '6' or log.auth == '0' %}
               <div class="col-xl-4 col-md-6 mb-4">
                 <div class="card border-left-dark shadow h-100 py-3">
                   <a href="/DHOPD/patient_waitlist?auth=Room">
@@ -286,11 +332,12 @@
                   </a>
                 </div>
               </div>
-              
+              {% endif %}
+
             </div>
-            
+
             <div class="row d-flex justify-content-around">
-              
+
                 <div class="col-xl-6 col-md-6 mb-4">
                   <div class="card border-left-dark shadow h-100 py-3">
                     <a href="">
@@ -307,7 +354,7 @@
                     </a>
                   </div>
                 </div>
-                
+
                 <div class="col-xl-6 col-md-6 mb-4">
                   <div class="card border-left-dark shadow h-100 py-3">
                     <a href="">
@@ -324,10 +371,10 @@
                     </a>
                   </div>
                 </div>
-                
+
             </div>
-            
-            
+
+
           </div>
         </div>
 

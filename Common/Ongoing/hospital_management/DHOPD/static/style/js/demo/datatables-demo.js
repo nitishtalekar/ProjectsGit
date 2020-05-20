@@ -6,4 +6,7 @@ $(document).ready(function() {
   $('#dataTable2').DataTable({
     ordering:  false
   });
+  $('#dataTablesearch').DataTable({
+    ordering:  true
+  });
 });

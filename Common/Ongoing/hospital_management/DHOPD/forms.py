@@ -14,6 +14,7 @@ class AddUserForm(forms.Form):
     first_name = forms.CharField()
     last_name = forms.CharField()
     phon_no = forms.CharField()
+    p_add = forms.CharField(required = False)
     authority = forms.CharField(widget=forms.CheckboxSelectMultiple(), required = True)
 
 class AddPatientForm(forms.Form):
@@ -31,3 +32,13 @@ class AddPatientForm(forms.Form):
 
 class WVForm(forms.Form):
     status = forms.CharField()
+
+class SearchForm(forms.Form):
+    fromd = forms.CharField(required=False)
+    tod = forms.CharField(required=False)
+    pid = forms.CharField(required=False)
+
+class ServiceForm(forms.Form):
+    sid = forms.CharField(required=False)
+    s_name = forms.CharField()
+    s_cost = forms.CharField()
