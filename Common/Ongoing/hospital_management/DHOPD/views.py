@@ -334,8 +334,9 @@ def psearch(request):
         if tag == 'Doctor':
             patient = patient_info(Patient.objects.all())
             fromd = Patient.objects.all()[0].patient_date
-            print(fromd)
+            fd = fromd.strftime('%Y-%m-%d')
             tod = datetime.today().strftime('%Y-%m-%d')
+            print(tod)
         if request.method == "POST":
             search = SearchForm(request.POST)
             if search.is_valid():
@@ -351,7 +352,7 @@ def psearch(request):
 
         else:
             search = SearchForm()
-        d_dash = {'log':log,'tag':tag,'patient':patient, 'fromd':fromd, 'tod':tod}
+        d_dash = {'log':log,'tag':tag,'patient':patient, 'fromd':fromd, 'tod':tod, 'fd':fd}
         return render(request, 'DHOPDW/patient_search.html',d_dash)
 
     return render(request, 'DHOPDW/index.html')

@@ -13,6 +13,7 @@
   <!-- Custom fonts for this template-->
   <link href="{% static 'style/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
@@ -97,6 +98,20 @@
         <a class="nav-link" href="/DHOPD/add_user/">
           <i class="fa fa-users"></i>
           <span>Manage Users</span></a>
+      </li>
+      
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServ" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fa fa-server"></i>
+          <span>Manage Service</span>
+        </a>
+        <div id="collapseServ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Options</h6>
+            <a class="collapse-item" href="/DHOPD/add_service/?service=Doctor">Doctor Services</a>
+            <a class="collapse-item" href="/DHOPD/add_service/?service=Hospital">Hospital Services</a>
+          </div>
+        </div>
       </li>
       {% endif %}
 
