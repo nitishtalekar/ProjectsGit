@@ -207,6 +207,10 @@ def padd(request):
                     Patient.objects.create(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_address=addr, patient_town=town, patient_phone=number, patient_services=service, patient_status="0", patient_cost=cost)
                     obj= Patient.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
                     Receipt.objects.create(receipt_patient=obj.patient_id, receipt_cost=tcost)
+                elif tag == 'Child':
+                    Patient_c.objects.create(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_address=addr, patient_town=town, patient_phone=number, patient_services=service, patient_status="0", patient_cost=cost)
+                    obj= Patient_c.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
+                    Receipt_c.objects.create(receipt_patient=obj.patient_id, receipt_cost=tcost)
                 d = {'service':serviceall,'log':log,'sl':serviceall.count(),'tag':tag}
                 return render(request, 'DHOPDW/patient_add.html', d)
         else:
@@ -220,12 +224,19 @@ def pbill(request):
         log = Users.objects.get(user_id = request.session['log'])
         pid = request.GET['pid']
         tag = request.GET['auth']
-        patient = patient_info([Patient.objects.get(patient_id = pid)])
+        if tag == 'Doctor':
+            patient = patient_info([Patient.objects.get(patient_id = pid)])
+            stat = Receipt.objects.get(receipt_patient=pid).receipt_status
+        elif tag == 'Child':
+            patient = patient_info([Patient_c.objects.get(patient_id = pid)])
+            stat = Receipt_c.objects.get(receipt_patient=pid).receipt_status
         serviceall = Service.objects.all()
         d_dash = {'log':log,'tag':request.GET['auth'],'service':serviceall, 'patient':patient, 'pid':pid}
-        stat = Receipt.objects.get(receipt_patient=pid).receipt_status
         if stat == '0':
-            patient = patient_info([Patient.objects.get(patient_id=pid)])
+            if tag == 'Doctor':
+                patient = patient_info([Patient.objects.get(patient_id=pid)])
+            elif tag == 'Child':
+                patient = patient_info([Patient_c.objects.get(patient_id=pid)])
             number = float(patient[0][9])
             words = num2words(number)
             return render(request, 'DHOPDW/print_bill.html',{'patient':patient,'log':log,'words':words})
@@ -263,8 +274,16 @@ def pbill(request):
                     obj= Patient.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
                     Receipt.objects.filter(receipt_patient=obj.patient_id).update(receipt_cost=tcost)
                     Receipt.objects.filter(receipt_patient=obj.patient_id).update(receipt_status='0')
+                elif tag == 'Child':
+                    Patient_c.objects.filter(patient_id=pid).update(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_address=addr, patient_town=town, patient_phone=number, patient_services=service, patient_status="1", patient_cost=cost)
+                    obj= Patient_c.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
+                    Receipt_c.objects.filter(receipt_patient=obj.patient_id).update(receipt_cost=tcost)
+                    Receipt_c.objects.filter(receipt_patient=obj.patient_id).update(receipt_status='0')
 
-                patient = patient_info([Patient.objects.get(patient_id=pid)])
+                if tag == 'Doctor':
+                    patient = patient_info([Patient.objects.get(patient_id=pid)])
+                elif tag == 'Child':
+                    patient = patient_info([Patient_c.objects.get(patient_id=pid)])
                 number = float(patient[0][9])
                 words = num2words(number)
                 return render(request, 'DHOPDW/print_bill.html',{'patient':patient,'log':log,'words':words})
@@ -283,7 +302,10 @@ def pwaitlist(request):
             WV = WVForm(request.POST)
             if WV.is_valid():
                 status = WV.cleaned_data['status'].split('.')
-                Patient.objects.filter(patient_id=status[1]).update(patient_status=status[0])
+                if tag == 'Doctor':
+                    Patient.objects.filter(patient_id=status[1]).update(patient_status=status[0])
+                elif tag == 'Child':
+                    Patient_c.objects.filter(patient_id=status[1]).update(patient_status=status[0])
             AddPatient = AddPatientForm(request.POST)
             if AddPatient.is_valid():
                 title = AddPatient.cleaned_data['title']
@@ -317,12 +339,19 @@ def pwaitlist(request):
                     Patient.objects.filter(patient_id=pid).update(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_address=addr, patient_town=town, patient_phone=number, patient_services=service, patient_status="0", patient_cost=cost)
                     obj= Patient.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
                     Receipt.objects.filter(receipt_patient=obj.patient_id).update(receipt_cost=tcost)
+                elif tag == 'Child':
+                    Patient_c.objects.filter(patient_id=pid).update(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_address=addr, patient_town=town, patient_phone=number, patient_services=service, patient_status="0", patient_cost=cost)
+                    obj= Patient_c.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
+                    Receipt_c.objects.filter(receipt_patient=obj.patient_id).update(receipt_cost=tcost)
         else:
             WV = WVForm()
             AddPatient = AddPatientForm()
         service = Service.objects.all()
-        patient = Patient.objects.filter(patient_date=datetime.today().strftime('%Y-%m-%d'))
-        patient_c = []
+        if tag == 'Doctor':
+            patient = Patient.objects.filter(patient_date=datetime.today().strftime('%Y-%m-%d'))
+        elif tag == 'Child':
+            patient = Patient_c.objects.filter(patient_date=datetime.today().strftime('%Y-%m-%d'))
+        Patient_curr = []
         patient_w = []
         titles = ['Mr.', 'Ms.', 'Mrs.', 'Baby Girl', 'Baby Boy']
 
@@ -357,11 +386,11 @@ def pwaitlist(request):
             temp.append(", ".join(vacc))                                                        #12
             temp.append(", ".join(cost))                                                        #13
             if i.patient_status == '0':
-                patient_c.append(temp)
+                Patient_curr.append(temp)
             elif i.patient_status == '1':
                 patient_w.append(temp)
 
-        d_dash = {'log':log, 'tag':tag, 'service':service, 'patient_c':patient_c, 'patient_w':patient_w}
+        d_dash = {'log':log, 'tag':tag, 'service':service, 'patient_c':Patient_curr, 'patient_w':patient_w}
         return render(request, 'DHOPDW/patient_waitlist.html',d_dash)
     return render(request, 'DHOPDW/index.html')
 
@@ -373,8 +402,11 @@ def psearch(request):
         if tag == 'Doctor':
             patient = patient_info(Patient.objects.all())
             fromd = Patient.objects.all()[0].patient_date
-            fd = fromd.strftime('%Y-%m-%d')
-            tod = datetime.today().strftime('%Y-%m-%d')
+        elif tag == 'Child':
+            patient = patient_info(Patient_c.objects.all())
+            fromd = Patient_c.objects.all()[0].patient_date
+        fd = fromd.strftime('%Y-%m-%d')
+        tod = datetime.today().strftime('%Y-%m-%d')
         if request.method == "POST":
             search = SearchForm(request.POST)
             if search.is_valid():
@@ -382,10 +414,16 @@ def psearch(request):
                 tod = search.cleaned_data['tod']
                 pid = search.cleaned_data['pid']
                 if pid == 'date':
-                    patient = patient_info(Patient.objects.filter(patient_date__range=(fromd, tod)))
+                    if tag == 'Doctor':
+                        patient = patient_info(Patient.objects.filter(patient_date__range=(fromd, tod)))
+                    elif tag == 'child':
+                        patient = patient_info(Patient_c.objects.filter(patient_date__range=(fromd, tod)))
                     d_dash = {'log':log,'tag':tag,'patient':patient, 'fromd':fromd, 'tod':tod}
                 else:
-                    patient = patient_info([Patient.objects.get(patient_id=pid)])
+                    if tag == 'Doctor':
+                        patient = patient_info([Patient.objects.get(patient_id=pid)])
+                    elif tag == 'Child':
+                        patient = patient_info([Patient_c.objects.get(patient_id=pid)])
                     number = float(patient[0][9])
                     words = num2words(number)
                     return render(request, 'DHOPDW/print_bill.html', {'patient':patient,'log':log,'words':words})
