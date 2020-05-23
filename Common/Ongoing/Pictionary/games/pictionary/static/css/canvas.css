@@ -1,0 +1,30 @@
+
+/* Some CSS styling */
+a:hover{
+  text-decoration: none;
+}
+
+#sketchpadapp {
+    /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: inherit;
+}
+#sketchpad {
+    border:2px solid #888;
+    border-radius:4px;
+    position:relative;
+    background-color: white; /* Necessary for correct mouse co-ords in Firefox */
+}
+#clearbutton {
+    font-size: 16px;
+    padding: 10px; 
+    color: white;
+    -webkit-appearance: none;
+    background: black;
+    border: 1px solid #888;
+}

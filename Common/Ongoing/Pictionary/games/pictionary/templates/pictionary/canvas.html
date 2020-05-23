@@ -1,0 +1,32 @@
+{% load staticfiles %}
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+<title>SketchPad</title>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'>
+<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/jquery.bootstrapvalidator/0.5.0/css/bootstrapValidator.min.css'>
+
+<link rel="stylesheet" href="{% static 'css/canvas.css' %}">
+<link rel="stylesheet" href="{% static 'css/style3.css' %}">
+
+</head>
+
+<body onload="init()" class="body1">
+    <center>
+      <div id="sketchpadapp">
+      
+            <canvas id="sketchpad">
+            </canvas>
+    </div>
+    
+      <input type="submit" class="btns" value="Clear Sketchpad" onclick="clearCanvas(canvas,ctx);">
+    </center>
+    
+    <script src="{% static 'js/canvas.js' %}"></script>
+</body>
+</html>
+
+  
+    

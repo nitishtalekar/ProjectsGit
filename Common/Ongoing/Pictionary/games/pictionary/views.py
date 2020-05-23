@@ -45,13 +45,12 @@ def home(request):
                 request.session['valid'] = 1;
         if form3.is_valid():
             if 'showcard' in request.POST:
-                c = Pict_Cards.objects.all()
+                c = Cards.objects.all()
                 c_no1 = r.choice(request.session['card_index'])
                 request.session['card_index'].remove(c_no1)
                 c_no2 = r.choice(request.session['card_index'])
                 request.session['card_index'].remove(c_no2)
-                print(c_no1,c_no2)
-                cards = [[c[c_no1].card_title,c[c_no1].card_object,c[c_no1].card_action,c[c_no1].card_food,c[c_no1].card_all],[c[c_no2].card_title,c[c_no2].card_object,c[c_no2].card_action,c[c_no2].card_food,c[c_no2].card_all]]
+                cards = [[c[c_no1].card_title,c[c_no1].card_object,c[c_no1].card_action,c[c_no1].card_food,c[c_no1].card_allplay],[c[c_no2].card_title,c[c_no2].card_object,c[c_no2].card_action,c[c_no2].card_food,c[c_no2].card_allplay]]
                 x = (request.session['player_data'][t][0]+request.session['dice']-1)%5
                 word = [cards[0][x],cards[1][x]]
                 request.session['valid'] = 2;
@@ -115,10 +114,16 @@ def login(request):
             request.session['genre'] = ['Person/Place/Animal','Objects','Actions','Movies','Random']
             for i in range(nop):
                 request.session['player_data'].append([0,players[i],colors[i],0])
-            request.session['card_index'] = [i for i in range(Pict_Cards.objects.all().count())]
+            request.session['card_index'] = [i for i in range(Cards.objects.all().count())]
             if nop == 0:
                 return HttpResponseRedirect('/pictionary/')
         return HttpResponseRedirect('/pictionary/board/')
     else:
         login = Loginform()
         return render(request,'pictionary/login.html',{'login':login})
+
+def canvas(request):
+    return render(request,'pictionary/canvas.html')
+    
+def rules(request):
+    return render(request,'pictionary/rules.html')
