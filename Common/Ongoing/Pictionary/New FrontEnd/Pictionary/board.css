@@ -12,6 +12,9 @@
 .big{
   font-size:10vh
 }
+.words{
+  font-size:5vh
+}
 
 .roll-btn{
   border:0;
@@ -86,15 +89,16 @@
 
 /* Style the front side (fallback if image is missing) */
 .flip-card-front {
-  background-color: #304e81;
-  border: 2px solid white;
-  color: white;
+  background-color: #1a3461;
+  border: 3px solid #bf9b30;
+  color: #bf9b30;
 }
 
 /* Style the back side */
 .flip-card-back {
   background-color: #bbb;
   color: black;
+  border: 3px solid black;
   transform: rotateY(180deg);
 }
 
