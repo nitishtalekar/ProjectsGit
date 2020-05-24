@@ -89,19 +89,27 @@ def login(request):
         login = Loginform(request.POST)
         players = []
         colors = []
+        print("1",login.is_valid())
         if login.is_valid():
             if login.cleaned_data['team1']:
                 players.append(login.cleaned_data['team1'])
-                colors.append('#ba3c3c')
+                colors.append('#ff5a5a')
             if login.cleaned_data['team2']:
                 players.append(login.cleaned_data['team2'])
-                colors.append('#cac831')
+                colors.append('#5d90ff')
             if login.cleaned_data['team3']:
                 players.append(login.cleaned_data['team3'])
-                colors.append('#2f9ca4')
+                colors.append('#75d76d')
             if login.cleaned_data['team4']:
                 players.append(login.cleaned_data['team4'])
-                colors.append('#3b9829')
+                colors.append('#fff66c')
+            if login.cleaned_data['team5']:
+                players.append(login.cleaned_data['team5'])
+                colors.append('#eb7f59')
+            if login.cleaned_data['team6']:
+                players.append(login.cleaned_data['team6'])
+                colors.append('#f179b7')
+
             # request.session['players'] = players
             # request.session['colors'] = colors
             nop = len(players)
@@ -111,7 +119,7 @@ def login(request):
             request.session['turn'] = 0
             request.session['dice'] = 0
             request.session['player_data'] = []
-            request.session['genre'] = ['Person/Place/Animal','Objects','Actions','Movies','Random']
+            request.session['genre'] = ['Animal/Place','Objects','Actions','Food','Random']
             for i in range(nop):
                 request.session['player_data'].append([0,players[i],colors[i],0])
             request.session['card_index'] = [i for i in range(Cards.objects.all().count())]
@@ -120,10 +128,10 @@ def login(request):
         return HttpResponseRedirect('/pictionary/board/')
     else:
         login = Loginform()
-        return render(request,'pictionary/login.html',{'login':login})
+        return render(request,'pictionary/login.html')
 
 def canvas(request):
     return render(request,'pictionary/canvas.html')
-    
+
 def rules(request):
     return render(request,'pictionary/rules.html')

@@ -1,0 +1,88 @@
+@font-face {
+  font-family: Wallington;
+  src: url(WallingtonRegular-PYK7.ttf);
+  }
+
+body{
+  font-family: Wallington;
+}
+
+.minheight{
+  min-height: 100vh;
+}
+
+.bg{
+  background-color: #304e81;
+}
+
+
+/* ANIMATION */
+
+.fade-in-up {
+    /* opacity: 0; */
+    animation: fadeInUp ease 3s;
+    -webkit-animation: fadeInUp ease 3s;
+    -moz-animation: fadeInUp ease 3s;
+    -o-animation: fadeInUp ease 3s;
+    -ms-animation: fadeInUp ease 3s;
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0);
+        opacity:0;
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+@-moz-keyframes fadeIn {
+  from {
+      transform: translate3d(0,40px,0);
+      opacity:0;
+  }
+
+  to {
+      transform: translate3d(0,0,0);
+      opacity: 1
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  from {
+      transform: translate3d(0,40px,0);
+      opacity:0;
+  }
+
+  to {
+      transform: translate3d(0,0,0);
+      opacity: 1
+  }
+}
+
+@-o-keyframes fadeIn {
+  from {
+      transform: translate3d(0,40px,0);
+      opacity:0;
+  }
+
+  to {
+      transform: translate3d(0,0,0);
+      opacity: 1
+  }
+}
+
+@-ms-keyframes fadeIn {
+  from {
+      transform: translate3d(0,40px,0);
+      opacity:0;
+  }
+
+  to {
+      transform: translate3d(0,0,0);
+      opacity: 1
+  }
+}
