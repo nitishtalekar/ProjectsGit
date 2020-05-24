@@ -1,5 +1,10 @@
+@font-face {
+  font-family: Wallington;
+  src: url(WallingtonRegular-PYK7.ttf);
+  }
+
 body{
-  font-family: sans-serif;
+  font-family: Wallington;
 }
 
 .minheight{
