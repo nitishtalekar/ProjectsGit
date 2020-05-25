@@ -31,14 +31,17 @@ def home(request):
                 request.session['player_data'][t][3] = request.session['player_data'][t][0]*4
                 # request.session['dice'] = 0
                 request.session['turn'] = (request.session['turn'] + 1)%n
+                request.session['dice'] = r.choice([i for i in range(1,7)])
             elif 'wrong' in request.POST:
                 # request.session['score'][t] = request.session['score'][t]
                 request.session['player_data'][t][0] = request.session['player_data'][t][0]
                 request.session['player_data'][t][3] = request.session['player_data'][t][0]*4
                 # request.session['dice'] = 0
                 request.session['turn'] = (request.session['turn'] + 1)%n
+                request.session['dice'] = r.choice([i for i in range(1,7)])
             request.session['valid'] = 0;
-            
+
+
         if form3.is_valid():
             if 'showcard' in request.POST:
                 c = Cards.objects.all()
@@ -50,19 +53,18 @@ def home(request):
                 x = (request.session['player_data'][t][0]+request.session['dice']-1)%5
                 word = [cards[0][x],cards[1][x]]
                 request.session['valid'] = 2;
-                
-        request.session['dice'] = r.choice([i for i in range(1,7)])
-        dice = request.session['dice']
+
+
+
         # score = request.session['score']
-        pd = request.session['player_data']
+        # pd = request.session['player_data']
 
     else:
         form = Btnform()
         request.session['score'] = [0 for i in range(request.session['nop'])]
         score = request.session['score']
         request.session['dice'] = r.choice([i for i in range(1,7)])
-        dice = request.session['dice']
-        
+    dice = request.session['dice']
     t = request.session['turn']
     pd = request.session['player_data']
     p_turn = pd[t][1]
@@ -88,7 +90,6 @@ def login(request):
         login = Loginform(request.POST)
         players = []
         colors = []
-        print("1",login.is_valid())
         if login.is_valid():
             if login.cleaned_data['team1']:
                 players.append(login.cleaned_data['team1'])
