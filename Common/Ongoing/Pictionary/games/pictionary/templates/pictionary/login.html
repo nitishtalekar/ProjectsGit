@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 
@@ -28,12 +28,16 @@
     });
 
     function showplayer(cb,x){
-      player = '#player'+x;
+      player = '#player' + x;
+      player_name = "p_name" + x
+      console.log(player_name);
       if (cb.checked){
         $(player).slideDown(1000);
       }
       else{
         $(player).slideUp(1000);
+        console.log(document.getElementById(player_name).value);
+        document.getElementById(player_name).value = "";
         }
     }
 
@@ -41,7 +45,7 @@
   </head>
   <body class="bg">
 
-      <div class="container d-flex align-items-center justify-content-center minheight">
+      <div class="container d-flex align-items-center justify-content-center" style="min-height: calc(100vh - 15px)">
 
           <div class="row fade-in-up">
             <center>
@@ -51,7 +55,7 @@
             </div>
 
             <div class="col-12 mb-3">
-              <button class="canvas-btn pt-3 pb-2" onclick="window.location.href = '/pictionay/canvas';">OPEN &nbsp; CANVAS</button>
+              <button class="canvas-btn pt-3 pb-2" onclick="window.location.href = '/pictionary/canvas';">OPEN &nbsp; CANVAS</button>
             </div>
 
             <div class="col-12 mb-3">
@@ -101,22 +105,22 @@
                 {% csrf_token %}
                   <div class="box" id="inputs" style="display:none">
                     <div id="player1" style="display:none">
-                        <input class="inputbox border-red" type="text" name="team1" placeholder="Team Name">
+                        <input id="p_name1" class="inputbox border-red pt-2 pb-2" type="text" style="font-family:Times" name="team1" placeholder="Team Name">
                     </div>
                     <div id="player2" style="display:none">
-                        <input class="inputbox border-blue" type="text" name="team2" placeholder="Team Name">
+                        <input id="p_name2" class="inputbox border-blue pt-2 pb-2" type="text" style="font-family:Times" name="team2" placeholder="Team Name">
                     </div>
                     <div id="player3" style="display:none">
-                        <input class="inputbox border-green" type="text" name="team3" placeholder="Team Name">
+                        <input id="p_name3" class="inputbox border-green pt-2 pb-2" type="text" style="font-family:Times" name="team3" placeholder="Team Name">
                     </div>
                     <div id="player4" style="display:none">
-                        <input class="inputbox border-yellow" type="text" name="team4" placeholder="Team Name">
+                        <input id="p_name4" class="inputbox border-yellow pt-2 pb-2" type="text" style="font-family:Times" name="team4" placeholder="Team Name">
                     </div>
                     <div id="player5" style="display:none">
-                        <input class="inputbox border-orange" type="text" name="team5" placeholder="Team Name">
+                        <input id="p_name5" class="inputbox border-orange pt-2 pb-2" type="text" style="font-family:Times" name="team5" placeholder="Team Name">
                     </div>
                     <div id="player6" style="display:none">
-                        <input class="inputbox border-pink" type="text" name="team6" placeholder="Team Name">
+                        <input id="p_name6" class="inputbox border-pink pt-3 pb-2"  type="text" style="font-family:Times" name="team6" placeholder="Team Name">
                     </div>
                       </div>
 
@@ -129,6 +133,10 @@
               </form>
 
             </div>
+            
+            <div class="col-12">
+            <a href="/pictionary/rules" class="text-uppercase text-white" style="font-size:2vh;"> HOW to Play</a>
+            </div>
 
 
 
@@ -137,6 +145,10 @@
 
         </div>
 
+      </div>
+      
+      <div class="d-flex justify-content-end bg">
+        <span style="font-size:10px" class="text-white mr-3">Developed By Nitish Talekar & Sarvesh Wanode</span>
       </div>
 
     <!-- Optional JavaScript -->

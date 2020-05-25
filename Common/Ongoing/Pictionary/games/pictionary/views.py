@@ -13,7 +13,7 @@ def home(request):
     t = request.session['turn']
     cards = ''
     word = ''
-    win = [0,""]
+    win = [0,"",""]
     x = 0
     if request.method == "POST":
         form = Btnform(request.POST)
@@ -26,6 +26,7 @@ def home(request):
                 if request.session['player_data'][t][0] >= 25:
                     win[0] = 1
                     win[1] = request.session['player_data'][t][1]
+                    win[2] = request.session['player_data'][t][2]
 
                 request.session['player_data'][t][3] = request.session['player_data'][t][0]*4
                 # request.session['dice'] = 0
@@ -49,6 +50,8 @@ def home(request):
                 x = (request.session['player_data'][t][0]+request.session['dice']-1)%5
                 word = [cards[0][x],cards[1][x]]
                 request.session['valid'] = 2;
+                
+        request.session['dice'] = r.choice([i for i in range(1,7)])
         dice = request.session['dice']
         # score = request.session['score']
         pd = request.session['player_data']
@@ -57,12 +60,13 @@ def home(request):
         form = Btnform()
         request.session['score'] = [0 for i in range(request.session['nop'])]
         score = request.session['score']
+        request.session['dice'] = r.choice([i for i in range(1,7)])
+        dice = request.session['dice']
         
-    request.session['dice'] = r.choice([i for i in range(1,7)])
-    dice = request.session['dice']
     t = request.session['turn']
     pd = request.session['player_data']
     p_turn = pd[t][1]
+    p_col = pd[t][2]
     # valid = 1
     valid = request.session['valid']
     gen = request.session['genre'][x]
@@ -75,6 +79,7 @@ def home(request):
         'pd' : pd,
         'win' : win,
         'p_turn':p_turn,
+        'p_col':p_col,
         'gen':gen}
     return render(request,'pictionary/home.html',p_dict)
 
@@ -87,22 +92,22 @@ def login(request):
         if login.is_valid():
             if login.cleaned_data['team1']:
                 players.append(login.cleaned_data['team1'])
-                colors.append('#ff5a5a')
+                colors.append('red')
             if login.cleaned_data['team2']:
                 players.append(login.cleaned_data['team2'])
-                colors.append('#5d90ff')
+                colors.append('blue')
             if login.cleaned_data['team3']:
                 players.append(login.cleaned_data['team3'])
-                colors.append('#75d76d')
+                colors.append('green')
             if login.cleaned_data['team4']:
                 players.append(login.cleaned_data['team4'])
-                colors.append('#fff66c')
+                colors.append('yellow')
             if login.cleaned_data['team5']:
                 players.append(login.cleaned_data['team5'])
-                colors.append('#eb7f59')
+                colors.append('orange')
             if login.cleaned_data['team6']:
                 players.append(login.cleaned_data['team6'])
-                colors.append('#f179b7')
+                colors.append('pink')
 
             # request.session['players'] = players
             # request.session['colors'] = colors

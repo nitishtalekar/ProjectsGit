@@ -55,6 +55,32 @@ body{
   border:3px solid #f179b7;
 }
 
+.col-red{
+  color: #ff5a5a;
+}
+.col-green{
+  color: #75d76d;
+}
+.col-blue{
+  color: #5d90ff;
+}
+.col-yellow{
+  color: #fff66c;
+}
+.col-orange{
+  color: #eb7f59;
+}
+.col-pink{
+  color: #f179b7;
+}
+
+.golden{
+  color: #bf9b30;
+}
+.golden-border{
+  border: 3px solid #bf9b30;
+}
+
 
 
 /* ANIMATION */

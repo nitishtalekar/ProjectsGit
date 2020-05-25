@@ -8,10 +8,10 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <!-- <script src="http://code.jquery.com/jquery-1.9.1.js"></script> -->
 
     <link rel="stylesheet" href="{% static 'css/board.css' %}">
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
@@ -42,8 +42,8 @@
           document.getElementById("diceimg").setAttribute("src",dice[{{dice}}-1]);
           document.getElementById("show_div").classList.add("fade-in-up");
           document.getElementById("show_div").setAttribute("style",'display:block');
-
-
+          document.getElementById("rollcommand").setAttribute("style",'display:none');
+          
       }, delayInMilliseconds);
 
       });
@@ -77,13 +77,34 @@
   </head>
   <body class="bg">
     {% if win.0 == 1 %}
-
-    <br><br><br><br>
-    <center>
-    <h1 class="winner"> {{win.1}} IS THE WINNER </h1>
-    <div class="class="btns"">
-    <a href="/pictionary/"> <button type="button" name="button" class="btns">PLAY AGAIN</button></a>
-    </center>
+    
+    <div class="container-fluid d-flex align-items-center justify-content-center" style="min-height:65vh">
+      
+      <div class="row">
+        <div class="col-12 mb-2 mt-3 fade-in-up mx-auto text-uppercase text-white">
+          <center>Pictionary<center>
+        </div>
+        
+        <div class="col-10 mb-2 mt-3 pt-4 pb-2 fade-in-up mx-auto golden-border">
+          <center><span class="winner col-{{win.2}}" style="font-size:7vh"> {{win.1}} </span><center>
+        </div>
+        <div class="col-12 mb-2 mt-3 fade-in-up mx-auto">
+          <center><span class="winner text-white" style="font-size:4vh"> is the winner </span><center>
+        </div>
+        
+        <div class="col-12 mb-2 mt-2 fade-in-up mx-auto">
+          <center>
+            <button class="again-btn pt-3 pb-2" onclick="window.location.href = '/pictionary/';">
+              <i class="fa fa-repeat" style="font-size:3vh;" aria-hidden="true"></i> &nbsp; &nbsp; PLAY &nbsp; AGAIN
+            </button>
+            <center>
+        </div>
+      </div>
+        
+        
+        
+        
+    </div>
 
 
 
@@ -95,10 +116,26 @@
             <div class="col-lg-6 col-md-12 d-flex align-items-center justify-content-center " style="min-height: 100vh;">
             <div class="container-fluid">
               <div class="row">
-
-                <div class="col-12 mb-1 mt-4 turn-text fade-in-up">
-                  <center>{{p_turn}}'s Turn<center>
+                
+                {% if valid == 0  %}
+                
+                <div class="col-12 mb-2 mt-3 fade-in-up mx-auto text-uppercase text-white">
+                  <center>Pictionary<center>
                 </div>
+
+                <div class="col-12 mb-1 mt-1 turn-text fade-in-up mx-auto">
+                  <center><span class="col-{{p_col}}">{{p_turn}}'s</span><br> Turn<center>
+                </div>
+                
+                  {% endif %}
+                  
+                  {% if valid == 2  %}
+                  
+                  <div class="col-12 mb-1 mt-2 turn-text fade-in-up mx-auto" style="font-size:3vh">
+                    <center><span class="col-{{p_col}}">{{p_turn}}'s</span> Turn<center>
+                  </div>
+                  
+                    {% endif %}
 
                 {% if valid == 0  %}
 
@@ -109,12 +146,16 @@
 
 
                 <button class="roll-btn-dice" id="rolldicebtn" >
-                  <div class="bg-red rounded" style="height:15vh;width:15vh;">
+                  <div class="bg-{{p_col}} rounded" style="height:15vh;width:15vh;">
                     <img id="diceimg" style="height:15vh;width:15vh;" src="{% static 'img/dice6b.png' %}" alt="">
                   </div>
                 </button>
+                
 
                 <hr style="color:white;background:white;width:20vh">
+                
+                <br>
+                <span id="rollcommand" class="text-white text-uppercase mt-1 font-weight-bold">( &nbsp; Roll &nbsp;  The &nbsp;  Dice &nbsp;  ! &nbsp;  )</span>
 
                 <form action="/pictionary/board/" method="post"  enctype="multipart/form-data">
                   {% csrf_token %}
@@ -123,10 +164,6 @@
                     <button class="show-btn pt-3 pb-2" type="submit" name="showcard"> SHOW CARD </button>
                   </div>
                 </form>
-
-                <!-- <div class="showcards" id="show_div" style="display:none;">
-                  <button class="show-btn pt-3 pb-2"> SHOW CARD </button>
-                </div> -->
 
                     </center>
                 </div>
@@ -137,24 +174,19 @@
 
                 {% if valid == 2  %}
 
-                <div class="col-12 mb-1 fade-in-up">
+                <div class="col-12 mt-1 fade-in-up">
                   <center>
 
-                <!-- <h1 class="turn-text timer mt-2 mb-0">00 : 00</h1> -->
-
-                <center>
-                <p id="demo" class="turn-text timer mt-2 mb-0">00:00</p>
+                <span id="demo" class="turn-text timer">00:00</span>
 
                 <script type="text/javascript">
                   timer();
                 </script>
 
-                </center>
+                  </center>
+              </div>
 
-              </center>
-            </div>
-
-                <div class="col-12 d-flex align-items-center justify-content-center fade-in-up">
+                <div class="col-12 d-flex align-items-center justify-content-center fade-in-up mt-0">
                   <div class="flip-card">
                       <div class="flip-card-inner">
                         <div class="flip-card-front d-flex align-items-center justify-content-center">
@@ -163,13 +195,13 @@
                             <center>
                               PICTIONARY CARD<br><br>
                               <p class="mb-0 text-uppercase" style="font-size:8vh;"> {{gen}} </p>
-                              (Flip Card to Look at what you have to draw !)
+                              (Flip Card to Look at <br> what you have to draw !)
                             </center>
 
                           </div>
 
                         </div>
-                        <div class="flip-card-back d-flex align-items-center justify-content-center">
+                        <div class="flip-card-back d-flex align-items-center justify-content-center border-{{p_col}}">
                           <div class="container">
                               <div style="margin-top:20px;">PICTIONARY CARD</div><br>
                               <div class="mb-2">
@@ -194,7 +226,7 @@
                     {% csrf_token %}
                     {{form.as_p}}
                     <!-- <button id = "st" onclick="timer()">Start timer</button> -->
-                    <button type="submit" name="correct" class="show-btn pt-3 pb-2" onclick="nextturn()">CORRECT &nbsp; GUESS</button>
+                    <button type="submit" name="correct" class="show-btn pt-3 pb-2 border-{{p_col}}" onclick="nextturn()">CORRECT &nbsp; GUESS</button>
                     <button type="submit" id="wrong" name="wrong" onclick="nextturn()" style="display: none;">WRONG</button>
                   </form>
 
@@ -211,41 +243,54 @@
 
           {% endif %}
 
-          {% if win.0 == 0 %}
-
           <div class="col-lg-6 col-md-12 fade-in-up">
 
 
             <div class="d-flex justify-content-center mt-0 mb-2">
               <button id="scorebutton" class="show-btn pt-3 pb-2"> S &nbsp; C &nbsp; O &nbsp; R &nbsp; E &nbsp; B &nbsp; O &nbsp; A &nbsp; R &nbsp; D </button>
             </div>
+            
+            <hr style="background:#bf9b30">
 
             <div id="score" class="mt-5 mb-2" style="display:none">
 
               {% for i in pd %}
-
-              <p class="up">{{i.1}}</p>{{i.3}}
-              <div class="progress">
-                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="10" style="width:{{i.3}}%; background-color:{{i.2}}">
+              
+              <div class="mt-2 mb-4">
+              
+              <span class="text-uppercase col-{{i.2}}">{{i.1}}</span><br>
+              <span class="col-{{i.2}}">{{i.3}}</span><span class="text-white">/100</span>
+              <div class="progress mt-2">
+                <div class="progress-bar progress-bar-info bg-{{i.2}}" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="10" style="width:{{i.3}}%;}">
                 </div>
+              </div>
+              
               </div>
 
               {% endfor %}
 
               {% if valid == 2  %}
-
+              
+            <div class="mt-2">
               <center>
-              <button style="align:right;" type="submit" id = "wrong1" class="btns" name="wrong1" onclick="skipturn()">SKIP</button>
+              <button style="align:right;" type="submit" id = "wrong1" class="show-btn pt-3 pb-2 border-{{p_col}}" name="wrong1" onclick="skipturn()">SKIP &nbsp; TURN</button>
               </center>
+            </div>
+              
 
               {% endif %}
 
 
             </div>
+            
+            <!-- <hr style="background:#bf9b30"> -->
+            <div class="d-flex justify-content-end mt-5">
+              <span style="font-size:10px" class="golden font-weight-bold mr-2">Developed By Nitish Talekar & Sarvesh Wanode</span>
+            </div>
+            
 
           </div>
 
-            {% endif %}
 
 
         </div>
