@@ -16,13 +16,14 @@
   font-size:5vh
 }
 
-.roll-btn{
+.show-btn{
   border:0;
   background: none;
   display: block;
   margin: 20px auto;
   text-align: center;
-  border: 2px solid #fff;
+  border: 3px solid #bf9b30;
+  color: #bf9b30;
   padding: 10px 30px;
   outline: none;
   color: white;
@@ -31,11 +32,11 @@
   font-weight: 700;
   transition: all 0.75s;
 }
-.roll-btn:hover{
-  background: #fff;
-  color:#304e81;
+.show-btn:hover{
+  background-color: #1a3461;
+  color: #bf9b30;
 }
-.roll-btn:focus {
+.show-btn:focus {
   outline: none;
   box-shadow: none;
 }

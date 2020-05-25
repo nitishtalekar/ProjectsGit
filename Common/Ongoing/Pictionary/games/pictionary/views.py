@@ -63,7 +63,7 @@ def home(request):
         form2 = Rollform()
         request.session['score'] = [0 for i in range(request.session['nop'])]
         score = request.session['score']
-        request.session['dice'] = 0
+        request.session['dice'] = r.choice([i for i in range(1,7)])
         dice = request.session['dice']
     t = request.session['turn']
     pd = request.session['player_data']

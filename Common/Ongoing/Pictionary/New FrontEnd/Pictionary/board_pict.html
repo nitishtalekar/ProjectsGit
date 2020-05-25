@@ -1,4 +1,6 @@
+
 {% load static %}
+
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -10,12 +12,11 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 
 
+    <link rel="stylesheet" href="board.css">
+    <link rel="stylesheet" href="main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-
-    <link rel="stylesheet" href="{% static 'css/board.css' %}">
-    <link rel="stylesheet" href="{% static 'css/main.css' %}">
-    <script src="{% static 'js/timer2.js' %}"></script>
+    <script src="board.js"></script>
 
     <script>
 
@@ -26,7 +27,7 @@
       function rolldice()
       {
       var ranNum = Math.floor( 1 + Math.random() * 6 );
-      var dice = ["{% static 'img/dice1b.png' %}","{% static 'img/dice2b.png' %}","{% static 'img/dice3b.png' %}","{% static 'img/dice4b.png' %}","{% static 'img/dice5b.png' %}","{% static 'img/dice6b.png' %}"];
+      var dice = ['img/1.png','img/2.png','img/3.png','img/4.png','img/5.png','img/6.png'];
       document.getElementById("diceimg").setAttribute("src", dice[ranNum-1]);
       }
 
@@ -37,45 +38,19 @@
       var delayInMilliseconds = ranInt*500;
 
       setTimeout(function() {
-          var dice = ["{% static 'img/dice1b.png' %}","{% static 'img/dice2b.png' %}","{% static 'img/dice3b.png' %}","{% static 'img/dice4b.png' %}","{% static 'img/dice5b.png' %}","{% static 'img/dice6b.png' %}"];
           clearInterval(MyVar);
-          document.getElementById("diceimg").setAttribute("src",dice[{{dice}}-1]);
-          document.getElementById("show_div").classList.add("fade-in-up");
-          document.getElementById("show_div").setAttribute("style",'display:block');
-
-
+          document.getElementById("diceimg").setAttribute("src", 'img/3.png');
       }, delayInMilliseconds);
 
       });
 
         });
 
-
-      $(document).ready(function(){
-
-        $("#scorebutton").click(function(){
-          $("#score").slideToggle('slow');
-        });
-
-      });
-
-        $(function() {
-            $('a[href*=\\#]:not([href=\\#])').on('click', function() {
-                var target = $(this.hash);
-                target = target.length ? target : $('[name=' + this.hash.substr(1) +']');
-                if (target.length) {
-                    $('html,body').animate({
-                        scrollTop: target.offset().top
-                    }, 3000);
-                    return false;
-                }
-            });
-        });
-
     </script>
 
   </head>
   <body class="bg">
+
     {% if win.0 == 1 %}
 
     <br><br><br><br>
@@ -91,51 +66,37 @@
 
       <div class="container-fluid minheight bg">
         <div class="row">
-          <!-- <div class="col-lg-6 col-md-12 d-flex align-items-center justify-content-center minheight"> -->
-            <div class="col-lg-6 col-md-12 d-flex align-items-center justify-content-center " style="min-height: 100vh;">
+          <div class="col-lg-6 col-md-12 d-flex align-items-center justify-content-center minheight">
             <div class="container-fluid">
               <div class="row">
 
                 <div class="col-12 mb-1 mt-4 turn-text fade-in-up">
-                  <center>XYZ's Turn {{dice}}<center>
+                  <center>{{p_turn}}'s Turn<center>
                 </div>
 
                 <div class="col-12 mb-1 fade-in-up">
                   <center>
 
-                <!-- <h1 class="turn-text timer mt-2 mb-0">00 : 00</h1> -->
-                {% if valid == 0  %}
+                <h1 class="turn-text timer mt-2 mb-0">00 : 00</h1>
 
-                <button class="roll-btn-dice" id="rolldicebtn" >
-                  <div class="bg-red rounded" style="height:15vh;width:15vh;">
-                    <img id="diceimg" style="height:15vh;width:15vh;" src="{% static 'img/dice6b.png' %}" alt="">
-                  </div>
-                </button>
-
-
+                <!-- <button class="roll-btn-dice" id="rolldicebtn" ><img id="diceimg" style="height:15vh;width:15vh;" src="img/2.png" alt=""></button>
 
                 <hr style="color:white;background:white;width:20vh">
 
-
-
-                <div class="showcards" id="show_div" style="display:none;">
-                  <button class="show-btn pt-3 pb-2"> SHOW CARD </button>
-                </div>
+                <button class="roll-btn"> SHOW CARD </button> -->
 
                     </center>
                 </div>
 
-                {% endif %}
-
-                <!-- <div class="col-12 d-flex align-items-center justify-content-center fade-in-up">
+                <div class="col-12 d-flex align-items-center justify-content-center fade-in-up">
                   <div class="flip-card">
                       <div class="flip-card-inner">
                         <div class="flip-card-front d-flex align-items-center justify-content-center">
 
                           <div class="container">
                             <center>
-                              PICTIONARY CARD<br><br>
-                              <p class="big mb-0 text-uppercase"> GENRE</p>
+                              PICTIONARY CARD<br>
+                              <p class="big mb-0"> GENRE</p>
                               (Flip Card to Look at what you have to draw !)
                             </center>
 
@@ -162,8 +123,8 @@
                 </div>
 
                 <div class="col-12 fade-in-up">
-                  <button class="show-btn pt-3 pb-2"> CORRECT &nbsp; GUESS </button>
-                </div> -->
+                  <button class="roll-btn pt-3 pb-2"> CORRECT GUESS </button>
+                </div>
 
 
 
@@ -174,32 +135,26 @@
           </div>
 
           <div class="col-lg-6 col-md-12 fade-in-up">
-            <div class="d-flex justify-content-center mt-0 mb-2">
-              <button id="scorebutton" class="show-btn pt-3 pb-2"> S &nbsp; C &nbsp; O &nbsp; R &nbsp; E &nbsp; B &nbsp; O &nbsp; A &nbsp; R &nbsp; D </button>
-            </div>
-
-            <div id="score show notshow" class="mt-5 mb-2" style="display:none">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </div>
-
+            <center>
+            HELLO TO PICTIONARY BOARD
+          </center>
           </div>
         </div>
 
 
       </div>
-      {% endif %}
-
+    {% endif %}
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 
-    <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-    <script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->
-    <script src="{% static 'vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
   </body>
 </html>
