@@ -97,14 +97,16 @@
               <div class="row">
 
                 <div class="col-12 mb-1 mt-4 turn-text fade-in-up">
-                  <center>XYZ's Turn {{dice}}<center>
+                  <center>XYZ's Turn<center>
                 </div>
+                
+                {% if valid == 0  %}
 
                 <div class="col-12 mb-1 fade-in-up">
                   <center>
 
                 <!-- <h1 class="turn-text timer mt-2 mb-0">00 : 00</h1> -->
-                {% if valid == 0  %}
+                
 
                 <button class="roll-btn-dice" id="rolldicebtn" >
                   <div class="bg-red rounded" style="height:15vh;width:15vh;">
@@ -112,22 +114,47 @@
                   </div>
                 </button>
 
-
-
                 <hr style="color:white;background:white;width:20vh">
 
-
-
-                <div class="showcards" id="show_div" style="display:none;">
+                <form action="/pictionary/board/" method="post"  enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{form3.as_p}}
+                  <div class="showcards" id="show_div" style="display:none;">
+                    <button class="show-btn pt-3 pb-2" type="submit" name="showcard"> SHOW CARD </button>
+                  </div>
+                </form>
+                
+                <!-- <div class="showcards" id="show_div" style="display:none;">
                   <button class="show-btn pt-3 pb-2"> SHOW CARD </button>
-                </div>
+                </div> -->
 
                     </center>
                 </div>
-
+                
                 {% endif %}
 
-                <!-- <div class="col-12 d-flex align-items-center justify-content-center fade-in-up">
+                
+                
+                {% if valid == 2  %}
+                
+                <div class="col-12 mb-1 fade-in-up">
+                  <center>
+
+                <!-- <h1 class="turn-text timer mt-2 mb-0">00 : 00</h1> -->
+                
+                <center>
+                <p id="demo" class="turn-text timer mt-2 mb-0">00:00</p>
+                
+                <script type="text/javascript">
+                  timer();
+                </script>
+                
+                </center>
+                
+              </center>
+            </div>
+            
+                <div class="col-12 d-flex align-items-center justify-content-center fade-in-up">
                   <div class="flip-card">
                       <div class="flip-card-inner">
                         <div class="flip-card-front d-flex align-items-center justify-content-center">
@@ -135,7 +162,7 @@
                           <div class="container">
                             <center>
                               PICTIONARY CARD<br><br>
-                              <p class="big mb-0 text-uppercase"> GENRE</p>
+                              <p class="mb-0 text-uppercase" style="font-size:8vh;"> {{gen}} </p>
                               (Flip Card to Look at what you have to draw !)
                             </center>
 
@@ -146,13 +173,13 @@
                           <div class="container">
                               <div style="margin-top:20px;">PICTIONARY CARD</div><br>
                               <div class="mb-2">
-                                <span class="words pt-3 pb-2 text-uppercase">box of chocholates</span>
+                                <span class="words pt-3 pb-2 text-uppercase">{{Word.0}}</span>
                               </div>
                               <div class="mb-3">
                                 <span class="pt-3 pb-2"> { O R } </span>
                               </div>
                               <div class="mb-2">
-                                <span class="words pt-3 pb-2 text-uppercase"> box of dildos </span>
+                                <span class="words pt-3 pb-2 text-uppercase">{{Word.1}}</span>
                               </div>
 
                           </div>
@@ -162,32 +189,69 @@
                 </div>
 
                 <div class="col-12 fade-in-up">
-                  <button class="show-btn pt-3 pb-2"> CORRECT &nbsp; GUESS </button>
-                </div> -->
-
-
+                  
+                  <form action="/pictionary/board/" method="post"  enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <!-- <button id = "st" onclick="timer()">Start timer</button> -->
+                    <button type="submit" name="correct" class="show-btn pt-3 pb-2" onclick="nextturn()">CORRECT &nbsp; GUESS</button>
+                    <button type="submit" id="wrong" name="wrong" onclick="nextturn()" style="display: none;">WRONG</button>
+                  </form>
+                  
+                  <!-- <button class="show-btn pt-3 pb-2"> CORRECT &nbsp; GUESS </button> -->
+                </div>
+                
+                {% endif %}
 
               </div>
 
             </div>
 
           </div>
+          
+          {% endif %}
+          
+          {% if win.0 == 0 %}
 
           <div class="col-lg-6 col-md-12 fade-in-up">
+            
+            
             <div class="d-flex justify-content-center mt-0 mb-2">
               <button id="scorebutton" class="show-btn pt-3 pb-2"> S &nbsp; C &nbsp; O &nbsp; R &nbsp; E &nbsp; B &nbsp; O &nbsp; A &nbsp; R &nbsp; D </button>
             </div>
 
-            <div id="score show notshow" class="mt-5 mb-2" style="display:none">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <div id="score" class="mt-5 mb-2" style="display:none">
+              
+              {% for i in pd %}
+            
+              <p class="up">{{i.1}}</p>{{i.3}}
+              <div class="progress">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="10" style="width:{{i.3}}%; background-color:{{i.2}}">
+                </div>
+              </div>
+            
+              {% endfor %}
+              
+              {% if valid == 2  %}
+              
+              <center>
+              <button style="align:right;" type="submit" id = "wrong1" class="btns" name="wrong1" onclick="skipturn()">SKIP</button>
+              </center>
+              
+              {% endif %}
+            
+              
             </div>
 
           </div>
+          
+            {% endif %}
+          
+          
         </div>
 
 
       </div>
-      {% endif %}
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

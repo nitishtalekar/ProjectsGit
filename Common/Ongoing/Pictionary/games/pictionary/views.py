@@ -17,7 +17,6 @@ def home(request):
     x = 0
     if request.method == "POST":
         form = Btnform(request.POST)
-        form2 = Rollform(request.POST)
         form3 = Cardform(request.POST)
         if form.is_valid():
             if 'correct' in request.POST:
@@ -29,20 +28,16 @@ def home(request):
                     win[1] = request.session['player_data'][t][1]
 
                 request.session['player_data'][t][3] = request.session['player_data'][t][0]*4
-                request.session['dice'] = 0
+                # request.session['dice'] = 0
                 request.session['turn'] = (request.session['turn'] + 1)%n
             elif 'wrong' in request.POST:
                 # request.session['score'][t] = request.session['score'][t]
                 request.session['player_data'][t][0] = request.session['player_data'][t][0]
                 request.session['player_data'][t][3] = request.session['player_data'][t][0]*4
-                request.session['dice'] = 0
+                # request.session['dice'] = 0
                 request.session['turn'] = (request.session['turn'] + 1)%n
             request.session['valid'] = 0;
-        if form2.is_valid():
-            if 'roll' in request.POST:
-                request.session['dice'] = r.choice([i for i in range(1,7)])
-                request.session['turn'] = request.session['turn']
-                request.session['valid'] = 1;
+            
         if form3.is_valid():
             if 'showcard' in request.POST:
                 c = Cards.objects.all()
@@ -60,11 +55,11 @@ def home(request):
 
     else:
         form = Btnform()
-        form2 = Rollform()
         request.session['score'] = [0 for i in range(request.session['nop'])]
         score = request.session['score']
-        request.session['dice'] = r.choice([i for i in range(1,7)])
-        dice = request.session['dice']
+        
+    request.session['dice'] = r.choice([i for i in range(1,7)])
+    dice = request.session['dice']
     t = request.session['turn']
     pd = request.session['player_data']
     p_turn = pd[t][1]
@@ -74,7 +69,6 @@ def home(request):
     p_dict = {
         'dice':dice,
         'form':form,
-        'form2':form2,
         'turn':t,
         'valid':valid,
         'Word':word,
@@ -119,7 +113,7 @@ def login(request):
             request.session['turn'] = 0
             request.session['dice'] = 0
             request.session['player_data'] = []
-            request.session['genre'] = ['Animal/Place','Objects','Actions','Food','Random']
+            request.session['genre'] = ['Animals & Places','Objects','Actions','Food','Random']
             for i in range(nop):
                 request.session['player_data'].append([0,players[i],colors[i],0])
             request.session['card_index'] = [i for i in range(Cards.objects.all().count())]
