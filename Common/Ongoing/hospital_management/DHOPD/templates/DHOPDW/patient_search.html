@@ -150,15 +150,18 @@
         {% endif %}
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
+            
+            <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Child">Waiting List</a>
+            <a class="collapse-item" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
 
             {% if tag == 'Child' %}
-            <a class="collapse-item active1" href="/DHOPD/patient_waitlist?auth=Child">Waiting List</a>
+            <a class="collapse-item active1" href="/DHOPD/patient_search?auth=Child">Search Patient</a>
             {% else %}
-            <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Child">Waiting List</a>
+            <a class="collapse-item" href="/DHOPD/patient_search?auth=Child">Search Patient</a>
             {% endif %}
 
-            <a class="collapse-item" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
-            <a class="collapse-item" href="/DHOPD/patient_search?auth=Child">Search Patient</a>
+            
+            
           </div>
         </div>
       </li>
@@ -205,7 +208,7 @@
 
       <!-- Nav Item - Charts -->
       <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+        <a class="nav-link" href="/DHOPD/report">
           <i class="fas fa-fw fa-table"></i>
           <span>Overall Report</span></a>
       </li>
@@ -321,7 +324,7 @@
                 <table class="table table-bordered" id="dataTablesearch" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Patient ID</th>
+                      <th>ID</th>
                       <th>Name</th>
                       <th>Address</th>
                       <th>Phone</th>
@@ -333,7 +336,7 @@
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Patient ID</th>
+                      <th>ID</th>
                       <th>Name</th>
                       <th>Address</th>
                       <th>Phon</th>
@@ -348,7 +351,7 @@
                     {% for i in patient %}
                     <tr>
                       <td>{{ forloop.counter }}</td>
-                      <td>{{ i.1 }} {{ i.2 }} {{ i.3 }}</td>
+                      <td> {{i.4}} {{ i.1 }} {{ i.2 }} {{ i.3 }}</td>
                       <td>{{ i.5 }}</td>
                       <td>{{ i.7 }}</td>
                       <td>{{ i.8 }}</td>

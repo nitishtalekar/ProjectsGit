@@ -6,31 +6,33 @@ $(document).ready(function() {
   $('#dataTable2').DataTable({
     ordering:  false
   });
+  
   $('#dataTablesearch').DataTable({
     ordering:  true ,
     "columns": [
-    null,
-    { "width": "15%" },
+    { "width": "2%" },
+    { "width": "18%" },
     null,
     null,
     { "width": "25%" },
     null,
-    null,
+    { "width": "8%" },
     { "width": "10%" }
   ]
   });
+  
   $('#dataTablereport').DataTable({
     ordering:  false ,
     searching: false ,
-    "columns": [
-    null,
-    { "width": "15%" },
-    null,
-    null,
-    { "width": "25%" },
-    null,
-    null,
-    { "width": "10%" }
+    "columns": [  
+      { "width": "8%" },
+      { "width": "2%" },
+      { "width": "18%" },
+      null,
+      null,
+      null,
+      { "width": "25%" },
+      { "width": "10%" }
   ]
   });
 });
