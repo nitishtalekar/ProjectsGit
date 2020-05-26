@@ -30,7 +30,7 @@
   <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion pt-5" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/DHOPD/dashboard/">
       <div class="sidebar-brand-icon rotate-n-15">
         <!-- <i class="fas fa-laugh-wink"></i> -->
       </div>
@@ -66,6 +66,11 @@
         </div>
       </div>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/DHOPD/add_room/">
+        <i class="fa fa-building"></i>
+        <span>Manage Rooms</span></a>
+    </li>
 
 
     {% endif %}
@@ -83,7 +88,7 @@
     <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fa fa-user-md"></i>
-        <span>Dr. Shrish Dehankar</span>
+        <span>Dr. Shirish Dehankar</span>
       </a>
       <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
@@ -297,7 +302,7 @@
                     <div class="row no-gutters align-items-center">
                       <div class="col">
                         <!-- <div class="text-xs font-weight-bold text-dark text-uppercase mb-1">Doctor</div> -->
-                        <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Dr. Shrish Dehankar</div></center>
+                        <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Dr. Shirish Dehankar</div></center>
                       </div>
                       <div class="col-auto mr-5">
                         <i class="fas fa-user-md fa-2x text-dark"></i>
@@ -345,19 +350,38 @@
                   </a>
                 </div>
               </div>
-              {% endif %}
+            </div>
+            <div class="row d-flex justify-content-around">
+
+                <div class="col-xl-12 col-md-6 mb-4">
+                  <div class="card border-left-dark shadow h-100 py-3">
+                    <a href="/DHOPD/add_room/">
+                    <div class="card-body">
+                      <div class="row no-gutters align-items-center">
+                        <div class="col">
+                          <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Manage Rooms</div></center>
+                        </div>
+                        <div class="col-auto mr-5">
+                          <i class="fa fa-building fa-2x text-dark"></i>
+                        </div>
+                      </div>
+                    </div>
+                    </a>
+                  </div>
+                </div>
 
             </div>
+            {% endif %}
 
             <div class="row d-flex justify-content-around">
 
                 <div class="col-xl-6 col-md-6">
                   <div class="card border-left-dark shadow h-100 py-3">
-                    <a href="">
+                    <a href="/DHOPD/report/">
                     <div class="card-body">
                       <div class="row no-gutters align-items-center">
                         <div class="col">
-                          <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Charts</div></center>
+                          <center><div class="h5 mb-0 font-weight-bold text-gray-800 text-uppercase">Reports</div></center>
                         </div>
                         <div class="col-auto mr-5">
                           <i class="fas fa-fw fa-table fa-2x text-dark"></i>

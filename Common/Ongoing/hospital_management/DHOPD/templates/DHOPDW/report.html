@@ -39,6 +39,11 @@
         font-size:20px;
         vertical-align: center;
       }
+      .big-radio{
+        height:20px;
+        width:20px;
+        vertical-align: center;
+      }
     </style>
 
   {% endblock head %}
@@ -115,7 +120,7 @@
           <span>Dr. Shirish Dehankar</span>
         </a>
         {% if tag == 'Doctor' %}
-        <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% else %}
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% endif %}
@@ -144,7 +149,7 @@
           <span>Child Doctor</span>
         </a>
         {% if tag == 'Child' %}
-        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% else %}
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% endif %}
@@ -171,7 +176,7 @@
           <span>Room</span>
         </a>
         {% if tag == 'Room' %}
-        <div id="collapseThree" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% else %}
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% endif %}
@@ -204,8 +209,8 @@
       <!-- Nav Item - Pages Collapse Menu -->
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+      <li class="nav-item active">
+        <a class="nav-link" href="/DHOPD/report/">
           <i class="fas fa-fw fa-table"></i>
           <span>Overall Report</span></a>
       </li>
@@ -285,25 +290,45 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Search Patient</h1>
+          <h1 class="h3 mb-2 text-gray-800">Reports</h1>
 
 
           <div class="card shadow mb-4">
               <a href="#collapseDate" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                <h6 class="m-0 font-weight-bold text-primary text-uppercase">Search By Date</h6>
+                <h6 class="m-0 font-weight-bold text-primary text-uppercase">Report Parameters</h6>
               </a>
-              <div class="collapse" id="collapseDate">
+              <div class="collapse show" id="collapseDate">
               <div class="card-body">
 
-                <form action="/DHOPD/patient_search/?auth=Doctor" method="POST">
-                  <div class="d-flex justify-content-around">
-                    <input type="date" class="form-control bg-light border-0 small" name="fromd" value="{{fd}}" style="width:30%" required>
-                    <input type="date" class="form-control bg-light border-0 small" name="tod" value="{{tod}}" style="width:30%" required>
-                    <button type="submit" class="btn btn-primary" name="pid" value="date" style="width:30%"> Search </button>
-                  </div>
+                <form action="/DHOPD/report/" method="POST">
                   {% csrf_token %}
+                  <div class="d-flex justify-content-around">
+                    <label class="text-uppercase"> Search by Date</label>
+                    <input type="date" class="form-control bg-light border-0 small" name="fromd" value="{{fromd}}" style="width:30%" required>
+                    <input type="date" class="form-control bg-light border-0 small" name="tod" value="{{tod}}" style="width:30%" required>
+                  </div>
+                  <div class="d-flex justify-content-around mt-3">
+                    <label class="text-uppercase">Select</label>
+                    {% if tag == 'Doctor' %}
+                      <label class="big-label">  <input type="radio" class="big-radio" name="tag" value="Doctor" checked> &nbsp; Dr. Shirish Dehankar</label>
+                    {% else %}
+                      <label class="big-label">  <input type="radio" class="big-radio" name="tag" value="Doctor" required> &nbsp; Dr. Shirish Dehankar</label>
+                    {% endif %}
+                    {% if tag == 'Child' %}
+                      <label class="big-label" > <input type="radio" class="big-radio" name="tag" value="Child" checked> &nbsp; Dr. Madhumati Dehankar</label>
+                    {% else %}
+                      <label class="big-label" > <input type="radio" class="big-radio" name="tag" value="Child"> &nbsp; Dr. Madhumati Dehankar</label>
+                    {% endif %}
+                    {% if tag == 'Hospital' %}
+                      <label class="big-label" > <input type="radio" class="big-radio" name="tag" value="Hospital" checked> &nbsp; Hospital</label>
+                      {% else %}
+                      <label class="big-label" > <input type="radio" class="big-radio" name="tag" value="Hospital"> &nbsp; Hospital</label>
+                    {% endif %}
+                  </div>
+                  <div class="d-flex justify-content-center mt-3 mb-">
+                    <button type="submit" class="btn btn-primary text-uppercase" name="pid" value="date" style="width:70%"> Search </button>
+                  </div>
 
-                </form>
                 </div>
               </div>
             </div>
@@ -311,64 +336,59 @@
           <!-- DataTales Example -->
         <div class="card shadow mb-4">
             <a href="#collapseWait" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-              <h6 class="m-0 font-weight-bold text-primary text-uppercase">Search Patient</h6>
+              <h6 class="m-0 font-weight-bold text-primary text-uppercase">Report Preview</h6>
             </a>
             <div class="collapse show" id="collapseWait">
             <div class="card-body">
               <div class="table-responsive pt-3 px-2">
-                <form action="/DHOPD/patient_search/?auth={{tag}}" method="POST" target="_blank">
-                  {% csrf_token %}
                 <table class="table table-bordered" id="dataTablesearch" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Patient ID</th>
+                      <th>Date</th>
+                      <th>ID</th>
                       <th>Name</th>
                       <th>Address</th>
+                      <th>Place</th>
                       <th>Phone</th>
                       <th>Services</th>
                       <th>Amount</th>
-                      <th>Date</th>
-                      <th>Bill</th>
+
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Patient ID</th>
+                      <th>Date</th>
+                      <th>ID</th>
                       <th>Name</th>
                       <th>Address</th>
-                      <th>Phon</th>
+                      <th>Place</th>
+                      <th>Phone</th>
                       <th>Services</th>
                       <th>Amount</th>
-                      <th>Date</th>
-                      <th>Bill</th>
+
                     </tr>
                   </tfoot>
                   <tbody>
 
                     {% for i in patient %}
                     <tr>
+                      <td>{{i.14}}</td>
                       <td>{{ forloop.counter }}</td>
-                      <td>{{ i.1 }} {{ i.2 }} {{ i.3 }}</td>
+                      <td>{{i.4}} {{ i.1 }} {{ i.2 }} {{ i.3 }}</td>
                       <td>{{ i.5 }}</td>
+                      <td>{{ i.6 }}</td>
                       <td>{{ i.7 }}</td>
                       <td>{{ i.8 }}</td>
                       <td>{{ i.9 }}</td>
-                      <td>{{i.14}}</td>
-                      <td>
-                        <center>
-                        <button type="submit" name="pid" class="btn btn-primary" value="{{i.0}}">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
-                        Bill
-                        </button>
-                        </center>
-                      </td>
+
                     </tr>
                     {% endfor %}
 
                   </tbody>
                 </table>
-                </form>
               </div>
+              <center><button type="submit" class="btn btn-primary text-uppercase py-2 mt-3" style="width:90%" value="Print" name="pid"> Print Report</button></center>
+            </form>
             </div>
           </div>
         </div>

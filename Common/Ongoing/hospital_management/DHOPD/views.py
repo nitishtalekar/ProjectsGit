@@ -212,7 +212,7 @@ def padd(request):
                     obj= Patient_c.objects.filter(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name).order_by('patient_id').reverse()[0]
                     Receipt_c.objects.create(receipt_patient=obj.patient_id, receipt_cost=tcost)
                 d = {'service':serviceall,'log':log,'sl':serviceall.count(),'tag':tag}
-                return render(request, 'DHOPDW/patient_add.html', d)
+                return HttpResponseRedirect("/DHOPD/patient_waitlist/?auth="+ tag)
         else:
             AddPatient = AddPatientForm()
         return render(request, 'DHOPDW/patient_add.html',d_dash)
@@ -426,7 +426,7 @@ def psearch(request):
                         patient = patient_info([Patient_c.objects.get(patient_id=pid)])
                     number = float(patient[0][9])
                     words = num2words(number)
-                    return render(request, 'DHOPDW/print_bill.html', {'patient':patient,'log':log,'words':words})
+                    return render(request, 'DHOPDW/print_bill.html', {'patient':patient,'log':log,'words':words,'tag':tag})
 
         else:
             search = SearchForm()
@@ -445,12 +445,15 @@ def service(request):
         service = request.GET['service']
         if service == 'Doctor':
             services = Service.objects.all()
+        elif service == 'Hospital':
+            services = Service_h.objects.all()
         d_dash = {'log':log, 'service':service, 'services':services}
         if request.method == "POST":
             ser = ServiceForm(request.POST)
             if ser.is_valid():
                 s_name = ser.cleaned_data['s_name']
                 s_cost = ser.cleaned_data['s_cost']
+                s_tag = ser.cleaned_data['s_tag']
                 sid = ser.cleaned_data['sid'].split('.')
                 if service == 'Doctor':
                     if sid[0] == 'update':
@@ -461,8 +464,78 @@ def service(request):
                         return render(request, 'DHOPDW/add_service.html', d_dash)
                     else:
                         Service.objects.create(service_name=s_name, service_cost=s_cost)
-
+                if service == 'Hospital':
+                    if sid[0] == 'update':
+                        Service_h.objects.filter(service_id=sid[1]).update(service_name=s_name, service_cost=s_cost, service_tag=s_tag)
+                        return render(request, 'DHOPDW/add_service_h.html', d_dash)
+                    if sid[0] == 'delete':
+                        Service_h.objects.filter(service_id=sid[1]).delete()
+                        return render(request, 'DHOPDW/add_service_h.html', d_dash)
+                    else:
+                        Service_h.objects.create(service_name=s_name, service_cost=s_cost, service_tag=s_tag)
         else:
             ser = ServiceForm()
-        return render(request, 'DHOPDW/add_service.html',d_dash)
+        if service == 'Doctor':
+            return render(request, 'DHOPDW/add_service.html',d_dash)
+        elif service == 'Hospital':
+            return render(request, 'DHOPDW/add_service_h.html', d_dash)
+
+def room(request):
+    if 'log' in request.session:
+        log = Users.objects.get(user_id = request.session['log'])
+        # service = request.GET['service']
+        rooms = Room.objects.all()
+        d_dash = {'log':log, 'room':rooms}
+        if request.method == "POST":
+            room = RoomForm(request.POST)
+            print("moshi mposhi")
+            if room.is_valid():
+                r_name = room.cleaned_data['r_name'].title()
+                r_cost = room.cleaned_data['r_cost']
+                r_bed = room.cleaned_data['r_bed']
+                rid = room.cleaned_data['rid'].split('.')
+                print(r_name, r_cost, r_bed, rid)
+                if rid[0] == 'update':
+                    Room.objects.filter(room_id=rid[1]).update(room_name=r_name, room_cost=r_cost, room_bed =r_bed)
+                    return render(request, 'DHOPDW/add_room.html', d_dash)
+                if rid[0] == 'delete':
+                    Room.objects.filter(room_id=rid[1]).delete()
+                    return render(request, 'DHOPDW/add_room.html', d_dash)
+                else:
+                    r = Room.objects.filter(room_name=r_name)
+                    if r.count() == 0:
+                        Room.objects.create(room_name=r_name, room_cost=r_cost, room_bed =r_bed)
+                    else:
+                        d_dash = {'log':log, 'room':rooms, 'error':"Room already exists"}
+            else:
+                room = RoomForm()
+        return render(request, 'DHOPDW/add_room.html', d_dash)
+
+def report(request):
+    if 'log' in request.session:
+        log = Users.objects.get(user_id = request.session['log'])
+        tod = datetime.today().strftime('%Y-%m-%d')
+        d_dash = {'log':log, 'fromd':tod, 'tod':tod}
+        if request.method == "POST":
+            rpt = SearchForm(request.POST)
+            if rpt.is_valid():
+                fromd = rpt.cleaned_data['fromd']
+                tod = rpt.cleaned_data['tod']
+                tag = rpt.cleaned_data['tag']
+                pid = rpt.cleaned_data['pid']
+                print("mod")
+                print(fromd, tod, tag, pid)
+                if tag == 'Doctor':
+                    patient = patient_info(Patient.objects.filter(patient_date__range=(fromd, tod)))
+                elif tag == 'Child':
+                    patient = patient_info(Patient_c.objects.filter(patient_date__range=(fromd, tod)))
+                d_dash = {'log':log,'tag':tag,'patient':patient, 'fromd':fromd, 'tod':tod}
+                if pid == 'Print':
+                     return render(request, 'DHOPDW/print_report.html', d_dash)
+
+        else:
+            rpt = SearchForm()
+
+        return render(request, 'DHOPDW/report.html', d_dash)
+
 # Create your views here.

@@ -23,6 +23,10 @@
   <link href="{% static 'style/css/sb-admin-2.min.css' %}" rel="stylesheet">
   <link href="{% static 'style/css/sb-admin-2.css' %}" rel="stylesheet">
 
+  <!-- <style type="text/css" media="print">
+    #wrapper {display:none;visibility:hidden;}
+  </style> -->
+
   {% endblock head %}
 
 
@@ -96,76 +100,84 @@
 
           <!-- Page Heading -->
           <div class="container" style="min-height: calc(100vh - 175px)">
+            <div class="d-flex justify-content-center align-items-center" style="min-height: calc(100vh - 175px)">
+              <div class="card shadow mb-4" style="min-width:70vh;">
+                <!-- Card Header - Accordion -->
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-dark text-uppercase">Patient Bill</h6>
+                </div>
+                  <div class="card-body">
 
-            <h1 class="h3 mb-5 text-gray-800">Generate Bill</h1>
+                    <div class="container">
+
+                      <div class="row">
+                        <div class="col-12 mt-4 mb-2">
+                          {% if tag == 'Doctor' %}
+                          <label class="bill-label" > Dr. Shirish Dehankar </label> <label> (MD Medecine) Reg.MMC 56537 </label>
+                          {% elif tag == 'Child' %}
+                          <label class="bill-label" >Dr. Madhumati Dehankar </label> <label> (MD Pediatrics) Reg.MMC 65519</label>
+                          {% endif %}
+                          <br>
+                          <label class="bill-label" style="font-size:20px"> Dehankar Hospital </label> <label> Civil Lines, Akola. 444001 M.S.</label>
+                        </div>
+                        <div class="col-6">
+                          <div class="mt-3">
+                            <label class="bill-label2 font-weight-bold">Name: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.4}} &nbsp; {{patient.0.1}} &nbsp; {{patient.0.2}} &nbsp; {{patient.0.3}}</label>
+                          </div>
+                          <div class="mt-1">
+                            <label class="bill-label2 font-weight-bold">Address: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.5}}</label>
+                          </div>
+                          <hr>
+                          <div class="mt-3">
+                            <label class="bill-label2 font-weight-bold">Recieved: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.9}}</label>
+                          </div>
+                          <div class="mt-1">
+                            <label class="bill-label2 font-weight-bold">In Words: &nbsp; &nbsp; </label><label class="bill-label2">{{words}} ONLY</label>
+                          </div>
+                        </div>
+
+                        <div class="col-6">
+                          <div class="mt-3">
+                            <label class="bill-label2 font-weight-bold">Receipt No. : &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.15}}</label>
+                          </div>
+                          <div class="mt-1">
+                            <label class="bill-label2 font-weight-bold">Date: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.14}}</label>
+                          </div>
+                          <hr>
+                          <div class="mt-3">
+                            <label class="bill-label2 font-weight-bold">For: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.8}}</label>
+                          </div>
+                        </div>
+
+                        <div class="col-12 mt-4">
+                          <div class="d-flex justify-content-end">
+                            <label class="bill-label" style="font-size:20px">Authorized Signature : __________________________</label>
+                          </div>
+
+                        </div>
+
+                        <div class="col-12 mt-4">
+                          <div class="d-flex justify-content-start">
+                            <button type="button" value="Print this page" class="btn btn-primary" style="width:30%" onClick="window.print()" name="button"> Print Bill</button>
+                            <!-- <input type="button" value="Print this page" onClick="window.print()"> -->
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+            </div>
+
+            <!-- <h1 class="h3 mb-5 text-gray-800">Generate Bill</h1> -->
 
 
 
 
             <!-- Collapsable Card Example -->
-            <div class="card shadow mb-4">
-              <!-- Card Header - Accordion -->
-              <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-dark text-uppercase">Patient Bill</h6>
-              </div>
-                <div class="card-body">
-                  
-                  <div class="container">
-                    
-                    <div class="row">
-                      <div class="col-12 mt-4 mb-2">
-                        <label class="bill-label" > Name of Doctor (Qualification)</label>
-                        <br>
-                        <label class="bill-label" style="font-size:20px"> Address</label>
-                      </div>
-                      <div class="col-6">
-                        <div class="mt-3">
-                          <label class="bill-label2 font-weight-bold">Name: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.1}} &nbsp; {{patient.0.2}} &nbsp; {{patient.0.3}}</label>
-                        </div>
-                        <div class="mt-1">
-                          <label class="bill-label2 font-weight-bold">Address: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.5}}</label>
-                        </div>
-                        <hr>
-                        <div class="mt-3">
-                          <label class="bill-label2 font-weight-bold">Recieved: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.9}}</label>
-                        </div>
-                        <div class="mt-1">
-                          <label class="bill-label2 font-weight-bold">In Words: &nbsp; &nbsp; </label><label class="bill-label2">{{words}} ONLY</label>
-                        </div>
-                      </div>
-                      
-                      <div class="col-6">
-                        <div class="mt-3">
-                          <label class="bill-label2 font-weight-bold">Receipt No. : &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.15}}</label>
-                        </div>
-                        <div class="mt-1">
-                          <label class="bill-label2 font-weight-bold">Date: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.14}}</label>
-                        </div>
-                        <hr>
-                        <div class="mt-3">
-                          <label class="bill-label2 font-weight-bold">For: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.0.8}}</label>
-                        </div>
-                      </div>
-                      
-                      <div class="col-12 mt-4">
-                        <div class="d-flex justify-content-end">
-                          <label class="bill-label" style="font-size:20px">Authorized Signature : ____________________________</label>
-                        </div>
-                        
-                      </div>
-                      
-                      <div class="col-12 mt-4">
-                        <div class="d-flex justify-content-start">
-                          <button type="submit" class="btn btn-primary" style="width:30%" name="button"> Print Bill</button>
-                        </div>
-                      </div>
-                      
-                    </div>
-                    
-                  </div>
-                </div>
-              <!-- </div> -->
-            </div>
+
           </div>
 
         <!-- </div> -->

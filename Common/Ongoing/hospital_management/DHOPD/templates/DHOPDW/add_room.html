@@ -64,12 +64,12 @@
         <span>Manage Users</span></a>
     </li>
 
-    <li class="nav-item active">
+    <li class="nav-item">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServ" aria-expanded="true" aria-controls="collapseTwo">
         <i class="fa fa-server"></i>
         <span>Manage Service</span>
       </a>
-      <div id="collapseServ" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div id="collapseServ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <h6 class="collapse-header">Options</h6>
           {% if service == 'Doctor' %}
@@ -83,13 +83,10 @@
           {% else %}
           <a class="collapse-item" href="/DHOPD/add_service/?service=Hospital">Hospital Services</a>
           {% endif %}
-
-
-
         </div>
       </div>
     </li>
-    <li class="nav-item">
+    <li class="nav-item active">
       <a class="nav-link" href="/DHOPD/add_room/">
         <i class="fa fa-building"></i>
         <span>Manage Rooms</span></a>
@@ -103,7 +100,7 @@
 
     <!-- Heading -->
     <div class="sidebar-heading">
-      Service
+      Room
     </div>
 
     <!-- Nav Item - Pages Collapse Menu -->
@@ -251,23 +248,23 @@
       <!-- Begin Page Content -->
       <div class="container-fluid" style="min-height: calc(100vh - 175px)">
 
-        <h1 class="h3 mb-2 text-gray-800">Manage Services</h1>
+        <h1 class="h3 mb-2 text-gray-800">Manage Rooms</h1>
 
         <div class="container-fluid">
           <div class="row">
-            {% for i in services %}
+            {% for i in room %}
 
             <div class="col-6">
-              <form action = "/DHOPD/add_service/?service={{service}}" method = "POST">
+              <form action = "/DHOPD/add_room/" method = "POST">
 
                 {% csrf_token %}
               <!-- Collapsable Card Example -->
               <div class="card shadow mb-4">
                 <!-- Card Header - Accordion -->
-                <a href="#collapse{{i.service_id}}" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                  <h6 class="m-0 font-weight-bold text-primary text-uppercase">Service {{forloop.counter}}</h6>
+                <a href="#collapse{{i.room_id}}" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                  <h6 class="m-0 font-weight-bold text-primary text-uppercase">Room {{forloop.counter}}</h6>
                 </a>
-                <div class="collapse" id="collapse{{i.service_id}}">
+                <div class="collapse" id="collapse{{i.room_id}}">
                 <div class="card-body">
 
                     <div class="container-fluid">
@@ -275,14 +272,20 @@
 
                         <div class="col-12">
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                            <label class="text-uppercase" style="font-size:15px;">Service Name</label>
-                              <input type="text" name="s_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.service_name}}" required>
+                            <label class="text-uppercase" style="font-size:15px;">Room Name</label>
+                              <input type="text" name="r_name" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.room_name}}" required>
                           </div>
                         </div>
                         <div class="col-12">
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                            <label class="text-uppercase" style="font-size:15px;">Service Cost</label>
-                              <input type="number" name="s_cost" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.service_cost}}" required>
+                            <label class="text-uppercase" style="font-size:15px;">Room Cost</label>
+                              <input type="number" name="r_cost" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.room_cost}}" required>
+                          </div>
+                        </div>
+                        <div class="col-12">
+                          <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                            <label class="text-uppercase" style="font-size:15px;">No of Beds</label>
+                              <input type="number" name="r_bed" class="form-control bg-light border-0 small" style="width:65%;" value="{{i.room_bed}}" required>
                           </div>
                         </div>
 
@@ -292,10 +295,10 @@
 
 
                     <div class="d-flex justify-content-around mb-3 mt-3">
-                      <button class="btn btn-primary" type="submit" style="width:40%" name='sid' value="update.{{i.service_id}}">
+                      <button class="btn btn-primary" type="submit" style="width:40%" name='rid' value="update.{{i.room_id}}">
                         Update
                       </button>
-                      <button class="btn btn-danger" type="submit" style="width:40%" name='sid' value="delete.{{i.service_id}}">
+                      <button class="btn btn-danger" type="submit" style="width:40%" name='rid' value="delete.{{i.room_id}}">
                         Delete
                       </button>
                     </div>
@@ -312,17 +315,17 @@
 
         </div>
 
-        <h1 class="h3 mb-2 text-gray-800">Add Services</h1>
+        <h1 class="h3 mb-2 text-gray-800">Add Rooms</h1>
 
         <!-- Collapsable Card Example -->
         <div class="card shadow mb-4">
           <!-- Card Header - Accordion -->
           <a href="#collapseAddUser" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-            <h6 class="m-0 font-weight-bold text-primary text-uppercase">Add Service</h6>
+            <h6 class="m-0 font-weight-bold text-primary text-uppercase">Add Room</h6>
           </a>
           <div class="collapse show" id="collapseAddUser">
           <div class="card-body">
-            <form action = "/DHOPD/add_service/?service={{service}}" method = "POST">
+            <form action = "/DHOPD/add_room/" method = "POST">
 
               {% csrf_token %}
           <!-- Card Content - Collapse -->
@@ -333,14 +336,21 @@
 
                   <div class="col-6">
                     <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                      <label class="text-uppercase" style="font-size:15px;">Service Name</label>
-                        <input type="text" name="s_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Servicename" required>
+                      <label class="text-uppercase" style="font-size:15px;">Room Name</label>
+                        <input type="text" name="r_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Roomname" required>
                     </div>
                   </div>
-                  <div class="col-4">
+                  <div class="col-3">
                     <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                      <label class="text-uppercase" style="font-size:15px;">Service Cost</label>
-                        <input type="number" name="s_cost" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Servicecost" required>
+                      <label class="text-uppercase" style="font-size:15px;">Room Cost</label>
+                        <input type="number" name="r_cost" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Roomcost" required>
+                    </div>
+                  </div>
+
+                  <div class="col-3">
+                    <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                      <label class="text-uppercase" style="font-size:15px;">No of Beds</label>
+                        <input type="number" name="r_bed" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Beds" required>
                     </div>
                   </div>
 
@@ -350,7 +360,7 @@
               </div>
 
 
-              {{error}}
+              <center><span class="text-danger text-uppercase">{{error}}</span></center>
 
 
               <div class="d-flex justify-content-around mb-3 mt-5">

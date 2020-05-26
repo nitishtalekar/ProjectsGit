@@ -288,6 +288,27 @@
 
                       </div>
 
+                      <div class="row">
+
+                        <div class="col-12">
+                          <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                            <label class="text-uppercase" style="font-size:15px;">Service Type</label>
+                            {% if i.service_tag == 'D' %}
+                              <input type="radio" name="s_tag" value="D" checked>
+                                <label>Per Day</label><br>
+                                <input type="radio" name="s_tag" value="N">
+                                <label>NO's</label><br>
+                            {% elif i.service_tag == 'N' %}
+                            <input type="radio" name="s_tag" value="D">
+                              <label>Per Day</label><br>
+                              <input type="radio" name="s_tag" value="N" checked>
+                              <label>NO's</label><br>
+                            {% endif %}
+                          </div>
+                        </div>
+
+                      </div>
+
                     </div>
 
 
@@ -344,6 +365,18 @@
                     </div>
                   </div>
 
+                </div>
+                <div class="row">
+
+                  <div class="col-6">
+                    <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                      <label class="text-uppercase" style="font-size:15px;">Service Type</label>
+                        <input type="radio" name="s_tag" value="D" required>
+                          <label>Per Day</label><br>
+                          <input type="radio" name="s_tag" value="N">
+                          <label>NO's</label><br>
+                    </div>
+                  </div>
 
                 </div>
 

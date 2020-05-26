@@ -67,3 +67,16 @@ class Receipt_c(models.Model):
 class Vaccine(models.Model):
     vaccine_id = models.AutoField(primary_key=True, max_length=200)
     vaccine_name = models.CharField(max_length=200)
+
+class Service_h(models.Model):
+    service_id = models.AutoField(primary_key=True, max_length=200)
+    service_name = models.CharField(max_length=200)
+    service_cost = models.CharField(max_length=200)
+    service_tag = models.CharField(max_length=200)
+
+class Room(models.Model):
+    room_id = models.AutoField(primary_key=True, max_length=200)
+    room_name = models.CharField(max_length=200)
+    room_cost = models.CharField(max_length=200)
+    room_bed = models.CharField(max_length=10)
+    room_bed_occ = models.CharField(max_length=10)

@@ -10,11 +10,27 @@ $(document).ready(function() {
     ordering:  true ,
     "columns": [
     null,
-    { "width": "20%" },
-    { "width": "30%" },
+    { "width": "15%" },
     null,
     null,
-    null
+    { "width": "25%" },
+    null,
+    null,
+    { "width": "10%" }
+  ]
+  });
+  $('#dataTablereport').DataTable({
+    ordering:  false ,
+    searching: false ,
+    "columns": [
+    null,
+    { "width": "15%" },
+    null,
+    null,
+    { "width": "25%" },
+    null,
+    null,
+    { "width": "10%" }
   ]
   });
 });

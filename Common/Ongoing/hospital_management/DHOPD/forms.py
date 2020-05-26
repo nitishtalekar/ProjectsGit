@@ -37,8 +37,16 @@ class SearchForm(forms.Form):
     fromd = forms.CharField(required=False)
     tod = forms.CharField(required=False)
     pid = forms.CharField(required=False)
+    tag = forms.CharField(required=False)
 
 class ServiceForm(forms.Form):
     sid = forms.CharField(required=False)
     s_name = forms.CharField()
     s_cost = forms.CharField()
+    s_tag = forms.CharField(required=False)
+
+class RoomForm(forms.Form):
+    rid = forms.CharField(required=False)
+    r_name = forms.CharField()
+    r_cost = forms.CharField()
+    r_bed = forms.CharField()
