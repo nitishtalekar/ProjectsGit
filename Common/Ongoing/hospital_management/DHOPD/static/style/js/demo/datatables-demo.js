@@ -6,7 +6,7 @@ $(document).ready(function() {
   $('#dataTable2').DataTable({
     ordering:  false
   });
-  
+
   $('#dataTablesearch').DataTable({
     ordering:  true ,
     "columns": [
@@ -20,10 +20,9 @@ $(document).ready(function() {
     { "width": "10%" }
   ]
   });
-  
-  $('#dataTablereport').DataTable({
+
+  $('#dataTablereport_preview').DataTable({
     ordering:  false ,
-    searching: false ,
     "columns": [  
       { "width": "8%" },
       { "width": "2%" },
@@ -35,4 +34,25 @@ $(document).ready(function() {
       { "width": "10%" }
   ]
   });
+
+  $('#dataTablereport').DataTable({
+    ordering:  false ,
+    searching: false ,
+    "bPaginate": false,
+    "paging": false,
+    "bInfo" : false,
+    "bAutoWidth": false,
+    "aoColumns": [  
+      { "width": "10%" },
+      { "width": "5%" },
+      { "width": "15%" },
+      { "width": "15%" },
+      { "width": "10%" },
+      { "width": "13%" },
+      { "width": "22%" },
+      { "width": "10%" },
+  ],
+  fixedColumns: true
+  });
+
 });
