@@ -12,6 +12,13 @@ const {
   userLeave,
   getRoomUsers
 } = require('./utils/users');
+const {
+  userJoinGame,
+  getCurrentUserGame,
+  userLeaveGame,
+  getRoomUsersGame
+} = require('./utils/games');
+
 
 const con = mysql.createConnection({
   host: "localhost",
@@ -45,16 +52,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Run when client connects
 io.on('connection', socket => {
-  socket.on('joinRoom', ({ username, room, game }) => {
-    console.log(socket.id, username, room, game);
-    const user = userJoin(socket.id, username, room, game);
+  socket.on('joinRoom', ({ username, room }) => {
+    // console.log(socket.id, username, room);
+    const user = userJoin(socket.id, username, room);
 
     if (user === 0){
       const destination = '/index.html?error=duplicate';
       socket.emit('redirect', destination);
     }
     else{
-      //if users mai se kisi ka bh9 game 1 hai to no join
+
       socket.join(user.room);
 
       // Welcome current user
@@ -77,37 +84,120 @@ io.on('connection', socket => {
 
 
   });
+  
+  
+  socket.on('joinRoomGame', ({ username, game }) => {
+    // console.log(socket.id, username, game);
+    console.log("Join Ganme");
+    console.log(socket.id);
+    const user = userJoinGame(socket.id, username, game);
+    
+    console.log(user);
+
+    if (user === 0){
+      const destination = '/index.html?error=duplicate';
+      socket.emit('redirect', destination);
+    }
+    else{
+
+      socket.join(user.game);
+
+      // Welcome current user
+      socket.emit('message', formatMessage('Welcome', 'Welcome to the Game!'));
+
+      // Broadcast when a user connects
+      socket.broadcast
+        .to(user.game)
+        .emit(
+          'message',
+          formatMessage('Joined', `${user.username} has joined the chat`)
+        );
+
+      // Send users and room info
+      io.to(user.game).emit('gameUsers', {
+        game: user.game,
+        users: getRoomUsersGame(user.game)
+      });
+    }
+
+
+  });
+  
+  
+  // OLD
+  
+  // socket.on('joinGameRoom', ({ username, gameroom }) => {
+  //   console.log(socket.id, username, gameroom);
+  // 
+  //   const user = getCurrentUser(socket.id);
+  // 
+  //   console.log("YAHA SE NAYA SCENE CHALU -------");
+  //   console.log(user);
+  //   // const user = userJoinGame(socket.id, game);
+  // 
+  //   if (user === 0){
+  //     const destination = '/index.html?error=duplicate';
+  //     socket.emit('redirect', destination);
+  //   }
+  //   else{
+  // 
+  //     // const players = io.sockets.clients(user.game);
+  //     // console.log(players);
+  // 
+  //     // if(players > 0){
+  //     //   const destination = '/index.html?error=duplicate';
+  //     //   socket.emit('redirect', destination);
+  //     // } 
+  //     // else{
+  //       const user = userJoinGame(socket.id, gameroom);
+  // 
+  //       socket.join(user.game);
+  // 
+  //       // Welcome current user
+  //       socket.emit('message', formatMessage('Welcome', 'Welcome to the Chatroom!'));
+  // 
+  //       // Broadcast when a user connects
+  //       socket.broadcast
+  //         .to(user.game)
+  //         .emit(
+  //           'message',
+  //           formatMessage('Joined', `${user.username} has joined the chat`)
+  //         );
+  // 
+  //       // Send users and room info
+  //       io.to(user.room).emit('roomUsers', {
+  //         room: user.game,
+  //         users: getRoomUsers(user.game)
+  //       });
+  //     // }
+  // 
+  // 
+  //   }
+  // 
+  // 
+  // });
+  
+  
 
   socket.on('start', ({username, room, roomname}) => {
+    
+    // console.log(username, room ,roomname);
     const user = getCurrentUser(socket.id);
     const str1 = 'game.html?username=';
-    const str2 = '&room=';
-    const str3 = '&roomname=';
+    const str2 = '&game=';
+    const str3 = 'game&roomname=';
     const redirect_str = str1 + username + str2 + room + str3 + roomname;
-    console.log(redirect_str);
-    console.log("startes");
-    g_room = getRoomUsers(user.room)
-    var i;
-    for (i = 0; i < g_room.length; i++) {
-        g_room[i].game = "1";
-    }
+    // console.log(redirect_str);
+    // console.log("started");
 
     socket.broadcast
       .to(user.room)
       .emit(
         'game', {
-          game: "1",
-        });
-
-    socket.broadcast
-      .to(user.room)
-      .emit(
-        'chat', {
           id: room,
           room: roomname
-        });
+        });      
       socket.emit('redirect', redirect_str);
-
   });
 
   // Listen for chatMessage
@@ -116,12 +206,21 @@ io.on('connection', socket => {
 
     io.to(user.room).emit('message', formatMessage(user.username, msg));
   });
+  
+  socket.on('gameMessage', msg => {
+    console.log("message");
+    console.log(socket.id);
+    const user = getCurrentUserGame(socket.id);
+
+    io.to(user.game).emit('message', formatMessage(user.username, msg));
+    
+  });
 
   socket.on('gameChoice', msg => {
-    const user = getCurrentUser(socket.id);
-    const gameRoom = getRoomUsers(user.room);
+    const user = getCurrentUserGame(socket.id);
+    const gameRoom = getRoomUsersGame(user.game);
     console.log(gameRoom.length);
-    console.log("moshi moshi");
+    // console.log("moshi moshi");
 
     // io.to(user.room).emit('message', formatMessage(user.username, msg));
   });

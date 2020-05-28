@@ -16,8 +16,7 @@ const socket = io();
 
 // Join chatroom
 
-const game = "0";
-socket.emit('joinRoom', { username, room, game });
+socket.emit('joinRoom', { username, room });
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
   outputRoomName(roomname);
@@ -28,12 +27,13 @@ socket.on('redirect', function(destination) {
     window.location.href = destination;
 });
 
-socket.on('chat', ({ id, room }) => {
+socket.on('game', ({ id, room }) => {
   console.log(id, room);
   const str1 = 'game.html?username=';
-  const str2 = '&room=';
-  const str3 = '&roomname=';
+  const str2 = '&game=';
+  const str3 = 'game&roomname=';
   const redirect_str = str1 + username + str2 + id + str3 + room;
+  console.log(redirect_str);
   window.location.href = redirect_str;
 });
 
@@ -41,14 +41,6 @@ socket.on('chat', ({ id, room }) => {
 socket.on('message', message => {
   console.log(message);
   outputMessage(message);
-
-  // Scroll down
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-});
-
-socket.on('game', game => {
-  console.log(game);
-  // outputMessage(message);
 
   // Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -75,8 +67,7 @@ chatForm.addEventListener('submit', e => {
 
 gameForm.addEventListener('submit', e => {
   e.preventDefault();
-
-  // Get message text
+  
   socket.emit('start', { username, room, roomname });
 
 });

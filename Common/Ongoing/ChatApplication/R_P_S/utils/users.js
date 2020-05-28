@@ -29,6 +29,15 @@ function userLeave(id) {
   }
 }
 
+function userJoinGame(id , game) {
+  const thisuser = users.find(user => user.id === id);
+  thisuser.game = game;
+
+  // users.push(user);
+
+  return thisuser;
+}
+
 // Get room users
 function getRoomUsers(room) {
   return users.filter(user => user.room === room);
@@ -38,5 +47,6 @@ module.exports = {
   userJoin,
   getCurrentUser,
   userLeave,
-  getRoomUsers
+  getRoomUsers,
+  userJoinGame
 };

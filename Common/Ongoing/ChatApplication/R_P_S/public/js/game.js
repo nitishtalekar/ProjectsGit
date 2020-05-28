@@ -7,19 +7,22 @@ const userList = document.getElementById('users');
 const uname = document.getElementById('uname');
 
 // Get username and room from URL
-const { username, room, roomname } = Qs.parse(location.search, {
+const { username, game, roomname } = Qs.parse(location.search, {
   ignoreQueryPrefix: true
 });
 
+console.log(username, game, roomname);
+
 uname.innerHTML= `${username}`;
+roomName.innerHTML= `${roomname}`;
 
 const socket = io();
 
 // Join chatroom
-socket.emit('joinRoom', { username, room });
+socket.emit('joinRoomGame', { username, game });
 
 // Get room and users
-socket.on('roomUsers', ({ room, users }) => {
+socket.on('gameUsers', ({ game, users }) => {
   outputRoomName(roomname);
   outputUsers(users);
 });
@@ -46,10 +49,8 @@ rock.addEventListener('submit', e => {
   // Get message text
   const msg = "rock";
 
-  socket.emit('chatMessage', msg);
+  socket.emit('gameMessage', msg);
   socket.emit('gameChoice', msg);
-
-
 });
 
 paper.addEventListener('submit', e => {
@@ -58,10 +59,8 @@ paper.addEventListener('submit', e => {
   // Get message text
   const msg = "paper";
 
-  socket.emit('chatMessage', msg);
+  socket.emit('gameMessage', msg);
   socket.emit('gameChoice', msg);
-
-
 });
 
 scissor.addEventListener('submit', e => {
@@ -69,15 +68,9 @@ scissor.addEventListener('submit', e => {
   console.log("scissor");
   // Get message text
   const msg = "scissor";
-
-
     // Emit message to server
-  socket.emit('chatMessage', msg);
+  socket.emit('gameMessage', msg);
   socket.emit('gameChoice', msg);
-
-
-
-
 });
 
 // Output message to DOM
