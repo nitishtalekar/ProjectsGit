@@ -1,5 +1,6 @@
-const chatForm = document.getElementById('chat-form');
-const gameForm = document.getElementById('game-form');
+const rock = document.getElementById('rock-form');
+const paper = document.getElementById('paper-form');
+const scissor = document.getElementById('scissor-form');
 const chatMessages = document.querySelector('.chat-messages');
 const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
@@ -15,9 +16,8 @@ uname.innerHTML= `${username}`;
 const socket = io();
 
 // Join chatroom
+socket.emit('joinRoom', { username, room });
 
-const game = "0";
-socket.emit('joinRoom', { username, room, game });
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
   outputRoomName(roomname);
@@ -28,14 +28,6 @@ socket.on('redirect', function(destination) {
     window.location.href = destination;
 });
 
-socket.on('chat', ({ id, room }) => {
-  console.log(id, room);
-  const str1 = 'game.html?username=';
-  const str2 = '&room=';
-  const str3 = '&roomname=';
-  const redirect_str = str1 + username + str2 + id + str3 + room;
-  window.location.href = redirect_str;
-});
 
 // Message from server
 socket.on('message', message => {
@@ -46,38 +38,45 @@ socket.on('message', message => {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
-socket.on('game', game => {
-  console.log(game);
-  // outputMessage(message);
-
-  // Scroll down
-  chatMessages.scrollTop = chatMessages.scrollHeight;
-});
-
 // Message submit
-chatForm.addEventListener('submit', e => {
+rock.addEventListener('submit', e => {
   e.preventDefault();
+  console.log("rock");
 
   // Get message text
-  const msg = e.target.elements.msg.value;
+  const msg = "rock";
 
-  if (msg !== ""){
-    // Emit message to server
-    socket.emit('chatMessage', msg);
-
-    // Clear input
-    e.target.elements.msg.value = '';
-    e.target.elements.msg.focus();
-  }
+  socket.emit('chatMessage', msg);
+  socket.emit('gameChoice', msg);
 
 
 });
 
-gameForm.addEventListener('submit', e => {
+paper.addEventListener('submit', e => {
   e.preventDefault();
-
+  console.log("paper");
   // Get message text
-  socket.emit('start', { username, room, roomname });
+  const msg = "paper";
+
+  socket.emit('chatMessage', msg);
+  socket.emit('gameChoice', msg);
+
+
+});
+
+scissor.addEventListener('submit', e => {
+  e.preventDefault();
+  console.log("scissor");
+  // Get message text
+  const msg = "scissor";
+
+
+    // Emit message to server
+  socket.emit('chatMessage', msg);
+  socket.emit('gameChoice', msg);
+
+
+
 
 });
 

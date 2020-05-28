@@ -15,15 +15,7 @@
   <link href="style/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <!-- <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
-    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk="
-    crossorigin="anonymous"
-  /> -->
 
-  <!-- Custom styles for this template-->
-  <!-- <link href="css/sb-admin-2.min.css" rel="stylesheet"> -->
   <link href="style/css/login.css" rel="stylesheet">
   <link href="style/css/sb.css" rel="stylesheet">
   <link href="style/css/message.css" rel="stylesheet">
@@ -53,7 +45,6 @@
                   <!-- Card Header - Accordion -->
                   <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                     <h6 class="m-0 font-weight-bold text-head text-uppercase" id="room-name">Room</h6>
-                    <h6 class="m-0 font-weight-bold text-head text-uppercase" id="uname">Room</h6>
                   </a>
                   <!-- Card Content - Collapse -->
                   <div class="collapse tran2" id="collapseCardExample" data-parent="#showgroup">
@@ -64,17 +55,56 @@
 
                         </div>
                       </div>
-                      <form id="chat-form">
                       <!-- <form class="d-flex flex-column mt-3" action="index.html" method="post"> -->
                           <a href="index.html" class="btn text-uppercase">Leave Room</a>
-                          <button class="btn-send"><i class="fa fa-paper-plane text-white" aria-hidden="true"></i>&nbsp;&nbsp;Chat</button>
-                        </form>
                       <!-- </form> -->
                     </div>
                   </div>
                 </div>
               </div>
+              <div class="col-lg-12 col-12">
+                <!-- Collapsable Card Example -->
+                <div class="card fade-in border-green">
+                  <!-- Card Header - Accordion -->
+                  <div class="border-green-bottom py-3" >
+                    <div class="d-flex justify-content-start">
+                      &nbsp;&nbsp;
+                      <i class="fa fa-circle me"></i>
+                      &nbsp;&nbsp;
+                      <h6 class="m-0 font-weight-bold text-head text-uppercase" style="text-align:left" id="uname">Username</h6> : ROCK-PAPER-SCISSORS
+                    </div>
+                  </div>
+                  <!-- Card Content - Collapse -->
 
+                    <div class="card-body chat-card chat-messages">
+
+                    </div>
+                    <div class="border-green-top py-3">
+
+                      <div class="conatiner">
+                        <div class="row">
+                          <div class="col-3 mx-auto">
+                            <form id="rock-form">
+                            <button class="btn-send"><i class="fa fa-paper-plane text-white" aria-hidden="true"></i>&nbsp;&nbsp;Rock</button>
+                            </form>
+                          </div>
+                          <div class="col-3 mx-auto">
+                            <form id="paper-form">
+                            <button class="btn-send"><i class="fa fa-paper-plane text-white" aria-hidden="true"></i>&nbsp;&nbsp;Paper</button>
+                            </form>
+                          </div>
+                          <div class="col-3 mx-auto">
+                            <form id="scissor-form">
+                            <button class="btn-send"><i class="fa fa-paper-plane text-white" aria-hidden="true"></i>&nbsp;&nbsp;Scissors</button>
+                            </form>
+                          </div>
+                        </div>
+                    </div>
+
+                  </div>
+
+                </div>
+              </div>
             </div>
             </center>
             <div class="d-flex justify-content-end mt-2">
@@ -115,7 +145,7 @@
     crossorigin="anonymous"
   ></script>
   <script src="/socket.io/socket.io.js"></script>
-  <script src="js/lobby.js"></script>
+  <script src="js/game.js"></script>
 
 </body>
 

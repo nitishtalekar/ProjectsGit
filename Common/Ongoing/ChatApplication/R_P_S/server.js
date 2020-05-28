@@ -45,15 +45,16 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Run when client connects
 io.on('connection', socket => {
-  socket.on('joinRoom', ({ username, room }) => {
-    console.log(socket.id, username, room);
-    const user = userJoin(socket.id, username, room);
+  socket.on('joinRoom', ({ username, room, game }) => {
+    console.log(socket.id, username, room, game);
+    const user = userJoin(socket.id, username, room, game);
 
     if (user === 0){
       const destination = '/index.html?error=duplicate';
       socket.emit('redirect', destination);
     }
     else{
+      //if users mai se kisi ka bh9 game 1 hai to no join
       socket.join(user.room);
 
       // Welcome current user
@@ -79,12 +80,25 @@ io.on('connection', socket => {
 
   socket.on('start', ({username, room, roomname}) => {
     const user = getCurrentUser(socket.id);
-    const str1 = 'chatbox.html?username=';
+    const str1 = 'game.html?username=';
     const str2 = '&room=';
     const str3 = '&roomname=';
     const redirect_str = str1 + username + str2 + room + str3 + roomname;
     console.log(redirect_str);
     console.log("startes");
+    g_room = getRoomUsers(user.room)
+    var i;
+    for (i = 0; i < g_room.length; i++) {
+        g_room[i].game = "1";
+    }
+
+    socket.broadcast
+      .to(user.room)
+      .emit(
+        'game', {
+          game: "1",
+        });
+
     socket.broadcast
       .to(user.room)
       .emit(
@@ -101,6 +115,15 @@ io.on('connection', socket => {
     const user = getCurrentUser(socket.id);
 
     io.to(user.room).emit('message', formatMessage(user.username, msg));
+  });
+
+  socket.on('gameChoice', msg => {
+    const user = getCurrentUser(socket.id);
+    const gameRoom = getRoomUsers(user.room);
+    console.log(gameRoom.length);
+    console.log("moshi moshi");
+
+    // io.to(user.room).emit('message', formatMessage(user.username, msg));
   });
 
   // Runs when client disconnects
@@ -134,7 +157,7 @@ app.post('/login', function(request, response) {
 				request.session.loggedin = true;
 				request.session.username = username;
         // const str1 = 'chatbox.html?username=';
-        const str1 = 'lobby.html?username=';
+        const str1 = 'chatbox.html?username=';
         const str2 = '&room=';
         const str3 = '&roomname=';
         const redirect_str = str1 + username + str2 + results[0].room_id + str3 + results[0].room_name;

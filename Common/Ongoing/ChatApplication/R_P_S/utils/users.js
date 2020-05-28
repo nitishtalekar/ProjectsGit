@@ -1,11 +1,11 @@
 const users = [];
 
 // Join user to chat
-function userJoin(id, username, room) {
-  const user = { id, username, room };
-  
+function userJoin(id, username, room, game) {
+  const user = { id, username, room, game };
+
   const exUser = users.find((user) => user.room === room && user.username === username);
-  
+
   if(exUser){
     return 0;
   }
