@@ -1,0 +1,178 @@
+.container-flex {
+  width: 100%;  
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.chat-card{
+  max-height:450px;
+  overflow-y: scroll;
+}
+.text-head{
+  color: #2a7530;
+}
+.border-green{
+  border: 1px solid #2a7530;
+}
+.border-green-bottom{
+  border-bottom: 1px solid #2a7530;
+}
+.border-green-top{
+  border-top: 1px solid #2a7530;
+}
+.input-container{
+	position:relative;
+	margin-bottom:25px;
+}
+.input-container label{
+	position:absolute;
+	top:0px;
+	left:0px;
+	font-size:16px;
+	color:#2a7530;	
+    pointer-event:none;
+	transition: all 0.5s ease-in-out;
+}
+
+.input-container input{ 
+  border:0;
+  border-bottom:1px solid #2a7530;  
+  background:transparent;
+  width:100%;
+  padding:8px 0 5px 0;
+  font-size:16px;
+  color:#2a7530;
+}
+.input-container input:focus{ 
+ border:none;	
+ outline:none;
+ border-bottom:1px solid #fff;	
+}
+
+.btn{
+	background-color:#2a7530;
+	outline: none;
+  border: 0;
+  color: #fff;
+	padding:10px 20px;
+	text-transform:uppercase;
+	border-radius:2px;
+	cursor:pointer;
+	position:relative;
+  transition: all 0.3s ease-in-out;
+}
+.btn:hover{
+  opacity:0.8;
+  color:#fff;
+}
+
+.btn-send{
+	background-color:#2a7530;
+	outline: none;
+  border: 0;
+  color: #fff;
+	padding:10px 20px;
+	text-transform:uppercase;
+	border-radius:2px;
+	cursor:pointer;
+	position:relative;
+  transition: all 0.3s ease-in-out;
+  width:15%;
+}
+.btn-send:hover{
+  opacity:0.7;
+  color:#fff;
+}
+.error{
+  color: red;
+  font-size:12px;
+  text-align: left;
+  width:100%;
+}
+.input-container input:focus ~ label,
+.input-container input:valid ~ label{
+	top:-12px;
+	font-size:12px;
+	
+}
+.tran{
+  transition: all 0.7s ease-in-out;
+}
+.tran2{
+  transition: all 0.5s ease-in-out;
+}
+
+.msg-area{
+  width:80%;
+  background-color: #212121;
+  color:#2a7530;
+  border: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.msg-area:focus{
+  outline: none !important;
+  border:2px solid #2a7530;
+  /* box-shadow: 0 0 10px #719ECE; */
+}
+
+
+/* FADES */
+
+.fade-in {
+  animation: fadeIn ease 2s;
+  -webkit-animation: fadeIn ease 2s;
+  -moz-animation: fadeIn ease 2s;
+  -o-animation: fadeIn ease 2s;
+  -ms-animation: fadeIn ease 2s;
+}
+@keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-moz-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-o-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+  }
+}
+
+@-ms-keyframes fadeIn {
+  0% {
+    opacity:0;
+  }
+  100% {
+    opacity:1;
+}
+
+/* TRIANGLE */
