@@ -88,8 +88,9 @@ io.on('connection', socket => {
   
   socket.on('joinRoomGame', ({ username, game }) => {
     // console.log(socket.id, username, game);
-    console.log("Join Ganme");
+    console.log("Join Game");
     console.log(socket.id);
+    
     const user = userJoinGame(socket.id, username, game);
     
     console.log(user);
@@ -99,6 +100,7 @@ io.on('connection', socket => {
       socket.emit('redirect', destination);
     }
     else{
+      
 
       socket.join(user.game);
 
@@ -189,15 +191,31 @@ io.on('connection', socket => {
     const redirect_str = str1 + username + str2 + room + str3 + roomname;
     // console.log(redirect_str);
     // console.log("started");
+    
+    const gameroom = room+"game";
+    const playroom = getRoomUsersGame(gameroom);
+    const players = playroom.length;
+    
+    console.log("No of players");
+    console.log(players);
+    
+    if(players>0){
+      socket.emit('message', formatMessage('Welcome', 'Sorry A Game is already Going on!'));
+    }
+    else{
+      socket.broadcast
+        .to(user.room)
+        .emit(
+          'game', {
+            id: room,
+            room: roomname
+          });      
+        socket.emit('redirect', redirect_str);
+    }
+    
+    
 
-    socket.broadcast
-      .to(user.room)
-      .emit(
-        'game', {
-          id: room,
-          room: roomname
-        });      
-      socket.emit('redirect', redirect_str);
+    
   });
 
   // Listen for chatMessage
