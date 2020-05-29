@@ -31,6 +31,9 @@ socket.on('redirect', function(destination) {
     window.location.href = destination;
 });
 
+// socket.on('enable',fuction(){
+//   enableButtons();
+// })
 
 // Message from server
 socket.on('message', message => {
@@ -41,17 +44,34 @@ socket.on('message', message => {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
+socket.on('messageScore', messageS => {
+  console.log(messageS);
+  var i ;
+  for(i=0;i<messageS.length;i++)
+  {
+      outputMessage(messageS[i]);
+  }
+
+
+  // Scroll down
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+
+socket.on('eButton', e => {
+  console.log(e);
+});
+
 // Message submit
 rock.addEventListener('submit', e => {
   e.preventDefault();
-  
+
   console.log("rock");
   disableButtons();
 
   // Get message text
   const msg = "rock";
 
-  socket.emit('gameMessage', msg);
+  // socket.emit('gameMessage', msg);
   socket.emit('gameChoice', msg);
 });
 
@@ -62,7 +82,7 @@ paper.addEventListener('submit', e => {
   // Get message text
   const msg = "paper";
 
-  socket.emit('gameMessage', msg);
+  // socket.emit('gameMessage', msg);
   socket.emit('gameChoice', msg);
 });
 
@@ -73,7 +93,7 @@ scissor.addEventListener('submit', e => {
   // Get message text
   const msg = "scissor";
     // Emit message to server
-  socket.emit('gameMessage', msg);
+  // socket.emit('gameMessage', msg);
   socket.emit('gameChoice', msg);
 });
 
@@ -96,6 +116,7 @@ function outputMessage(message) {
       </div>`;
   }
   else if(message.username === 'Welcome'){
+    enableButtons();
     div.innerHTML = `<div class="d-flex justify-content-center fade-in-message">
       <div class="text-head text-capitalize">
         <i class="fa fa-handshake-o me" aria-hidden="true"></i> ${message.time} &nbsp;&nbsp; ${message.text}
@@ -148,6 +169,18 @@ function outputUsers(users) {
   `;
 
   // document.getElementById('users').appendChild(div);
+}
+
+function enableButtons(){
+  rb = document.getElementById('btn-rock');
+  pb = document.getElementById('btn-paper');
+  sb = document.getElementById('btn-scissor');
+  rb.disabled = false;
+  pb.disabled = false;
+  sb.disabled = false;
+  rb.style.background = "#2d9135";
+  pb.style.background = "#2d9135";
+  sb.style.background = "#2d9135";
 }
 
 function disableButtons(){

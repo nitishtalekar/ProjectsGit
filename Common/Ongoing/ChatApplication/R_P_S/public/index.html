@@ -44,7 +44,7 @@
           <div class="container" style="max-width: 600px;">
             <center>
             <div class="row" id="showgroup">
-              
+
               <div class="col-lg-12 col-12">
                 <!-- Collapsable Card Example -->
                 <div class="card mb-4 fade-in">
@@ -58,25 +58,25 @@
                       <form class="d-flex flex-column" action="login" method="POST">
                           <div class="input-container mt-2">
                         		<input name="username" id="username" type="text" required=""/>
-                        		<label>Username</label>		
+                        		<label>Username</label>
                         	</div>
-                          
+
                           <div class="input-container mt-2">
-                        		<input name="room" id="room" type="text" required=""/>
-                        		<label>Room Name</label>		
+                        		<input name="room" id="room" type="text" value="GanjaBoyz" required=""/>
+                        		<label>Room Name</label>
                         	</div>
-                          
+
                           <div class="input-container mt-2">
-                        		<input name="password" id="password" type="password" required=""/>
-                        		<label>Room Password</label>		
+                        		<input name="password" id="password" type="password" value="iwitw" required=""/>
+                        		<label>Room Password</label>
                         	</div>
-                          
+
                           <div class="error-container">
                             <center>
-                        		<label class="text-error mb-2" id="error"></label>		
+                        		<label class="text-error mb-2" id="error"></label>
                           </center>
                         	</div>
-                          
+
                           <button type="submit" class="btn">Join Room</button>
                       </form>
                     </div>
@@ -96,24 +96,24 @@
                       <form class="d-flex flex-column" action="roomcreate" method="POST">
                         <div class="input-container mt-2">
                           <input name="create_room" id="create_room" type="text" required=""/>
-                          <label>Create Room Name</label>		
+                          <label>Create Room Name</label>
                         </div>
                         <div class="input-container mt-2">
                           <input name="create_password" id="create_password" type="password" required=""/>
-                          <label>Set Password</label>		
+                          <label>Set Password</label>
                         </div>
                         <div class="input-container mt-2">
                           <input name="confirm_password" id="confirm_password" type="password" required=""/>
-                          <label>Confirm Password</label>		
+                          <label>Confirm Password</label>
                         </div>
-                        
+
                         <div class="error-container">
                           <center>
-                          <label class="py-1 bgg mb-2" id="created"></label>		
-                          <label class="text-error mb-2" id="pwd_err"></label>	
+                          <label class="py-1 bgg mb-2" id="created"></label>
+                          <label class="text-error mb-2" id="pwd_err"></label>
                         </center>
                         </div>
-                        
+
                           <button type="submit" class="btn">Create Room</button>
                       </form>
                     </div>
@@ -126,7 +126,7 @@
               <label class="text-footer"> Developed By: CoffeeCoders</label>
             </div>
           </div>
-          
+
         </div>
         <!-- /.container-fluid -->
 

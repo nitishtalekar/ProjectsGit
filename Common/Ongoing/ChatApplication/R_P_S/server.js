@@ -26,7 +26,8 @@ const {
 const {
   startGame,
   addChoice,
-  getChoiceList
+  getChoiceList,
+  clearChoices
 } = require('./utils/gaming');
 
 
@@ -94,15 +95,15 @@ io.on('connection', socket => {
 
 
   });
-  
-  
+
+
   socket.on('joinRoomGame', ({ username, game }) => {
     // console.log(socket.id, username, game);
     console.log("Join Game");
     console.log(socket.id);
-    
+
     const user = userJoinGame(socket.id, username, game);
-    
+
     console.log(user);
 
     if (user === 0){
@@ -110,7 +111,7 @@ io.on('connection', socket => {
       socket.emit('redirect', destination);
     }
     else{
-      
+
 
       socket.join(user.game);
 
@@ -134,42 +135,42 @@ io.on('connection', socket => {
 
 
   });
-  
 
-  
-  
+
+
+
   // OLD
-  
+
   // socket.on('joinGameRoom', ({ username, gameroom }) => {
   //   console.log(socket.id, username, gameroom);
-  // 
+  //
   //   const user = getCurrentUser(socket.id);
-  // 
+  //
   //   console.log("YAHA SE NAYA SCENE CHALU -------");
   //   console.log(user);
   //   // const user = userJoinGame(socket.id, game);
-  // 
+  //
   //   if (user === 0){
   //     const destination = '/index.html?error=duplicate';
   //     socket.emit('redirect', destination);
   //   }
   //   else{
-  // 
+  //
   //     // const players = io.sockets.clients(user.game);
   //     // console.log(players);
-  // 
+  //
   //     // if(players > 0){
   //     //   const destination = '/index.html?error=duplicate';
   //     //   socket.emit('redirect', destination);
-  //     // } 
+  //     // }
   //     // else{
   //       const user = userJoinGame(socket.id, gameroom);
-  // 
+  //
   //       socket.join(user.game);
-  // 
+  //
   //       // Welcome current user
   //       socket.emit('message', formatMessage('Welcome', 'Welcome to the Chatroom!'));
-  // 
+  //
   //       // Broadcast when a user connects
   //       socket.broadcast
   //         .to(user.game)
@@ -177,24 +178,24 @@ io.on('connection', socket => {
   //           'message',
   //           formatMessage('Joined', `${user.username} has joined the chat`)
   //         );
-  // 
+  //
   //       // Send users and room info
   //       io.to(user.room).emit('roomUsers', {
   //         room: user.game,
   //         users: getRoomUsers(user.game)
   //       });
   //     // }
-  // 
-  // 
+  //
+  //
   //   }
-  // 
-  // 
+  //
+  //
   // });
-  
-  
+
+
 
   socket.on('start', ({username, room, roomname}) => {
-    
+
     // console.log(username, room ,roomname);
     const user = getCurrentUser(socket.id);
     const str1 = 'game.html?username=';
@@ -203,79 +204,95 @@ io.on('connection', socket => {
     const redirect_str = str1 + username + str2 + room + str3 + roomname;
     // console.log(redirect_str);
     // console.log("started");
-    
+
     const gameroom = room+"game";
     const playroom = getRoomUsersGame(gameroom);
     const players = playroom.length;
-    
+
     console.log("No of players");
     console.log(players);
-    
+
     if(players>0){
       socket.emit('message', formatMessage('Welcome', 'Sorry A Game is already Going on!'));
     }
     else{
-      
+
       const gaming = startGame(gameroom);
       // console.log("HERE");
-      // 
+      //
       console.log(gaming);
       // console.log(games_online);
-      
+
       socket.broadcast
         .to(user.room)
         .emit(
           'game', {
             id: room,
             room: roomname
-          });      
+          });
         socket.emit('redirect', redirect_str);
     }
-    
+
   });
 
   // Listen for chatMessage
   socket.on('chatMessage', msg => {
     const user = getCurrentUser(socket.id);
-
     io.to(user.room).emit('message', formatMessage(user.username, msg));
   });
-  
+
   socket.on('gameMessage', msg => {
 
     const user = getCurrentUserGame(socket.id);
-    
+
     io.to(user.game).emit('message', formatMessage(user.username, msg));
-    
+
   });
 
   socket.on('gameChoice', msg => {
     const user = getCurrentUserGame(socket.id);
     const gameRoom = getRoomUsersGame(user.game);
     const players = gameRoom.length;
-    
-    console.log("GAMING");
-    
+
+    console.log("GAMING", msg, user, socket.id);
+
     const chList = getChoiceList(user.game);
+    console.log(chList);
+    const userChoice = socket.id + "||" + msg;
+    console.log(userChoice);
     // console.log(games_online);
-    
+
     // const gaming = games_online.find(gaming => gaming.gameroom === user.game);
     // const num_choice = gaming.choices.length;
-    
-    addChoice(user.game , msg)
+
+    addChoice(user.game , userChoice);
     console.log("ADDED");
-    
+
     if(chList.length === players){
       console.log("DISPLAY");
+      var i;
+      const dispChoice = [];
+      for(i=0;i<chList.length;i++)
+      {
+        var s = chList[i].split("||");
+        var usr = getCurrentUserGame(s[0]);
+        console.log(usr.username);
+        var x = formatMessage(usr.username, s[1]);
+        dispChoice.push(x);
+      }
       io.to(user.game).emit('message', formatMessageArr('Welcome', chList));
-      
+      io.to(user.game).emit('messageScore', dispChoice);
+      // io.to(user.game).emit('enable');
+      clearChoices(user.game);
+
+
     }
     // else{
     //   console.log("Else");
-    // 
+    //
     // }
-    
-    
+
+
     // console.log("moshi moshi");
 
     // io.to(user.room).emit('message', formatMessage(user.username, msg));
