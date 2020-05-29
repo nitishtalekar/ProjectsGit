@@ -5,7 +5,12 @@ const socketio = require('socket.io');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-const formatMessage = require('./utils/messages');
+// const formatMessage = require('./utils/messages');
+// const formatMessageArr = require('./utils/messages');
+const {
+  formatMessage,
+  formatMessageArr
+} = require('./utils/messages');
 const {
   userJoin,
   getCurrentUser,
@@ -18,6 +23,11 @@ const {
   userLeaveGame,
   getRoomUsersGame
 } = require('./utils/games');
+const {
+  startGame,
+  addChoice,
+  getChoiceList
+} = require('./utils/gaming');
 
 
 const con = mysql.createConnection({
@@ -125,6 +135,8 @@ io.on('connection', socket => {
 
   });
   
+
+  
   
   // OLD
   
@@ -203,6 +215,13 @@ io.on('connection', socket => {
       socket.emit('message', formatMessage('Welcome', 'Sorry A Game is already Going on!'));
     }
     else{
+      
+      const gaming = startGame(gameroom);
+      // console.log("HERE");
+      // 
+      console.log(gaming);
+      // console.log(games_online);
+      
       socket.broadcast
         .to(user.room)
         .emit(
@@ -212,9 +231,6 @@ io.on('connection', socket => {
           });      
         socket.emit('redirect', redirect_str);
     }
-    
-    
-
     
   });
 
@@ -226,10 +242,9 @@ io.on('connection', socket => {
   });
   
   socket.on('gameMessage', msg => {
-    console.log("message");
-    console.log(socket.id);
-    const user = getCurrentUserGame(socket.id);
 
+    const user = getCurrentUserGame(socket.id);
+    
     io.to(user.game).emit('message', formatMessage(user.username, msg));
     
   });
@@ -237,7 +252,30 @@ io.on('connection', socket => {
   socket.on('gameChoice', msg => {
     const user = getCurrentUserGame(socket.id);
     const gameRoom = getRoomUsersGame(user.game);
-    console.log(gameRoom.length);
+    const players = gameRoom.length;
+    
+    console.log("GAMING");
+    
+    const chList = getChoiceList(user.game);
+    // console.log(games_online);
+    
+    // const gaming = games_online.find(gaming => gaming.gameroom === user.game);
+    // const num_choice = gaming.choices.length;
+    
+    addChoice(user.game , msg)
+    console.log("ADDED");
+    
+    if(chList.length === players){
+      console.log("DISPLAY");
+      io.to(user.game).emit('message', formatMessageArr('Welcome', chList));
+      
+    }
+    // else{
+    //   console.log("Else");
+    // 
+    // }
+    
+    
     // console.log("moshi moshi");
 
     // io.to(user.room).emit('message', formatMessage(user.username, msg));

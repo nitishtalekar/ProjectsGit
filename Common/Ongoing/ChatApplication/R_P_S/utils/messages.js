@@ -8,4 +8,17 @@ function formatMessage(username, text) {
   };
 }
 
-module.exports = formatMessage;
+function formatMessageArr(username, textarr) {
+  var i = 0;
+  var text = "";
+  for (i=0;i<textarr.length;i++){
+    text = text+textarr[i]+"--";
+  }
+  return {
+    username,
+    text,
+    time: moment().format('h:mm a')
+  };
+}
+
+module.exports = {formatMessage,formatMessageArr};

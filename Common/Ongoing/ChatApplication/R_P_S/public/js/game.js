@@ -44,7 +44,9 @@ socket.on('message', message => {
 // Message submit
 rock.addEventListener('submit', e => {
   e.preventDefault();
+  
   console.log("rock");
+  disableButtons();
 
   // Get message text
   const msg = "rock";
@@ -56,6 +58,7 @@ rock.addEventListener('submit', e => {
 paper.addEventListener('submit', e => {
   e.preventDefault();
   console.log("paper");
+  disableButtons();
   // Get message text
   const msg = "paper";
 
@@ -66,6 +69,7 @@ paper.addEventListener('submit', e => {
 scissor.addEventListener('submit', e => {
   e.preventDefault();
   console.log("scissor");
+  disableButtons();
   // Get message text
   const msg = "scissor";
     // Emit message to server
@@ -144,4 +148,16 @@ function outputUsers(users) {
   `;
 
   // document.getElementById('users').appendChild(div);
+}
+
+function disableButtons(){
+  rb = document.getElementById('btn-rock');
+  pb = document.getElementById('btn-paper');
+  sb = document.getElementById('btn-scissor');
+  rb.disabled = true;
+  pb.disabled = true;
+  sb.disabled = true;
+  rb.style.background = "grey";
+  pb.style.background = "grey";
+  sb.style.background = "grey";
 }
