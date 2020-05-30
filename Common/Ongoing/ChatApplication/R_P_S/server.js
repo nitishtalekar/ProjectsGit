@@ -43,6 +43,50 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
+function cscore(score, choice, list){
+  console.log(score);
+  var i;
+  if(choice == "rock"){
+    for(i=0;i<list.length;i++){
+      var s = list[i].split("||");
+      var usr = getCurrentUserGame(s[0]);
+      var scr = usr.score;
+      if(s[1] == "paper"){
+        scr = scr + 1;
+        usr.score = scr;
+      }
+
+    }
+  }
+
+  if(choice == "paper"){
+    for(i=0;i<list.length;i++){
+      var s = list[i].split("||");
+      var usr = getCurrentUserGame(s[0]);
+      var scr = usr.score;
+      if(s[1] == "scissor"){
+        scr = scr + 1;
+        usr.score = scr;
+      }
+
+    }
+  }
+
+  if(choice == "scissor"){
+    for(i=0;i<list.length;i++){
+      var s = list[i].split("||");
+      var usr = getCurrentUserGame(s[0]);
+      var scr = usr.score;
+      if(s[1] == "rock"){
+        scr = scr + 1;
+        usr.score = scr;
+      }
+
+    }
+  }
+
+}
+
 const app = express();
 
 app.use(session({
@@ -102,7 +146,7 @@ io.on('connection', socket => {
     console.log("Join Game");
     console.log(socket.id);
 
-    const user = userJoinGame(socket.id, username, game);
+    const user = userJoinGame(socket.id, username, game, 0);
 
     console.log(user);
 
@@ -272,15 +316,20 @@ io.on('connection', socket => {
       console.log("DISPLAY");
       var i;
       const dispChoice = [];
+      var dispScore = "";
       for(i=0;i<chList.length;i++)
       {
         var s = chList[i].split("||");
         var usr = getCurrentUserGame(s[0]);
-        console.log(usr.username);
+        dispScore = dispScore + usr.username + ": ";
+        console.log(usr.score);
+        cscore(usr.score, s[1], chList);
         var x = formatMessage(usr.username, s[1]);
+        console.log("yoyoy"+usr.score);
+        dispScore = dispScore + usr.score + " ";
         dispChoice.push(x);
       }
-      io.to(user.game).emit('message', formatMessageArr('Welcome', chList));
+      io.to(user.game).emit('message', formatMessageArr('Welcome', dispScore));
       io.to(user.game).emit('messageScore', dispChoice);
       // io.to(user.game).emit('enable');
       clearChoices(user.game);

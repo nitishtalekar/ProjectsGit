@@ -1,8 +1,8 @@
 const game_users = [];
 
 // Join user to chat
-function userJoinGame(id, username, game) {
-  const user = { id, username, game };
+function userJoinGame(id, username, game, score) {
+  const user = { id, username, game, score };
 
   const exUser = game_users.find((user) => user.game === game && user.username === username);
 
@@ -33,6 +33,12 @@ function userLeaveGame(id) {
 function getRoomUsersGame(game) {
   return game_users.filter(user => user.game === game);
 }
+// 
+// function addScore(id , thisscore){
+//   const gaming = games_user.find(gaming => user.id === id);
+//   const choiceList = gaming.choices;
+//   choiceList.push(thischoice);
+// }
 
 module.exports = {
   userJoinGame,
