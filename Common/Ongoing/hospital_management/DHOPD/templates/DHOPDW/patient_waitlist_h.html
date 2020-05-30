@@ -2,56 +2,73 @@
 {% load static %}
 {% block head %}
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
 
-    <title>Dehankar - Waitlist</title>
+  <title>Dehankar - Waitlist - Male</title>
 
-    <!-- Custom fonts for this template-->
-    <link href="{% static 'style/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- Custom fonts for this template-->
+  <link href="{% static 'style/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
 
-    <!-- Custom styles for this template-->
-    <link href="{% static 'style/css/sb-admin-2.min.css' %}" rel="stylesheet">
-    <link href="{% static 'style/css/sb-admin-2.css' %}" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="{% static 'style/css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link href="{% static 'style/css/sb-admin-2.css' %}" rel="stylesheet">
 
-    <!-- 1234 -->
+  <!-- Custom styles for this page -->
+  <link href="{% static 'style/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
 
-    <!-- Custom styles for this page -->
-    <link href="{% static 'style/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
 
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+  <style media="screen">
+    .big-check{
+      height:20px;
+      width:20px;
+      vertical-align: center;
+    }
+    .big-label{
+      font-size:20px;
+      vertical-align: center;
+    }
+  </style>
 
-    <style media="screen">
-      .big-check{
-        height:20px;
-        width:20px;
-        vertical-align: center;
+  <script type="text/javascript">
+  $(document).ready(function () {
+      // console.log('BCCCCCCCC !');
+    });
+
+    function vaccineelement(cb,x){
+      console.log("VACCCCCCC");
+      console.log(cb.checked);
+      vn = '#v_name'+x;
+      vacc = '#vacc'+x;
+      vcost = '#cost'+x;
+      if (cb.checked){
+        $(vn).fadeIn('fast');
+        $(vacc).attr('required', '');
+        $(vcost).attr('required', '');
       }
-      .big-label{
-        font-size:20px;
-        vertical-align: center;
-      }
-      .big-radio{
-        height:20px;
-        width:20px;
-        vertical-align: center;
-      }
-    </style>
+      else{
+        $(vn).fadeOut('fast');
+        $(vacc).removeAttr('required');
+        $(vcost).removeAttr('required');
+        }
+    }
+
+  </script>
 
   {% endblock head %}
 
 
   {% block content %}
-
-  <body id="page-top">
+<body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
@@ -120,23 +137,21 @@
           <span>Dr. Shirish Dehankar</span>
         </a>
         {% if tag == 'Doctor' %}
-        <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% else %}
         <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% endif %}
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
-            <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
-            <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
 
             {% if tag == 'Doctor' %}
-            <a class="collapse-item active1" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
+            <a class="collapse-item active1" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
             {% else %}
-            <a class="collapse-item" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
+            <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
             {% endif %}
 
-
-
+            <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
+            <a class="collapse-item" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
           </div>
         </div>
       </li>
@@ -149,7 +164,7 @@
           <span>Child Doctor</span>
         </a>
         {% if tag == 'Child' %}
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% else %}
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% endif %}
@@ -176,7 +191,7 @@
           <span>Room</span>
         </a>
         {% if tag == 'Room' %}
-        <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+        <div id="collapseThree" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% else %}
         <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
         {% endif %}
@@ -209,8 +224,8 @@
       <!-- Nav Item - Pages Collapse Menu -->
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item active">
-        <a class="nav-link" href="/DHOPD/report/">
+      <li class="nav-item">
+        <a class="nav-link" href="/DHOPD/report">
           <i class="fas fa-fw fa-table"></i>
           <span>Overall Report</span></a>
       </li>
@@ -290,109 +305,149 @@
         <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Reports</h1>
+          <h1 class="h3 mb-2 text-gray-800">Patient Waitlist</h1>
 
+          <div class="d-flex justify-content-start mb-4 mt-3">
+            <a href="/DHOPD/patient_add_h/" class="btn btn-primary" style="width:100%">
+              Add Patient
+            </a>
+          </div>
 
           <div class="card shadow mb-4">
-              <a href="#collapseDate" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-                <h6 class="m-0 font-weight-bold text-primary text-uppercase">Report Parameters</h6>
+              <a href="#collapseWait" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                <h6 class="m-0 font-weight-bold text-primary text-uppercase">Waitlist</h6>
               </a>
-              <div class="collapse show" id="collapseDate">
+              <div class="collapse show" id="collapseWait">
               <div class="card-body">
+                <div class="table-responsive pt-3 px-2">
+                  <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                      <tr>
+                        <th>Patient ID</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Services</th>
+                        <th>Cost</th>
+                        <th>Status</th>
+                        <th>Bill</th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      <tr>
+                        <th>Patient ID</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th>Services</th>
+                        <th>Cost</th>
+                        <th>Status</th>
+                        <th>Bill</th>
+                      </tr>
+                    </tfoot>
+                    <tbody>
 
-                <form action="/DHOPD/report/" method="POST">
-                  {% csrf_token %}
-                  <div class="d-flex justify-content-around">
-                    <label class="text-uppercase"> Search by Date</label>
-                    <input type="date" class="form-control bg-light border-0 small" name="fromd" value="{{fromd}}" style="width:30%" required>
-                    <input type="date" class="form-control bg-light border-0 small" name="tod" value="{{tod}}" style="width:30%" required>
-                  </div>
-                  <div class="d-flex justify-content-around mt-3">
-                    <label class="text-uppercase">Select</label>
-                    {% if tag == 'Doctor' %}
-                      <label class="big-label">  <input type="radio" class="big-radio" name="tag" value="Doctor" checked> &nbsp; Dr. Shirish Dehankar</label>
-                    {% else %}
-                      <label class="big-label">  <input type="radio" class="big-radio" name="tag" value="Doctor" required> &nbsp; Dr. Shirish Dehankar</label>
-                    {% endif %}
-                    {% if tag == 'Child' %}
-                      <label class="big-label" > <input type="radio" class="big-radio" name="tag" value="Child" checked> &nbsp; Dr. Madhumati Dehankar</label>
-                    {% else %}
-                      <label class="big-label" > <input type="radio" class="big-radio" name="tag" value="Child"> &nbsp; Dr. Madhumati Dehankar</label>
-                    {% endif %}
-                    {% if tag == 'Hospital' %}
-                      <label class="big-label" > <input type="radio" class="big-radio" name="tag" value="Hospital" checked> &nbsp; Hospital</label>
-                      {% else %}
-                      <label class="big-label" > <input type="radio" class="big-radio" name="tag" value="Hospital"> &nbsp; Hospital</label>
-                    {% endif %}
-                  </div>
-                  <div class="d-flex justify-content-center mt-3 mb-">
-                    <button type="submit" class="btn btn-primary text-uppercase" name="pid" value="date" style="width:70%"> Search </button>
-                  </div>
+                      {% for i in patient_c %}
+                      <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.1 }} {{ i.2 }} {{ i.3 }}</td>
+                        <td>{{ i.5 }}</td>
+                        <td>{{ i.7 }}</td>
+                        <td>{{ i.8 }}</td>
+                        <td>{{ i.9 }}</td>
+                        <td>
+                          <center>
+                          <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#statusModal{{ i.0 }}">
+                          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
+                          Waiting
+                          </a>
+                          </center>
+                        </td>
+                        <td>
+                          <center>
+                          <a class="btn btn-primary" href="#" data-toggle="modal" data-target="#editModal{{ i.0 }}">
+                          <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
+                          Edit
+                          </a>
+                          </center>
+                        </td>
+                      </tr>
+                      {% endfor %}
 
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>
+          </div>
 
           <!-- DataTales Example -->
+
         <div class="card shadow mb-4">
-            <a href="#collapseWait" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
-              <h6 class="m-0 font-weight-bold text-primary text-uppercase">Report Preview</h6>
+            <a href="#collapseVisited" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+              <h6 class="m-0 font-weight-bold text-Primary text-uppercase">Visited</h6>
             </a>
-            <div class="collapse show" id="collapseWait">
+            <div class="collapse show" id="collapseVisited">
             <div class="card-body">
               <div class="table-responsive pt-3 px-2">
-                <table class="table table-bordered" id="dataTablereport_preview" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable2" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Date</th>
-                      <th>ID</th>
+                      <th>Patient ID</th>
                       <th>Name</th>
                       <th>Address</th>
-                      <th>Place</th>
                       <th>Phone</th>
                       <th>Services</th>
-                      <th>Amount</th>
-
+                      <th>Cost</th>
+                      <th>Status</th>
+                      <th>Bill</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Date</th>
-                      <th>ID</th>
+                      <th>Patient ID</th>
                       <th>Name</th>
                       <th>Address</th>
-                      <th>Place</th>
                       <th>Phone</th>
                       <th>Services</th>
-                      <th>Amount</th>
-
+                      <th>Cost</th>
+                      <th>Status</th>
+                      <th>Bill</th>
                     </tr>
                   </tfoot>
                   <tbody>
-
-                    {% for i in patient %}
+                    {% for i in patient_w %}
                     <tr>
-                      <td>{{i.14}}</td>
                       <td>{{ forloop.counter }}</td>
-                      <td>{{i.4}} {{ i.1 }} {{ i.2 }} {{ i.3 }}</td>
+                      <td>{{ i.1 }} {{ i.2 }} {{ i.3 }}</td>
                       <td>{{ i.5 }}</td>
-                      <td>{{ i.6 }}</td>
                       <td>{{ i.7 }}</td>
                       <td>{{ i.8 }}</td>
                       <td>{{ i.9 }}</td>
-
+                      <td>
+                        <center>
+                        <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#rev_statusModal{{ i.0 }}">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
+                        Waiting
+                        </a>
+                        </center>
+                      </td>
+                      <td>
+                        <center>
+                        <a class="btn btn-primary" href="/DHOPD/patient_bill/?pid={{i.0}}&auth={{tag}}" target="_blank">
+                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2"></i>
+                        Bill
+                        </a>
+                        </center>
+                      </td>
                     </tr>
                     {% endfor %}
-
                   </tbody>
                 </table>
               </div>
-              <center><button type="submit" class="btn btn-primary text-uppercase py-2 mt-3" style="width:90%" value="Print" name="pid" formtarget="_blank"> Print Report</button></center>
-            </form>
             </div>
           </div>
         </div>
-
 
         </div>
         <!-- /.container-fluid -->
@@ -476,9 +531,9 @@
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
-                <div class="modal-body">Patient "{{ i.2 }} {{ i.3 }} {{ i.4 }}" has visited?</div>
+                <div class="modal-body">Patient "{{ i.1 }} {{ i.2 }} {{ i.3 }}" has visited?</div>
                 <!-- <hr> -->
-                <form action="/DHOPD/patient_waitlist/?auth={{ tag }}" method="POST">
+                <form action="/DHOPD/patient_waitlist_h/" method="POST">
                   {% csrf_token %}
                 <div class="modal-body">
                   <center><button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -500,9 +555,9 @@
                     <span aria-hidden="true">×</span>
                   </button>
                 </div>
-                <div class="modal-body">Patient "{{ i.2 }} {{ i.3 }} {{ i.4 }}" status to waiting?</div>
+                <div class="modal-body">Patient "{{ i.1 }} {{ i.2 }} {{ i.3 }}" status to waiting?</div>
                 <!-- <hr> -->
-                <form action="/DHOPD/patient_waitlist/?auth={{ tag }}" method="POST">
+                <form action="/DHOPD/patient_waitlist_h/" method="POST">
                   {% csrf_token %}
                 <div class="modal-body">
                   <center><button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -544,31 +599,31 @@
                                   <label class="text-uppercase" style="font-size:15px;">Title</label>
                                     <select class="js-example-basic-single custom-select mr-sm-2" name="title" style="width:55%;height:10vh" required>
                                       <option value="" selected disabled>Select Title</option>
-                                      {% if i.11.0 == 1 %}
+                                      {% if i.10.0 == 1 %}
                                       <option value="Mr." selected>Mr.</option>
                                       {% else %}
                                       <option value="Mr.">Mr.</option>
                                       {% endif %}
 
-                                      {% if i.11.1 == 1 %}
+                                      {% if i.10.1 == 1 %}
                                       <option value="Ms." selected>Ms.</option>
                                       {% else %}
                                       <option value="Ms.">Ms.</option>
                                       {% endif %}
 
-                                      {% if i.11.2 == 1 %}
+                                      {% if i.10.2 == 1 %}
                                       <option value="Mrs." selected>Mrs.</option>
                                       {% else %}
                                       <option value="Mrs.">Mrs.</option>
                                       {% endif %}
 
-                                      {% if i.11.3 == 1 %}
+                                      {% if i.10.3 == 1 %}
                                       <option value="Baby Girl" selected>Baby Girl</option>
                                       {% else %}
                                       <option value="Baby Girl">Baby Girl</option>
                                       {% endif %}
 
-                                      {% if i.11.4 == 1 %}
+                                      {% if i.10.4 == 1 %}
                                       <option value="Baby Boy" selected>Baby Boy</option>
                                       {% else %}
                                       <option value="Baby Boy">Baby Boy</option>
@@ -579,19 +634,19 @@
                               <div class="col-3">
                                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                                   <label class="text-uppercase" style="font-size:15px;">First Name</label>
-                                    <input type="text" name="f_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.2}}">
+                                    <input type="text" name="f_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.1}}">
                                 </div>
                               </div>
                               <div class="col-3">
                                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                                   <label class="text-uppercase" style="font-size:15px;">Middle Name</label>
-                                    <input type="text" name="m_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.3}}">
+                                    <input type="text" name="m_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.2}}">
                                 </div>
                               </div>
                               <div class="col-3">
                                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                                   <label class="text-uppercase" style="font-size:15px;">Last Name</label>
-                                    <input type="text" name="l_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.4}}">
+                                    <input type="text" name="l_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.3}}">
                                 </div>
                               </div>
 
@@ -601,7 +656,7 @@
 
                           <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                             <label class="text-uppercase" style="font-size:15px;">Address</label>
-                              <textarea name="addr" class="form-control bg-light border-0 small" style="width:90%;" >{{i.6}}</textarea>
+                              <textarea name="addr" class="form-control bg-light border-0 small" style="width:90%;" >{{ i.6 }}</textarea>
                           </div>
 
                           <div class="container-fluid">
@@ -610,14 +665,14 @@
                               <div class="col-6">
                                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                                   <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
-                                    <input type="number" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" value="{{i.8}}">
+                                    <input type="number" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" value="{{ i.7 }}">
                                 </div>
                               </div>
 
                               <div class="col-6">
                                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                                   <label class="text-uppercase" style="font-size:15px;">Place</label>
-                                    <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town" value="{{i.7}}">
+                                    <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town" value="{{ i.6 }}">
                                 </div>
                               </div>
 
@@ -629,7 +684,7 @@
 
                             {% for j in service %}
                             <div class="col-4 mt-3">
-                              {% if j.service_id in i.12 %}
+                              {% if j.service_id in i.11 %}
                                   {% if j.service_name == 'Vaccine' %}
                                   <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ j.service_name }}" value="{{ j.service_id }}" onclick="vaccineelement(this,{{ i.0 }})" checked>&nbsp;&nbsp;&nbsp;&nbsp;{{j.service_name }} (Rate) </label>
                                   {% else %}
@@ -646,22 +701,22 @@
                             {% endfor %}
                           </div>
                         </div>
-                        {% if 8 in i.12 %}
+                        {% if 8 in i.11 %}
                         <div class="container mt-3" id="v_name{{ i.0 }}">
                           <div class="d-flex justify-content-around mb-3">
                             <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
-                              <input type="text" name="vacc" id="vacc{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.13}}'>
+                              <input type="text" name="vacc" id="vacc{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.12}}'>
                             <label class="text-uppercase" style="font-size:15px;">Amount</label>
-                              <input type="text" name="cost" id="cost{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.14}}'>
+                              <input type="text" name="cost" id="cost{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.13}}'>
                           </div>
                         </div>
                         {% else %}
                         <div class="container mt-3" style="display:none;" id="v_name{{ i.0 }}">
                           <div class="d-flex justify-content-around mb-3">
                             <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
-                              <input type="text" name="vacc" id="vacc{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.13}}'>
+                              <input type="text" name="vacc" id="vacc{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.12}}'>
                             <label class="text-uppercase" style="font-size:15px;">Amount</label>
-                              <input type="text" name="cost" id="cost{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.14}}'>
+                              <input type="text" name="cost" id="cost{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.13}}'>
                           </div>
                         </div>
                         {% endif %}
@@ -691,6 +746,26 @@
 
 
 
+  <!-- <script type="text/javascript">
+  $(document).ready(function () {
+      $('#Vaccine').change(function () {
+          if (!this.checked){
+            $('#v_name').fadeOut('fast');
+            $('#vacc').removeAttr('required');
+            $('#cost').removeAttr('required');
+          }
+          //  ^
+          else{
+              $('#v_name').fadeIn('fast');
+              $('#vacc').attr('required', '');
+              $('#cost').attr('required', '');
+            }
+
+      });
+      });
+
+
+  </script> -->
 
   <script src="{% static 'style/vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'style/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>

@@ -34,6 +34,11 @@
       font-size:20px;
       vertical-align: center;
     }
+    .big-radio{
+      height:20px;
+      width:20px;
+      vertical-align: center;
+    }
   </style>
 
 
@@ -168,12 +173,12 @@
         {% endif %}
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Options</h6>
-            <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Room">Waiting List</a>
+            <a class="collapse-item" href="/DHOPD/patient_waitlist_h/">Waiting List</a>
 
             {% if tag == 'Room' %}
-            <a class="collapse-item active1" href="/DHOPD/patient_add?auth=Room">Add Patient</a>
+            <a class="collapse-item active1" href="/DHOPD/patient_add_h/">Add Patient</a>
             {% else %}
-            <a class="collapse-item" href="/DHOPD/patient_add?auth=Room">Add Patient</a>
+            <a class="collapse-item" href="/DHOPD/patient_add_h/">Add Patient</a>
             {% endif %}
 
             <a class="collapse-item" href="/DHOPD/patient_search?auth=Room">Search Patient</a>
@@ -287,7 +292,7 @@
                 <h6 class="m-0 font-weight-bold text-primary text-uppercase">Add Patient</h6>
               </div>
               <!-- Card Content - Collapse -->
-              <form action="/DHOPD/patient_add/?auth={{tag}}" method="POST">
+              <form action="/DHOPD/patient_add_h/" method="POST">
                 {% csrf_token %}
 
                 <div class="card-body">
@@ -331,6 +336,30 @@
                     <label class="text-uppercase" style="font-size:15px;">Address</label>
                       <textarea name="addr" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Address" required></textarea>
                   </div>
+                  <div class="container-fluid">
+                    <div class="row">
+                      <div class="col-6">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Gender</label>
+                            <label class="big-label">  <input type="radio" class="big-radio" name="gender" value="Male" required> &nbsp; Male</label>
+                            <label class="big-label">  <input type="radio" class="big-radio" name="gender" value="Female"> &nbsp; Female</label>
+                            <label class="big-label" > <input type="radio" class="big-radio" name="gender" value="Other"> &nbsp; Other</label>
+                        </div>
+                      </div>
+                      <div class="col-2">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Age</label>
+                            <input type="number" name="age" class="form-control bg-light border-0 small" style="width:60%;" placeholder="Enter Age" required>
+                        </div>
+                      </div>
+                      <div class="col-4">
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Impression</label>
+                            <input type="text" name="imp" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Impression" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
                   <div class="container-fluid">
                     <div class="row">
@@ -351,7 +380,18 @@
                     </div>
                   </div>
 
-                  <div class="container">
+
+                        <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                          <label class="text-uppercase" style="font-size:15px;">Select Room</label>
+                          {% for i in room %}
+                            {% if i.room_bed != i.room_bed_occ %}
+                            <label class="big-label">  <input type="radio" class="big-radio" name="room" value="{{i.room_id}}" required> &nbsp; {{i.room_name}}</label><br>
+                            {% endif %}
+                          {% endfor %}
+                        </div>
+
+
+                  <!-- <div class="container">
                     <div class="row">
                     {% for i in service %}
                       <div class="col-4 mt-3">
@@ -359,16 +399,16 @@
                       </div>
                     {% endfor %}
                     </div>
-                  </div>
+                  </div> -->
 
-                  <div class="container-fluid mt-3" id="v_name" style="display:none;">
+                  <!-- <div class="container-fluid mt-3" id="v_name" style="display:none;">
                     <div class="d-flex justify-content-around mb-3">
                       <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
                         <input type="text" name="vacc" id="vacc" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Vaccine">
                       <label class="text-uppercase" style="font-size:15px;">Amount</label>
                         <input type="text" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Amount">
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="d-flex justify-content-around mb-3 mt-5">
                     <button class="btn btn-primary" type="submit" style="width:40%" name='p_view'>
@@ -475,15 +515,7 @@
 
       });
 
-      $('#p_add_btn').click(function() {
-      checked = $("input[type=checkbox]:checked").length;
 
-      if(!checked) {
-        alert("You must check at least one checkbox.");
-        return false;
-      }
-
-    });
 
       });
 

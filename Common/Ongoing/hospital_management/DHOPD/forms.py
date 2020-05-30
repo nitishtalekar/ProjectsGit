@@ -50,3 +50,17 @@ class RoomForm(forms.Form):
     r_name = forms.CharField()
     r_cost = forms.CharField()
     r_bed = forms.CharField()
+
+class AddPatientHForm(forms.Form):
+    title = forms.CharField()
+    f_name = forms.CharField()
+    m_name = forms.CharField()
+    l_name = forms.CharField()
+    addr = forms.CharField()
+    town = forms.CharField()
+    number = forms.CharField()
+    gender = forms.CharField()
+    age = forms.CharField()
+    imp = forms.CharField()
+    room = forms.CharField()
+    pid = forms.CharField(required=False)

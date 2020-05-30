@@ -72,6 +72,35 @@ def patient_info(patient):
 
     return patient_detail
 
+def patient_info_h(patient):
+    patient_detail = []
+    titles = ['Mr.', 'Ms.', 'Mrs.', 'Baby Girl', 'Baby Boy']
+    for i in patient:
+        temp = []
+        temp.append(i.patient_id)                                                           #0
+        temp.append(i.patient_fname)                                                        #1
+        temp.append(i.patient_mname)                                                        #2
+        temp.append(i.patient_lname)                                                        #3
+        temp.append(i.patient_title)                                                        #4
+        temp.append(i.patient_address)                                                      #5
+        temp.append(i.patient_town)                                                         #6
+        temp.append(i.patient_phone)                                                        #7
+        s = []
+        allsid =[]
+        cost = []
+        vacc = []
+        temp.append(", ".join(s))                                                           #8
+        temp.append("0")         #9
+        temp.append("title")                                                                  #10
+        temp.append(allsid)                                                                 #11
+        temp.append(", ".join(vacc))                                                        #12
+        temp.append(", ".join(cost))                                                        #13
+        temp.append(i.patient_date)                                                         #14
+        temp.append("Receipt.objects.get(receipt_patient=i.patient_id).receipt_id")           #15
+        patient_detail.append(temp)
+
+    return patient_detail
+
 
 def index(request):
     if request.method == "POST":
@@ -537,5 +566,52 @@ def report(request):
             rpt = SearchForm()
 
         return render(request, 'DHOPDW/report.html', d_dash)
+
+def paddh(request):
+    if 'log' in request.session:
+        log = Users.objects.get(user_id = request.session['log'])
+        room = Room.objects.all()
+        d_dash = {'log':log, 'room':room}
+        if request.method == "POST":
+            roomh = AddPatientHForm(request.POST)
+            if roomh.is_valid():
+                title = roomh.cleaned_data['title'].title()
+                f_name = roomh.cleaned_data['f_name'].title()
+                m_name = roomh.cleaned_data['m_name'].title()
+                l_name = roomh.cleaned_data['l_name'].title()
+                addr = roomh.cleaned_data['addr']
+                number = roomh.cleaned_data['number']
+                gender = roomh.cleaned_data['gender']
+                age = roomh.cleaned_data['age']
+                imp = roomh.cleaned_data['imp'].title()
+                town = roomh.cleaned_data['town'].title()
+                room = roomh.cleaned_data['room']
+                rc = Room.objects.get(room_id=room).room_bed_occ
+                Room.objects.filter(room_id=room).update(room_bed_occ=str(int(rc) + 1))
+                Patient_h.objects.create(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_age=age, patient_gender=gender, patient_address=addr, patient_town=town, patient_phone=number, patient_imp=imp, patient_status="0", patient_room=room)
+
+        else:
+            roomh = AddPatientHForm()
+        return render(request, 'DHOPDW/patient_add_h.html', d_dash)
+    else:
+        return render(request, 'DHOPDW/index.html')
+
+def pwaitlisth(request):
+    if 'log' in request.session:
+        log = Users.objects.get(user_id = request.session['log'])
+        if request.method == "POST":
+            WV = WVForm(request.POST)
+            if WV.is_valid():
+                status = WV.cleaned_data['status'].split('.')
+                Patient_h.objects.filter(patient_id=status[1]).update(patient_status=status[0])
+        else:
+            WV = WVForm()
+        patient = Patient_h.objects.filter(patient_status="0")
+        patient_curr = patient_info_h(patient)
+        patient = Patient_h.objects.filter(patient_status="1")
+        patient_w = patient_info_h(patient)
+        service = Service_h.objects.all()
+        d_dash = {'log':log, 'service':service, 'patient_c':patient_curr, 'patient_w':patient_w}
+        return render(request, 'DHOPDW/patient_waitlist_h.html',d_dash)
 
 # Create your views here.
