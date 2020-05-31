@@ -16,6 +16,15 @@ console.log(username, game, roomname);
 uname.innerHTML= `${username}`;
 roomName.innerHTML= `${roomname}`;
 
+function leaveGame(){
+  const str1 = 'chatbox.html?username=';
+  const str2 = '&room=';
+  const str3 = '&roomname=';
+  var room = game.substring(0, game.length - 4);
+  const redirect_str = str1 + username + str2 + room + str3 + roomname;
+  window.location.href = redirect_str;
+}
+
 const socket = io();
 
 // Join chatroom
@@ -31,15 +40,10 @@ socket.on('redirect', function(destination) {
     window.location.href = destination;
 });
 
-// socket.on('enable',fuction(){
-//   enableButtons();
-// })
-
 // Message from server
 socket.on('message', message => {
   console.log(message);
   outputMessage(message);
-
   // Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
@@ -51,7 +55,13 @@ socket.on('messageScore', messageS => {
   {
       outputMessage(messageS[i]);
   }
+  // Scroll down
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
 
+socket.on('FinalScoremessage', fmessage => {
+  console.log(fmessage);
+  outputMessageScore(fmessage);
 
   // Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -64,14 +74,10 @@ socket.on('eButton', e => {
 // Message submit
 rock.addEventListener('submit', e => {
   e.preventDefault();
-
   console.log("rock");
   disableButtons();
-
   // Get message text
   const msg = "rock";
-
-  // socket.emit('gameMessage', msg);
   socket.emit('gameChoice', msg);
 });
 
@@ -81,8 +87,6 @@ paper.addEventListener('submit', e => {
   disableButtons();
   // Get message text
   const msg = "paper";
-
-  // socket.emit('gameMessage', msg);
   socket.emit('gameChoice', msg);
 });
 
@@ -92,8 +96,6 @@ scissor.addEventListener('submit', e => {
   disableButtons();
   // Get message text
   const msg = "scissor";
-    // Emit message to server
-  // socket.emit('gameMessage', msg);
   socket.emit('gameChoice', msg);
 });
 
@@ -104,19 +106,28 @@ function outputMessage(message) {
   div.classList.add('msg');
 
   if( message.username === username ){
-    textbreak = message.text.replace(/\n/g, '<br>\n');
+    
+    if(message.text == 'rock'){
+      textbreak = "<i class='fa fa-hand-rock-o' aria-hidden='true'></i> &nbsp; &nbsp; " + message.text;
+    }
+    if(message.text == 'paper'){
+      textbreak = "<i class='fa fa-hand-paper-o' aria-hidden='true'></i> &nbsp; &nbsp; " + message.text;
+    }
+    if(message.text == 'scissor'){
+      textbreak = "<i class='fa fa-hand-scissors-o' aria-hidden='true'></i> &nbsp; &nbsp; " + message.text;
+    }
+    // textbreak = message.text.replace(/\n/g, '<br>\n');
     div.innerHTML = `<div class="message-data align-right fade-in-message">
         <span class="message-data-name" >${message.time}</span> &nbsp; &nbsp;
         <span class="message-data-time" >Me</span> <i class="fa fa-circle me"></i>
       </div>
       <div class="d-flex justify-content-end fade-in-message">
-        <div class="message other-message text-right font-weight-bold">
+        <div class="message other-message text-right font-weight-bold text-uppercase">
           ${textbreak}
         </div>
       </div>`;
   }
   else if(message.username === 'Welcome'){
-    enableButtons();
     div.innerHTML = `<div class="d-flex justify-content-center fade-in-message">
       <div class="text-head text-capitalize">
         <i class="fa fa-handshake-o me" aria-hidden="true"></i> ${message.time} &nbsp;&nbsp; ${message.text}
@@ -138,17 +149,54 @@ function outputMessage(message) {
     </div>`;
   }
   else{
-    textbreak = message.text.replace(/\n/g, '<br>\n');
+    if(message.text == 'rock'){
+      textbreak = "<i class='fa fa-hand-rock-o' aria-hidden='true'></i> &nbsp; &nbsp; " + message.text;
+    }
+    if(message.text == 'paper'){
+      textbreak = "<i class='fa fa-hand-paper-o' aria-hidden='true'></i> &nbsp; &nbsp; " + message.text;
+    }
+    if(message.text == 'scissor'){
+      textbreak = "<i class='fa fa-hand-scissors-o' aria-hidden='true'></i> &nbsp; &nbsp; " + message.text;
+    }
+    // textbreak = message.text.replace(/\n/g, '<br>\n');
     div.innerHTML = `<div class="message-data align-left fade-in-message">
       <span class="message-data-time text-capitalize" ><i class="fa fa-circle-thin me" aria-hidden="true"></i> ${message.username}</span> &nbsp; &nbsp;
       <span class="message-data-name" >${message.time}</span>
     </div>
     <div class="d-flex justify-content-start fade-in-message">
-      <div class="message my-message text-left">
+      <div class="message my-message text-left text-uppercase">
         ${textbreak}
       </div>
     </div>`;
   }
+
+  document.querySelector('.chat-messages').appendChild(div);
+}
+
+function outputMessageScore(message) {
+  enableButtons();
+  const div = document.createElement('div');
+  div.classList.add('msg');
+  
+  var i;
+  var scores = "";
+  for (i=0;i<message.text.length;i++){
+    var x = i+1;
+    scores = scores + x + ". " + message.text[i].username + ": " + message.text[i].score + "</br>";
+  }
+  
+  div.innerHTML = `<div class="message-data align-left fade-in-message">
+  <center>
+    <span class="message-data-time text-uppercase" > ${message.username}</span> &nbsp; &nbsp;
+    <span class="message-data-name" >${message.time}</span>
+  </center>
+  </div>
+  <div class="d-flex justify-content-start fade-in-message">
+    <div class="Smessage score-message text-left text-uppercase font-weight-bold" style="font-size:12px">
+      <center>${scores}</center>
+    </div>
+  </div>`;
+  
 
   document.querySelector('.chat-messages').appendChild(div);
 }
@@ -163,7 +211,7 @@ function outputUsers(users) {
   const div = document.getElementById('users');
   // div.classList.add('row');
   div.innerHTML = `
-    ${users.map(user => `<div class="col-3 mb-2 text-capitalize">
+    ${users.map(user => `<div class="col-3 mb-2 text-capitalize" style="font-size:12px;">
       <i class="fa fa-circle online"> </i>&nbsp;&nbsp; ${user.username}
     </div>`).join('')}
   `;

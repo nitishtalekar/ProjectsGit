@@ -5,8 +5,6 @@ const socketio = require('socket.io');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const mysql = require('mysql');
-// const formatMessage = require('./utils/messages');
-// const formatMessageArr = require('./utils/messages');
 const {
   formatMessage,
   formatMessageArr
@@ -27,7 +25,8 @@ const {
   startGame,
   addChoice,
   getChoiceList,
-  clearChoices
+  clearChoices,
+  nextRound
 } = require('./utils/gaming');
 
 
@@ -43,49 +42,52 @@ con.connect(function(err) {
   console.log("Connected!");
 });
 
-function cscore(score, choice, list){
-  console.log(score);
+function calcScore(choice,chList){
   var i;
-  if(choice == "rock"){
-    for(i=0;i<list.length;i++){
-      var s = list[i].split("||");
-      var usr = getCurrentUserGame(s[0]);
-      var scr = usr.score;
-      if(s[1] == "paper"){
-        scr = scr + 1;
-        usr.score = scr;
-      }
-
-    }
+  var score = 0;
+  const choices = [];
+  for(i=0;i<chList.length;i++){
+    var ch = chList[i].split("||");
+    choices.push(ch[1]);
   }
 
-  if(choice == "paper"){
-    for(i=0;i<list.length;i++){
-      var s = list[i].split("||");
-      var usr = getCurrentUserGame(s[0]);
-      var scr = usr.score;
-      if(s[1] == "scissor"){
-        scr = scr + 1;
-        usr.score = scr;
+  if(choice == 'rock'){
+    for(i=0;i<choices.length;i++){
+      if (choices[i] == 'scissor'){
+        score++;
       }
-
-    }
+    }  
   }
 
-  if(choice == "scissor"){
-    for(i=0;i<list.length;i++){
-      var s = list[i].split("||");
-      var usr = getCurrentUserGame(s[0]);
-      var scr = usr.score;
-      if(s[1] == "rock"){
-        scr = scr + 1;
-        usr.score = scr;
+  if(choice == 'paper'){
+    for(i=0;i<choices.length;i++){
+      if (choices[i] == 'rock'){
+        score++;
       }
-
-    }
+    }  
   }
+
+  if(choice == 'scissor'){
+    for(i=0;i<choices.length;i++){
+      if (choices[i] == 'paper'){
+        score++;
+      }
+    }  
+  }
+
+  return score;
 
 }
+
+function compare( a, b ) {
+    if ( a.score < b.score ){
+      return 1;
+    }
+    if ( a.score > b.score ){
+      return -1;
+    }
+    return 0;
+  }
 
 const app = express();
 
@@ -167,7 +169,7 @@ io.on('connection', socket => {
         .to(user.game)
         .emit(
           'message',
-          formatMessage('Joined', `${user.username} has joined the chat`)
+          formatMessage('Joined', `${user.username} has joined the game`)
         );
 
       // Send users and room info
@@ -182,90 +184,22 @@ io.on('connection', socket => {
 
 
 
-
-  // OLD
-
-  // socket.on('joinGameRoom', ({ username, gameroom }) => {
-  //   console.log(socket.id, username, gameroom);
-  //
-  //   const user = getCurrentUser(socket.id);
-  //
-  //   console.log("YAHA SE NAYA SCENE CHALU -------");
-  //   console.log(user);
-  //   // const user = userJoinGame(socket.id, game);
-  //
-  //   if (user === 0){
-  //     const destination = '/index.html?error=duplicate';
-  //     socket.emit('redirect', destination);
-  //   }
-  //   else{
-  //
-  //     // const players = io.sockets.clients(user.game);
-  //     // console.log(players);
-  //
-  //     // if(players > 0){
-  //     //   const destination = '/index.html?error=duplicate';
-  //     //   socket.emit('redirect', destination);
-  //     // }
-  //     // else{
-  //       const user = userJoinGame(socket.id, gameroom);
-  //
-  //       socket.join(user.game);
-  //
-  //       // Welcome current user
-  //       socket.emit('message', formatMessage('Welcome', 'Welcome to the Chatroom!'));
-  //
-  //       // Broadcast when a user connects
-  //       socket.broadcast
-  //         .to(user.game)
-  //         .emit(
-  //           'message',
-  //           formatMessage('Joined', `${user.username} has joined the chat`)
-  //         );
-  //
-  //       // Send users and room info
-  //       io.to(user.room).emit('roomUsers', {
-  //         room: user.game,
-  //         users: getRoomUsers(user.game)
-  //       });
-  //     // }
-  //
-  //
-  //   }
-  //
-  //
-  // });
-
-
-
   socket.on('start', ({username, room, roomname}) => {
-
-    // console.log(username, room ,roomname);
     const user = getCurrentUser(socket.id);
     const str1 = 'game.html?username=';
     const str2 = '&game=';
     const str3 = 'game&roomname=';
     const redirect_str = str1 + username + str2 + room + str3 + roomname;
-    // console.log(redirect_str);
-    // console.log("started");
 
     const gameroom = room+"game";
     const playroom = getRoomUsersGame(gameroom);
     const players = playroom.length;
 
-    console.log("No of players");
-    console.log(players);
-
     if(players>0){
-      socket.emit('message', formatMessage('Welcome', 'Sorry A Game is already Going on!'));
+      socket.emit('message', formatMessage('Sorry', 'Sorry A Game is already Going on!'));
     }
     else{
-
       const gaming = startGame(gameroom);
-      // console.log("HERE");
-      //
-      console.log(gaming);
-      // console.log(games_online);
 
       socket.broadcast
         .to(user.room)
@@ -285,82 +219,75 @@ io.on('connection', socket => {
     io.to(user.room).emit('message', formatMessage(user.username, msg));
   });
 
-  socket.on('gameMessage', msg => {
-
-    const user = getCurrentUserGame(socket.id);
-
-    io.to(user.game).emit('message', formatMessage(user.username, msg));
-
-  });
-
   socket.on('gameChoice', msg => {
     const user = getCurrentUserGame(socket.id);
     const gameRoom = getRoomUsersGame(user.game);
     const players = gameRoom.length;
 
-    console.log("GAMING", msg, user, socket.id);
-
-    const chList = getChoiceList(user.game);
-    console.log(chList);
     const userChoice = socket.id + "||" + msg;
-    console.log(userChoice);
-    // console.log(games_online);
-
-    // const gaming = games_online.find(gaming => gaming.gameroom === user.game);
-    // const num_choice = gaming.choices.length;
 
     addChoice(user.game , userChoice);
-    console.log("ADDED");
 
-    if(chList.length === players){
-      console.log("DISPLAY");
+    const chList = getChoiceList(user.game);
+    
+    console.log(chList);
+
+    if(chList.length == players){
+      r = nextRound(user.game);
+      clearChoices(user.game);
       var i;
       const dispChoice = [];
-      var dispScore = "";
+      var rank = [];
       for(i=0;i<chList.length;i++)
       {
         var s = chList[i].split("||");
         var usr = getCurrentUserGame(s[0]);
-        dispScore = dispScore + usr.username + ": ";
-        console.log(usr.score);
-        cscore(usr.score, s[1], chList);
+        var addScore = calcScore(s[1] , chList);
+        usr.score = usr.score + addScore;
         var x = formatMessage(usr.username, s[1]);
-        console.log("yoyoy"+usr.score);
-        dispScore = dispScore + usr.score + " ";
+        username = usr.username;
+        score = usr.score;
+        rank.push({username,score});
         dispChoice.push(x);
       }
-      io.to(user.game).emit('message', formatMessageArr('Welcome', dispScore));
+      
+      rank.sort( compare );
+        
       io.to(user.game).emit('messageScore', dispChoice);
-      // io.to(user.game).emit('enable');
-      clearChoices(user.game);
-
-
+      var round = "Round: " + r;
+      io.to(user.game).emit('FinalScoremessage', formatMessage(round, rank));
+      
     }
-    // else{
-    //   console.log("Else");
-    //
-    // }
-
-
-    // console.log("moshi moshi");
-
-    // io.to(user.room).emit('message', formatMessage(user.username, msg));
   });
 
   // Runs when client disconnects
   socket.on('disconnect', () => {
-    const user = userLeave(socket.id);
+    const userRoom = userLeave(socket.id);
+    const userGame = userLeaveGame(socket.id);
 
-    if (user) {
-      io.to(user.room).emit(
+    if (userRoom) {
+      io.to(userRoom.room).emit(
         'message',
-        formatMessage('Left', `${user.username} has left the chat`)
+        formatMessage('Left', `${userRoom.username} has left the chat`)
       );
 
       // Send users and room info
-      io.to(user.room).emit('roomUsers', {
-        room: user.room,
-        users: getRoomUsers(user.room)
+      io.to(userRoom.room).emit('roomUsers', {
+        room: userRoom.room,
+        users: getRoomUsers(userRoom.room)
+      });
+    }
+    
+    if (userGame) {
+      io.to(userGame.game).emit(
+        'message',
+        formatMessage('Left', `${userGame.username} has left the game`)
+      );
+
+      // Send users and room info
+      io.to(userGame.game).emit('gameUsers', {
+        room: userGame.game,
+        users: getRoomUsersGame(userGame.game)
       });
     }
   });

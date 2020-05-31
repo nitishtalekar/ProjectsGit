@@ -2,7 +2,8 @@
 
   function startGame( gameroom ){
     const choices = [];
-    const gaming = { gameroom , choices };
+    const round = 0;
+    const gaming = { gameroom , choices, round };
     games_online.push(gaming);
     return gaming;
   }
@@ -11,6 +12,13 @@
     const gaming = games_online.find(gaming => gaming.gameroom === gameroom);
     const choiceList = gaming.choices;
     choiceList.push(thischoice);
+  }
+  
+  function nextRound(gameroom){
+    const gaming = games_online.find(gaming => gaming.gameroom === gameroom);
+    gaming.round = gaming.round + 1;
+    // choiceList.push(thischoice);
+    return gaming.round;
   }
 
   function getChoiceList(gameroom){
@@ -29,5 +37,6 @@
     startGame,
     addChoice,
     getChoiceList,
-    clearChoices
+    clearChoices,
+    nextRound
   };

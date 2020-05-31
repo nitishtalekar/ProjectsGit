@@ -41,10 +41,11 @@
 
               <div class="col-lg-12 col-12">
                 <!-- Collapsable Card Example -->
-                <div class="card mb-4 mt-3 fade-in">
+                <div class="card mb-4 mt-2 fade-in">
                   <!-- Card Header - Accordion -->
                   <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
                     <h6 class="m-0 font-weight-bold text-head text-uppercase" id="room-name">Room</h6>
+                    <h6 class="m-0 font-weight-bold text-head text-uppercase mt-1">Rock - Paper - Scissors</h6>
                   </a>
                   <!-- Card Content - Collapse -->
                   <div class="collapse tran2" id="collapseCardExample" data-parent="#showgroup">
@@ -55,9 +56,7 @@
 
                         </div>
                       </div>
-                      <!-- <form class="d-flex flex-column mt-3" action="index.html" method="post"> -->
-                          <a href="index.html" class="btn text-uppercase">Leave Game</a>
-                      <!-- </form> -->
+                          <button style="font-size:12px;" class="btn text-uppercase" onclick="leaveGame();">Leave Game</button>
                     </div>
                   </div>
                 </div>
@@ -66,12 +65,12 @@
                 <!-- Collapsable Card Example -->
                 <div class="card fade-in border-green">
                   <!-- Card Header - Accordion -->
-                  <div class="border-green-bottom py-3" >
+                  <div class="border-green-bottom pt-2" >
                     <div class="d-flex justify-content-start">
                       &nbsp;&nbsp;
                       <i class="fa fa-circle me"></i>
                       &nbsp;&nbsp;
-                      <h6 class="m-0 font-weight-bold text-head text-uppercase" style="text-align:left" id="uname">Username</h6> : ROCK-PAPER-SCISSORS
+                      <h6 class="m-0 font-weight-bold text-head text-uppercase" style="text-align:left" id="uname">Username</h6>
                     </div>
                   </div>
                   <!-- Card Content - Collapse -->
@@ -83,19 +82,28 @@
 
                       <div class="container">
                         <div class="row">
-                          <div class="col-3 mx-auto">
+                          <div class="col-12 mx-auto">
                             <form id="rock-form">
-                            <button class="btn-send" id="btn-rock"><i class="fa fa-paper-plane text-white" aria-hidden="true"></i>&nbsp;&nbsp;Rock</button>
+                            <button class="btn-send" style="font-size:12px;" id="btn-rock">
+                              <i class="fa fa-hand-rock-o text-white" aria-hidden="true"></i>
+                              &nbsp;&nbsp;Rock
+                            </button>
                             </form>
                           </div>
-                          <div class="col-3 mx-auto">
+                          <div class="col-12 mx-auto">
                             <form id="paper-form">
-                            <button class="btn-send" id="btn-paper"><i class="fa fa-paper-plane text-white" aria-hidden="true"></i>&nbsp;&nbsp;Paper</button>
+                            <button class="btn-send" style="font-size:12px;" id="btn-paper">
+                              <i class="fa fa-hand-paper-o text-white" aria-hidden="true"></i>
+                              &nbsp;&nbsp;Paper
+                            </button>
                             </form>
                           </div>
-                          <div class="col-3 mx-auto">
+                          <div class="col-12 mx-auto">
                             <form id="scissor-form">
-                            <button class="btn-send" id="btn-scissor"><i class="fa fa-paper-plane text-white" aria-hidden="true"></i>&nbsp;&nbsp;Scissors</button>
+                            <button class="btn-send" style="font-size:12px;" id="btn-scissor">
+                              <i class="fa fa-hand-scissors-o text-white" aria-hidden="true"></i>
+                              &nbsp;&nbsp;Scissors
+                            </button>
                             </form>
                           </div>
                         </div>

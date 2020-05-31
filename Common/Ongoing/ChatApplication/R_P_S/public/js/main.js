@@ -111,6 +111,13 @@ function outputMessage(message) {
       </div>
     </div>`;
   }
+  else if(message.username === 'Sorry'){
+    div.innerHTML = `<div class="d-flex justify-content-center fade-in-message">
+      <div class="text-head text-capitalize">
+        <i class="fa fa-puzzle-piece me" aria-hidden="true"></i> ${message.time} &nbsp;&nbsp; ${message.text}
+      </div>
+    </div>`;
+  }
   else{
     textbreak = message.text.replace(/\n/g, '<br>\n');
     div.innerHTML = `<div class="message-data align-left fade-in-message">
@@ -135,12 +142,10 @@ function outputRoomName(room) {
 // Add users to DOM
 function outputUsers(users) {
   const div = document.getElementById('users');
-  // div.classList.add('row');
   div.innerHTML = `
-    ${users.map(user => `<div class="col-3 mb-2 text-capitalize">
+    ${users.map(user => `<div class="col-3 mb-2 text-capitalize" style="font-size:12px;">
       <i class="fa fa-circle online"> </i>&nbsp;&nbsp; ${user.username}
     </div>`).join('')}
   `;
 
-  // document.getElementById('users').appendChild(div);
 }

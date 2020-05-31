@@ -10,11 +10,12 @@
   align-items: center;
 }
 .chat-card{
-  height:425px;
+  height:65vh;
   overflow-y: scroll;
 }
 .text-head{
   color: #2d9135;
+  font-size: 12px;
 }
 .bgg{
   background-color: #2d9135;
@@ -123,6 +124,7 @@
 
 .msg-area{
   width:90%;
+  font-size: 12px;
   background-color: #212121;
   color:#2d9135;
   border: none;

@@ -33,12 +33,6 @@ function userLeaveGame(id) {
 function getRoomUsersGame(game) {
   return game_users.filter(user => user.game === game);
 }
-// 
-// function addScore(id , thisscore){
-//   const gaming = games_user.find(gaming => user.id === id);
-//   const choiceList = gaming.choices;
-//   choiceList.push(thischoice);
-// }
 
 module.exports = {
   userJoinGame,
