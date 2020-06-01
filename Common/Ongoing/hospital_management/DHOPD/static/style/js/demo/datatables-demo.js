@@ -54,5 +54,34 @@ $(document).ready(function() {
   ],
   fixedColumns: true
   });
+  
+  $('#dataTable_h').DataTable({
+    ordering:  false,
+    "columns": [
+      null,
+      { "width": "20%" },
+      { "width": "10%" },
+      { "width": "10%" },
+      { "width": "15%" },
+      null,
+      { "width": "12%" },
+      { "width": "10%" },
+      { "width": "10%" }
+  ]
+  });
+  
+  $('#dataTable2_h').DataTable({
+    ordering:  false,
+    "columns": [
+      null,
+      { "width": "25%" },
+      { "width": "10%" },
+      { "width": "10%" },
+      { "width": "20%" },
+      null,
+      { "width": "12%" },
+      { "width": "10%" }
+  ]
+  });
 
 });

@@ -68,6 +68,7 @@ def patient_info(patient):
         temp.append(", ".join(cost))                                                        #13
         temp.append(i.patient_date)                                                         #14
         temp.append(Receipt.objects.get(receipt_patient=i.patient_id).receipt_id)           #15
+        temp.append(zip(s, i.patient_cost.split(';')))                                                                      #16        
         patient_detail.append(temp)
 
     return patient_detail
@@ -97,6 +98,8 @@ def patient_info_h(patient):
         temp.append(", ".join(cost))                                                        #13
         temp.append(i.patient_date)                                                         #14
         temp.append("Receipt.objects.get(receipt_patient=i.patient_id).receipt_id")           #15
+        temp.append(i.patient_address[:10])                                                   #16
+        temp.append(i.patient_room)                                                            #17
         patient_detail.append(temp)
 
     return patient_detail
