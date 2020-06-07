@@ -128,32 +128,21 @@ def evaluate(tokens):
 
 
 class Interface(Widget):
-    # name = ObjectProperty(None)
-    # lname = ObjectProperty(None)
-    # email = ObjectProperty(None)
-    # inputs = ObjectProperty(None)
     num = ObjectProperty(None)
     display = ObjectProperty(None)
 
     def submit(self, text):
-        # print("Name: ", self.name.text)
-        # print("Last Name: ", self.lname.text)
-        # print("Email: ", self.email.text)
-        # self.inputs.text = "Your IP: " + self.name.text + " - " + self.lname.text + " - " + self.email.text
-        # self.name.text = ""
-        # self.lname.text = ""
-        # self.email.text = ""
-        # print(text)
-        # print("\n hi",self.display.text)
+        
         if self.display.text == "0":
             self.display.text = ""
+            
         if text == "=":
-            # print(self.display.text)
-            # print(evaluate(self.display.text))
-            self.display.text = str(evaluate(self.display.text))
+            if self.display.text != "":
+                self.display.text = str(evaluate(self.display.text))
             text = ""
+            
         self.display.text = self.display.text + text
-        # print("\n yo", self.display.text)
+
         if text == "CLEAR":
             self.display.text = ""
 
