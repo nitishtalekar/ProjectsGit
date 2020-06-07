@@ -17,7 +17,7 @@ def precedence(op):
 
     if op == '+' or op == '-':
         return 1
-    if op == '*' or op == '/' or op == '%':
+    if op == 'x' or op == '/' or op == '%':
         return 2
     return 0
 
@@ -27,7 +27,7 @@ def applyOp(a, b, op):
 
     if op == '+': return a + b
     if op == '-': return a - b
-    if op == '*': return a * b
+    if op == 'x': return a * b
     if op == '/': return a / b
     if op == '%': return a % b
 
@@ -96,8 +96,7 @@ def evaluate(tokens):
             # token, which is an operator.
             # Apply operator on top of 'ops'
             # to top two elements in values stack.
-            while (len(ops) != 0 and
-                precedence(ops[-1]) >= precedence(tokens[i])):
+            while (len(ops) != 0 and precedence(ops[-1]) >= precedence(tokens[i])):
 
                 val2 = values.pop()
                 val1 = values.pop()
@@ -113,7 +112,7 @@ def evaluate(tokens):
     # Entire expression has been parsed
     # at this point, apply remaining ops
     # to remaining values.
-    print(values,ops)
+        print(values,ops)
     while len(ops) != 0:
 
         val2 = values.pop()
@@ -136,22 +135,43 @@ class Interface(Widget):
     display = ObjectProperty(None)
 
     def submit(self, text):
+            
+        if text == "BACK":
+            if self.display.text == "ERROR":
+                self.display.text = "0"
+            else:
+                if self.display.text[-1] != " ":
+                    self.display.text = self.display.text[:-1]
+                else: 
+                    self.display.text = self.display.text[:-3]
+        else:
+            
+            if self.display.text == "0":
+                self.display.text = ""
 
-        if self.display.text == "0":
-            self.display.text = ""
+            if text == "=":
+                if self.display.text == "":
+                    self.display.text = "0"
+                if self.display.text != "":
+                    try: 
+                        ans = evaluate(self.display.text)
+                        if ans.is_integer():
+                            ans = int(ans)
+                        self.display.text = str(ans)
+                    except:
+                        self.display.text = "ERROR"
+                text = ""
+            
+            
+            if self.display.text != "ERROR":
+                self.display.text = self.display.text + text
+            
+            if text == "CLEAR":
+                self.display.text = "0"
 
-        if text == "=":
-            if self.display.text != "":
-                ans = evaluate(self.display.text)
-                if ans.is_integer():
-                    ans = int(ans)
-                self.display.text = str(ans)
-            text = ""
-
-        self.display.text = self.display.text + text
-
-        if text == "CLEAR":
-            self.display.text = "0"
+        
+        
+        
 
 
 class CalculatorApp(MDApp):

@@ -177,7 +177,7 @@
                             text_color: get_color_from_hex("#FFFFFF")
                             md_bg_color: get_color_from_hex("#0d6b6b")
                             pos_hint: {'center_x': .5}
-                            on_press: root.submit(" * ")
+                            on_press: root.submit(" x ")
                         MDRectangleFlatButton:
                             size_hint: 0.8, 1
                             text: "."
@@ -223,20 +223,9 @@
                             pos_hint: {'center_x': .5}
                             on_press: root.submit(" / ")
                     GridLayout:
-                        cols: 2
+                        cols: 1
                         size_hint: 1, 0.25
-                        MDRectangleFlatButton:
-                            text: "CLEAR"
-                            # bold: 1
-                            font_size: 20
-                            elevation_normal: 2
-                            opposite_colors: True
-                            size_hint: 1, 0.25
-                            text_color: get_color_from_hex("#FFFFFF")
-                            md_bg_color: get_color_from_hex("#0d6b6b")
-                            pos_hint: {'center_x': .5}
-                            on_press: root.submit("CLEAR")
-
+                            
                         MDRectangleFlatButton:
                             text: "="
                             bold: 1
@@ -248,3 +237,31 @@
                             md_bg_color: get_color_from_hex("#009696")
                             pos_hint: {'center_x': .5}
                             on_press: root.submit("=")
+                            
+                    GridLayout:
+                        cols: 2
+                        size_hint: 1, 0.25
+                        
+                        MDRectangleFlatButton:
+                            text: "CLEAR"
+                            # bold: 1
+                            font_size: 20
+                            elevation_normal: 2
+                            opposite_colors: True
+                            size_hint: 1, 0.25
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#0d6b6b")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("CLEAR")
+                        
+                        MDRectangleFlatButton:
+                            text: "BACK"
+                            # bold: 1
+                            font_size: 20
+                            elevation_normal: 2
+                            opposite_colors: True
+                            size_hint: 1, 0.25
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#0d6b6b")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("BACK")
