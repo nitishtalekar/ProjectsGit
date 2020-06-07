@@ -28,7 +28,7 @@ def applyOp(a, b, op):
     if op == '+': return a + b
     if op == '-': return a - b
     if op == '*': return a * b
-    if op == '/': return a // b
+    if op == '/': return a / b
     if op == '%': return a % b
 
 # Function that returns value of
@@ -57,17 +57,20 @@ def evaluate(tokens):
 
         # Current token is a number, push
         # it to stack for numbers.
-        elif tokens[i].isdigit():
+        elif tokens[i].isdigit() or tokens[i] == ".":
             val = 0
 
             # There may be more than one
             # digits in the number.
-            while (i < len(tokens) and
-                tokens[i].isdigit()):
+            val_str = ""
+            while (i < len(tokens) and (tokens[i].isdigit() or tokens[i] == ".")):
+                val_str = val_str + tokens[i]
 
-                val = (val * 10) + int(tokens[i])
+                # val = (val * 10) + int(tokens[i])
                 i += 1
 
+            val = float(val_str)
+            print(val)
             values.append(val)
 
         # Closing brace encountered,
@@ -110,6 +113,7 @@ def evaluate(tokens):
     # Entire expression has been parsed
     # at this point, apply remaining ops
     # to remaining values.
+    print(values,ops)
     while len(ops) != 0:
 
         val2 = values.pop()
@@ -132,19 +136,22 @@ class Interface(Widget):
     display = ObjectProperty(None)
 
     def submit(self, text):
-        
+
         if self.display.text == "0":
             self.display.text = ""
-            
+
         if text == "=":
             if self.display.text != "":
-                self.display.text = str(evaluate(self.display.text))
+                ans = evaluate(self.display.text)
+                if ans.is_integer():
+                    ans = int(ans)
+                self.display.text = str(ans)
             text = ""
-            
+
         self.display.text = self.display.text + text
 
         if text == "CLEAR":
-            self.display.text = ""
+            self.display.text = "0"
 
 
 class CalculatorApp(MDApp):
