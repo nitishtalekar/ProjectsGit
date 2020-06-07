@@ -1,7 +1,7 @@
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 #:import images_path kivymd.images_path
 #:import colors kivymd.color_definitions.colors
-
+                
 <MyMDLabel@MDLabel>
     size_hint_y: None
     height: self.texture_size[1]
@@ -10,9 +10,15 @@
 <MyBoxLayout@MDBoxLayout>
     adaptive_height: True
     
-<Interface>:
-
+Manager:
+    HomeScreen:
+    AnsScreen:
+    CalcScreen:
+    
+<HomeScreen>:
+    name: "home"
     Screen:
+        id: "One"
         size: root.width,root.height
         BoxLayout:
             orientation: 'vertical'
@@ -59,7 +65,7 @@
                                     color: get_color_from_hex("#ff00ff")
                         AnchorLayout:
                             anchor_x: "left"
-                            padding: [30,0,0,0]
+                            padding: [20,0,0,0]
                             MDBoxLayout:
                                 size_hint: None, None
                                 adaptive_size: True
@@ -96,4 +102,127 @@
                         text_color: get_color_from_hex("#FFFFFF")
                         md_bg_color: get_color_from_hex("#ff00ff")
                         pos_hint: {'center_x': .5}
-                        # on_press: root.submit("1")
+                        on_release: 
+                            app.root.current = "ans"
+                            root.manager.transition.direction = "left"
+<AnsScreen>:
+    name: "ans"
+    Screen:
+        id: "Two"
+        size: root.width,root.height
+        BoxLayout:
+            orientation: 'vertical'
+    
+            MDToolbar:
+                title: "Score"
+                elevation: 10
+                md_bg_color: get_color_from_hex("#ff00ff")
+                background_palette: 'Teal'
+    
+            Screen:
+                size: root.width,root.height
+                
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .6}
+                    MyMDLabel:
+                        id: display
+                        font_style: 'H1'
+                        theme_text_color: 'Primary'
+                        text: "99%"
+                        halign: 'center'
+                        text_size: None, self.height
+                        # size_hint: None, 1
+                        padding: (10,10)
+                
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .4}
+                    MDRectangleFlatButton:
+                        size_hint: 0.8, None
+                        text: "Back"
+                        bold: 1
+                        # font_size: 40
+                        elevation_normal: 2
+                        opposite_colors: True
+                        text_color: get_color_from_hex("#FFFFFF")
+                        md_bg_color: get_color_from_hex("#ff00ff")
+                        pos_hint: {'center_x': .5}
+                        on_release: 
+                            app.root.current = "home"
+                            root.manager.transition.direction = "right"
+                            
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .3}
+                    MDRectangleFlatButton:
+                        size_hint: 0.8, None
+                        text: "See Calculation"
+                        bold: 1
+                        # font_size: 40
+                        elevation_normal: 2
+                        opposite_colors: True
+                        text_color: get_color_from_hex("#FFFFFF")
+                        md_bg_color: get_color_from_hex("#ff00ff")
+                        pos_hint: {'center_x': .5}
+                        on_release: 
+                            app.root.current = "calc"
+                            root.manager.transition.direction = "left"
+                            
+<CalcScreen>:
+    name: "calc"
+    Screen:
+        id: "Two"
+        size: root.width,root.height
+        BoxLayout:
+            orientation: 'vertical'
+    
+            MDToolbar:
+                title: "Score"
+                elevation: 10
+                md_bg_color: get_color_from_hex("#ff00ff")
+                background_palette: 'Teal'
+    
+            Screen:
+                size: root.width,root.height
+                
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .6}
+                    MyMDLabel:
+                        id: display
+                        font_style: 'H1'
+                        theme_text_color: 'Primary'
+                        text: "99%"
+                        halign: 'center'
+                        text_size: None, self.height
+                        # size_hint: None, 1
+                        padding: (10,10)
+                
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .4}
+                    MDRectangleFlatButton:
+                        size_hint: 0.8, None
+                        text: "Home"
+                        bold: 1
+                        # font_size: 40
+                        elevation_normal: 2
+                        opposite_colors: True
+                        text_color: get_color_from_hex("#FFFFFF")
+                        md_bg_color: get_color_from_hex("#ff00ff")
+                        pos_hint: {'center_x': .5}
+                        on_release: 
+                            app.root.current = "home"
+                            root.manager.transition.direction = "right"
+                            
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .3}
+                    MDRectangleFlatButton:
+                        size_hint: 0.8, None
+                        text: "Go Back"
+                        bold: 1
+                        # font_size: 40
+                        elevation_normal: 2
+                        opposite_colors: True
+                        text_color: get_color_from_hex("#FFFFFF")
+                        md_bg_color: get_color_from_hex("#ff00ff")
+                        pos_hint: {'center_x': .5}
+                        on_release: 
+                            app.root.current = "ans"
+                            root.manager.transition.direction = "right"
