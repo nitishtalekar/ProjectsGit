@@ -1,7 +1,7 @@
 #:import get_color_from_hex kivy.utils.get_color_from_hex
 #:import images_path kivymd.images_path
 #:import colors kivymd.color_definitions.colors
-                
+
 <MyMDLabel@MDLabel>
     size_hint_y: None
     height: self.texture_size[1]
@@ -9,42 +9,47 @@
 
 <MyBoxLayout@MDBoxLayout>
     adaptive_height: True
-    
+
 Manager:
     HomeScreen:
     AnsScreen:
     CalcScreen:
-    
+
 <HomeScreen>:
+    name1: name1
+    name2: name2
+    choice: choice
     name: "home"
     Screen:
         id: "One"
         size: root.width,root.height
         BoxLayout:
             orientation: 'vertical'
-    
+
             MDToolbar:
                 title: "L - Calculator"
                 elevation: 10
                 md_bg_color: get_color_from_hex("#ff00ff")
                 background_palette: 'Teal'
-    
+
             Screen:
                 size: root.width,root.height
-                
+
                 AnchorLayout:
                     pos_hint: {'center_x':.5, 'center_y': .8}
                     MDTextField:
                         size_hint: .7 , None
+                        id: name1
                         hint_text: "Name"
                         helper_text: "Type in name of the Person"
                         helper_text_mode: "on_focus"
                         color_mode: 'custom'
                         line_color_focus: 1, 0, 1, 1
-                        
+
                 AnchorLayout:
                     pos_hint: {'center_x':.5, 'center_y': .6}
                     BoxLayout:
+                        id: choice
                         orientation: 'horizontal'
                         size_hint: 1, None
                         AnchorLayout:
@@ -55,6 +60,7 @@ Manager:
                                 adaptive_size: True
                                 spacing: "30dp"
                                 MDCheckbox:
+                                    id: choice
                                     group: "choice"
                                     size_hint: None, None
                                     size: "48dp", '48dp'
@@ -75,21 +81,22 @@ Manager:
                                     size_hint: None, None
                                     size: "48dp", '48dp'
                                     selected_color: 1, 0, 1, 1
-    
+
                                 Label:
                                     text: "Friendship"
                                     color: get_color_from_hex("#ff00ff")
-                    
+
                 AnchorLayout:
                     pos_hint: {'center_x':.5, 'center_y': .4}
                     MDTextField:
+                        id: name2
                         size_hint: .7 , None
                         hint_text: "Name"
                         helper_text: "Type in name of the Person"
                         helper_text_mode: "on_focus"
                         color_mode: 'custom'
                         line_color_focus: 1, 0, 1, 1
-                        
+
                 AnchorLayout:
                     pos_hint: {'center_x':.5, 'center_y': .2}
                     MDRectangleFlatButton:
@@ -102,30 +109,33 @@ Manager:
                         text_color: get_color_from_hex("#FFFFFF")
                         md_bg_color: get_color_from_hex("#ff00ff")
                         pos_hint: {'center_x': .5}
-                        on_release: 
+                        on_release:
                             app.root.current = "ans"
                             root.manager.transition.direction = "left"
+                            root.submit(choice.active)
+
 <AnsScreen>:
+    disp: disp
     name: "ans"
     Screen:
         id: "Two"
         size: root.width,root.height
         BoxLayout:
             orientation: 'vertical'
-    
+
             MDToolbar:
                 title: "Score"
                 elevation: 10
                 md_bg_color: get_color_from_hex("#ff00ff")
                 background_palette: 'Teal'
-    
+
             Screen:
                 size: root.width,root.height
-                
+
                 AnchorLayout:
                     pos_hint: {'center_x':.5, 'center_y': .6}
                     MyMDLabel:
-                        id: display
+                        id: disp
                         font_style: 'H1'
                         theme_text_color: 'Primary'
                         text: "99%"
@@ -133,7 +143,7 @@ Manager:
                         text_size: None, self.height
                         # size_hint: None, 1
                         padding: (10,10)
-                
+
                 AnchorLayout:
                     pos_hint: {'center_x':.5, 'center_y': .4}
                     MDRectangleFlatButton:
@@ -146,10 +156,10 @@ Manager:
                         text_color: get_color_from_hex("#FFFFFF")
                         md_bg_color: get_color_from_hex("#ff00ff")
                         pos_hint: {'center_x': .5}
-                        on_release: 
+                        on_release:
                             app.root.current = "home"
                             root.manager.transition.direction = "right"
-                            
+
                 AnchorLayout:
                     pos_hint: {'center_x':.5, 'center_y': .3}
                     MDRectangleFlatButton:
@@ -162,10 +172,10 @@ Manager:
                         text_color: get_color_from_hex("#FFFFFF")
                         md_bg_color: get_color_from_hex("#ff00ff")
                         pos_hint: {'center_x': .5}
-                        on_release: 
+                        on_release:
                             app.root.current = "calc"
                             root.manager.transition.direction = "left"
-                            
+
 <CalcScreen>:
     name: "calc"
     Screen:
@@ -173,16 +183,16 @@ Manager:
         size: root.width,root.height
         BoxLayout:
             orientation: 'vertical'
-    
+
             MDToolbar:
                 title: "Score"
                 elevation: 10
                 md_bg_color: get_color_from_hex("#ff00ff")
                 background_palette: 'Teal'
-    
+
             Screen:
                 size: root.width,root.height
-                
+
                 AnchorLayout:
                     pos_hint: {'center_x':.5, 'center_y': .6}
                     MyMDLabel:
@@ -194,7 +204,7 @@ Manager:
                         text_size: None, self.height
                         # size_hint: None, 1
                         padding: (10,10)
-                
+
                 AnchorLayout:
                     pos_hint: {'center_x':.5, 'center_y': .4}
                     MDRectangleFlatButton:
@@ -207,10 +217,10 @@ Manager:
                         text_color: get_color_from_hex("#FFFFFF")
                         md_bg_color: get_color_from_hex("#ff00ff")
                         pos_hint: {'center_x': .5}
-                        on_release: 
+                        on_release:
                             app.root.current = "home"
                             root.manager.transition.direction = "right"
-                            
+
                 AnchorLayout:
                     pos_hint: {'center_x':.5, 'center_y': .3}
                     MDRectangleFlatButton:
@@ -223,6 +233,6 @@ Manager:
                         text_color: get_color_from_hex("#FFFFFF")
                         md_bg_color: get_color_from_hex("#ff00ff")
                         pos_hint: {'center_x': .5}
-                        on_release: 
+                        on_release:
                             app.root.current = "ans"
                             root.manager.transition.direction = "right"
