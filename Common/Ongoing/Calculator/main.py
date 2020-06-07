@@ -46,14 +46,12 @@ def evaluate(tokens):
 
         # Current token is a whitespace,
         # skip it.
-        print(i, tokens[i])
         if tokens[i] == ' ':
             i += 1
             continue
         if tokens[i] == '#':
             t = tokens[i+1]
             i += 3
-            print(tokens[i], i, t)
             val_str = ""
             while (i < len(tokens) and (tokens[i].isdigit() or tokens[i] == "." or tokens[i] == "-")):
                 val_str = val_str + tokens[i]
@@ -62,7 +60,6 @@ def evaluate(tokens):
                 i += 1
 
             val = float(val_str)
-            # print(val)
             if t == "-":
                 values.append(-val)
             elif t == "+":
@@ -90,7 +87,6 @@ def evaluate(tokens):
                 i += 1
 
             val = float(val_str)
-            # print(val)
             values.append(val)
 
         # Closing brace encountered,
@@ -125,12 +121,10 @@ def evaluate(tokens):
                 values.append(applyOp(val1, val2, op))
 
             # Push current token to 'ops'.
-            print(tokens[i])
             if i+3 < len(tokens) and (tokens[i+3] == '-' or tokens[i+3] == '+'):
                 ops.append(tokens[i])
                 t = tokens[i+3]
                 i += 5
-                print(tokens[i])
                 val_str = ""
                 while (i < len(tokens) and (tokens[i].isdigit() or tokens[i] == "." or tokens[i] == "-")):
                     val_str = val_str + tokens[i]
@@ -139,7 +133,6 @@ def evaluate(tokens):
                     i += 1
 
                 val = float(val_str)
-                # print(val)
                 if t == "-":
                     values.append(-val)
                 elif t == "+":
@@ -153,7 +146,6 @@ def evaluate(tokens):
     # Entire expression has been parsed
     # at this point, apply remaining ops
     # to remaining values.
-    print(values,ops)
     while len(ops) != 0:
 
         val2 = values.pop()
@@ -204,7 +196,6 @@ class Interface(Widget):
                         else:
                             if t[1] == "-" or t[1] == "+":
                                 t = "".join(["#"] + list(t)[1:])
-                            print(t)
                             ans = evaluate(t)
                             if ans.is_integer():
                                 ans = int(ans)
