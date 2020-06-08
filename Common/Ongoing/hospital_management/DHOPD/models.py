@@ -98,5 +98,14 @@ class Patient_h(models.Model):
     patient_room = models.CharField(max_length=15)
     patient_cost = models.CharField(max_length=100)
     patient_date = models.DateField(default=datetime.date.today)
+    patient_rdate = models.DateField(default=datetime.date.today)
     patient_time = models.TimeField(auto_now_add=True)
     patient_comment = models.CharField(max_length=200)
+
+class Receipt_h(models.Model):
+    receipt_id = models.AutoField(primary_key=True, max_length=200)
+    receipt_patient = models.CharField(max_length=200)
+    receipt_cost = models.CharField(max_length=200)
+    receipt_name = models.CharField(max_length=200)
+    receipt_time = models.DateTimeField(auto_now=True)
+    receipt_status = models.CharField(default="0", max_length=10)

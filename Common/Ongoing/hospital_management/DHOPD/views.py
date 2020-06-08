@@ -3,8 +3,9 @@ from django.http import HttpResponse,HttpResponseRedirect
 from DHOPD.forms import *
 from .models import *
 import re
-from datetime import datetime
+from datetime import datetime, date
 from num2words import num2words
+from django.db.models import Sum
 
 
 
@@ -68,7 +69,7 @@ def patient_info(patient):
         temp.append(", ".join(cost))                                                        #13
         temp.append(i.patient_date)                                                         #14
         temp.append(Receipt.objects.get(receipt_patient=i.patient_id).receipt_id)           #15
-        temp.append(zip(s, i.patient_cost.split(';')))                                                                      #16        
+        temp.append(zip(s, i.patient_cost.split(';')))                                                                      #16
         patient_detail.append(temp)
 
     return patient_detail
@@ -87,23 +88,44 @@ def patient_info_h(patient):
         temp.append(i.patient_town)                                                         #6
         temp.append(i.patient_phone)                                                        #7
         s = []
-        allsid =[]
-        cost = []
-        vacc = []
-        temp.append(", ".join(s))                                                           #8
-        temp.append("0")         #9
-        temp.append("title")                                                                  #10
+        allsid =[int(j.split(".")[0])  for j in i.patient_services.split(";")]
+        temp.append(i.patient_imp)                                                           #8
+        temp.append(i.patient_gender)                                                        #9
+        temp.append(i.patient_age)                                                          #10
         temp.append(allsid)                                                                 #11
-        temp.append(", ".join(vacc))                                                        #12
-        temp.append(", ".join(cost))                                                        #13
+        temp.append(", ")                                                                    #12
+        temp.append(sum(list(map(int, i.patient_cost.split(";")))))                         #13
         temp.append(i.patient_date)                                                         #14
         temp.append("Receipt.objects.get(receipt_patient=i.patient_id).receipt_id")           #15
         temp.append(i.patient_address[:10])                                                   #16
-        temp.append(i.patient_room)                                                            #17
+        temp.append(Room.objects.get(room_id=i.patient_room).room_name)                       #17
+        acost = Receipt_h.objects.filter(receipt_patient=i.patient_id).aggregate(Sum('receipt_cost'))
+        temp.append(acost.get('receipt_cost__sum'))                                            #18
+        temp.append(Room.objects.get(room_id=i.patient_room).room_id)                           #19
         patient_detail.append(temp)
 
     return patient_detail
 
+def patient_dupdate(cdate):
+    patient = Patient_h.objects.filter(patient_status='0')
+    for i in patient:
+        ddate = (cdate - i.patient_date).days
+        if ddate > 1:
+            # print(i.patient_services, i.patient_cost)
+            service = []
+            cost = []
+            for j,k in zip(i.patient_services.split(";"),i.patient_cost.split(";")):
+                s = ""
+                servicet = Service_h.objects.get(service_id=j.split(".")[0])
+                if servicet.service_tag == "D":
+                    s = s + j.split(".")[0] + "." + str(ddate)
+                    cost.append(str((int(k) // int(j.split(".")[1])) * ddate))
+                else:
+                    s = s + j
+                    cost.append(str(k))
+                service.append(str(s))
+            # print(service, cost)
+            Patient_h.objects.filter(patient_id=i.patient_id).update(patient_services=";".join(service),patient_cost=";".join(cost))
 
 def index(request):
     if request.method == "POST":
@@ -590,8 +612,19 @@ def paddh(request):
                 town = roomh.cleaned_data['town'].title()
                 room = roomh.cleaned_data['room']
                 rc = Room.objects.get(room_id=room).room_bed_occ
+                service = Service_h.objects.filter(service_tag='D')
+                sr = []
+                cst = []
+                for i in service:
+                    if i.service_id == 1:
+                        cst.append(Room.objects.get(room_id=room).room_cost)
+                    else:
+                        cst.append(i.service_cost)
+                    sr.append(str(i.service_id) + ".1")
+
                 Room.objects.filter(room_id=room).update(room_bed_occ=str(int(rc) + 1))
-                Patient_h.objects.create(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_age=age, patient_gender=gender, patient_address=addr, patient_town=town, patient_phone=number, patient_imp=imp, patient_status="0", patient_room=room)
+                Patient_h.objects.create(patient_fname=f_name, patient_mname=m_name, patient_lname=l_name, patient_title=title, patient_age=age, patient_gender=gender, patient_services=";".join(sr), patient_cost=";".join(cst), patient_address=addr, patient_town=town, patient_phone=number, patient_imp=imp, patient_status="0", patient_room=room)
+                return HttpResponseRedirect("/DHOPD/patient_waitlist_h/")
 
         else:
             roomh = AddPatientHForm()
@@ -604,11 +637,26 @@ def pwaitlisth(request):
         log = Users.objects.get(user_id = request.session['log'])
         if request.method == "POST":
             WV = WVForm(request.POST)
+            RF = ReceiptForm(request.POST)
             if WV.is_valid():
                 status = WV.cleaned_data['status'].split('.')
-                Patient_h.objects.filter(patient_id=status[1]).update(patient_status=status[0])
+                Patient_h.objects.filter(patient_id=status[1]).update(patient_status=status[0], patient_rdate=date.today())
+            if RF.is_valid():
+                name = RF.cleaned_data['name']
+                cost = RF.cleaned_data['cost']
+                receipt = RF.cleaned_data['receipt']
+                Receipt_h.objects.create(receipt_name=name, receipt_cost=cost, receipt_patient=receipt)
+                r = Receipt_h.objects.filter(receipt_name=name, receipt_cost=cost, receipt_patient=receipt).order_by('receipt_id').reverse()[0]
+                p = Patient_h.objects.get(patient_id=receipt)
+                number = float(cost)
+                words = num2words(number)
+                return render(request, 'DHOPDW/patient_receipt.html', {'receipt':r, 'patient':p, 'log':log, 'date':datetime.today().strftime('%d-%m-%Y'), 'words':words})
         else:
             WV = WVForm()
+            RF = ReceiptForm()
+        cdate = date.today()
+        print(cdate)
+        patient_dupdate(cdate)
         patient = Patient_h.objects.filter(patient_status="0")
         patient_curr = patient_info_h(patient)
         patient = Patient_h.objects.filter(patient_status="1")
@@ -616,5 +664,17 @@ def pwaitlisth(request):
         service = Service_h.objects.all()
         d_dash = {'log':log, 'service':service, 'patient_c':patient_curr, 'patient_w':patient_w}
         return render(request, 'DHOPDW/patient_waitlist_h.html',d_dash)
+
+def pbillh(request):
+    if 'log' in request.session:
+        log = Users.objects.get(user_id = request.session['log'])
+        id = request.GET['id']
+        print(id)
+        service = Service_h.objects.all()
+        room = Room.objects.all()
+        patient = Patient_h.objects.get(patient_id=id)
+        patient = patient_info_h([patient])
+        d_dash = {'log':log, 'service':service, 'patient':patient, 'room':room}
+        return render(request, 'DHOPDW/patient_bill_h.html',d_dash)
 
 # Create your views here.

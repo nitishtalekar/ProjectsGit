@@ -43,7 +43,7 @@
   $(document).ready(function () {
       // console.log('BCCCCCCCC !');
     });
-    
+
     function show_item(cb,x){
       d = "#"+x+"_ip";
       console.log(d);
@@ -321,7 +321,7 @@
                         <th>Address</th>
                         <th>Phone</th>
                         <th>Room</th>
-                        <th>Cost</th>
+                        <th>Advance / Cost</th>
                         <th>Status</th>
                         <th>Receipt</th>
                         <th>Bill</th>
@@ -334,7 +334,7 @@
                         <th>Address</th>
                         <th>Phone</th>
                         <th>Room</th>
-                        <th>Cost</th>
+                        <th>Advance / Cost</th>
                         <th>Status</th>
                         <th>Receipt</th>
                         <th>Bill</th>
@@ -349,7 +349,7 @@
                         <td><abbr style="text-decoration:none;cursor:pointer" title="{{ i.5 }}">{{ i.16 }}...</abbr></td>
                         <td>{{ i.7 }}</td>
                         <td>{{ i.17 }}</td>
-                        <td>{{ i.9 }}</td>
+                        <td>{{i.18}} / {{ i.13 }}</td>
                         <td>
                           <center>
                           <a class="btn btn-danger" href="#" data-toggle="modal" data-target="#statusModal{{ i.0 }}">
@@ -413,7 +413,7 @@
                       <th>Address</th>
                       <th>Phone</th>
                       <th>Room</th>
-                      <th>Cost</th>
+                      <th>Advance / Cost</th>
                       <th>Status</th>
                       <th>Bill</th>
                     </tr>
@@ -426,7 +426,7 @@
                       <td><abbr style="text-decoration:none;cursor:pointer" title="{{ i.5 }}">{{ i.16 }}...</abbr></td>
                       <td>{{ i.7 }}</td>
                       <td>{{ i.17 }}</td>
-                      <td>{{ i.9 }}</td>
+                      <td>{{i.18}} / {{ i.13 }}</td>
                       <td>
                         <center>
                         <a class="btn btn-success" href="#" data-toggle="modal" data-target="#rev_statusModal{{ i.0 }}">
@@ -437,7 +437,7 @@
                       </td>
                       <td>
                         <center>
-                        <a class="btn btn-primary" href="/DHOPD/patient_bill/?pid={{i.0}}&auth={{tag}}" target="_blank">
+                        <a class="btn btn-primary" href="/DHOPD/patient_bill_h/?id={{i.0}}" target="_blank">
                         <i class="fas fa-sign-out-alt fa-sm fa-fw"></i>
                         Bill
                         </a>
@@ -586,7 +586,7 @@
                   <div class="card mb-4">
                     <!-- Card Header - Accordion -->
                     <div class="card-header py-3">
-                      <h6 class="m-0 font-weight-bold text-primary text-uppercase">Edit Patient</h6>
+                      <h6 class="m-0 font-weight-bold text-primary text-uppercase">Edit Patient {{i.14}}</h6>
                     </div>
                     <!-- Card Content - Collapse -->
                     <!-- <div class="collapse show" id="collapseCardExample"> -->
@@ -734,7 +734,7 @@
         </div>
         <div class="modal-body font-weight-bold">For Patient "{{ i.1 }} {{ i.2 }} {{ i.3 }}" :-</div>
         <!-- <hr> -->
-        <form action="/DHOPD/patient_waitlist_h/" method="POST">
+        <form action="/DHOPD/patient_waitlist_h/" method="POST" target="_blank">
           {% csrf_token %}
         <div class="modal-body">
           <div class="container-fluid mb-4">
@@ -742,27 +742,27 @@
 
               <div class="col-6">
                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
-                  <label class="text-uppercase" style="font-size:15px;">Cost Paid</label>
-                    <input type="number" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number">
+                  <label class="text-uppercase" style="font-size:15px;">Amount Paid</label>
+                    <input type="number" name="cost" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Amount">
                 </div>
               </div>
 
               <div class="col-6">
                 <div class="d-flex justify-content-around mb-3" style="align-items:center;">
                   <label class="text-uppercase" style="font-size:15px;">Paid By</label>
-                    <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name">
+                    <input type="text" name="name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name">
                 </div>
               </div>
 
             </div>
 
           </div>
-          
+
           <center>
-            <button type="submit" name="status" value="1.{{ i.0 }}" class="btn btn-primary mb-3" style="width:60%;">Generate</button><br>
+            <button type="submit" name="receipt" value="{{ i.0 }}" class="btn btn-primary mb-3" style="width:60%;">Generate</button><br>
             </center>
             <!-- <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button> -->
-          
+
         </div>
         </form>
       </div>

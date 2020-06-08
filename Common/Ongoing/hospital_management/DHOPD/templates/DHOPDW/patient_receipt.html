@@ -1,0 +1,289 @@
+{% extends 'DHOPDW/base.html' %}
+{% load static %}
+{% block head %}
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Dehankar - Bill</title>
+
+  <!-- Custom fonts for this template-->
+  <link href="{% static 'style/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+  <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+  <!-- Custom styles for this template-->
+  <link href="{% static 'style/css/sb-admin-2.min.css' %}" rel="stylesheet">
+  <link href="{% static 'style/css/sb-admin-2.css' %}" rel="stylesheet">
+
+  <!-- <style type="text/css" media="print">
+    #wrapper {display:none;visibility:hidden;}
+  </style> -->
+
+  {% endblock head %}
+
+
+  {% block content %}
+  <body id="page-top">
+
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <h1 class="h3 mb-2 text-gray-800 pt-3">Dehankar Hospital OPD</h1>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="btn btn-dark"><i class="fa fa-user"></i> &nbsp; &nbsp; {{ log.fname }}</span>
+              </a>
+
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#passModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Change Password
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <!-- <div class="container-fluid"> -->
+
+          <!-- Page Heading -->
+          <div class="container" style="min-height: calc(100vh - 175px)">
+            <div class="d-flex justify-content-center align-items-start" style="min-height: calc(100vh - 175px)">
+              <div class="card shadow mb-4" style="min-width:70vh;">
+                <!-- Card Header - Accordion -->
+                <div class="card-header py-3">
+                  <h6 class="m-0 font-weight-bold text-dark text-uppercase">Patient Bill</h6>
+                </div>
+                  <div class="card-body">
+
+                    <div class="container">
+
+                      <div class="row">
+                        <div class="col-12 mt-4 mb-2">
+                          <center>
+                          <label class="bill-label" > Dehankar Hospital </label>
+                          <label class="bill-label" >Civil Lines, Akola. </label>
+                         </center>
+                          <br>
+                        </div>
+                        <div class="col-12">
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="mt-3">
+                                <label class="bill-label2 font-weight-bold">Name: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.patient_title}} &nbsp; {{patient.patient_fname}} &nbsp; {{patient.patient_mname}} &nbsp; {{patient.patient_lname}}</label>
+                              </div>
+                              <div class="mt-1">
+                                <label class="bill-label2 font-weight-bold">Address: &nbsp; &nbsp; </label><label class="bill-label2">{{patient.patient_address}}</label>
+                              </div>
+                            </div>
+
+                            <div class="col-6">
+                              <div class="mt-3">
+                                <label class="bill-label2 font-weight-bold">Receipt No. : &nbsp; &nbsp; </label><label class="bill-label2">{{receipt.receipt_id}}</label>
+                              </div>
+                              <div class="mt-1">
+                                <label class="bill-label2 font-weight-bold">Date: &nbsp; &nbsp; </label><label class="bill-label2">{{date}}</label>
+                              </div>
+
+                            </div>
+
+                          </div>
+
+                        </div>
+
+                        <div class="col-12">
+                          <hr>
+                          <div class="row">
+                            <div class="col-6">
+                              <div class="mt-3">
+                                <label class="bill-label2 font-weight-bold">In Words: &nbsp; &nbsp; </label><label class="bill-label2">{{words}} ONLY</label>
+                              </div>
+                            </div>
+                            <div class="col-6">
+                              <div class="mt-3">
+                                <label class="bill-label2 font-weight-bold">Recieved: &nbsp; &nbsp; </label><label class="bill-label2">{{receipt.receipt_cost}}</label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+
+
+
+                        <div class="col-12 mt-5">
+                          <div class="d-flex justify-content-end">
+                            <label class="bill-label" style="font-size:20px">Authorized Signature : __________________________</label>
+                          </div>
+
+                        </div>
+
+                        <div class="col-12 mt-4">
+                          <div class="d-flex justify-content-start">
+                            <button type="button" value="Print this page" class="btn btn-primary" style="width:30%" onClick="window.print()" name="button"> Print Receipt</button>
+                            <!-- <input type="button" value="Print this page" onClick="window.print()"> -->
+                          </div>
+                        </div>
+
+                      </div>
+
+                    </div>
+                  </div>
+                <!-- </div> -->
+              </div>
+            </div>
+
+            <!-- <h1 class="h3 mb-5 text-gray-800">Generate Bill</h1> -->
+
+
+
+
+            <!-- Collapsable Card Example -->
+
+          </div>
+
+        <!-- </div> -->
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <!-- <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Dehankar Hospital</span>
+          </div>
+        </div>
+      </footer> -->
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-dark" href="login.html">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="passModalLabel">Change Password?</h5>
+          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div>
+          <form class="" action="" method="post">
+            <div class="mt-3">
+              <center>
+            <!-- <input type="text" class="form-control bg-light border-0 small" name="oldpwd" style="width:80%;" placeholder="Enter Old Password"><br> -->
+            <input type="text" class="form-control bg-light border-0 small" name="newpwd" style="width:80%;" placeholder="Enter New Password"><br>
+            <input type="text" class="form-control bg-light border-0 small" name="cnewpwd" style="width:80%;" placeholder="Confirm New Password"><br>
+          <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
+          <button class="btn btn-primary" name="change_pwd" type="submit">Change</button>
+        </center>
+        </div>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'style/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/popper.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'style/vendor/select2/select2.min.js' %}"></script>
+
+  <script type="text/javascript">
+        $(document).ready(function() {
+          $('.js-example-basic-single').select2();
+      });
+  </script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'style/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'style/js/sb-admin-2.min.js' %}"></script>
+
+</body>
+
+{% endblock content %}

@@ -8,6 +8,7 @@ urlpatterns = [
     path('patient_add/', views.padd),
     path('patient_add_h/', views.paddh),
     path('patient_bill/', views.pbill),
+    path('patient_bill_h/', views.pbillh),
     path('patient_waitlist/', views.pwaitlist),
     path('patient_waitlist_h/', views.pwaitlisth),
     path('patient_search/', views.psearch),

@@ -64,3 +64,8 @@ class AddPatientHForm(forms.Form):
     imp = forms.CharField()
     room = forms.CharField()
     pid = forms.CharField(required=False)
+
+class ReceiptForm(forms.Form):
+    name = forms.CharField()
+    cost = forms.CharField()
+    receipt = forms.CharField()
