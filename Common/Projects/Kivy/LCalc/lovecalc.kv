@@ -1,0 +1,258 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import images_path kivymd.images_path
+#:import colors kivymd.color_definitions.colors
+
+<MyMDLabel@MDLabel>
+    size_hint_y: None
+    height: self.texture_size[1]
+
+
+<MyBoxLayout@MDBoxLayout>
+    adaptive_height: True
+
+Manager:
+    HomeScreen:
+    AnsScreen:
+    CalcScreen:
+
+<HomeScreen>:
+    name1: name1
+    name2: name2
+    label1: label1
+    label2: label2
+    choice: choice
+    name: "home"
+    Screen:
+        id: "One"
+        size: root.width,root.height
+        BoxLayout:
+            orientation: 'vertical'
+
+            MDToolbar:
+                title: "Love - Calculator"
+                elevation: 10
+                md_bg_color: get_color_from_hex("#ba13ba")
+                background_palette: 'Teal'
+
+            Screen:
+                size: root.width,root.height
+
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .8}
+                    MDTextField:
+                        size_hint: .7 , None
+                        id: name1
+                        hint_text: "Name of First Person"
+                        helper_text: "Type in name of the Person"
+                        helper_text_mode: "on_focus"
+                        color_mode: 'custom'
+                        line_color_focus: get_color_from_hex("#ba13ba")
+
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .6}
+                    BoxLayout:
+                        id: choice
+                        orientation: 'horizontal'
+                        size_hint: 1, None
+                        AnchorLayout:
+                            anchor_x: "right"
+                            padding: [0,0,20,0]
+                            MDBoxLayout:
+                                size_hint: None, None
+                                adaptive_size: True
+                                spacing: "30dp"
+                                MDCheckbox:
+                                    id: choice1
+                                    group: "choice"
+                                    size_hint: None, None
+                                    size: "48dp", '48dp'
+                                    active: True
+                                    selected_color: get_color_from_hex("#ba1321")
+                                Label:
+                                    id: label1
+                                    text: "Love"
+                                    color: get_color_from_hex("#ba1321")
+                        AnchorLayout:
+                            anchor_x: "left"
+                            padding: [20,0,0,0]
+                            MDBoxLayout:
+                                size_hint: None, None
+                                adaptive_size: True
+                                spacing: "30dp"
+                                MDCheckbox:
+                                    id: choice2
+                                    group: "choice"
+                                    size_hint: None, None
+                                    size: "48dp", '48dp'
+                                    selected_color: get_color_from_hex("#128764")
+
+                                Label:
+                                    id: label2
+                                    text: "Friendship"
+                                    color: get_color_from_hex("#128764")
+
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .4}
+                    MDTextField:
+                        id: name2
+                        size_hint: .7 , None
+                        hint_text: "Name of Second Person"
+                        helper_text: "Type in name of the Person"
+                        helper_text_mode: "on_focus"
+                        color_mode: 'custom'
+                        line_color_focus: get_color_from_hex("#ba13ba")
+
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .2}
+                    MDRectangleFlatButton:
+                        size_hint: 0.8, None
+                        text: "CALCULATE"
+                        bold: 1
+                        font_size: 20
+                        elevation_normal: 2
+                        opposite_colors: True
+                        text_color: get_color_from_hex("#FFFFFF")
+                        md_bg_color: get_color_from_hex("#ba13ba")
+                        pos_hint: {'center_x': .5}
+                        on_release:
+                            root.submit(choice1.active,choice2.active)
+                            # app.root.current = "ans"
+                            root.manager.transition.direction = "left"
+                            
+
+<AnsScreen>:
+    disp: disp
+    names : names
+    name: "ans"
+    Screen:
+        id: "Two"
+        size: root.width,root.height
+        BoxLayout:
+            orientation: 'vertical'
+
+            MDToolbar:
+                title: "Your Score"
+                elevation: 10
+                md_bg_color: get_color_from_hex("#ba13ba")
+                background_palette: 'Teal'
+
+            Screen:
+                size: root.width,root.height
+                
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .75}
+                    MyMDLabel:
+                        id: names
+                        font_style: 'H4'
+                        theme_text_color: 'Primary'
+                        text: "Name Loves Name"
+                        halign: 'center'
+                        text_size: None, self.height
+                        # size_hint: None, 1
+                        padding: (10,10)
+
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .5}
+                    MyMDLabel:
+                        id: disp
+                        font_style: 'H1'
+                        theme_text_color: 'Primary'
+                        text: "99%"
+                        halign: 'center'
+                        text_size: None, self.height
+                        padding: (10,10)
+                        
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .35}
+                    MDRectangleFlatButton:
+                        size_hint: 0.8, None
+                        text: "SEE THE CALCULATION"
+                        bold: 1
+                        font_size: 20
+                        elevation_normal: 2
+                        opposite_colors: True
+                        text_color: get_color_from_hex("#FFFFFF")
+                        md_bg_color: get_color_from_hex("#ba13ba")
+                        pos_hint: {'center_x': .5}
+                        on_release:
+                            app.root.current = "calc"
+                            root.manager.transition.direction = "left"
+
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .25}
+                    MDRectangleFlatButton:
+                        size_hint: 0.8, None
+                        text: "BACK"
+                        bold: 1
+                        font_size: 20
+                        elevation_normal: 2
+                        opposite_colors: True
+                        text_color: get_color_from_hex("#FFFFFF")
+                        md_bg_color: get_color_from_hex("#821082")
+                        pos_hint: {'center_x': .5}
+                        on_release:
+                            app.root.current = "home"
+                            root.manager.transition.direction = "right"
+
+                
+
+<CalcScreen>:
+    display:display
+    name: "calc"
+    Screen:
+        id: "Two"
+        size: root.width,root.height
+        BoxLayout:
+            orientation: 'vertical'
+
+            MDToolbar:
+                title: "Your Calculations"
+                elevation: 10
+                md_bg_color: get_color_from_hex("#ba13ba")
+                background_palette: 'Teal'
+
+            Screen:
+                size: root.width,root.height
+
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .6}
+                    MyMDLabel:
+                        id: display
+                        font_style: 'H6'
+                        theme_text_color: 'Primary'
+                        text: ""
+                        halign: 'center'
+                        text_size: None, self.height
+                        padding: (10,10)
+
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .2}
+                    MDRectangleFlatButton:
+                        size_hint: 0.8, None
+                        text: "HOME"
+                        bold: 1
+                        font_size: 20
+                        elevation_normal: 2
+                        opposite_colors: True
+                        text_color: get_color_from_hex("#FFFFFF")
+                        md_bg_color: get_color_from_hex("#821082")
+                        pos_hint: {'center_x': .5}
+                        on_release:
+                            app.root.current = "home"
+                            root.manager.transition.direction = "right"
+
+                AnchorLayout:
+                    pos_hint: {'center_x':.5, 'center_y': .3}
+                    MDRectangleFlatButton:
+                        size_hint: 0.8, None
+                        text: "BACK"
+                        bold: 1
+                        font_size: 20
+                        elevation_normal: 2
+                        opposite_colors: True
+                        text_color: get_color_from_hex("#FFFFFF")
+                        md_bg_color: get_color_from_hex("#ba13ba")
+                        pos_hint: {'center_x': .5}
+                        on_release:
+                            app.root.current = "ans"
+                            root.manager.transition.direction = "right"

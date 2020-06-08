@@ -1,0 +1,268 @@
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+#:import images_path kivymd.images_path
+#:import colors kivymd.color_definitions.colors
+
+<MyMDLabel@MDLabel>
+    size_hint_y: None
+    height: self.texture_size[1]
+
+
+<MyBoxLayout@MDBoxLayout>
+    adaptive_height: True
+
+<Interface>:
+    display:display
+    Screen:
+        size: root.width,root.height
+        BoxLayout:
+            orientation: 'vertical'
+
+            MDToolbar:
+                title: "CoffeeCoder Calculator"
+                elevation: 10
+                md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                background_palette: 'Teal'
+
+            AnchorLayout:
+                size: root.width,root.height
+                anchor_x: "center"
+                anchor_y: "center"
+                BoxLayout:
+                    orientation: 'vertical'
+                    AnchorLayout:
+                        padding: [0,0,0,0]
+                        anchor_x: "right"
+                        anchor_y: "top"
+                        size_hint: 1, 0.25
+                        MyMDLabel:
+                            id: display
+                            font_style: 'H3'
+                            theme_text_color: 'Primary'
+                            text: "0"
+                            halign: 'right'
+                            text_size: None, self.height
+                            size_hint: None, 1
+                            padding: (10,10)
+                            width: self.texture_size[0]
+                    GridLayout:
+                        cols: 4
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "1"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("1")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "2"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("2")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "3"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("3")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "+"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#0d6b6b")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit(" + ")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "4"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("4")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "5"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("5")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "6"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("6")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "-"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#0d6b6b")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit(" - ")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "7"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("7")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "8"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("8")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "9"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("9")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "x"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#0d6b6b")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit(" x ")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "."
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#0d6b6b")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit(".")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "0"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex(colors['Teal']['500'])
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("0")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "%"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#0d6b6b")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit(" % ")
+                        MDRectangleFlatButton:
+                            size_hint: 0.8, 1
+                            text: "/"
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#0d6b6b")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit(" / ")
+                    GridLayout:
+                        cols: 1
+                        size_hint: 1, 0.25
+                            
+                        MDRectangleFlatButton:
+                            text: "="
+                            bold: 1
+                            font_size: 40
+                            elevation_normal: 2
+                            opposite_colors: True
+                            size_hint: 1, 0.25
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#009696")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("=")
+                            
+                    GridLayout:
+                        cols: 2
+                        size_hint: 1, 0.25
+                        
+                        MDRectangleFlatButton:
+                            text: "CLEAR"
+                            # bold: 1
+                            font_size: 20
+                            elevation_normal: 2
+                            opposite_colors: True
+                            size_hint: 1, 0.25
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#0d6b6b")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("CLEAR")
+                        
+                        MDRectangleFlatButton:
+                            text: "BACK"
+                            # bold: 1
+                            font_size: 20
+                            elevation_normal: 2
+                            opposite_colors: True
+                            size_hint: 1, 0.25
+                            text_color: get_color_from_hex("#FFFFFF")
+                            md_bg_color: get_color_from_hex("#0d6b6b")
+                            pos_hint: {'center_x': .5}
+                            on_press: root.submit("BACK")
+
