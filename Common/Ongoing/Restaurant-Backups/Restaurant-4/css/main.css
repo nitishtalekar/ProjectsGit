@@ -1,4 +1,7 @@
 
+
+
+
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
@@ -161,7 +164,7 @@ iframe {
 }
 
 .wrap-contact2 {
-  width: 80vw;
+  width: 70%;
   background: #fff;
   border-radius: 10px;
   overflow: hidden;
@@ -169,7 +172,7 @@ iframe {
 }
 
 .wrap-contact2-b {
-  width: 80vw;
+  width: 70%;
   /* background: #fff; */
   border-radius: 10px;
   overflow: hidden;
@@ -178,7 +181,7 @@ iframe {
   padding: 40px;
 }
 .wrap-contact2-b2 {
-  width: 80vw;
+  width: 70%;
   /* background: #fff; */
   border-radius: 10px;
   overflow: hidden;
@@ -192,15 +195,11 @@ iframe {
   border-radius: 20px;
   padding: 15px;
   border: solid 2px white;
-  width:35vw;
+  width:30%;
   background: rgba(255,255,255,0.2);
   transition: all 0.5s;
   font-family: Poppins-Bold;
   letter-spacing: 2px;
-}
-
-.small-font{
-  font-size: 2vh;
 }
 
 .open-btn:hover{
@@ -229,7 +228,7 @@ iframe {
 .contact2-form-title {
   display: block;
   font-family: Poppins-Bold;
-  font-size: 5vh;
+  font-size: 39px;
   color: #333333;
   line-height: 1.2;
   text-align: center;
@@ -241,8 +240,8 @@ iframe {
 
 .mark{
   display:block;
-  height:4vh;
-  width:4vh;
+  height:30px;
+  width:30px;
   background: -webkit-linear-gradient(45deg, rgba(9, 24, 54,0.8), rgba(19, 105, 209,0.8));
   background: -o-linear-gradient(45deg, rgba(9, 24, 54,0.8), rgba(19, 105, 209,0.8));
   background: -moz-linear-gradient(45deg, rgba(9, 24, 54,0.8), rgba(19, 105, 209,0.8));
@@ -256,8 +255,8 @@ iframe {
 .mark::after {
   content: "";
   position: absolute;
-  width:1vh;
-  height:2vh;
+  width:10px;
+  height:20px;
   border-right: 2px solid #fff;
   border-bottom: 2px solid #fff;
   top:40%;

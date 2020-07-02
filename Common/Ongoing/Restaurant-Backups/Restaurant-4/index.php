@@ -208,7 +208,7 @@
 
 			$sql = "INSERT INTO data(name, owner_name, poc, city, address, landmark, email, website, payment, alcohol, cuisine, service, offer, menu, img, fssai_liscence, fssai_regno, fssai_addr, fssai_exp, kyc, pan_card, gstin, shop_liscence, outlets, avg_cost, primary_area) VALUES ";
 			$sql = $sql."('$name', '$owner_name', '$poc', '$city', '$address', '$landmark', '$email', '$website', '$pay', '$alcohol', '$cuisine', '$service', '$offer', '$menu', '$img', '$liscence', '$regno', '$addr', '$exp', '$kyc', '$pan', '$gstin', '$shop_liscence', '$outlets', '$avg_cost', '$primary_area')";
-			mysqli_query($conn, $sql);
+			// mysqli_query($conn, $sql);
 
 		}
 
@@ -232,7 +232,88 @@
 <!--===============================================================================================-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-	<script src="js/query.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+				$('.uploading').change(function() {
+			  var i = $(this).prev('label').clone();
+				var id = $(this).attr("id");
+				var lbl = "#"+id+"-label";
+				var err_lbl = "#"+id+"-error";
+				var arr = $("#"+id)[0].files
+				var files = "";
+				var valid_type = 0;
+				for (k=0;k<arr.length;k++){
+					if(arr[k].type != 'image/jpeg' && arr[k].type != 'image/png' && arr[k].type != 'application/pdf' && arr[k].type != 'image/jpg'){
+						valid_type = valid_type + 1;
+					}
+				}
+				var valid_size = 0;
+				for (k=0;k<arr.length;k++){
+					if(arr[k].size > 5000){
+						valid_size = valid_size + 1;
+					}
+				}
+				if(valid_type > 0){
+					$(err_lbl).html("* FILE format is wrong (Only jpeg,png,Pdf)");
+				}
+				else if(valid_size > 0){
+					$(err_lbl).html("* Each file must be less than 5 MB");
+				}
+				else{
+					for (k=0;k<arr.length;k++){
+						files = files+arr[k].name+" , ";
+					}
+					files = files.slice(0, -3);
+					$(lbl).text(files);
+				}
+			});
+
+			$("#open").click(function(){
+				$("#form-open").slideToggle(2000);
+			});
+
+			$("#form-submit").click(function(){
+				$("#error").html("");
+				// console.log("HELLO");
+				var error = 0;
+				if($("#paydiv input[type=checkbox]:checked").length == 0){
+				
+					error = error + 1;
+					$("#error").append("* select payment method</br>");
+				}
+				if($("#servicediv input[type=checkbox]:checked").length == 0){
+				
+					error = error + 1;
+					$("#error").append("* select Services</br>");
+				}
+				if($("#offerdiv input[type=checkbox]:checked").length == 0){
+				
+					error = error + 1;
+					$("#error").append("* select Offers available</br>");
+				}
+				if($("#alcoholdiv input[type=radio]:checked").length == 0){
+				
+					error = error + 1;
+					$("#error").append("* select Alcohol serving</br>");
+				}
+				$(".uploading").each(function(){
+					var id = $(this).attr("id");
+					var files = $("#"+id)[0].files;
+					if(files.length == 0){
+						error = error + 1;
+						var req = id.split("-")[0];
+						$("#error").append("* upload "+ req +" </br>");
+					}
+				});
+
+				if(error == 0){
+					$("#final-submit").click();
+				}
+
+			})
+
+	});
+</script>
 
 </head>
 <body>
@@ -241,7 +322,7 @@
 		<div class="container-contact2">
 			<div class="big-cont">
 				<center>
-					<div class="wrap-contact2-b mb-4 mt-3" id="startdiv">
+			<div class="wrap-contact2-b mb-4 mt-3">
 					<span class="contact2-form-title text-white">
 						M O O D I S H
 					</span>
@@ -250,79 +331,50 @@
 						<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">The one stop place for your restaurant growth</span>
 					</div>
 					
+					<div class="mt-3 mb-3 text-white">
+						<center>
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
+							 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc
+							 o laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
+							esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+							sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</center>
+					</div>
 					<center><hr style="background:white;width:70%;height:3px;"></center>
-					<div class="mt-3 mb-3 text-white" style="font-size:3vh;">
+					<div class="mt-3 mb-3 text-white" style="font-size:20px;">
 						<center>
-							<i class="fa fa-space-shuttle text-white " aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold " style="letter-spacing:2px;">Simple and fast onboarding process </span>
+							<i class="fa fa-space-shuttle text-white" aria-hidden="true"></i> &nbsp;&nbsp;
+							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Simple and fast onboarding process </span>
 						</center>
 					</div>
-					<div class="mb-2 text-white">
+					<div class="mb-3 text-white">
 						<center>
-							<i class="fa fa-check-circle-o text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Fill the Registration form below </span>
+							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
+							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Fill the Registration form below </span>
 						</center>
 					</div>
-					<div class="mb-2 text-white">
+					<div class="mb-3 text-white">
 						<center>
-							<i class="fa fa-check-circle-o text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Sign the service agreement </span>
+							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
+							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Sign the service agreement </span>
 						</center>
 					</div>
-					<div class="mb-2 text-white">
+					<div class="mb-3 text-white">
 						<center>
-							<i class="fa fa-check-circle-o text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Choose from the set of services (optional)</span>
+							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
+							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Choose from the set of services (optional)</span>
 						</center>
 					</div>
-					<div class="mb-2 text-white">
+					<div class="mb-3 text-white">
 						<center>
-							<i class="fa fa-check-circle-o text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Restaurant is now live within 24-48 hrs </span>
+							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
+							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Restaurant is now live within 24-48 hrs </span>
 						</center>
 					</div>
-					
-					<center><hr style="background:white;width:50%;height:3px;"></center>
-					<div class="mt-3 mb-3 text-white" style="font-size:3vh;">
-						<center>
-							<i class="fa fa-wrench text-white" aria-hidden="true"></i></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold " style="letter-spacing:2px;">OUR SERVICES for you</span>
-						</center>
-					</div>
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-sm-12 col-lg-4">
-								<div class="mb-2 text-white">
-									<center>
-										<i class="fa fa-shopping-cart text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-										<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Marketing</span>
-									</center>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-4">
-								<div class="mb-2 text-white">
-									<center>
-										<i class="fa fa-superpowers text-white small-font" aria-hidden="true"></i>&nbsp;&nbsp;
-										<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Website Development</span>
-									</center>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-4">
-								<div class="mb-2 text-white">
-									<center>
-										<i class="fa fa-camera text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-										<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Photography</span>
-									</center>
-								</div>
-							</div>
-						</div>		
-					</div>
-					
 					<center>
 					<div class="mt-4 open-btn" id="open">
 						REGISTER NOW
 					</div>
-					 
 				</center>
 
 			</div>
@@ -331,7 +383,7 @@
 				<form name="form" class="contact2-form validate-form" action="index.php" method="post" enctype= "multipart/form-data">
 					<div class="mb-5">
 						<span class="contact2-form-title gr-text text-uppercase">
-							Registration Form
+							REGISTRation Form
 						</span>
 						<center><hr style="background:white;width:60%;height:3px;"></center>
 					</div>
@@ -352,14 +404,14 @@
 									<span class="focus-input2"></span>
 								</div>
 							</div>
-							<div class="col-sm-12 col-lg-6">
+							<div class="col-6">
 								<div class="wrap-input2 mb-4 validate-input" >
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> POC designation</span>
 									<input class="input2 text-white" style="background:transparent" type="text" name="poc" required >
 									<span class="focus-input2"></span>
 								</div>
 							</div>
-							<div class="col-sm-12 col-lg-6">
+							<div class="col-6">
 								<div class="wrap-input2 mb-4 validate-input" >
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> CITY</span>
 									<input class="input2 text-white" style="background:transparent" type="text" name="city" required >
@@ -380,7 +432,7 @@
 									<span class="focus-input2"></span>
 								</div>
 							</div>
-							<div class="col-sm-12 col-lg-6">
+							<div class="col-6">
 								<div class="wrap-input2 mb-1 validate-input" >
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">RESTAURANT EMAIL</span>
 									<input class="input2 text-white" style="background:transparent" type="text" name="email" required >
@@ -390,7 +442,7 @@
 									Owner MAil ID
 								</div>
 							</div>
-							<div class="col-sm-12 col-lg-6">
+							<div class="col-6">
 								<div class="wrap-input2 mb-1 validate-input" >
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">RESTAURANT WEBSITE</span>
 									<input class="input2 text-white" style="background:transparent" type="text" name="website" required >
@@ -400,7 +452,7 @@
 									Dont have One? We Can help YOU. <span style="font-weight:bold">CLICK HERE</span>
 								</div>
 							</div>
-							<div class="col-sm-12 col-lg-6">
+							<div class="col-6">
 								<div class="wrap-input2-cb mb-4 mt-4 validate-input" id="paydiv">
 									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">PAYMENT METHOD</span></center>
 									<div class="mt-3 d-flex justify-content-around">
@@ -410,7 +462,7 @@
 		                    <label for="pay1" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
+											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 												CARD
 											</div>
 										</div>
@@ -420,7 +472,7 @@
 		                    <label for="pay2" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
+											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 												CASH
 											</div>
 										</div>
@@ -428,7 +480,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-12 col-lg-6">
+							<div class="col-6">
 								<div class="wrap-input2-cb mb-4 mt-4 validate-input" id="alcoholdiv">
 									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">SERVES ALCOHOL</span></center>
 									<div class="mt-3 d-flex justify-content-around">
@@ -438,7 +490,7 @@
 		                    <label for="alcohol1" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
+											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 												YES
 											</div>
 										</div>
@@ -448,7 +500,7 @@
 		                    <label for="alcohol2" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
+											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 												No
 											</div>
 										</div>
@@ -463,223 +515,223 @@
 									<span class="focus-input2"></span>
 								</div>
 							</div>
-							<div class="col-12 d-flex justify-content-center">
-								<div class="wrap-input2-cb mb-4 validate-input" id="servicediv" style="padding:0px;margin:0px;width:80%">
+							<div class="col-12">
+								<div class="wrap-input2-cb mb-4 validate-input" id="servicediv" >
 									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">SERVICES Offered</span></center>
-									<div class="container-fluid">
-									<div class="row">
-										<div class=" col-sm-12 col-lg-4 mt-2 d-flex justify-content-center">
+									<div class="mt-3 d-flex justify-content-around">
+										<div class="d-flex justify-content-center">
 											<div class="ch-wrap">
 		                    <input type="checkbox" class="mk" name="service[]" value="Breakfast" id="services1"  hidden/>
 		                    <label for="services1" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
+											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 												Breakfast
 											</div>
 										</div>
-										<div class="col-sm-12 col-lg-4 mt-2 d-flex justify-content-center">
+										<div class="d-flex justify-content-center">
 											<div class="ch-wrap">
 		                    <input type="checkbox" class="mk" name="service[]" value="Lunch" id="services2" hidden/>
 		                    <label for="services2" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
+											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 												Lunch
 											</div>
 										</div>
-										<div class="col-sm-12 col-lg-4 mt-2 d-flex justify-content-center">
+										<div class="d-flex justify-content-center">
 											<div class="ch-wrap">
 		                    <input type="checkbox" class="mk" name="service[]" value="Dinner" id="services3" hidden/>
 		                    <label for="services3" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
+											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 												Dinner
 											</div>
 										</div>
-										<div class="col-sm-12 col-lg-6 mt-2 d-flex justify-content-center">
+									</div>
+									<div class="mt-2 d-flex justify-content-around">
+										<div class="d-flex justify-content-center">
 											<div class="ch-wrap">
 		                    <input type="checkbox" class="mk" name="service[]" value="Night Life" id="services4" hidden/>
 		                    <label for="services4" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
+											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 												Night Life
 											</div>
 										</div>
-										<div class="col-sm-12 col-lg-6 mt-2 d-flex justify-content-center">
+										<div class="d-flex justify-content-center">
 											<div class="ch-wrap">
 		                    <input type="checkbox" class="mk" name="service[]" value="Cafe" id="services5" hidden/>
 		                    <label for="services5" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
+											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 												Cafe
 											</div>
 										</div>
 									</div>
 								</div>
-								</div>
 							</div>
-							<div class="col-12 d-flex justify-content-center">
+							<div class="col-12">
 								<center><hr style="background:white;width:40%;height:2px;"></center>
-								<div class="wrap-input2-cb mb-4 mt-4 validate-input" id="offerdiv" style="width:100%">
+								<div class="wrap-input2-cb mb-4 mt-4 validate-input" id="offerdiv">
 									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">AVAILABLE ATTRIBUTES</span></center>
-									<div class="container-fluid mt-4">
+									<div class="container ml-5 mt-4">
 										<div class="row">
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Live Music" id="offer11" hidden/>
 				                    <label for="offer11" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Live Music
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Couple Entry" id="offer21" hidden/>
 				                    <label for="offer21" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Couple Entry
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Free parking" id="offer31" hidden/>
 				                    <label for="offer31" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Free parking
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Above 18 only" id="offer12" hidden/>
 				                    <label for="offer12" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Above 18 only
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Outdoor seating" id="offer22" hidden/>
 				                    <label for="offer22" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Outdoor seating
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Table Reservation" id="offer32" hidden/>
 				                    <label for="offer32" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Table Reservation
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Poolside" id="offer13" hidden/>
 				                    <label for="offer13" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Poolside
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Catering" id="offer23" hidden/>
 				                    <label for="offer23" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Catering
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Pet friendly" id="offer33" hidden/>
 				                    <label for="offer33" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Pet friendly
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Private Dining" id="offer14" hidden/>
 				                    <label for="offer14" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Private Dining
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Smoking Area" id="offer24" hidden/>
 				                    <label for="offer24" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Smoking Area
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Buffet" id="offer34" hidden/>
 				                    <label for="offer34" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Buffet
 													</div>
 												</div>
 											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
+											<div class="col-4 mb-3">
 												<div class="d-flex justify-content-start">
 													<div class="ch-wrap">
 				                    <input type="checkbox" class="mk" name="offer[]" value="Board Games" id="offer15" hidden/>
 				                    <label for="offer15" class="mark"></label>
 				                  </div>
 													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
+													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:20px">
 														Board Games
 													</div>
 												</div>
@@ -688,7 +740,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-12 col-lg-6">
+							<div class="col-6">
 								<div class="wrap-input2-cb mb-4 validate-input" >
 									<div class="mb-3">
 										<center>
@@ -707,7 +759,7 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-12 col-lg-6">
+							<div class="col-6">
 								<div class="wrap-input2-cb mb-4 validate-input" >
 									<div class="mb-3">
 										<center>
@@ -727,31 +779,31 @@
 								</div>
 							</div>
 							<div class="col-12">
-								<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900;font-size:4vh">FSSAI Certificate</span></center>
+								<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900;font-size:20px">FSSAI Certificate</span></center>
 								<div class="container-fluid">
 									<div class="row">
-										<div class="col-sm-12 col-lg-6 mt-3">
+										<div class="col-6 mt-3">
 											<div class="wrap-input2 mb-4 validate-input" >
 												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">LISCENCE NUMBER</span>
 												<input class="input2 text-white" style="background:transparent" type="text" name="liscence" required >
 												<span class="focus-input2"></span>
 											</div>
 										</div>
-										<div class="col-sm-12 col-lg-6 mt-3">
+										<div class="col-6 mt-3">
 											<div class="wrap-input2 mb-4 validate-input" >
 												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">REGISTRATION NUMBER</span>
 												<input class="input2 text-white" style="background:transparent" type="text" name="regno" required >
 												<span class="focus-input2"></span>
 											</div>
 										</div>
-										<div class="col-sm-12 col-lg-6 mt-3">
+										<div class="col-6 mt-3">
 											<div class="wrap-input2 mb-4 validate-input" >
 												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">ADDRESS</span>
 												<textarea class="input2 text-white" style="background:transparent" type="text" name="addr" required ></textarea>
 												<span class="focus-input2"></span>
 											</div>
 										</div>
-										<div class="col-sm-12 col-lg-6 mt-3 d-flex align-items-end">
+										<div class="col-6 mt-3 d-flex align-items-end">
 											<div class="wrap-input2 mb-4 validate-input" >
 												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">EXPIRY</span>
 												<input class="input2 text-white" style="background:transparent" type="date" name="exp" required >
@@ -761,10 +813,10 @@
 								</div>
 							</div>
 							<div class="col-12">
-								<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900;font-size:4vh">DOCUMENTS</span></center>
+								<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900;font-size:20px">DOCUMENTS</span></center>
 								<div class="container-fluid mt-3">
 									<div class="row">
-										<div class="col-sm-12 col-lg-6">
+										<div class="col-6">
 											<div class="wrap-input2-cb mb-4 validate-input" >
 												<div class="mb-3">
 													<center>
@@ -783,7 +835,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-sm-12 col-lg-6">
+										<div class="col-6">
 											<div class="wrap-input2-cb mb-4 validate-input" >
 												<div class="mb-3">
 													<center>
@@ -802,7 +854,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-sm-12 col-lg-6">
+										<div class="col-6">
 											<div class="wrap-input2-cb mb-4 validate-input" >
 												<div class="mb-3">
 													<center>
@@ -821,7 +873,7 @@
 												</div>
 											</div>
 										</div>
-										<div class="col-sm-12 col-lg-6">
+										<div class="col-6">
 											<div class="wrap-input2-cb mb-4 validate-input" >
 												<div class="mb-3">
 													<center>
@@ -843,14 +895,14 @@
 									</div>
 								</div>
 							</div>
-							<div class="col-sm-12 col-lg-6">
+							<div class="col-6">
 								<div class="wrap-input2 mb-4 mt-4 validate-input" >
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">Number of Outlets</span>
 									<input class="input2 text-white" style="background:transparent" type="number" name="outlets" required >
 									<span class="focus-input2"></span>
 								</div>
 							</div>
-							<div class="col-sm-12 col-lg-6">
+							<div class="col-6">
 								<div class="wrap-input2 mb-4 mt-4 validate-input" >
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">Average cost for 2</span>
 									<input class="input2 text-white" style="background:transparent" type="text" name="avg_cost" required >
