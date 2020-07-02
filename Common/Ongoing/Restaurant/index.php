@@ -7,13 +7,14 @@
 	$db = "restaurant";
 
 	$conn = mysqli_connect($servername, $username, $password, $db);
+	$messages = array();
 
+	function valid_file($filetoUpload, $target_dir){
 
-	function add_file($filetoUpload, $target_dir){
-		// $target_dir = "";
-		$countfiles = count($_FILES['menu']['name']);
-		
+		$countfiles = count($_FILES[$filetoUpload]['name']);
+
 		$messages = array();
+
 		for($i=0;$i<$countfiles;$i++){
 
 	    $target_file = $target_dir . basename($_FILES[$filetoUpload]["name"][$i]);
@@ -23,32 +24,71 @@
 	      $check = getimagesize($_FILES[$filetoUpload]["tmp_name"][$i]);
 
 	      if (file_exists($target_file)) {
-	          $message =  '<label class="text-uppercase" style="color:#d1b741" >'.' file already exists. Please Rename your file'.'</label><br>';
+	          $message =  ' file already exists. Please Rename your file';
 	          array_push($messages,$message);
 	          $uploadOk = 0;
 	      }
 	      // Check file size
 	      if ($_FILES[$filetoUpload]["size"][$i] > 500000) {
-	          $message =  '<label class="text-uppercase" style="color:red" >'.' your file is too large.'.'</label><br>';
+	          $message =  ' your file is too large.';
 	          array_push($messages,$message);
 	          $uploadOk = 0;
 	      }
 	      // Allow certain file formats
 	      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 	      && $imageFileType != "gif" ) {
-	          $message =  '<label class="text-uppercase" style="color:red" >'.' only JPG, JPEG, PNG & GIF files are allowed.'.'</label><br>';
+	          $message =  ' only JPG, JPEG, PNG & GIF files are allowed.';
+	          array_push($messages,$message);
+	          $uploadOk = 0;
+	      }
+	      // Check if $uploadOk is set to 0 by an error
+
+			}
+			return $uploadOk;
+
+	}
+
+	function add_file($filetoUpload, $target_dir){
+		// $target_dir = "";
+		$countfiles = count($_FILES[$filetoUpload]['name']);
+
+		$messages = array();
+
+		for($i=0;$i<$countfiles;$i++){
+
+	    $target_file = $target_dir . basename($_FILES[$filetoUpload]["name"][$i]);
+	    $uploadOk = 1;
+	    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+
+	      $check = getimagesize($_FILES[$filetoUpload]["tmp_name"][$i]);
+
+	      if (file_exists($target_file)) {
+	          $message =  ' file already exists. Please Rename your file';
+	          array_push($messages,$message);
+	          $uploadOk = 0;
+	      }
+	      // Check file size
+	      if ($_FILES[$filetoUpload]["size"][$i] > 500000) {
+	          $message =  ' your file is too large.';
+	          array_push($messages,$message);
+	          $uploadOk = 0;
+	      }
+	      // Allow certain file formats
+	      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+	      && $imageFileType != "gif" ) {
+	          $message =  ' only JPG, JPEG, PNG & GIF files are allowed.';
 	          array_push($messages,$message);
 	          $uploadOk = 0;
 	      }
 	      // Check if $uploadOk is set to 0 by an error
 	      if ($uploadOk == 0) {
-	          $message =  '<label class="text-uppercase" style="color:red" >'.' your file was not uploaded.'.'</label><br>';
+	          $message =  ' your file was not uploaded.';
 	          array_push($messages,$message);
 	      // if everything is ok, try to upload file
 	      } else {
 	          if (move_uploaded_file($_FILES[$filetoUpload]["tmp_name"][$i], $target_file)) {
-	              $message =  '<label class="text-uppercase" style="color:green" >'.'The file "'. basename( $_FILES[$filetoUpload]["name"][$i]). '" has been uploaded.'.'</label><br>';
-	              array_push($messages,$message);
+	              // $message =  '<label class="text-uppercase" style="color:green" >'.'The file "'. basename( $_FILES[$filetoUpload]["name"][$i]). '" has been uploaded.'.'</label><br>';
+	              // array_push($messages,$message);
 	              $tar = explode("/",$target_file);
 	              $x = array_slice($tar, -3);
 	              $x2 = join("/",$x);
@@ -57,7 +97,7 @@
 	              // $qu = "INSERT INTO images (image_path) VALUES ('$new_target')";
 	              // mysqli_query($db, $qu);
 	          } else {
-	              $message =  '<label class="text-uppercase" style="color:red" >'.' there was an error uploading your file.'.'</label><br>';
+	              $message =  ' there was an error uploading your file.';
 	              array_push($messages,$message);
 	          }
 	      }
@@ -101,15 +141,14 @@
 		$outlets = mysqli_real_escape_string($conn, $_POST['outlets']);
 		$avg_cost = mysqli_real_escape_string($conn, $_POST['avg_cost']);
 		$primary_area = mysqli_real_escape_string($conn, $_POST['primary_area']);
-		$path = "file/" . $name;
-		mkdir($path, 0700);
+		$path = "file/" . $name . '_' . $owner_name;
 		$menu1 = $_FILES['menu']['name'];
 		$menu2 = "";
 		foreach ($menu1 as $key) {
 			$menu2 = $menu2.$path."/".$key.";";
 		}
 		$menu = substr($menu2, 0, -1);
-		add_file("menu", $path."/");
+
 
 		$img1 = $_FILES['img']['name'];
 		$img2 = "";
@@ -117,7 +156,7 @@
 			$img2 = $img2.$path."/".$key.";";
 		}
 		$img = substr($img2, 0, -1);
-		add_file("img", $path."/");
+
 
 		$kyc1 = $_FILES['kyc']['name'];
 		$kyc2 = "";
@@ -125,7 +164,7 @@
 			$kyc2 = $kyc2.$path."/".$key.";";
 		}
 		$kyc = substr($kyc2, 0, -1);
-		add_file("kyc", $path."/");
+
 
 		$pan1 = $_FILES['pan']['name'];
 		$pan2 = "";
@@ -133,7 +172,7 @@
 			$pan2 = $pan2.$path."/".$key.";";
 		}
 		$pan = substr($pan2, 0, -1);
-		add_file("pan", $path."/");
+
 
 		$gstin1 = $_FILES['gstin']['name'];
 		$gstin2 = "";
@@ -141,7 +180,7 @@
 			$gstin2 = $gstin2.$path."/".$key.";";
 		}
 		$gstin = substr($gstin2, 0, -1);
-		add_file("gstin", $path."/");
+
 
 		$shop_liscence1 = $_FILES['shop_liscence']['name'];
 		$shop_liscence2 = "";
@@ -149,11 +188,31 @@
 			$shop_liscence2 = $shop_liscence2.$path."/".$key.";";
 		}
 		$shop_liscence = substr($shop_liscence2, 0, -1);
-		add_file("shop_liscence", $path."/");
 
-		$sql = "INSERT INTO data(name, owner_name, poc, city, address, landmark, email, website, payment, alcohol, cuisine, service, offer, menu, img, fssai_liscence, fssai_regno, fssai_addr, fssai_exp, kyc, pan_card, gstin, shop_liscence, outlets, avg_cost, primary_area) VALUES ";
-		$sql = $sql."('$name', '$owner_name', '$poc', '$city', '$address', '$landmark', '$email', '$website', '$pay', '$alcohol', '$cuisine', '$service', '$offer', '$menu', '$img', '$liscence', '$regno', '$addr', '$exp', '$kyc', '$pan', '$gstin', '$shop_liscence', '$outlets', '$avg_cost', '$primary_area')";
-		// mysqli_query($conn, $sql);
+		$k = valid_file("menu", $path."/");
+		$k = $k + valid_file("img", $path."/");
+		$k = $k + valid_file("kyc", $path."/");
+		$k = $k + valid_file("pan", $path."/");
+		$k = $k + valid_file("gstin", $path."/");
+		$k = $k + valid_file("shop_liscence", $path."/");
+
+		if ($k == 6){
+			mkdir($path, 0700);
+
+			add_file("menu", $path."/");
+			add_file("img", $path."/");
+			add_file("kyc", $path."/");
+			add_file("pan", $path."/");
+			add_file("gstin", $path."/");
+			add_file("shop_liscence", $path."/");
+
+			$sql = "INSERT INTO data(name, owner_name, poc, city, address, landmark, email, website, payment, alcohol, cuisine, service, offer, menu, img, fssai_liscence, fssai_regno, fssai_addr, fssai_exp, kyc, pan_card, gstin, shop_liscence, outlets, avg_cost, primary_area) VALUES ";
+			$sql = $sql."('$name', '$owner_name', '$poc', '$city', '$address', '$landmark', '$email', '$website', '$pay', '$alcohol', '$cuisine', '$service', '$offer', '$menu', '$img', '$liscence', '$regno', '$addr', '$exp', '$kyc', '$pan', '$gstin', '$shop_liscence', '$outlets', '$avg_cost', '$primary_area')";
+			// mysqli_query($conn, $sql);
+
+		}
+
+
 }
 
  ?>
@@ -192,7 +251,7 @@
 			$("#open").click(function(){
 				$("#form-open").slideToggle(2000);
 			});
-			
+
 			$("#form-submit").click(function(){
 				$("#error").html("");
 				// console.log("HELLO");
@@ -227,11 +286,11 @@
 						$("#error").append("upload "+ req +" </br>");
 					}
 				});
-				
+
 				if(error == 0){
 					$("#final-submit").click();
 				}
-				
+
 			})
 
 	});
@@ -257,6 +316,19 @@
 							 aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
 							esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
 							sunt in culpa qui officia deserunt mollit anim id est laborum.
+						</center>
+					</div>
+					<div class="mt-2" >
+						<center>
+							<span class="font-weight-bold text-uppercase" id="error2" style="letter-spacing:2px;">
+								<?php
+
+									foreach ($messages as $key) {
+										echo $key;
+									}
+
+								 ?>
+							</span>
 						</center>
 					</div>
 					<center>
@@ -776,16 +848,18 @@
 							</div>
 						</div>
 					</div>
-					
+
 					<div class="mt-2" >
 						<center>
 							<span class="font-weight-bold text-uppercase" id="error" style="letter-spacing:2px;">
-								
+
 							</span>
 						</center>
 					</div>
-					
-					
+
+
+
+
 
 					<div class="container-contact2-form-btn">
 						<div class="wrap-contact2-form-btn" style="border-radius:30px">
