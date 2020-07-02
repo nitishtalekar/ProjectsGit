@@ -7,17 +7,17 @@
 
 @font-face {
   font-family: Poppins-Regular;
-  src: url('../fonts/poppins/Poppins-Regular.ttf'); 
+  src: url('../fonts/poppins/Poppins-Regular.ttf');
 }
 
 @font-face {
   font-family: Poppins-Medium;
-  src: url('../fonts/poppins/Poppins-Medium.ttf'); 
+  src: url('../fonts/poppins/Poppins-Medium.ttf');
 }
 
 @font-face {
   font-family: Poppins-Bold;
-  src: url('../fonts/poppins/Poppins-Bold.ttf'); 
+  src: url('../fonts/poppins/Poppins-Bold.ttf');
 }
 
 
@@ -27,8 +27,8 @@
 [ RESTYLE TAG ]*/
 
 * {
-	margin: 0px; 
-	padding: 0px; 
+	margin: 0px;
+	padding: 0px;
 	box-sizing: border-box;
 }
 
@@ -135,7 +135,7 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Contact 2 ]*/
 .bg-contact2 {
-  width: 100%;  
+  width: 100%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
@@ -145,7 +145,7 @@ iframe {
 }
 
 .container-contact2 {
-  width: 100%;  
+  width: 100%;
   min-height: 100vh;
   display: -webkit-box;
   display: -webkit-flex;
@@ -471,13 +471,13 @@ textarea.input2 + .focus-input2::after {
   min-width: 244px;
   height: 50px;
 
- 
+
 
   font-family: Poppins-Medium;
   font-size: 16px;
   color: #fff;
   line-height: 1.2;
-  
+
 
 }
 
@@ -503,7 +503,7 @@ textarea.input2 + .focus-input2::after {
   position: relative;
 }
 
-.alert-validate::before {
+/* .alert-validate::before {
   content: attr(data-validate);
   position: absolute;
   max-width: 70%;
@@ -561,4 +561,4 @@ textarea.input2 + .focus-input2::after {
     visibility: visible;
     opacity: 1;
   }
-}
+} */
