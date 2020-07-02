@@ -178,61 +178,18 @@
 				$('.uploading').change(function() {
 			  var i = $(this).prev('label').clone();
 				var id = $(this).attr("id");
-				var lbl = "#"+id+"-label";
 				var arr = $("#"+id)[0].files
 				var files = ""
 				for (k=0;k<arr.length;k++){
 					files = files+$("#"+id)[0].files[k].name+" , ";
 				}
-				files = files.slice(0, -3);
-				// console.log(files);
-			  $(lbl).text(files);
+				files = files.slice(0, -1);
+			  $(this).prev('label').text(files);
 			});
 
 			$("#open").click(function(){
 				$("#form-open").slideToggle(2000);
 			});
-			
-			$("#form-submit").click(function(){
-				$("#error").html("");
-				// console.log("HELLO");
-				var error = 0;
-				if($("#paydiv input[type=checkbox]:checked").length == 0){
-					console.log("ERROR PAY");
-					error = error + 1;
-					$("#error").append("select payment method</br>");
-				}
-				if($("#servicediv input[type=checkbox]:checked").length == 0){
-					console.log("ERROR SER");
-					error = error + 1;
-					$("#error").append("select Services</br>");
-				}
-				if($("#offerdiv input[type=checkbox]:checked").length == 0){
-					console.log("ERROR OFF");
-					error = error + 1;
-					$("#error").append("select Offers available</br>");
-				}
-				if($("#alcoholdiv input[type=radio]:checked").length == 0){
-					console.log("ERROR ALC");
-					error = error + 1;
-					$("#error").append("select Alcohol serving</br>");
-				}
-				$(".uploading").each(function(){
-					var id = $(this).attr("id");
-					var files = $("#"+id)[0].files;
-					if(files.length == 0){
-						console.log(id + "ERROR");
-						error = error + 1;
-						var req = id.split("-")[0];
-						$("#error").append("upload "+ req +" </br>");
-					}
-				});
-				
-				if(error == 0){
-					$("#final-submit").click();
-				}
-				
-			})
 
 	});
 </script>
@@ -240,7 +197,7 @@
 </head>
 <body>
 
-	<div class="bg-contact2" >
+	<div class="bg-contact2" style="background-image: url('images/bg-01.jpg');">
 		<div class="container-contact2">
 			<div class="just">
 				<center>
@@ -279,51 +236,51 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-12">
-								<div class="wrap-input2 mb-4 validate-input" >
+								<div class="wrap-input2 mb-4 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> NAME OF RESTAURANT</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="name" required >
+									<input class="input2 text-white" style="background:transparent" type="text" name="name">
 									<span class="focus-input2"></span>
 								</div>
 							</div>
 							<div class="col-12">
-								<div class="wrap-input2 mb-4 validate-input" >
+								<div class="wrap-input2 mb-4 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> NAME OF THE OWNER</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="owner_name" required >
+									<input class="input2 text-white" style="background:transparent" type="text" name="owner_name">
 									<span class="focus-input2"></span>
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="wrap-input2 mb-4 validate-input" >
+								<div class="wrap-input2 mb-4 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> POC designation</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="poc" required >
+									<input class="input2 text-white" style="background:transparent" type="text" name="poc">
 									<span class="focus-input2"></span>
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="wrap-input2 mb-4 validate-input" >
+								<div class="wrap-input2 mb-4 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> CITY</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="city" required >
+									<input class="input2 text-white" style="background:transparent" type="text" name="city">
 									<span class="focus-input2"></span>
 								</div>
 							</div>
 							<div class="col-12">
-								<div class="wrap-input2 mb-4 validate-input" >
+								<div class="wrap-input2 mb-4 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> ADDRESS</span>
-									<textarea class="input2 text-white" style="background:transparent" type="text" name="address" required ></textarea>
+									<textarea class="input2 text-white" style="background:transparent" type="text" name="address"></textarea>
 									<span class="focus-input2"></span>
 								</div>
 							</div>
 							<div class="col-12">
-								<div class="wrap-input2 mb-4 validate-input" >
+								<div class="wrap-input2 mb-4 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">LANDMARK</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="landmark" required >
+									<input class="input2 text-white" style="background:transparent" type="text" name="landmark">
 									<span class="focus-input2"></span>
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="wrap-input2 mb-1 validate-input" >
+								<div class="wrap-input2 mb-1 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">RESTAURANT EMAIL</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="email" required >
+									<input class="input2 text-white" style="background:transparent" type="text" name="email">
 									<span class="focus-input2"></span>
 								</div>
 								<div class="text-white text-uppercase" style="font-size:15px">
@@ -331,9 +288,9 @@
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="wrap-input2 mb-1 validate-input" >
+								<div class="wrap-input2 mb-1 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">RESTAURANT WEBSITE</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="website" required >
+									<input class="input2 text-white" style="background:transparent" type="text" name="website">
 									<span class="focus-input2"></span>
 								</div>
 								<div class="text-white text-uppercase" style="font-size:15px">
@@ -341,12 +298,12 @@
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="wrap-input2-cb mb-4 mt-4 validate-input" id="paydiv">
+								<div class="wrap-input2-cb mb-4 mt-4 validate-input" data-validate="Field is required">
 									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">PAYMENT METHOD</span></center>
 									<div class="mt-3 d-flex justify-content-around">
 										<div class="d-flex justify-content-center">
 											<div class="ch-wrap">
-		                    <input type="checkbox" class="mk pay" name="pay[]" value="card" id="pay1" hidden/>
+		                    <input type="checkbox" class="mk" name="pay[]" value="card" id="pay1" hidden/>
 		                    <label for="pay1" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
@@ -356,7 +313,7 @@
 										</div>
 										<div class="d-flex justify-content-center">
 											<div class="ch-wrap">
-		                    <input type="checkbox" class="mk pay" name="pay[]" value="cash" id="pay2" hidden/>
+		                    <input type="checkbox" class="mk" name="pay[]" value="cash" id="pay2" hidden/>
 		                    <label for="pay2" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
@@ -369,7 +326,7 @@
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="wrap-input2-cb mb-4 mt-4 validate-input" id="alcoholdiv">
+								<div class="wrap-input2-cb mb-4 mt-4 validate-input" data-validate="Field is required">
 									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">SERVES ALCOHOL</span></center>
 									<div class="mt-3 d-flex justify-content-around">
 										<div class="d-flex justify-content-center">
@@ -397,19 +354,19 @@
 								</div>
 							</div>
 							<div class="col-12">
-								<div class="wrap-input2 mb-4 mt-4 validate-input">
+								<div class="wrap-input2 mb-4 mt-4 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">CUISINE</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="cuisine" required >
+									<input class="input2 text-white" style="background:transparent" type="text" name="cuisine">
 									<span class="focus-input2"></span>
 								</div>
 							</div>
 							<div class="col-12">
-								<div class="wrap-input2-cb mb-4 validate-input" id="servicediv" >
+								<div class="wrap-input2-cb mb-4 validate-input" data-validate="Field is required">
 									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">SERVICES Offered</span></center>
 									<div class="mt-3 d-flex justify-content-around">
 										<div class="d-flex justify-content-center">
 											<div class="ch-wrap">
-		                    <input type="checkbox" class="mk" name="service[]" value="Breakfast" id="services1"  hidden/>
+		                    <input type="checkbox" class="mk" name="service[]" value="Breakfast" id="services1" hidden/>
 		                    <label for="services1" class="mark"></label>
 		                  </div>
 											&nbsp;&nbsp;
@@ -464,7 +421,7 @@
 							</div>
 							<div class="col-12">
 								<center><hr style="background:white;width:40%;height:2px;"></center>
-								<div class="wrap-input2-cb mb-4 mt-4 validate-input" id="offerdiv">
+								<div class="wrap-input2-cb mb-4 mt-4 validate-input" data-validate="Field is required">
 									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">AVAILABLE ATTRIBUTES</span></center>
 									<div class="container ml-5 mt-4">
 										<div class="row">
@@ -629,31 +586,31 @@
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="wrap-input2-cb mb-4 validate-input" >
+								<div class="wrap-input2-cb mb-4 validate-input" data-validate="Field is required">
 									<div class="mb-3">
 										<center>
 											<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">MENU IMAGES</span>
 										</center>
 									</div>
 									<center>
-										<label for="menu-upload" id="menu-upload-label" class="upload"> Upload Images
+										<label for="menu-upload" class="upload"> Upload Images
 										</label>
 									</center>
-									<input type="file" class="uploading" id="menu-upload" name="menu[]" multiple style="display:none;"  >
+									<input type="file" class="uploading" id="menu-upload" name="menu[]" multiple style="display:none;">
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="wrap-input2-cb mb-4 validate-input" >
+								<div class="wrap-input2-cb mb-4 validate-input" data-validate="Field is required">
 									<div class="mb-3">
 										<center>
 											<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">RESTAURANT IMAGES</span>
 										</center>
 									</div>
 									<center>
-										<label for="pictures-upload" id="pictures-upload-label" class="upload"> Upload Images
+										<label for="pic-upload" class="upload"> Upload Images
 										</label>
 									</center>
-									<input class="uploading" id="pictures-upload" name='img[]' type="file" multiple="multiple" style="display:none;"  >
+									<input class="uploading" id="pic-upload" name='img[]' type="file" multiple="multiple" style="display:none;">
 								</div>
 							</div>
 							<div class="col-12">
@@ -661,30 +618,30 @@
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-6 mt-3">
-											<div class="wrap-input2 mb-4 validate-input" >
+											<div class="wrap-input2 mb-4 validate-input" data-validate="Field is required">
 												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">LISCENCE NUMBER</span>
-												<input class="input2 text-white" style="background:transparent" type="text" name="liscence" required >
+												<input class="input2 text-white" style="background:transparent" type="text" name="liscence">
 												<span class="focus-input2"></span>
 											</div>
 										</div>
 										<div class="col-6 mt-3">
-											<div class="wrap-input2 mb-4 validate-input" >
+											<div class="wrap-input2 mb-4 validate-input" data-validate="Field is required">
 												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">REGISTRATION NUMBER</span>
-												<input class="input2 text-white" style="background:transparent" type="text" name="regno" required >
+												<input class="input2 text-white" style="background:transparent" type="text" name="regno">
 												<span class="focus-input2"></span>
 											</div>
 										</div>
 										<div class="col-6 mt-3">
-											<div class="wrap-input2 mb-4 validate-input" >
+											<div class="wrap-input2 mb-4 validate-input" data-validate="Field is required">
 												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">ADDRESS</span>
-												<textarea class="input2 text-white" style="background:transparent" type="text" name="addr" required ></textarea>
+												<textarea class="input2 text-white" style="background:transparent" type="text" name="addr"></textarea>
 												<span class="focus-input2"></span>
 											</div>
 										</div>
 										<div class="col-6 mt-3 d-flex align-items-end">
-											<div class="wrap-input2 mb-4 validate-input" >
+											<div class="wrap-input2 mb-4 validate-input" data-validate="Field is required">
 												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">EXPIRY</span>
-												<input class="input2 text-white" style="background:transparent" type="date" name="exp" required >
+												<input class="input2 text-white" style="background:transparent" type="date" name="exp">
 											</div>
 										</div>
 									</div>
@@ -695,107 +652,96 @@
 								<div class="container-fluid mt-3">
 									<div class="row">
 										<div class="col-6">
-											<div class="wrap-input2-cb mb-4 validate-input" >
+											<div class="wrap-input2-cb mb-4 validate-input" data-validate="Field is required">
 												<div class="mb-3">
 													<center>
 														<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">KYC VERIFICATION</span>
 													</center>
 												</div>
 												<center>
-													<label for="kyc-upload" id="kyc-upload-label" class="upload"> Upload Document
+													<label for="kyc-upload" class="upload"> Upload Document
 													</label>
 												</center>
-												<input class="uploading" id="kyc-upload" name='kyc[]' type="file" multiple="multiple" style="display:none;" >
+												<input class="uploading" id="kyc-upload" name='kyc[]' type="file" multiple="multiple" style="display:none;">
 											</div>
 										</div>
 										<div class="col-6">
-											<div class="wrap-input2-cb mb-4 validate-input" >
+											<div class="wrap-input2-cb mb-4 validate-input" data-validate="Field is required">
 												<div class="mb-3">
 													<center>
 														<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">PAN CARD</span>
 													</center>
 												</div>
 												<center>
-													<label for="pan-upload" id="pan-upload-label" class="upload"> Upload Document
+													<label for="pan-upload" class="upload"> Upload Document
 													</label>
 												</center>
-												<input class="uploading" id="pan-upload" name='pan[]' type="file" multiple="multiple" style="display:none;"  >
+												<input class="uploading" id="pan-upload" name='pan[]' type="file" multiple="multiple" style="display:none;">
 											</div>
 										</div>
 										<div class="col-6">
-											<div class="wrap-input2-cb mb-4 validate-input" >
+											<div class="wrap-input2-cb mb-4 validate-input" data-validate="Field is required">
 												<div class="mb-3">
 													<center>
 														<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">GSTIN Certificate</span>
 													</center>
 												</div>
 												<center>
-													<label for="gstin-upload" id="gstin-upload-label" class="upload"> Upload Document
+													<label for="gstin-upload" class="upload"> Upload Document
 													</label>
 												</center>
-												<input class="uploading" id="gstin-upload" name='gstin[]' type="file" multiple="multiple" style="display:none;"  >
+												<input class="uploading" id="gstin-upload" name='gstin[]' type="file" multiple="multiple" style="display:none;">
 											</div>
 										</div>
 										<div class="col-6">
-											<div class="wrap-input2-cb mb-4 validate-input" >
+											<div class="wrap-input2-cb mb-4 validate-input" data-validate="Field is required">
 												<div class="mb-3">
 													<center>
 														<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">SHOP LISCENCE</span>
 													</center>
 												</div>
 												<center>
-													<label for="liscence-upload" id="liscence-upload-label" class="upload"> Upload Document
+													<label for="lis-upload" class="upload"> Upload Document
 													</label>
 												</center>
-												<input class="uploading" id="liscence-upload" name='shop_liscence[]' type="file" multiple="multiple" style="display:none;"  >
+												<input class="uploading" id="lis-upload" name='shop_liscence[]' type="file" multiple="multiple" style="display:none;">
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="wrap-input2 mb-4 mt-4 validate-input" >
+								<div class="wrap-input2 mb-4 mt-4 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">Number of Outlets</span>
-									<input class="input2 text-white" style="background:transparent" type="number" name="outlets" required >
+									<input class="input2 text-white" style="background:transparent" type="number" name="outlets">
 									<span class="focus-input2"></span>
 								</div>
 							</div>
 							<div class="col-6">
-								<div class="wrap-input2 mb-4 mt-4 validate-input" >
+								<div class="wrap-input2 mb-4 mt-4 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">Average cost for 2</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="avg_cost" required >
+									<input class="input2 text-white" style="background:transparent" type="text" name="avg_cost">
 									<span class="focus-input2"></span>
 								</div>
 							</div>
 							<div class="col-12">
-								<div class="wrap-input2 mb-4 mt-4 validate-input" >
+								<div class="wrap-input2 mb-4 mt-4 validate-input" data-validate="Field is required">
 									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">Primary Area of the Restaurant</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="primary_area" required >
+									<input class="input2 text-white" style="background:transparent" type="text" name="primary_area">
 									<span class="focus-input2"></span>
 								</div>
 							</div>
 						</div>
 					</div>
-					
-					<div class="mt-2" >
-						<center>
-							<span class="font-weight-bold text-uppercase" id="error" style="letter-spacing:2px;">
-								
-							</span>
-						</center>
-					</div>
-					
-					
 
 					<div class="container-contact2-form-btn">
 						<div class="wrap-contact2-form-btn" style="border-radius:30px">
 							<div class="contact2-form-bgbtn" style="border-radius:30px"></div>
-							<div id="form-submit" class="contact2-form-btn text-uppercase" style="border-radius:30px;letter-spacing:2px;">
+							<button type="submit" name="submit" class="contact2-form-btn text-uppercase" style="border-radius:30px;letter-spacing:2px;">
 								Submit
-							</div>
+							</button>
 						</div>
 					</div>
-					<button type="submit" name="submit" id="final-submit" hidden></button>
 				</form>
 			</div>
 		</center>
@@ -803,6 +749,16 @@
 		</div>
 	</div>
 
+
+
+
+<!--===============================================================================================-->
+	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/bootstrap/js/popper.js"></script>
+	<script src="vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+	<script src="vendor/select2/select2.min.js"></script>
 <!--===============================================================================================-->
 	<script src="js/main.js"></script>
 
