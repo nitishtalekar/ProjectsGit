@@ -238,34 +238,14 @@
 			  var i = $(this).prev('label').clone();
 				var id = $(this).attr("id");
 				var lbl = "#"+id+"-label";
-				var err_lbl = "#"+id+"-error";
 				var arr = $("#"+id)[0].files
-				var files = "";
-				var valid_type = 0;
+				var files = ""
 				for (k=0;k<arr.length;k++){
-					if(arr[k].type != 'image/jpeg' && arr[k].type != 'image/png' && arr[k].type != 'application/pdf' && arr[k].type != 'image/jpg'){
-						valid_type = valid_type + 1;
-					}
+					files = files+$("#"+id)[0].files[k].name+" , ";
 				}
-				var valid_size = 0;
-				for (k=0;k<arr.length;k++){
-					if(arr[k].size > 5000){
-						valid_size = valid_size + 1;
-					}
-				}
-				if(valid_type > 0){
-					$(err_lbl).html("* FILE format is wrong (Only jpeg,png,Pdf)");
-				}
-				else if(valid_size > 0){
-					$(err_lbl).html("* Each file must be less than 5 MB");
-				}
-				else{
-					for (k=0;k<arr.length;k++){
-						files = files+arr[k].name+" , ";
-					}
-					files = files.slice(0, -3);
-					$(lbl).text(files);
-				}
+				files = files.slice(0, -3);
+				// console.log(files);
+			  $(lbl).text(files);
 			});
 
 			$("#open").click(function(){
@@ -277,32 +257,33 @@
 				// console.log("HELLO");
 				var error = 0;
 				if($("#paydiv input[type=checkbox]:checked").length == 0){
-				
+					console.log("ERROR PAY");
 					error = error + 1;
-					$("#error").append("* select payment method</br>");
+					$("#error").append("select payment method</br>");
 				}
 				if($("#servicediv input[type=checkbox]:checked").length == 0){
-				
+					console.log("ERROR SER");
 					error = error + 1;
-					$("#error").append("* select Services</br>");
+					$("#error").append("select Services</br>");
 				}
 				if($("#offerdiv input[type=checkbox]:checked").length == 0){
-				
+					console.log("ERROR OFF");
 					error = error + 1;
-					$("#error").append("* select Offers available</br>");
+					$("#error").append("select Offers available</br>");
 				}
 				if($("#alcoholdiv input[type=radio]:checked").length == 0){
-				
+					console.log("ERROR ALC");
 					error = error + 1;
-					$("#error").append("* select Alcohol serving</br>");
+					$("#error").append("select Alcohol serving</br>");
 				}
 				$(".uploading").each(function(){
 					var id = $(this).attr("id");
 					var files = $("#"+id)[0].files;
 					if(files.length == 0){
+						console.log(id + "ERROR");
 						error = error + 1;
 						var req = id.split("-")[0];
-						$("#error").append("* upload "+ req +" </br>");
+						$("#error").append("upload "+ req +" </br>");
 					}
 				});
 
@@ -320,60 +301,39 @@
 
 	<div class="bg-contact2" >
 		<div class="container-contact2">
-			<div class="big-cont">
+			<div class="just">
 				<center>
 			<div class="wrap-contact2-b mb-4 mt-3">
 					<span class="contact2-form-title text-white">
-						M O O D I S H
+						TITLE
 					</span>
-					
-					<div class="mt-3">
-						<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">The one stop place for your restaurant growth</span>
-					</div>
-					
+
 					<div class="mt-3 mb-3 text-white">
 						<center>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-							 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc
-							 o laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
-							esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+							 enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+							 aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+							esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
 							sunt in culpa qui officia deserunt mollit anim id est laborum.
 						</center>
 					</div>
-					<center><hr style="background:white;width:70%;height:3px;"></center>
-					<div class="mt-3 mb-3 text-white" style="font-size:20px;">
+					<div class="mt-2" >
 						<center>
-							<i class="fa fa-space-shuttle text-white" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Simple and fast onboarding process </span>
-						</center>
-					</div>
-					<div class="mb-3 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Fill the Registration form below </span>
-						</center>
-					</div>
-					<div class="mb-3 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Sign the service agreement </span>
-						</center>
-					</div>
-					<div class="mb-3 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Choose from the set of services (optional)</span>
-						</center>
-					</div>
-					<div class="mb-3 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Restaurant is now live within 24-48 hrs </span>
+							<span class="font-weight-bold text-uppercase" id="error2" style="letter-spacing:2px;">
+								<?php
+
+									foreach ($messages as $key) {
+										echo $key;
+									}
+
+								 ?>
+							</span>
 						</center>
 					</div>
 					<center>
 					<div class="mt-4 open-btn" id="open">
-						REGISTER NOW
+						OPEN FORM
 					</div>
 				</center>
 
@@ -382,8 +342,8 @@
 			<div class="wrap-contact2-b2" id="form-open" style="display:none;">
 				<form name="form" class="contact2-form validate-form" action="index.php" method="post" enctype= "multipart/form-data">
 					<div class="mb-5">
-						<span class="contact2-form-title gr-text text-uppercase">
-							REGISTRation Form
+						<span class="contact2-form-title gr-text">
+							REGISTER
 						</span>
 						<center><hr style="background:white;width:60%;height:3px;"></center>
 					</div>
@@ -752,11 +712,6 @@
 										</label>
 									</center>
 									<input type="file" class="uploading" id="menu-upload" name="menu[]" multiple style="display:none;"  >
-									<div class="">
-										<center>
-											<span class="text-danger text-uppercase" id="menu-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-										</center>
-									</div>
 								</div>
 							</div>
 							<div class="col-6">
@@ -771,11 +726,6 @@
 										</label>
 									</center>
 									<input class="uploading" id="pictures-upload" name='img[]' type="file" multiple="multiple" style="display:none;"  >
-									<div class="">
-										<center>
-											<span class="text-danger text-uppercase" id="pictures-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-										</center>
-									</div>
 								</div>
 							</div>
 							<div class="col-12">
@@ -828,11 +778,6 @@
 													</label>
 												</center>
 												<input class="uploading" id="kyc-upload" name='kyc[]' type="file" multiple="multiple" style="display:none;" >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="kyc-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
 											</div>
 										</div>
 										<div class="col-6">
@@ -847,11 +792,6 @@
 													</label>
 												</center>
 												<input class="uploading" id="pan-upload" name='pan[]' type="file" multiple="multiple" style="display:none;"  >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="pan-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
 											</div>
 										</div>
 										<div class="col-6">
@@ -866,11 +806,6 @@
 													</label>
 												</center>
 												<input class="uploading" id="gstin-upload" name='gstin[]' type="file" multiple="multiple" style="display:none;"  >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="gstin-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
 											</div>
 										</div>
 										<div class="col-6">
@@ -885,11 +820,6 @@
 													</label>
 												</center>
 												<input class="uploading" id="liscence-upload" name='shop_liscence[]' type="file" multiple="multiple" style="display:none;"  >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="liscence-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -921,7 +851,7 @@
 
 					<div class="mt-2" >
 						<center>
-							<span class="font-weight-bold text-uppercase text-danger" id="error" style="letter-spacing:2px;">
+							<span class="font-weight-bold text-uppercase" id="error" style="letter-spacing:2px;">
 
 							</span>
 						</center>

@@ -7,53 +7,13 @@
 	$db = "restaurant";
 
 	$conn = mysqli_connect($servername, $username, $password, $db);
-	$messages = array();
 
-	function valid_file($filetoUpload, $target_dir){
-
-		$countfiles = count($_FILES[$filetoUpload]['name']);
-
-		$messages = array();
-
-		for($i=0;$i<$countfiles;$i++){
-
-	    $target_file = $target_dir . basename($_FILES[$filetoUpload]["name"][$i]);
-	    $uploadOk = 1;
-	    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
-
-	      $check = getimagesize($_FILES[$filetoUpload]["tmp_name"][$i]);
-
-	      if (file_exists($target_file)) {
-	          $message =  ' file already exists. Please Rename your file';
-	          array_push($messages,$message);
-	          $uploadOk = 0;
-	      }
-	      // Check file size
-	      if ($_FILES[$filetoUpload]["size"][$i] > 500000) {
-	          $message =  ' your file is too large.';
-	          array_push($messages,$message);
-	          $uploadOk = 0;
-	      }
-	      // Allow certain file formats
-	      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-	      && $imageFileType != "gif" ) {
-	          $message =  ' only JPG, JPEG, PNG & GIF files are allowed.';
-	          array_push($messages,$message);
-	          $uploadOk = 0;
-	      }
-	      // Check if $uploadOk is set to 0 by an error
-
-			}
-			return $uploadOk;
-
-	}
 
 	function add_file($filetoUpload, $target_dir){
 		// $target_dir = "";
-		$countfiles = count($_FILES[$filetoUpload]['name']);
-
+		$countfiles = count($_FILES['menu']['name']);
+		
 		$messages = array();
-
 		for($i=0;$i<$countfiles;$i++){
 
 	    $target_file = $target_dir . basename($_FILES[$filetoUpload]["name"][$i]);
@@ -63,32 +23,32 @@
 	      $check = getimagesize($_FILES[$filetoUpload]["tmp_name"][$i]);
 
 	      if (file_exists($target_file)) {
-	          $message =  ' file already exists. Please Rename your file';
+	          $message =  '<label class="text-uppercase" style="color:#d1b741" >'.' file already exists. Please Rename your file'.'</label><br>';
 	          array_push($messages,$message);
 	          $uploadOk = 0;
 	      }
 	      // Check file size
 	      if ($_FILES[$filetoUpload]["size"][$i] > 500000) {
-	          $message =  ' your file is too large.';
+	          $message =  '<label class="text-uppercase" style="color:red" >'.' your file is too large.'.'</label><br>';
 	          array_push($messages,$message);
 	          $uploadOk = 0;
 	      }
 	      // Allow certain file formats
 	      if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
 	      && $imageFileType != "gif" ) {
-	          $message =  ' only JPG, JPEG, PNG & GIF files are allowed.';
+	          $message =  '<label class="text-uppercase" style="color:red" >'.' only JPG, JPEG, PNG & GIF files are allowed.'.'</label><br>';
 	          array_push($messages,$message);
 	          $uploadOk = 0;
 	      }
 	      // Check if $uploadOk is set to 0 by an error
 	      if ($uploadOk == 0) {
-	          $message =  ' your file was not uploaded.';
+	          $message =  '<label class="text-uppercase" style="color:red" >'.' your file was not uploaded.'.'</label><br>';
 	          array_push($messages,$message);
 	      // if everything is ok, try to upload file
 	      } else {
 	          if (move_uploaded_file($_FILES[$filetoUpload]["tmp_name"][$i], $target_file)) {
-	              // $message =  '<label class="text-uppercase" style="color:green" >'.'The file "'. basename( $_FILES[$filetoUpload]["name"][$i]). '" has been uploaded.'.'</label><br>';
-	              // array_push($messages,$message);
+	              $message =  '<label class="text-uppercase" style="color:green" >'.'The file "'. basename( $_FILES[$filetoUpload]["name"][$i]). '" has been uploaded.'.'</label><br>';
+	              array_push($messages,$message);
 	              $tar = explode("/",$target_file);
 	              $x = array_slice($tar, -3);
 	              $x2 = join("/",$x);
@@ -97,7 +57,7 @@
 	              // $qu = "INSERT INTO images (image_path) VALUES ('$new_target')";
 	              // mysqli_query($db, $qu);
 	          } else {
-	              $message =  ' there was an error uploading your file.';
+	              $message =  '<label class="text-uppercase" style="color:red" >'.' there was an error uploading your file.'.'</label><br>';
 	              array_push($messages,$message);
 	          }
 	      }
@@ -141,14 +101,15 @@
 		$outlets = mysqli_real_escape_string($conn, $_POST['outlets']);
 		$avg_cost = mysqli_real_escape_string($conn, $_POST['avg_cost']);
 		$primary_area = mysqli_real_escape_string($conn, $_POST['primary_area']);
-		$path = "file/" . $name . '_' . $owner_name;
+		$path = "file/" . $name;
+		mkdir($path, 0700);
 		$menu1 = $_FILES['menu']['name'];
 		$menu2 = "";
 		foreach ($menu1 as $key) {
 			$menu2 = $menu2.$path."/".$key.";";
 		}
 		$menu = substr($menu2, 0, -1);
-
+		add_file("menu", $path."/");
 
 		$img1 = $_FILES['img']['name'];
 		$img2 = "";
@@ -156,7 +117,7 @@
 			$img2 = $img2.$path."/".$key.";";
 		}
 		$img = substr($img2, 0, -1);
-
+		add_file("img", $path."/");
 
 		$kyc1 = $_FILES['kyc']['name'];
 		$kyc2 = "";
@@ -164,7 +125,7 @@
 			$kyc2 = $kyc2.$path."/".$key.";";
 		}
 		$kyc = substr($kyc2, 0, -1);
-
+		add_file("kyc", $path."/");
 
 		$pan1 = $_FILES['pan']['name'];
 		$pan2 = "";
@@ -172,7 +133,7 @@
 			$pan2 = $pan2.$path."/".$key.";";
 		}
 		$pan = substr($pan2, 0, -1);
-
+		add_file("pan", $path."/");
 
 		$gstin1 = $_FILES['gstin']['name'];
 		$gstin2 = "";
@@ -180,7 +141,7 @@
 			$gstin2 = $gstin2.$path."/".$key.";";
 		}
 		$gstin = substr($gstin2, 0, -1);
-
+		add_file("gstin", $path."/");
 
 		$shop_liscence1 = $_FILES['shop_liscence']['name'];
 		$shop_liscence2 = "";
@@ -188,31 +149,11 @@
 			$shop_liscence2 = $shop_liscence2.$path."/".$key.";";
 		}
 		$shop_liscence = substr($shop_liscence2, 0, -1);
+		add_file("shop_liscence", $path."/");
 
-		$k = valid_file("menu", $path."/");
-		$k = $k + valid_file("img", $path."/");
-		$k = $k + valid_file("kyc", $path."/");
-		$k = $k + valid_file("pan", $path."/");
-		$k = $k + valid_file("gstin", $path."/");
-		$k = $k + valid_file("shop_liscence", $path."/");
-
-		if ($k == 6){
-			mkdir($path, 0700);
-
-			add_file("menu", $path."/");
-			add_file("img", $path."/");
-			add_file("kyc", $path."/");
-			add_file("pan", $path."/");
-			add_file("gstin", $path."/");
-			add_file("shop_liscence", $path."/");
-
-			$sql = "INSERT INTO data(name, owner_name, poc, city, address, landmark, email, website, payment, alcohol, cuisine, service, offer, menu, img, fssai_liscence, fssai_regno, fssai_addr, fssai_exp, kyc, pan_card, gstin, shop_liscence, outlets, avg_cost, primary_area) VALUES ";
-			$sql = $sql."('$name', '$owner_name', '$poc', '$city', '$address', '$landmark', '$email', '$website', '$pay', '$alcohol', '$cuisine', '$service', '$offer', '$menu', '$img', '$liscence', '$regno', '$addr', '$exp', '$kyc', '$pan', '$gstin', '$shop_liscence', '$outlets', '$avg_cost', '$primary_area')";
-			// mysqli_query($conn, $sql);
-
-		}
-
-
+		$sql = "INSERT INTO data(name, owner_name, poc, city, address, landmark, email, website, payment, alcohol, cuisine, service, offer, menu, img, fssai_liscence, fssai_regno, fssai_addr, fssai_exp, kyc, pan_card, gstin, shop_liscence, outlets, avg_cost, primary_area) VALUES ";
+		$sql = $sql."('$name', '$owner_name', '$poc', '$city', '$address', '$landmark', '$email', '$website', '$pay', '$alcohol', '$cuisine', '$service', '$offer', '$menu', '$img', '$liscence', '$regno', '$addr', '$exp', '$kyc', '$pan', '$gstin', '$shop_liscence', '$outlets', '$avg_cost', '$primary_area')";
+		// mysqli_query($conn, $sql);
 }
 
  ?>
@@ -238,78 +179,59 @@
 			  var i = $(this).prev('label').clone();
 				var id = $(this).attr("id");
 				var lbl = "#"+id+"-label";
-				var err_lbl = "#"+id+"-error";
 				var arr = $("#"+id)[0].files
-				var files = "";
-				var valid_type = 0;
+				var files = ""
 				for (k=0;k<arr.length;k++){
-					if(arr[k].type != 'image/jpeg' && arr[k].type != 'image/png' && arr[k].type != 'application/pdf' && arr[k].type != 'image/jpg'){
-						valid_type = valid_type + 1;
-					}
+					files = files+$("#"+id)[0].files[k].name+" , ";
 				}
-				var valid_size = 0;
-				for (k=0;k<arr.length;k++){
-					if(arr[k].size > 5000){
-						valid_size = valid_size + 1;
-					}
-				}
-				if(valid_type > 0){
-					$(err_lbl).html("* FILE format is wrong (Only jpeg,png,Pdf)");
-				}
-				else if(valid_size > 0){
-					$(err_lbl).html("* Each file must be less than 5 MB");
-				}
-				else{
-					for (k=0;k<arr.length;k++){
-						files = files+arr[k].name+" , ";
-					}
-					files = files.slice(0, -3);
-					$(lbl).text(files);
-				}
+				files = files.slice(0, -3);
+				// console.log(files);
+			  $(lbl).text(files);
 			});
 
 			$("#open").click(function(){
 				$("#form-open").slideToggle(2000);
 			});
-
+			
 			$("#form-submit").click(function(){
 				$("#error").html("");
 				// console.log("HELLO");
 				var error = 0;
 				if($("#paydiv input[type=checkbox]:checked").length == 0){
-				
+					console.log("ERROR PAY");
 					error = error + 1;
-					$("#error").append("* select payment method</br>");
+					$("#error").append("select payment method</br>");
 				}
 				if($("#servicediv input[type=checkbox]:checked").length == 0){
-				
+					console.log("ERROR SER");
 					error = error + 1;
-					$("#error").append("* select Services</br>");
+					$("#error").append("select Services</br>");
 				}
 				if($("#offerdiv input[type=checkbox]:checked").length == 0){
-				
+					console.log("ERROR OFF");
 					error = error + 1;
-					$("#error").append("* select Offers available</br>");
+					$("#error").append("select Offers available</br>");
 				}
 				if($("#alcoholdiv input[type=radio]:checked").length == 0){
-				
+					console.log("ERROR ALC");
 					error = error + 1;
-					$("#error").append("* select Alcohol serving</br>");
+					$("#error").append("select Alcohol serving</br>");
 				}
 				$(".uploading").each(function(){
 					var id = $(this).attr("id");
 					var files = $("#"+id)[0].files;
 					if(files.length == 0){
+						console.log(id + "ERROR");
 						error = error + 1;
 						var req = id.split("-")[0];
-						$("#error").append("* upload "+ req +" </br>");
+						$("#error").append("upload "+ req +" </br>");
 					}
 				});
-
+				
 				if(error == 0){
 					$("#final-submit").click();
 				}
-
+				
 			})
 
 	});
@@ -320,60 +242,26 @@
 
 	<div class="bg-contact2" >
 		<div class="container-contact2">
-			<div class="big-cont">
+			<div class="just">
 				<center>
 			<div class="wrap-contact2-b mb-4 mt-3">
 					<span class="contact2-form-title text-white">
-						M O O D I S H
+						TITLE
 					</span>
-					
-					<div class="mt-3">
-						<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">The one stop place for your restaurant growth</span>
-					</div>
-					
+
 					<div class="mt-3 mb-3 text-white">
 						<center>
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-							 labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamc
-							 o laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit 
-							esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+							Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+							sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+							 enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+							 aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+							esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,
 							sunt in culpa qui officia deserunt mollit anim id est laborum.
-						</center>
-					</div>
-					<center><hr style="background:white;width:70%;height:3px;"></center>
-					<div class="mt-3 mb-3 text-white" style="font-size:20px;">
-						<center>
-							<i class="fa fa-space-shuttle text-white" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Simple and fast onboarding process </span>
-						</center>
-					</div>
-					<div class="mb-3 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Fill the Registration form below </span>
-						</center>
-					</div>
-					<div class="mb-3 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Sign the service agreement </span>
-						</center>
-					</div>
-					<div class="mb-3 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Choose from the set of services (optional)</span>
-						</center>
-					</div>
-					<div class="mb-3 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">Restaurant is now live within 24-48 hrs </span>
 						</center>
 					</div>
 					<center>
 					<div class="mt-4 open-btn" id="open">
-						REGISTER NOW
+						OPEN FORM
 					</div>
 				</center>
 
@@ -382,8 +270,8 @@
 			<div class="wrap-contact2-b2" id="form-open" style="display:none;">
 				<form name="form" class="contact2-form validate-form" action="index.php" method="post" enctype= "multipart/form-data">
 					<div class="mb-5">
-						<span class="contact2-form-title gr-text text-uppercase">
-							REGISTRation Form
+						<span class="contact2-form-title gr-text">
+							REGISTER
 						</span>
 						<center><hr style="background:white;width:60%;height:3px;"></center>
 					</div>
@@ -752,11 +640,6 @@
 										</label>
 									</center>
 									<input type="file" class="uploading" id="menu-upload" name="menu[]" multiple style="display:none;"  >
-									<div class="">
-										<center>
-											<span class="text-danger text-uppercase" id="menu-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-										</center>
-									</div>
 								</div>
 							</div>
 							<div class="col-6">
@@ -771,11 +654,6 @@
 										</label>
 									</center>
 									<input class="uploading" id="pictures-upload" name='img[]' type="file" multiple="multiple" style="display:none;"  >
-									<div class="">
-										<center>
-											<span class="text-danger text-uppercase" id="pictures-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-										</center>
-									</div>
 								</div>
 							</div>
 							<div class="col-12">
@@ -828,11 +706,6 @@
 													</label>
 												</center>
 												<input class="uploading" id="kyc-upload" name='kyc[]' type="file" multiple="multiple" style="display:none;" >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="kyc-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
 											</div>
 										</div>
 										<div class="col-6">
@@ -847,11 +720,6 @@
 													</label>
 												</center>
 												<input class="uploading" id="pan-upload" name='pan[]' type="file" multiple="multiple" style="display:none;"  >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="pan-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
 											</div>
 										</div>
 										<div class="col-6">
@@ -866,11 +734,6 @@
 													</label>
 												</center>
 												<input class="uploading" id="gstin-upload" name='gstin[]' type="file" multiple="multiple" style="display:none;"  >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="gstin-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
 											</div>
 										</div>
 										<div class="col-6">
@@ -885,11 +748,6 @@
 													</label>
 												</center>
 												<input class="uploading" id="liscence-upload" name='shop_liscence[]' type="file" multiple="multiple" style="display:none;"  >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="liscence-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
 											</div>
 										</div>
 									</div>
@@ -918,18 +776,16 @@
 							</div>
 						</div>
 					</div>
-
+					
 					<div class="mt-2" >
 						<center>
-							<span class="font-weight-bold text-uppercase text-danger" id="error" style="letter-spacing:2px;">
-
+							<span class="font-weight-bold text-uppercase" id="error" style="letter-spacing:2px;">
+								
 							</span>
 						</center>
 					</div>
-
-
-
-
+					
+					
 
 					<div class="container-contact2-form-btn">
 						<div class="wrap-contact2-form-btn" style="border-radius:30px">
