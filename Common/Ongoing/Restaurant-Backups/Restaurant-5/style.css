@@ -111,11 +111,13 @@ body{
 .char-label{
   text-transform: uppercase;
   color: #3b90f6;
+  height: 3vh;
   font-size: 3vh;
 }
 .char-label2{
   text-transform: uppercase;
   color: #3b90f6;
+  height: 4vh;
   font-size: 4vh;
 }
 
@@ -184,46 +186,8 @@ input[type='checkbox']:checked:before {
   font-size: 2.75vh;
 }
 
-.submit-form{
-  display: block;
-  background: -webkit-linear-gradient(45deg, rgba(19, 105, 209,0.8),rgba(9, 24, 54,0.8));
-  background: -o-linear-gradient(45deg, rgba(19, 105, 209,0.8),rgba(9, 24, 54,0.8));
-  background: -moz-linear-gradient(45deg, rgba(19, 105, 209,0.8),rgba(9, 24, 54,0.8));
-  background: linear-gradient(45deg, rgba(19, 105, 209,0.8),rgba(9, 24, 54,0.8));
-  padding: 2.5vh;
-  color: white;
-  text-transform: uppercase;
-  width: 50%;
-  letter-spacing: 2px;
-  overflow: hidden;
-  border-radius: 4vh;
-  cursor: pointer;
-  font-size: 2.75vh;
-  transition: all 1s;
-}
-
-.submit-form:hover{
-  opacity: 0.8;
-}
-
 .doc-title{
   letter-spacing:2px;
   font-weight:900;
   color:#3b90f6;
-}
-
-.gr-bg{
-  background: -webkit-linear-gradient(45deg, rgba(19, 105, 209,0.8),rgba(9, 24, 54,0.8));
-  background: -o-linear-gradient(45deg, rgba(19, 105, 209,0.8),rgba(9, 24, 54,0.8));
-  background: -moz-linear-gradient(45deg, rgba(19, 105, 209,0.8),rgba(9, 24, 54,0.8));
-  background: linear-gradient(45deg, rgba(19, 105, 209,0.8),rgba(9, 24, 54,0.8));
-}
-
-.gr-text{
-  background: -webkit-linear-gradient(45deg, rgba(9, 24, 54,0.8), rgba(19, 105, 209,0.8));
-  background: -o-linear-gradient(45deg, rgba(9, 24, 54,0.8), rgba(19, 105, 209,0.8));
-  background: -moz-linear-gradient(45deg, rgba(9, 24, 54,0.8), rgba(19, 105, 209,0.8));
-  background: linear-gradient(45deg, rgba(9, 24, 54,0.8), rgba(19, 105, 209,0.8));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }

@@ -86,10 +86,15 @@
 	      // if everything is ok, try to upload file
 	      } else {
 	          if (move_uploaded_file($_FILES[$filetoUpload]["tmp_name"][$i], $target_file)) {
+	              // $message =  '<label class="text-uppercase" style="color:green" >'.'The file "'. basename( $_FILES[$filetoUpload]["name"][$i]). '" has been uploaded.'.'</label><br>';
+	              // array_push($messages,$message);
 	              $tar = explode("/",$target_file);
 	              $x = array_slice($tar, -3);
 	              $x2 = join("/",$x);
+	              // $new_target = $_SERVER['DOCUMENT_ROOT']."/Shreejit/".$x2;
 	              $new_target = "/Shreejit/".$x2;
+	              // $qu = "INSERT INTO images (image_path) VALUES ('$new_target')";
+	              // mysqli_query($db, $qu);
 	          } else {
 	              $message =  ' there was an error uploading your file.';
 	              array_push($messages,$message);
@@ -224,7 +229,7 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
 
     <link rel="stylesheet" href="style.css">
 
-		<script src="query.js"></script>
+		<script src="js/query.js"></script>
 
     <title>Moodish</title>
   </head>
@@ -247,7 +252,7 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
       <div class="row">
         <div class="col-12 mt-4">
           <center>
-            <h1 class="big text-uppercase gr-text" style="letter-spacing:2px;">Simple and fast onboarding process</h1>
+            <h1 class="big text-uppercase" style="letter-spacing:2px;">Simple and fast onboarding process</h1>
           </center>
         </div>
         <div class="col-lg-3 col-6">
@@ -300,7 +305,7 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
         </div>
       </div>
     </div>
-    <div class="container-fluid mb-5 mt-5 gr-bg" style="min-height:50vh">
+    <div class="container-fluid mb-5 mt-5" style="background:#2861a6;min-height:50vh">
       <div class="row">
         <div class="col-12 mt-4 mb-2">
           <center>
@@ -335,11 +340,11 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
         </div>
       </div>
     </div>
-    <div class="container-fluid mb-5" id="form-start">
+    <div class="container-fluid mb-5">
       <div class="row">
-        <div class="col-12 mt-1 mb-5">
+        <div class="col-12 mt-1 mb-2">
           <center>
-            <h1 class="big text-uppercase gr-text" style="letter-spacing:2px;">Partner with us</h1>
+            <h1 class="big text-uppercase" style="letter-spacing:2px;">Partner with us</h1>
             <hr style="background:#1a406e;width:50%;height:5px;">
           </center>
         </div>
@@ -350,56 +355,56 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
       <div class="row">
         <div class="col-12 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Name of the Restaurant *</label><br>
+            <label for="" class="input-label">Name of the Restaurant *</label><br>
             <input type="text" class="input-field" id="name" placeholder="ENTER RESTAURANT NAME" name="name" value=""><br>
             <label class="input-label-error" style="display:none" id="name-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Name of the Owner *</label><br>
+            <label for="" class="input-label">Name of the Owner *</label><br>
             <input type="text" class="input-field" id="owner_name" placeholder="ENTER NAME" name="owner_name" value=""><br>
             <label class="input-label-error" style="display:none" id="owner_name-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Contact No. *</label><br>
+            <label for="" class="input-label">Contact No. *</label><br>
             <input type="text" class="input-field" id="contact" placeholder="ENTER NUMBER" name="contact" value=""><br>
             <label class="input-label-error" style="display:none" id="contact-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Owner Email ID *</label><br>
+            <label for="" class="input-label">Owner Email ID *</label><br>
             <input type="text" class="input-field" id="email" placeholder="ENTER EMAIL" name="email" value=""><br>
             <label class="input-label-error" style="display:none" id="email-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Restaurant City *</label><br>
+            <label for="" class="input-label">Restaurant City *</label><br>
             <input type="text" class="input-field" id="city" placeholder="ENTER CITY NAME" name="city" value=""><br>
             <label class="input-label-error" style="display:none" id="city-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Address *</label><br>
-            <textarea type="text" class="input-field" id="address" placeholder="ENTER ADDRESS" name="address" value=""></textarea><br>
-            <label class="input-label-error" style="display:none" id="address-err" >Please fill field</label><br>
+            <label for="" class="input-label">Address *</label><br>
+            <textarea type="text" class="input-field" id="addr" placeholder="ENTER ADDRESS" name="address" value=""></textarea><br>
+            <label class="input-label-error" style="display:none" id="addr-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Restaurant Website *</label><br>
+            <label for="" class="input-label">Restaurant Website *</label><br>
             <input type="text" class="input-field" id="website" placeholder="ENTER WEBSITE" name="website" value=""><br>
             <label class="input-label-error" style="display:none" id="website-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Payment Method *</label><br>
+            <label for="" class="input-label">Payment Method *</label><br>
             <input type="text" class="input-field" id="pay" placeholder="ENTER METHOD" name="pay" value=""><br>
             <label class="input-label-error" style="display:none" id="pay-err" >Please fill field</label><br>
           </div>
@@ -409,44 +414,38 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
       <div class="row">
         <div class="col-12">
           <center>
-            <h1 class="mbig text-uppercase gr-text">CHARACTERISTICS</h1>
+            <h1 class="mbig">CHARACTERISTICS</h1>
           </center>
-        </div>
-				<div class="col-12 mb-2 mt-2">
-          <hr style="background:#1a406e;width:30%;height:3px;">
         </div>
         <div class="col-lg-6 col-12 mt-1 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <center><label for="" class="input-label-big gr-text">Alcohol *</label></center><br>
-            <div id="alcohol" class="d-flex justify-content-around align-items-center">
+            <center><label for="" class="input-label-big">Alcohol *</label></center><br>
+            <!-- <input type="text" class="input-field" id="website" placeholder="ENTER WEBSITE" name="website" value=""><br> -->
+            <div id="alcohol" class="option d-flex justify-content-around align-items-center">
               <div class="mt-1 d-flex align-items-center">
                 <input id="alc1" type="radio" name="alcohol" value="yes">
-                <label for="alc1" class="char-label gr-text">&nbsp;&nbsp; Yes, We serve </label>
+                <label for="alc1" class="char-label">&nbsp;&nbsp; Yes, We serve </label>
               </div>
               <div class="mt-1 d-flex align-items-center">
                 <input id="alc2" type="radio" name="alcohol" value="no">
-                <label for="alc2" class="char-label gr-text">&nbsp;&nbsp; No, We dont </label>
+                <label for="alc2" class="char-label">&nbsp;&nbsp; No, We dont </label>
               </div>
             </div>
-            <center>
-							<div class="" id="alcohol-err" style="display:none">
-								<label class="input-label-error" >Please Select a Field</label>
-							</div>
-						</center><br>
+            <label class="input-label-error" style="display:none" id="alcohol-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-6 col-12 mt-1 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <center><label for="" class="input-label-big gr-text">Cuisine *</label></center><br>
+            <center><label for="" class="input-label-big">Cuisine *</label></center><br>
             <div class="input-group mb-3" >
-              <select name="cuisine" class="custom-select selection" id="inputGroupSelect01" >
-                <option selected disabled value="-">Choose Cuisine</option>
+              <select name="cuisine"class="custom-select selection" id="inputGroupSelect01" >
+                <option selected disabled>Choose Cuisine</option>
                 <option value="1">One</option>
                 <option value="2">Two</option>
                 <option value="3">Three</option>
               </select>
             </div>
-            <label class="input-label-error" style="display:none" id="cuisine-err" >Please select a field</label><br>
+            <label class="input-label-error" style="display:none" id="website-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-12 col-12 mt-4 d-flex justify-content-center">
@@ -461,7 +460,7 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
                   <div class="d-flex align-items-center justify-content-start">
                     <input type="checkbox" id="ser<?=$i?>" name="service[]" value="<?= $services[$i] ?>">
                     <div class="" style="width:100%">
-                      <label for="ser<?=$i?>" class="char-label2 gr-text">&nbsp;&nbsp; <?= $services[$i] ?> </label>
+                      <label for="ser<?=$i?>" class="char-label2">&nbsp;&nbsp; <?= $services[$i] ?> </label>
                     </div>
                   </div>
                 </div>
@@ -470,13 +469,13 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
                 ?>
               </div>
             </div>
-            <center><label class="input-label-error" style="display:none" id="services-err" >Please select a field</label></center><br>
+            <label class="input-label-error" style="display:none" id="alcohol-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-12 col-12 mt-4 d-flex justify-content-center">
           <div class="mb-0 input-container">
-            <center><label for="" class="input-label-big gr-text">Additional Attributes *</label></center><br>
-            <div id="offers" class="option container">
+            <center><label for="" class="input-label-big">Additional Attributes *</label></center><br>
+            <div id="services" class="option container">
               <div class="row">
                 <?php
                 for($i=0;$i<count($offers);$i++){
@@ -484,8 +483,8 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
                 <div class="col-lg-6 col-12 mb-3 d-flex justify-content-start">
                   <div class="d-flex align-items-center justify-content-start" style="margin-left:25%">
                     <input type="checkbox" id="off<?=$i?>" name="offer[]" value="<?= $offers[$i] ?>">
-                    <div class="">
-                      <label for="off<?=$i?>" class="char-label2 gr-text">&nbsp;&nbsp; <?= $offers[$i] ?> </label>
+                    <div class="" style="width:100%">
+                      <label for="off<?=$i?>" class="char-label2">&nbsp;&nbsp; <?= $offers[$i] ?> </label>
                     </div>
                   </div>
                 </div>
@@ -494,7 +493,7 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
                 ?>
               </div>
             </div>
-            <center><label class="input-label-error" style="display:none" id="offers-err" >Please select a field</label></center><br>
+            <label class="input-label-error" style="display:none" id="alcohol-err" >Please fill field</label><br>
           </div>
         </div>
       </div>
@@ -505,21 +504,21 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
         </div>
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Number Of Outlets *</label><br>
+            <label for="" class="input-label">Number Of Outlets *</label><br>
             <input type="text" class="input-field" id="outlets" placeholder="ENTER NUMBER OF OUTLETS" name="outlets" value=""><br>
             <label class="input-label-error" style="display:none" id="outlets-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Average Cost for 2 *</label><br>
+            <label for="" class="input-label">Average Cost for 2 *</label><br>
             <input type="text" class="input-field" id="avg_cost" placeholder="ENTER AMOUNT" name="avg_cost" value=""><br>
             <label class="input-label-error" style="display:none" id="avg_cost-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Primary Area of Restaurant *</label><br>
+            <label for="" class="input-label">Primary Area of Restaurant *</label><br>
             <input type="text" class="input-field" id="primary" placeholder="ENTER AREA" name="primary_area" value=""><br>
             <label class="input-label-error" style="display:none" id="primary-err" >Please fill field</label><br>
           </div>
@@ -529,65 +528,62 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
       <div class="row">
         <div class="col-12">
           <center>
-            <h1 class="mbig text-uppercase gr-text">FSSAI Certificate</h1>
+            <h1 class="mbig text-uppercase">FSSAI Certificate</h1>
           </center>
-        </div>
-				<div class="col-12 mb-2 mt-2">
-          <hr style="background:#1a406e;width:30%;height:3px;">
         </div>
 
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Liscence Numner *</label><br>
+            <label for="" class="input-label">Liscence Numner *</label><br>
             <input type="text" class="input-field" id="liscence" placeholder="ENTER NUMBER" name="liscence" value=""><br>
             <label class="input-label-error" style="display:none" id="liscence-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Resigtration No. *</label><br>
+            <label for="" class="input-label">Resigtration No. *</label><br>
             <input type="text" class="input-field" id="regno" placeholder="ENTER NUMBER" name="regno" value=""><br>
             <label class="input-label-error" style="display:none" id="regno-err" >Please fill field</label><br>
           </div>
         </div>
         <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
           <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">EXPIRY DATE *</label><br>
-            <input type="date" class="input-field text-uppercase" id="exp" placeholder="ENTER DATE" name="exp" value=""><br>
-            <label class="input-label-error" style="display:none" id="exp-err" >Please fill field</label><br>
-          </div>
-        </div>
-				<div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
-          <div class="mb-2 input-container">
-            <label for="" class="input-label gr-text">Address *</label><br>
+            <label for="" class="input-label">Owner Email ID *</label><br>
             <input type="text" class="input-field" id="addr" placeholder="ENTER ADDRESS" name="addr" value=""><br>
             <label class="input-label-error" style="display:none" id="addr-err" >Please fill field</label><br>
           </div>
         </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">EXPIRY DATE *</label><br>
+            <input type="date" class="input-field text-uppercase" id="exp" placeholder="ENTER DATE" name="exp" value=""><br>
+            <label class="input-label-error" style="display:none" id="exp-err" >Please fill field</label><br>
+          </div>
+        </div>
 
 
-        <!-- <div class="col-12 mb-2 mt-2">
+        <div class="col-12 mb-2 mt-2">
           <hr style="background:#1a406e;width:50%;height:3px;">
-        </div> -->
+        </div>
 
       </div>
 
       <div class="row">
         <div class="col-12">
           <center>
-            <h1 class="mbig text-uppercase gr-text">Images</h1>
+            <h1 class="mbig text-uppercase">Images</h1>
           </center>
         </div>
-				<div class="col-12 mb-2 mt-2">
-          <hr style="background:#1a406e;width:30%;height:3px;">
-        </div>
+        <!-- <div class="col-lg-6 col-12"> -->
           <?php
           for($i=0;$i<count($images);$i++){
+
+          // }
            ?>
           <div class="col-12 col-lg-6">
               <div class="mb-4">
                 <center>
-                  <span class="medium2 text-uppercase doc-title gr-text" style=""><?= $images[$i][0]?></span>
+                  <span class="medium2 text-uppercase doc-title" style=""><?= $images[$i][0]?></span>
                 </center>
               </div>
               <center>
@@ -597,7 +593,7 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
               <input class="uploading" id="<?= $images[$i][1]?>-upload" name='<?= $images[$i][1]?>[]' type="file" multiple="multiple" style="display:none;" >
               <div class="">
                 <center>
-                  <span class="input-label-error text-uppercase" id="<?= $images[$i][1]?>-upload-error" style="letter-spacing:2px;font-weight:400"></span>
+                  <span class="text-danger text-uppercase" id="<?= $images[$i][1]?>-upload-error" style="letter-spacing:2px;font-weight:400"></span>
                 </center>
               </div>
           </div>
@@ -605,27 +601,28 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
           <?php
         }
          ?>
-        <!-- <div class="col-12 mb-2 mt-2">
+        <!-- </div> -->
+        <div class="col-12 mb-2 mt-2">
           <hr style="background:#1a406e;width:50%;height:3px;">
-        </div> -->
+        </div>
       </div>
 
       <div class="row">
         <div class="col-12">
           <center>
-            <h1 class="mbig text-uppercase gr-text">Documents</h1>
+            <h1 class="mbig text-uppercase">Documents</h1>
           </center>
         </div>
-				<div class="col-12 mb-2 mt-2">
-          <hr style="background:#1a406e;width:30%;height:3px;">
-        </div>
+        <!-- <div class="col-lg-6 col-12"> -->
           <?php
           for($i=0;$i<count($documents);$i++){
+
+          // }
            ?>
           <div class="col-12 col-lg-6">
               <div class="mb-4">
                 <center>
-                  <span class="medium2 text-uppercase doc-title gr-text" ><?= $documents[$i][0]?></span>
+                  <span class="medium2 text-uppercase doc-title" style=""><?= $documents[$i][0]?></span>
                 </center>
               </div>
               <center>
@@ -635,7 +632,7 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
               <input class="uploading" id="<?= $documents[$i][1]?>-upload" name='<?= $documents[$i][1]?>[]' type="file" multiple="multiple" style="display:none;" >
               <div class="">
                 <center>
-                  <span class="input-label-error text-uppercase" id="<?= $documents[$i][1]?>-upload-error" style="letter-spacing:2px;font-weight:400"></span>
+                  <span class="text-danger text-uppercase" id="<?= $documents[$i][1]?>-upload-error" style="letter-spacing:2px;font-weight:400"></span>
                 </center>
               </div>
           </div>
@@ -645,29 +642,13 @@ $images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
          ?>
         <!-- </div> -->
       </div>
-			
-			<div class="row">
-				
-				<div class="col-12 mb-2 mt-2">
-          <hr style="background:#1a406e;width:80%;height:3px;">
-        </div>
-				
-				<div class="col-12">
-					<center>
-						<div class="submit-form" id="form-submit">
-							SUBMIT FORM
-						</div>
-					</center>
-				</div>
-				<div class="col-12">
-					<center><label class="input-label-error" id="main-error" ></label><center><br>
-				</div>
-			</div>
-			
-			<button type="submit" id="final-submit" name="submit" hidden> submit </button>
+			<button type="submit" name="submit"> submit </button>
 		</form>
     </div>
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
   </body>
