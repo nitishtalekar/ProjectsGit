@@ -18,19 +18,19 @@ $(document).ready(function() {
           valid_size = valid_size + 1;
         }
       }
-      if(valid_type > 0){
-        $(err_lbl).html("* FILE format is wrong (Only jpeg,png,Pdf)");
-      }
-      else if(valid_size > 0){
-        $(err_lbl).html("* Each file must be less than 5 MB");
-      }
-      else{
+      // if(valid_type > 0){
+      //   $(err_lbl).html("* FILE format is wrong (Only jpeg,png,Pdf)");
+      // }
+      // else if(valid_size > 0){
+      //   $(err_lbl).html("* Each file must be less than 5 MB");
+      // }
+      // else{
         for (k=0;k<arr.length;k++){
           files = files+arr[k].name+" , ";
         }
         files = files.slice(0, -3);
         $(lbl).text(files);
-      }
+      // }
     });
 
     $("#open").click(function(){
@@ -44,22 +44,22 @@ $(document).ready(function() {
       $("#error").html("");
       var error = 0;
       if($("#paydiv input[type=checkbox]:checked").length == 0){
-      
+
         error = error + 1;
         $("#error").append("* select payment method</br>");
       }
       if($("#servicediv input[type=checkbox]:checked").length == 0){
-      
+
         error = error + 1;
         $("#error").append("* select Services</br>");
       }
       if($("#offerdiv input[type=checkbox]:checked").length == 0){
-      
+
         error = error + 1;
         $("#error").append("* select Offers available</br>");
       }
       if($("#alcoholdiv input[type=radio]:checked").length == 0){
-      
+
         error = error + 1;
         $("#error").append("* select Alcohol serving</br>");
       }

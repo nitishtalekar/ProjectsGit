@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <?php
 
 	$servername = "localhost";
@@ -108,18 +107,14 @@
 
     $name = mysqli_real_escape_string($conn, $_POST['name']);
 		$owner_name = mysqli_real_escape_string($conn, $_POST['owner_name']);
-		$poc = mysqli_real_escape_string($conn, $_POST['poc']);
+		$contact = mysqli_real_escape_string($conn, $_POST['contact']);
+		// $poc = mysqli_real_escape_string($conn, $_POST['poc']);
 		$city = mysqli_real_escape_string($conn, $_POST['city']);
 		$address = mysqli_real_escape_string($conn, $_POST['address']);
-		$landmark = mysqli_real_escape_string($conn, $_POST['landmark']);
+		// $landmark = mysqli_real_escape_string($conn, $_POST['landmark']);
 		$email = mysqli_real_escape_string($conn, $_POST['email']);
 		$website = mysqli_real_escape_string($conn, $_POST['website']);
-		$pay1 = $_POST['pay'];
-		$pay2 = "";
-		foreach ($pay1 as $color){
-				$pay2 = $pay2 . $color . ";";
-		}
-		$pay = substr($pay2, 0, -1);
+		$pay = mysqli_real_escape_string($conn, $_POST['pay']);
 		$alcohol = mysqli_real_escape_string($conn, $_POST['alcohol']);
 		$cuisine = mysqli_real_escape_string($conn, $_POST['cuisine']);
 		$service1 = $_POST['service'];
@@ -206,8 +201,8 @@
 			add_file("gstin", $path."/");
 			add_file("shop_liscence", $path."/");
 
-			$sql = "INSERT INTO data(name, owner_name, poc, city, address, landmark, email, website, payment, alcohol, cuisine, service, offer, menu, img, fssai_liscence, fssai_regno, fssai_addr, fssai_exp, kyc, pan_card, gstin, shop_liscence, outlets, avg_cost, primary_area) VALUES ";
-			$sql = $sql."('$name', '$owner_name', '$poc', '$city', '$address', '$landmark', '$email', '$website', '$pay', '$alcohol', '$cuisine', '$service', '$offer', '$menu', '$img', '$liscence', '$regno', '$addr', '$exp', '$kyc', '$pan', '$gstin', '$shop_liscence', '$outlets', '$avg_cost', '$primary_area')";
+			$sql = "INSERT INTO data(name, owner_name, poc, city, address, email, website, payment, alcohol, cuisine, service, offer, menu, img, fssai_liscence, fssai_regno, fssai_addr, fssai_exp, kyc, pan_card, gstin, shop_liscence, outlets, avg_cost, primary_area) VALUES ";
+			$sql = $sql."('$name', '$owner_name', '$contact', '$city', '$address', '$email', '$website', '$pay', '$alcohol', '$cuisine', '$service', '$offer', '$menu', '$img', '$liscence', '$regno', '$addr', '$exp', '$kyc', '$pan', '$gstin', '$shop_liscence', '$outlets', '$avg_cost', '$primary_area')";
 			mysqli_query($conn, $sql);
 
 		}
@@ -215,698 +210,446 @@
 
 }
 
+$services = array("Breakfast","Lunch","Dinner","Night Life","Cafe");
+$offers = array("Live Music","Couple Entry","Free Parking","Above 18 Only","Outdoor Seating","Table Resrvation","Poolside","Catering","Pet Friendly","Private Dining","Smoking Area","Buffet","Board Games");
+$documents = array(array("KYC Document","kyc"),array("Pan Card","pan"),array("GSTIN CARD","gstin"),array("Shop Liscence","shop_liscence"));
+$images = array(array("Menu Images","menu"),array("Restaurant Pictures","img"))
+// $doc_names = array()
  ?>
 <html lang="en">
-<head>
-	<title>MOOD</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->
-	<link rel="icon" type="image/png" href="images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-<!--===============================================================================================-->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="css/main.css">
-<!--===============================================================================================-->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<script src="js/query.js"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-</head>
-<body>
+    <link rel="stylesheet" href="style.css">
 
-	<div class="bg-contact2" >
-		<div class="container-contact2">
-			<div class="big-cont">
-				<center>
-					<div class="wrap-contact2-b mb-4 mt-3" id="startdiv">
-					<span class="contact2-form-title text-white">
-						M O O D I S H
-					</span>
-					
-					<div class="mt-3">
-						<span class="text-uppercase text-white font-weight-bold" style="letter-spacing:2px;">The one stop place for your restaurant growth</span>
-					</div>
-					
-					<center><hr style="background:white;width:70%;height:3px;"></center>
-					<div class="mt-3 mb-3 text-white" style="font-size:3vh;">
-						<center>
-							<i class="fa fa-space-shuttle text-white " aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold " style="letter-spacing:2px;">Simple and fast onboarding process </span>
-						</center>
-					</div>
-					<div class="mb-2 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Fill the Registration form below </span>
-						</center>
-					</div>
-					<div class="mb-2 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Sign the service agreement </span>
-						</center>
-					</div>
-					<div class="mb-2 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Choose from the set of services (optional)</span>
-						</center>
-					</div>
-					<div class="mb-2 text-white">
-						<center>
-							<i class="fa fa-check-circle-o text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Restaurant is now live within 24-48 hrs </span>
-						</center>
-					</div>
-					
-					<center><hr style="background:white;width:50%;height:3px;"></center>
-					<div class="mt-3 mb-3 text-white" style="font-size:3vh;">
-						<center>
-							<i class="fa fa-wrench text-white" aria-hidden="true"></i></i> &nbsp;&nbsp;
-							<span class="text-uppercase text-white font-weight-bold " style="letter-spacing:2px;">OUR SERVICES for you</span>
-						</center>
-					</div>
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-sm-12 col-lg-4">
-								<div class="mb-2 text-white">
-									<center>
-										<i class="fa fa-shopping-cart text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-										<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Marketing</span>
-									</center>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-4">
-								<div class="mb-2 text-white">
-									<center>
-										<i class="fa fa-superpowers text-white small-font" aria-hidden="true"></i>&nbsp;&nbsp;
-										<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Website Development</span>
-									</center>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-4">
-								<div class="mb-2 text-white">
-									<center>
-										<i class="fa fa-camera text-white small-font" aria-hidden="true"></i> &nbsp;&nbsp;
-										<span class="text-uppercase text-white font-weight-bold small-font" style="letter-spacing:2px;">Photography</span>
-									</center>
-								</div>
-							</div>
-						</div>		
-					</div>
-					
-					<center>
-					<div class="mt-4 open-btn" id="open">
-						REGISTER NOW
-					</div>
-					 
-				</center>
+		<script src="js/query.js"></script>
 
-			</div>
+    <title>Moodish</title>
+  </head>
+  <body>
+    <nav class="navbar navbar-dark bg-dark">
+      <a class="navbar-brand" href="#">M O O D I S H</a>
+    </nav>
+    <div class="container-fluid head-container">
+      <div class="row d-flex justify-content-center align-items-center title-container">
+        <div class="col-12">
+          <center>
+            <h1 class="title">M O O D I S H</h1>
+            <span class="text-white text-uppercase medium">The one stop place for your restaurant growth</span>
+          </center>
+        </div>
+      </div>
+      <!-- <img src="bg.jpg" alt="" class="cover-img" > -->
+    </div>
+    <div class="container-fluid mb-4" style="min-height:50vh;">
+      <div class="row">
+        <div class="col-12 mt-4">
+          <center>
+            <h1 class="big text-uppercase" style="letter-spacing:2px;">Simple and fast onboarding process</h1>
+          </center>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="d-flex justify-content-center align-items-center mt-5 mb-4">
+            <div class="d-flex justify-content-center align-items-center steps-cont" style="--color:#3b90f6;">
+              <h1 class="large">1</h1>
+            </div>
+          </div>
+          <div class="text-uppercase medium">
+          <center>
+            Fill the Registration form <br>below
+          </center>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="d-flex justify-content-center align-items-center mt-5 mb-4">
+            <div class="d-flex justify-content-center align-items-center steps-cont" style="--color:#3076c9;">
+              <h1 class="large">2</h1>
+            </div>
+          </div>
+          <div class="text-uppercase medium">
+          <center>
+            Sign the service <br>agreement
+          </center>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="d-flex justify-content-center align-items-center mt-5 mb-4">
+            <div class="d-flex justify-content-center align-items-center steps-cont" style="--color:#2861a6;">
+              <h1 class="large">3</h1>
+            </div>
+          </div>
+          <div class="text-uppercase medium">
+          <center>
+            Choose from the set of services <br>(optional)
+          </center>
+          </div>
+        </div>
+        <div class="col-lg-3 col-6">
+          <div class="d-flex justify-content-center align-items-center mt-5 mb-4">
+            <div class="d-flex justify-content-center align-items-center steps-cont" style="--color:#1a406e;">
+              <h1 class="large">4</h1>
+            </div>
+          </div>
+          <div class="text-uppercase medium">
+          <center>
+            Restaurant is now live within <br>24-48 hrs
+          </center>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid mb-5 mt-5" style="background:#2861a6;min-height:50vh">
+      <div class="row">
+        <div class="col-12 mt-4 mb-2">
+          <center>
+            <h1 class="big text-uppercase text-white" style="letter-spacing:2px;">OUR SERVICES for you</h1>
+          </center>
+        </div>
+      </div>
+      <div class="row d-flex justify-content-around align-items-center mt-3 mb-5">
+        <div class="col-lg-3 col-6 mb-5">
+          <div class="card service-card py-5" style="--color:#ffffff">
+          <center>
+            <i class="fa fa-shopping-cart large" aria-hidden="true"></i><br><br>
+            <span class="medium2 text-uppercase">Marketing</span>
+          </center>
+        </div>
+        </div>
+        <div class="col-lg-3 col-6 mb-5">
+          <div class="card service-card py-5" style="--color:#ffffff">
+          <center>
+            <i class="fa fa-camera large" aria-hidden="true"></i><br><br>
+            <span class="medium2 text-uppercase">Photography</span>
+          </center>
+        </div>
+        </div>
+        <div class="col-lg-3 col-6 mb-5">
+          <div class="card service-card py-5" style="--color:#ffffff">
+          <center>
+            <i class="fa fa-superpowers large" aria-hidden="true"></i><br><br>
+            <span class="medium2 text-uppercase">Website Development</span>
+          </center>
+        </div>
+        </div>
+      </div>
+    </div>
+    <div class="container-fluid mb-5">
+      <div class="row">
+        <div class="col-12 mt-1 mb-2">
+          <center>
+            <h1 class="big text-uppercase" style="letter-spacing:2px;">Partner with us</h1>
+            <hr style="background:#1a406e;width:50%;height:5px;">
+          </center>
+        </div>
+      </div>
 
-			<div class="wrap-contact2-b2" id="form-open" style="display:none;">
-				<form name="form" class="contact2-form validate-form" action="index.php" method="post" enctype= "multipart/form-data">
-					<div class="mb-5">
-						<span class="contact2-form-title gr-text text-uppercase">
-							Registration Form
-						</span>
-						<center><hr style="background:white;width:60%;height:3px;"></center>
-					</div>
+			<form action="index.php" method="post" enctype="multipart/form-data">
 
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-12">
-								<div class="wrap-input2 mb-4 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> NAME OF RESTAURANT</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="name" required >
-									<span class="focus-input2"></span>
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="wrap-input2 mb-4 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> NAME OF THE OWNER</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="owner_name" required >
-									<span class="focus-input2"></span>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-6">
-								<div class="wrap-input2 mb-4 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> POC designation</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="poc" required >
-									<span class="focus-input2"></span>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-6">
-								<div class="wrap-input2 mb-4 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> CITY</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="city" required >
-									<span class="focus-input2"></span>
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="wrap-input2 mb-4 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900"> ADDRESS</span>
-									<textarea class="input2 text-white" style="background:transparent" type="text" name="address" required ></textarea>
-									<span class="focus-input2"></span>
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="wrap-input2 mb-4 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">LANDMARK</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="landmark" required >
-									<span class="focus-input2"></span>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-6">
-								<div class="wrap-input2 mb-1 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">RESTAURANT EMAIL</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="email" required >
-									<span class="focus-input2"></span>
-								</div>
-								<div class="text-white text-uppercase" style="font-size:15px">
-									Owner MAil ID
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-6">
-								<div class="wrap-input2 mb-1 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">RESTAURANT WEBSITE</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="website" required >
-									<span class="focus-input2"></span>
-								</div>
-								<div class="text-white text-uppercase" style="font-size:15px">
-									Dont have One? We Can help YOU. <span style="font-weight:bold">CLICK HERE</span>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-6">
-								<div class="wrap-input2-cb mb-4 mt-4 validate-input" id="paydiv">
-									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">PAYMENT METHOD</span></center>
-									<div class="mt-3 d-flex justify-content-around">
-										<div class="d-flex justify-content-center">
-											<div class="ch-wrap">
-		                    <input type="checkbox" class="mk pay" name="pay[]" value="card" id="pay1" hidden/>
-		                    <label for="pay1" class="mark"></label>
-		                  </div>
-											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
-												CARD
-											</div>
-										</div>
-										<div class="d-flex justify-content-center">
-											<div class="ch-wrap">
-		                    <input type="checkbox" class="mk pay" name="pay[]" value="cash" id="pay2" hidden/>
-		                    <label for="pay2" class="mark"></label>
-		                  </div>
-											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
-												CASH
-											</div>
-										</div>
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Name of the Restaurant *</label><br>
+            <input type="text" class="input-field" id="name" placeholder="ENTER RESTAURANT NAME" name="name" value=""><br>
+            <label class="input-label-error" style="display:none" id="name-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Name of the Owner *</label><br>
+            <input type="text" class="input-field" id="owner_name" placeholder="ENTER NAME" name="owner_name" value=""><br>
+            <label class="input-label-error" style="display:none" id="owner_name-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Contact No. *</label><br>
+            <input type="text" class="input-field" id="contact" placeholder="ENTER NUMBER" name="contact" value=""><br>
+            <label class="input-label-error" style="display:none" id="contact-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Owner Email ID *</label><br>
+            <input type="text" class="input-field" id="email" placeholder="ENTER EMAIL" name="email" value=""><br>
+            <label class="input-label-error" style="display:none" id="email-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Restaurant City *</label><br>
+            <input type="text" class="input-field" id="city" placeholder="ENTER CITY NAME" name="city" value=""><br>
+            <label class="input-label-error" style="display:none" id="city-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Address *</label><br>
+            <textarea type="text" class="input-field" id="addr" placeholder="ENTER ADDRESS" name="address" value=""></textarea><br>
+            <label class="input-label-error" style="display:none" id="addr-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Restaurant Website *</label><br>
+            <input type="text" class="input-field" id="website" placeholder="ENTER WEBSITE" name="website" value=""><br>
+            <label class="input-label-error" style="display:none" id="website-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Payment Method *</label><br>
+            <input type="text" class="input-field" id="pay" placeholder="ENTER METHOD" name="pay" value=""><br>
+            <label class="input-label-error" style="display:none" id="pay-err" >Please fill field</label><br>
+          </div>
+        </div>
+      </div>
 
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-6">
-								<div class="wrap-input2-cb mb-4 mt-4 validate-input" id="alcoholdiv">
-									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">SERVES ALCOHOL</span></center>
-									<div class="mt-3 d-flex justify-content-around">
-										<div class="d-flex justify-content-center">
-											<div class="ch-wrap">
-		                    <input type="radio" class="mk" name="alcohol" value="yes" id="alcohol1" hidden/>
-		                    <label for="alcohol1" class="mark"></label>
-		                  </div>
-											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
-												YES
-											</div>
-										</div>
-										<div class="d-flex justify-content-center">
-											<div class="ch-wrap">
-		                    <input type="radio" class="mk" name="alcohol" value="no" id="alcohol2" hidden/>
-		                    <label for="alcohol2" class="mark"></label>
-		                  </div>
-											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
-												No
-											</div>
-										</div>
+      <div class="row">
+        <div class="col-12">
+          <center>
+            <h1 class="mbig">CHARACTERISTICS</h1>
+          </center>
+        </div>
+        <div class="col-lg-6 col-12 mt-1 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <center><label for="" class="input-label-big">Alcohol *</label></center><br>
+            <!-- <input type="text" class="input-field" id="website" placeholder="ENTER WEBSITE" name="website" value=""><br> -->
+            <div id="alcohol" class="option d-flex justify-content-around align-items-center">
+              <div class="mt-1 d-flex align-items-center">
+                <input id="alc1" type="radio" name="alcohol" value="yes">
+                <label for="alc1" class="char-label">&nbsp;&nbsp; Yes, We serve </label>
+              </div>
+              <div class="mt-1 d-flex align-items-center">
+                <input id="alc2" type="radio" name="alcohol" value="no">
+                <label for="alc2" class="char-label">&nbsp;&nbsp; No, We dont </label>
+              </div>
+            </div>
+            <label class="input-label-error" style="display:none" id="alcohol-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-1 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <center><label for="" class="input-label-big">Cuisine *</label></center><br>
+            <div class="input-group mb-3" >
+              <select name="cuisine"class="custom-select selection" id="inputGroupSelect01" >
+                <option selected disabled>Choose Cuisine</option>
+                <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option>
+              </select>
+            </div>
+            <label class="input-label-error" style="display:none" id="website-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-12 col-12 mt-4 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <center><label for="" class="input-label-big">Services Offered *</label></center><br>
+            <div id="services" class="option container-fluid">
+              <div class="row d-flex justify-content-around">
+                <?php
+                for($i=0;$i<count($services);$i++){
+                ?>
+                <div class="col-lg-4 col-6 mb-4 d-flex justify-content-around">
+                  <div class="d-flex align-items-center justify-content-start">
+                    <input type="checkbox" id="ser<?=$i?>" name="service[]" value="<?= $services[$i] ?>">
+                    <div class="" style="width:100%">
+                      <label for="ser<?=$i?>" class="char-label2">&nbsp;&nbsp; <?= $services[$i] ?> </label>
+                    </div>
+                  </div>
+                </div>
+                <?php
+                }
+                ?>
+              </div>
+            </div>
+            <label class="input-label-error" style="display:none" id="alcohol-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-12 col-12 mt-4 d-flex justify-content-center">
+          <div class="mb-0 input-container">
+            <center><label for="" class="input-label-big">Additional Attributes *</label></center><br>
+            <div id="services" class="option container">
+              <div class="row">
+                <?php
+                for($i=0;$i<count($offers);$i++){
+                ?>
+                <div class="col-lg-6 col-12 mb-3 d-flex justify-content-start">
+                  <div class="d-flex align-items-center justify-content-start" style="margin-left:25%">
+                    <input type="checkbox" id="off<?=$i?>" name="offer[]" value="<?= $offers[$i] ?>">
+                    <div class="" style="width:100%">
+                      <label for="off<?=$i?>" class="char-label2">&nbsp;&nbsp; <?= $offers[$i] ?> </label>
+                    </div>
+                  </div>
+                </div>
+                <?php
+                }
+                ?>
+              </div>
+            </div>
+            <label class="input-label-error" style="display:none" id="alcohol-err" >Please fill field</label><br>
+          </div>
+        </div>
+      </div>
 
-									</div>
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="wrap-input2 mb-4 mt-4 validate-input">
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">CUISINE</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="cuisine" required >
-									<span class="focus-input2"></span>
-								</div>
-							</div>
-							<div class="col-12 d-flex justify-content-center">
-								<div class="wrap-input2-cb mb-4 validate-input" id="servicediv" style="padding:0px;margin:0px;width:80%">
-									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">SERVICES Offered</span></center>
-									<div class="container-fluid">
-									<div class="row">
-										<div class=" col-sm-12 col-lg-4 mt-2 d-flex justify-content-center">
-											<div class="ch-wrap">
-		                    <input type="checkbox" class="mk" name="service[]" value="Breakfast" id="services1"  hidden/>
-		                    <label for="services1" class="mark"></label>
-		                  </div>
-											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
-												Breakfast
-											</div>
-										</div>
-										<div class="col-sm-12 col-lg-4 mt-2 d-flex justify-content-center">
-											<div class="ch-wrap">
-		                    <input type="checkbox" class="mk" name="service[]" value="Lunch" id="services2" hidden/>
-		                    <label for="services2" class="mark"></label>
-		                  </div>
-											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
-												Lunch
-											</div>
-										</div>
-										<div class="col-sm-12 col-lg-4 mt-2 d-flex justify-content-center">
-											<div class="ch-wrap">
-		                    <input type="checkbox" class="mk" name="service[]" value="Dinner" id="services3" hidden/>
-		                    <label for="services3" class="mark"></label>
-		                  </div>
-											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
-												Dinner
-											</div>
-										</div>
-										<div class="col-sm-12 col-lg-6 mt-2 d-flex justify-content-center">
-											<div class="ch-wrap">
-		                    <input type="checkbox" class="mk" name="service[]" value="Night Life" id="services4" hidden/>
-		                    <label for="services4" class="mark"></label>
-		                  </div>
-											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
-												Night Life
-											</div>
-										</div>
-										<div class="col-sm-12 col-lg-6 mt-2 d-flex justify-content-center">
-											<div class="ch-wrap">
-		                    <input type="checkbox" class="mk" name="service[]" value="Cafe" id="services5" hidden/>
-		                    <label for="services5" class="mark"></label>
-		                  </div>
-											&nbsp;&nbsp;
-											<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="height:30px;font-size:3vh">
-												Cafe
-											</div>
-										</div>
-									</div>
-								</div>
-								</div>
-							</div>
-							<div class="col-12 d-flex justify-content-center">
-								<center><hr style="background:white;width:40%;height:2px;"></center>
-								<div class="wrap-input2-cb mb-4 mt-4 validate-input" id="offerdiv" style="width:100%">
-									<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">AVAILABLE ATTRIBUTES</span></center>
-									<div class="container-fluid mt-4">
-										<div class="row">
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Live Music" id="offer11" hidden/>
-				                    <label for="offer11" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Live Music
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Couple Entry" id="offer21" hidden/>
-				                    <label for="offer21" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Couple Entry
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Free parking" id="offer31" hidden/>
-				                    <label for="offer31" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Free parking
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Above 18 only" id="offer12" hidden/>
-				                    <label for="offer12" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Above 18 only
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Outdoor seating" id="offer22" hidden/>
-				                    <label for="offer22" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Outdoor seating
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Table Reservation" id="offer32" hidden/>
-				                    <label for="offer32" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Table Reservation
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Poolside" id="offer13" hidden/>
-				                    <label for="offer13" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Poolside
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Catering" id="offer23" hidden/>
-				                    <label for="offer23" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Catering
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Pet friendly" id="offer33" hidden/>
-				                    <label for="offer33" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Pet friendly
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Private Dining" id="offer14" hidden/>
-				                    <label for="offer14" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Private Dining
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Smoking Area" id="offer24" hidden/>
-				                    <label for="offer24" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Smoking Area
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Buffet" id="offer34" hidden/>
-				                    <label for="offer34" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Buffet
-													</div>
-												</div>
-											</div>
-											<div class="col-sm-12 col-lg-4 mb-3">
-												<div class="d-flex justify-content-start">
-													<div class="ch-wrap">
-				                    <input type="checkbox" class="mk" name="offer[]" value="Board Games" id="offer15" hidden/>
-				                    <label for="offer15" class="mark"></label>
-				                  </div>
-													&nbsp;&nbsp;
-													<div class="text-white font-weight-bold text-uppercase d-flex align-items-center" style="font-size:3vh">
-														Board Games
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-6">
-								<div class="wrap-input2-cb mb-4 validate-input" >
-									<div class="mb-3">
-										<center>
-											<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">MENU IMAGES</span>
-										</center>
-									</div>
-									<center>
-										<label for="menu-upload" id="menu-upload-label" class="upload"> Upload Images
-										</label>
-									</center>
-									<input type="file" class="uploading" id="menu-upload" name="menu[]" multiple style="display:none;"  >
-									<div class="">
-										<center>
-											<span class="text-danger text-uppercase" id="menu-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-										</center>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-6">
-								<div class="wrap-input2-cb mb-4 validate-input" >
-									<div class="mb-3">
-										<center>
-											<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">RESTAURANT IMAGES</span>
-										</center>
-									</div>
-									<center>
-										<label for="pictures-upload" id="pictures-upload-label" class="upload"> Upload Images
-										</label>
-									</center>
-									<input class="uploading" id="pictures-upload" name='img[]' type="file" multiple="multiple" style="display:none;"  >
-									<div class="">
-										<center>
-											<span class="text-danger text-uppercase" id="pictures-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-										</center>
-									</div>
-								</div>
-							</div>
-							<div class="col-12">
-								<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900;font-size:4vh">FSSAI Certificate</span></center>
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-sm-12 col-lg-6 mt-3">
-											<div class="wrap-input2 mb-4 validate-input" >
-												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">LISCENCE NUMBER</span>
-												<input class="input2 text-white" style="background:transparent" type="text" name="liscence" required >
-												<span class="focus-input2"></span>
-											</div>
-										</div>
-										<div class="col-sm-12 col-lg-6 mt-3">
-											<div class="wrap-input2 mb-4 validate-input" >
-												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">REGISTRATION NUMBER</span>
-												<input class="input2 text-white" style="background:transparent" type="text" name="regno" required >
-												<span class="focus-input2"></span>
-											</div>
-										</div>
-										<div class="col-sm-12 col-lg-6 mt-3">
-											<div class="wrap-input2 mb-4 validate-input" >
-												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">ADDRESS</span>
-												<textarea class="input2 text-white" style="background:transparent" type="text" name="addr" required ></textarea>
-												<span class="focus-input2"></span>
-											</div>
-										</div>
-										<div class="col-sm-12 col-lg-6 mt-3 d-flex align-items-end">
-											<div class="wrap-input2 mb-4 validate-input" >
-												<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">EXPIRY</span>
-												<input class="input2 text-white" style="background:transparent" type="date" name="exp" required >
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-12">
-								<center><span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900;font-size:4vh">DOCUMENTS</span></center>
-								<div class="container-fluid mt-3">
-									<div class="row">
-										<div class="col-sm-12 col-lg-6">
-											<div class="wrap-input2-cb mb-4 validate-input" >
-												<div class="mb-3">
-													<center>
-														<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">KYC VERIFICATION</span>
-													</center>
-												</div>
-												<center>
-													<label for="kyc-upload" id="kyc-upload-label" class="upload"> Upload Document
-													</label>
-												</center>
-												<input class="uploading" id="kyc-upload" name='kyc[]' type="file" multiple="multiple" style="display:none;" >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="kyc-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-12 col-lg-6">
-											<div class="wrap-input2-cb mb-4 validate-input" >
-												<div class="mb-3">
-													<center>
-														<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">PAN CARD</span>
-													</center>
-												</div>
-												<center>
-													<label for="pan-upload" id="pan-upload-label" class="upload"> Upload Document
-													</label>
-												</center>
-												<input class="uploading" id="pan-upload" name='pan[]' type="file" multiple="multiple" style="display:none;"  >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="pan-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-12 col-lg-6">
-											<div class="wrap-input2-cb mb-4 validate-input" >
-												<div class="mb-3">
-													<center>
-														<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">GSTIN Certificate</span>
-													</center>
-												</div>
-												<center>
-													<label for="gstin-upload" id="gstin-upload-label" class="upload"> Upload Document
-													</label>
-												</center>
-												<input class="uploading" id="gstin-upload" name='gstin[]' type="file" multiple="multiple" style="display:none;"  >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="gstin-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
-											</div>
-										</div>
-										<div class="col-sm-12 col-lg-6">
-											<div class="wrap-input2-cb mb-4 validate-input" >
-												<div class="mb-3">
-													<center>
-														<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">SHOP LISCENCE</span>
-													</center>
-												</div>
-												<center>
-													<label for="liscence-upload" id="liscence-upload-label" class="upload"> Upload Document
-													</label>
-												</center>
-												<input class="uploading" id="liscence-upload" name='shop_liscence[]' type="file" multiple="multiple" style="display:none;"  >
-												<div class="">
-													<center>
-														<span class="text-danger text-uppercase" id="liscence-upload-error" style="letter-spacing:2px;font-weight:400"></span>
-													</center>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-6">
-								<div class="wrap-input2 mb-4 mt-4 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">Number of Outlets</span>
-									<input class="input2 text-white" style="background:transparent" type="number" name="outlets" required >
-									<span class="focus-input2"></span>
-								</div>
-							</div>
-							<div class="col-sm-12 col-lg-6">
-								<div class="wrap-input2 mb-4 mt-4 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">Average cost for 2</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="avg_cost" required >
-									<span class="focus-input2"></span>
-								</div>
-							</div>
-							<div class="col-12">
-								<div class="wrap-input2 mb-4 mt-4 validate-input" >
-									<span class="gr-text text-uppercase" style="letter-spacing:2px;font-weight:900">Primary Area of the Restaurant</span>
-									<input class="input2 text-white" style="background:transparent" type="text" name="primary_area" required >
-									<span class="focus-input2"></span>
-								</div>
-							</div>
-						</div>
-					</div>
+      <div class="row">
+        <div class="col-12 mb-2">
+          <hr style="background:#1a406e;width:20%;height:3px;">
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Number Of Outlets *</label><br>
+            <input type="text" class="input-field" id="outlets" placeholder="ENTER NUMBER OF OUTLETS" name="outlets" value=""><br>
+            <label class="input-label-error" style="display:none" id="outlets-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Average Cost for 2 *</label><br>
+            <input type="text" class="input-field" id="avg_cost" placeholder="ENTER AMOUNT" name="avg_cost" value=""><br>
+            <label class="input-label-error" style="display:none" id="avg_cost-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Primary Area of Restaurant *</label><br>
+            <input type="text" class="input-field" id="primary" placeholder="ENTER AREA" name="primary_area" value=""><br>
+            <label class="input-label-error" style="display:none" id="primary-err" >Please fill field</label><br>
+          </div>
+        </div>
+      </div>
 
-					<div class="mt-2" >
-						<center>
-							<span class="font-weight-bold text-uppercase text-danger" id="error" style="letter-spacing:2px;">
+      <div class="row">
+        <div class="col-12">
+          <center>
+            <h1 class="mbig text-uppercase">FSSAI Certificate</h1>
+          </center>
+        </div>
 
-							</span>
-						</center>
-					</div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Liscence Numner *</label><br>
+            <input type="text" class="input-field" id="liscence" placeholder="ENTER NUMBER" name="liscence" value=""><br>
+            <label class="input-label-error" style="display:none" id="liscence-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Resigtration No. *</label><br>
+            <input type="text" class="input-field" id="regno" placeholder="ENTER NUMBER" name="regno" value=""><br>
+            <label class="input-label-error" style="display:none" id="regno-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">Owner Email ID *</label><br>
+            <input type="text" class="input-field" id="addr" placeholder="ENTER ADDRESS" name="addr" value=""><br>
+            <label class="input-label-error" style="display:none" id="addr-err" >Please fill field</label><br>
+          </div>
+        </div>
+        <div class="col-lg-6 col-12 mt-3 d-flex justify-content-center">
+          <div class="mb-2 input-container">
+            <label for="" class="input-label">EXPIRY DATE *</label><br>
+            <input type="date" class="input-field text-uppercase" id="exp" placeholder="ENTER DATE" name="exp" value=""><br>
+            <label class="input-label-error" style="display:none" id="exp-err" >Please fill field</label><br>
+          </div>
+        </div>
 
 
+        <div class="col-12 mb-2 mt-2">
+          <hr style="background:#1a406e;width:50%;height:3px;">
+        </div>
 
+      </div>
 
+      <div class="row">
+        <div class="col-12">
+          <center>
+            <h1 class="mbig text-uppercase">Images</h1>
+          </center>
+        </div>
+        <!-- <div class="col-lg-6 col-12"> -->
+          <?php
+          for($i=0;$i<count($images);$i++){
 
-					<div class="container-contact2-form-btn">
-						<div class="wrap-contact2-form-btn" style="border-radius:30px">
-							<div class="contact2-form-bgbtn" style="border-radius:30px"></div>
-							<div id="form-submit" class="contact2-form-btn text-uppercase" style="border-radius:30px;letter-spacing:2px;">
-								Submit
-							</div>
-						</div>
-					</div>
-					<button type="submit" name="submit" id="final-submit" hidden></button>
-				</form>
-			</div>
-		</center>
-			</div>
-		</div>
-	</div>
+          // }
+           ?>
+          <div class="col-12 col-lg-6">
+              <div class="mb-4">
+                <center>
+                  <span class="medium2 text-uppercase doc-title" style=""><?= $images[$i][0]?></span>
+                </center>
+              </div>
+              <center>
+                <label for="<?= $images[$i][1]?>-upload" id="<?= $images[$i][1]?>-upload-label" class="upload"> Upload Images
+                </label>
+              </center>
+              <input class="uploading" id="<?= $images[$i][1]?>-upload" name='<?= $images[$i][1]?>[]' type="file" multiple="multiple" style="display:none;" >
+              <div class="">
+                <center>
+                  <span class="text-danger text-uppercase" id="<?= $images[$i][1]?>-upload-error" style="letter-spacing:2px;font-weight:400"></span>
+                </center>
+              </div>
+          </div>
 
-<!--===============================================================================================-->
-	<script src="js/main.js"></script>
+          <?php
+        }
+         ?>
+        <!-- </div> -->
+        <div class="col-12 mb-2 mt-2">
+          <hr style="background:#1a406e;width:50%;height:3px;">
+        </div>
+      </div>
 
-	<!-- Global site tag (gtag.js) - Google Analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
+      <div class="row">
+        <div class="col-12">
+          <center>
+            <h1 class="mbig text-uppercase">Documents</h1>
+          </center>
+        </div>
+        <!-- <div class="col-lg-6 col-12"> -->
+          <?php
+          for($i=0;$i<count($documents);$i++){
 
-	  gtag('config', 'UA-23581568-13');
-	</script>
+          // }
+           ?>
+          <div class="col-12 col-lg-6">
+              <div class="mb-4">
+                <center>
+                  <span class="medium2 text-uppercase doc-title" style=""><?= $documents[$i][0]?></span>
+                </center>
+              </div>
+              <center>
+                <label for="<?= $documents[$i][1]?>-upload" id="<?= $documents[$i][1]?>-upload-label" class="upload"> Upload Document
+                </label>
+              </center>
+              <input class="uploading" id="<?= $documents[$i][1]?>-upload" name='<?= $documents[$i][1]?>[]' type="file" multiple="multiple" style="display:none;" >
+              <div class="">
+                <center>
+                  <span class="text-danger text-uppercase" id="<?= $documents[$i][1]?>-upload-error" style="letter-spacing:2px;font-weight:400"></span>
+                </center>
+              </div>
+          </div>
 
-</body>
+          <?php
+        }
+         ?>
+        <!-- </div> -->
+      </div>
+			<button type="submit" name="submit"> submit </button>
+		</form>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  </body>
 </html>
