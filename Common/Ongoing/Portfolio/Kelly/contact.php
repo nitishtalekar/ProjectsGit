@@ -41,17 +41,18 @@
   <header id="header" class="fixed-top">
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
-      <h1 class="logo"><a href="index.html">Amit</a></h1>
+      <h1 class="logo"><a href="index.php">Amit</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
+      <!-- <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="portfolio.html">Gallery</a></li>
-          <li><a href="portfolio1.html">Gallery2</a></li>
-          <li class="active"><a href="contact.html">Contact</a></li>
+          <li><a href="index.php">Home</a></li>
+          <li><a href="about.php">About</a></li>
+          <li><a href="shop.php">Shop</a></li>
+          <li><a href="gallery.php">Gallery</a></li>
+          <li><a href="blog.php">Blog</a></li>
+          <li class="active"><a href="contact.php">Contact</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
