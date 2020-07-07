@@ -87,8 +87,10 @@
         </div>
         <?php
 
-          while($row = mysqli_fetch_assoc($blg)){
+          $i = 0;
 
+          while($row = mysqli_fetch_assoc($blg)){
+            if($i % 2 == 0){
          ?>
         <div class="row mb-4">
           <div class="col-lg-4">
@@ -105,6 +107,25 @@
         </div>
         <?php
           }
+          else{
+            ?>
+            <div class="row mb-4">
+              <div class="col-lg-8 pt-4 pt-lg-0 content">
+                <h3><?= $row['blog_title'] ?></h3>
+                <p class="font-italic">
+                  <?= $row['blog_date'] ?>
+                </p>
+                <p>
+                  <?= $row['blog_content'] ?></p>
+              </div>
+              <div class="col-lg-4">
+                <img src="<?= $row['blog_img'] ?>" class="img-fluid" alt="">
+              </div>
+            </div>
+            <?php
+          }
+          $i++;
+        }
          ?>
 
       </div>

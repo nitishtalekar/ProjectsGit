@@ -10,6 +10,13 @@
         $_SESSION['checkout'] = array();
     }
 
+    if(isset($_POST['add'])){
+
+      $id = mysqli_real_escape_string($conn, $_POST['add']);
+      array_push($_SESSION['checkout'], $id);
+
+    }
+
  ?>
 
 <html lang="en">
@@ -39,7 +46,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- =======================================================
@@ -48,11 +55,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  
+
   <script type="text/javascript">
     $(document).ready(function() {
       // console.log("HELLO");
-      
+
       $(".portfolio-info").each(function(){
         var id = "#plus_"+$(this).attr("id");
         $(this).click(function(){
@@ -132,7 +139,7 @@
                 Amit Kumar meena (b. 1996) is a self taught artist living and working in Mumbai, India.
               </p>
               <p>
-  
+
                 He’s working in a genre of art known as Hyper-realism. Over the years, he has gradually taught himself how to master charcoal on paper.
                 All his work are purely made by charcoal which is really hard to handle.
                 Amit’s work triggers emotions in the viewers minds through his hyperrealism. He says, “If you see my drawings closely, there’s happiness,
@@ -140,7 +147,7 @@
                 and we’re emotionless generation. I want people to accept and express.”
               </p>
             </div>
-            
+
           </div>
         </div>
 
@@ -173,6 +180,7 @@
 
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+          <form action="index.php" method="post">
 
           <?php
 
@@ -203,7 +211,7 @@
                  ?>
               <button type="submit" class="buy-btn px-3 py-1" name="add" value="<?= $row['image_id'] ?>" ><i class="bx bx-link"></i> &nbsp;&nbsp; BUY</button>
               <?php }?>
-              
+
             </div>
           </div>
         <?php
@@ -214,6 +222,7 @@
 
 
         </div>
+      </form>
 
       </div>
     </section><!-- End Portfolio Section -->
@@ -299,33 +308,33 @@
                 <div class="d-flex justify-content-center align-items-center icon-circle">
                   <i class="icofont-google-map"></i>
                 </div>
-                
+
               </div>
               <h4><a href="">Location</a></h4>
               <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
             </div>
           </div>
-          
+
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box iconbox-ic">
               <div class="icon">
                 <div class="d-flex justify-content-center align-items-center icon-circle">
                   <i class="icofont-phone"></i>
                 </div>
-                
+
               </div>
               <h4><a href="">Phone</a></h4>
               <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
             </div>
           </div>
-          
+
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box iconbox-ic">
               <div class="icon">
                 <div class="d-flex justify-content-center align-items-center icon-circle">
                   <i class="icofont-envelope"></i>
                 </div>
-                
+
               </div>
               <h4><a href="">E-Mail Id</a></h4>
               <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>

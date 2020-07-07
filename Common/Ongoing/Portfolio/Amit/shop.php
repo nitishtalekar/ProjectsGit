@@ -54,11 +54,11 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  
+
   <script type="text/javascript">
     $(document).ready(function() {
       // console.log("HELLO");
-      
+
       $(".portfolio-info").each(function(){
         var id = "#plus_"+$(this).attr("id");
         $(this).click(function(){
@@ -67,7 +67,7 @@
       });
     });
   </script>
-  
+
 </head>
 
 <body class="off-white">
@@ -116,6 +116,7 @@
 
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+          <form action="shop.php" method="post">
 
           <?php
 
@@ -146,7 +147,7 @@
                  ?>
               <button type="submit" class="buy-btn px-3 py-1" name="add" value="<?= $row['image_id'] ?>" ><i class="bx bx-link"></i> &nbsp;&nbsp; BUY</button>
               <?php }?>
-              
+
             </div>
           </div>
         <?php
@@ -157,7 +158,7 @@
 
 
         </div>
-
+        </form>
       </div>
     </section><!-- End Portfolio Section -->
 
