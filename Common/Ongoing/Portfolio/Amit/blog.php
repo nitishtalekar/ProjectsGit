@@ -96,13 +96,16 @@
           <div class="col-lg-4">
             <img src="<?= $row['blog_img'] ?>" class="img-fluid" alt="">
           </div>
-          <div class="col-lg-8 pt-4 pt-lg-0 content">
-            <h3><?= $row['blog_title'] ?></h3>
-            <p class="font-italic">
-              <?= $row['blog_date'] ?>
-            </p>
-            <p>
-              <?= $row['blog_content'] ?></p>
+          <div class="col-lg-8 pt-4 pt-lg-0 content d-flex align-items-center">
+            <div class="mt-2">
+              <h3><?= $row['blog_title'] ?></h3>
+              <p class="font-italic">
+                <?= $row['blog_date'] ?>
+              </p>
+              <p>
+                <?= $row['blog_content'] ?></p>
+            </div>
+            
           </div>
         </div>
         <?php
@@ -110,15 +113,18 @@
           else{
             ?>
             <div class="row mb-4">
-              <div class="col-lg-8 pt-4 pt-lg-0 content">
-                <h3><?= $row['blog_title'] ?></h3>
-                <p class="font-italic">
-                  <?= $row['blog_date'] ?>
-                </p>
-                <p>
-                  <?= $row['blog_content'] ?></p>
+              <div class="col-lg-8 order-lg-first order-last pt-4 pt-lg-0 content d-flex align-items-center">
+                <div class="mt-2">
+                  <h3 style="text-align:right"><?= $row['blog_title'] ?></h3>
+                  <p class="font-italic" style="text-align:right">
+                    <?= $row['blog_date'] ?>
+                  </p>
+                  <p  style="text-align:right">
+                    <?= $row['blog_content'] ?></p>
+                </div>
+                
               </div>
-              <div class="col-lg-4">
+              <div class="col-lg-4 order-lg-last order-first">
                 <img src="<?= $row['blog_img'] ?>" class="img-fluid" alt="">
               </div>
             </div>
