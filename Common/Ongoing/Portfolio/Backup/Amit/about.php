@@ -1,16 +1,3 @@
-<?php
-  require($_SERVER['DOCUMENT_ROOT']."/Amit/dbconnect.php");
-
-  $sql = "SELECT * FROM images;";
-  $gal = mysqli_query($conn, $sql);
-  $sql = "SELECT * FROM images WHERE image_tag = '1' ;";
-  $gal_shop = mysqli_query($conn, $sql);
-
-  if (!isset($_SESSION['checkout'])) {
-        $_SESSION['checkout'] = array();
-    }
-
- ?>
 
 <html lang="en">
 
@@ -18,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Amit Kumar Meena - Index</title>
+  <title>About - Amit Kumar Meena</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -39,8 +26,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- =======================================================
   * Template Name: Amit - v2.0.0
@@ -48,19 +33,6 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  
-  <script type="text/javascript">
-    $(document).ready(function() {
-      // console.log("HELLO");
-      
-      $(".portfolio-info").each(function(){
-        var id = "#plus_"+$(this).attr("id");
-        $(this).click(function(){
-          $(id).click();
-        })
-      });
-    });
-  </script>
 </head>
 
 <body class="off-white">
@@ -75,12 +47,11 @@
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-          <li class="active"><a href="index.php">Home</a></li>
-          <li><a href="about.php">About</a></li>
-          <li><a href="Shop.php">Shop</a></li>
-          <li><a href="Gallery.php">Gallery</a></li>
+          <li><a href="index.php">Home</a></li>
+          <li class="active"><a href="about.php">About</a></li>
+          <li><a href="shop.php">Shop</a></li>
+          <li><a href="gallery.php">Gallery</a></li>
           <li><a href="blog.php">Blog</a></li>
-          <li><a href="checkout.php">Checkout</a></li>
           <li><a href="contact.php">Contact</a></li>
         </ul>
       </nav><!-- .nav-menu -->
@@ -96,18 +67,7 @@
 
   </header><!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
-    <div class="container d-flex flex-column align-items-center pt-2 pb-2" data-aos="zoom-in" data-aos-delay="100" style="background:rgba(0,0,0,0.4)">
-      <center>
-      <h1 class="text-white">Amit Kumar Meena</h1>
-      <h2 class="text-white"><i>“There’s a fine grey line between black and white, Hyperrealism lies in between that grey line.”</i></h2>
-    </center>
-      <!-- <a href="about.php" class="btn-about">About Me</a> -->
-    </div>
-  </section><!-- End Hero -->
-
-  <main id="main">
+  <main id="main" style="min-height:calc(100vh - 120px)">
 
     <!-- ======= About Section ======= -->
     <section id="about" class="about">
@@ -145,197 +105,184 @@
         </div>
 
       </div>
-    </section><!-- End About Section -->
+    </section>
+    <!-- End About Section -->
 
     <!-- ======= Skills Section ======= -->
+    <!-- <section id="skills" class="skills">
+      <div class="container" data-aos="fade-up">
 
+        <div class="section-title">
+          <h2>Skills</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row skills-content">
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill">HTML <i class="val">100%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">CSS <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">JavaScript <i class="val">75%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="col-lg-6">
+
+            <div class="progress">
+              <span class="skill">PHP <i class="val">80%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">WordPress/CMS <i class="val">90%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+            <div class="progress">
+              <span class="skill">Photoshop <i class="val">55%</i></span>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar" role="progressbar" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section> -->
+    <!-- End Skills Section -->
 
     <!-- ======= Facts Section ======= -->
+    <!-- <section id="facts" class="facts">
+      <div class="container" data-aos="fade-up">
 
+        <div class="section-title">
+          <h2>Facts</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">232</span>
+            <p>Clients</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">521</span>
+            <p>Projects</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">1,463</span>
+            <p>Hours Of Support</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">15</span>
+            <p>Hard Workers</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section> -->
+    <!-- End Facts Section -->
 
     <!-- ======= Testimonials Section ======= -->
+    <!-- <section id="testimonials" class="testimonials">
+      <div class="container" data-aos="fade-up">
 
+        <div class="section-title">
+          <h2>Testimonials</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="owl-carousel testimonials-carousel">
+
+          <div class="testimonial-item">
+            <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
+            <h3>Saul Goodman</h3>
+            <h4>Ceo &amp; Founder</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
+            <h3>Sara Wilsson</h3>
+            <h4>Designer</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
+            <h3>Jena Karlis</h3>
+            <h4>Store Owner</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
+            <h3>Matt Brandon</h3>
+            <h4>Freelancer</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+
+          <div class="testimonial-item">
+            <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
+            <h3>John Larson</h3>
+            <h4>Entrepreneur</h4>
+            <p>
+              <i class="bx bxs-quote-alt-left quote-icon-left"></i>
+              Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
+              <i class="bx bxs-quote-alt-right quote-icon-right"></i>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section> -->
     <!-- End Testimonials Section -->
-
-  </main>
-  <!-- End #main -->
-
-  <main id="main">
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Shop</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-          <?php
-
-          $i = 0;
-
-            while($row = mysqli_fetch_assoc($gal_shop)){
-              if($i == 6){
-                break;
-              }
-
-           ?>
-
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="<?= $row['image_path'] ?>" class="img-fluid" alt="">
-              <div class="portfolio-info" id="<?= $i ?>s">
-                <h4><?= $row['image_title'] ?></h4>
-                <p><?= $row['image_title'] ?></p>
-                <div class="portfolio-links">
-                  <a href="<?= $row['image_path'] ?>" id="plus_<?= $i ?>s" data-gall="portfolioGallery" class="venobox" title="<?= $row['image_title'] ?>"><i class="bx bx-plus"></i></a>
-                </div>
-              </div>
-            </div>
-            <div class="mt-1 d-flex justify-content-between mx-3">
-              <span>COST : <b><?= $row['image_cost'] ?></b></span>
-              <?php if (!in_array($row['image_id'], $_SESSION['checkout'])){
-                 ?>
-              <button type="submit" class="buy-btn px-3 py-1" name="add" value="<?= $row['image_id'] ?>" ><i class="bx bx-link"></i> &nbsp;&nbsp; BUY</button>
-              <?php }?>
-              
-            </div>
-          </div>
-        <?php
-          $i = $i + 1;
-          }
-         ?>
-
-
-
-        </div>
-
-      </div>
-    </section><!-- End Portfolio Section -->
-
-  </main><!-- End #main -->
-
-  <main id="main">
-
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Gallery</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <!-- <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div> -->
-
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
-
-          <?php
-          $i = 0;
-
-            while($row = mysqli_fetch_assoc($gal)){
-              if($i == 6){
-                break;
-              }
-
-           ?>
-
-
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="<?= $row['image_path'] ?>" class="img-fluid" alt="">
-              <div class="portfolio-info" id="<?= $i ?>g">
-                <h4><?= $row['image_title'] ?></h4>
-                <p><?= $row['image_title'] ?></p>
-                <div class="portfolio-links">
-                  <a href="<?= $row['image_path'] ?>" id="plus_<?= $i ?>g" data-gall="portfolioGallery" class="venobox" title="<?= $row['image_title'] ?>"><i class="bx bx-plus"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        <?php
-        $i = $i + 1;
-          }
-         ?>
-
-        </div>
-
-      </div>
-    </section><!-- End Portfolio Section -->
-
-  </main><!-- End #main -->
-
-  </main><!-- End #main -->
-
-  <main id="main">
-
-    <!-- ======= Contact Section ======= -->
-    <section id="services" class="services">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row">
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box iconbox-ic">
-              <div class="icon">
-                <div class="d-flex justify-content-center align-items-center icon-circle">
-                  <i class="icofont-google-map"></i>
-                </div>
-                
-              </div>
-              <h4><a href="">Location</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-          </div>
-          
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box iconbox-ic">
-              <div class="icon">
-                <div class="d-flex justify-content-center align-items-center icon-circle">
-                  <i class="icofont-phone"></i>
-                </div>
-                
-              </div>
-              <h4><a href="">Phone</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-          </div>
-          
-          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box iconbox-ic">
-              <div class="icon">
-                <div class="d-flex justify-content-center align-items-center icon-circle">
-                  <i class="icofont-envelope"></i>
-                </div>
-                
-              </div>
-              <h4><a href="">E-Mail Id</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
 
   </main><!-- End #main -->
 

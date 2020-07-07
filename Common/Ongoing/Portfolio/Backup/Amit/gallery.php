@@ -1,31 +1,18 @@
 <?php
-
   require($_SERVER['DOCUMENT_ROOT']."/Amit/dbconnect.php");
 
-  $sql = "SELECT * FROM images WHERE image_tag = '1' ;";
-  $gal_shop = mysqli_query($conn, $sql);
-
-  if (!isset($_SESSION['checkout'])) {
-        $_SESSION['checkout'] = array();
-    }
-
-  if(isset($_POST['add'])){
-
-    $id = mysqli_real_escape_string($conn, $_POST['add']);
-    array_push($_SESSION['checkout'], $id);
-
-  }
-
+  $sql = "SELECT * FROM images;";
+  $gal = mysqli_query($conn, $sql);
  ?>
 
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Shop - Amit Kumar Meena</title>
+  <title>Gallery - Amit Kumar Meena</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -46,7 +33,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- =======================================================
   * Template Name: Amit - v2.0.0
@@ -54,20 +40,6 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  
-  <script type="text/javascript">
-    $(document).ready(function() {
-      // console.log("HELLO");
-      
-      $(".portfolio-info").each(function(){
-        var id = "#plus_"+$(this).attr("id");
-        $(this).click(function(){
-          $(id).click();
-        })
-      });
-    });
-  </script>
-  
 </head>
 
 <body class="off-white">
@@ -84,8 +56,8 @@
         <ul>
           <li><a href="index.php">Home</a></li>
           <li><a href="about.php">About</a></li>
-          <li class="active"><a href="shop.php">Shop</a></li>
-          <li><a href="gallery.php">Gallery</a></li>
+          <li><a href="shop.php">Shop</a></li>
+          <li class="active"><a href="gallery.php">Gallery</a></li>
           <li><a href="blog.php">Blog</a></li>
           <li><a href="checkout.php">Checkout</a></li>
           <li><a href="contact.php">Contact</a></li>
@@ -110,21 +82,27 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Shop</h2>
+          <h2>Gallery</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
+        <!-- <div class="row" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-12 d-flex justify-content-center">
+            <ul id="portfolio-flters">
+              <li data-filter="*" class="filter-active">All</li>
+              <li data-filter=".filter-app">App</li>
+              <li data-filter=".filter-card">Card</li>
+              <li data-filter=".filter-web">Web</li>
+            </ul>
+          </div>
+        </div> -->
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
           <?php
 
-          $i = 0;
+            while($row = mysqli_fetch_assoc($gal)){
 
-            while($row = mysqli_fetch_assoc($gal_shop)){
-              // if($i == 6){
-              //   break;
-              // }
 
            ?>
 
@@ -132,29 +110,20 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
               <img src="<?= $row['image_path'] ?>" class="img-fluid" alt="">
-              <div class="portfolio-info" id="<?= $i ?>">
+              <div class="portfolio-info">
                 <h4><?= $row['image_title'] ?></h4>
                 <p><?= $row['image_title'] ?></p>
                 <div class="portfolio-links">
-                  <a href="<?= $row['image_path'] ?>" id="plus_<?= $i ?>" data-gall="portfolioGallery" class="venobox" title="<?= $row['image_title'] ?>"><i class="bx bx-plus"></i></a>
+                  <a href="<?= $row['image_path'] ?>" data-gall="portfolioGallery" class="venobox" title="<?= $row['image_title'] ?>"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.php" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a>
+                  <span>COST : <?= $row['image_cost'] ?></span>
                 </div>
               </div>
             </div>
-            <div class="mt-1 d-flex justify-content-between mx-3">
-              <span>COST : <b><?= $row['image_cost'] ?></b></span>
-              <?php if (!in_array($row['image_id'], $_SESSION['checkout'])){
-                 ?>
-              <button type="submit" class="buy-btn px-3 py-1" name="add" value="<?= $row['image_id'] ?>" ><i class="bx bx-link"></i> &nbsp;&nbsp; BUY</button>
-              <?php }?>
-              
-            </div>
           </div>
         <?php
-          $i = $i + 1;
           }
-         ?>
-
-
+          ?>
 
         </div>
 
@@ -163,6 +132,7 @@
 
   </main><!-- End #main -->
 
+  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

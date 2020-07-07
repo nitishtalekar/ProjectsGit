@@ -33,6 +33,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- =======================================================
   * Template Name: Amit - v2.0.0
@@ -40,6 +41,19 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+  
+  <script type="text/javascript">
+    $(document).ready(function() {
+      // console.log("HELLO");
+      
+      $(".portfolio-info").each(function(){
+        var id = "#plus_"+$(this).attr("id");
+        $(this).click(function(){
+          $(id).click();
+        })
+      });
+    });
+  </script>
 </head>
 
 <body class="off-white">
@@ -100,7 +114,7 @@
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
           <?php
-
+            $i = 0;
             while($row = mysqli_fetch_assoc($gal)){
 
 
@@ -110,18 +124,17 @@
           <div class="col-lg-4 col-md-6 portfolio-item filter-app">
             <div class="portfolio-wrap">
               <img src="<?= $row['image_path'] ?>" class="img-fluid" alt="">
-              <div class="portfolio-info">
+              <div class="portfolio-info" id="<?= $i ?>">
                 <h4><?= $row['image_title'] ?></h4>
                 <p><?= $row['image_title'] ?></p>
                 <div class="portfolio-links">
-                  <a href="<?= $row['image_path'] ?>" data-gall="portfolioGallery" class="venobox" title="<?= $row['image_title'] ?>"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.php" data-gall="portfolioDetailsGallery" data-vbtype="iframe" class="venobox" title="Portfolio Details"><i class="bx bx-link"></i></a>
-                  <span>COST : <?= $row['image_cost'] ?></span>
+                  <a href="<?= $row['image_path'] ?>" id="plus_<?= $i ?>" data-gall="portfolioGallery" class="venobox" title="<?= $row['image_title'] ?>"><i class="bx bx-plus"></i></a>
                 </div>
               </div>
             </div>
           </div>
         <?php
+        $i++;
           }
           ?>
 

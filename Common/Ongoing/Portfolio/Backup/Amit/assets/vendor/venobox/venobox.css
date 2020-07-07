@@ -38,7 +38,6 @@
     overflow: hidden;
     position: fixed;
     display: none;
-    text-transform: uppercase;
     left: 0;
     z-index: 89;
 }
@@ -205,28 +204,21 @@ or at least read this note: http://i.imgur.com/7C0ws9e.gif
     overflow-scrolling: touch;
     -webkit-overflow-scrolling: touch;
     z-index: 20;
-    max-height: 100vh;
-    padding:0px;
-    /* background-color: red; */
+    max-height: 100%;
+
 }
 
 .vbox-content{
     text-align: center;
-    margin-top: 50px !important;
-    margin-bottom: 40px !important;
-    float:left;
+    float: left;
     width: 100%;
     position: relative;
     overflow: hidden;
     padding: 20px 4%;
-    /* background: red; */
-    padding-bottom: 10px;
-    padding-top: 10px;
-    height:100vh;
 }
 .vbox-container img{
     max-width: 100%;
-    height: 100vh;
+    height: auto;
 }
 .vbox-figlio{
     box-shadow: 0 0 12px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);

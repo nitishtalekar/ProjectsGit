@@ -1,31 +1,11 @@
-<?php
-
-  require($_SERVER['DOCUMENT_ROOT']."/Amit/dbconnect.php");
-
-  $sql = "SELECT * FROM images WHERE image_tag = '1' ;";
-  $gal_shop = mysqli_query($conn, $sql);
-
-  if (!isset($_SESSION['checkout'])) {
-        $_SESSION['checkout'] = array();
-    }
-
-  if(isset($_POST['add'])){
-
-    $id = mysqli_real_escape_string($conn, $_POST['add']);
-    array_push($_SESSION['checkout'], $id);
-
-  }
-
- ?>
-
-
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Shop - Amit Kumar Meena</title>
+  <title>Contact - Amit Kumar Meena</title>
   <meta content="" name="descriptison">
   <meta content="" name="keywords">
 
@@ -46,7 +26,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- =======================================================
   * Template Name: Amit - v2.0.0
@@ -54,20 +33,6 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  
-  <script type="text/javascript">
-    $(document).ready(function() {
-      // console.log("HELLO");
-      
-      $(".portfolio-info").each(function(){
-        var id = "#plus_"+$(this).attr("id");
-        $(this).click(function(){
-          $(id).click();
-        })
-      });
-    });
-  </script>
-  
 </head>
 
 <body class="off-white">
@@ -84,11 +49,10 @@
         <ul>
           <li><a href="index.php">Home</a></li>
           <li><a href="about.php">About</a></li>
-          <li class="active"><a href="shop.php">Shop</a></li>
+          <li><a href="shop.php">Shop</a></li>
           <li><a href="gallery.php">Gallery</a></li>
           <li><a href="blog.php">Blog</a></li>
-          <li><a href="checkout.php">Checkout</a></li>
-          <li><a href="contact.php">Contact</a></li>
+          <li class="active"><a href="contact.php">Contact</a></li>
         </ul>
       </nav><!-- .nav-menu -->
 
@@ -105,64 +69,132 @@
 
   <main id="main" style="min-height:calc(100vh - 120px)">
 
-    <!-- ======= Portfolio Section ======= -->
-    <section id="portfolio" class="portfolio">
+    <!-- ======= Contact Section ======= -->
+    <!-- <section id="contact" class="contact">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Shop</h2>
+          <h2>Contact</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
+        <div class="row mt-5">
 
-        <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-4">
+            <div class="info" style="background:#efefef">
+              <div class="address">
+                <i class="icofont-google-map"></i>
+                <h4>Location:</h4>
+                <p>A108 Adam Street, New York, NY 535022</p>
+              </div>
 
-          <?php
+              <div class="email">
+                <i class="icofont-envelope"></i>
+                <h4>Email:</h4>
+                <p>info@example.com</p>
+              </div>
 
-          $i = 0;
+              <div class="phone">
+                <i class="icofont-phone"></i>
+                <h4>Call:</h4>
+                <p>+1 5589 55488 55s</p>
+              </div>
 
-            while($row = mysqli_fetch_assoc($gal_shop)){
-              // if($i == 6){
-              //   break;
-              // }
+            </div>
 
-           ?>
+          </div>
 
+          <div class="col-lg-8 mt-5 mt-lg-0">
 
-          <div class="col-lg-4 col-md-6 portfolio-item filter-app">
-            <div class="portfolio-wrap">
-              <img src="<?= $row['image_path'] ?>" class="img-fluid" alt="">
-              <div class="portfolio-info" id="<?= $i ?>">
-                <h4><?= $row['image_title'] ?></h4>
-                <p><?= $row['image_title'] ?></p>
-                <div class="portfolio-links">
-                  <a href="<?= $row['image_path'] ?>" id="plus_<?= $i ?>" data-gall="portfolioGallery" class="venobox" title="<?= $row['image_title'] ?>"><i class="bx bx-plus"></i></a>
+            <form action="forms/contact.php" method="post" role="form" class="php-email-form" style="background:#efefef">
+              <div class="form-row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+                  <div class="validate"></div>
+                </div>
+                <div class="col-md-6 form-group">
+                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+                  <div class="validate"></div>
                 </div>
               </div>
-            </div>
-            <div class="mt-1 d-flex justify-content-between mx-3">
-              <span>COST : <b><?= $row['image_cost'] ?></b></span>
-              <?php if (!in_array($row['image_id'], $_SESSION['checkout'])){
-                 ?>
-              <button type="submit" class="buy-btn px-3 py-1" name="add" value="<?= $row['image_id'] ?>" ><i class="bx bx-link"></i> &nbsp;&nbsp; BUY</button>
-              <?php }?>
-              
-            </div>
+              <div class="form-group">
+                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+                <div class="validate"></div>
+              </div>
+              <div class="form-group">
+                <textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+                <div class="validate"></div>
+              </div>
+              <div class="mb-3">
+                <div class="loading">Loading</div>
+                <div class="error-message"></div>
+                <div class="sent-message">Your message has been sent. Thank you!</div>
+              </div>
+              <div class="text-center"><button type="submit">Send Message</button></div>
+            </form>
+
           </div>
-        <?php
-          $i = $i + 1;
-          }
-         ?>
-
-
 
         </div>
 
       </div>
-    </section><!-- End Portfolio Section -->
+    </section> -->
+    <!-- End Contact Section -->
+    
+    <section id="services" class="services">
+      <div class="container" data-aos="fade-up">
+
+        <div class="section-title">
+          <h2>Contact</h2>
+          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-ic">
+              <div class="icon">
+                <div class="d-flex justify-content-center align-items-center icon-circle">
+                  <i class="icofont-google-map"></i>
+                </div>
+                
+              </div>
+              <h4><a href="">Location</a></h4>
+              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-ic">
+              <div class="icon">
+                <div class="d-flex justify-content-center align-items-center icon-circle">
+                  <i class="icofont-phone"></i>
+                </div>
+                
+              </div>
+              <h4><a href="">Phone</a></h4>
+              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            </div>
+          </div>
+          
+          <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
+            <div class="icon-box iconbox-ic">
+              <div class="icon">
+                <div class="d-flex justify-content-center align-items-center icon-circle">
+                  <i class="icofont-envelope"></i>
+                </div>
+                
+              </div>
+              <h4><a href="">E-Mail Id</a></h4>
+              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Services Section -->
 
   </main><!-- End #main -->
-
 
   <!-- ======= Footer ======= -->
   <footer id="footer">

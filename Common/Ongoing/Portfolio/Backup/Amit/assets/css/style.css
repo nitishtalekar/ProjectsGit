@@ -534,18 +534,6 @@ section {
   margin-bottom: 0;
 }
 
-.buy-btn{
-  border-style: solid;
-  border: #262626;
-  background: #262626;
-  color:#efefef;
-  border-radius: 15px;
-}
-
-.buy-btn:hover{
-  opacity:0.7;
-}
-
 /*--------------------------------------------------------------
 # Cta
 --------------------------------------------------------------*/
