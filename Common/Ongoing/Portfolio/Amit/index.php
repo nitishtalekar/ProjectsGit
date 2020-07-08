@@ -5,21 +5,11 @@
   $gal = mysqli_query($conn, $sql);
   $sql = "SELECT * FROM images WHERE image_tag = '1' ;";
   $gal_shop = mysqli_query($conn, $sql);
-  
+
   if(!isset($_COOKIE['checkout_var'])){
     $_COOKIE['checkout_var'] = "";
   }
 
-  if (!isset($_SESSION['checkout'])) {
-        $_SESSION['checkout'] = array();
-    }
-
-    if(isset($_POST['add'])){
-
-      $id = mysqli_real_escape_string($conn, $_POST['add']);
-      array_push($_SESSION['checkout'], $id);
-
-    }
 
  ?>
 
@@ -63,20 +53,22 @@
           $(id).click();
         })
       });
-      
+
       $(".adding").each(function(){
         $(this).click(function(){
           $(this).attr('style','background:#4d4d4d');
           $("#"+$(this).attr("id")+"_info").html("IN CHECKOUT");
+          $(this).prop('disabled', true);
           var old_cookie = "";
           var match = document.cookie.match(new RegExp('(^| )' + "checkout_var" + '=([^;]+)'));
           if (match){
             old_cookie = match[2];
           }
           document.cookie = "checkout_var = " + old_cookie + $(this).attr("value") +  ",";
+          console.log(document.cookie);
         });
       });
-      
+
     });
   </script>
 </head>

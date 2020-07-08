@@ -1,22 +1,14 @@
-<?php
+$checkout<?php
 
   require($_SERVER['DOCUMENT_ROOT']."/Amit/dbconnect.php");
 
-  $id = $_SESSION['checkout'];
 
-  $sql = "SELECT * FROM images WHERE image_id IN (".implode(',', $id).")";
+  // $checkout = $_COOKIE['checkout_var'];
+  $checkout = explode (",", $_COOKIE['checkout_var']);
+  array_pop($checkout);
+
+  $sql = "SELECT * FROM images WHERE image_id IN (".implode(',', $checkout).")";
   $img = mysqli_query($conn, $sql);
-
-  if(isset($_POST['sub'])){
-
-    $id = mysqli_real_escape_string($conn, $_POST['sub']);
-    if (($key = array_search($id, $_SESSION['checkout'])) !== false) {
-    unset($_SESSION['checkout'][$key]);
-    header('location: checkout.php');
-}
-
-  }
-
 
  ?>
 
@@ -47,6 +39,52 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <script type="text/javascript">
+
+    $(document).ready(function() {
+      var total = 0;
+      $('.sub').each(function(){
+        var val_id = "#costvalue_"+$(this).attr('id');
+         total = total + parseInt($(val_id).val());
+         // console.log(val_id);
+         // console.log($(val_id));
+        $(this).click(function(){
+          console.log(total);
+          var id = $(this).attr("id");
+          var img = "#img_" + id;
+          var cost = "#cost_" + id;
+          var id_cost = $(this).val().split("_");
+          var old_cookie = "";
+          console.log(id_cost[1]);
+          var match = document.cookie.match(new RegExp('(^| )' + "checkout_var" + '=([^;]+)'));
+          if (match){
+            old_cookie = match[2].split(",");
+          }
+
+          old_cookie = jQuery.grep(old_cookie, function(value) {
+              return value != id_cost[0];
+            });
+          var new_cookie = old_cookie.join(",")
+          console.log(new_cookie);
+          var new_total = total - id_cost[1];
+          console.log(new_total);
+          $("#total_cost").html(new_total);
+          document.cookie = "checkout_var = " + new_cookie;
+          $(img).fadeOut("slow");
+          $(cost).fadeOut("slow");
+          $(img).css("display", "none");
+          $(cost).css("display", "none");
+          $(img).attr('class', '');
+          $(cost).attr('class', '');
+        });
+        $("#total_cost").html(total);
+      });
+    });
+
+  </script>
 
 </head>
 
@@ -85,7 +123,7 @@
 
     <!-- ======= About Section ======= -->
     <?php
-    if(isset($_SESSION['checkout']) && count($_SESSION['checkout']) > 0){
+    if(count($checkout) > 0){
 
      ?>
     <section id="about" class="about" style="min-height:calc(100vh - 120px)">
@@ -95,48 +133,53 @@
           <h2>Checkout</h2>
 
         </div>
-        <form action="checkout.php" method="post">
           <div class="row mb-4">
         <?php
         $total = 0;
-
+        $i = 0;
           while($row = mysqli_fetch_assoc($img)){
 
          ?>
 
-          <div class="col-lg-3 d-flex align-items-center">
-            <img src="<?= $row['image_path'] ?>" class="img-fluid" alt="">
-          </div>
-          <div class="col-lg-3 pt-4 pt-lg-0 content d-flex align-items-center mb-4">
-            <div class="mt-2">
-              <div class="mt-1">
-                <h3><?= $row['image_title']?></h3>
-                <p class="font-italic">
-                  COST : <b>₹ <?= $row['image_cost'] ?></b>
-                </p>
+           <div class="col-lg-3 d-flex align-items-center" id="img_<?= $i ?>">
+             <img src="<?= $row['image_path'] ?>" class="img-fluid" alt="">
+           </div>
+           <div class="col-lg-3 pt-4 pt-lg-0 content d-flex align-items-center mb-4" id="cost_<?= $i ?>">
+             <div class="mt-2">
+               <div class="mt-1">
+                 <h3><?= $row['image_title']?></h3>
+                 <p class="font-italic">
+                   COST : <b>₹ <?= $row['image_cost'] ?></b>
+                 </p>
 
-              </div>
-              <div class="mt-4">
-                <p>
-                  <button type="submit" name="sub" class="delete-btn py-1 px-3" value="<?= $row['image_id'] ?>"><i class="fa fa-minus text-white" aria-hidden="true"></i> &nbsp;&nbsp; REMOVE</button>
-                  </p>
-              </div>
-            </div>
-          </div>
+               </div>
+               <div class="mt-4">
+                 <p>
+                   <input type="number" id="costvalue_<?= $i ?>" value="<?= $row['image_cost'] ?>" hidden>
+                   <button type="submit" name="sub" id="<?= $i ?>" class="delete-btn py-1 px-3 sub" value="<?= $row['image_id'] ?>_<?= $row['image_cost'] ?>"><i class="fa fa-minus text-white" aria-hidden="true"></i> &nbsp;&nbsp; REMOVE</button>
+                   </p>
+               </div>
+             </div>
+           </div>
+
 
         <?php
           $total = $total + intval($row['image_cost']);
+          $i++;
           }
          ?>
          </div>
-         </form>
 
          <div class="row mt-5">
            <div class="col-12">
              <center>
                <h1  style="color:#4d4d4d" class="text-uppercase">Total Cost</h1>
                <hr style="background:#262626;width:30%;height:3px">
-               <h2 style="color:#4d4d4d" ><b>₹ <?= $total ?></b></h2>
+               <h2 style="color:#4d4d4d"><b>₹
+                 <span id="total_cost">
+                   0
+                 </span>
+                 </b></h2>
              </center>
            </div>
          </div>
