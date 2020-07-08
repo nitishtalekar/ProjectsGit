@@ -10,6 +10,17 @@
         $_SESSION['checkout'] = array();
     }
 
+    if(isset($_POST['checkout'])){
+
+      $ids = mysqli_real_escape_string($conn, $_POST['shop_value']);
+      $arr = explode(",",$ids);
+      foreach($arr as $id){
+        array_push($_SESSION['checkout'], $id);
+      }
+      // echo $_SESSION['checkout'];
+
+    }
+
  ?>
 
 <html lang="en">
@@ -28,7 +39,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
@@ -39,7 +50,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
   <!-- =======================================================
@@ -48,18 +59,38 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  
+
   <script type="text/javascript">
     $(document).ready(function() {
       // console.log("HELLO");
-      
+
       $(".portfolio-info").each(function(){
         var id = "#plus_"+$(this).attr("id");
         $(this).click(function(){
           $(id).click();
         })
       });
+      
+      $(".adding").each(function(){
+        $(this).click(function(){
+          $(this).attr('style','background:#4d4d4d');
+          $("#"+$(this).attr("id")+"_info").html("IN CHECKOUT");
+          var value = $("#shop_val").val() + $(this).attr("value") +  ",";
+          $("#shop_val").val(value);
+          console.log("HIEE");
+        });
+      });
+      
+      
     });
+    
+    $(window).bind('beforeunload', function(){
+        // return 'leave?';
+        var val = $("#shop_val").val().slice(0,-1);
+        $("#shop_val").val(val);
+        document.cookie = "checkout_var = " + $("#shop_val").val();
+        
+      });
   </script>
 </head>
 
@@ -70,6 +101,9 @@
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <h1 class="logo"><a href="index.php">Amit</a></h1>
+      <?php 
+      echo $_COOKIE['checkout_var'];
+       ?>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -132,7 +166,7 @@
                 Amit Kumar meena (b. 1996) is a self taught artist living and working in Mumbai, India.
               </p>
               <p>
-  
+
                 He’s working in a genre of art known as Hyper-realism. Over the years, he has gradually taught himself how to master charcoal on paper.
                 All his work are purely made by charcoal which is really hard to handle.
                 Amit’s work triggers emotions in the viewers minds through his hyperrealism. He says, “If you see my drawings closely, there’s happiness,
@@ -140,7 +174,7 @@
                 and we’re emotionless generation. I want people to accept and express.”
               </p>
             </div>
-            
+
           </div>
         </div>
 
@@ -164,7 +198,7 @@
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
-      <div class="container" data-aos="fade-up">
+      <div class="container" id="shop" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Shop</h2>
@@ -173,6 +207,7 @@
 
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+          <form action="index.php" method="post">
 
           <?php
 
@@ -198,22 +233,29 @@
               </div>
             </div>
             <div class="mt-1 d-flex justify-content-between mx-3">
-              <span>COST : <b><?= $row['image_cost'] ?></b></span>
+              <span>COST : <b>₹ <?= $row['image_cost'] ?></b></span>
               <?php if (!in_array($row['image_id'], $_SESSION['checkout'])){
                  ?>
-              <button type="submit" class="buy-btn px-3 py-1" name="add" value="<?= $row['image_id'] ?>" ><i class="bx bx-link"></i> &nbsp;&nbsp; BUY</button>
-              <?php }?>
-              
+              <button type="button" class="buy-btn px-3 py-1 adding" name="add" id="add_<?= $i ?>s" onclick="return confirm('Add to checkout?')" value="<?= $row['image_id'] ?>" >
+                <i class="fa fa-shopping-cart"></i> &nbsp;&nbsp; <span id="add_<?= $i ?>s_info">BUY</span>
+              </button>
+            <?php }
+            else{
+            ?>
+            <button type="button" class="buy-btn px-3 py-1" style="background:#4d4d4d" name="add" value="<?= $row['image_id'] ?>" disabled><i class="fa fa-shopping-cart"></i> &nbsp;&nbsp; IN CHECKOUT</button>
+            <?php } ?>
+
             </div>
           </div>
         <?php
           $i = $i + 1;
           }
          ?>
-
-
-
+         <button name="checkoutsasd" id="checkout2" onclick="return confirm('TESTTT?')" hidden> CHECKOUT</button>
+         <input type="text" id="shop_val" name="shop_value" value="" hidden>
+        <button type="submit" name="checkout" id="checkout" onclick="return confirm('TESTTT?')" hidden> CHECKOUT</button>
         </div>
+      </form>
 
       </div>
     </section><!-- End Portfolio Section -->
@@ -299,33 +341,33 @@
                 <div class="d-flex justify-content-center align-items-center icon-circle">
                   <i class="icofont-google-map"></i>
                 </div>
-                
+
               </div>
               <h4><a href="">Location</a></h4>
               <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
             </div>
           </div>
-          
+
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box iconbox-ic">
               <div class="icon">
                 <div class="d-flex justify-content-center align-items-center icon-circle">
                   <i class="icofont-phone"></i>
                 </div>
-                
+
               </div>
               <h4><a href="">Phone</a></h4>
               <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
             </div>
           </div>
-          
+
           <div class="col-lg-4 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
             <div class="icon-box iconbox-ic">
               <div class="icon">
                 <div class="d-flex justify-content-center align-items-center icon-circle">
                   <i class="icofont-envelope"></i>
                 </div>
-                
+
               </div>
               <h4><a href="">E-Mail Id</a></h4>
               <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>

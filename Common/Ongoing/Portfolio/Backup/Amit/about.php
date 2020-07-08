@@ -49,9 +49,10 @@
         <ul>
           <li><a href="index.php">Home</a></li>
           <li class="active"><a href="about.php">About</a></li>
-          <li><a href="shop.php">Shop</a></li>
-          <li><a href="gallery.php">Gallery</a></li>
+          <li><a href="Shop.php">Shop</a></li>
+          <li><a href="Gallery.php">Gallery</a></li>
           <li><a href="blog.php">Blog</a></li>
+          <li><a href="checkout.php">Checkout</a></li>
           <li><a href="contact.php">Contact</a></li>
         </ul>
       </nav><!-- .nav-menu -->

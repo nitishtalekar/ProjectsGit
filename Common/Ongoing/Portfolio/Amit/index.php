@@ -5,6 +5,10 @@
   $gal = mysqli_query($conn, $sql);
   $sql = "SELECT * FROM images WHERE image_tag = '1' ;";
   $gal_shop = mysqli_query($conn, $sql);
+  
+  if(!isset($_COOKIE['checkout_var'])){
+    $_COOKIE['checkout_var'] = "";
+  }
 
   if (!isset($_SESSION['checkout'])) {
         $_SESSION['checkout'] = array();
@@ -59,6 +63,20 @@
           $(id).click();
         })
       });
+      
+      $(".adding").each(function(){
+        $(this).click(function(){
+          $(this).attr('style','background:#4d4d4d');
+          $("#"+$(this).attr("id")+"_info").html("IN CHECKOUT");
+          var old_cookie = "";
+          var match = document.cookie.match(new RegExp('(^| )' + "checkout_var" + '=([^;]+)'));
+          if (match){
+            old_cookie = match[2];
+          }
+          document.cookie = "checkout_var = " + old_cookie + $(this).attr("value") +  ",";
+        });
+      });
+      
     });
   </script>
 </head>
@@ -186,13 +204,15 @@
             </div>
             <div class="mt-1 d-flex justify-content-between mx-3">
               <span>COST : <b>₹ <?= $row['image_cost'] ?></b></span>
-              <?php if (!in_array($row['image_id'], $_SESSION['checkout'])){
+              <?php if (!in_array($row['image_id'], explode(",",$_COOKIE['checkout_var']))){
                  ?>
-              <button type="submit" class="buy-btn px-3 py-1" name="add" value="<?= $row['image_id'] ?>" ><i class="fa fa-shopping-cart"></i> &nbsp;&nbsp; BUY</button>
+              <button type="button" class="buy-btn px-3 py-1 adding" name="add" id="add_<?= $i ?>s" onclick="return confirm('Add to checkout?')" value="<?= $row['image_id'] ?>" >
+                <i class="fa fa-shopping-cart"></i> &nbsp;&nbsp; <span id="add_<?= $i ?>s_info">BUY</span>
+              </button>
             <?php }
             else{
             ?>
-            <button type="submit" class="buy-btn px-3 py-1" style="background:#4d4d4d" name="add" value="<?= $row['image_id'] ?>" disabled><i class="fa fa-shopping-cart"></i> &nbsp;&nbsp; IN CHECKOUT</button>
+            <button type="button" class="buy-btn px-3 py-1" style="background:#4d4d4d" name="add" value="<?= $row['image_id'] ?>" disabled><i class="fa fa-shopping-cart"></i> &nbsp;&nbsp; IN CHECKOUT</button>
             <?php } ?>
 
             </div>

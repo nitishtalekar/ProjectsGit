@@ -35,7 +35,7 @@
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <link href="assets/vendor/icofont/icofont.min.css" rel="stylesheet">
@@ -54,20 +54,34 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-  
+
   <script type="text/javascript">
     $(document).ready(function() {
       // console.log("HELLO");
-      
+
       $(".portfolio-info").each(function(){
         var id = "#plus_"+$(this).attr("id");
         $(this).click(function(){
           $(id).click();
         })
       });
+      
+      $(".adding").each(function(){
+        $(this).click(function(){
+          $(this).attr('style','background:#4d4d4d');
+          $("#"+$(this).attr("id")+"_info").html("IN CHECKOUT");
+          var old_cookie = "";
+          var match = document.cookie.match(new RegExp('(^| )' + "checkout_var" + '=([^;]+)'));
+          if (match){
+            old_cookie = match[2];
+          }
+          document.cookie = "checkout_var = " + old_cookie + $(this).attr("value") +  ",";
+        });
+      });
+      
     });
   </script>
-  
+
 </head>
 
 <body class="off-white">
@@ -77,6 +91,10 @@
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <h1 class="logo"><a href="index.php">Amit</a></h1>
+      
+      <?php 
+      echo $_COOKIE['checkout_var'];
+       ?>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -116,6 +134,7 @@
 
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
+          <form action="shop.php" method="post">
 
           <?php
 
@@ -141,12 +160,18 @@
               </div>
             </div>
             <div class="mt-1 d-flex justify-content-between mx-3">
-              <span>COST : <b><?= $row['image_cost'] ?></b></span>
-              <?php if (!in_array($row['image_id'], $_SESSION['checkout'])){
+              <span>COST : <b>₹ <?= $row['image_cost'] ?></b></span>
+              <?php if (!in_array($row['image_id'], explode(",",$_COOKIE['checkout_var']))){
                  ?>
-              <button type="submit" class="buy-btn px-3 py-1" name="add" value="<?= $row['image_id'] ?>" ><i class="bx bx-link"></i> &nbsp;&nbsp; BUY</button>
-              <?php }?>
-              
+              <button type="button" class="buy-btn px-3 py-1 adding" name="add" id="add_<?= $i ?>s" onclick="return confirm('Add to checkout?')" value="<?= $row['image_id'] ?>" >
+                <i class="fa fa-shopping-cart"></i> &nbsp;&nbsp; <span id="add_<?= $i ?>s_info">BUY</span>
+              </button>
+            <?php }
+              else{
+              ?>
+              <button type="submit" class="buy-btn px-3 py-1" style="background:#4d4d4d" name="add" value="<?= $row['image_id'] ?>" disabled><i class="fa fa-shopping-cart"></i> &nbsp;&nbsp; IN CHECKOUT</button>
+              <?php } ?>
+
             </div>
           </div>
         <?php
@@ -157,7 +182,7 @@
 
 
         </div>
-
+        </form>
       </div>
     </section><!-- End Portfolio Section -->
 
