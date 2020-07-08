@@ -49,13 +49,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <!-- =======================================================
-  * Template Name: Amit - v2.0.0
-  * Template URL: https://bootstrapmade.com/Amit-free-bootstrap-cv-resume-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-
   <script type="text/javascript">
     $(document).ready(function() {
       // console.log("HELLO");
@@ -77,8 +70,6 @@
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <h1 class="logo"><a href="index.php">Amit</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
@@ -110,7 +101,6 @@
       <h1 class="text-white">Amit Kumar Meena</h1>
       <h2 class="text-white"><i>“There’s a fine grey line between black and white, Hyperrealism lies in between that grey line.”</i></h2>
     </center>
-      <!-- <a href="about.php" class="btn-about">About Me</a> -->
     </div>
   </section><!-- End Hero -->
 
@@ -122,7 +112,6 @@
 
         <div class="section-title">
           <h2>About</h2>
-          <!-- <p><b>Amit Kumar meena</b> (b. 1996) is a self taught artist living and working in Mumbai, India.</p> -->
         </div>
 
         <div class="row">
@@ -153,16 +142,6 @@
 
       </div>
     </section><!-- End About Section -->
-
-    <!-- ======= Skills Section ======= -->
-
-
-    <!-- ======= Facts Section ======= -->
-
-
-    <!-- ======= Testimonials Section ======= -->
-
-    <!-- End Testimonials Section -->
 
   </main>
   <!-- End #main -->
@@ -244,16 +223,6 @@
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
-        <!-- <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div> -->
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
@@ -359,10 +328,6 @@
         &copy; Copyright <strong><span>Kelly</span></strong>. All Rights Reserved
       </div>
       <div class="credits" style="font-size:3px; opacity:0.3;">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/Amit-free-bootstrap-cv-resume-html-template/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>

@@ -48,12 +48,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Amit - v2.0.0
-  * Template URL: https://bootstrapmade.com/Amit-free-bootstrap-cv-resume-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="off-white">
@@ -63,8 +57,6 @@
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <h1 class="logo"><a href="index.php">Amit</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
@@ -92,9 +84,9 @@
   <main id="main">
 
     <!-- ======= About Section ======= -->
-    <?php 
+    <?php
     if(isset($_SESSION['checkout']) && count($_SESSION['checkout']) > 0){
-        
+
      ?>
     <section id="about" class="about" style="min-height:calc(100vh - 120px)">
       <div class="container" data-aos="fade-up">
@@ -111,7 +103,7 @@
           while($row = mysqli_fetch_assoc($img)){
 
          ?>
-        
+
           <div class="col-lg-3 d-flex align-items-center">
             <img src="<?= $row['image_path'] ?>" class="img-fluid" alt="">
           </div>
@@ -120,9 +112,9 @@
               <div class="mt-1">
                 <h3><?= $row['image_title']?></h3>
                 <p class="font-italic">
-                  COST : <b>₹ <?= $row['image_cost'] ?></b> 
+                  COST : <b>₹ <?= $row['image_cost'] ?></b>
                 </p>
-                
+
               </div>
               <div class="mt-4">
                 <p>
@@ -131,14 +123,14 @@
               </div>
             </div>
           </div>
-        
+
         <?php
           $total = $total + intval($row['image_cost']);
           }
          ?>
          </div>
          </form>
-         
+
          <div class="row mt-5">
            <div class="col-12">
              <center>
@@ -149,16 +141,16 @@
            </div>
          </div>
 
-         
+
 
       </div>
     </section>
-    
-    <?php 
+
+    <?php
       }
     else{
      ?>
-    
+
     <section id="about" class="about" style="min-height:calc(100vh - 120px)">
       <div class="container" data-aos="fade-up">
 
@@ -166,7 +158,7 @@
           <h2>Checkout</h2>
 
         </div>
-        
+
         <div class="d-flex justify-content-center align-items-center" style="height:50%">
           <span>NO ITEMS ARE SELECTED</span>
         </div>
@@ -174,7 +166,7 @@
       </div>
     </section>
     <!-- End About Section -->
-    <?php 
+    <?php
         }
      ?>
 
@@ -188,10 +180,6 @@
         &copy; Copyright <strong><span>Kelly</span></strong>. All Rights Reserved
       </div>
       <div class="credits" style="font-size:3px; opacity:0.3;">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/Amit-free-bootstrap-cv-resume-html-template/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
