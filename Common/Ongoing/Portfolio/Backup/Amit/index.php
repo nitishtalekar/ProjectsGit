@@ -6,20 +6,10 @@
   $sql = "SELECT * FROM images WHERE image_tag = '1' ;";
   $gal_shop = mysqli_query($conn, $sql);
 
-  if (!isset($_SESSION['checkout'])) {
-        $_SESSION['checkout'] = array();
-    }
+  if(!isset($_COOKIE['checkout_var'])){
+    $_COOKIE['checkout_var'] = "";
+  }
 
-    if(isset($_POST['checkout'])){
-
-      $ids = mysqli_real_escape_string($conn, $_POST['shop_value']);
-      $arr = explode(",",$ids);
-      foreach($arr as $id){
-        array_push($_SESSION['checkout'], $id);
-      }
-      // echo $_SESSION['checkout'];
-
-    }
 
  ?>
 
@@ -53,13 +43,6 @@
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-  <!-- =======================================================
-  * Template Name: Amit - v2.0.0
-  * Template URL: https://bootstrapmade.com/Amit-free-bootstrap-cv-resume-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-
   <script type="text/javascript">
     $(document).ready(function() {
       // console.log("HELLO");
@@ -70,27 +53,23 @@
           $(id).click();
         })
       });
-      
+
       $(".adding").each(function(){
         $(this).click(function(){
           $(this).attr('style','background:#4d4d4d');
           $("#"+$(this).attr("id")+"_info").html("IN CHECKOUT");
-          var value = $("#shop_val").val() + $(this).attr("value") +  ",";
-          $("#shop_val").val(value);
-          console.log("HIEE");
+          $(this).prop('disabled', true);
+          var old_cookie = "";
+          var match = document.cookie.match(new RegExp('(^| )' + "checkout_var" + '=([^;]+)'));
+          if (match){
+            old_cookie = match[2];
+          }
+          document.cookie = "checkout_var = " + old_cookie + $(this).attr("value") +  ",";
+          console.log(document.cookie);
         });
       });
-      
-      
+
     });
-    
-    $(window).bind('beforeunload', function(){
-        // return 'leave?';
-        var val = $("#shop_val").val().slice(0,-1);
-        $("#shop_val").val(val);
-        document.cookie = "checkout_var = " + $("#shop_val").val();
-        
-      });
   </script>
 </head>
 
@@ -101,11 +80,6 @@
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <h1 class="logo"><a href="index.php">Amit</a></h1>
-      <?php 
-      echo $_COOKIE['checkout_var'];
-       ?>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
@@ -137,7 +111,6 @@
       <h1 class="text-white">Amit Kumar Meena</h1>
       <h2 class="text-white"><i>“There’s a fine grey line between black and white, Hyperrealism lies in between that grey line.”</i></h2>
     </center>
-      <!-- <a href="about.php" class="btn-about">About Me</a> -->
     </div>
   </section><!-- End Hero -->
 
@@ -149,7 +122,6 @@
 
         <div class="section-title">
           <h2>About</h2>
-          <!-- <p><b>Amit Kumar meena</b> (b. 1996) is a self taught artist living and working in Mumbai, India.</p> -->
         </div>
 
         <div class="row">
@@ -181,16 +153,6 @@
       </div>
     </section><!-- End About Section -->
 
-    <!-- ======= Skills Section ======= -->
-
-
-    <!-- ======= Facts Section ======= -->
-
-
-    <!-- ======= Testimonials Section ======= -->
-
-    <!-- End Testimonials Section -->
-
   </main>
   <!-- End #main -->
 
@@ -198,7 +160,7 @@
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
-      <div class="container" id="shop" data-aos="fade-up">
+      <div class="container" data-aos="fade-up">
 
         <div class="section-title">
           <h2>Shop</h2>
@@ -234,7 +196,7 @@
             </div>
             <div class="mt-1 d-flex justify-content-between mx-3">
               <span>COST : <b>₹ <?= $row['image_cost'] ?></b></span>
-              <?php if (!in_array($row['image_id'], $_SESSION['checkout'])){
+              <?php if (!in_array($row['image_id'], explode(",",$_COOKIE['checkout_var']))){
                  ?>
               <button type="button" class="buy-btn px-3 py-1 adding" name="add" id="add_<?= $i ?>s" onclick="return confirm('Add to checkout?')" value="<?= $row['image_id'] ?>" >
                 <i class="fa fa-shopping-cart"></i> &nbsp;&nbsp; <span id="add_<?= $i ?>s_info">BUY</span>
@@ -251,9 +213,9 @@
           $i = $i + 1;
           }
          ?>
-         <button name="checkoutsasd" id="checkout2" onclick="return confirm('TESTTT?')" hidden> CHECKOUT</button>
-         <input type="text" id="shop_val" name="shop_value" value="" hidden>
-        <button type="submit" name="checkout" id="checkout" onclick="return confirm('TESTTT?')" hidden> CHECKOUT</button>
+
+
+
         </div>
       </form>
 
@@ -273,16 +235,6 @@
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
-        <!-- <div class="row" data-aos="fade-up" data-aos-delay="100">
-          <div class="col-lg-12 d-flex justify-content-center">
-            <ul id="portfolio-flters">
-              <li data-filter="*" class="filter-active">All</li>
-              <li data-filter=".filter-app">App</li>
-              <li data-filter=".filter-card">Card</li>
-              <li data-filter=".filter-web">Web</li>
-            </ul>
-          </div>
-        </div> -->
 
         <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="200">
 
@@ -388,10 +340,6 @@
         &copy; Copyright <strong><span>Kelly</span></strong>. All Rights Reserved
       </div>
       <div class="credits" style="font-size:3px; opacity:0.3;">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/Amit-free-bootstrap-cv-resume-html-template/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>

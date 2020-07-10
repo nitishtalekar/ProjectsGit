@@ -9,12 +9,6 @@
         $_SESSION['checkout'] = array();
     }
 
-  if(isset($_POST['add'])){
-
-    $id = mysqli_real_escape_string($conn, $_POST['add']);
-    array_push($_SESSION['checkout'], $id);
-
-  }
 
  ?>
 
@@ -65,20 +59,22 @@
           $(id).click();
         })
       });
-      
+
       $(".adding").each(function(){
         $(this).click(function(){
           $(this).attr('style','background:#4d4d4d');
           $("#"+$(this).attr("id")+"_info").html("IN CHECKOUT");
+          $(this).prop('disabled', true);
           var old_cookie = "";
           var match = document.cookie.match(new RegExp('(^| )' + "checkout_var" + '=([^;]+)'));
           if (match){
             old_cookie = match[2];
           }
           document.cookie = "checkout_var = " + old_cookie + $(this).attr("value") +  ",";
+          console.log(document.cookie);
         });
       });
-      
+
     });
   </script>
 
@@ -91,10 +87,7 @@
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <h1 class="logo"><a href="index.php">Amit</a></h1>
-      
-      <?php 
-      echo $_COOKIE['checkout_var'];
-       ?>
+
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 

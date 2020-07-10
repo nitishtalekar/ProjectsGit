@@ -7,6 +7,9 @@ $checkout<?php
   $checkout = explode (",", $_COOKIE['checkout_var']);
   array_pop($checkout);
 
+  $r_auth_key = "rzp_test_QYzYYLqx0k4yOQ";
+  $t_amount = 100000;
+
   $sql = "SELECT * FROM images WHERE image_id IN (".implode(',', $checkout).")";
   $img = mysqli_query($conn, $sql);
 
@@ -183,6 +186,21 @@ $checkout<?php
              </center>
            </div>
          </div>
+
+         <form action="pay.php" method="POST">
+     <script
+         src="https://checkout.razorpay.com/v1/checkout.js"
+         data-key="<?= $r_auth_key ?>" // Enter the Key ID generated from the Dashboard
+         data-amount="<?= $t_amount ?>" // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+         data-currency="INR"
+         data-buttontext="Pay with Razorpay"
+         data-name="Amit Kumar Mena"
+         data-description="Test transaction"
+         data-image="https://example.com/your_logo.jpg"
+         data-theme.color="#EFEFEF"
+     ></script>
+     <input type="hidden" custom="Hidden Element" name="hidden">
+     </form>
 
 
 

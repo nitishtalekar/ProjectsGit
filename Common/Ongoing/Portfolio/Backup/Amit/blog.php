@@ -34,12 +34,6 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: Amit - v2.0.0
-  * Template URL: https://bootstrapmade.com/Amit-free-bootstrap-cv-resume-html-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
 </head>
 
 <body class="off-white">
@@ -49,8 +43,6 @@
     <div class="container-fluid d-flex justify-content-between align-items-center">
 
       <h1 class="logo"><a href="index.php">Amit</a></h1>
-      <!-- Uncomment below if you prefer to use an image logo -->
-      <!-- <a href="index.php" class="logo"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
       <nav class="nav-menu d-none d-lg-block">
         <ul>
@@ -105,7 +97,7 @@
               <p>
                 <?= $row['blog_content'] ?></p>
             </div>
-            
+
           </div>
         </div>
         <?php
@@ -122,7 +114,7 @@
                   <p  style="text-align:right">
                     <?= $row['blog_content'] ?></p>
                 </div>
-                
+
               </div>
               <div class="col-lg-4 order-lg-last order-first">
                 <img src="<?= $row['blog_img'] ?>" class="img-fluid" alt="">
@@ -147,10 +139,6 @@
         &copy; Copyright <strong><span>Kelly</span></strong>. All Rights Reserved
       </div>
       <div class="credits" style="font-size:3px; opacity:0.3;">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/Amit-free-bootstrap-cv-resume-html-template/ -->
         Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
       </div>
     </div>
