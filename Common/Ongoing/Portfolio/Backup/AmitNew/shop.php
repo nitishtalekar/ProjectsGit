@@ -4,10 +4,10 @@
 
   $sql = "SELECT * FROM images WHERE image_tag = '1' ;";
   $gal_shop = mysqli_query($conn, $sql);
-  
-  if(!isset($_COOKIE['checkout_var'])){
-    $_COOKIE['checkout_var'] = "";
-  }
+
+  if (!isset($_SESSION['checkout'])) {
+        $_SESSION['checkout'] = array();
+    }
 
 
  ?>

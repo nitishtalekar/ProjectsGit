@@ -1,4 +1,4 @@
-<?php
+$checkout<?php
 
   require($_SERVER['DOCUMENT_ROOT']."/Amit/dbconnect.php");
 
@@ -6,13 +6,9 @@
   // $checkout = $_COOKIE['checkout_var'];
   $checkout = explode (",", $_COOKIE['checkout_var']);
   array_pop($checkout);
-  
-  if(!isset($_COOKIE['amount_var'])){
-    $_COOKIE['amount_var'] = 0;
-  }
 
   $r_auth_key = "rzp_test_QYzYYLqx0k4yOQ";
-  $t_amount = $_COOKIE['amount_var'];
+  $t_amount = 100000;
 
   $sql = "SELECT * FROM images WHERE image_id IN (".implode(',', $checkout).")";
   $img = mysqli_query($conn, $sql);
@@ -46,28 +42,6 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-  
-  <style media="screen">
-    .razorpay-payment-button{
-      border-style: solid;
-      border: #262626;
-      background: #262626;
-      color:#efefef;
-      border-radius: 25px;
-      padding: 20px; 
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      font-weight: bold;
-      transition: 1s all;
-    }
-    .razorpay-payment-button:hover{
-      opacity:0.7;
-    }
-    
-    .razorpay-payment-button:focus{
-      outline:none;
-    }
-  </style>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -81,11 +55,13 @@
          // console.log(val_id);
          // console.log($(val_id));
         $(this).click(function(){
+          console.log(total);
           var id = $(this).attr("id");
           var img = "#img_" + id;
           var cost = "#cost_" + id;
           var id_cost = $(this).val().split("_");
           var old_cookie = "";
+          console.log(id_cost[1]);
           var match = document.cookie.match(new RegExp('(^| )' + "checkout_var" + '=([^;]+)'));
           if (match){
             old_cookie = match[2].split(",");
@@ -95,9 +71,10 @@
               return value != id_cost[0];
             });
           var new_cookie = old_cookie.join(",")
+          console.log(new_cookie);
           var new_total = total - id_cost[1];
+          console.log(new_total);
           $("#total_cost").html(new_total);
-          document.cookie = "amount_var = " + total;
           document.cookie = "checkout_var = " + new_cookie;
           $(img).fadeOut("slow");
           $(cost).fadeOut("slow");
@@ -107,7 +84,6 @@
           $(cost).attr('class', '');
         });
         $("#total_cost").html(total);
-        document.cookie = "amount_var = " + total;
       });
     });
 
@@ -210,26 +186,23 @@
              </center>
            </div>
          </div>
-         
-         <div class="row mt-5">
-           <div class="col-12">
-             <center>
-               <form action="pay.php" method="POST">
-           <script
-               src="https://checkout.razorpay.com/v1/checkout.js"
-               data-key="<?= $r_auth_key ?>" // Enter the Key ID generated from the Dashboard
-               data-amount="<?= (int)$_COOKIE['amount_var']*100 ?>" // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
-               data-currency="INR"
-               data-buttontext="Pay with RazorPay"
-               data-name="Amit Kumar Mena"
-               data-description="Test transaction"
-               data-theme.color="#EFEFEF"
-           ></script>
-           <input type="hidden" custom="Hidden Element" name="hidden">
-           </form>
-         </center>
-           </div>
-         </div>
+
+         <form action="pay.php" method="POST">
+     <script
+         src="https://checkout.razorpay.com/v1/checkout.js"
+         data-key="<?= $r_auth_key ?>" // Enter the Key ID generated from the Dashboard
+         data-amount="<?= $t_amount ?>" // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+         data-currency="INR"
+         data-buttontext="Pay with Razorpay"
+         data-name="Amit Kumar Mena"
+         data-description="Test transaction"
+         data-image="https://example.com/your_logo.jpg"
+         data-theme.color="#EFEFEF"
+     ></script>
+     <input type="hidden" custom="Hidden Element" name="hidden">
+     </form>
+
+
 
       </div>
     </section>
