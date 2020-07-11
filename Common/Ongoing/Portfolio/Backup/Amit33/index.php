@@ -9,6 +9,8 @@
   if(!isset($_COOKIE['checkout_var'])){
     $_COOKIE['checkout_var'] = "";
   }
+
+
  ?>
 
 <html lang="en">
@@ -63,6 +65,7 @@
             old_cookie = match[2];
           }
           document.cookie = "checkout_var = " + old_cookie + $(this).attr("value") +  ",";
+          console.log(document.cookie);
         });
       });
 
@@ -215,13 +218,6 @@
 
         </div>
       </form>
-      <div class="row">
-        <div class="col-12">
-          <center>
-            <a href="shop.php" class="read-btn">SEE More</a>
-          </center>
-        </div>
-      </div>
 
       </div>
     </section><!-- End Portfolio Section -->
@@ -270,13 +266,6 @@
           }
          ?>
 
-        </div>
-        <div class="row">
-          <div class="col-12">
-            <center>
-              <a href="gallery.php" class="read-btn">SEE More</a>
-            </center>
-          </div>
         </div>
 
       </div>

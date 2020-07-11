@@ -7,23 +7,12 @@
   $checkout = explode (",", $_COOKIE['checkout_var']);
   array_pop($checkout);
   
-  if(count($checkout) > 0){
-    $cost_sql = "SELECT * FROM images WHERE image_id IN (".implode(',', $checkout).")";
-    $cost_img = mysqli_query($conn, $cost_sql);
-    $total_cost = 0;
-    while($cost_row = mysqli_fetch_assoc($cost_img)){
-      $total_cost = $total_cost + $cost_row['image_cost'];
-    }
-  }
-  else{
-    $total_cost = 0;
-  }
-  
   if(!isset($_COOKIE['amount_var'])){
-    $_COOKIE['amount_var'] = $total_cost;
+    $_COOKIE['amount_var'] = 0;
   }
 
   $r_auth_key = "rzp_test_QYzYYLqx0k4yOQ";
+  $t_amount = $_COOKIE['amount_var'];
 
   $sql = "SELECT * FROM images WHERE image_id IN (".implode(',', $checkout).")";
   $img = mysqli_query($conn, $sql);
@@ -89,6 +78,8 @@
       $('.sub').each(function(){
         var val_id = "#costvalue_"+$(this).attr('id');
          total = total + parseInt($(val_id).val());
+         // console.log(val_id);
+         // console.log($(val_id));
         $(this).click(function(){
           var id = $(this).attr("id");
           var img = "#img_" + id;
@@ -106,7 +97,7 @@
           var new_cookie = old_cookie.join(",")
           var new_total = total - id_cost[1];
           $("#total_cost").html(new_total);
-          document.cookie = "amount_var = " + new_total;
+          document.cookie = "amount_var = " + total;
           document.cookie = "checkout_var = " + new_cookie;
           $(img).fadeOut("slow");
           $(cost).fadeOut("slow");
@@ -116,9 +107,7 @@
           $(cost).attr('class', '');
         });
         $("#total_cost").html(total);
-        console.log(total);
         document.cookie = "amount_var = " + total;
-        console.log(document.cookie);
       });
     });
 
@@ -229,7 +218,7 @@
            <script
                src="https://checkout.razorpay.com/v1/checkout.js"
                data-key="<?= $r_auth_key ?>" // Enter the Key ID generated from the Dashboard
-               data-amount="<?= ((int)$_COOKIE['amount_var']*100) ?>" // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+               data-amount="<?= (int)$_COOKIE['amount_var']*100 ?>" // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                data-currency="INR"
                data-buttontext="Pay with RazorPay"
                data-name="Amit Kumar Mena"
