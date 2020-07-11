@@ -195,7 +195,7 @@
               <span>COST : <b>₹ <?= $row['image_cost'] ?></b></span>
               <?php if (!in_array($row['image_id'], explode(",",$_COOKIE['checkout_var']))){
                  ?>
-              <button type="button" class="buy-btn px-3 py-1 adding" name="add" id="add_<?= $i ?>s" value="<?= $row['image_id'] ?>" >
+              <button type="button" class="buy-btn px-3 py-1 adding" name="add" id="add_<?= $i ?>s" onclick="return confirm('Add to checkout?')" value="<?= $row['image_id'] ?>" >
                 <i class="fa fa-shopping-cart"></i> &nbsp;&nbsp; <span id="add_<?= $i ?>s_info">BUY</span>
               </button>
             <?php }
