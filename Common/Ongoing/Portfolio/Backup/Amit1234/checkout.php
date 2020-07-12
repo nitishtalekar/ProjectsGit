@@ -6,7 +6,7 @@
   // $checkout = $_COOKIE['checkout_var'];
   $checkout = explode (",", $_COOKIE['checkout_var']);
   array_pop($checkout);
-
+  
   if(count($checkout) > 0){
     $cost_sql = "SELECT * FROM images WHERE image_id IN (".implode(',', $checkout).")";
     $cost_img = mysqli_query($conn, $cost_sql);
@@ -18,17 +18,12 @@
   else{
     $total_cost = 0;
   }
-
+  
   if(!isset($_COOKIE['amount_var'])){
     $_COOKIE['amount_var'] = $total_cost;
   }
 
-  if(!isset($_COOKIE['pay_var'])){
-    $_COOKIE['pay_var'] = "0";
-  }
-
-
-  $r_auth_key = "rzp_live_dLJl0vyuYIyVNI";
+  $r_auth_key = "rzp_test_QYzYYLqx0k4yOQ";
 
   $sql = "SELECT * FROM images WHERE image_id IN (".implode(',', $checkout).")";
   $img = mysqli_query($conn, $sql);
@@ -62,7 +57,7 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
-
+  
   <style media="screen">
     .razorpay-payment-button{
       border-style: solid;
@@ -70,7 +65,7 @@
       background: #262626;
       color:#efefef;
       border-radius: 25px;
-      padding: 20px;
+      padding: 20px; 
       text-transform: uppercase;
       letter-spacing: 2px;
       font-weight: bold;
@@ -79,7 +74,7 @@
     .razorpay-payment-button:hover{
       opacity:0.7;
     }
-
+    
     .razorpay-payment-button:focus{
       outline:none;
     }
@@ -90,19 +85,11 @@
   <script type="text/javascript">
 
     $(document).ready(function() {
-      var pay_set = document.cookie.match(new RegExp('(^| )' + "pay_var" + '=([^;]+)'));
-      if (pay_set){
-        if(pay_set[2] == "1"){
-          $(".razorpay-payment-button").click();
-        }
-      }
-      document.cookie = "pay_var = " + "0";
       var total = 0;
       $('.sub').each(function(){
         var val_id = "#costvalue_"+$(this).attr('id');
          total = total + parseInt($(val_id).val());
         $(this).click(function(){
-          // document.cookie = "pay_var = " + "0";
           var id = $(this).attr("id");
           var img = "#img_" + id;
           var cost = "#cost_" + id;
@@ -132,11 +119,6 @@
         console.log(total);
         document.cookie = "amount_var = " + total;
         console.log(document.cookie);
-      });
-
-      $("#pay-btn").click(function(){
-        document.cookie = "pay_var = " + "1";
-        location.reload();
       });
     });
 
@@ -239,35 +221,24 @@
              </center>
            </div>
          </div>
-
-         <div class="row mt-5" style="display:none">
-
+         
+         <div class="row mt-5">
            <div class="col-12">
              <center>
                <form action="pay.php" method="POST">
            <script
                src="https://checkout.razorpay.com/v1/checkout.js"
                data-key="<?= $r_auth_key ?>" // Enter the Key ID generated from the Dashboard
-               data-amount="<?= ((int)$_COOKIE['amount_var']*100); ?>" // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+               data-amount="<?= ((int)$_COOKIE['amount_var']*100) ?>" // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
                data-currency="INR"
                data-buttontext="Pay with RazorPay"
                data-name="Amit Kumar Mena"
-               data-description=""
-               data-theme.color="#262626"
-               data-text.color="#EFEFEF"
+               data-description="Test transaction"
+               data-theme.color="#EFEFEF"
            ></script>
            <input type="hidden" custom="Hidden Element" name="hidden">
-
            </form>
          </center>
-           </div>
-         </div>
-
-         <div class="row">
-           <div class="col-12">
-             <center>
-               <button id="pay-btn" class="read-btn">Pay with RazorPay</button>
-             </center>
            </div>
          </div>
 
