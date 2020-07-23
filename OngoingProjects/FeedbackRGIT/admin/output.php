@@ -88,20 +88,28 @@ if(isset($_POST['upload_fb'])){
               $avg_ans[$i] = strval(round((float)$ans[$i]/(float)$length));
           }
 
+          $q = "SELECT * FROM teaching WHERE teacher_id = '$t' AND sub_id = '$s' AND lec_div = '$did';";
+          $res = mysqli_query($db, $q);
+          $sem_no = mysqli_fetch_assoc($res);
+          // echo $sem_no['sem'];
+          $sn = $sem_no['sem'];
           $yr = strval(date('Y'));
-          $qu = "INSERT INTO feedback(teacher_id, sub_id, div_id, year, sem, score1, score2, score3, score4, score5, score6, score7, score8, score9, score10, score11, score12, remark)";
-          $qu = $qu."VALUES ('$t','$s','$did','$yr','$sem','$avg_ans[0]','$avg_ans[1]','$avg_ans[2]','$avg_ans[3]','$avg_ans[4]','$avg_ans[5]','$avg_ans[6]','$avg_ans[7]','$avg_ans[8]','$avg_ans[9]','$avg_ans[10]','$avg_ans[11]','$rmrks')";
+          $qu = "INSERT INTO feedback(teacher_id, sub_id, div_id, year, sem, sem_no, score1, score2, score3, score4, score5, score6, score7, score8, score9, score10, score11, score12, remark)";
+          $qu = $qu."VALUES ('$t','$s','$did','$yr','$sem','$sn','$avg_ans[0]','$avg_ans[1]','$avg_ans[2]','$avg_ans[3]','$avg_ans[4]','$avg_ans[5]','$avg_ans[6]','$avg_ans[7]','$avg_ans[8]','$avg_ans[9]','$avg_ans[10]','$avg_ans[11]','$rmrks')";
           mysqli_query($db, $qu);
           // echo $qu.'<br>';
 
       }
       $qt = "TRUNCATE table feedback_temp";
       mysqli_query($db, $qt);
-      echo "<script>alert('Feedback Data Uploaded!')</script>";
+      // echo "<script>alert('Feedback Data Uploaded!')</script>";
+      echo "alert('Feedback Data Uploaded!')";
     }
     else{
-      echo "<script>alert('No Feedback Data to Upload!')</script>";
+      // echo "<script>alert('No Feedback Data to Upload!')</script>";
     }
+
+    // header('location: output.php');
 
 
     // $query1 = "SELECT DISTINCT dept,sem,div_id FROM feedback_inst_temp;";

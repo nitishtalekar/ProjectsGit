@@ -94,22 +94,22 @@ else{
 	}
 }
 else{
-	
+
 	if(isset($_POST['feedback_intro'])){
 		$_SESSION['Dept'] = $_POST['dept'];
 		$_SESSION['Sem'] = $_POST['sem'];
 		$_SESSION['Div'] = $_POST['div'];
-	
+
 		$dept =  $_SESSION['Dept'];
 		$sem =  $_SESSION['Sem'];
 		$div =  $_SESSION['Div'];
-	
+
 		$_SESSION['iteration'] = 0;
 		$_SESSION['queries'] = array();
-	
+
 		$info = array();
 		$counts = array();
-	
+
 		//No Dependancy
 		$query = "SELECT * FROM teaching WHERE dept='$dept' AND sem='$sem' AND lec_div='$div' AND status='00';";
 		$results = mysqli_query($db, $query);
@@ -126,7 +126,7 @@ else{
 		  array_push($info,$info_temp);
 		  }
 		array_push($counts,count($info));
-	
+
 		//Multiple Teachers
 		$query = "SELECT * FROM teaching WHERE dept='$dept' AND sem='$sem' AND lec_div='$div' AND status='01';";
 		$results = mysqli_query($db, $query);
@@ -143,7 +143,7 @@ else{
 		  array_push($info,$info_temp);
 		  }
 		array_push($counts,count($info));
-	
+
 		//elective
 		$query = "SELECT * FROM teaching WHERE dept='$dept' AND sem='$sem' AND lec_div='$div' AND status LIKE '1%';";
 		$results = mysqli_query($db, $query);
@@ -153,10 +153,10 @@ else{
 		else{
 		  $_SESSION['elective'] = 0;
 		}
-		
+
 		$_SESSION['info'] = $info;
 		$_SESSION['counts'] = $counts;
-	
+
 		header('location: Feedback.php');
 	}
 }
