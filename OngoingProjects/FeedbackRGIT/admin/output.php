@@ -158,6 +158,12 @@ if(isset($_POST['summary'])){
   header('location: summary.php');
 }
 
+
+if(isset($_POST['backup'])){
+  // backup_tables('feedback_temp',$db);
+  header('location: backup.php');
+}
+
 ?>
 <html lang="en">
 <head>
@@ -219,6 +225,15 @@ if(isset($_POST['summary'])){
 					<button type="submit" class="contact100-form-btn" name="summary">
 						<span>
 							Obtain Feedback Summary
+							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
+						</span>
+					</button>
+				</div>
+
+        <div class="container-contact100-form-btn">
+					<button type="submit" class="contact100-form-btn" name="backup">
+						<span>
+							Backup Data
 							<i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>
 						</span>
 					</button>
