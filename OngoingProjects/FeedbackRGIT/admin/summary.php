@@ -6,6 +6,7 @@ if(empty($_SESSION['admin'])){
   header('location: index.php');
 }
 
+$display_alert = "";
 
 function InstituteCompleteFeedback(){
     // Cell(float w , float h , string txt , mixed border , int ln , string align , boolean fill , mixed link)
@@ -105,7 +106,11 @@ function SubjectDivWiseFeedback($fbresults, $teacherresults, $subjectresults,$su
 
     $pdf->SetFont('Arial','',12);
     $pdf->Cell(35,5, 'Department', 0,0,'L');
-    $pdf->Cell(100,5, ': '.strtoupper($subjectresults['sub_dept'])."    Div   :    ".$divisionid, 0,1,'L');
+    $pdf->Cell(100,5, ': '.strtoupper($subjectresults['sub_dept']), 0,1,'L');
+    
+    $pdf->SetFont('Arial','',12);
+    $pdf->Cell(35,5, 'Semester', 0,0,'L');
+    $pdf->Cell(100,5, ': '.$fbresults['sem_no']."           Div   :    ".$divisionid, 0,1,'L');
 
     // strtoupper($fbresults['year'])
 
@@ -219,7 +224,11 @@ function SubjectDivWiseCompleteFeedback($fbresults, $teacherresults, $subjectres
 
     $pdf->SetFont('Arial','',12);
     $pdf->Cell(35,5, 'Department', 0,0,'L');
-    $pdf->Cell(100,5, ': '.strtoupper($subjectresults['sub_dept'])."    Div   :    ".$divisionid, 0,1,'L');
+    $pdf->Cell(100,5, ': '.strtoupper($subjectresults['sub_dept']), 0,1,'L');
+    
+    $pdf->SetFont('Arial','',12);
+    $pdf->Cell(35,5, 'Semester', 0,0,'L');
+    $pdf->Cell(100,5, ': '.$fbresults['sem_no']."           Div   :    ".$divisionid, 0,1,'L');
 
     $pdf->Ln(5);
 
@@ -340,16 +349,18 @@ if(isset($_POST['summary_fb'])){
           $subjectresults = mysqli_query($db, $q3);
           $subjectresults = mysqli_fetch_array($subjectresults);
 
-          SubjectDivWiseCompleteFeedback($fbresults, $teacherresults, $subjectresults,$subjectid,$teacherid,$divisionid);
+          // SubjectDivWiseCompleteFeedback($fbresults, $teacherresults, $subjectresults,$subjectid,$teacherid,$divisionid);
           SubjectDivWiseFeedback($fbresults, $teacherresults, $subjectresults,$subjectid,$teacherid,$divisionid);
 
       }
       // $qtr = "TRUNCATE table feedback_count";
       // mysqli_query($db, $qtr);
-      echo "<script>alert('Summary Created!')</script>";
+      // echo "<script>alert('Summary Created!')</script>";
+      $display_alert = "Summary Created!";
     }
     else{
-      echo "<script>alert('No data to summarize!')</script>";
+      // echo "<script>alert('No data to summarize!')</script>";
+      $display_alert = "No data to summarize!";
     }
 
     // $qu1 = "SELECT * FROM feedback_inst";
@@ -423,7 +434,9 @@ if(isset($_POST['summary_fb'])){
  				</span>
 
          <div class="wrap-input100">
-           <center><label class="label-inputx">SELECT YEAR AND SEMESTER CYCLE</label></center>
+           <center><label class="label-inputx">SELECT YEAR AND SEMESTER CYCLE</label><br>
+           <label class="label-inputx text-primary"><?= $display_alert ?></label>
+         </center>
          </div>
 
          <div class="wrap-input100 bg2 rs1-wrap-input100">
@@ -454,7 +467,7 @@ if(isset($_POST['summary_fb'])){
 
  			</form>
  <div class="container-contact100-form-btn">
-   <a href="subjects.php" class="contact100-form-btn">
+   <a href="output.php" class="contact100-form-btn">
      <span>
        Back
        <i class="fa fa-long-arrow-right m-l-7" aria-hidden="true"></i>

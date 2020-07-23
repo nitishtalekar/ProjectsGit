@@ -5,7 +5,7 @@ if(empty($_SESSION['admin'])){
   header('location: index.php');
 }
 
-
+$display_alert = "";
 $sem_query = "SELECT * from semester";
 $sem_results = mysqli_query($db, $sem_query);
 $sem_row = mysqli_fetch_assoc($sem_results);
@@ -103,10 +103,12 @@ if(isset($_POST['upload_fb'])){
       $qt = "TRUNCATE table feedback_temp";
       mysqli_query($db, $qt);
       // echo "<script>alert('Feedback Data Uploaded!')</script>";
-      echo "alert('Feedback Data Uploaded!')";
+      $display_alert = "Feedback Data Uploaded!";
+      // echo "alert('Feedback Data Uploaded!')";
     }
     else{
       // echo "<script>alert('No Feedback Data to Upload!')</script>";
+      $display_alert = "No Feedback Data to Upload!";
     }
 
     // header('location: output.php');
@@ -197,7 +199,10 @@ if(isset($_POST['summary'])){
 				</span>
 
 				<div class="wrap-input100">
-					<center><label class="label-inputx">FEEDBACK CREATION</label></center>
+					<center>
+            <label class="label-inputx">FEEDBACK CREATION</label><br>
+            <label class="label-inputx text-primary"><?= $display_alert ?></label>
+          </center>
 				</div>
 
 
