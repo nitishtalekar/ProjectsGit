@@ -1,0 +1,7 @@
+User-Agent: *
+Disallow: /https://snapinsight.net/testing/
+Disallow: /https://snapinsight.net/users/
+
+Allow: /https://snapinsight.net/
+
+Sitemap: https://snapinsight.net/sitemap.xml

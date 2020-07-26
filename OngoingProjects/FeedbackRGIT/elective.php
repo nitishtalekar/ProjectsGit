@@ -86,7 +86,7 @@ if(isset($_POST['elective_intro'])){
 		</div>
 	</div>
 
-	<div class="container-contact100" style="min-height:calc(100vh - 33px)">
+	<div class="container-contact100" style="min-height:calc(100vh - 263px)">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" action="elective.php" method="POST" enctype="multipart/form-data">
 				<span class="contact100-form-title">

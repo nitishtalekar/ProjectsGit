@@ -229,8 +229,17 @@ else{
 </head>
 <body>
 
-
-	<div class="container-contact100" style="min-height:calc(100vh - 33px)">
+	<div class="container-fluid" style="background:#e6e6e6;">
+		<div class="row pt-3">
+			<div class="col-12">
+				<center>
+				<img src="header.png" style="max-width:90vw">
+			</center>
+			</div>
+		</div>
+	</div>
+	
+	<div class="container-contact100" style="min-height:calc(100vh - 263px)">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" action="index.php" method="POST" enctype="multipart/form-data">
 				<span class="contact100-form-title">

@@ -15,14 +15,24 @@
     
     <style media="screen">
     #main {
-        height: 100vh;
+        height: calc(100vh - 250px);
       } 
     </style>
   </head>
   <body>
     
+    <div class="container-fluid">
+  		<div class="row pt-3">
+  			<div class="col-12">
+  				<center>
+  				<img src="header.png" style="max-width:90vw">
+  			</center>
+  			</div>
+  		</div>
+  	</div>
     
-    <div class="d-flex justify-content-center align-items-center" id="main">
+    
+    <div class="d-flex justify-content-center align-items-center mx-3" id="main">
         <h1 class="mr-3 pr-3 align-top border-right inline-block align-content-center">404</h1>
         <div class="inline-block align-middle">
         <center>	<h2 class="font-weight-normal lead" id="desc">The link you requested has been exhausted.</h2>

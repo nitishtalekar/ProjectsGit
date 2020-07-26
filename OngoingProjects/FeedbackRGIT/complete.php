@@ -83,7 +83,7 @@ else{
     </div>
   </div>
 
-  <div class="container-contact100" style="min-height:calc(100vh - 33px)">
+  <div class="container-contact100" style="min-height:calc(100vh - 265px)">
 		<div class="wrap-contact100">
 			<form class="contact100-form validate-form" action="complete.php" method="POST" enctype="multipart/form-data">
 				<span class="contact100-form-title">
@@ -136,7 +136,6 @@ else{
 	<!--===============================================================================================-->
 		<script src="style/forms/js/main.js"></script>
 
-<!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
