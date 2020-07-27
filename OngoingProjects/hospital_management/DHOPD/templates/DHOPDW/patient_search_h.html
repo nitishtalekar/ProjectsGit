@@ -1,0 +1,712 @@
+{% extends 'DHOPDW/base.html' %}
+{% load static %}
+{% block head %}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Dehankar - Waitlist</title>
+
+<!-- Custom fonts for this template-->
+<link href="{% static 'style/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<!-- Custom styles for this template-->
+<link href="{% static 'style/css/sb-admin-2.min.css' %}" rel="stylesheet">
+<link href="{% static 'style/css/sb-admin-2.css' %}" rel="stylesheet">
+
+<!-- 1234 -->
+
+<!-- Custom styles for this page -->
+<link href="{% static 'style/vendor/datatables/dataTables.bootstrap4.min.css' %}" rel="stylesheet">
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+<style media="screen">
+  .big-check {
+    height: 20px;
+    width: 20px;
+    vertical-align: center;
+  }
+
+  .big-label {
+    font-size: 20px;
+    vertical-align: center;
+  }
+</style>
+
+{% endblock head %}
+
+
+{% block content %}
+
+<body id="page-top">
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-dark sidebar sidebar-dark accordion pt-5" id="accordionSidebar">
+
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/DHOPD/dashboard/">
+        <div class="sidebar-brand-icon rotate-n-15">
+          <!-- <i class="fas fa-laugh-wink"></i> -->
+        </div>
+        <div class="sidebar-brand-text mx-3">Dehankar Hospital</div>
+      </a>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
+
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="/DHOPD/dashboard/">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span></a>
+      </li>
+      {% if log.priority == 'A' %}
+      <li class="nav-item">
+        <a class="nav-link" href="/DHOPD/add_user/">
+          <i class="fa fa-users"></i>
+          <span>Manage Users</span></a>
+      </li>
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseServ" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fa fa-server"></i>
+          <span>Manage Service</span>
+        </a>
+        <div id="collapseServ" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Options</h6>
+            <a class="collapse-item" href="/DHOPD/add_service/?service=Doctor">Doctor Services</a>
+            <a class="collapse-item" href="/DHOPD/add_service/?service=Hospital">Hospital Services</a>
+          </div>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/DHOPD/add_room/">
+          <i class="fa fa-building"></i>
+          <span>Manage Rooms</span></a>
+      </li>
+      {% endif %}
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Service
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+
+      {% if log.auth == '2' or log.auth == '4' or log.auth == '5' or log.auth == '0' %}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fa fa-user-md"></i>
+          <span>Dr. Shirish Dehankar</span>
+        </a>
+        {% if tag == 'Doctor' %}
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          {% else %}
+          <div id="collapseOne" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            {% endif %}
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Options</h6>
+              <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Doctor">Waiting List</a>
+              <a class="collapse-item" href="/DHOPD/patient_add?auth=Doctor">Add Patient</a>
+
+              {% if tag == 'Doctor' %}
+              <a class="collapse-item active1" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
+              {% else %}
+              <a class="collapse-item" href="/DHOPD/patient_search?auth=Doctor">Search Patient</a>
+              {% endif %}
+
+
+
+            </div>
+          </div>
+      </li>
+      {% endif %}
+
+      {% if log.auth == '1' or log.auth == '4' or log.auth == '6' or log.auth == '0' %}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+          <i class="fa fa-child"></i>
+          <span>Child Doctor</span>
+        </a>
+        {% if tag == 'Child' %}
+        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          {% else %}
+          <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            {% endif %}
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Options</h6>
+
+              <a class="collapse-item" href="/DHOPD/patient_waitlist?auth=Child">Waiting List</a>
+              <a class="collapse-item" href="/DHOPD/patient_add?auth=Child">Add Patient</a>
+
+              {% if tag == 'Child' %}
+              <a class="collapse-item active1" href="/DHOPD/patient_search?auth=Child">Search Patient</a>
+              {% else %}
+              <a class="collapse-item" href="/DHOPD/patient_search?auth=Child">Search Patient</a>
+              {% endif %}
+
+
+
+            </div>
+          </div>
+      </li>
+      {% endif %}
+
+      {% if log.auth == '3' or log.auth == '5' or log.auth == '6' or log.auth == '0' %}
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+          <i class="fa fa-bed"></i>
+          <span>Room</span>
+        </a>
+        {% if tag == 'Room' %}
+        <div id="collapseThree" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+          {% else %}
+          <div id="collapseThree" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            {% endif %}
+            <div class="bg-white py-2 collapse-inner rounded">
+              <h6 class="collapse-header">Options</h6>
+
+              {% if tag == 'Room' %}
+              <a class="collapse-item active1" href="/DHOPD/patient_waitlist_h/">Waiting List</a>
+              {% else %}
+              <a class="collapse-item" href="/DHOPD/patient_waitlist_h/">Waiting List</a>
+              {% endif %}
+
+              <a class="collapse-item" href="/DHOPD/patient_add_h/">Add Patient</a>
+              <a class="collapse-item" href="/DHOPD/patient_search_h">Search Patient</a>
+            </div>
+          </div>
+      </li>
+      {% endif %}
+
+      <!-- Nav Item - Utilities Collapse Menu -->
+
+      <!-- Divider -->
+      <hr class="sidebar-divider">
+
+      <!-- Heading -->
+      <div class="sidebar-heading">
+        Reports
+      </div>
+
+      <!-- Nav Item - Pages Collapse Menu -->
+
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
+        <a class="nav-link" href="/DHOPD/report">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Overall Report</span></a>
+      </li>
+
+      <!-- Nav Item - Tables -->
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Graphs</span></a>
+      </li>
+
+      <!-- Divider -->
+      <hr class="sidebar-divider d-none d-md-block">
+
+      <!-- Sidebar Toggler (Sidebar) -->
+      <div class="text-center d-none d-md-inline">
+        <button class="rounded-circle border-0" id="sidebarToggle"></button>
+      </div>
+
+    </ul>
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <h1 class="h3 mb-2 text-gray-800 pt-3">Dehankar Hospital OPD</h1>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="btn btn-dark"><i class="fa fa-user"></i> &nbsp; &nbsp; {{ log.fname }}</span>
+              </a>
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#passModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Change Password
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Search Patient</h1>
+
+
+          <div class="card shadow mb-4">
+            <a href="#collapseDate" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+              <h6 class="m-0 font-weight-bold text-primary text-uppercase">Search By Date</h6>
+            </a>
+            <div class="collapse" id="collapseDate">
+              <div class="card-body">
+
+                <form action="/DHOPD/patient_search_h/" method="POST">
+                  <div class="d-flex justify-content-around">
+                    <input type="date" class="form-control bg-light border-0 small" name="fromd" value="{{fd}}" style="width:30%" required>
+                    <input type="date" class="form-control bg-light border-0 small" name="tod" value="{{tod}}" style="width:30%" required>
+                    <button type="submit" class="btn btn-primary" name="pid" value="date" style="width:30%"> Search </button>
+                  </div>
+                  {% csrf_token %}
+
+                </form>
+              </div>
+            </div>
+          </div>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <a href="#collapseWait" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="collapseCardExample">
+              <h6 class="m-0 font-weight-bold text-primary text-uppercase">Search Patient</h6>
+            </a>
+            <div class="collapse show" id="collapseWait">
+              <div class="card-body">
+                <div class="table-responsive pt-3 px-2">
+                  <form action="/DHOPD/patient_search/?auth={{tag}}" method="POST" target="_blank">
+                    {% csrf_token %}
+                    <table class="table table-bordered" id="dataTable_h" width="100%" cellspacing="0">
+                      <thead>
+                        <tr>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Address</th>
+                          <th>Phone</th>
+                          <th>Receipt / Refund</th>
+                          <th>Bill No.</th>
+                          <th>Amount</th>
+                          <th>From / To</th>
+                          <th>Bill</th>
+                        </tr>
+                      </thead>
+                      <tfoot>
+                        <tr>
+                          <th>ID</th>
+                          <th>Name</th>
+                          <th>Address</th>
+                          <th>Phone</th>
+                          <th>Receipts / Refund</th>
+                          <th>Bill No.</th>
+                          <th>Amount</th>
+                          <th>From / To</th>
+                          <th>Bill</th>
+                        </tr>
+                      </tfoot>
+                      <tbody>
+
+                        {% for i,j in patient %}
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{i.4}} {{ i.1 }} {{ i.2 }} {{ i.3 }}  ({{i.10}})</td>
+                          <td><abbr style="text-decoration:none;cursor:pointer" title="{{ i.5 }}">{{ i.16 }}...</abbr></td>
+                          <td>{{ i.7 }}</td>
+                          <td>{{ j.bill_receipt }}</td>
+                          <td>{{ j.bill_id }}</td>
+                          <td>{{ j.bill_cost }}</td>
+                          <td>
+                          {{i.14}} / {{i.25}}
+                          </td>
+                          <td>
+                            <center>
+                              <a class="btn btn-primary" href="/DHOPD/patient_bill_h/?id={{i.0}}" target="_blank">
+                                <i class="fas fa-sign-out-alt fa-sm fa-fw"></i>
+                                Bill
+                              </a>
+                            </center>
+                          </td>
+                        </tr>
+                        {% endfor %}
+
+                      </tbody>
+                    </table>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Dehankar Hospital</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-dark" href="/DHOPD/logout/">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="passModalLabel">Change Password?</h5>
+          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div>
+          <form class="" action="" method="post">
+            <div class="mt-3 mb-4">
+              <center>
+                <input type="text" class="form-control bg-light border-0 small" name="oldpwd" style="width:80%;" placeholder="Enter Old Password"><br>
+                <input type="text" class="form-control bg-light border-0 small" name="newpwd" style="width:80%;" placeholder="Enter New Password"><br>
+                <input type="text" class="form-control bg-light border-0 small" name="cnewpwd" style="width:80%;" placeholder="Confirm New Password"><br>
+                <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" name="change_pwd" type="submit">Change</button>
+              </center>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {% for i in patient_c %}
+  <div class="modal fade" id="statusModal{{ i.0 }}" tabindex="-1" role="dialog" aria-labelledby="statusModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="statusModalLabel">Confirm Visited Status?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Patient "{{ i.2 }} {{ i.3 }} {{ i.4 }}" has visited?</div>
+        <!-- <hr> -->
+        <form action="/DHOPD/patient_waitlist/?auth={{ tag }}" method="POST">
+          {% csrf_token %}
+          <div class="modal-body">
+            <center><button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <button type="submit" name="status" value="1.{{ i.0 }}" class="btn btn-success">Visited</button></center>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  {% for i in patient_w %}
+  <div class="modal fade" id="rev_statusModal{{ i.0 }}" tabindex="-1" role="dialog" aria-labelledby="rev_statusModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="rev_statusModalLabel">Confirm Waiting Status?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Patient "{{ i.2 }} {{ i.3 }} {{ i.4 }}" status to waiting?</div>
+        <!-- <hr> -->
+        <form action="/DHOPD/patient_waitlist/?auth={{ tag }}" method="POST">
+          {% csrf_token %}
+          <div class="modal-body">
+            <center><button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <button type="submit" name="status" value="0.{{ i.0 }}" class="btn btn-warning">Waiting</button></center>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+  {% for i in patient_c %}
+  <div class="modal fade editmodal" id="editModal{{ i.0 }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Edit Information</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="card mb-4">
+            <!-- Card Header - Accordion -->
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary text-uppercase">Edit Patient</h6>
+            </div>
+            <!-- Card Content - Collapse -->
+            <!-- <div class="collapse show" id="collapseCardExample"> -->
+            <form action="/DHOPD/patient_waitlist/?auth={{ tag }}" method="POST">
+              {% csrf_token %}
+
+              <div class="card-body">
+                <!-- This is a collapsable card example using Bootstrap's built in collapse functionality. <strong>Click on the card header</strong> to see the card body collapse and expand! -->
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-3">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Title</label>
+                        <select class="js-example-basic-single custom-select mr-sm-2" name="title" style="width:55%;height:10vh" required>
+                          <option value="" selected disabled>Select Title</option>
+                          {% if i.11.0 == 1 %}
+                          <option value="Mr." selected>Mr.</option>
+                          {% else %}
+                          <option value="Mr.">Mr.</option>
+                          {% endif %}
+
+                          {% if i.11.1 == 1 %}
+                          <option value="Ms." selected>Ms.</option>
+                          {% else %}
+                          <option value="Ms.">Ms.</option>
+                          {% endif %}
+
+                          {% if i.11.2 == 1 %}
+                          <option value="Mrs." selected>Mrs.</option>
+                          {% else %}
+                          <option value="Mrs.">Mrs.</option>
+                          {% endif %}
+
+                          {% if i.11.3 == 1 %}
+                          <option value="Baby Girl" selected>Baby Girl</option>
+                          {% else %}
+                          <option value="Baby Girl">Baby Girl</option>
+                          {% endif %}
+
+                          {% if i.11.4 == 1 %}
+                          <option value="Baby Boy" selected>Baby Boy</option>
+                          {% else %}
+                          <option value="Baby Boy">Baby Boy</option>
+                          {% endif %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">First Name</label>
+                        <input type="text" name="f_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.2}}">
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Middle Name</label>
+                        <input type="text" name="m_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.3}}">
+                      </div>
+                    </div>
+                    <div class="col-3">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Last Name</label>
+                        <input type="text" name="l_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Name" value="{{i.4}}">
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                  <label class="text-uppercase" style="font-size:15px;">Address</label>
+                  <textarea name="addr" class="form-control bg-light border-0 small" style="width:90%;">{{i.6}}</textarea>
+                </div>
+
+                <div class="container-fluid">
+                  <div class="row">
+
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
+                        <input type="number" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" value="{{i.8}}">
+                      </div>
+                    </div>
+
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Place</label>
+                        <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town" value="{{i.7}}">
+                      </div>
+                    </div>
+
+                  </div>
+
+                </div>
+                <div class="container">
+                  <div class="row">
+
+                    {% for j in service %}
+                    <div class="col-4 mt-3">
+                      {% if j.service_id in i.12 %}
+                      {% if j.service_name == 'Vaccine' %}
+                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ j.service_name }}" value="{{ j.service_id }}" onclick="vaccineelement(this,{{ i.0 }})" checked>&nbsp;&nbsp;&nbsp;&nbsp;{{j.service_name }}
+                        (Rate) </label>
+                      {% else %}
+                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ j.service_name }}" value="{{ j.service_id }}" checked>&nbsp;&nbsp;&nbsp;&nbsp;{{j.service_name }} (Rate) </label>
+                      {% endif %}
+                      {% else %}
+                      {% if j.service_name == 'Vaccine' %}
+                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ j.service_name }}" value="{{ j.service_id }}" onclick="vaccineelement(this,{{ i.0 }})">&nbsp;&nbsp;&nbsp;&nbsp;{{j.service_name }} (Rate)
+                      </label>
+                      {% else %}
+                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ j.service_name }}" value="{{ j.service_id }}">&nbsp;&nbsp;&nbsp;&nbsp;{{j.service_name }} (Rate) </label>
+                      {% endif %}
+                      {% endif %}
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+                {% if 8 in i.12 %}
+                <div class="container mt-3" id="v_name{{ i.0 }}">
+                  <div class="d-flex justify-content-around mb-3">
+                    <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
+                    <input type="text" name="vacc" id="vacc{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.13}}'>
+                    <label class="text-uppercase" style="font-size:15px;">Amount</label>
+                    <input type="text" name="cost" id="cost{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.14}}'>
+                  </div>
+                </div>
+                {% else %}
+                <div class="container mt-3" style="display:none;" id="v_name{{ i.0 }}">
+                  <div class="d-flex justify-content-around mb-3">
+                    <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
+                    <input type="text" name="vacc" id="vacc{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.13}}'>
+                    <label class="text-uppercase" style="font-size:15px;">Amount</label>
+                    <input type="text" name="cost" id="cost{{ i.0 }}" class="form-control bg-light border-0 small" style="width:30%;" value='{{i.14}}'>
+                  </div>
+                </div>
+                {% endif %}
+
+
+
+                <div class="d-flex justify-content-around mb-3 mt-5">
+
+                  <button class="btn btn-success" type="submit" style="width:80%" value="{{i.0}}" name='pid'>
+                    Update
+                  </button>
+                </div>
+              </div>
+
+            </form>
+            <!-- </div> -->
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <!-- <a class="btn btn-success" href="/DHOPD/logout/">Visited</a> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+
+
+
+
+  <script src="{% static 'style/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/popper.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'style/vendor/select2/select2.min.js' %}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.js-example-basic-single').select2();
+    });
+  </script>
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'style/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'style/js/sb-admin-2.min.js' %}"></script>
+
+  <!-- Page level plugins -->
+  <script src="{% static 'style/vendor/datatables/jquery.dataTables.min.js' %}"></script>
+  <script src="{% static 'style/vendor/datatables/dataTables.bootstrap4.min.js' %}"></script>
+
+  <!-- Page level custom scripts -->
+  <script src="{% static 'style/js/demo/datatables-demo.js' %}"></script>
+
+</body>
+
+{% endblock content %}

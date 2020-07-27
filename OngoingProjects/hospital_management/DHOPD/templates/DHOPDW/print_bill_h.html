@@ -1,0 +1,569 @@
+{% extends 'DHOPDW/base.html' %}
+{% load static %}
+{% block head %}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Dehankar - Add Patient - Male</title>
+
+<!-- Custom fonts for this template-->
+<link href="{% static 'style/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+<!-- Custom styles for this template-->
+<link href="{% static 'style/css/sb-admin-2.min.css' %}" rel="stylesheet">
+<link href="{% static 'style/css/sb-admin-2.css' %}" rel="stylesheet">
+
+<style media="screen">
+  .big-check {
+    height: 20px;
+    width: 20px;
+    vertical-align: center;
+  }
+
+  .big-label {
+    font-size: 20px;
+    vertical-align: center;
+  }
+</style>
+
+
+
+<!-- <script type="text/javascript">
+    $(document).ready(function () {
+        $('#Vaccine').change(function () {
+            if (!this.checked){
+              $('#v_name').fadeOut('fast');
+              $('#vacc').removeAttr('required');
+              $('#cost').removeAttr('required');
+            }
+            //  ^
+            else{
+                $('#v_name').fadeIn('fast');
+                $('#vacc').attr('required', '');
+                $('#cost').attr('required', '');
+              }
+
+        });
+
+        $('#p_add_btn').click(function() {
+        checked = $("input[type=checkbox]:checked").length;
+
+        if(!checked) {
+          alert("You must check at least one checkbox.");
+          return false;
+        }
+
+      });
+
+        });
+
+
+    </script> -->
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    console.log("BCCCCC");
+    $("input:checkbox[name=service]").each(function() {
+      var id = $(this).attr("id");
+      console.log(id);
+      var cbid = "#" + id;
+      var cb = $(cbid);
+      console.log("c" + cb);
+      var id2 = "#" + id + "_ip";
+      console.log(id2);
+      if ($(cbid).prop("checked") == true) {
+        $(id2).fadeIn('fast');
+      } else {
+        $(id2).fadeOut('fast');
+      }
+    });
+
+    $("#p_add_btn").click(function() {
+      $("input:checkbox[name=service]").each(function() {
+        console.log("start");
+        var id = $(this).attr("id");
+        var cbid = "#" + id;
+        var cb = $(cbid);
+        var id2 = "#" + id + "_ip";
+        if ($(cbid).prop("checked") == true) {
+          var nval = $(cbid).val() + "_" + $(id2).val();
+          $(cbid).val("");
+          $(cbid).val(nval);
+        }
+
+
+      });
+    });
+
+    $('#p_add_btn').click(function() {
+      checked = $("input[type=checkbox]:checked").length;
+
+      if (!checked) {
+        alert("You must check at least one checkbox.");
+        return false;
+      }
+
+    });
+
+  });
+
+
+
+  function show_item(cb, x) {
+    d = "#" + x + "_ip";
+    console.log(d);
+    if (cb.checked) {
+      $(d).fadeIn('fast');
+    } else {
+      $(d).fadeOut('fast');
+    }
+  }
+
+  function show_type(cb, z, x) {
+    d = "#" + z + "_ip_x";
+    l = "#" + z + "_ip_l";
+    console.log($(d));
+    console.log($(l));
+    console.log(x);
+    if (x == 1) {
+      $(d).fadeIn('fast');
+      $(l).fadeIn('fast');
+      $(d).prop('required', true);
+    } else if (x == 0) {
+      $(d).fadeOut('fast');
+      $(l).fadeOut('fast');
+      $(d).prop('required', false);
+    }
+  }
+</script>
+
+
+{% endblock head %}
+
+
+{% block content %}
+
+<body id="page-top">
+
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <h1 class="h3 mb-2 text-gray-800 pt-3">Dehankar Hospital OPD</h1>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="btn btn-dark"><i class="fa fa-user"></i> &nbsp; &nbsp; {{ log.fname }}</span>
+              </a>
+
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#passModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Change Password
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <!-- <div class="container-fluid"> -->
+
+        <!-- Page Heading -->
+        <div class="container" style="min-height: calc(100vh - 180px)">
+
+          <h1 class="h3 mb-2 text-gray-800">Print Bill</h1>
+
+
+          <!-- Collapsable Card Example -->
+          <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+
+            <!-- Card Content - Collapse -->
+            <!-- <div class="collapse show" id="collapseCardExample"> -->
+            <form action="/DHOPD/patient_bill_h/?id={{pid}}" method="POST">
+              {% csrf_token %}
+
+              <div class="card-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="d-flex justify-content-center">
+                        <label class="bill-label" style="font-size:30px"> Dehankar Hospital Civil Lines, Akola 444001</label>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="d-flex justify-content-center">
+                        <label class="bill-label" style="font-size:30px"> BILL No. {{bill.bill_id}}</label>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-start mb-3 mt-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:20px;">Name</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="font-weight-bold" style="font-size:20px;">{{patient.0.4}} {{patient.0.1}} {{patient.0.2}} {{patient.0.3}}</label>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-end mb-3 mt-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Date of Admission</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="font-weight-bold" style="font-size:15px;">{{patient.0.14}}</label>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-start mb-5" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:20px;">Address</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="font-weight-bold" style="font-size:20px;">{{patient.0.5}}</label>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-end mb-3 mt-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">date of Discharge</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label class="font-weight-bold" style="font-size:15px;">{{patient.0.25}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="d-flex justify-content-around mb-4" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Gender</label>
+                        <label class="font-weight-bold" style="font-size:15px;">{{patient.0.9}}</label>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="d-flex justify-content-around mb-4" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Age</label>
+                        <label class="font-weight-bold" style="font-size:15px;">{{patient.0.10}}</label>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                      <div class="d-flex justify-content-around mb-4" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Impression</label>
+                        <label class="font-weight-bold" style="font-size:15px;">{{patient.0.8}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container-fluid">
+                  <div class="row">
+
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-4" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
+                        <label class="font-weight-bold" style="font-size:15px;">{{patient.0.7}}</label>
+                      </div>
+                    </div>
+
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-4" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Place</label>
+                        <label class="font-weight-bold" style="font-size:15px;">{{patient.0.6}}</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container">
+                  <div class="row">
+                    <div class="col-4 mt-3">
+                      <label class="big-label font-weight-bold">&nbsp;&nbsp;&nbsp;&nbsp;PARTICULARS </label>
+                    </div>
+                    <div class="col-8 mt-3">
+                      <div class="row" id="{{i.service_id}}_ip">
+                        <div class="col-3">
+                          <label class="text-uppercase font-weight-bold" style="font-size:15px;">RS.</label>
+                        </div>
+                        <div class="col-3">
+                          <label class="text-uppercase font-weight-bold" style="font-size:15px;">X</label>
+                        </div>
+                        <div class="col-3">
+                          <label class="text-uppercase font-weight-bold" style="font-size:15px;">DAY/NO</label>
+                        </div>
+                        <div class="col-3">
+                          <label class="text-uppercase font-weight-bold" style="font-size:15px;">AMOUNT</label>
+                        </div>
+                      </div>
+                    </div>
+                    {% for i,k,l in patient.0.20 %}
+                    {% if i.service_id in patient.0.11 %}
+                    {% if i.service_id == 1 %}
+
+                    {% for x in patient.0.19 %}
+                    <div class="col-4 mt-3">
+                      <label class="big-label">&nbsp;&nbsp;&nbsp;&nbsp;{{x.0}} </label>
+                    </div>
+                    <div class="col-8 mt-3">
+                      <div class="row" id="{{i.service_id}}_ip">
+                        <div class="col-3">
+                          <label class="text-uppercase" style="font-size:15px;">{{x.4}}</label>
+                        </div>
+                        <div class="col-3">
+                          <label class="text-uppercase" style="font-size:15px;">X</label>
+                        </div>
+                        <div class="col-3">
+                          <label class="text-uppercase" style="font-size:15px;">{{x.2}}</label>
+                        </div>
+                        <div class="col-3">
+                          <label class="text-uppercase" style="font-size:15px;">{{x.3}}</label>
+                        </div>
+                      </div>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <div class="col-4 mt-3">
+                      <label class="big-label">&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }} </label>
+                    </div>
+                    <div class="col-8 mt-3">
+                      <div class="row" id="{{i.service_id}}_ip">
+                        <div class="col-3">
+                          <label class="text-uppercase" style="font-size:15px;">{{i.service_cost}}</label>
+                        </div>
+                        <div class="col-3">
+                          <label class="text-uppercase" style="font-size:15px;">X</label>
+                        </div>
+                        <div class="col-3">
+                          <label class="text-uppercase" style="font-size:15px;">{{k}}</label>
+                        </div>
+                        <div class="col-3">
+                          <label class="text-uppercase" style="font-size:15px;">{{l}}</label>
+                        </div>
+                      </div>
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                    {% endfor %}
+
+                  </div>
+                </div>
+
+                <div class="container d-flex justify-content-center mt-5">
+                  <!-- <center> -->
+                  <div class="row" style="width:70%">
+                    <!-- <div class="col-12 mb-3">
+                      <label class="big-label" style="font-size:30px;">&nbsp;BILL</label>
+                    </div> -->
+                    <div class="col-6">
+                      <label class="big-label" style="font-size:25px;">&nbsp;&nbsp;Total</label>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                      <label class="big-label">&nbsp;&nbsp;&nbsp;&nbsp;{{patient.0.13}}.0</label>
+                    </div>
+                    <div class="col-12">
+                      <label class="big-label" style="font-size:25px;">&nbsp;&nbsp;Advance</label>
+                    </div>
+                    <div class="col-12">
+                      <!-- <div class="container-fluid"> -->
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="big-label">&nbsp;&nbsp;Receipt No.</label>
+                        </div>
+                        <div class="col-4">
+                          <label class="big-label">&nbsp;&nbsp;Date</label>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end">
+                          <label class="big-label">&nbsp;&nbsp;Amount</label>
+                        </div>
+                      </div>
+
+                      {% for i in receipt %}
+
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="big-label">&nbsp;&nbsp;{{i.receipt_id}}</label>
+                        </div>
+                        <div class="col-4">
+                          <label class="big-label">&nbsp;&nbsp;{{i.receipt_time}}</label>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end">
+                          <label class="big-label">&nbsp;&nbsp;{{i.receipt_cost}}</label>
+                        </div>
+                      </div>
+
+                      {% endfor %}
+                      <!-- </div> -->
+
+                    </div>
+
+                    <div class="col-12">
+                      <hr style="width:30%" align="right">
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                      <label class="big-label">&nbsp;&nbsp;&nbsp;-{{patient.0.18}}</label>
+                    </div>
+
+                    <div class="col-12">
+                      <label class="big-label" style="font-size:25px;">&nbsp;&nbsp;Refund</label>
+                    </div>
+
+                    <!-- <div class="container-fluid"> -->
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="big-label">&nbsp;&nbsp;Refund No.</label>
+                        </div>
+                        <div class="col-4">
+                          <label class="big-label">&nbsp;&nbsp;Date</label>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end">
+                          <label class="big-label">&nbsp;&nbsp;Amount</label>
+                        </div>
+                      </div>
+
+                      {% for i in refund %}
+
+                      <div class="row">
+                        <div class="col-4">
+                          <label class="big-label">&nbsp;&nbsp;{{i.refund_id}}</label>
+                        </div>
+                        <div class="col-4">
+                          <label class="big-label">&nbsp;&nbsp;{{i.refund_time}}</label>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end">
+                          <label class="big-label">&nbsp;&nbsp;{{i.refund_cost}}</label>
+                        </div>
+                      </div>
+
+                      {% endfor %}
+                      <!-- </div> -->
+
+                    </div>
+
+                    <div class="col-12">
+                      <hr style="width:30%" align="right">
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                      <label class="big-label">&nbsp;&nbsp;&nbsp;{{patient.0.23}}</label>
+                    </div>
+                    {% if patient.0.22 != '0' %}
+                    <div class="col-6">
+                      <label class="big-label" style="font-size:25px;">&nbsp;&nbsp;Discount</label>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                      <label class="big-label">&nbsp;&nbsp;&nbsp;-{{patient.0.22}}</label>
+                    </div>
+                    {% endif %}
+                    <div class="col-12">
+                      <hr>
+                    </div>
+                    <div class="col-6">
+                      <label class="big-label" style="font-size:25px;">&nbsp;&nbsp;Remaining</label>
+                    </div>
+                    <div class="col-6 d-flex justify-content-end">
+                      <label class="big-label">&nbsp;&nbsp;&nbsp;&nbsp;{{patient.0.15}}</label>
+                    </div>
+                  </div>
+                  <!-- </center> -->
+                </div>
+              </div>
+            </form>
+
+            <div class="d-flex justify-content-around mb-3 mt-5">
+              <button class="btn btn-primary" style="width:90%" onClick="window.print()">
+                Print Bill
+              </button>
+            </div>
+
+            <!-- </div> -->
+          </div>
+        </div>
+
+        <!-- </div> -->
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+
+
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-white">
+        <div class="container my-auto">
+          <div class="copyright text-center my-auto">
+            <span>Dehankar Hospital</span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'style/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/popper.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'style/vendor/select2/select2.min.js' %}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.js-example-basic-single').select2();
+    });
+  </script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'style/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'style/js/sb-admin-2.min.js' %}"></script>
+
+</body>
+
+{% endblock content %}
