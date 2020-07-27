@@ -19,5 +19,5 @@ from django.conf.urls import url
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('snapinsight/',include("snapinsight.urls")),
+    path('',include("snapinsight.urls")),
 ]
