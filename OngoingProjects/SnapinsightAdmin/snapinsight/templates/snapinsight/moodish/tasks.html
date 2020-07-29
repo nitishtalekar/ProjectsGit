@@ -2,249 +2,202 @@
 {% block content %}
 
 <div class="dashboard-wrapper">
-    <div class="dashboard-finance">
-        <div class="container-fluid dashboard-content">
-            <!-- ============================================================== -->
-            <!-- pageheader  -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="page-header">
-                        <h3 class="mb-2">Moodish </h3>
-
-                        <div class="page-breadcrumb">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Tasks</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
+  <div class="dashboard-finance">
+    <div class="container-fluid dashboard-content">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="page-header">
+            <h3 class="mb-2">Moodish </h3>
+            <div class="page-breadcrumb">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Tasks</li>
+                </ol>
+              </nav>
             </div>
-            <!-- ============================================================== -->
-            <!-- end pageheader  -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <div class="offset-xl-10 col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
-                    <form>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <!-- ============================================================== -->
-                <!-- data table  -->
-                <!-- ============================================================== -->
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Tasks Under work</h5>
-                            <p>Here is the list of tasks added by the heads for people to work on. The prgress % is set by the person doing the task from their dashboard which is reflected here.The Tested & completed toggle will set an approval requirement.</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-striped table-bordered second" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Task Name</th>
-                                            <th>Priority</th>
-                                            <th>Assigned to</th>
-                                            <th>Assign date</th>
-                                            <th>Deadline</th>
-                                            <th>Current Progress</th>
-                                            <th>Tested & Completed</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>loading bug</td>
-                                            <td>1</td>
-                                            <td>xyz</td>
-                                            <td>2020/04/25</td>
-                                            <td style="color:red;">2020/04/25</td>
-                                            <td>50%</td>
-                                            <td><div class="form-group row">
-
-                                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                                    <div class="switch-button switch-button-success">
-                                                        <input type="checkbox" checked="" name="switch1" id="switch1"><span>
-                                                    <label for="switch1"></label></span>
-                                                    </div>
-                                                </div>
-                                            </div></td>
-                                        </tr>
-                                        <tr>
-                                            <td>loading bug</td>
-                                            <td>3</td>
-                                            <td>xyz</td>
-                                            <td>2020/04/25</td>
-                                            <td style="color:red;">2020/04/25</td>
-                                            <td>50%</td>
-                                            <td><div class="form-group row">
-
-                                                <div class="col-12 col-sm-8 col-lg-6 pt-1">
-                                                    <div class="switch-button switch-button-success">
-                                                        <input type="checkbox" checked="" name="switch2" id="switch2"><span>
-                                                    <label for="switch2"></label></span>
-                                                    </div>
-                                                </div>
-                                            </div></td>
-                                        </tr>
-
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Task Name</th>
-                                            <th>Priority</th>
-                                            <th>Assigned to</th>
-                                            <th>Assign date</th>
-                                            <th>Deadline</th>
-                                            <th>Current Progress</th>
-                                            <th>Tested & Completed</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end data table  -->
-                <!-- ============================================================== -->
-            </div>
-            <div class="row">
-                <!-- ============================================================== -->
-                <!-- data table  -->
-                <!-- ============================================================== -->
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Tasks Completed</h5>
-                            <p>Once the task is completed by the person and approved by the head , it will appear in this table.</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-striped table-bordered second" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Task Name</th>
-                                            <th>Priority</th>
-                                            <th>Assigned to</th>
-                                            <th>Finished date</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>loading bug</td>
-                                            <td>1</td>
-                                            <td>xyz</td>
-                                            <td>2020/04/25</td>
-
-
-                                        </tr>
-
-
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Task Name</th>
-                                            <th>Priority</th>
-                                            <th>Assigned to</th>
-                                            <th>Finished date</th>
-
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end data table  -->
-                <!-- ============================================================== -->
-            </div>
-            <div class="row">
-                <!-- ============================================================== -->
-                <!-- data table  -->
-                <!-- ============================================================== -->
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Future Tasks/App Updates</h5>
-                            <p>This list will contain a list of future tasks that will be assigned to someone .</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-striped table-bordered second" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Task Name</th>
-                                            <th>Update Feature</th>
-                                            <th>Description</th>
-                                            <th>Start date</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>loading bug</td>
-                                            <td>xxx</td>
-                                            <td>xyz</td>
-                                            <td>2020/04/25</td>
-
-
-                                        </tr>
-
-
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Task Name</th>
-                                            <th>Update Feature</th>
-                                            <th>Description</th>
-                                            <th>Start date</th>
-
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end data table  -->
-                <!-- ============================================================== -->
-            </div>
-    </div>
-    <!-- ============================================================== -->
-    <!-- footer -->
-    <!-- ============================================================== -->
-    <div class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="text-md-right footer-links d-none d-sm-block">
-                        <a href="javascript: void(0);">About</a>
-                        <a href="javascript: void(0);">Support</a>
-                        <a href="javascript: void(0);">Contact Us</a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="offset-xl-10 col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
+          <form>
+            <div class="form-group">
+              <input class="form-control text-center" type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Tasks Under work</h5>
+              <p>Here is the list of tasks added by the heads for people to work on. The prgress % is set by the person doing the task from their dashboard which is reflected here.The Tested & completed toggle will set an approval requirement.</p>
+            </div>
+            <div class="card-body">
+              <center>
+                <div class="table-responsive">
+                  <table id="example" class="table table-striped table-bordered second" style="width:95%">
+                    <thead>
+                      <tr>
+                        <th>Task Name</th>
+                        <th>Priority</th>
+                        <th>Assigned to</th>
+                        <th>Assign date</th>
+                        <th>Deadline</th>
+                        <th>Current Progress</th>
+                        <th>Tested & Completed</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>loading bug</td>
+                        <td>1</td>
+                        <td>xyz</td>
+                        <td>2020/04/25</td>
+                        <td style="color:red;">2020/04/25</td>
+                        <td>50%</td>
+                        <td>
+                          <div class="form-group row">
+
+                            <div class="col-12 col-sm-8 col-lg-6 pt-1">
+                              <div class="switch-button switch-button-success">
+                                <input type="checkbox" checked="" name="switch1" id="switch1"><span>
+                                  <label for="switch1"></label></span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>loading bug</td>
+                        <td>3</td>
+                        <td>xyz</td>
+                        <td>2020/04/25</td>
+                        <td style="color:red;">2020/04/25</td>
+                        <td>50%</td>
+                        <td>
+                          <div class="form-group row">
+
+                            <div class="col-12 col-sm-8 col-lg-6 pt-1">
+                              <div class="switch-button switch-button-success">
+                                <input type="checkbox" checked="" name="switch2" id="switch2"><span>
+                                  <label for="switch2"></label></span>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Task Name</th>
+                        <th>Priority</th>
+                        <th>Assigned to</th>
+                        <th>Assign date</th>
+                        <th>Deadline</th>
+                        <th>Current Progress</th>
+                        <th>Tested & Completed</th>
+                      </tr>
+                    </tfoot>
+                  </table>
+                </div>
+              </center>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <center>
+        <hr class="pb-3" style="width:80%">
+      </center>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Tasks Completed</h5>
+              <p>Once the task is completed by the person and approved by the head , it will appear in this table.</p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>Task Name</th>
+                      <th>Priority</th>
+                      <th>Assigned to</th>
+                      <th>Finished date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>loading bug</td>
+                      <td>1</td>
+                      <td>xyz</td>
+                      <td>2020/04/25</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Task Name</th>
+                      <th>Priority</th>
+                      <th>Assigned to</th>
+                      <th>Finished date</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <center>
+        <hr class="pb-3" style="width:80%">
+      </center>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Future Tasks/App Updates</h5>
+              <p>This list will contain a list of future tasks that will be assigned to someone .</p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>Task Name</th>
+                      <th>Update Feature</th>
+                      <th>Description</th>
+                      <th>Start date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>loading bug</td>
+                      <td>xxx</td>
+                      <td>xyz</td>
+                      <td>2020/04/25</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Task Name</th>
+                      <th>Update Feature</th>
+                      <th>Description</th>
+                      <th>Start date</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <center>
+        <hr class="pb-3" style="width:80%">
+      </center>
     </div>
-    <!-- ============================================================== -->
-    <!-- end footer -->
-    <!-- ============================================================== -->
-</div>
-{% endblock content %}
+  </div>
+  {% endblock content %}
