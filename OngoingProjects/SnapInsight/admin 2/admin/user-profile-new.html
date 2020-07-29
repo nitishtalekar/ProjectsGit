@@ -1,0 +1,770 @@
+<!doctype html>
+<html lang="en">
+
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
+  <link href="assets/vendor/fonts/circular-std/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="assets/libs/css/style.css">
+  <link rel="stylesheet" href="assets/vendor/fonts/fontawesome/css/fontawesome-all.css">
+  <title>SnapInsight</title>
+</head>
+
+<body>
+  <!-- ============================================================== -->
+  <!-- main wrapper -->
+  <!-- ============================================================== -->
+  <div class="dashboard-main-wrapper">
+    <!-- ============================================================== -->
+    <!-- navbar -->
+    <!-- ============================================================== -->
+    <div class="dashboard-header">
+      <nav class="navbar navbar-expand-lg bg-white fixed-top">
+        <a class="navbar-brand" href="index.html">SnapInsight</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto navbar-right-top">
+            <li class="nav-item">
+              <div id="custom-search" class="top-search-bar">
+                <input class="form-control" type="text" placeholder="Search..">
+              </div>
+            </li>
+            <li class="nav-item dropdown notification">
+              <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                <li>
+                  <div class="notification-title"> Notification</div>
+                  <div class="notification-list">
+                    <div class="list-group">
+                      <a href="#" class="list-group-item list-group-item-action active">
+                        <div class="notification-info">
+                          <div class="notification-list-user-img"><img src="assets/images/avatar-2.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                          <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
+                            <div class="notification-date">2 min ago</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="notification-info">
+                          <div class="notification-list-user-img"><img src="assets/images/avatar-3.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                          <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham </span>is now following you
+                            <div class="notification-date">2 days ago</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="notification-info">
+                          <div class="notification-list-user-img"><img src="assets/images/avatar-4.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                          <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
+                            <div class="notification-date">2 min ago</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="notification-info">
+                          <div class="notification-list-user-img"><img src="assets/images/avatar-5.jpg" alt="" class="user-avatar-md rounded-circle"></div>
+                          <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
+                            <div class="notification-date">2 min ago</div>
+                          </div>
+                        </div>
+                      </a>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="list-footer"> <a href="#">View all notifications</a></div>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown nav-user">
+              <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="assets/images/avatar-1.jpg" alt="" class="user-avatar-md rounded-circle"></a>
+              <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                <div class="nav-user-info">
+                  <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
+                  <span class="status"></span><span class="ml-2">Available</span>
+                </div>
+                <a class="dropdown-item" href="#"><i class="fas fa-user mr-2"></i>Account</a>
+                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end navbar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- left sidebar -->
+    <!-- ============================================================== -->
+    <div class="nav-left-sidebar sidebar-dark">
+      <div class="menu-list">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav flex-column">
+              <li class="nav-divider">
+                Menu
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Commpany <span class="badge badge-success">6</span></a>
+                <div id="submenu-1" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/overview/">Overview</a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="/solutions/">Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/games/">Games</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/services/">Services</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/legal/">Legal</a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="/ideas/">Your Ideas</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-10"><i class="fas fa-f fa-folder"></i>Website</a>
+                <div id="submenu-10" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="website/blog-homepage-edit.html">Blog Homepage</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-divider">
+                Products & Services
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Moodish</a>
+                <div id="submenu-3" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/moodish/overview/">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/moodish/roadmap/">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/moodish/tasks/">Tasks & Timeline</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Designs</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/moodish/projects/">Ml Projects</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">APK uploads</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/moodish/resources/">Resources</a>
+                    </li>
+
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-chart-pie"></i>Runner Game</a>
+                <div id="submenu-12" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/runner/overview/">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/runner/roadmap/">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/runner/tasks/">Tasks & Timeline</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Designs</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/runner/projects/">Ml Projects</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">APK uploads</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/runner/resources/">Resources</a>
+                    </li>
+
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-divider">
+                Technologies
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-chart-pie"></i>ML</a>
+                <div id="submenu-12" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="ml/overview.html">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="ml/roadmap.html">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="ml/projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="ml/tasks.html">Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="ml/resources.html">Resources</a>
+                    </li>
+
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-divider">
+                Others
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Marketing</a>
+                <div id="submenu-5" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="marketing/overview.html">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="marketing/roadmap.html">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9">Social Media</a>
+                      <div id="submenu-9" class="collapse submenu" style="">
+                        <ul class="nav flex-column">
+
+                          <li class="nav-item">
+                            <a class="nav-link" href="marketing/social-design-templates.html">Post Design Templates</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="marketing/social-snapinsight.html">Snapinsight</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="marketing/social-moodish.html">Moodish</a>
+                          </li>
+
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-19" aria-controls="submenu-19">Email Marketing</a>
+                      <div id="submenu-19" class="collapse submenu" style="">
+                        <ul class="nav flex-column">
+                          <li class="nav-item">
+                            <a class="nav-link" href="marketing/email-homepage.html">Strategy</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="marketing/email-list.html">Email Lists</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="marketing/seo.html">SEO & ASO</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="website/blog-homepage-edit.html">Blog Articles</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="marketing/article.html">Resources</a>
+                    </li>
+
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>HR <span class="badge badge-secondary">New</span></a>
+                <div id="submenu-7" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="hr/overview.html">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="hr/roadmap.html">Hiring Process</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="hr/jd.html">Job Description</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="hr/portals.html">Portals</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="hr/tasks.html">Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="hr/resources.html">Resources</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-15" aria-controls="submenu-15"><i class="fas fa-fw fa-inbox"></i>Content Writer <span class="badge badge-secondary">New</span></a>
+                <div id="submenu-15" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="contentwri/overview.html">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="contentwri/tasks.html">Content Strategy</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="website/blog-homepage-edit.html">The article</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="marketing/social-design-templates.html">Post Designs</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="contentwri/resources.html">Resources</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+
+
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-columns"></i>Team</a>
+                <div id="submenu-8" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="team/overview.html">Overview</a>
+                    </li>
+
+
+                  </ul>
+                </div>
+              </li>
+
+
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end left sidebar -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+    <!-- wrapper  -->
+    <!-- ============================================================== -->
+    <div class="dashboard-wrapper">
+      <div class="influence-profile">
+        <div class="container-fluid dashboard-content ">
+          <!-- ============================================================== -->
+          <!-- pageheader -->
+          <!-- ============================================================== -->
+          <div class="row">
+            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+              <div class="page-header">
+                <h3 class="mb-2">Influencer Profile </h3>
+                <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+                <div class="page-breadcrumb">
+                  <nav aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                      <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                      <li class="breadcrumb-item active" aria-current="page">Influencer Profile Template</li>
+                    </ol>
+                  </nav>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- ============================================================== -->
+          <!-- end pageheader -->
+          <!-- ============================================================== -->
+          <!-- ============================================================== -->
+          <!-- content -->
+          <!-- ============================================================== -->
+          <div class="row">
+            <!-- ============================================================== -->
+            <!-- profile -->
+            <!-- ============================================================== -->
+            <div class="col-xl-3 col-lg-3 col-md-5 col-sm-12 col-12">
+              <!-- ============================================================== -->
+              <!-- card profile -->
+              <!-- ============================================================== -->
+              <div class="card">
+                <div class="card-body">
+                  <div class="user-avatar text-center d-block">
+                    <img src="assets/images/avatar-1.jpg" alt="User Avatar" class="rounded-circle user-avatar-xxl">
+                  </div>
+                  <div class="text-center">
+                    <h2 class="font-24 mb-0">Michael J. Christy</h2>
+                    <p>Project Manager @Influnce</p>
+                  </div>
+                </div>
+                <div class="card-body border-top">
+                  <h3 class="font-16">Contact Information</h3>
+                  <div class="">
+                    <ul class="list-unstyled mb-0">
+                      <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>michaelchristy@gmail.com</li>
+                      <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>(900) 123 4567</li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="card-body border-top">
+                  <h3 class="font-16">Social Channels</h3>
+                  <div class="">
+                    <ul class="mb-0 list-unstyled">
+                      <li class="mb-1"><a href="#"><i class="fab fa-fw fa-facebook-square mr-1 facebook-color"></i>fb.me/michaelchristy</a></li>
+                      <li class="mb-1"><a href="#"><i class="fab fa-fw fa-twitter-square mr-1 twitter-color"></i>twitter.com/michaelchristy</a></li>
+                      <li class="mb-1"><a href="#"><i class="fab fa-fw fa-instagram mr-1 instagram-color"></i>instagram.com/michaelchristy</a></li>
+                      <li class="mb-1"><a href="#"><i class="fas fa-fw fa-rss-square mr-1 rss-color"></i>michaelchristy.com/blog</a></li>
+                      <li class="mb-1"><a href="#"><i class="fab fa-fw fa-pinterest-square mr-1 pinterest-color"></i>pinterest.com/michaelchristy</a></li>
+                      <li class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>youtube/michaelchristy</a></li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="card-body border-top">
+                  <h3 class="font-16">Category</h3>
+                  <div>
+                    <a href="#" class="badge badge-light mr-1">Fitness</a><a href="#" class="badge badge-light mr-1">Life Style</a><a href="#" class="badge badge-light mr-1">Gym</a>
+                  </div>
+                </div>
+              </div>
+              <!-- ============================================================== -->
+              <!-- end card profile -->
+              <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- end profile -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- campaign data -->
+            <!-- ============================================================== -->
+            <div class="col-xl-9 col-lg-9 col-md-7 col-sm-12 col-12">
+              <!-- ============================================================== -->
+              <!-- campaign tab one -->
+              <!-- ============================================================== -->
+              <div class="influence-profile-content pills-regular">
+                <ul class="nav nav-pills mb-3 nav-justified" id="pills-tab" role="tablist">
+                  <li class="nav-item">
+                    <a class="nav-link active" id="pills-campaign-tab" data-toggle="pill" href="#pills-campaign" role="tab" aria-controls="pills-campaign" aria-selected="true">Overview</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="pills-packages-tab" data-toggle="pill" href="#pills-packages" role="tab" aria-controls="pills-packages" aria-selected="false">Tasks</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="pills-review-tab" data-toggle="pill" href="#pills-review" role="tab" aria-controls="pills-review" aria-selected="false">Projects</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" id="pills-msg-tab" data-toggle="pill" href="#pills-msg" role="tab" aria-controls="pills-msg" aria-selected="false">Send Messages</a>
+                  </li>
+                </ul>
+                <div class="tab-content" id="pills-tabContent">
+                  <div class="tab-pane fade show active" id="pills-campaign" role="tabpanel" aria-labelledby="pills-campaign-tab">
+
+                    <div class="section-block">
+                      <h3 class="section-title">Talents & Skills</h3>
+                      <p>Notify CEO and respective head on addition of ideas</p>
+                    </div>
+                    <div class="card">
+
+                      <div class="border-top card-footer p-0">
+                        <div class="campaign-metrics d-xl-inline-block">
+                          <h4 class="mb-0">45k</h4>
+                          <p>Total Reach</p>
+                        </div>
+                        <div class="campaign-metrics d-xl-inline-block">
+                          <h4 class="mb-0">29k</h4>
+                          <p>Total Views</p>
+                        </div>
+                        <div class="campaign-metrics d-xl-inline-block">
+                          <h4 class="mb-0">5k</h4>
+                          <p>Total Click</p>
+                        </div>
+                        <div class="campaign-metrics d-xl-inline-block">
+                          <h4 class="mb-0">4k</h4>
+                          <p>Engagement</p>
+                        </div>
+                        <div class="campaign-metrics d-xl-inline-block">
+                          <h4 class="mb-0">2k</h4>
+                          <p>Conversion</p>
+                        </div>
+                      </div>
+                      <div class="card-body">
+                        <div class="table-responsive">
+                          <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                            <thead>
+                              <tr>
+                                <th>Skills</th>
+                                <th>Interests</th>
+                                <th>Talents</th>
+                                <th>New Idea</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+
+                              <tr>
+                                <td>loading bug</td>
+                                <td>xac</td>
+                                <td>cdcd</td>
+                                <td>2cdcdcd</td>
+
+
+                              </tr>
+
+
+                            </tbody>
+                            <tfoot>
+                              <tr>
+                                <th>Skills</th>
+                                <th>Interests</th>
+                                <th>Talents</th>
+                                <th>New Idea</th>
+
+                              </tr>
+                            </tfoot>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="pills-packages" role="tabpanel" aria-labelledby="pills-packages-tab">
+
+                    <div class="row">
+                      <!-- ============================================================== -->
+                      <!-- data table  -->
+                      <!-- ============================================================== -->
+                      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="card">
+                          <div class="card-header">
+                            <h5 class="mb-0">Tasks</h5>
+                            <p>Here show the task fields for the respective section this user belongs to. Eg the below table is for someone belonging to Moodish where the user can set the progress and set the toggle which will set an approval
+                              trigger.</p>
+                          </div>
+                          <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                              <div class="section-block">
+                                <h3 class="section-title">My Profile</h3>
+                              </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h1 class="mb-1">9</h1>
+                                  <p>Total Assigned Tasks</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h1 class="mb-1">35</h1>
+                                  <p>Finished Tasks</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h1 class="mb-1">8</h1>
+                                  <p>Pending tasks</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h1 class="mb-1">1</h1>
+                                  <p>Declined Tasks</p>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+                              <div class="card">
+                                <div class="card-body">
+                                  <h1 class="mb-1">1</h1>
+                                  <p>Near deadline tasks</p>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="card-body">
+                            <div class="table-responsive">
+                              <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                                <thead>
+                                  <tr>
+                                    <th>Task Name</th>
+                                    <th>Priority</th>
+                                    <th>Assigned to</th>
+                                    <th>Assign date</th>
+                                    <th>Deadline</th>
+                                    <th>Current Progress</th>
+                                    <th>Tested & Completed</th>
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <td>loading bug</td>
+                                    <td>1</td>
+                                    <td>me</td>
+                                    <td>2020/04/25</td>
+                                    <td style="color:red;">2020/04/25</td>
+                                    <td>50%</td>
+                                    <td>
+                                      <div class="form-group row">
+
+                                        <div class="col-12 col-sm-8 col-lg-6 pt-1">
+                                          <div class="switch-button switch-button-success">
+                                            <input type="checkbox" checked="" name="switch1" id="switch1"><span>
+                                              <label for="switch1"></label></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td>loading bug</td>
+                                    <td>3</td>
+                                    <td>me</td>
+                                    <td>2020/04/25</td>
+                                    <td style="color:red;">2020/04/25</td>
+                                    <td>50%</td>
+                                    <td>
+                                      <div class="form-group row">
+
+                                        <div class="col-12 col-sm-8 col-lg-6 pt-1">
+                                          <div class="switch-button switch-button-success">
+                                            <input type="checkbox" checked="" name="switch2" id="switch2"><span>
+                                              <label for="switch2"></label></span>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </td>
+                                  </tr>
+
+
+                                </tbody>
+                                <tfoot>
+                                  <tr>
+                                    <th>Task Name</th>
+                                    <th>Priority</th>
+                                    <th>Assigned to</th>
+                                    <th>Assign date</th>
+                                    <th>Deadline</th>
+                                    <th>Current Progress</th>
+                                    <th>Tested & Completed</th>
+                                  </tr>
+                                </tfoot>
+                              </table>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- ============================================================== -->
+                      <!-- end data table  -->
+                      <!-- ============================================================== -->
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="pills-review" role="tabpanel" aria-labelledby="pills-review-tab">
+                    <div class="card">
+                      <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                          <div class="section-block">
+                            <h5 class="section-title">Files Uploaded by the user</h5>
+                            <p>All documents uploaded by the user should appear here.</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="tab-pane fade" id="pills-msg" role="tabpanel" aria-labelledby="pills-msg-tab">
+                    <div class="card">
+                      <h5 class="card-header">Send Messages. Live chat system. The UI for this is your call, which ever is easier.</h5>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ============================================================== -->
+              <!-- end campaign tab one -->
+              <!-- ============================================================== -->
+            </div>
+            <!-- ============================================================== -->
+            <!-- end campaign data -->
+            <!-- ============================================================== -->
+          </div>
+        </div>
+      </div>
+      <!-- ============================================================== -->
+      <!-- end content -->
+      <!-- ============================================================== -->
+      
+      <!-- ============================================================== -->
+      <!-- end footer -->
+      <!-- ============================================================== -->
+    </div>
+    <div class="dashboard-wrapper">
+      <div class="footer">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+              Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
+            </div>
+            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+              <div class="text-md-right footer-links d-none d-sm-block">
+                <a href="javascript: void(0);">About</a>
+                <a href="javascript: void(0);">Support</a>
+                <a href="javascript: void(0);">Contact Us</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- ============================================================== -->
+    <!-- end wrapper -->
+    <!-- ============================================================== -->
+  </div>
+  <!-- ============================================================== -->
+  <!-- end main wrapper -->
+  <!-- ============================================================== -->
+  <!-- Optional JavaScript -->
+  <!-- jquery 3.3.1  -->
+  <script src="assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+  <!-- bootstap bundle js -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+  <!-- slimscroll js -->
+  <script src="assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+  <!-- main js -->
+  <script src="assets/libs/js/main-js.js"></script>
+
+</body>
+
+</html>
