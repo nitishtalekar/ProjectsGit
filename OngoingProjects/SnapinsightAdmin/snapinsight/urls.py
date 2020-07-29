@@ -31,4 +31,19 @@ urlpatterns = [
     path('marketing/social_snapinsight/',views.marketing_social_snapinsight),
     path('marketing/email_homepage/',views.marketing_email_homepage),
     path('marketing/email_list/',views.marketing_email_list),
+
+    path('hr/overview/',views.hr_overview),
+    path('hr/portals/',views.hr_portals),
+    path('hr/resources/',views.hr_resources),
+    path('hr/roadmap/',views.hr_roadmap),
+    path('hr/tasks/',views.hr_tasks),
+    path('hr/jd/',views.hr_jd),
+
+    path('contentwriter/overview/',views.contentwriter_overview),
+    path('contentwriter/articles/',views.contentwriter_articles),
+    path('contentwriter/resources/',views.contentwriter_resources),
+    path('contentwriter/postdesign/',views.contentwriter_postdesign),
+    path('contentwriter/content_strategy/',views.contentwriter_content_strategy),
+
+    path('team/overview/',views.team_overview),
 ]

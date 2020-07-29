@@ -31,9 +31,6 @@ def moodish_projects(request):
 def moodish_resources(request):
     return render(request, 'snapinsight/moodish/resources.html')
 
-def moodish_resources(request):
-    return render(request, 'snapinsight/moodish/resources.html')
-
 def moodish_roadmap(request):
     return render(request, 'snapinsight/moodish/roadmap.html')
 
@@ -46,9 +43,6 @@ def runner_overview(request):
 
 def runner_projects(request):
     return render(request, 'snapinsight/runner/projects.html')
-
-def runner_resources(request):
-    return render(request, 'snapinsight/runner/resources.html')
 
 def runner_resources(request):
     return render(request, 'snapinsight/runner/resources.html')
@@ -88,5 +82,45 @@ def marketing_email_homepage(request):
     return render(request, 'snapinsight/marketing/email-homepage.html')
 
 def marketing_email_list(request):
-    return render(request, 'snapinsight/marketing/email_list.html')
+    return render(request, 'snapinsight/marketing/email-list.html')
+
+
+def hr_overview(request):
+    return render(request, 'snapinsight/hr/overview.html')
+
+def hr_portals(request):
+    return render(request, 'snapinsight/hr/portals.html')
+
+def hr_resources(request):
+    return render(request, 'snapinsight/hr/resources.html')
+
+def hr_roadmap(request):
+    return render(request, 'snapinsight/hr/roadmap.html')
+
+def hr_tasks(request):
+    return render(request, 'snapinsight/hr/tasks.html')
+
+def hr_jd(request):
+    return render(request, 'snapinsight/hr/jd.html')
+
+
+def contentwriter_overview(request):
+    return render(request, 'snapinsight/contentwriter/overview.html')
+
+def contentwriter_articles(request):
+    return render(request, 'snapinsight/contentwriter/article.html')
+
+def contentwriter_resources(request):
+    return render(request, 'snapinsight/contentwriter/resources.html')
+
+def contentwriter_postdesign(request):
+    return render(request, 'snapinsight/contentwriter/postdesign.html')
+
+def contentwriter_content_strategy(request):
+    return render(request, 'snapinsight/contentwriter/tasks.html')
+
+
+def team_overview(request):
+    return render(request, 'snapinsight/team/overview.html')
+
 # Create your views here.
