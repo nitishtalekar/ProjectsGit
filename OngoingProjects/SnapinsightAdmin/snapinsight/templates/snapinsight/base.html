@@ -2,432 +2,398 @@
 
 <!doctype html>
 <html lang="en">
+
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
-    <link href="{% static 'assets/vendor/fonts/circular-std/style.css' %}" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'assets/libs/css/style.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/vendor/charts/chartist-bundle/chartist.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/vendor/charts/morris-bundle/morris.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/vendor/charts/c3charts/c3.css' %}">
-    <link rel="stylesheet" href="{% static 'assets/vendor/fonts/flag-icon-css/flag-icon.min.css' %}">
-    <title>Snapinsight</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css' %}">
+  <link href="{% static 'assets/vendor/fonts/circular-std/style.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'assets/libs/css/style.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendor/fonts/fontawesome/css/fontawesome-all.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendor/charts/chartist-bundle/chartist.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendor/charts/morris-bundle/morris.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendor/fonts/material-design-iconic-font/css/materialdesignicons.min.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendor/charts/c3charts/c3.css' %}">
+  <link rel="stylesheet" href="{% static 'assets/vendor/fonts/flag-icon-css/flag-icon.min.css' %}">
+  <title>Snapinsight</title>
 </head>
 
 <body>
-    <!-- ============================================================== -->
-    <!-- main wrapper -->
-    <!-- ============================================================== -->
-    <div class="dashboard-main-wrapper">
-        <!-- ============================================================== -->
-        <!-- navbar -->
-        <!-- ============================================================== -->
-        <div class="dashboard-header">
-            <nav class="navbar navbar-expand-lg bg-white fixed-top">
-                <a class="navbar-brand" href="index.html">SnapInsight</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbarSupportedContent">
-                    <ul class="navbar-nav ml-auto navbar-right-top">
-                        <li class="nav-item dropdown notification">
-                            <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
-                            <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
-                                <li>
-                                    <div class="notification-title"> Notification</div>
-                                    <div class="notification-list">
-                                        <div class="list-group">
-                                            <a href="#" class="list-group-item list-group-item-action active">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="{% static 'assets/images/avatar-2.jpg' %}" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="{% static 'assets/images/avatar-3.jpg' %}" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham </span>is now following you
-                                                        <div class="notification-date">2 days ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="{% static 'assets/images/avatar-4.jpg' %}" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="list-group-item list-group-item-action">
-                                                <div class="notification-info">
-                                                    <div class="notification-list-user-img"><img src="{% static 'assets/images/avatar-5.jpg' %}" alt="" class="user-avatar-md rounded-circle"></div>
-                                                    <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
-                                                        <div class="notification-date">2 min ago</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="list-footer"> <a href="#">View all notifications</a></div>
-                                </li>
-                            </ul>
-                        </li>
-
-                        <li class="nav-item dropdown nav-user">
-                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'assets/images/avatar-1.jpg' %}" alt="" class="user-avatar-md rounded-circle"></a>
-                            <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                                <div class="nav-user-info">
-                                    <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
-                                    <span class="status"></span><span class="ml-2">Available</span>
-                                </div>
-                                <a class="dropdown-item" href="influencer-profile.html"><i class="fas fa-user mr-2"></i>Account</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
-                                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-        </div>
-        <!-- ============================================================== -->
-        <!-- end navbar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- left sidebar -->
-        <!-- ============================================================== -->
-        <div class="nav-left-sidebar sidebar-dark">
-            <div class="menu-list">
-                <nav class="navbar navbar-expand-lg navbar-light">
-                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNav">
-                        <ul class="navbar-nav flex-column">
-                            <li class="nav-divider">
-                                Menu
-                            </li>
-                            <li class="nav-item ">
-                                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Commpany <span class="badge badge-success">6</span></a>
-                                <div id="submenu-1" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/overview/">Overview</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/solutions/">Solutions</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/games/">Games</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/services/">Services</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/legal/">Legal</a>
-                                        </li>
-
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/ideas/">Your Ideas</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-10"><i class="fas fa-f fa-folder"></i>Website</a>
-                                <div id="submenu-10" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="website/blog-homepage-edit.html">Blog Homepage</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-divider">
-                                Products & Services
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Moodish</a>
-                                <div id="submenu-3" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/moodish/overview/">Overview</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/moodish/roadmap/">Roadmap</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/moodish/tasks/">Tasks & Timeline</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Designs</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Features</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/moodish/projects/">Ml Projects</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">APK uploads</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/moodish/resources/">Resources</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-chart-pie"></i>Runner Game</a>
-                                <div id="submenu-12" class="collapse submenu" style="">
-                                  <ul class="nav flex-column">
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="/runner/overview/">Overview</a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="/runner/roadmap/">Roadmap</a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="/runner/tasks/">Tasks & Timeline</a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="#">Designs</a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="#">Features</a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="/runner/projects/">Ml Projects</a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="#">APK uploads</a>
-                                      </li>
-                                      <li class="nav-item">
-                                          <a class="nav-link" href="/runner/resources/">Resources</a>
-                                      </li>
-
-                                  </ul>
-                                </div>
-                            </li>
-                            <li class="nav-divider">
-                                Technologies
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-chart-pie"></i>ML</a>
-                                <div id="submenu-12" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="ml/overview.html">Overview</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="ml/roadmap.html">Roadmap</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="ml/projects.html">Projects</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="ml/tasks.html">Tasks</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="ml/resources.html">Resources</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-divider">
-                                Others
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Marketing</a>
-                                <div id="submenu-5" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/marketing/overview/">Overview</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/marketing/roadmap/">Roadmap</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9">Social Media</a>
-                                            <div id="submenu-9" class="collapse submenu" style="">
-                                                <ul class="nav flex-column">
-
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="/marketing/social_design_templates/">Post Design Templates</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="/marketing/social_snapinsight/">Snapinsight</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="/marketing/social_moodish/">Moodish</a>
-                                                    </li>
-
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-19" aria-controls="submenu-19">Email Marketing</a>
-                                            <div id="submenu-19" class="collapse submenu" style="">
-                                                <ul class="nav flex-column">
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="/marketing/email_homepage/">Strategy</a>
-                                                    </li>
-                                                    <li class="nav-item">
-                                                        <a class="nav-link" href="/marketing/email_list/">Email Lists</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/marketing/seo/">SEO & ASO</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Blog Articles</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Resources</a>
-                                        </li>
-
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>HR <span class="badge badge-secondary">New</span></a>
-                                <div id="submenu-7" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/hr/overview/">Overview</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/hr/roadmap/">Hiring Process</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/hr/jd/">Job Description</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/hr/portals/">Portals</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/hr/tasks/">Tasks</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/hr/resources/">Resources</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-15" aria-controls="submenu-15"><i class="fas fa-fw fa-inbox"></i>Content Writer <span class="badge badge-secondary">New</span></a>
-                                <div id="submenu-15" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/contentwriter/overview/">Overview</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/contentwriter/content_strategy/">Content Strategy</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/contentwriter/articles/">The article</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/contentwriter/postdesign/">Post Designs</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/contentwriter/resources/">Resources</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </li>
-
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-columns"></i>Team</a>
-                                <div id="submenu-8" class="collapse submenu" style="">
-                                    <ul class="nav flex-column">
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="/team/overview/">Overview</a>
-                                        </li>
-
-
-                                    </ul>
-                                </div>
-                            </li>
-
-
-                        </ul>
+  <div class="dashboard-main-wrapper">
+    <div class="dashboard-header">
+      <nav class="navbar navbar-expand-lg bg-white fixed-top">
+        <a class="navbar-brand" href="index.html">SnapInsight</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse " id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto navbar-right-top">
+            <li class="nav-item dropdown notification">
+              <a class="nav-link nav-icons" href="#" id="navbarDropdownMenuLink1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-fw fa-bell"></i> <span class="indicator"></span></a>
+              <ul class="dropdown-menu dropdown-menu-right notification-dropdown">
+                <li>
+                  <div class="notification-title"> Notification</div>
+                  <div class="notification-list">
+                    <div class="list-group">
+                      <a href="#" class="list-group-item list-group-item-action active">
+                        <div class="notification-info">
+                          <div class="notification-list-user-img"><img src="{% static 'assets/images/avatar-2.jpg' %}" alt="" class="user-avatar-md rounded-circle"></div>
+                          <div class="notification-list-user-block"><span class="notification-list-user-name">Jeremy Rakestraw</span>accepted your invitation to join the team.
+                            <div class="notification-date">2 min ago</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="notification-info">
+                          <div class="notification-list-user-img"><img src="{% static 'assets/images/avatar-3.jpg' %}" alt="" class="user-avatar-md rounded-circle"></div>
+                          <div class="notification-list-user-block"><span class="notification-list-user-name">John Abraham </span>is now following you
+                            <div class="notification-date">2 days ago</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="notification-info">
+                          <div class="notification-list-user-img"><img src="{% static 'assets/images/avatar-4.jpg' %}" alt="" class="user-avatar-md rounded-circle"></div>
+                          <div class="notification-list-user-block"><span class="notification-list-user-name">Monaan Pechi</span> is watching your main repository
+                            <div class="notification-date">2 min ago</div>
+                          </div>
+                        </div>
+                      </a>
+                      <a href="#" class="list-group-item list-group-item-action">
+                        <div class="notification-info">
+                          <div class="notification-list-user-img"><img src="{% static 'assets/images/avatar-5.jpg' %}" alt="" class="user-avatar-md rounded-circle"></div>
+                          <div class="notification-list-user-block"><span class="notification-list-user-name">Jessica Caruso</span>accepted your invitation to join the team.
+                            <div class="notification-date">2 min ago</div>
+                          </div>
+                        </div>
+                      </a>
                     </div>
-                </nav>
-            </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="list-footer"> <a href="#">View all notifications</a></div>
+                </li>
+              </ul>
+            </li>
+
+            <li class="nav-item dropdown nav-user">
+              <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img src="{% static 'assets/images/avatar-1.jpg' %}" alt=""
+                  class="user-avatar-md rounded-circle"></a>
+              <div class="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                <div class="nav-user-info">
+                  <h5 class="mb-0 text-white nav-user-name">John Abraham </h5>
+                  <span class="status"></span><span class="ml-2">Available</span>
+                </div>
+                <a class="dropdown-item" href="influencer-profile.html"><i class="fas fa-user mr-2"></i>Account</a>
+                <a class="dropdown-item" href="#"><i class="fas fa-cog mr-2"></i>Setting</a>
+                <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+              </div>
+            </li>
+          </ul>
         </div>
-        <!-- ============================================================== -->
-        <!-- end left sidebar -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- wrapper  -->
-        <!-- ============================================================== -->
-        <!-- ============================================================== -->
-        <!-- end wrapper  -->
-        <!-- ============================================================== -->
-        {% block content %}
-        {% endblock content %}
+      </nav>
     </div>
 
+    <div class="nav-left-sidebar sidebar-dark">
+      <div class="menu-list" style="padding-bottom:150px;overflow:scroll;">
+        <nav class="navbar navbar-expand-lg navbar-light">
+          <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav flex-column">
+              <li class="nav-divider">
+                Menu
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link active" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1" aria-controls="submenu-1"><i class="fa fa-fw fa-user-circle"></i>Commpany <span class="badge badge-success">6</span></a>
+                <div id="submenu-1" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/overview/">Overview</a>
+                    </li>
+
+                    <li class="nav-item">
+                      <a class="nav-link" href="/solutions/">Solutions</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/games/">Games</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/services/">Services</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/legal/">Legal</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/ideas/">Your Ideas</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-10" aria-controls="submenu-10"><i class="fas fa-f fa-folder"></i>Website</a>
+                <div id="submenu-10" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="website/blog-homepage-edit.html">Blog Homepage</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-divider">
+                Products & Services
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-3" aria-controls="submenu-3"><i class="fas fa-fw fa-chart-pie"></i>Moodish</a>
+                <div id="submenu-3" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/moodish/overview/">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/moodish/roadmap/">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/moodish/tasks/">Tasks & Timeline</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Designs</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/moodish/projects/">Ml Projects</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">APK uploads</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/moodish/resources/">Resources</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-chart-pie"></i>Runner Game</a>
+                <div id="submenu-12" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/runner/overview/">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/runner/roadmap/">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/runner/tasks/">Tasks & Timeline</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Designs</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Features</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/runner/projects/">Ml Projects</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">APK uploads</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/runner/resources/">Resources</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-divider">
+                Technologies
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-12" aria-controls="submenu-12"><i class="fas fa-fw fa-chart-pie"></i>ML</a>
+                <div id="submenu-12" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="ml/overview.html">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="ml/roadmap.html">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="ml/projects.html">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="ml/tasks.html">Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="ml/resources.html">Resources</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-divider">
+                Others
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-5" aria-controls="submenu-5"><i class="fas fa-fw fa-table"></i>Marketing</a>
+                <div id="submenu-5" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/marketing/overview/">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/marketing/roadmap/">Roadmap</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-9" aria-controls="submenu-9">Social Media</a>
+                      <div id="submenu-9" class="collapse submenu" style="">
+                        <ul class="nav flex-column">
+
+                          <li class="nav-item">
+                            <a class="nav-link" href="/marketing/social_design_templates/">Post Design Templates</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/marketing/social_snapinsight/">Snapinsight</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/marketing/social_moodish/">Moodish</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-19" aria-controls="submenu-19">Email Marketing</a>
+                      <div id="submenu-19" class="collapse submenu" style="">
+                        <ul class="nav flex-column">
+                          <li class="nav-item">
+                            <a class="nav-link" href="/marketing/email_homepage/">Strategy</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="/marketing/email_list/">Email Lists</a>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/marketing/seo/">SEO & ASO</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Blog Articles</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Resources</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-7" aria-controls="submenu-7"><i class="fas fa-fw fa-inbox"></i>HR <span class="badge badge-secondary">New</span></a>
+                <div id="submenu-7" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/hr/overview/">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/hr/roadmap/">Hiring Process</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/hr/jd/">Job Description</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/hr/portals/">Portals</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/hr/tasks/">Tasks</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/hr/resources/">Resources</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-15" aria-controls="submenu-15"><i class="fas fa-fw fa-inbox"></i>Content Writer <span class="badge badge-secondary">New</span></a>
+                <div id="submenu-15" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/contentwriter/overview/">Overview</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/contentwriter/content_strategy/">Content Strategy</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/contentwriter/articles/">The article</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/contentwriter/postdesign/">Post Designs</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/contentwriter/resources/">Resources</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-8" aria-controls="submenu-8"><i class="fas fa-fw fa-columns"></i>Team</a>
+                <div id="submenu-8" class="collapse submenu" style="">
+                  <ul class="nav flex-column">
+                    <li class="nav-item">
+                      <a class="nav-link" href="/team/overview/">Overview</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+    </div>
+    {% block content %}
+    {% endblock content %}
+  </div>
   <div class="dashboard-wrapper" style="min-height:20px !important;">
     <div class="footer" style="background:white;">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                     Snapinsight solutions Copyright © 2018 Concept. All rights reserved.
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="text-md-right footer-links d-none d-sm-block">
-                        <a href="#">About</a>
-                        <a href="#">Support</a>
-                        <a href="#">Contact Us</a>
-                    </div>
-                </div>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            Snapinsight solutions Copyright © 2018 Concept. All rights reserved.
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="text-md-right footer-links d-none d-sm-block">
+              <a href="#">About</a>
+              <a href="#">Support</a>
+              <a href="#">Contact Us</a>
             </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 
-    <!-- ============================================================== -->
-    <!-- end main wrapper  -->
-    <!-- ============================================================== -->
-    <!-- Optional JavaScript -->
-    <!-- jquery 3.3.1 -->
-    <script src="{% static 'assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
-    <!-- bootstap bundle js -->
-    <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
-    <!-- slimscroll js -->
-    <script src="{% static 'assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
-    <!-- main js -->
-    <script src="{% static 'assets/libs/js/main-js.js' %}"></script>
-    <!-- chart chartist js -->
-    <script src="{% static 'assets/vendor/charts/chartist-bundle/chartist.min.js' %}"></script>
-    <!-- sparkline js -->
-    <script src="{% static 'assets/vendor/charts/sparkline/jquery.sparkline.js' %}"></script>
-    <!-- morris js -->
-    <script src="{% static 'assets/vendor/charts/morris-bundle/raphael.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/charts/morris-bundle/morris.js' %}"></script>
-    <!-- chart c3 js -->
-    <script src="{% static 'assets/vendor/charts/c3charts/c3.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/charts/c3charts/d3-5.4.0.min.js' %}"></script>
-    <script src="{% static 'assets/vendor/charts/c3charts/C3chartjs.js' %}"></script>
-    <script src="{% static 'assets/libs/js/dashboard-ecommerce.js' %}"></script>
+  <!-- Optional JavaScript -->
+  <!-- jquery 3.3.1 -->
+  <script src="{% static 'assets/vendor/jquery/jquery-3.3.1.min.js' %}"></script>
+  <!-- bootstap bundle js -->
+  <script src="{% static 'assets/vendor/bootstrap/js/bootstrap.bundle.js' %}"></script>
+  <!-- slimscroll js -->
+  <script src="{% static 'assets/vendor/slimscroll/jquery.slimscroll.js' %}"></script>
+  <!-- main js -->
+  <script src="{% static 'assets/libs/js/main-js.js' %}"></script>
+  <!-- chart chartist js -->
+  <script src="{% static 'assets/vendor/charts/chartist-bundle/chartist.min.js' %}"></script>
+  <!-- sparkline js -->
+  <script src="{% static 'assets/vendor/charts/sparkline/jquery.sparkline.js' %}"></script>
+  <!-- morris js -->
+  <script src="{% static 'assets/vendor/charts/morris-bundle/raphael.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/charts/morris-bundle/morris.js' %}"></script>
+  <!-- chart c3 js -->
+  <script src="{% static 'assets/vendor/charts/c3charts/c3.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/charts/c3charts/d3-5.4.0.min.js' %}"></script>
+  <script src="{% static 'assets/vendor/charts/c3charts/C3chartjs.js' %}"></script>
+  <script src="{% static 'assets/libs/js/dashboard-ecommerce.js' %}"></script>
 </body>
 
 </html>
