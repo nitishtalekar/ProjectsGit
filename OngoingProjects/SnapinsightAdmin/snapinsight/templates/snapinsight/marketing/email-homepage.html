@@ -1,105 +1,91 @@
 {% extends 'snapinsight/base.html' %}
 {% block content %}
+
 <div class="dashboard-wrapper">
-    <div class="dashboard-finance">
-        <div class="container-fluid dashboard-content">
-            <!-- ============================================================== -->
-            <!-- pageheader  -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="page-header">
-                        <h3 class="mb-2">Marketing</h3>
-
-                        <div class="page-breadcrumb">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Email</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
+  <div class="dashboard-finance">
+    <div class="container-fluid dashboard-content">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="page-header">
+            <h3 class="mb-2">Marketing</h3>
+            <div class="page-breadcrumb">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Email</li>
+                </ol>
+              </nav>
             </div>
-            <!-- ============================================================== -->
-            <!-- end pageheader  -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <!-- ============================================================== -->
-                <!-- data table  -->
-                <!-- ============================================================== -->
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Send emails </h5>
-                            <p>Only to store emails are sent about what and when. And email templates</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-striped table-bordered second" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>About</th>
-                                            <th>When</th>
-
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <th>description</th>
-                                            <th>2020/02/04</th>
-
-                                        </tr>
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>About</th>
-                                            <th>When</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end data table  -->
-                <!-- ============================================================== -->
-            </div>
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                <div class="section-block">
-                    <h5 class="section-title">Documents</h5>
-                    <p>All documents uploaded under the section main in projects file appear here here</p>
-                </div>
-                </div>
-            </div>
+          </div>
         </div>
-    <!-- ============================================================== -->
-    <!-- footer -->
-    <!-- ============================================================== -->
-    <div class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    Copyright © 2018 Concept. All rights reserved. Dashboard by <a href="https://colorlib.com/wp/">Colorlib</a>.
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="text-md-right footer-links d-none d-sm-block">
-                        <a href="javascript: void(0);">About</a>
-                        <a href="javascript: void(0);">Support</a>
-                        <a href="javascript: void(0);">Contact Us</a>
-                    </div>
-                </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Send emails </h5>
+              <p>Only to store emails are sent about what and when. And email templates</p>
             </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>About</th>
+                      <th>When</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th>description</th>
+                      <th>2020/02/04</th>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>About</th>
+                      <th>When</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
         </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="section-block">
+            <h5 class="section-title">Main Documents</h5>
+            <p>All documents uploaded under the section main in projects file appear here here</p>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+          <div class="card mx-3">
+            <center>
+              <div class="card-header">
+                Design 1
+              </div>
+              <div class="card-body">
+                <a href="#" class="btn btn-primary">Open Document</a>
+              </div>
+            </center>
+          </div>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+          <div class="card mx-3">
+            <center>
+              <div class="card-header">
+                Design 1
+              </div>
+              <div class="card-body">
+                <a href="#" class="btn btn-primary">Open Document</a>
+              </div>
+            </center>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- end footer -->
-    <!-- ============================================================== -->
-</div>
-
-{% endblock content %}
+  </div>
+  
+  {% endblock content %}

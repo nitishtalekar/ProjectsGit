@@ -1,211 +1,157 @@
 {% extends 'snapinsight/base.html' %}
 {% block content %}
-
 <div class="dashboard-wrapper">
-    <div class="dashboard-finance">
-        <div class="container-fluid dashboard-content">
-            <!-- ============================================================== -->
-            <!-- pageheader  -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="page-header">
-                        <h3 class="mb-2">HR </h3>
-                        <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
-                        <div class="page-breadcrumb">
-                            <nav aria-label="breadcrumb">
-                                <ol class="breadcrumb">
-                                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                                    <li class="breadcrumb-item active" aria-current="page">Tasks</li>
-                                </ol>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
+  <div class="dashboard-finance">
+    <div class="container-fluid dashboard-content">
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="page-header">
+            <h3 class="mb-2">HR</h3>
+            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+            <div class="page-breadcrumb">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Tasks</li>
+                </ol>
+              </nav>
             </div>
-            <!-- ============================================================== -->
-            <!-- end pageheader  -->
-            <!-- ============================================================== -->
-            <div class="row">
-                <div class="offset-xl-10 col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
-                    <form>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="daterange" value="01/01/2020 - 01/15/2020" />
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <div class="row">
-                <!-- ============================================================== -->
-                <!-- data table  -->
-                <!-- ============================================================== -->
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Job positions to be hired for </h5>
-                            <p>List of job positions we are hiring for</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-striped table-bordered second" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Job position</th>
-                                            <th>Status</th>
-                                            <th>Portals used</th>
-                                            <th>Months</th>
-                                            <th>Deadline</th>
-                                            <th>Shortlisted number</th>
-                                            <th>How many projects recieved</th>
-                                            <th>Interviewed how many?</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Marketing executive</td>
-                                            <td>Intern</td>
-                                            <td>Internshala</td>
-                                            <td>3</td>
-                                            <td style="color:green;">2020/04/25</td>
-                                            <td>3</td>
-                                            <td>3</td>
-                                            <td>3</td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Marketing executive</td>
-                                            <td>Intern</td>
-                                            <td>Internshala</td>
-                                            <td>3</td>
-                                            <td style="color:green;">2020/04/25</td>
-                                            <td>3</td>
-                                            <td>3</td>
-                                            <td>3</td>
-                                        </tr>
-
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Job position</th>
-                                            <th>Status</th>
-                                            <th>Portals used</th>
-                                            <th>Months</th>
-                                            <th>Deadline</th>
-                                            <th>Shortlisted number</th>
-                                            <th>How many projects recieved</th>
-                                            <th>Interviewed how many?</th>
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end data table  -->
-                <!-- ============================================================== -->
-            </div>
-            <div class="row">
-                <!-- ============================================================== -->
-                <!-- data table  -->
-                <!-- ============================================================== -->
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                    <div class="card">
-                        <div class="card-header">
-                            <h5 class="mb-0">Hired </h5>
-                            <p>Will contain the info about the person hired</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table id="example" class="table table-striped table-bordered second" style="width:100%">
-                                    <thead>
-                                        <tr>
-                                            <th>Job position</th>
-                                            <th>Status</th>
-                                            <th>Portals used</th>
-                                            <th>Phone number</th>
-                                            <th>Age</th>
-                                            <th>Agreement signed?</th>
-                                            <th>Address</th>
-                                            <th>Start date</th>
-
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Marketing executive</td>
-                                            <td>Intern</td>
-                                            <td>Internshala</td>
-                                            <td>8989829384</td>
-                                            <td>20</td>
-                                            <td>yes</td>
-                                            <td>dhfbwkjfbwcwwbkwbfkwbfkwfb</td>
-                                            <td>2020/04/25</td>
-
-
-                                        </tr>
-                                        <tr>
-                                            <td>Marketing executive</td>
-                                            <td>Intern</td>
-                                            <td>Internshala</td>
-                                            <td>8989829384</td>
-                                            <td>20</td>
-                                            <td>yes</td>
-                                            <td>dhfbwkjfbwcwwbkwbfkwbfkwfb</td>
-                                            <td>2020/04/25</td>
-
-
-
-                                        </tr>
-
-
-                                    </tbody>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Job position</th>
-                                            <th>Status</th>
-                                            <th>Portals used</th>
-                                            <th>Phone number</th>
-                                            <th>Age</th>
-                                            <th>Agreement signed?</th>
-                                            <th>Address</th>
-                                            <th>Start date</th>
-
-                                        </tr>
-                                    </tfoot>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- ============================================================== -->
-                <!-- end data table  -->
-                <!-- ============================================================== -->
-            </div>
-    </div>
-    <!-- ============================================================== -->
-    <!-- footer -->
-    <!-- ============================================================== -->
-    <div class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    Snapinsight Solutions Copyright © 2020 Concept. All rights reserved..
-                </div>
-                <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                    <div class="text-md-right footer-links d-none d-sm-block">
-                        <a href="javascript: void(0);">About</a>
-                        <a href="javascript: void(0);">Support</a>
-                        <a href="javascript: void(0);">Contact Us</a>
-                    </div>
-                </div>
-            </div>
+          </div>
         </div>
+      </div>
+      <div class="row mt-3">
+        <div class="offset-xl-10 col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
+          <form>
+            <div class="form-group">
+              <input class="form-control text-center" type="text" name="daterange" value="01/01/2020 - 01/15/2020" />
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Job positions to be hired for </h5>
+              <p>List of job positions we are hiring for</p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>Job position</th>
+                      <th>Status</th>
+                      <th>Portals used</th>
+                      <th>Months</th>
+                      <th>Deadline</th>
+                      <th>Shortlisted number</th>
+                      <th>How many projects recieved</th>
+                      <th>Interviewed how many?</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Marketing executive</td>
+                      <td>Intern</td>
+                      <td>Internshala</td>
+                      <td>3</td>
+                      <td style="color:green;">2020/04/25</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>3</td>
+                    </tr>
+                    <tr>
+                      <td>Marketing executive</td>
+                      <td>Intern</td>
+                      <td>Internshala</td>
+                      <td>3</td>
+                      <td style="color:green;">2020/04/25</td>
+                      <td>3</td>
+                      <td>3</td>
+                      <td>3</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Job position</th>
+                      <th>Status</th>
+                      <th>Portals used</th>
+                      <th>Months</th>
+                      <th>Deadline</th>
+                      <th>Shortlisted number</th>
+                      <th>How many projects recieved</th>
+                      <th>Interviewed how many?</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="card">
+            <div class="card-header">
+              <h5 class="mb-0">Hired </h5>
+              <p>Will contain the info about the person hired</p>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table id="example" class="table table-striped table-bordered second" style="width:100%">
+                  <thead>
+                    <tr>
+                      <th>Job position</th>
+                      <th>Status</th>
+                      <th>Portals used</th>
+                      <th>Phone number</th>
+                      <th>Age</th>
+                      <th>Agreement signed?</th>
+                      <th>Address</th>
+                      <th>Start date</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>Marketing executive</td>
+                      <td>Intern</td>
+                      <td>Internshala</td>
+                      <td>8989829384</td>
+                      <td>20</td>
+                      <td>yes</td>
+                      <td>dhfbwkjfbwcwwbkwbfkwbfkwfb</td>
+                      <td>2020/04/25</td>
+                    </tr>
+                    <tr>
+                      <td>Marketing executive</td>
+                      <td>Intern</td>
+                      <td>Internshala</td>
+                      <td>8989829384</td>
+                      <td>20</td>
+                      <td>yes</td>
+                      <td>dhfbwkjfbwcwwbkwbfkwbfkwfb</td>
+                      <td>2020/04/25</td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <th>Job position</th>
+                      <th>Status</th>
+                      <th>Portals used</th>
+                      <th>Phone number</th>
+                      <th>Age</th>
+                      <th>Agreement signed?</th>
+                      <th>Address</th>
+                      <th>Start date</th>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <!-- ============================================================== -->
-    <!-- end footer -->
-    <!-- ============================================================== -->
-</div>
-
-{% endblock content %}
+  </div>
+  {% endblock content %}
