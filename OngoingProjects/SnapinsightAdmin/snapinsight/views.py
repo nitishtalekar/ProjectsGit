@@ -52,6 +52,22 @@ def runner_roadmap(request):
 
 def runner_tasks(request):
     return render(request, 'snapinsight/runner/tasks.html')
+    
+    
+def ml_overview(request):
+    return render(request, 'snapinsight/ml/overview.html')
+
+def ml_projects(request):
+    return render(request, 'snapinsight/ml/projects.html')
+
+def ml_resources(request):
+    return render(request, 'snapinsight/ml/resources.html')
+
+def ml_roadmap(request):
+    return render(request, 'snapinsight/ml/roadmap.html')
+
+def ml_tasks(request):
+    return render(request, 'snapinsight/ml/tasks.html')
 
 
 def marketing_overview(request):

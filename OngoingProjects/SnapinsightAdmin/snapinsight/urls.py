@@ -21,6 +21,12 @@ urlpatterns = [
     path('runner/resources/',views.runner_resources),
     path('runner/roadmap/',views.runner_roadmap),
     path('runner/tasks/',views.runner_tasks),
+    
+    path('ml/overview/',views.ml_overview),
+    path('ml/projects/',views.ml_projects),
+    path('ml/resources/',views.ml_resources),
+    path('ml/roadmap/',views.ml_roadmap),
+    path('ml/tasks/',views.ml_tasks),
 
     path('marketing/overview/',views.marketing_overview),
     path('marketing/seo/',views.marketing_seo),
