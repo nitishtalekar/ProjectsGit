@@ -1,10 +1,24 @@
 from django.shortcuts import render
+from .models import *
+
 
 def index(request):
     return render(request, 'snapinsight/index.html')
 
 def overview(request):
-    return render(request, 'snapinsight/overview.html')
+    overview = Overview.objects.all()
+    overview_data = []
+    for i in overview:
+        overview_data.append(i.description)                     #0
+        overview_data.append(i.some_point.split("^"))           #1
+        overview_data.append(i.principle.split("^"))            #2
+        overview_data.append(i.quote)                           #3
+        overview_data.append(i.vision)                          #4
+        overview_data.append(i.mission)                         #5
+        overview_data.append(i.goals)                           #6
+        overview_data.append(i.keyword.split("^"))              #7
+    print(overview_data)
+    return render(request, 'snapinsight/overview.html', {'overview':overview_data})
 
 def solutions(request):
     return render(request, 'snapinsight/solutions.html')
@@ -52,8 +66,8 @@ def runner_roadmap(request):
 
 def runner_tasks(request):
     return render(request, 'snapinsight/runner/tasks.html')
-    
-    
+
+
 def ml_overview(request):
     return render(request, 'snapinsight/ml/overview.html')
 
