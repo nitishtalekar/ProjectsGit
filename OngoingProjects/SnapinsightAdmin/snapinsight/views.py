@@ -157,6 +157,12 @@ def services(request):
     return render(request, 'snapinsight/services.html')
 
 def legal(request):
+    if request.method == "POST":
+        guideline = request.POST.get('guideline')
+        privacy = request.POST.getlist('privacy')
+        term = request.POST.getlist('term')
+        Legal.objects.all().delete()
+        Legal.objects.create(guideline=guideline, privacy=privacy, term=term)
     legal = Legal.objects.all()
     return render(request, 'snapinsight/legal.html', {'legal':legal[0]})
 
