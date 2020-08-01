@@ -22,7 +22,7 @@ def overview(request):
         print(sp, p, m)
         Overview.objects.filter(name = "company").update(some_point="^".join(sp), description=d, principle="^".join(p), quote=q, vision=v, mission=m, goals=g, keyword="^".join(m))
 
-    overview = Overview.objects.filter(name = "company")
+    overview = Overview.objects.get(name = "company")
     overview_data = []
     for i in overview:
         overview_data.append(i.description)                     #0
@@ -37,7 +37,26 @@ def overview(request):
     return render(request, 'snapinsight/overview.html', {'overview':overview_data})
 
 def solutions(request):
-    return render(request, 'snapinsight/solutions.html')
+    sol_desc = Solution_desc.objects.all()
+    sol = Solutions.objects.all()
+    desc = []
+    for i in sol_desc:
+        desc.append(i.description)
+        desc.append(i.principle.split("^"))
+
+    solution = []
+    for i in sol:
+        temp = []
+        temp.append(i.description)                      #0
+        temp.append(i.some_point.split("^"))            #1
+        temp.append(i.what)                             #2
+        temp.append(i.why)                              #3
+        temp.append(i.how)                              #4
+        temp.append(i.keyword.split("^"))               #5
+        temp.append(i.name)                             #6
+        solution.append(temp)
+
+    return render(request, 'snapinsight/solutions.html', {'desc':desc, 'solution':solution})
 
 def games(request):
     return render(request, 'snapinsight/games.html')
