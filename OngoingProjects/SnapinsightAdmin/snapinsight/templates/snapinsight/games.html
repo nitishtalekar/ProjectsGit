@@ -137,7 +137,7 @@
           </div>
           <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
             <div class="accrodion-regular">
-              <div id="accordion3">
+              <div id="accordion3{{forloop.counter}}">
                 <div class="card">
                   <div class="card-header" id="headingSeven{{forloop.counter}}">
                     <h5 class="mb-0">
@@ -146,9 +146,9 @@
                       </button>
                     </h5>
                   </div>
-                  <div id="collapseSeven{{forloop.counter}}" class="collapse show" aria-labelledby="headingSeven{{forloop.counter}}" data-parent="#accordion3">
+                  <div id="collapseSeven{{forloop.counter}}" class="collapse show" aria-labelledby="headingSeven{{forloop.counter}}" data-parent="#accordion3{{forloop.counter}}">
                     <div class="card-body">
-                      <p class="lead"><input class="input_blank inputs" type="text" name="game_what{{forloop.counter}}" value="{{i.2}}" disabled="disabled"></p>
+                      <p class="lead"><textarea style="height:10vh;" class="input_blank inputs" type="text" name="game_what{{forloop.counter}}" disabled="disabled">{{i.2}}</textarea></p>
                     </div>
                   </div>
                 </div>
@@ -159,9 +159,9 @@
                         <span class="fas fa-angle-down mr-3"></span>Why?
                       </button> </h5>
                   </div>
-                  <div id="collapseEight{{forloop.counter}}" class="collapse" aria-labelledby="headingEight{{forloop.counter}}" data-parent="#accordion3">
+                  <div id="collapseEight{{forloop.counter}}" class="collapse" aria-labelledby="headingEight{{forloop.counter}}" data-parent="#accordion3{{forloop.counter}}">
                     <div class="card-body">
-                      <p class="lead"><input class="input_blank inputs" type="text" name="game_why{{forloop.counter}}" value="{{i.3}}" disabled="disabled"></p>
+                      <p class="lead"><textarea style="height:10vh;" class="input_blank inputs" type="text" name="game_why{{forloop.counter}}" disabled="disabled">{{i.3}}</textarea></p>
                     </div>
                   </div>
                 </div>
@@ -173,9 +173,9 @@
                       </button>
                     </h5>
                   </div>
-                  <div id="collapseNine{{forloop.counter}}" class="collapse" aria-labelledby="headingNine{{forloop.counter}}" data-parent="#accordion3">
+                  <div id="collapseNine{{forloop.counter}}" class="collapse" aria-labelledby="headingNine{{forloop.counter}}" data-parent="#accordion3{{forloop.counter}}">
                     <div class="card-body">
-                      <p class="lead"><input class="input_blank inputs" type="text" name="game_how{{forloop.counter}}" value="{{i.4}}" disabled="disabled"></p>
+                      <p class="lead"><textarea style="height:10vh;" class="input_blank inputs" type="text" name="game_how{{forloop.counter}}" disabled="disabled">{{i.4}}</textarea></p>
                     </div>
                   </div>
                 </div>
