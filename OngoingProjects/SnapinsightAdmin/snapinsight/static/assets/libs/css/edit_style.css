@@ -1,0 +1,16 @@
+
+
+.input_blank{
+  border: none;
+  background: none;
+  width:100%;
+}
+.input_border{
+  border: none;
+  background: none;
+  width:100%;
+  border-bottom: 1px solid #3C3C3C;
+}
+.input_border:focus{
+  outline: none;
+}

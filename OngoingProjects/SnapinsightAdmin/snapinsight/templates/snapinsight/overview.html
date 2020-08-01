@@ -1,4 +1,40 @@
 {% extends 'snapinsight/base.html' %}
+
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#edit").click(function() {
+      $(".addbtn").each(function(){
+        $(this).slideDown("slow");
+      });
+      $(".inputs").each(function() {
+        $(this).attr('disabled', false);
+        $(this).attr('class', 'input_border inputs');
+      });
+    });
+    $("#close").click(function() {
+      $(".inputs").each(function() {
+        $(this).attr('disabled', true);
+        $(this).attr('class', 'input_blank inputs');
+      });
+      $(".addbtn").each(function(){
+        $(this).slideUp("slow");
+      });
+    });
+    
+    $(".addbtn").each(function(){
+      $(this).click(function(){
+        var id = $(this).attr('id');
+        var clone = "#clone"+id;
+        var append = "#append"+id;
+        console.log(id,clone,append);
+        $(clone).clone().prop("style","").appendTo(append);
+      });
+    });
+  });
+</script>
+{% endblock script %}
+
 {% block content %}
 
 <div class="dashboard-wrapper">
@@ -7,7 +43,14 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
-            <h2 class="pageheader-title">Company </h2>
+            <div class="d-flex justify-content-between">
+              <h2 class="pageheader-title">Company</h2>
+              <div class="d-flex justify-content-end">
+                <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
+                <button class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+                <button class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
+              </div>
+            </div>
             <div class="page-breadcrumb">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -25,12 +68,16 @@
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <h2>Overview</h2>
-                <p class="lead">{{overview.0}}</p>
-                <ul class="list-unstyled arrow">
+                <p class="lead"><input class="input_blank inputs" type="text" name="" value="{{overview.0}}" disabled="disabled"></p>
+                <ul class="list-unstyled arrow" id="append1">
                   {% for i in overview.1 %}
-                  <li>{{i}}</li>
+                  <li><input class="input_blank inputs" type="text" name="" value="{{i}}" disabled="disabled"></li>
                   {% endfor %}
+                  <li style="display:none" id="clone1"><input class="input_blank inputs" type="text" name="" value="point" disabled="disabled"></li>
                 </ul>
+              </div>
+              <div class="col-12">
+                <button type="button" class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1" name="button">ADD</button>
               </div>
             </div>
           </div>
@@ -38,18 +85,32 @@
       </div>
       <div class="ecommerce-widget">
 
-        <div class="row">
+        <div class="row" id="append2">
           {% for i in overview.2 %}
           <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
             <div class="card border-3 border-top border-top-primary">
               <div class="card-body">
                 <div class="metric-value d-inline-block">
-                  <h1 class="mb-1">{{i}}</h1>
+                  <h1 class="mb-1"><input class="input_blank inputs" type="text" name="" value="{{i}}" disabled="disabled"></h1>
                 </div>
               </div>
             </div>
           </div>
           {% endfor %}
+          <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12" id="clone2" style="display:none">
+            <div class="card border-3 border-top border-top-primary">
+              <div class="card-body">
+                <div class="metric-value d-inline-block">
+                  <h1 class="mb-1"><input class="input_blank inputs" type="text" name="" value="Principle" disabled="disabled"></h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <button type="button" class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="2" name="button">ADD</button>
+          </div>
         </div>
         <div class="row">
           <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -59,10 +120,7 @@
               </div>
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                  <p>{{overview.3}}</p>
-                  <footer class="blockquote-footer">Someone famous in
-                    <cite title="Source Title">Source Title</cite>
-                  </footer>
+                  <p><input class="input_blank inputs" type="text" name="" value="{{overview.3}}" disabled="disabled"></p>
                 </blockquote>
               </div>
             </div>
@@ -84,9 +142,7 @@
                   </div>
                   <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"> {{overview.4}}</p>
-                      <p> Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                        nesciunt sapiente ea proident.</p>
+                      <p class="lead"><textarea style="min-height:12vh" class="input_blank inputs" name=""  disabled="disabled">{{overview.4}}</textarea></p>
                       <a href="#" class="btn btn-secondary">Go somewhere</a>
                     </div>
                   </div>
@@ -100,7 +156,7 @@
                   </div>
                   <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
                     <div class="card-body">
-                      {{overview.5}}
+                      <p class="lead"><textarea style="min-height:12vh" class="input_blank inputs" name=""  disabled="disabled">{{overview.5}}</textarea></p>
                     </div>
                   </div>
                 </div>
@@ -114,7 +170,7 @@
                   </div>
                   <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion3">
                     <div class="card-body">
-                      {{overview.6}}
+                      <p class="lead"><textarea style="min-height:12vh" class="input_blank inputs" name=""  disabled="disabled">{{overview.6}}</textarea></p>
                     </div>
                   </div>
                 </div>
@@ -125,13 +181,17 @@
             <div class="card">
               <h5 class="card-header">Main keyword list from marketing > seo.html</h5>
               <div class="card-body">
-                <ul class="list-group list-group-flush">
+                <ul class="list-group list-group-flush" id="append3">
                   {% for i in overview.7 %}
-                  <li class="list-group-item">{{i}}</li>
+                  <li class="list-group-item"><input class="input_blank inputs" type="text" name="" value="{{i}}" disabled="disabled"></li>
                   {% endfor %}
+                  <li style="display:none" id="clone3" class="list-group-item"><input class="input_blank inputs" type="text" name="" value="Point" disabled="disabled"></li>
                 </ul>
               </div>
             </div>
+          </div>
+          <div class="col-12">
+            <button type="button" class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="3" name="button">ADD</button>
           </div>
         </div>
       </div>
