@@ -37,6 +37,46 @@ def overview(request):
     return render(request, 'snapinsight/overview.html', {'overview':overview_data})
 
 def solutions(request):
+    if request.method == "POST":
+        description = request.POST.get('description')
+        principle = request.POST.getlist('principle')
+        principle = list(filter(lambda a: a != "", principle))
+        Solution_desc.objects.all().delete()
+        Solution_desc.objects.create(description=description, principle="^".join(principle))
+        sol = Solutions.objects.all().count()
+        Solutions.objects.all().delete()
+        # sol_name = request.POST.get('sol_name')
+        # sol_description = request.POST.get('sol_description')
+        # sol_some_point = request.POST.getlist('sol_some_point')
+        # sol_what = request.POST.get('sol_what')
+        # sol_why = request.POST.get('sol_why')
+        # sol_how = request.POST.get('sol_how')
+        # sol_keyword = request.POST.get('sol_keyword')
+        for i in range(sol+1):
+            sol_name = "sol_name" + str(i)
+            sol_description = "sol_description" + str(i)
+            sol_some_point = "sol_some_point" + str(i)
+            sol_what = "sol_what" + str(i)
+            sol_why = "sol_why" + str(i)
+            sol_how = "sol_how" + str(i)
+            sol_keyword = "sol_keyword" + str(i)
+            if request.POST.get(sol_name) == "":
+                continue
+            s_name = request.POST.get(sol_name)
+            s_description = request.POST.get(sol_description)
+            s_some_point = request.POST.getlist(sol_some_point)
+            s_some_point = list(filter(lambda a: a != "", s_some_point))
+            s_what = request.POST.get(sol_what)
+            s_why = request.POST.get(sol_why)
+            s_how = request.POST.get(sol_how)
+            s_keyword = request.POST.getlist(sol_keyword)
+            s_keyword = list(filter(lambda a: a != "", s_keyword))
+            # print(request.POST.get(sol_name), request.POST.get(sol_description), request.POST.getlist(sol_some_point), request.POST.get(sol_what), request.POST.get(sol_why), request.POST.get(sol_how), request.POST.getlist(sol_keyword))
+            # print(s_some_point, s_keyword)
+            Solutions.objects.create(name=s_name, description=s_description, some_point="^".join(s_some_point), what=s_what, why=s_why, how=s_how, keyword="^".join(s_keyword))
+        # print(description, principle, sol_name, sol_description, sol_some_point, sol_what, sol_why, sol_how, sol_keyword)
+
+
     sol_desc = Solution_desc.objects.all()
     sol = Solutions.objects.all()
     desc = []
@@ -59,13 +99,66 @@ def solutions(request):
     return render(request, 'snapinsight/solutions.html', {'desc':desc, 'solution':solution})
 
 def games(request):
-    return render(request, 'snapinsight/games.html')
+    if request.method == "POST":
+        description = request.POST.get('description')
+        principle = request.POST.getlist('principle')
+        principle = list(filter(lambda a: a != "", principle))
+        Game_desc.objects.all().delete()
+        Game_desc.objects.create(description=description, principle="^".join(principle))
+        sol = Games.objects.all().count()
+        Games.objects.all().delete()
+        print(sol)
+        for i in range(sol+1):
+            print(i)
+            game_name = "game_name" + str(i)
+            game_description = "game_description" + str(i)
+            game_some_point = "game_some_point" + str(i)
+            game_what = "game_what" + str(i)
+            game_why = "game_why" + str(i)
+            game_how = "game_how" + str(i)
+            game_keyword = "game_keyword" + str(i)
+            # print(game_name, request.POST.get(game_name), request.POST.get(game_description))
+            if request.POST.get(game_name) == "":
+                continue
+            g_name = request.POST.get(game_name)
+            g_description = request.POST.get(game_description)
+            g_some_point = request.POST.getlist(game_some_point)
+            g_some_point = list(filter(lambda a: a != "", g_some_point))
+            g_what = request.POST.get(game_what)
+            g_why = request.POST.get(game_why)
+            g_how = request.POST.get(game_how)
+            g_keyword = request.POST.getlist(game_keyword)
+            g_keyword = list(filter(lambda a: a != "", g_keyword))
+            print("before")
+            Games.objects.create(name=g_name, description=g_description, some_point="^".join(g_some_point), what=g_what, why=g_why, how=g_how, keyword="^".join(g_keyword))
+            print("hua")
+
+    game_desc = Game_desc.objects.all()
+    game_all = Games.objects.all()
+    desc = []
+    for i in game_desc:
+        desc.append(i.description)
+        desc.append(i.principle.split("^"))
+
+    game = []
+    for i in game_all:
+        temp = []
+        temp.append(i.description)                      #0
+        temp.append(i.some_point.split("^"))            #1
+        temp.append(i.what)                             #2
+        temp.append(i.why)                              #3
+        temp.append(i.how)                              #4
+        temp.append(i.keyword.split("^"))               #5
+        temp.append(i.name)                             #6
+        game.append(temp)
+    return render(request, 'snapinsight/games.html', {'desc':desc, 'game':game})
 
 def services(request):
     return render(request, 'snapinsight/services.html')
 
 def legal(request):
-    return render(request, 'snapinsight/legal.html')
+    legal = Legal.objects.all()
+    return render(request, 'snapinsight/legal.html', {'legal':legal[0]})
 
 def ideas(request):
     return render(request, 'snapinsight/ideas.html')

@@ -1,18 +1,67 @@
 {% extends 'snapinsight/base.html' %}
+
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#edit").click(function() {
+      $("#soln").slideDown("slow");
+      $(".addbtn").each(function(){
+        $(this).slideDown("slow");
+      });
+      $(".inputs").each(function() {
+        $(this).attr('disabled', false);
+        $(this).attr('class', 'input_border inputs');
+      });
+      $("#close").show();
+      $("#save").show();
+    });
+
+    $("#close").click(function() {
+        location.reload(true);
+    });
+
+    $(".addbtn").each(function(){
+      $(this).click(function(){
+        var id = $(this).attr('id');
+        var clone = "#clone"+id;
+        var append = "#append"+id;
+        $(clone).clone().prop("style","").appendTo(append);
+      });
+    });
+
+    $("#soln").click(function(){
+      $('#newsoln').slideDown('slow');
+      $("#soln").html("Save game to add another");
+      $("#soln").prop('disabled',true);
+      $("#soln").prop("class","btn btn-dark px-3 mb-3 text-uppercase")
+    });
+
+  });
+
+</script>
+{% endblock script %}
+
 {% block content %}
 
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
-    <div class="container-fluid dashboard-content ">
+    <div class="container-fluid dashboard-content">
+      <form action="/games/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
             <h2 class="pageheader-title">Company</h2>
+            <div class="d-flex justify-content-end">
+              <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+              <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
+              <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
+            </div>
             <div class="page-breadcrumb">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                   <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Company</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Game</li>
+                  <li class="breadcrumb-item active" aria-current="page">games</li>
                 </ol>
               </nav>
             </div>
@@ -24,44 +73,45 @@
           <div class="page-section" id="overview">
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3">
-                <h2>Game</h2>
-                <p class="lead">Some description on Games section</p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-          <div class="card border-3 border-top border-top-primary">
-            <div class="card-body">
-              <div class="metric-value d-inline-block">
-                <h1 class="mb-1">Innovation</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-          <div class="card border-3 border-top border-top-primary">
-            <div class="card-body">
-              <div class="metric-value d-inline-block">
-                <h1 class="mb-1">Creativity</h1>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-          <div class="card border-3 border-top border-top-primary">
-            <div class="card-body">
-              <div class="metric-value d-inline-block">
-                <h1 class="mb-1">Convinience</h1>
+                <h2>games</h2>
+                <p class="lead"><input class="input_blank inputs" type="text" name="description" value="{{desc.0}}" disabled="disabled"></p>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div class="row" id="append00">
+        {% for i in desc.1 %}
+        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+          <div class="card border-3 border-top border-top-primary">
+            <div class="card-body">
+              <div class="metric-value d-inline-block">
+                <h1 class="mb-1"><input class="input_blank inputs" type="text" name="principle" value="{{i}}" disabled="disabled"></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        <div style="display:none" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12" id="clone00">
+          <div class="card border-3 border-top border-top-primary">
+            <div class="card-body">
+              <div class="metric-value d-inline-block">
+                <h1 class="mb-1"><input class="input_blank inputs" type="text" name="principle" disabled="disabled"></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="00">ADD</div>
+        </div>
+      </div>
+      {% for i in game %}
       <div class="ecommerce-widget pb-4">
         <div class="row">
           <div class="col-12">
-            <center><h2>Game 1</h2></center>
+            <center><h2>game {{forloop.counter}}</h2></center>
             <center><hr style="width:90%"></center>
           </div>
         </div>
@@ -70,15 +120,17 @@
             <div class="page-section" id="overview">
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-4">
-                  <h2>RunnerGame</h2>
-                  <p class="lead">Short description on RunnerGame.Short description on RunnerGame.Short description on RunnerGame.Short description on RunnerGame.Short description on RunnerGame.Short description on RunnerGame.Short description on RunnerGame.</p>
-                  <p class="lead">Another description</p>
-                  <ul class="list-unstyled arrow">
-                    <li>Some point 1</li>
-                    <li>Some point 2.</li>
-                    <li>Some point 3</li>
-                    <li>Some point 4 </li>
+                  <h2><input class="input_blank inputs" type="text" name="game_name{{forloop.counter}}" value="{{i.6}}" disabled="disabled"></h2>
+                  <p class="lead"><input class="input_blank inputs" type="text" name="game_description{{forloop.counter}}" value="{{i.0}}" disabled="disabled"></p>
+                  <ul class="list-unstyled arrow" id="append1{{forloop.counter}}">
+                    {% for j in i.1 %}
+                    <li><input class="input_blank inputs" type="text" name="game_some_point{{forloop.parentloop.counter}}" value="{{j}}" disabled="disabled"></li>
+                    {% endfor %}
+                    <li style="display:none" id="clone1{{forloop.counter}}"><input class="input_blank inputs" type="text" name="game_some_point{{forloop.counter}}" disabled="disabled"></li>
                   </ul>
+                </div>
+                <div class="col-12">
+                  <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1{{forloop.counter}}">ADD</div>
                 </div>
               </div>
             </div>
@@ -87,48 +139,43 @@
             <div class="accrodion-regular">
               <div id="accordion3">
                 <div class="card">
-                  <div class="card-header" id="headingSeven">
+                  <div class="card-header" id="headingSeven{{forloop.counter}}">
                     <h5 class="mb-0">
-                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
-                        <span class="fas fa-angle-down mr-3"></span>What is RunnerGame?
+                      <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven{{forloop.counter}}" aria-expanded="true" aria-controls="collapseSeven{{forloop.counter}}">
+                        <span class="fas fa-angle-down mr-3"></span>What
                       </button>
                     </h5>
                   </div>
-                  <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#accordion3">
+                  <div id="collapseSeven{{forloop.counter}}" class="collapse show" aria-labelledby="headingSeven{{forloop.counter}}" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
-                      <p> Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                        nesciunt sapiente ea proident.</p>
-                      <a href="#" class="btn btn-secondary">Go somewhere</a>
+                      <p class="lead"><input class="input_blank inputs" type="text" name="game_what{{forloop.counter}}" value="{{i.2}}" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
                 <div class="card mb-2">
-                  <div class="card-header" id="headingEight">
+                  <div class="card-header" id="headingEight{{forloop.counter}}">
                     <h5 class="mb-0">
-                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                      <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight{{forloop.counter}}" aria-expanded="false" aria-controls="collapseEight{{forloop.counter}}">
                         <span class="fas fa-angle-down mr-3"></span>Why?
                       </button> </h5>
                   </div>
-                  <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
+                  <div id="collapseEight{{forloop.counter}}" class="collapse" aria-labelledby="headingEight{{forloop.counter}}" data-parent="#accordion3">
                     <div class="card-body">
-                      Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably
-                      haven't heard of them accusamus labore sustainable VHS.
+                      <p class="lead"><input class="input_blank inputs" type="text" name="game_why{{forloop.counter}}" value="{{i.3}}" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
                 <div class="card mb-2">
-                  <div class="card-header" id="headingNine">
+                  <div class="card-header" id="headingNine{{forloop.counter}}">
                     <h5 class="mb-0">
-                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                      <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine{{forloop.counter}}" aria-expanded="false" aria-controls="collapseNine{{forloop.counter}}">
                         <span class="fas fa-angle-down mr-3"></span>How?
                       </button>
                     </h5>
                   </div>
-                  <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion3">
+                  <div id="collapseNine{{forloop.counter}}" class="collapse" aria-labelledby="headingNine{{forloop.counter}}" data-parent="#accordion3">
                     <div class="card-body">
-                      Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                      excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-tabhetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                      <p class="lead"><input class="input_blank inputs" type="text" name="game_how{{forloop.counter}}" value="{{i.4}}" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -139,22 +186,25 @@
             <div class="card">
               <h5 class="card-header">KeywordList</h5>
               <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Morbi leo risus</li>
-                  <li class="list-group-item">Porta ac consectetur ac</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
+                <ul class="list-group list-group-flush" id="append2{{forloop.counter}}">
+                  {% for j in i.5 %}
+                  <li class="list-group-item"><input class="input_blank inputs" type="text" name="game_keyword{{forloop.parentloop.counter}}" value="{{j}}" disabled="disabled"></li>
+                  {% endfor %}
+                  <li class="list-group-item" style="display:none" id="clone2{{forloop.counter}}"><input class="input_blank inputs" type="text" name="game_keyword{{forloop.counter}}" disabled="disabled"></li>
                 </ul>
               </div>
             </div>
           </div>
+          <div class="col-12 d-flex justify-content-end">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="2{{forloop.counter}}">ADD</div>
+          </div>
         </div>
       </div>
-      <div class="ecommerce-widget pb-4">
+      {% endfor %}
+      <div style="display:none" class="ecommerce-widget pb-4 gametab" id="newsoln">
         <div class="row">
           <div class="col-12">
-            <center><h2>Game 1</h2></center>
+            <center><h2>game NEW</h2></center>
             <center><hr style="width:90%"></center>
           </div>
         </div>
@@ -163,15 +213,15 @@
             <div class="page-section" id="overview">
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-4">
-                  <h2>RunnerGame</h2>
-                  <p class="lead">Short description on RunnerGame.Short description on RunnerGame.Short description on RunnerGame.Short description on RunnerGame.Short description on RunnerGame.Short description on RunnerGame.Short description on RunnerGame.</p>
-                  <p class="lead">Another description</p>
-                  <ul class="list-unstyled arrow">
-                    <li>Some point 1</li>
-                    <li>Some point 2.</li>
-                    <li>Some point 3</li>
-                    <li>Some point 4 </li>
+                  <h2><input class="input_blank inputs" type="text" name="game_name0" disabled="disabled"></h2>
+                  <p class="lead"><input class="input_blank inputs" type="text" name="game_description0" disabled="disabled"></p>
+                  <ul class="list-unstyled arrow" id="append1NEW">
+                    <li><input class="input_blank inputs" type="text" name="game_some_point0" disabled="disabled"></li>
+                    <li style="display:none" id="clone1NEW"><input class="input_blank inputs" type="text" name="game_some_point0" disabled="disabled"></li>
                   </ul>
+                </div>
+                <div class="col-12">
+                  <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1NEW">ADD</div>
                 </div>
               </div>
             </div>
@@ -182,46 +232,41 @@
                 <div class="card">
                   <div class="card-header" id="headingSeven">
                     <h5 class="mb-0">
-                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
-                        <span class="fas fa-angle-down mr-3"></span>What is RunnerGame?
+                      <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                        <span class="fas fa-angle-down mr-3"></span>What
                       </button>
                     </h5>
                   </div>
                   <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
-                      <p> Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                        nesciunt sapiente ea proident.</p>
-                      <a href="#" class="btn btn-secondary">Go somewhere</a>
+                      <p class="lead"><input class="input_blank inputs" type="text" name="game_what0" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
                 <div class="card mb-2">
                   <div class="card-header" id="headingEight">
                     <h5 class="mb-0">
-                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                      <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
                         <span class="fas fa-angle-down mr-3"></span>Why?
                       </button> </h5>
                   </div>
                   <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
                     <div class="card-body">
-                      Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably
-                      haven't heard of them accusamus labore sustainable VHS.
+                      <p class="lead"><input class="input_blank inputs" type="text" name="game_why0" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
                 <div class="card mb-2">
                   <div class="card-header" id="headingNine">
                     <h5 class="mb-0">
-                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                      <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
                         <span class="fas fa-angle-down mr-3"></span>How?
                       </button>
                     </h5>
                   </div>
                   <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion3">
                     <div class="card-body">
-                      Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                      excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-tabhetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                      <p class="lead"><input class="input_blank inputs" type="text" name="game_how0" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -232,19 +277,28 @@
             <div class="card">
               <h5 class="card-header">KeywordList</h5>
               <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Morbi leo risus</li>
-                  <li class="list-group-item">Porta ac consectetur ac</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
+                <ul class="list-group list-group-flush" id="append2NEW">
+                  <li class="list-group-item"><input class="input_blank inputs" type="text" name="game_keyword0" disabled="disabled"></li>
+                  <li class="list-group-item" style="display:none" id="clone2NEW"><input class="input_blank inputs" type="text" name="game_keyword0" disabled="disabled"></li>
                 </ul>
               </div>
             </div>
           </div>
+          <div class="col-12 d-flex justify-content-end">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="2NEW">ADD</div>
+          </div>
         </div>
       </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase" style="display:none" id="soln">ADD NEW game</div>
+          </div>
+        </div>
+      </div>
+    </form>
     </div>
   </div>
+</div>
 
   {% endblock content %}
