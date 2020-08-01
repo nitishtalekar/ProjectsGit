@@ -4,6 +4,7 @@
 <script type="text/javascript">
   $(document).ready(function() {
     $("#edit").click(function() {
+      $("#soln").slideDown("slow");
       $(".addbtn").each(function(){
         $(this).slideDown("slow");
       });
@@ -23,10 +24,20 @@
         var id = $(this).attr('id');
         var clone = "#clone"+id;
         var append = "#append"+id;
+        console.log(id,clone,append);
         $(clone).clone().prop("style","").appendTo(append);
       });
     });
+    
+    $("#soln").click(function(){
+      $('#newsoln').slideDown('slow');
+      $("#soln").html("Save solution to add another");
+      $("#soln").prop('disabled',true);
+      $("#soln").prop("class","btn btn-dark px-3 mb-3 text-uppercase")
+    });
+    
   });
+
 </script>
 {% endblock script %}
 
@@ -34,7 +45,7 @@
 
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
-    <div class="container-fluid dashboard-content ">
+    <div class="container-fluid dashboard-content">
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -61,22 +72,38 @@
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3">
                 <h2>Solutions</h2>
-                <p class="lead">{{desc.0}}</p>
+                <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{desc.0}}" disabled="disabled"></p>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="row" id="append00">
         {% for i in desc.1 %}
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
           <div class="card border-3 border-top border-top-primary">
             <div class="card-body">
               <div class="metric-value d-inline-block">
-                <h1 class="mb-1">{{i}}</h1>
+                <h1 class="mb-1"><input class="input_blank inputs" type="text" name="some_point" value="{{i}}" disabled="disabled"></h1>
               </div>
             </div>
           </div>
         </div>
         {% endfor %}
+        <div style="display:none" class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12" id="clone00">
+          <div class="card border-3 border-top border-top-primary">
+            <div class="card-body">
+              <div class="metric-value d-inline-block">
+                <h1 class="mb-1"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-12">
+          <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="00">ADD</div>
+        </div>
       </div>
       {% for i in solution %}
       <div class="ecommerce-widget pb-4">
@@ -91,13 +118,108 @@
             <div class="page-section" id="overview">
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-4">
-                  <h2>{{i.6}}</h2>
-                  <p class="lead">{{i.0}}</p>
-                  <ul class="list-unstyled arrow">
+                  <h2><input class="input_blank inputs" type="text" name="some_point" value="{{i.6}}" disabled="disabled"></h2>
+                  <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{i.0}}" disabled="disabled"></p>
+                  <ul class="list-unstyled arrow" id="append1{{forloop.counter}}">
                     {% for j in i.1 %}
-                    <li>{{j}}</li>
+                    <li><input class="input_blank inputs" type="text" name="some_point" value="{{j}}" disabled="disabled"></li>
                     {% endfor %}
+                    <li style="display:none" id="clone1{{forloop.counter}}"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></li>
                   </ul>
+                </div>
+                <div class="col-12">
+                  <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1{{forloop.counter}}">ADD</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+            <div class="accrodion-regular">
+              <div id="accordion3">
+                <div class="card">
+                  <div class="card-header" id="headingSeven{{forloop.counter}}">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven{{forloop.counter}}" aria-expanded="true" aria-controls="collapseSeven{{forloop.counter}}">
+                        <span class="fas fa-angle-down mr-3"></span>What
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseSeven{{forloop.counter}}" class="collapse show" aria-labelledby="headingSeven{{forloop.counter}}" data-parent="#accordion3">
+                    <div class="card-body">
+                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{i.2}}" disabled="disabled"></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card mb-2">
+                  <div class="card-header" id="headingEight{{forloop.counter}}">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight{{forloop.counter}}" aria-expanded="false" aria-controls="collapseEight{{forloop.counter}}">
+                        <span class="fas fa-angle-down mr-3"></span>Why?
+                      </button> </h5>
+                  </div>
+                  <div id="collapseEight{{forloop.counter}}" class="collapse" aria-labelledby="headingEight{{forloop.counter}}" data-parent="#accordion3">
+                    <div class="card-body">
+                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{i.3}}" disabled="disabled"></p>
+                    </div>
+                  </div>
+                </div>
+                <div class="card mb-2">
+                  <div class="card-header" id="headingNine{{forloop.counter}}">
+                    <h5 class="mb-0">
+                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine{{forloop.counter}}" aria-expanded="false" aria-controls="collapseNine{{forloop.counter}}">
+                        <span class="fas fa-angle-down mr-3"></span>How?
+                      </button>
+                    </h5>
+                  </div>
+                  <div id="collapseNine{{forloop.counter}}" class="collapse" aria-labelledby="headingNine{{forloop.counter}}" data-parent="#accordion3">
+                    <div class="card-body">
+                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{i.4}}" disabled="disabled"></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+              <h5 class="card-header">KeywordList</h5>
+              <div class="card-body">
+                <ul class="list-group list-group-flush" id="append2{{forloop.counter}}">
+                  {% for j in i.5 %}
+                  <li><input class="input_blank inputs" type="text" name="some_point" value="{{j}}" disabled="disabled"></li>
+                  {% endfor %}
+                  <li style="display:none" id="clone2{{forloop.counter}}"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 d-flex justify-content-end">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="2{{forloop.counter}}">ADD</div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      <div style="display:none" class="ecommerce-widget pb-4 solutiontab" id="newsoln">
+        <div class="row">
+          <div class="col-12">
+            <center><h2>Solution NEW</h2></center>
+            <center><hr style="width:90%"></center>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-section" id="overview">
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-4">
+                  <h2><input class="input_blank inputs" type="text" name="some_point" value="Name" disabled="disabled"></h2>
+                  <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="Description" disabled="disabled"></p>
+                  <ul class="list-unstyled arrow" id="append1NEW">
+                    <li><input class="input_blank inputs" type="text" name="some_point" value="point" disabled="disabled"></li>
+                    <li style="display:none" id="clone1NEW"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></li>
+                  </ul>
+                </div>
+                <div class="col-12">
+                  <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1NEW">ADD</div>
                 </div>
               </div>
             </div>
@@ -115,8 +237,7 @@
                   </div>
                   <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead">{{i.2}}</p>
-                      <a href="#" class="btn btn-secondary">Go somewhere</a>
+                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -129,7 +250,7 @@
                   </div>
                   <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
                     <div class="card-body">
-                      {{i.3}}
+                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -143,7 +264,7 @@
                   </div>
                   <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion3">
                     <div class="card-body">
-                      {{i.4}}
+                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -154,110 +275,25 @@
             <div class="card">
               <h5 class="card-header">KeywordList</h5>
               <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  {% for j in i.5 %}
-                  <li class="list-group-item">{{j}}</li>
-                  {% endfor %}
+                <ul class="list-group list-group-flush" id="append2NEW">
+                  <li><input class="input_blank inputs" type="text" name="some_point" value="point" disabled="disabled"></li>
+                  <li style="display:none" id="clone2NEW"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></li>
                 </ul>
               </div>
             </div>
+          </div>
+          <div class="col-12 d-flex justify-content-end">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="2NEW">ADD</div>
           </div>
         </div>
       </div>
-      {% endfor %}
-      <!-- <div class="ecommerce-widget pb-4">
+      <div class="container">
         <div class="row">
-          <div class="col-12">
-            <center><h2>Solution 1</h2></center>
-            <center><hr style="width:90%"></center>
+          <div class="col-12 d-flex justify-content-center">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase" style="display:none" id="soln">ADD NEW SOLUTION</div>
           </div>
         </div>
-        <div class="row">
-          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-            <div class="page-section" id="overview">
-              <div class="row">
-                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-4">
-                  <h2>Moodish</h2>
-                  <p class="lead">Short description on moodish.Short description on moodish.Short description on moodish.Short description on moodish.Short description on moodish.Short description on moodish.Short description on moodish.</p>
-                  <p class="lead">Another description</p>
-                  <ul class="list-unstyled arrow">
-                    <li>Some point 1</li>
-                    <li>Some point 2.</li>
-                    <li>Some point 3</li>
-                    <li>Some point 4 </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-            <div class="accrodion-regular">
-              <div id="accordion3">
-                <div class="card">
-                  <div class="card-header" id="headingSeven">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
-                        <span class="fas fa-angle-down mr-3"></span>What is Moodish?
-                      </button>
-                    </h5>
-                  </div>
-                  <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#accordion3">
-                    <div class="card-body">
-                      <p class="lead"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
-                      <p> Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                        nesciunt sapiente ea proident.</p>
-                      <a href="#" class="btn btn-secondary">Go somewhere</a>
-                    </div>
-                  </div>
-                </div>
-                <div class="card mb-2">
-                  <div class="card-header" id="headingEight">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                        <span class="fas fa-angle-down mr-3"></span>Why?
-                      </button> </h5>
-                  </div>
-                  <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
-                    <div class="card-body">
-                      Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably
-                      haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                  </div>
-                </div>
-                <div class="card mb-2">
-                  <div class="card-header" id="headingNine">
-                    <h5 class="mb-0">
-                      <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                        <span class="fas fa-angle-down mr-3"></span>How?
-                      </button>
-                    </h5>
-                  </div>
-                  <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion3">
-                    <div class="card-body">
-                      Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-                      excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-tabhetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-            <div class="card">
-              <h5 class="card-header">KeywordList</h5>
-              <div class="card-body">
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item">Cras justo odio</li>
-                  <li class="list-group-item">Dapibus ac facilisis in</li>
-                  <li class="list-group-item">Morbi leo risus</li>
-                  <li class="list-group-item">Porta ac consectetur ac</li>
-                  <li class="list-group-item">Vestibulum at eros</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div> -->
+      </div>
     </div>
   </div>
 
