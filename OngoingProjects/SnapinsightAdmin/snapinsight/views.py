@@ -37,6 +37,46 @@ def overview(request):
     return render(request, 'snapinsight/overview.html', {'overview':overview_data})
 
 def solutions(request):
+    if request.method == "POST":
+        description = request.POST.get('description')
+        principle = request.POST.getlist('principle')
+        principle = list(filter(lambda a: a != "", principle))
+        Solution_desc.objects.all().delete()
+        Solution_desc.objects.create(description=description, principle="^".join(principle))
+        sol = Solutions.objects.all().count()
+        Solutions.objects.all().delete()
+        # sol_name = request.POST.get('sol_name')
+        # sol_description = request.POST.get('sol_description')
+        # sol_some_point = request.POST.getlist('sol_some_point')
+        # sol_what = request.POST.get('sol_what')
+        # sol_why = request.POST.get('sol_why')
+        # sol_how = request.POST.get('sol_how')
+        # sol_keyword = request.POST.get('sol_keyword')
+        for i in range(sol+1):
+            sol_name = "sol_name" + str(i)
+            sol_description = "sol_description" + str(i)
+            sol_some_point = "sol_some_point" + str(i)
+            sol_what = "sol_what" + str(i)
+            sol_why = "sol_why" + str(i)
+            sol_how = "sol_how" + str(i)
+            sol_keyword = "sol_keyword" + str(i)
+            if request.POST.get(sol_name) == "":
+                continue
+            s_name = request.POST.get(sol_name)
+            s_description = request.POST.get(sol_description)
+            s_some_point = request.POST.getlist(sol_some_point)
+            s_some_point = list(filter(lambda a: a != "", s_some_point))
+            s_what = request.POST.get(sol_what)
+            s_why = request.POST.get(sol_why)
+            s_how = request.POST.get(sol_how)
+            s_keyword = request.POST.getlist(sol_keyword)
+            s_keyword = list(filter(lambda a: a != "", s_keyword))
+            # print(request.POST.get(sol_name), request.POST.get(sol_description), request.POST.getlist(sol_some_point), request.POST.get(sol_what), request.POST.get(sol_why), request.POST.get(sol_how), request.POST.getlist(sol_keyword))
+            # print(s_some_point, s_keyword)
+            Solutions.objects.create(name=s_name, description=s_description, some_point="^".join(s_some_point), what=s_what, why=s_why, how=s_how, keyword="^".join(s_keyword))
+        # print(description, principle, sol_name, sol_description, sol_some_point, sol_what, sol_why, sol_how, sol_keyword)
+
+
     sol_desc = Solution_desc.objects.all()
     sol = Solutions.objects.all()
     desc = []

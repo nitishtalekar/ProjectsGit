@@ -15,6 +15,7 @@
       $("#close").show();
       $("#save").show();
     });
+
     $("#close").click(function() {
         location.reload(true);
     });
@@ -24,18 +25,17 @@
         var id = $(this).attr('id');
         var clone = "#clone"+id;
         var append = "#append"+id;
-        console.log(id,clone,append);
         $(clone).clone().prop("style","").appendTo(append);
       });
     });
-    
+
     $("#soln").click(function(){
       $('#newsoln').slideDown('slow');
       $("#soln").html("Save solution to add another");
       $("#soln").prop('disabled',true);
       $("#soln").prop("class","btn btn-dark px-3 mb-3 text-uppercase")
     });
-    
+
   });
 
 </script>
@@ -46,6 +46,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
     <div class="container-fluid dashboard-content">
+      <form action="/solutions/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -72,7 +74,7 @@
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pb-3">
                 <h2>Solutions</h2>
-                <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{desc.0}}" disabled="disabled"></p>
+                <p class="lead"><input class="input_blank inputs" type="text" name="description" value="{{desc.0}}" disabled="disabled"></p>
               </div>
             </div>
           </div>
@@ -84,7 +86,7 @@
           <div class="card border-3 border-top border-top-primary">
             <div class="card-body">
               <div class="metric-value d-inline-block">
-                <h1 class="mb-1"><input class="input_blank inputs" type="text" name="some_point" value="{{i}}" disabled="disabled"></h1>
+                <h1 class="mb-1"><input class="input_blank inputs" type="text" name="principle" value="{{i}}" disabled="disabled"></h1>
               </div>
             </div>
           </div>
@@ -94,7 +96,7 @@
           <div class="card border-3 border-top border-top-primary">
             <div class="card-body">
               <div class="metric-value d-inline-block">
-                <h1 class="mb-1"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></h1>
+                <h1 class="mb-1"><input class="input_blank inputs" type="text" name="principle" disabled="disabled"></h1>
               </div>
             </div>
           </div>
@@ -118,13 +120,13 @@
             <div class="page-section" id="overview">
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-4">
-                  <h2><input class="input_blank inputs" type="text" name="some_point" value="{{i.6}}" disabled="disabled"></h2>
-                  <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{i.0}}" disabled="disabled"></p>
+                  <h2><input class="input_blank inputs" type="text" name="sol_name{{forloop.counter}}" value="{{i.6}}" disabled="disabled"></h2>
+                  <p class="lead"><input class="input_blank inputs" type="text" name="sol_description{{forloop.counter}}" value="{{i.0}}" disabled="disabled"></p>
                   <ul class="list-unstyled arrow" id="append1{{forloop.counter}}">
                     {% for j in i.1 %}
-                    <li><input class="input_blank inputs" type="text" name="some_point" value="{{j}}" disabled="disabled"></li>
+                    <li><input class="input_blank inputs" type="text" name="sol_some_point{{forloop.parentloop.counter}}" value="{{j}}" disabled="disabled"></li>
                     {% endfor %}
-                    <li style="display:none" id="clone1{{forloop.counter}}"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></li>
+                    <li style="display:none" id="clone1{{forloop.counter}}"><input class="input_blank inputs" type="text" name="sol_some_point{{forloop.counter}}" disabled="disabled"></li>
                   </ul>
                 </div>
                 <div class="col-12">
@@ -146,7 +148,7 @@
                   </div>
                   <div id="collapseSeven{{forloop.counter}}" class="collapse show" aria-labelledby="headingSeven{{forloop.counter}}" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{i.2}}" disabled="disabled"></p>
+                      <p class="lead"><input class="input_blank inputs" type="text" name="sol_what{{forloop.counter}}" value="{{i.2}}" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -159,7 +161,7 @@
                   </div>
                   <div id="collapseEight{{forloop.counter}}" class="collapse" aria-labelledby="headingEight{{forloop.counter}}" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{i.3}}" disabled="disabled"></p>
+                      <p class="lead"><input class="input_blank inputs" type="text" name="sol_why{{forloop.counter}}" value="{{i.3}}" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -173,7 +175,7 @@
                   </div>
                   <div id="collapseNine{{forloop.counter}}" class="collapse" aria-labelledby="headingNine{{forloop.counter}}" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{i.4}}" disabled="disabled"></p>
+                      <p class="lead"><input class="input_blank inputs" type="text" name="sol_how{{forloop.counter}}" value="{{i.4}}" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -186,9 +188,9 @@
               <div class="card-body">
                 <ul class="list-group list-group-flush" id="append2{{forloop.counter}}">
                   {% for j in i.5 %}
-                  <li><input class="input_blank inputs" type="text" name="some_point" value="{{j}}" disabled="disabled"></li>
+                  <li><input class="input_blank inputs" type="text" name="sol_keyword{{forloop.parentloop.counter}}" value="{{j}}" disabled="disabled"></li>
                   {% endfor %}
-                  <li style="display:none" id="clone2{{forloop.counter}}"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></li>
+                  <li style="display:none" id="clone2{{forloop.counter}}"><input class="input_blank inputs" type="text" name="sol_keyword{{forloop.counter}}" disabled="disabled"></li>
                 </ul>
               </div>
             </div>
@@ -211,11 +213,11 @@
             <div class="page-section" id="overview">
               <div class="row">
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 pl-4">
-                  <h2><input class="input_blank inputs" type="text" name="some_point" value="Name" disabled="disabled"></h2>
-                  <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="Description" disabled="disabled"></p>
+                  <h2><input class="input_blank inputs" type="text" name="sol_name0" disabled="disabled"></h2>
+                  <p class="lead"><input class="input_blank inputs" type="text" name="sol_description0" disabled="disabled"></p>
                   <ul class="list-unstyled arrow" id="append1NEW">
-                    <li><input class="input_blank inputs" type="text" name="some_point" value="point" disabled="disabled"></li>
-                    <li style="display:none" id="clone1NEW"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></li>
+                    <li><input class="input_blank inputs" type="text" name="sol_some_point0" disabled="disabled"></li>
+                    <li style="display:none" id="clone1NEW"><input class="input_blank inputs" type="text" name="sol_name0" disabled="disabled"></li>
                   </ul>
                 </div>
                 <div class="col-12">
@@ -237,7 +239,7 @@
                   </div>
                   <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit" disabled="disabled"></p>
+                      <p class="lead"><input class="input_blank inputs" type="text" name="sol_what0" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -250,7 +252,7 @@
                   </div>
                   <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit" disabled="disabled"></p>
+                      <p class="lead"><input class="input_blank inputs" type="text" name="sol_why0" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -264,7 +266,7 @@
                   </div>
                   <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="Lorem ipsum dolor sit amet, consectetur adipisicing elit" disabled="disabled"></p>
+                      <p class="lead"><input class="input_blank inputs" type="text" name="sol_how0" disabled="disabled"></p>
                     </div>
                   </div>
                 </div>
@@ -276,8 +278,8 @@
               <h5 class="card-header">KeywordList</h5>
               <div class="card-body">
                 <ul class="list-group list-group-flush" id="append2NEW">
-                  <li><input class="input_blank inputs" type="text" name="some_point" value="point" disabled="disabled"></li>
-                  <li style="display:none" id="clone2NEW"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></li>
+                  <li><input class="input_blank inputs" type="text" name="sol_keyword0" disabled="disabled"></li>
+                  <li style="display:none" id="clone2NEW"><input class="input_blank inputs" type="text" name="sol_keyword0" disabled="disabled"></li>
                 </ul>
               </div>
             </div>
@@ -294,7 +296,9 @@
           </div>
         </div>
       </div>
+    </form>
     </div>
   </div>
+</div>
 
   {% endblock content %}
