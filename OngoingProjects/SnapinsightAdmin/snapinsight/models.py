@@ -9,5 +9,6 @@ class Overview(models.Model):
     mission = models.CharField(max_length=500)
     goals = models.CharField(max_length=500)
     keyword = models.CharField(max_length=500)
+    name = models.CharField(max_length=500, default="")
 
 # Create your models here.

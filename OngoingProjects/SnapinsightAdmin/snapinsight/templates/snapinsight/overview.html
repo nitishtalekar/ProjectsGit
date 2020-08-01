@@ -21,13 +21,12 @@
         $(this).slideUp("slow");
       });
     });
-    
+
     $(".addbtn").each(function(){
       $(this).click(function(){
         var id = $(this).attr('id');
         var clone = "#clone"+id;
         var append = "#append"+id;
-        console.log(id,clone,append);
         $(clone).clone().prop("style","").appendTo(append);
       });
     });
@@ -40,6 +39,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
     <div class="container-fluid dashboard-content">
+      <form action="/overview/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -48,7 +49,7 @@
               <div class="d-flex justify-content-end">
                 <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
                 <button class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
-                <button class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
+                <button type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
               </div>
             </div>
             <div class="page-breadcrumb">
@@ -68,16 +69,16 @@
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                 <h2>Overview</h2>
-                <p class="lead"><input class="input_blank inputs" type="text" name="" value="{{overview.0}}" disabled="disabled"></p>
+                <p class="lead"><input class="input_blank inputs" type="text" name="description" value="{{overview.0}}" disabled="disabled"></p>
                 <ul class="list-unstyled arrow" id="append1">
                   {% for i in overview.1 %}
-                  <li><input class="input_blank inputs" type="text" name="" value="{{i}}" disabled="disabled"></li>
+                  <li><input class="input_blank inputs" type="text" name="some_point" value="{{i}}" disabled="disabled"></li>
                   {% endfor %}
-                  <li style="display:none" id="clone1"><input class="input_blank inputs" type="text" name="" value="point" disabled="disabled"></li>
+                  <li style="display:none" id="clone1"><input class="input_blank inputs" type="text" name="some_point" disabled="disabled"></li>
                 </ul>
               </div>
               <div class="col-12">
-                <button type="button" class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1" name="button">ADD</button>
+                <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD</div>
               </div>
             </div>
           </div>
@@ -91,7 +92,7 @@
             <div class="card border-3 border-top border-top-primary">
               <div class="card-body">
                 <div class="metric-value d-inline-block">
-                  <h1 class="mb-1"><input class="input_blank inputs" type="text" name="" value="{{i}}" disabled="disabled"></h1>
+                  <h1 class="mb-1"><input class="input_blank inputs" type="text" name="principle" value="{{i}}" disabled="disabled"></h1>
                 </div>
               </div>
             </div>
@@ -101,7 +102,7 @@
             <div class="card border-3 border-top border-top-primary">
               <div class="card-body">
                 <div class="metric-value d-inline-block">
-                  <h1 class="mb-1"><input class="input_blank inputs" type="text" name="" value="Principle" disabled="disabled"></h1>
+                  <h1 class="mb-1"><input class="input_blank inputs" type="text" name="principle" disabled="disabled"></h1>
                 </div>
               </div>
             </div>
@@ -120,7 +121,7 @@
               </div>
               <div class="card-body">
                 <blockquote class="blockquote mb-0">
-                  <p><input class="input_blank inputs" type="text" name="" value="{{overview.3}}" disabled="disabled"></p>
+                  <p><input class="input_blank inputs" type="text" name="quote" value="{{overview.3}}" disabled="disabled"></p>
                 </blockquote>
               </div>
             </div>
@@ -142,7 +143,7 @@
                   </div>
                   <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"><textarea style="min-height:12vh" class="input_blank inputs" name=""  disabled="disabled">{{overview.4}}</textarea></p>
+                      <p class="lead"><textarea style="min-height:12vh" class="input_blank inputs" name="vision"  disabled="disabled">{{overview.4}}</textarea></p>
                       <a href="#" class="btn btn-secondary">Go somewhere</a>
                     </div>
                   </div>
@@ -156,7 +157,7 @@
                   </div>
                   <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"><textarea style="min-height:12vh" class="input_blank inputs" name=""  disabled="disabled">{{overview.5}}</textarea></p>
+                      <p class="lead"><textarea style="min-height:12vh" class="input_blank inputs" name="mission"  disabled="disabled">{{overview.5}}</textarea></p>
                     </div>
                   </div>
                 </div>
@@ -170,7 +171,7 @@
                   </div>
                   <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion3">
                     <div class="card-body">
-                      <p class="lead"><textarea style="min-height:12vh" class="input_blank inputs" name=""  disabled="disabled">{{overview.6}}</textarea></p>
+                      <p class="lead"><textarea style="min-height:12vh" class="input_blank inputs" name="goals"  disabled="disabled">{{overview.6}}</textarea></p>
                     </div>
                   </div>
                 </div>
@@ -183,9 +184,9 @@
               <div class="card-body">
                 <ul class="list-group list-group-flush" id="append3">
                   {% for i in overview.7 %}
-                  <li class="list-group-item"><input class="input_blank inputs" type="text" name="" value="{{i}}" disabled="disabled"></li>
+                  <li class="list-group-item"><input class="input_blank inputs" type="text" name="marketing" value="{{i}}" disabled="disabled"></li>
                   {% endfor %}
-                  <li style="display:none" id="clone3" class="list-group-item"><input class="input_blank inputs" type="text" name="" value="Point" disabled="disabled"></li>
+                  <li style="display:none" id="clone3" class="list-group-item"><input class="input_blank inputs" type="text" name="marketing" disabled="disabled"></li>
                 </ul>
               </div>
             </div>
@@ -195,6 +196,7 @@
           </div>
         </div>
       </div>
+      </form>
     </div>
   </div>
 </div>

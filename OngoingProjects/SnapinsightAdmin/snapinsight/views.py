@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import *
 from .models import *
 
 
@@ -6,7 +7,22 @@ def index(request):
     return render(request, 'snapinsight/index.html')
 
 def overview(request):
-    overview = Overview.objects.all()
+    if request.method == "POST":
+        sp = request.POST.getlist('some_point')
+        d = request.POST.get('description')
+        p = request.POST.getlist('principle')
+        q = request.POST.get('quote')
+        v = request.POST.get('vision')
+        m = request.POST.get('mission')
+        g = request.POST.get('goals')
+        m = request.POST.getlist('marketing')
+        sp = list(filter(lambda a: a != "", sp))
+        p = list(filter(lambda a: a != "", p))
+        m = list(filter(lambda a: a != "",m))
+        print(sp, p, m)
+        Overview.objects.filter(name = "company").update(some_point="^".join(sp), description=d, principle="^".join(p), quote=q, vision=v, mission=m, goals=g, keyword="^".join(m))
+
+    overview = Overview.objects.filter(name = "company")
     overview_data = []
     for i in overview:
         overview_data.append(i.description)                     #0
@@ -17,7 +33,7 @@ def overview(request):
         overview_data.append(i.mission)                         #5
         overview_data.append(i.goals)                           #6
         overview_data.append(i.keyword.split("^"))              #7
-    print(overview_data)
+
     return render(request, 'snapinsight/overview.html', {'overview':overview_data})
 
 def solutions(request):
