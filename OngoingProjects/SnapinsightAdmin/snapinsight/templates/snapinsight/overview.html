@@ -11,15 +11,11 @@
         $(this).attr('disabled', false);
         $(this).attr('class', 'input_border inputs');
       });
+      $("#close").show();
+      $("#save").show();
     });
     $("#close").click(function() {
-      $(".inputs").each(function() {
-        $(this).attr('disabled', true);
-        $(this).attr('class', 'input_blank inputs');
-      });
-      $(".addbtn").each(function(){
-        $(this).slideUp("slow");
-      });
+        location.reload(true);
     });
 
     $(".addbtn").each(function(){
@@ -47,9 +43,9 @@
             <div class="d-flex justify-content-between">
               <h2 class="pageheader-title">Company</h2>
               <div class="d-flex justify-content-end">
+                <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
                 <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
-                <button class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
-                <button type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
               </div>
             </div>
             <div class="page-breadcrumb">
