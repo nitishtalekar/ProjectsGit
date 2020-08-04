@@ -22,7 +22,7 @@ def overview(request):
         print(sp, p, m)
         Overview.objects.filter(name = "company").update(some_point="^".join(sp), description=d, principle="^".join(p), quote=q, vision=v, mission=m, goals=g, keyword="^".join(m))
 
-    overview = Overview.objects.get(name = "company")
+    overview = [Overview.objects.get(name = "company")]
     overview_data = []
     for i in overview:
         overview_data.append(i.description)                     #0
