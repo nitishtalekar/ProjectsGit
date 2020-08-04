@@ -20,21 +20,21 @@
           </div>
         </div>
       </div>
+      {% for i in services %}
       <div class="row mt-2">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-section" id="overview">
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <center><h2>Service 1 name</h2></center>
+                <center><h2>{{i.0}} {{forloop.counter}}</h2></center>
                 <center>
                   <hr style="width:90%">
                 </center>
-                <p class="lead">Service descriptionService descriptionService descriptionService descriptionService descriptionService description</p>
+                <p class="lead">{{i.1}}</p>
                 <ul class="list-unstyled arrow">
-                  <li>some point 1</li>
-                  <li>some point 2</li>
-                  <li>some point 3</li>
-                  <li>some point 4</li>
+                  {% for j in i.2 %}
+                  <li>{{j}}</li>
+                  {% endfor %}
                 </ul>
               </div>
             </div>
@@ -44,50 +44,28 @@
       <center>
         <hr style="width:90%">
       </center>
+      {% for j in i.3 %}
       <div class="row mb-3 py-3 mx-3">
         <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
-          <span class="display-6 text-light">350$</span>
+          <span class="display-6 text-light">{{j.0}}</span>
         </div>
         <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
-          <span class="lead text-dark">lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsum</span>
+          <span class="lead text-dark">{{j.1}}</span>
         </div>
         <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
           <span class="display-7 text-light">Buy</span>
         </div>
       </div>
-      <div class="row mb-3 py-3 mx-3">
-        <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
-          <span class="display-6 text-light">350$</span>
-        </div>
-        <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
-          <span class="lead text-dark">lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsum</span>
-        </div>
-        <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
-          <span class="display-7 text-light">Buy</span>
-        </div>
-      </div>
-      <div class="row mb-3 py-3 mx-3">
-        <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
-          <span class="display-6 text-light">350$</span>
-        </div>
-        <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
-          <span class="lead text-dark">lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsum</span>
-        </div>
-        <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
-          <span class="display-7 text-light">Buy</span>
-        </div>
-      </div>
+      {% endfor %}
       <div class="row mt-5">
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
           <div class="card">
             <h5 class="card-header">Additional Feature List</h5>
             <div class="card-body">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                {% for j in i.4 %}
+                <li class="list-group-item">{{j}}</li>
+                {% endfor %}
               </ul>
             </div>
           </div>
@@ -97,17 +75,16 @@
             <h5 class="card-header">Keyword List</h5>
             <div class="card-body">
               <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
+                {% for j in i.5 %}
+                <li class="list-group-item">{{j}}</li>
+                {% endfor %}
               </ul>
             </div>
           </div>
         </div>
       </div>
-      
+      {% endfor %}
+
       <div class="row mt-2">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-section" id="overview">

@@ -42,4 +42,12 @@ class Legal(models.Model):
     privacy = models.CharField(max_length=500)
     term = models.CharField(max_length=500)
 
+class Services(models.Model):
+    name = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
+    some_point = models.CharField(max_length=500)
+    cost = models.CharField(max_length=500)
+    plan = models.CharField(max_length=500)
+    feature = models.CharField(max_length=500)
+    keyword = models.CharField(max_length=500)
 # Create your models here.

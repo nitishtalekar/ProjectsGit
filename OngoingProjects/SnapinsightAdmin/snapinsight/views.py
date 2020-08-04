@@ -154,7 +154,20 @@ def games(request):
     return render(request, 'snapinsight/games.html', {'desc':desc, 'game':game})
 
 def services(request):
-    return render(request, 'snapinsight/services.html')
+    service = Services.objects.all()
+    services = []
+    for i in service:
+        temp = []
+        temp.append(i.name)                             #0
+        temp.append(i.description)                      #1
+        temp.append(i.some_point.split("^"))            #2
+        temp.append([[x,y] for x,y in zip(i.cost.split("^"), i.plan.split("^"))])                  #3
+        # temp.append()
+        temp.append(i.feature.split("^"))               #4
+        temp.append(i.keyword.split("^"))               #5
+        services.append(temp)
+    print(services[0][3])
+    return render(request, 'snapinsight/services.html', {'services':services})
 
 def legal(request):
     if request.method == "POST":
