@@ -154,6 +154,36 @@ def games(request):
     return render(request, 'snapinsight/games.html', {'desc':desc, 'game':game})
 
 def services(request):
+    if request.method == "POST":
+        sol = Services.objects.all().count()
+        Services.objects.all().delete()
+        for i in range(sol+1):
+            print(i)
+            s_name = "name" + str(i)
+            s_description = "description" + str(i)
+            s_some_point = "some_point" + str(i)
+            s_cost = "cost" + str(i)
+            s_plan = "plan" + str(i)
+            s_feature = "feature" + str(i)
+            s_keyword = "keyword" + str(i)
+
+            if request.POST.get(s_name) == "":
+                continue
+
+            service_name = request.POST.get(s_name)
+            service_description = request.POST.get(s_description)
+            service_some_point = request.POST.getlist(s_some_point)
+            service_some_point = list(filter(lambda a: a != "", service_some_point))
+            service_cost = request.POST.getlist(s_cost)
+            service_cost = list(filter(lambda a: a != "", service_cost))
+            service_plan = request.POST.getlist(s_plan)
+            service_plan = list(filter(lambda a: a != "", service_plan))
+            service_feature = request.POST.getlist(s_feature)
+            service_feature = list(filter(lambda a: a != "", service_feature))
+            service_keyword = request.POST.getlist(s_keyword)
+            service_keyword = list(filter(lambda a: a != "", service_keyword))
+            Services.objects.create(name=service_name, description=service_description, some_point="^".join(service_some_point), cost="^".join(service_cost), plan="^".join(service_plan), feature="^".join(service_feature), keyword="^".join(service_keyword))
+
     service = Services.objects.all()
     services = []
     for i in service:
@@ -162,11 +192,10 @@ def services(request):
         temp.append(i.description)                      #1
         temp.append(i.some_point.split("^"))            #2
         temp.append([[x,y] for x,y in zip(i.cost.split("^"), i.plan.split("^"))])                  #3
-        # temp.append()
         temp.append(i.feature.split("^"))               #4
         temp.append(i.keyword.split("^"))               #5
         services.append(temp)
-    print(services[0][3])
+    # print(services[0][3])
     return render(request, 'snapinsight/services.html', {'services':services})
 
 def legal(request):
