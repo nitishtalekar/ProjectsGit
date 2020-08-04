@@ -1,13 +1,56 @@
 {% extends 'snapinsight/base.html' %}
-{% block content %}
 
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#edit").click(function() {
+      $("#soln").slideDown("slow");
+      $(".addbtn").each(function(){
+        $(this).slideDown("slow");
+      });
+      $(".inputs").each(function() {
+        $(this).attr('disabled', false);
+        $(this).attr('class', 'input_border inputs');
+      });
+      $("#close").show();
+      $("#save").show();
+    });
+    $("#close").click(function() {
+        location.reload(true);
+    });
+    $(".addbtn").each(function(){
+      $(this).click(function(){
+        var id = $(this).attr('id');
+        var clone = "#clone"+id;
+        var append = "#append"+id;
+        $(clone).clone().prop("style","").appendTo(append);
+      });
+    });
+    $("#soln").click(function(){
+      $('#newsoln').slideDown('slow');
+      $("#soln").html("Save solution to add another");
+      $("#soln").prop('disabled',true);
+      $("#soln").prop("class","btn btn-dark px-3 mb-3 text-uppercase")
+    });
+  });
+</script>
+{% endblock script %}
+
+{% block content %}
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
     <div class="container-fluid dashboard-content ">
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
-            <h2 class="pageheader-title">Company </h2>
+            <div class="d-flex justify-content-between">
+              <h2 class="pageheader-title">Company</h2>
+              <div class="d-flex justify-content-end">
+                <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
+                <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
+              </div>
+            </div>
             <p class="pageheader-text">Nulla euismod urna eros, sit amet scelerisque torton lectus vel mauris facilisis faucibus at enim quis massa lobortis rutrum.</p>
             <div class="page-breadcrumb">
               <nav aria-label="breadcrumb">
@@ -26,16 +69,23 @@
           <div class="page-section" id="overview">
             <div class="row">
               <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <center><h2>{{i.0}} {{forloop.counter}}</h2></center>
+                <center>
+                <h2>{{forloop.counter}} .</h2>  
+                <h2><input class="input_blank inputs text-center" type="text" name="description" value="{{i.0}}" disabled="disabled"></h2>
+              </center>
                 <center>
                   <hr style="width:90%">
                 </center>
-                <p class="lead">{{i.1}}</p>
-                <ul class="list-unstyled arrow">
+                <p class="lead"><input class="input_blank inputs" type="text" name="description" value="{{i.1}}" disabled="disabled"></p>
+                <ul class="list-unstyled arrow" id="append1{{forloop.counter}}">
                   {% for j in i.2 %}
-                  <li>{{j}}</li>
+                  <li><input class="input_blank inputs" type="text" name="sol_some_point{{forloop.parentloop.counter}}" value="{{j}}" disabled="disabled"></li>
                   {% endfor %}
+                  <li style="display:none" id="clone1{{forloop.counter}}"><input class="input_blank inputs" type="text" name="sol_some_point{{forloop.counter}}" disabled="disabled"></li>
                 </ul>
+              </div>
+              <div class="col-12">
+                <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1{{forloop.counter}}">ADD</div>
               </div>
             </div>
           </div>
@@ -44,137 +94,181 @@
       <center>
         <hr style="width:90%">
       </center>
-      {% for j in i.3 %}
       <div class="row mb-3 py-3 mx-3">
-        <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
-          <span class="display-6 text-light">{{j.0}}</span>
+        <div class="col-12">
+          <div class="container-fluid" id="append2{{forloop.counter}}">
+            {% for j in i.3 %}
+            <div class="row mb-4">
+              <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
+                <span class="display-6 text-light"><input class="input_blank inputs text-center text-white" type="text" name="description" value="{{j.0}}" disabled="disabled"></span>
+              </div>
+              <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
+                <span class="lead text-dark" style="width:100%">
+                  <input class="input_blank inputs text-center" type="text" name="description" value="{{j.1}}" disabled="disabled">
+                </span>
+              </div>
+              <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
+                <span class="display-7 text-light">Buy</span>
+              </div>
+            </div>
+            {% endfor %}
+            <div class="row mb-4" style="display:none" id="clone2{{forloop.counter}}">
+              <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
+                <span class="display-6 text-light"><input class="input_blank inputs text-center text-white" type="text" name="description" value="{{j.0}}" disabled="disabled"></span>
+              </div>
+              <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
+                <span class="lead text-dark" style="width:100%">
+                  <input class="input_blank inputs text-center" type="text" name="description" value="{{j.1}}" disabled="disabled">
+                </span>
+              </div>
+              <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
+                <span class="display-7 text-light">Buy</span>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
-          <span class="lead text-dark">{{j.1}}</span>
-        </div>
-        <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
-          <span class="display-7 text-light">Buy</span>
+        <div class="col-12">
+          <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="2{{forloop.counter}}">ADD</div>
         </div>
       </div>
-      {% endfor %}
       <div class="row mt-5">
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
           <div class="card">
             <h5 class="card-header">Additional Feature List</h5>
             <div class="card-body">
-              <ul class="list-group list-group-flush">
+              <ul class="list-group list-group-flush" id="append3{{forloop.counter}}">
                 {% for j in i.4 %}
-                <li class="list-group-item">{{j}}</li>
+                <li class="list-group-item"><input class="input_blank inputs" type="text" name="sol_some_point{{forloop.parentloop.counter}}" value="{{j}}" disabled="disabled"></li>
                 {% endfor %}
+                <li class="list-group-item" style="display:none" id="clone3{{forloop.counter}}"><input class="input_blank inputs" type="text" name="sol_some_point{{forloop.counter}}" disabled="disabled"></li>
               </ul>
             </div>
+          </div>
+          <div class="col-12">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="3{{forloop.counter}}">ADD</div>
           </div>
         </div>
         <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
           <div class="card">
             <h5 class="card-header">Keyword List</h5>
             <div class="card-body">
-              <ul class="list-group list-group-flush">
+              <ul class="list-group list-group-flush" id="append4{{forloop.counter}}">
                 {% for j in i.5 %}
-                <li class="list-group-item">{{j}}</li>
+                <li class="list-group-item"><input class="input_blank inputs" type="text" name="sol_some_point{{forloop.parentloop.counter}}" value="{{j}}" disabled="disabled"></li>
                 {% endfor %}
+                <li class="list-group-item" style="display:none" id="clone4{{forloop.counter}}"><input class="input_blank inputs" type="text" name="sol_some_point{{forloop.counter}}" disabled="disabled"></li>
               </ul>
             </div>
+          </div>
+          <div class="col-12">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="4{{forloop.counter}}">ADD</div>
           </div>
         </div>
       </div>
       {% endfor %}
-
-      <div class="row mt-2">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <div class="page-section" id="overview">
-            <div class="row">
-              <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                <center><h2>Service 2 name</h2></center>
-                <center>
-                  <hr style="width:90%">
+      <div class="" id="newsoln" style="display:none">
+        <div class="row mt-2">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-section" id="overview">
+              <div class="row">
+                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                  <center>
+                  <h2>New .</h2>  
+                  <h2><input class="input_blank inputs text-center" type="text" name="description" value="Name of Service" disabled="disabled"></h2>
                 </center>
-                <p class="lead">Service descriptionService descriptionService descriptionService descriptionService descriptionService description</p>
-                <ul class="list-unstyled arrow">
-                  <li>some point 1</li>
-                  <li>some point 2</li>
-                  <li>some point 3</li>
-                  <li>some point 4</li>
-                </ul>
+                  <center>
+                    <hr style="width:90%">
+                  </center>
+                  <p class="lead"><input class="input_blank inputs" type="text" name="description" value="description" disabled="disabled"></p>
+                  <ul class="list-unstyled arrow" id="append1new">
+                    <li><input class="input_blank inputs" type="text" name="" value="some point" disabled="disabled"></li>
+                    <li style="display:none" id="clone1new"><input class="input_blank inputs" type="text" name="" disabled="disabled"></li>
+                  </ul>
+                </div>
+                <div class="col-12">
+                  <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1new">ADD</div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
-      <center>
-        <hr style="width:90%">
-      </center>
-      <div class="row mb-3 py-3 mx-3">
-        <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
-          <span class="display-6 text-light">350$</span>
+        <center>
+          <hr style="width:90%">
+        </center>
+        <div class="row mb-3 py-3 mx-3">
+          <div class="col-12">
+            <div class="container-fluid" id="append2new">
+              <div class="row mb-4">
+                <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
+                  <span class="display-6 text-light"><input class="input_blank inputs text-center text-white" type="text" name="description" value="100$" disabled="disabled"></span>
+                </div>
+                <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
+                  <span class="lead text-dark" style="width:100%">
+                    <input class="input_blank inputs text-center" type="text" name="description" value="description" disabled="disabled">
+                  </span>
+                </div>
+                <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
+                  <span class="display-7 text-light">Buy</span>
+                </div>
+              </div>
+              <div class="row mb-4" style="display:none" id="clone2new">
+                <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
+                  <span class="display-6 text-light"><input class="input_blank inputs text-center text-white" type="text" name="description" value="{{j.0}}" disabled="disabled"></span>
+                </div>
+                <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
+                  <span class="lead text-dark" style="width:100%">
+                    <input class="input_blank inputs text-center" type="text" name="description" value="{{j.1}}" disabled="disabled">
+                  </span>
+                </div>
+                <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
+                  <span class="display-7 text-light">Buy</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="2new">ADD</div>
+          </div>
         </div>
-        <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
-          <span class="lead text-dark">lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsum</span>
-        </div>
-        <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
-          <span class="display-7 text-light">Buy</span>
-        </div>
-      </div>
-      <div class="row mb-3 py-3 mx-3">
-        <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
-          <span class="display-6 text-light">350$</span>
-        </div>
-        <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
-          <span class="lead text-dark">lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsum</span>
-        </div>
-        <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
-          <span class="display-7 text-light">Buy</span>
-        </div>
-      </div>
-      <div class="row mb-3 py-3 mx-3">
-        <div class="col-lg-4 col-12 d-flex justify-content-center align-items-center bg-primary py-3">
-          <span class="display-6 text-light">350$</span>
-        </div>
-        <div class="col-lg-6 col-12 d-flex justify-content-center align-items-center bg-light py-3">
-          <span class="lead text-dark">lorem ipsum lorem ipsumlorem ipsumlorem ipsumlorem ipsum</span>
-        </div>
-        <div class="col-lg-2 col-12 d-flex justify-content-center align-items-center bg-secondary py-3">
-          <span class="display-7 text-light">Buy</span>
-        </div>
-      </div>
-      <div class="row mt-5">
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <h5 class="card-header">Additional Feature List</h5>
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-              </ul>
+        <div class="row mt-5">
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+              <h5 class="card-header">Additional Feature List</h5>
+              <div class="card-body">
+                <ul class="list-group list-group-flush" id="append3new">
+                  <li class="list-group-item"><input class="input_blank inputs" type="text" name="sol_some_point{{forloop.parentloop.counter}}" value="feature" disabled="disabled"></li>
+                  <li class="list-group-item" style="display:none" id="clone3new"><input class="input_blank inputs" type="text" name="sol_some_pointnew" disabled="disabled"></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="3new">ADD</div>
+            </div>
+          </div>
+          <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
+            <div class="card">
+              <h5 class="card-header">Keyword List</h5>
+              <div class="card-body">
+                <ul class="list-group list-group-flush" id="append4new">
+                  <li class="list-group-item"><input class="input_blank inputs" type="text" name="sol_some_point{{forloop.parentloop.counter}}" value="feature" disabled="disabled"></li>
+                  <li class="list-group-item" style="display:none" id="clone4new"><input class="input_blank inputs" type="text" name="sol_some_pointnew" disabled="disabled"></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-12">
+              <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="4new">ADD</div>
             </div>
           </div>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <h5 class="card-header">Keyword List</h5>
-            <div class="card-body">
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Cras justo odio</li>
-                <li class="list-group-item">Dapibus ac facilisis in</li>
-                <li class="list-group-item">Morbi leo risus</li>
-                <li class="list-group-item">Porta ac consectetur ac</li>
-                <li class="list-group-item">Vestibulum at eros</li>
-              </ul>
-            </div>
+      </div>
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 d-flex justify-content-center">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase" style="display:none" id="soln">ADD NEW SOLUTION</div>
           </div>
         </div>
       </div>
     </div>
   </div>
 </div>
-
-
 {% endblock content %}
