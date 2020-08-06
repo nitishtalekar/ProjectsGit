@@ -82,4 +82,9 @@ class Marketing_PTD(models.Model):
     description = models.CharField(max_length=500)
     link = models.CharField(max_length=500)
 
+class Marketing_Social(models.Model):
+    name = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
+    content = models.CharField(max_length=500)
+
 # Create your models here.

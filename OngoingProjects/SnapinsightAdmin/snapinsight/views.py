@@ -486,14 +486,53 @@ def marketing_roadmap(request):
     return render(request, 'snapinsight/marketing/roadmap.html', {"roadmap":roadmap,"name":name, "final":final})
 
 def marketing_social_design_templates(request):
+    if request.method == "POST":
+        pdt_count = Marketing_PTD.objects.all().count()
+        Marketing_PTD.objects.all().delete()
+        for i in range(pdt_count + 1):
+            n = "name" + str(i)
+            d = "description" + str(i)
+            l = "link" + str(i)
+            # print(i)
+            if i == 0:
+                if len(request.POST.getlist(n)) == 0:
+                    continue
+                name = request.POST.getlist(n)
+                description = request.POST.getlist(d)
+                link = request.POST.getlist(l)
+                for i in range(len(name)):
+                    if name[i] == "":
+                        continue
+                    Marketing_PTD.objects.create(name=name[i], description=description[i], link =link[i])
+                continue
+            name = request.POST.get(n)
+            description = request.POST.get(d)
+            link = request.POST.get(l)
+            if name == "":
+                continue
+            Marketing_PTD.objects.create(name=name, description=description, link =link)
+
     pdt = Marketing_PTD.objects.all()
     return render(request, 'snapinsight/marketing/social-design-templates.html', {'pdt':pdt})
 
 def marketing_social_moodish(request):
-    return render(request, 'snapinsight/marketing/social-moodish.html')
+    s = Marketing_Social.objects.filter(name="Moodish")
+    social = []
+    for i in s:
+        social.append(i.name)                   #0
+        social.append(i.description)            #1
+        social.append(i.content.split("^"))     #2
+
+    return render(request, 'snapinsight/marketing/social-moodish.html', {'social':social})
 
 def marketing_social_snapinsight(request):
-    return render(request, 'snapinsight/marketing/social-snapinsight.html')
+    s = Marketing_Social.objects.filter(name="Snapinsight")
+    social = []
+    for i in s:
+        social.append(i.name)                   #0
+        social.append(i.description)            #1
+        social.append(i.content.split("^"))     #2
+    return render(request, 'snapinsight/marketing/social-snapinsight.html', {'social':social})
 
 def marketing_email_homepage(request):
     return render(request, 'snapinsight/marketing/email-homepage.html')
