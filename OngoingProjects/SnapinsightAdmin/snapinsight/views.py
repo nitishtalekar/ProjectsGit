@@ -260,16 +260,82 @@ def moodish_resources(request):
     return render(request, 'snapinsight/moodish/resources.html')
 
 def moodish_roadmap(request):
-    roadmap = Service_Roadmap.objects.filter(name="Moodish")
+    if request.method == "POST":
+        step_count = Service_Roadmap.objects.filter(name="Moodish", tag="0").count()
+        Service_Roadmap.objects.filter(name="Moodish").delete()
+        for i in range(step_count):
+            s = "step" + str(i+1)
+            d = "date" + str(i+1)
+            if request.POST.get(s) == "":
+                continue
+            step = request.POST.get(s)
+            date = request.POST.get(d)
+            # print(step, date)
+            Service_Roadmap.objects.create(name="Moodish", step=step, date=date, tag="0")
+        new_step = request.POST.getlist("step-1")
+        new_date = request.POST.getlist("date-1")
+        for i in range(len(new_step)):
+            if new_step[i] == "":
+                continue
+            # print(new_step[i], new_date[i])
+            Service_Roadmap.objects.create(name="Moodish", step=new_step[i], date=new_date[i], tag="0")
+        final_step = request.POST.get("final_step")
+        final_date = request.POST.get("final_date")
+        if final_step != "":
+            # print(final_date, final_step)
+            Service_Roadmap.objects.create(name="Moodish", step=final_step, date=final_date, tag="1")
+    roadmap = Service_Roadmap.objects.filter(name="Moodish", tag="0")
+    try:
+        final = Service_Roadmap.objects.get(name="Moodish", tag="1")
+    except:
+        final=[]
     name = roadmap[0].name
-    return render(request, 'snapinsight/moodish/roadmap.html', {"roadmap":roadmap,"name":name})
+    return render(request, 'snapinsight/moodish/roadmap.html', {"roadmap":roadmap,"name":name, "final":final})
 
 def moodish_tasks(request):
     return render(request, 'snapinsight/moodish/tasks.html')
 
 
 def runner_overview(request):
-    return render(request, 'snapinsight/runner/overview.html')
+    if request.method == "POST":
+        description = request.POST.get('description')
+        version = request.POST.get('version')
+        features = request.POST.get('features')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        Service_Overview.objects.filter(name="Runner").update(description=description, version=version, features=features, start_date=start_date, end_date=end_date)
+        # print(description, version, features, start_date, end_date)
+        faq_count = Service_FAQ.objects.filter(name="Runner").count()
+        Service_FAQ.objects.filter(name="Runner").delete()
+        for i in range(faq_count + 1):
+            ques = "question" + str(i)
+            ans = "answer" + str(i)
+            print(i)
+
+            if i == 0:
+                if len(request.POST.getlist(ques)) == 0:
+                    continue
+                question = request.POST.getlist(ques)
+                answer = request.POST.getlist(ans)
+                for i in range(len(question)):
+                    if question[i] == "":
+                        continue
+                    # print(question[i])
+                    # print(answer[i])
+                    Service_FAQ.objects.create(name="Runner", question=question[i], answer=answer[i])
+                continue
+            if request.POST.get(ques) == "":
+                continue
+            question = request.POST.get(ques)
+            answer = request.POST.get(ans)
+            Service_FAQ.objects.create(name="Runner", question=question, answer=answer)
+            # print(question, answer)
+
+
+    overview = Service_Overview.objects.filter(name="Runner")
+    faq = Service_FAQ.objects.filter(name="Runner")
+    documents = Service_Document.objects.filter(name="Runner")
+    return render(request, 'snapinsight/runner/overview.html', {'overview':overview[0], 'faq':faq, 'documents':documents})
 
 def runner_projects(request):
     return render(request, 'snapinsight/runner/projects.html')
@@ -278,7 +344,40 @@ def runner_resources(request):
     return render(request, 'snapinsight/runner/resources.html')
 
 def runner_roadmap(request):
-    return render(request, 'snapinsight/runner/roadmap.html')
+    if request.method == "POST":
+        step_count = Service_Roadmap.objects.filter(name="Runner", tag="0").count()
+        Service_Roadmap.objects.filter(name="Runner").delete()
+        for i in range(step_count):
+            s = "step" + str(i+1)
+            d = "date" + str(i+1)
+            if request.POST.get(s) == "":
+                continue
+            step = request.POST.get(s)
+            date = request.POST.get(d)
+            # print(step, date)
+            Service_Roadmap.objects.create(name="Runner", step=step, date=date, tag="0")
+        new_step = request.POST.getlist("step-1")
+        new_date = request.POST.getlist("date-1")
+        for i in range(len(new_step)):
+            if new_step[i] == "":
+                continue
+            # print(new_step[i], new_date[i])
+            Service_Roadmap.objects.create(name="Runner", step=new_step[i], date=new_date[i], tag="0")
+        final_step = request.POST.get("final_step")
+        final_date = request.POST.get("final_date")
+        if final_step != "":
+            # print(final_date, final_step)
+            Service_Roadmap.objects.create(name="Runner", step=final_step, date=final_date, tag="1")
+    roadmap = Service_Roadmap.objects.filter(name="Runner", tag="0")
+    try:
+        final = Service_Roadmap.objects.get(name="Runner", tag="1")
+    except:
+        final=[]
+    try:
+        name = roadmap[0].name
+    except:
+        name = "Runner"
+    return render(request, 'snapinsight/runner/roadmap.html', {"roadmap":roadmap,"name":name, "final":final})
 
 def runner_tasks(request):
     return render(request, 'snapinsight/runner/tasks.html')
@@ -301,7 +400,45 @@ def ml_tasks(request):
 
 
 def marketing_overview(request):
-    return render(request, 'snapinsight/marketing/overview.html')
+    if request.method == "POST":
+        description = request.POST.get('description')
+        # version = request.POST.get('version')
+        # features = request.POST.get('features')
+        # start_date = request.POST.get('start_date')
+        # end_date = request.POST.get('end_date')
+        Service_Overview.objects.filter(name="Marketing").update(description=description, version="", features="", start_date="", end_date="")
+        # print(description, version, features, start_date, end_date)
+        faq_count = Service_FAQ.objects.filter(name="Marketing").count()
+        Service_FAQ.objects.filter(name="Marketing").delete()
+        for i in range(faq_count + 1):
+            ques = "question" + str(i)
+            ans = "answer" + str(i)
+            print(i)
+
+            if i == 0:
+                if len(request.POST.getlist(ques)) == 0:
+                    continue
+                question = request.POST.getlist(ques)
+                answer = request.POST.getlist(ans)
+                for i in range(len(question)):
+                    if question[i] == "":
+                        continue
+                    # print(question[i])
+                    # print(answer[i])
+                    Service_FAQ.objects.create(name="Marketing", question=question[i], answer=answer[i])
+                continue
+            if request.POST.get(ques) == "":
+                continue
+            question = request.POST.get(ques)
+            answer = request.POST.get(ans)
+            Service_FAQ.objects.create(name="Marketing", question=question, answer=answer)
+            # print(question, answer)
+
+
+    overview = Service_Overview.objects.filter(name="Marketing")
+    faq = Service_FAQ.objects.filter(name="Marketing")
+    documents = Service_Document.objects.filter(name="Marketing")
+    return render(request, 'snapinsight/marketing/overview.html', {'overview':overview[0], 'faq':faq, 'documents':documents})
 
 def marketing_seo(request):
     return render(request, 'snapinsight/marketing/seo.html')
@@ -313,10 +450,44 @@ def marketing_resources(request):
     return render(request, 'snapinsight/marketing/resources.html')
 
 def marketing_roadmap(request):
-    return render(request, 'snapinsight/marketing/roadmap.html')
+    if request.method == "POST":
+        step_count = Service_Roadmap.objects.filter(name="Marketing", tag="0").count()
+        Service_Roadmap.objects.filter(name="Marketing").delete()
+        for i in range(step_count):
+            s = "step" + str(i+1)
+            d = "date" + str(i+1)
+            if request.POST.get(s) == "":
+                continue
+            step = request.POST.get(s)
+            date = request.POST.get(d)
+            # print(step, date)
+            Service_Roadmap.objects.create(name="Marketing", step=step, date=date, tag="0")
+        new_step = request.POST.getlist("step-1")
+        new_date = request.POST.getlist("date-1")
+        for i in range(len(new_step)):
+            if new_step[i] == "":
+                continue
+            # print(new_step[i], new_date[i])
+            Service_Roadmap.objects.create(name="Marketing", step=new_step[i], date=new_date[i], tag="0")
+        final_step = request.POST.get("final_step")
+        final_date = request.POST.get("final_date")
+        if final_step != "":
+            # print(final_date, final_step)
+            Service_Roadmap.objects.create(name="Marketing", step=final_step, date=final_date, tag="1")
+    roadmap = Service_Roadmap.objects.filter(name="Marketing", tag="0")
+    try:
+        final = Service_Roadmap.objects.get(name="Marketing", tag="1")
+    except:
+        final=[]
+    try:
+        name = roadmap[0].name
+    except:
+        name = "Marketing"
+    return render(request, 'snapinsight/marketing/roadmap.html', {"roadmap":roadmap,"name":name, "final":final})
 
 def marketing_social_design_templates(request):
-    return render(request, 'snapinsight/marketing/social-design-templates.html')
+    pdt = Marketing_PTD.objects.all()
+    return render(request, 'snapinsight/marketing/social-design-templates.html', {'pdt':pdt})
 
 def marketing_social_moodish(request):
     return render(request, 'snapinsight/marketing/social-moodish.html')

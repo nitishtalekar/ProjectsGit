@@ -35,6 +35,8 @@
 
 <div class="dashboard-wrapper">
   <div class="container-fluid dashboard-content">
+    <form action="/moodish/roadmap/" method="POST">
+      {% csrf_token %}
     <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
@@ -70,8 +72,8 @@
           </div>
           <div class="cd-timeline__content js-cd-content">
             <h3>Step {{forloop.counter}}</h3>
-            <p><textarea style="height:10vh" class="input_blank inputs" type="text" name="answer{{forloop.counter}}" disabled="disabled">{{i.step}}</textarea></p>
-            <span class="cd-timeline__date"><input class="input_blank inputs" type="text" name="description" value="{{i.date}}" disabled="disabled"></span>
+            <p><textarea style="height:10vh" class="input_blank inputs" type="text" name="step{{forloop.counter}}" disabled="disabled">{{i.step}}</textarea></p>
+            <span class="cd-timeline__date"><input class="input_blank inputs" type="text" name="date{{forloop.counter}}" value="{{i.date}}" disabled="disabled"></span>
           </div>
         </div>
         {% endfor %}
@@ -81,8 +83,8 @@
           </div>
           <div class="cd-timeline__content js-cd-content">
             <h3>Next Step</h3>
-            <p><textarea style="height:10vh" class="input_blank inputs" type="text" name="answer{{forloop.counter}}" disabled="disabled"></textarea></p>
-            <span class="cd-timeline__date"><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></span>
+            <p><textarea style="height:10vh" class="input_blank inputs" type="text" name="step-1" disabled="disabled"></textarea></p>
+            <span class="cd-timeline__date"><input class="input_blank inputs" type="text" name="date-1" value="" disabled="disabled"></span>
           </div>
         </div>
       </div>
@@ -106,13 +108,14 @@
             <div class="col-12 bg-light my-4 py-3">
               <center>
               <h3>Final Step</h3>
-              <p><input class="input_blank inputs text-center" type="text" name="description" value="End Date" disabled="disabled"></p>
-              <p><textarea style="height:10vh" class="input_blank inputs text-center" type="text" name="answer{{forloop.counter}}" disabled="disabled">{{i.step}}</textarea></p>
+              <p><input class="input_blank inputs text-center" type="text" name="final_date" value="{{final.date}}" disabled="disabled"></p>
+              <p><textarea style="height:10vh" class="input_blank inputs text-center" type="text" name="final_step" disabled="disabled">{{final.step}}</textarea></p>
             </center>
             </div>
           </div>
         </div>
       </div>
+      </form>
   </div>
 </div>
 {% endblock content %}

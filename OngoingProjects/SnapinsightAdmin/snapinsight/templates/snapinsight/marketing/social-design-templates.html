@@ -27,17 +27,19 @@
             <p>Add an optional header and/or footer within a card.</p>
           </div>
         </div>
+        {% for i in pdt %}
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
           <div class="card">
             <div class="card-header">
-              Canva Link
+              {{i.name}}
             </div>
             <div class="card-body">
-              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-              <a href="#" class="btn btn-primary">Click here</a>
+              <p class="card-text">{{i.description}}</p>
+              <a href="{{i.link}}" class="btn btn-primary">Click here</a>
             </div>
           </div>
         </div>
+        {% endfor %}
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
           <div class="card">
             <div class="card-header">

@@ -75,5 +75,11 @@ class Service_Roadmap(models.Model):
     name = models.CharField(max_length=500)
     step = models.CharField(max_length=500)
     date = models.CharField(max_length=500, default="")
+    tag = models.CharField(max_length=500, default="0")
+
+class Marketing_PTD(models.Model):
+    name = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
+    link = models.CharField(max_length=500)
 
 # Create your models here.

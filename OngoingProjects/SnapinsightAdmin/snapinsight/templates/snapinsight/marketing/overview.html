@@ -1,17 +1,58 @@
 {% extends 'snapinsight/base.html' %}
+
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#edit").click(function() {
+      $(".addbtn").each(function(){
+        $(this).slideDown("slow");
+      });
+      $(".inputs").each(function() {
+        $(this).attr('disabled', false);
+        $(this).attr('class', 'input_border inputs');
+      });
+      $("#close").show();
+      $("#save").show();
+    });
+    $("#close").click(function() {
+        location.reload(true);
+    });
+
+    $(".addbtn").each(function(){
+      $(this).click(function(){
+        var id = $(this).attr('id');
+        var clone = "#clone"+id;
+        var append = "#append"+id;
+        $(clone).clone().prop("style","").appendTo(append);
+      });
+    });
+  });
+</script>
+{% endblock script %}
+
 {% block content %}
 
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
     <div class="container-fluid dashboard-content ">
+      <form action="/marketing/overview/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
-            <h2 class="pageheader-title">Marketing </h2>
+            <div class="d-flex justify-content-between">
+              <h2 class="pageheader-title">{{overview.name}}</h2>
+              <div class="d-flex justify-content-end">
+                <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="submit" name="button">Save</button>
+                <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
+              </div>
+            </div>
+
             <div class="page-breadcrumb">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Company</a></li>
+                  <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">{{overview.name}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Overview</li>
                 </ol>
               </nav>
@@ -23,11 +64,11 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="card">
             <div class="card-header">
-              Marketing info
+              {{overview.name}} Information
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
-                <p>Some description, instruction</p>
+                <p><input class="input_blank inputs" type="text" name="description" value="{{overview.description}}" disabled="disabled"></p>
               </blockquote>
             </div>
           </div>
@@ -35,58 +76,46 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="section-block">
             <h5 class="section-title">FAQ's</h5>
-            <p>Some description</p>
           </div>
           <div class="accrodion-regular">
-            <div id="accordion3">
+            <div id="append1">
+              {% for i in faq %}
               <div class="card">
-                <div class="card-header" id="headingSeven">
+                <div class="card-header" id="heading{{forloop.counter}}">
                   <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
-                      <span class="fas fa-angle-down mr-3"></span>Question 1
+                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
+                      <span class="fas fa-angle-down mr-3"></span>Question {{forloop.counter}}
                     </button>
                   </h5>
                 </div>
-                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion3">
+                <div id="collapse{{forloop.counter}}" class="collapse" aria-labelledby="headingSeven" data-parent="#append1">
                   <div class="card-body">
-                    <p class="lead"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
-                    <p> Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                      nesciunt sapiente ea proident.</p>
-                    <a href="#" class="btn btn-secondary">Go somewhere</a>
+                    <p class="lead"><input class="input_blank inputs" type="text" name="question{{forloop.counter}}" value="{{i.question}}" disabled="disabled"></p>
+                    <p><textarea style="height:6vh" class="input_blank inputs" type="text" name="answer{{forloop.counter}}" disabled="disabled">{{i.answer}}</textarea></p>
                   </div>
                 </div>
               </div>
-              <div class="card mb-2">
-                <div class="card-header" id="headingEight">
+              {% endfor %}
+              <div class="card" id="clone1" style="display:none">
+                <div class="card-header">
                   <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                      <span class="fas fa-angle-down mr-3"></span>Question 1
-                    </button> </h5>
-                </div>
-                <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
-                  <div class="card-body">
-                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably
-                    haven't heard of them accusamus labore sustainable VHS.
-                  </div>
-                </div>
-              </div>
-              <div class="card mb-2">
-                <div class="card-header" id="headingNine">
-                  <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                      <span class="fas fa-angle-down mr-3"></span>Question 1
+                    <button type="button" class="btn btn-link">
+                      <span class="fas fa-angle-down mr-3"></span>Question {{forloop.counter}}
                     </button>
                   </h5>
                 </div>
-                <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion3">
+                <div id="collapsenew" class="collapse show" aria-labelledby="headingSeven" data-parent="appendx">
                   <div class="card-body">
-                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                    butcher vice lomo. Leggings occaecat craft beer farm-to-tabhetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <p class="lead"><input class="input_blank inputs" type="text" name="question0" value="" disabled="disabled"></p>
+                    <p><textarea style="height:6vh" class="input_blank inputs" type="text" name="answer0" disabled="disabled"></textarea></p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-12">
+          <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD</div>
         </div>
       </div>
       <div class="row">
@@ -156,35 +185,27 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="section-block">
-            <h5 class="section-title">Main Documents</h5>
-            <p>All documents uploaded under the section main in projects file appear here here</p>
+            <h5 class="section-title">Documents</h5>
           </div>
         </div>
+        {% for i in documents %}
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-          <div class="card mx-3">
+          <div class="card">
             <center>
-              <div class="card-header">
-                Design 1
+              <div class="card-header text-uppercase">
+                {{i.doc_name}}
               </div>
               <div class="card-body">
-                <a href="#" class="btn btn-primary">Open Document</a>
+                <a href="{{i.doc_link}}" class="btn btn-primary" style="width:90%" target="_blank">
+                  Open
+                </a>
               </div>
             </center>
           </div>
         </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-          <div class="card mx-3">
-            <center>
-              <div class="card-header">
-                Design 1
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">Open Document</a>
-              </div>
-            </center>
-          </div>
-        </div>
+        {% endfor %}
       </div>
+      </form>
     </div>
   </div>
 </div>

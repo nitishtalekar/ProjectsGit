@@ -1,14 +1,53 @@
 {% extends 'snapinsight/base.html' %}
+
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#edit").click(function() {
+      $(".addbtn").each(function(){
+        $(this).slideDown("slow");
+      });
+      $(".inputs").each(function() {
+        $(this).attr('disabled', false);
+        $(this).attr('class', 'input_border inputs');
+      });
+      $("#close").show();
+      $("#save").show();
+    });
+    $("#close").click(function() {
+        location.reload(true);
+    });
+
+    $(".addbtn").each(function(){
+      $(this).click(function(){
+        var id = $(this).attr('id');
+        var clone = "#clone"+id;
+        var append = "#append"+id;
+        $(clone).clone().prop("style","").appendTo(append);
+      });
+    });
+  });
+</script>
+{% endblock script %}
+
 {% block content %}
 {% load static %}
 
 <div class="dashboard-wrapper">
   <div class="container-fluid dashboard-content">
+    <form action="/marketing/roadmap/" method="POST">
+      {% csrf_token %}
     <div class="row">
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="page-header">
-          <h2 class="pageheader-title">Marketing</h2>
-
+          <div class="d-flex justify-content-between">
+            <h2 class="pageheader-title">{{name}}</h2>
+            <div class="d-flex justify-content-end">
+              <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+              <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="submit" name="button">Save</button>
+              <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
+            </div>
+          </div>
           <div class="page-breadcrumb">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb">
@@ -20,62 +59,63 @@
         </div>
       </div>
     </div>
-
-    <section class="cd-timeline js-cd-timeline">
-      <div class="cd-timeline__container">
+    <section class="cd-timeline js-cd-timeline mb-0">
+      <div class="cd-timeline__container" id="append1">
+        {% for i in roadmap %}
         <div class="cd-timeline__block js-cd-block">
+          {% if forloop.counter|divisibleby:2 %}
           <div class="cd-timeline__img cd-timeline__img--picture js-cd-img d-flex justify-content-center align-items-center">
+            {% else %}
+            <div class="cd-timeline__img cd-timeline__img--movie js-cd-img d-flex justify-content-center align-items-center">
+            {% endif %}
             <i class="fa fa-street-view text-white" style="font-size:25px" aria-hidden="true"></i>
           </div>
           <div class="cd-timeline__content js-cd-content">
-            <h3>Step 1</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-            <span class="cd-timeline__date">12 July, 2016</span>
+            <h3>Step {{forloop.counter}}</h3>
+            <p><textarea style="height:10vh" class="input_blank inputs" type="text" name="step{{forloop.counter}}" disabled="disabled">{{i.step}}</textarea></p>
+            <span class="cd-timeline__date"><input class="input_blank inputs" type="text" name="date{{forloop.counter}}" value="{{i.date}}" disabled="disabled"></span>
           </div>
         </div>
-        <div class="cd-timeline__block js-cd-block">
-          <div class="cd-timeline__img cd-timeline__img--movie js-cd-img d-flex justify-content-center align-items-center">
+        {% endfor %}
+        <div class="cd-timeline__block js-cd-block" id="clone1" style="display:none">
+          <div class="cd-timeline__img js-cd-img d-flex justify-content-center align-items-center bg-dark">
             <i class="fa fa-street-view text-white" style="font-size:25px" aria-hidden="true"></i>
           </div>
           <div class="cd-timeline__content js-cd-content">
-            <h3>Step 2</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
-            <span class="cd-timeline__date">20 July, 2017</span>
+            <h3>Next Step</h3>
+            <p><textarea style="height:10vh" class="input_blank inputs" type="text" name="step-1" disabled="disabled"></textarea></p>
+            <span class="cd-timeline__date"><input class="input_blank inputs" type="text" name="date-1" value="" disabled="disabled"></span>
           </div>
         </div>
-        <div class="cd-timeline__block js-cd-block">
-          <div class="cd-timeline__img cd-timeline__img--picture js-cd-img d-flex justify-content-center align-items-center">
-            <i class="fa fa-street-view text-white" style="font-size:25px" aria-hidden="true"></i>
-          </div>
-          <div class="cd-timeline__content js-cd-content">
-            <h3>Step 1</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde? Iste voluptatibus minus veritatis qui ut.</p>
-            <span class="cd-timeline__date">12 July, 2016</span>
-          </div>
+      </div>
+    </div>
+    </section>
+    <div class="container mb-3">
+      <div class="row">
+        <div class="col-12 d-flex justify-content-center">
+          <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD NEW MILESTONE</div>
         </div>
-        <div class="cd-timeline__block js-cd-block">
-          <div class="cd-timeline__img cd-timeline__img--movie js-cd-img d-flex justify-content-center align-items-center">
-            <i class="fa fa-street-view text-white" style="font-size:25px" aria-hidden="true"></i>
-          </div>
-          <div class="cd-timeline__content js-cd-content">
-            <h3>Step 2</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, optio, dolorum provident rerum aut hic quasi placeat iure tempora laudantium ipsa ad debitis unde?</p>
-            <span class="cd-timeline__date">20 July, 2017</span>
-          </div>
-        </div>
+      </div>
+    </div>
+      <div class="mt-0">
         <div class="cd-timeline__block js-cd-block">
           <div class="cd-timeline__img cd-timeline__img--location js-cd-img d-flex justify-content-center align-items-center">
             <i class="fa fa-map-pin text-white" style="font-size:25px" aria-hidden="true"></i>
           </div>
-          <div class="cd-timeline__content js-cd-content">
-            <h3>Final Step</h3>
-            <p>This is the content of the last section</p>
-            <span class="cd-timeline__date">1 October, 2018</span>
+        </div>
+        <div class="container">
+          <div class="row">
+            <div class="col-12 bg-light my-4 py-3">
+              <center>
+              <h3>Final Step</h3>
+              <p><input class="input_blank inputs text-center" type="text" name="final_date" value="{{final.date}}" disabled="disabled"></p>
+              <p><textarea style="height:10vh" class="input_blank inputs text-center" type="text" name="final_step" disabled="disabled">{{final.step}}</textarea></p>
+            </center>
+            </div>
           </div>
         </div>
       </div>
-    </section>
-
+      </form>
   </div>
 </div>
 {% endblock content %}
