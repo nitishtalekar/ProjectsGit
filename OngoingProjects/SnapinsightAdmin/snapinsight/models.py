@@ -50,4 +50,25 @@ class Services(models.Model):
     plan = models.CharField(max_length=500)
     feature = models.CharField(max_length=500)
     keyword = models.CharField(max_length=500)
+
+class Service_Overview(models.Model):
+    name = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
+    version = models.CharField(max_length=500)
+    features = models.CharField(max_length=500)
+    start_date = models.CharField(max_length=500)
+    end_date = models.CharField(max_length=500)
+
+class Service_FAQ(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=500)
+    question = models.CharField(max_length=500)
+    answer = models.CharField(max_length=500)
+
+class Service_Document(models.Model):
+    id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=500)
+    doc_name = models.CharField(max_length=500)
+    doc_link = models.CharField(max_length=500)
+
 # Create your models here.
