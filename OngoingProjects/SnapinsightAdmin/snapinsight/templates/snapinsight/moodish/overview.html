@@ -1,4 +1,35 @@
 {% extends 'snapinsight/base.html' %}
+
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#edit").click(function() {
+      $(".addbtn").each(function(){
+        $(this).slideDown("slow");
+      });
+      $(".inputs").each(function() {
+        $(this).attr('disabled', false);
+        $(this).attr('class', 'input_border inputs');
+      });
+      $("#close").show();
+      $("#save").show();
+    });
+    $("#close").click(function() {
+        location.reload(true);
+    });
+
+    $(".addbtn").each(function(){
+      $(this).click(function(){
+        var id = $(this).attr('id');
+        var clone = "#clone"+id;
+        var append = "#append"+id;
+        $(clone).clone().prop("style","").appendTo(append);
+      });
+    });
+  });
+</script>
+{% endblock script %}
+
 {% block content %}
 
 <div class="dashboard-wrapper">
@@ -7,12 +38,19 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
-            <h2 class="pageheader-title">Moodish</h2>
+            <div class="d-flex justify-content-between">
+              <h2 class="pageheader-title">{{overview.name}}</h2>
+              <div class="d-flex justify-content-end">
+                <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
+                <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
+              </div>
+            </div>
 
             <div class="page-breadcrumb">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Company</a></li>
+                  <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">{{overview.name}}</a></li>
                   <li class="breadcrumb-item active" aria-current="page">Overview</li>
                 </ol>
               </nav>
@@ -24,12 +62,11 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="card">
             <div class="card-header">
-              Moodish info
+              {{overview.name}} Information
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
-                <p>{{overview.description}}</p>
-
+                <p><input class="input_blank inputs" type="text" name="some_point" value="{{overview.description}}" disabled="disabled"></p>
               </blockquote>
             </div>
           </div>
@@ -37,36 +74,52 @@
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="section-block">
             <h5 class="section-title">FAQ's</h5>
-            <p>Some description</p>
           </div>
           <div class="accrodion-regular">
-            <div id="accordion3">
+            <div id="append1">
               {% for i in faq %}
               <div class="card">
-                <div class="card-header" id="headingSeven">
+                <div class="card-header" id="heading{{forloop.counter}}">
                   <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
                       <span class="fas fa-angle-down mr-3"></span>Question {{forloop.counter}}
                     </button>
                   </h5>
                 </div>
-                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion3">
+                <div id="collapse{{forloop.counter}}" class="collapse" aria-labelledby="headingSeven" data-parent="#append1">
                   <div class="card-body">
-                    <p class="lead">{{i.question}}</p>
-                    <p> {{i.answer}}</p>
+                    <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{i.question}}" disabled="disabled"></p>
+                    <p><textarea style="height:6vh" class="input_blank inputs" type="text" name="some_point" disabled="disabled">{{i.answer}}</textarea></p>
                   </div>
                 </div>
               </div>
               {% endfor %}
+              <div class="card" id="clone1" style="display:none">
+                <div class="card-header">
+                  <h5 class="mb-0">
+                    <button class="btn btn-link">
+                      <span class="fas fa-angle-down mr-3"></span>Question {{forloop.counter}}
+                    </button>
+                  </h5>
+                </div>
+                <div id="collapsenew" class="collapse show" aria-labelledby="headingSeven" data-parent="#append1">
+                  <div class="card-body">
+                    <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></p>
+                    <p><textarea style="height:6vh" class="input_blank inputs" type="text" name="some_point" disabled="disabled"></textarea></p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+        <div class="col-12">
+          <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD</div>
         </div>
       </div>
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
           <div class="section-block">
-            <h5 class="section-title">Moodish Status</h5>
-            <p>Some description</p>
+            <h5 class="section-title">{{overview.name}} Status</h5>
           </div>
         </div>
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -88,10 +141,10 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td>{{overview.version}}</td>
-                      <td>{{overview.features}}</td>
-                      <td>{{overview.start_date}}</td>
-                      <td>{{overview.end_date}}</td>
+                      <td><input class="input_blank inputs" type="text" name="some_point" value="{{overview.version}}" disabled="disabled"></td>
+                      <td><input class="input_blank inputs" type="text" name="some_point" value="{{overview.features}}" disabled="disabled"></td>
+                      <td><input class="input_blank inputs" type="text" name="some_point" value="{{overview.start_date}}" disabled="disabled"></td>
+                      <td><input class="input_blank inputs" type="text" name="some_point" value="{{overview.end_date}}" disabled="disabled"></td>
                     </tr>
                   </tbody>
                   <tfoot>
@@ -160,15 +213,27 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="section-block">
             <h5 class="section-title">Documents</h5>
-            {% for i in documents %}
-            <p>{{i.doc_name}}</p>
-            <p>{{i.doc_link}}</p>
-            {% endfor %}
           </div>
         </div>
+        {% for i in documents %}
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+          <div class="card">
+            <center>
+              <div class="card-header text-uppercase">
+                {{i.doc_name}}
+              </div>
+              <div class="card-body">
+                <a href="{{i.doc_link}}" class="btn btn-primary" style="width:90%" target="_blank">
+                  Open
+                </a>
+              </div>
+            </center>
+          </div>
+        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
