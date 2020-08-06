@@ -261,7 +261,8 @@ def moodish_resources(request):
 
 def moodish_roadmap(request):
     roadmap = Service_Roadmap.objects.filter(name="Moodish")
-    return render(request, 'snapinsight/moodish/roadmap.html', {"roadmap":roadmap})
+    name = roadmap[0].name
+    return render(request, 'snapinsight/moodish/roadmap.html', {"roadmap":roadmap,"name":name})
 
 def moodish_tasks(request):
     return render(request, 'snapinsight/moodish/tasks.html')
