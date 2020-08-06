@@ -35,6 +35,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
     <div class="container-fluid dashboard-content ">
+      <form action="/team/overview/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -79,21 +81,21 @@
                   <tbody id="append1">
                     {% for i in team %}
                     <tr>
-                      <th><input class="input_blank inputs" type="text" name="description" value="{{i.name}}" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="name" value="{{i.name}}" disabled="disabled"></th>
                       <th><input class="input_blank inputs" type="text" name="description" value="{{i.description}}" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="{{i.department}}" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="{{i.position}}" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="{{i.email}}" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="{{i.talent}}" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="department" value="{{i.department}}" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="position" value="{{i.positon}}" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="email" value="{{i.email}}" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="talent" value="{{i.talent}}" disabled="disabled"></th>
                     </tr>
                     {% endfor %}
                     <tr style="display:none" id="clone1">
+                      <th><input class="input_blank inputs" type="text" name="name" value="" disabled="disabled"></th>
                       <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="department" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="position" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="email" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="talent" value="" disabled="disabled"></th>
                     </tr>
                   </tbody>
                   <tfoot>
@@ -115,6 +117,7 @@
           <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD Member</div>
         </div>
       </div>
+      </form>
     </div>
   </div>
 </div>

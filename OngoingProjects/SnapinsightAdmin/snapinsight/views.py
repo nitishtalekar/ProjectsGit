@@ -587,6 +587,23 @@ def contentwriter_content_strategy(request):
 
 
 def team_overview(request):
+    if request.method == "POST":
+        name = request.POST.getlist("name")
+        name = list(filter(lambda a: a != "", name))
+        description = request.POST.getlist("description")
+        description = list(filter(lambda a: a != "", description))
+        department = request.POST.getlist("department")
+        department = list(filter(lambda a: a != "", department))
+        position = request.POST.getlist("position")
+        position = list(filter(lambda a: a != "", position))
+        email = request.POST.getlist("email")
+        email = list(filter(lambda a: a != "", email))
+        talent = request.POST.getlist("talent")
+        talent = list(filter(lambda a: a != "", talent))
+        Team.objects.all().delete()
+        for i in range(len(name)):
+            Team.objects.create(name=name[i], description=description[i], department=department[i], positon=position[i], email=email[i], talent=talent[i])
+
     team = Team.objects.all()
     return render(request, 'snapinsight/team/overview.html', {'team':team})
 
