@@ -213,6 +213,41 @@ def ideas(request):
 
 
 def moodish_overview(request):
+    if request.method == "POST":
+        description = request.POST.get('description')
+        version = request.POST.get('version')
+        features = request.POST.get('features')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        Service_Overview.objects.filter(name="Moodish").update(description=description, version=version, features=features, start_date=start_date, end_date=end_date)
+        # print(description, version, features, start_date, end_date)
+        faq_count = Service_FAQ.objects.filter(name="Moodish").count()
+        Service_FAQ.objects.filter(name="Moodish").delete()
+        for i in range(faq_count + 1):
+            ques = "question" + str(i)
+            ans = "answer" + str(i)
+            print(i)
+
+            if i == 0:
+                if len(request.POST.getlist(ques)) == 0:
+                    continue
+                question = request.POST.getlist(ques)
+                answer = request.POST.getlist(ans)
+                for i in range(len(question)):
+                    if question[i] == "":
+                        continue
+                    # print(question[i])
+                    # print(answer[i])
+                    Service_FAQ.objects.create(name="Moodish", question=question[i], answer=answer[i])
+                continue
+            if request.POST.get(ques) == "":
+                continue
+            question = request.POST.get(ques)
+            answer = request.POST.get(ans)
+            Service_FAQ.objects.create(name="Moodish", question=question, answer=answer)
+            # print(question, answer)
+
+
     overview = Service_Overview.objects.filter(name="Moodish")
     faq = Service_FAQ.objects.filter(name="Moodish")
     documents = Service_Document.objects.filter(name="Moodish")
@@ -225,7 +260,8 @@ def moodish_resources(request):
     return render(request, 'snapinsight/moodish/resources.html')
 
 def moodish_roadmap(request):
-    return render(request, 'snapinsight/moodish/roadmap.html')
+    roadmap = Service_Roadmap.objects.filter(name="Moodish")
+    return render(request, 'snapinsight/moodish/roadmap.html', {"roadmap":roadmap})
 
 def moodish_tasks(request):
     return render(request, 'snapinsight/moodish/tasks.html')

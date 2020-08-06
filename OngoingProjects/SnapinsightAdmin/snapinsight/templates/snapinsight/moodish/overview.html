@@ -35,6 +35,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
     <div class="container-fluid dashboard-content ">
+      <form action="/moodish/overview/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -42,7 +44,7 @@
               <h2 class="pageheader-title">{{overview.name}}</h2>
               <div class="d-flex justify-content-end">
                 <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
-                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="submit" name="button">Save</button>
                 <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
               </div>
             </div>
@@ -66,7 +68,7 @@
             </div>
             <div class="card-body">
               <blockquote class="blockquote mb-0">
-                <p><input class="input_blank inputs" type="text" name="some_point" value="{{overview.description}}" disabled="disabled"></p>
+                <p><input class="input_blank inputs" type="text" name="description" value="{{overview.description}}" disabled="disabled"></p>
               </blockquote>
             </div>
           </div>
@@ -81,15 +83,15 @@
               <div class="card">
                 <div class="card-header" id="heading{{forloop.counter}}">
                   <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
+                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
                       <span class="fas fa-angle-down mr-3"></span>Question {{forloop.counter}}
                     </button>
                   </h5>
                 </div>
                 <div id="collapse{{forloop.counter}}" class="collapse" aria-labelledby="headingSeven" data-parent="#append1">
                   <div class="card-body">
-                    <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="{{i.question}}" disabled="disabled"></p>
-                    <p><textarea style="height:6vh" class="input_blank inputs" type="text" name="some_point" disabled="disabled">{{i.answer}}</textarea></p>
+                    <p class="lead"><input class="input_blank inputs" type="text" name="question{{forloop.counter}}" value="{{i.question}}" disabled="disabled"></p>
+                    <p><textarea style="height:6vh" class="input_blank inputs" type="text" name="answer{{forloop.counter}}" disabled="disabled">{{i.answer}}</textarea></p>
                   </div>
                 </div>
               </div>
@@ -97,15 +99,15 @@
               <div class="card" id="clone1" style="display:none">
                 <div class="card-header">
                   <h5 class="mb-0">
-                    <button class="btn btn-link">
+                    <button type="button" class="btn btn-link">
                       <span class="fas fa-angle-down mr-3"></span>Question {{forloop.counter}}
                     </button>
                   </h5>
                 </div>
-                <div id="collapsenew" class="collapse show" aria-labelledby="headingSeven" data-parent="#append1">
+                <div id="collapsenew" class="collapse show" aria-labelledby="headingSeven" data-parent="appendx">
                   <div class="card-body">
-                    <p class="lead"><input class="input_blank inputs" type="text" name="some_point" value="" disabled="disabled"></p>
-                    <p><textarea style="height:6vh" class="input_blank inputs" type="text" name="some_point" disabled="disabled"></textarea></p>
+                    <p class="lead"><input class="input_blank inputs" type="text" name="question0" value="" disabled="disabled"></p>
+                    <p><textarea style="height:6vh" class="input_blank inputs" type="text" name="answer0" disabled="disabled"></textarea></p>
                   </div>
                 </div>
               </div>
@@ -141,10 +143,10 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td><input class="input_blank inputs" type="text" name="some_point" value="{{overview.version}}" disabled="disabled"></td>
-                      <td><input class="input_blank inputs" type="text" name="some_point" value="{{overview.features}}" disabled="disabled"></td>
-                      <td><input class="input_blank inputs" type="text" name="some_point" value="{{overview.start_date}}" disabled="disabled"></td>
-                      <td><input class="input_blank inputs" type="text" name="some_point" value="{{overview.end_date}}" disabled="disabled"></td>
+                      <td><input class="input_blank inputs" type="text" name="version" value="{{overview.version}}" disabled="disabled"></td>
+                      <td><input class="input_blank inputs" type="text" name="features" value="{{overview.features}}" disabled="disabled"></td>
+                      <td><input class="input_blank inputs" type="text" name="start_date" value="{{overview.start_date}}" disabled="disabled"></td>
+                      <td><input class="input_blank inputs" type="text" name="end_date" value="{{overview.end_date}}" disabled="disabled"></td>
                     </tr>
                   </tbody>
                   <tfoot>
@@ -235,6 +237,7 @@
         </div>
         {% endfor %}
       </div>
+      </form>
     </div>
   </div>
 </div>

@@ -71,4 +71,9 @@ class Service_Document(models.Model):
     doc_name = models.CharField(max_length=500)
     doc_link = models.CharField(max_length=500)
 
+class Service_Roadmap(models.Model):
+    name = models.CharField(max_length=500)
+    step = models.CharField(max_length=500)
+    date = models.CharField(max_length=500, default="")
+
 # Create your models here.
