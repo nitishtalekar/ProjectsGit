@@ -87,4 +87,12 @@ class Marketing_Social(models.Model):
     description = models.CharField(max_length=500)
     content = models.CharField(max_length=500)
 
+class Team(models.Model):
+    name = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
+    department = models.CharField(max_length=500)
+    positon = models.CharField(max_length=500)
+    email = models.CharField(max_length=500)
+    talent = models.CharField(max_length=500)
+
 # Create your models here.

@@ -34,6 +34,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-finance">
     <div class="container-fluid dashboard-content">
+      <form action="/marketing/social_snapinsight/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -66,7 +68,7 @@
             </div>
             <div class="card-body" style="width:100%">
               <p>
-                <textarea style="height:10vh" class="input_blank inputs" type="text" name="answer0" disabled="disabled">
+                <textarea style="height:10vh" class="input_blank inputs" type="text" name="description" disabled="disabled">
                 {{social.1}}
                 </textarea>
               </p>
@@ -82,11 +84,11 @@
               <div class="list-group" id="append1">
                 {% for i in social.2 %}
                 <div class="list-group-item list-group-item-action">
-                  <input class="input_blank inputs" type="text" name="description" value="{{i}}" disabled="disabled">
+                  <input class="input_blank inputs" type="text" name="content" value="{{i}}" disabled="disabled">
                 </div>
                 {% endfor %}
                 <div class="list-group-item list-group-item-action" style="display:none" id="clone1">
-                  <input class="input_blank inputs" type="text" name="description" value="{{i}}" disabled="disabled">
+                  <input class="input_blank inputs" type="text" name="content" value="{{i}}" disabled="disabled">
                 </div>
               </div>
             </div>
@@ -96,6 +98,7 @@
           <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD</div>
         </div>
       </div>
+    </from>
     </div>
   </div>
 </div>

@@ -24,7 +24,6 @@
           <div class="card">
             <div class="card-header">
               <h5 class="mb-0">Team Members</h5>
-              <p>Some description.</p>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -41,30 +40,16 @@
                     </tr>
                   </thead>
                   <tbody>
+                    {% for i in team %}
                     <tr>
-                      <th>xyz</th>
-                      <th>vbfkb description</th>
-                      <th>ML</th>
-                      <th>Developer</th>
-                      <th>Email Id</th>
-                      <th>Talents</th>
+                      <th>{{i.name}}</th>
+                      <th>{{i.description}}</th>
+                      <th>{{i.department}}</th>
+                      <th>{{i.position}}</th>
+                      <th>{{i.email}}</th>
+                      <th>{{i.talent}}</th>
                     </tr>
-                    <tr>
-                      <th>Name</th>
-                      <th>Short description</th>
-                      <th>Moodish</th>
-                      <th>Designer</th>
-                      <th>Email Id</th>
-                      <th>Talents</th>
-                    </tr>
-                    <tr>
-                      <th>Name</th>
-                      <th>Short description</th>
-                      <th>Marketing</th>
-                      <th>developer</th>
-                      <th>Email Id</th>
-                      <th>Talents</th>
-                    </tr>
+                    {% endfor %}
                   </tbody>
                   <tfoot>
                     <tr>

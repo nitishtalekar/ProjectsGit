@@ -516,6 +516,11 @@ def marketing_social_design_templates(request):
     return render(request, 'snapinsight/marketing/social-design-templates.html', {'pdt':pdt})
 
 def marketing_social_moodish(request):
+    if request.method == "POST":
+        description = request.POST.get("description")
+        content = request.POST.getlist("content")
+        content = list(filter(lambda a: a != "", content))
+        Marketing_Social.objects.filter(name="Moodish").update(description=description, content="^".join(content))
     s = Marketing_Social.objects.filter(name="Moodish")
     social = []
     for i in s:
@@ -526,6 +531,11 @@ def marketing_social_moodish(request):
     return render(request, 'snapinsight/marketing/social-moodish.html', {'social':social})
 
 def marketing_social_snapinsight(request):
+    if request.method == "POST":
+        description = request.POST.get("description")
+        content = request.POST.getlist("content")
+        content = list(filter(lambda a: a != "", content))
+        Marketing_Social.objects.filter(name="Snapinsight").update(description=description, content="^".join(content))
     s = Marketing_Social.objects.filter(name="Snapinsight")
     social = []
     for i in s:
@@ -577,6 +587,7 @@ def contentwriter_content_strategy(request):
 
 
 def team_overview(request):
-    return render(request, 'snapinsight/team/overview.html')
+    team = Team.objects.all()
+    return render(request, 'snapinsight/team/overview.html', {'team':team})
 
 # Create your views here.
