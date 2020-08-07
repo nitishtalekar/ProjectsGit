@@ -36,6 +36,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-finance">
     <div class="container-fluid dashboard-content">
+      <form action="/marketing/seo/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -43,7 +45,7 @@
               <h2 class="pageheader-title">Marketing</h2>
               <div class="d-flex justify-content-end">
                 <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
-                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="submit" name="button">Save</button>
                 <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
               </div>
             </div>
@@ -59,78 +61,28 @@
         </div>
       </div>
       <div class="row">
+        {% for i in keyword %}
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
           <div class="card">
-            <h5 class="card-header">Main key word list </h5>
+            <h5 class="card-header">{{i.0}} keyword list</h5>
             <div class="card-body">
-              <div class="list-group" id="append1">
-                <a href="#" class="list-group-item list-group-item-action"> 
-                  <input class="input_blank inputs" type="text" name="description" value="Cras justo odio" disabled="disabled">
+              <div class="list-group" id="append{{forloop.counter}}">
+                {% for j in i.1 %}
+                <a href="#" class="list-group-item list-group-item-action">
+                  <input class="input_blank inputs" type="text" name="{{i.0}}" value="{{j}}" disabled="disabled">
                 </a>
-                <a href="#" class="list-group-item list-group-item-action" style="display:none" id="clone1">
-                  <input class="input_blank inputs" type="text" name="description" value="" disabled="disabled">
+                {% endfor %}
+                <a href="#" class="list-group-item list-group-item-action" style="display:none" id="clone{{forloop.counter}}">
+                  <input class="input_blank inputs" type="text" name="{{i.0}}" value="" disabled="disabled">
                 </a>
               </div>
             </div>
           </div>
           <div class="col-12">
-            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD</div>
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="{{forloop.counter}}">ADD</div>
           </div>
         </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <h5 class="card-header">Solutions keyword list</h5>
-            <div class="card-body">
-              <div class="list-group" id="append2">
-                <a href="#" class="list-group-item list-group-item-action"> 
-                  <input class="input_blank inputs" type="text" name="description" value="Cras justo odio" disabled="disabled"> 
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" style="display:none" id="clone2">
-                  <input class="input_blank inputs" type="text" name="description" value="" disabled="disabled">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="2">ADD</div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <h5 class="card-header">Game keyword list</h5>
-            <div class="card-body">
-              <div class="list-group" id="append3">
-                <a href="#" class="list-group-item list-group-item-action"> 
-                  <input class="input_blank inputs" type="text" name="description" value="Cras justo odio" disabled="disabled"> 
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" style="display:none" id="clone3">
-                  <input class="input_blank inputs" type="text" name="description" value="" disabled="disabled">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="3">ADD</div>
-          </div>
-        </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <h5 class="card-header">Moodish keyword list</h5>
-            <div class="card-body">
-              <div class="list-group" id="append4">
-                <a href="#" class="list-group-item list-group-item-action"> 
-                  <input class="input_blank inputs" type="text" name="description" value="Cras justo odio" disabled="disabled"> 
-                </a>
-                <a href="#" class="list-group-item list-group-item-action" style="display:none" id="clone4">
-                  <input class="input_blank inputs" type="text" name="description" value="" disabled="disabled">
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-12">
-            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="4">ADD</div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="section-block">
@@ -138,29 +90,31 @@
         </div>
         <div class="accrodion-regular">
           <div id="appendq">
+            {% for i in faq %}
             <div class="card mb-2">
               <div class="card-header" id="headingSeven">
                 <h5 class="mb-0">
-                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapse{{forloop.counter}}" aria-expanded="true" aria-controls="collapse{{forloop.counter}}">
                     <span class="fas fa-angle-down mr-3"></span>
-                    <input class="input_blank inputs" type="text" name="description" value="Question1" disabled="disabled">
+                    <input class="input_blank inputs" type="text" name="question" value="{{i.question}}" disabled="disabled">
                   </button>
                 </h5>
               </div>
-              <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#appendq">
+              <div id="collapse{{forloop.counter}}" class="collapse show" aria-labelledby="headingSeven" data-parent="#appendq">
                 <div class="card-body">
                   <p class="lead">
-                    <textarea style="height:8vh" class="input_blank inputs" type="text" name="answer" disabled="disabled">ASDASD</textarea>
+                    <textarea style="height:8vh" class="input_blank inputs" type="text" name="answer" disabled="disabled">{{i.answer}}</textarea>
                   </p>
                 </div>
               </div>
             </div>
+            {% endfor %}
             <div class="card mb-2" style="display:none" id="cloneq">
               <div class="card-header" id="headingSeven">
                 <h5 class="mb-0">
-                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseSeven">
+                  <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseSeven">
                     <span class="fas fa-angle-down mr-3"></span>
-                    <input class="input_blank inputs" type="text" name="description" value="" disabled="disabled">
+                    <input class="input_blank inputs" type="text" name="question" value="" disabled="disabled">
                   </button>
                 </h5>
               </div>
@@ -178,6 +132,7 @@
       <div class="col-12">
         <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="q">ADD</div>
       </div>
+      </form>
     </div>
   </div>
 </div>

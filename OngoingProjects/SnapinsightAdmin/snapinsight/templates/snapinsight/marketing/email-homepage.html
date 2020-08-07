@@ -35,6 +35,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-finance">
     <div class="container-fluid dashboard-content">
+      <form action="/marketing/email_homepage/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -42,7 +44,7 @@
               <h2 class="pageheader-title">Marketing</h2>
               <div class="d-flex justify-content-end">
                 <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
-                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="submit" name="button">Save</button>
                 <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
               </div>
             </div>
@@ -74,13 +76,15 @@
                     </tr>
                   </thead>
                   <tbody id="append1">
+                    {% for i in detail %}
                     <tr>
-                      <th><input class="input_blank inputs" type="text" name="description" value="discription" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="date" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="about" value="{{i.about}}" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="when" value="{{i.when}}" disabled="disabled"></th>
                     </tr>
+                    {% endfor %}
                     <tr style="display:none" id="clone1">
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="about" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="when" value="" disabled="disabled"></th>
                     </tr>
                   </tbody>
                   <tfoot>
@@ -130,7 +134,8 @@
           </div>
         </div>
       </div>
+      </form>
     </div>
   </div>
-  
+</div>
   {% endblock content %}

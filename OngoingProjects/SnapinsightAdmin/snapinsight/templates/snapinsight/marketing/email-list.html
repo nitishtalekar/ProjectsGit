@@ -35,6 +35,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-finance">
     <div class="container-fluid dashboard-content">
+      <form action="/marketing/email_list/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -77,19 +79,21 @@
                     </tr>
                   </thead>
                   <tbody id="append1">
+                    {% for i in email %}
                     <tr>
-                      <th><input class="input_blank inputs" type="text" name="description" value="Name" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="DOB" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="MN" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="Mail" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="cat" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="name" value="{{i.name}}" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="dob" value="{{i.dob}}" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="mobile" value="{{i.mobile}}" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="email" value="{{i.email}}" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="category" value="{{i.category}}" disabled="disabled"></th>
                     </tr>
+                    {% endfor %}
                     <tr style="display:none" id="clone1">
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
-                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="name" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="dob" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="mobile" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="email" value="" disabled="disabled"></th>
+                      <th><input class="input_blank inputs" type="text" name="category" value="" disabled="disabled"></th>
                     </tr>
                   </tbody>
                   <tfoot>
@@ -110,7 +114,8 @@
           <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD</div>
         </div>
       </div>
+    </form>
     </div>
   </div>
-  
+</div>
   {% endblock content %}

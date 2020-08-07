@@ -95,4 +95,19 @@ class Team(models.Model):
     email = models.CharField(max_length=500)
     talent = models.CharField(max_length=500)
 
+class Email_Detail(models.Model):
+    about = models.CharField(max_length=500)
+    when = models.CharField(max_length=500)
+
+class Email(models.Model):
+    name = models.CharField(max_length=500)
+    dob = models.CharField(max_length=500)
+    mobile = models.CharField(max_length=500)
+    email = models.CharField(max_length=500)
+    category = models.CharField(max_length=500)
+
+class SEO_Keyword(models.Model):
+    name = models.CharField(max_length=500)
+    keyword = models.CharField(max_length=500)
+
 # Create your models here.
