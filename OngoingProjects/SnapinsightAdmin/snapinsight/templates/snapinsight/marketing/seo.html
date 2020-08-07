@@ -1,4 +1,36 @@
 {% extends 'snapinsight/base.html' %}
+
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#edit").click(function() {
+      $(".addbtn").each(function(){
+        $(this).slideDown("slow");
+      });
+      $(".inputs").each(function() {
+        $(this).attr('disabled', false);
+        $(this).attr('class', 'input_border inputs');
+      });
+      $("#close").show();
+      $("#save").show();
+    });
+    $("#close").click(function() {
+        location.reload(true);
+    });
+
+    $(".addbtn").each(function(){
+      $(this).click(function(){
+        var id = $(this).attr('id');
+        var clone = "#clone"+id;
+        var append = "#append"+id;
+        $(clone).clone().prop("style","").appendTo(append);
+      });
+    });
+  });
+</script>
+{% endblock script %}
+
+
 {% block content %}
 
 <div class="dashboard-wrapper">
@@ -7,8 +39,14 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
-            <h3 class="mb-2">Marketing</h3>
-            <p class="pageheader-text">Proin placerat ante duiullam scelerisque a velit ac porta, fusce sit amet vestibulum mi. Morbi lobortis pulvinar quam.</p>
+            <div class="d-flex justify-content-between">
+              <h2 class="pageheader-title">Marketing</h2>
+              <div class="d-flex justify-content-end">
+                <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="button" name="button">Save</button>
+                <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
+              </div>
+            </div>
             <div class="page-breadcrumb">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -25,114 +63,120 @@
           <div class="card">
             <h5 class="card-header">Main key word list </h5>
             <div class="card-body">
-              <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active"> Cras justo odio </a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+              <div class="list-group" id="append1">
+                <a href="#" class="list-group-item list-group-item-action"> 
+                  <input class="input_blank inputs" type="text" name="description" value="Cras justo odio" disabled="disabled">
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" style="display:none" id="clone1">
+                  <input class="input_blank inputs" type="text" name="description" value="" disabled="disabled">
+                </a>
               </div>
             </div>
+          </div>
+          <div class="col-12">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD</div>
           </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
           <div class="card">
             <h5 class="card-header">Solutions keyword list</h5>
             <div class="card-body">
-              <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active"> Cras justo odio </a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+              <div class="list-group" id="append2">
+                <a href="#" class="list-group-item list-group-item-action"> 
+                  <input class="input_blank inputs" type="text" name="description" value="Cras justo odio" disabled="disabled"> 
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" style="display:none" id="clone2">
+                  <input class="input_blank inputs" type="text" name="description" value="" disabled="disabled">
+                </a>
               </div>
             </div>
+          </div>
+          <div class="col-12">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="2">ADD</div>
           </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
           <div class="card">
             <h5 class="card-header">Game keyword list</h5>
             <div class="card-body">
-              <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active"> Cras justo odio </a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+              <div class="list-group" id="append3">
+                <a href="#" class="list-group-item list-group-item-action"> 
+                  <input class="input_blank inputs" type="text" name="description" value="Cras justo odio" disabled="disabled"> 
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" style="display:none" id="clone3">
+                  <input class="input_blank inputs" type="text" name="description" value="" disabled="disabled">
+                </a>
               </div>
             </div>
+          </div>
+          <div class="col-12">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="3">ADD</div>
           </div>
         </div>
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
           <div class="card">
             <h5 class="card-header">Moodish keyword list</h5>
             <div class="card-body">
-              <div class="list-group">
-                <a href="#" class="list-group-item list-group-item-action active"> Cras justo odio </a>
-                <a href="#" class="list-group-item list-group-item-action">Dapibus ac facilisis in</a>
-                <a href="#" class="list-group-item list-group-item-action">Morbi leo risus</a>
-                <a href="#" class="list-group-item list-group-item-action">Porta ac consectetur ac</a>
-                <a href="#" class="list-group-item list-group-item-action disabled">Vestibulum at eros</a>
+              <div class="list-group" id="append4">
+                <a href="#" class="list-group-item list-group-item-action"> 
+                  <input class="input_blank inputs" type="text" name="description" value="Cras justo odio" disabled="disabled"> 
+                </a>
+                <a href="#" class="list-group-item list-group-item-action" style="display:none" id="clone4">
+                  <input class="input_blank inputs" type="text" name="description" value="" disabled="disabled">
+                </a>
               </div>
             </div>
+          </div>
+          <div class="col-12">
+            <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="4">ADD</div>
           </div>
         </div>
       </div>
       <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
         <div class="section-block">
           <h5 class="section-title">FAQ's</h5>
-          <p>Some description.</p>
         </div>
         <div class="accrodion-regular">
-          <div id="accordion3">
-            <div class="card">
+          <div id="appendq">
+            <div class="card mb-2">
               <div class="card-header" id="headingSeven">
                 <h5 class="mb-0">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
-                    <span class="fas fa-angle-down mr-3"></span>Question 1
+                    <span class="fas fa-angle-down mr-3"></span>
+                    <input class="input_blank inputs" type="text" name="description" value="Question1" disabled="disabled">
                   </button>
                 </h5>
               </div>
-              <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#accordion3">
+              <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven" data-parent="#appendq">
                 <div class="card-body">
-                  <p class="lead"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
-                  <p> Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                    nesciunt sapiente ea proident.</p>
-                  <a href="#" class="btn btn-secondary">Go somewhere</a>
+                  <p class="lead">
+                    <textarea style="height:8vh" class="input_blank inputs" type="text" name="answer" disabled="disabled">ASDASD</textarea>
+                  </p>
                 </div>
               </div>
             </div>
-            <div class="card mb-2">
-              <div class="card-header" id="headingEight">
+            <div class="card mb-2" style="display:none" id="cloneq">
+              <div class="card-header" id="headingSeven">
                 <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
-                    <span class="fas fa-angle-down mr-3"></span>Question 2
-                  </button> </h5>
-              </div>
-              <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion3">
-                <div class="card-body">
-                  Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably
-                  haven't heard of them accusamus labore sustainable VHS.
-                </div>
-              </div>
-            </div>
-            <div class="card mb-2">
-              <div class="card-header" id="headingNine">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
-                    <span class="fas fa-angle-down mr-3"></span>Question 3
+                  <button class="btn btn-link" data-toggle="collapse" data-target="#collapse" aria-expanded="true" aria-controls="collapseSeven">
+                    <span class="fas fa-angle-down mr-3"></span>
+                    <input class="input_blank inputs" type="text" name="description" value="" disabled="disabled">
                   </button>
                 </h5>
               </div>
-              <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion3">
+              <div id="collapseSeven" class="collapse show" aria-labelledby="headingSeven">
                 <div class="card-body">
-                  Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                  butcher vice lomo. Leggings occaecat craft beer farm-to-tabhetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  <p class="lead">
+                    <textarea style="height:8vh" class="input_blank inputs" type="text" name="answer" disabled="disabled"></textarea>
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
+      </div>
+      <div class="col-12">
+        <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="q">ADD</div>
       </div>
     </div>
   </div>
