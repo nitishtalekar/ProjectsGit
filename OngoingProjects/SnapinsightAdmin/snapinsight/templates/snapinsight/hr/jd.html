@@ -1,4 +1,38 @@
 {% extends 'snapinsight/base.html' %}
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#edit").click(function() {
+      $(".addbtn").each(function() {
+        $(this).slideDown("slow");
+      });
+      $(".inputs").each(function() {
+        $(this).attr('disabled', false);
+        $(this).attr('class', 'input_border inputs');
+      });
+      $("#close").show();
+      $("#save").show();
+    });
+    $("#close").click(function() {
+      location.reload(true);
+    });
+    $(".addbtn").each(function() {
+      $(this).click(function() {
+        var id = $(this).attr('id');
+        var clone = "#clone" + id;
+        var append = "#append" + id;
+        $(clone).clone().prop("style", "").appendTo(append);
+      });
+    });
+    $("#soln").click(function() {
+      $('#newsoln').slideDown('slow');
+      $("#soln").html("Save Job to add another");
+      $("#soln").prop('disabled', true);
+      $("#soln").prop("class", "btn btn-dark px-3 mb-3 text-uppercase")
+    });
+  });
+</script>
+{% endblock script %}
 {% block content %}
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
@@ -6,7 +40,14 @@
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
-            <h2 class="pageheader-title">HR</h2>
+            <div class="d-flex justify-content-between">
+              <h2 class="pageheader-title">HR</h2>
+              <div class="d-flex justify-content-end">
+                <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="submit" name="button">Save</button>
+                <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
+              </div>
+            </div>
             <div class="page-breadcrumb">
               <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -21,115 +62,126 @@
       <div class="row">
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
           <div class="section-block">
-            <h5 class="section-title">Marketing Executive</h5>
-            <p>Short description.</p>
+            <h5 class="section-title">
+              <input class="input_blank inputs" type="text" name="description" value="Position" disabled="disabled">
+            </h5>
+            <p><input class="input_blank inputs" type="text" name="description" value="desc" disabled="disabled"></p>
           </div>
           <div class="accrodion-regular">
-            <div id="accordion1">
+            <div id="accordion{{forloop.counter}}">
               <div class="card">
-                <div class="card-header" id="headingSeven">
+                <div class="card-header" id="heading{{forloop.counter}}1">
                   <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven" aria-expanded="true" aria-controls="collapseSeven">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{forloop.counter}}1" aria-expanded="true" aria-controls="collapse{{forloop.counter}}1">
                       <span class="fas fa-angle-down mr-3"></span>Responsible for
                     </button>
                   </h5>
                 </div>
-                <div id="collapseSeven" class="collapse" aria-labelledby="headingSeven" data-parent="#accordion1">
+                <div id="collapse{{forloop.counter}}1" class="collapse" aria-labelledby="heading{{forloop.counter}}1" data-parent="#accordion{{forloop.counter}}">
                   <div class="card-body">
-                    <p class="lead"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
-                    <p> Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                      nesciunt sapiente ea proident.</p>
-                    <a href="#" class="btn btn-secondary">Go somewhere</a>
+                    <p class="lead">
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answer{{forloop.counter}}" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                    </p>
                   </div>
                 </div>
               </div>
               <div class="card mb-2">
-                <div class="card-header" id="headingEight">
+                <div class="card-header" id="heading{{forloop.counter}}2">
                   <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{forloop.counter}}2" aria-expanded="false" aria-controls="collapse{{forloop.counter}}2">
                       <span class="fas fa-angle-down mr-3"></span>Skills
                     </button> </h5>
                 </div>
-                <div id="collapseEight" class="collapse" aria-labelledby="headingEight" data-parent="#accordion1">
+                <div id="collapse{{forloop.counter}}2" class="collapse" aria-labelledby="heading{{forloop.counter}}2" data-parent="#accordion{{forloop.counter}}">
                   <div class="card-body">
-                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably
-                    haven't heard of them accusamus labore sustainable VHS.
+                    <p class="lead">
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answer{{forloop.counter}}" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                    </p>
                   </div>
                 </div>
               </div>
               <div class="card mb-2">
-                <div class="card-header" id="headingNine">
+                <div class="card-header" id="heading{{forloop.counter}}3">
                   <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{forloop.counter}}3" aria-expanded="false" aria-controls="collapse{{forloop.counter}}3">
                       <span class="fas fa-angle-down mr-3"></span>Benefits
                     </button>
                   </h5>
                 </div>
-                <div id="collapseNine" class="collapse" aria-labelledby="headingNine" data-parent="#accordion1">
+                <div id="collapse{{forloop.counter}}3" class="collapse" aria-labelledby="heading{{forloop.counter}}3" data-parent="#accordion{{forloop.counter}}">
                   <div class="card-body">
-                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                    butcher vice lomo. Leggings occaecat craft beer farm-to-tabhetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <p class="lead">
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answer{{forloop.counter}}" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" style="display:none" id="newsoln">
           <div class="section-block">
-            <h5 class="section-title">Marketing Executive</h5>
-            <p>Short description.</p>
+            <h5 class="section-title">
+              <input class="input_blank inputs" type="text" name="description" value="Position" disabled="disabled">
+            </h5>
+            <p><input class="input_blank inputs" type="text" name="description" value="desc" disabled="disabled"></p>
           </div>
           <div class="accrodion-regular">
-            <div id="accordion2">
+            <div id="accordionnew">
               <div class="card">
-                <div class="card-header" id="headingSeven2">
+                <div class="card-header" id="headingnew1">
                   <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapseSeven2" aria-expanded="true" aria-controls="collapseSeven">
+                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapsenew1" aria-expanded="true" aria-controls="collapsenew1">
                       <span class="fas fa-angle-down mr-3"></span>Responsible for
                     </button>
                   </h5>
                 </div>
-                <div id="collapseSeven2" class="collapse" aria-labelledby="headingSeven2" data-parent="#accordion2">
+                <div id="collapsenew1" class="collapse" aria-labelledby="headingnew1" data-parent="#accordionnew">
                   <div class="card-body">
-                    <p class="lead"> Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch.</p>
-                    <p> Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred
-                      nesciunt sapiente ea proident.</p>
-                    <a href="#" class="btn btn-secondary">Go somewhere</a>
+                    <p class="lead">
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answernew" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                    </p>
                   </div>
                 </div>
               </div>
               <div class="card mb-2">
-                <div class="card-header" id="headingEight2">
+                <div class="card-header" id="headingnew2">
                   <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseEight2" aria-expanded="false" aria-controls="collapseEight">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsenew2" aria-expanded="false" aria-controls="collapsenew2">
                       <span class="fas fa-angle-down mr-3"></span>Skills
                     </button> </h5>
                 </div>
-                <div id="collapseEight2" class="collapse" aria-labelledby="headingEight2" data-parent="#accordion2">
+                <div id="collapsenew2" class="collapse" aria-labelledby="headingnew2" data-parent="#accordionnew">
                   <div class="card-body">
-                    Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably
-                    haven't heard of them accusamus labore sustainable VHS.
+                    <p class="lead">
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answernew" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                    </p>
                   </div>
                 </div>
               </div>
               <div class="card mb-2">
-                <div class="card-header" id="headingNine2">
+                <div class="card-header" id="headingnew3">
                   <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseNine2" aria-expanded="false" aria-controls="collapseNine">
+                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsenew3" aria-expanded="false" aria-controls="collapsenew3">
                       <span class="fas fa-angle-down mr-3"></span>Benefits
                     </button>
                   </h5>
                 </div>
-                <div id="collapseNine2" class="collapse" aria-labelledby="headingNine2" data-parent="#accordion2">
+                <div id="collapsenew3" class="collapse" aria-labelledby="headingnew3" data-parent="#accordionnew">
                   <div class="card-body">
-                    Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur
-                    butcher vice lomo. Leggings occaecat craft beer farm-to-tabhetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                    <p class="lead">
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answernew" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div class="row mt-4">
+        <div class="col-12 d-flex justify-content-center">
+          <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="soln">ADD NEW JOB</div>
         </div>
       </div>
     </div>
