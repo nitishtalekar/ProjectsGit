@@ -384,7 +384,45 @@ def runner_tasks(request):
 
 
 def ml_overview(request):
-    return render(request, 'snapinsight/ml/overview.html')
+    if request.method == "POST":
+        description = request.POST.get('description')
+        version = request.POST.get('version')
+        features = request.POST.get('features')
+        start_date = request.POST.get('start_date')
+        end_date = request.POST.get('end_date')
+        Service_Overview.objects.filter(name="ML").update(description=description, version=version, features=features, start_date=start_date, end_date=end_date)
+        # print(description, version, features, start_date, end_date)
+        faq_count = Service_FAQ.objects.filter(name="ML").count()
+        Service_FAQ.objects.filter(name="ML").delete()
+        for i in range(faq_count + 1):
+            ques = "question" + str(i)
+            ans = "answer" + str(i)
+            print(i)
+
+            if i == 0:
+                if len(request.POST.getlist(ques)) == 0:
+                    continue
+                question = request.POST.getlist(ques)
+                answer = request.POST.getlist(ans)
+                for i in range(len(question)):
+                    if question[i] == "":
+                        continue
+                    # print(question[i])
+                    # print(answer[i])
+                    Service_FAQ.objects.create(name="ML", question=question[i], answer=answer[i])
+                continue
+            if request.POST.get(ques) == "":
+                continue
+            question = request.POST.get(ques)
+            answer = request.POST.get(ans)
+            Service_FAQ.objects.create(name="ML", question=question, answer=answer)
+            # print(question, answer)
+
+
+    overview = Service_Overview.objects.filter(name="ML")
+    faq = Service_FAQ.objects.filter(name="ML")
+    documents = Service_Document.objects.filter(name="ML")
+    return render(request, 'snapinsight/ml/overview.html', {'overview':overview[0], 'faq':faq, 'documents':documents})
 
 def ml_projects(request):
     return render(request, 'snapinsight/ml/projects.html')
@@ -393,7 +431,40 @@ def ml_resources(request):
     return render(request, 'snapinsight/ml/resources.html')
 
 def ml_roadmap(request):
-    return render(request, 'snapinsight/ml/roadmap.html')
+    if request.method == "POST":
+        step_count = Service_Roadmap.objects.filter(name="ML", tag="0").count()
+        Service_Roadmap.objects.filter(name="ML").delete()
+        for i in range(step_count):
+            s = "step" + str(i+1)
+            d = "date" + str(i+1)
+            if request.POST.get(s) == "":
+                continue
+            step = request.POST.get(s)
+            date = request.POST.get(d)
+            # print(step, date)
+            Service_Roadmap.objects.create(name="ML", step=step, date=date, tag="0")
+        new_step = request.POST.getlist("step-1")
+        new_date = request.POST.getlist("date-1")
+        for i in range(len(new_step)):
+            if new_step[i] == "":
+                continue
+            # print(new_step[i], new_date[i])
+            Service_Roadmap.objects.create(name="ML", step=new_step[i], date=new_date[i], tag="0")
+        final_step = request.POST.get("final_step")
+        final_date = request.POST.get("final_date")
+        if final_step != "":
+            # print(final_date, final_step)
+            Service_Roadmap.objects.create(name="ML", step=final_step, date=final_date, tag="1")
+    roadmap = Service_Roadmap.objects.filter(name="ML", tag="0")
+    try:
+        final = Service_Roadmap.objects.get(name="ML", tag="1")
+    except:
+        final=[]
+    try:
+        name = roadmap[0].name
+    except:
+        name = "ML"
+    return render(request, 'snapinsight/ml/roadmap.html', {"roadmap":roadmap,"name":name, "final":final})
 
 def ml_tasks(request):
     return render(request, 'snapinsight/ml/tasks.html')
@@ -633,7 +704,17 @@ def hr_overview(request):
     return render(request, 'snapinsight/hr/overview.html', {'overview':overview[0], 'faq':faq, 'documents':documents})
 
 def hr_portals(request):
-    return render(request, 'snapinsight/hr/portals.html')
+    if request.method == "POST":
+        card = request.POST.getlist("card")
+        description = request.POST.getlist("description")
+        link = request.POST.getlist("link")
+        Job_Portal.objects.all().delete()
+        for i in range(len(card)):
+            if card[i] == "":
+                continue
+            Job_Portal.objects.create(card=card[i], description=description[i], link=link[i])
+    cards = Job_Portal.objects.all()
+    return render(request, 'snapinsight/hr/portals.html', {"cards":cards})
 
 def hr_resources(request):
     return render(request, 'snapinsight/hr/resources.html')
@@ -678,11 +759,63 @@ def hr_tasks(request):
     return render(request, 'snapinsight/hr/tasks.html')
 
 def hr_jd(request):
-    return render(request, 'snapinsight/hr/jd.html')
+    if request.method == "POST":
+        position = request.POST.getlist("position")
+        description = request.POST.getlist("description")
+        responsible = request.POST.getlist("responsible")
+        skills = request.POST.getlist("skills")
+        benefits = request.POST.getlist("benefits")
+        Job_Description.objects.all().delete()
+        for i in range(len(position)):
+            print(i)
+            if position[i] == "":
+                continue
+            Job_Description.objects.create(position=position[i], description=description[i], responsible=responsible[i], skills=skills[i], benefits=benefits[i])
+            # print(position[i], description[i], responsible[i], skills[i], benefits[i])
+    jd = Job_Description.objects.all()
+    return render(request, 'snapinsight/hr/jd.html', {'jd':jd})
 
 
 def contentwriter_overview(request):
-    return render(request, 'snapinsight/contentwriter/overview.html')
+    if request.method == "POST":
+        description = request.POST.get('description')
+        # version = request.POST.get('version')
+        # features = request.POST.get('features')
+        # start_date = request.POST.get('start_date')
+        # end_date = request.POST.get('end_date')
+        Service_Overview.objects.filter(name="Content Writer").update(description=description, version="", features="", start_date="", end_date="")
+        # print(description, version, features, start_date, end_date)
+        faq_count = Service_FAQ.objects.filter(name="Content Writer").count()
+        Service_FAQ.objects.filter(name="Content Writer").delete()
+        for i in range(faq_count + 1):
+            ques = "question" + str(i)
+            ans = "answer" + str(i)
+            print(i)
+
+            if i == 0:
+                if len(request.POST.getlist(ques)) == 0:
+                    continue
+                question = request.POST.getlist(ques)
+                answer = request.POST.getlist(ans)
+                for i in range(len(question)):
+                    if question[i] == "":
+                        continue
+                    # print(question[i])
+                    # print(answer[i])
+                    Service_FAQ.objects.create(name="Content Writer", question=question[i], answer=answer[i])
+                continue
+            if request.POST.get(ques) == "":
+                continue
+            question = request.POST.get(ques)
+            answer = request.POST.get(ans)
+            Service_FAQ.objects.create(name="Content Writer", question=question, answer=answer)
+            # print(question, answer)
+
+
+    overview = Service_Overview.objects.filter(name="Content Writer")
+    faq = Service_FAQ.objects.filter(name="Content Writer")
+    documents = Service_Document.objects.filter(name="Content Writer")
+    return render(request, 'snapinsight/contentwriter/overview.html', {'overview':overview[0], 'faq':faq, 'documents':documents})
 
 def contentwriter_articles(request):
     return render(request, 'snapinsight/contentwriter/article.html')
@@ -691,7 +824,34 @@ def contentwriter_resources(request):
     return render(request, 'snapinsight/contentwriter/resources.html')
 
 def contentwriter_postdesign(request):
-    return render(request, 'snapinsight/contentwriter/postdesign.html')
+    if request.method == "POST":
+        pdt_count = Contentwriter_PTD.objects.all().count()
+        Contentwriter_PTD.objects.all().delete()
+        for i in range(pdt_count + 1):
+            n = "name" + str(i)
+            d = "description" + str(i)
+            l = "link" + str(i)
+            # print(i)
+            if i == 0:
+                if len(request.POST.getlist(n)) == 0:
+                    continue
+                name = request.POST.getlist(n)
+                description = request.POST.getlist(d)
+                link = request.POST.getlist(l)
+                for i in range(len(name)):
+                    if name[i] == "":
+                        continue
+                    Contentwriter_PTD.objects.create(name=name[i], description=description[i], link =link[i])
+                continue
+            name = request.POST.get(n)
+            description = request.POST.get(d)
+            link = request.POST.get(l)
+            if name == "":
+                continue
+            Contentwriter_PTD.objects.create(name=name, description=description, link =link)
+
+    pdt = Contentwriter_PTD.objects.all()
+    return render(request, 'snapinsight/contentwriter/postdesign.html', {'pdt':pdt})
 
 def contentwriter_content_strategy(request):
     return render(request, 'snapinsight/contentwriter/tasks.html')

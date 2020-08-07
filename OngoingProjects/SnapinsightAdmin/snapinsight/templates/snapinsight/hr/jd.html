@@ -37,6 +37,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
     <div class="container-fluid dashboard-content ">
+      <form action="/hr/jd/" method="post">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -60,19 +62,20 @@
         </div>
       </div>
       <div class="row">
+        {% for i in jd %}
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
           <div class="section-block">
             <h5 class="section-title">
-              <input class="input_blank inputs" type="text" name="description" value="Position" disabled="disabled">
+              <input class="input_blank inputs" type="text" name="position" value="{{i.position}}" disabled="disabled">
             </h5>
-            <p><input class="input_blank inputs" type="text" name="description" value="desc" disabled="disabled"></p>
+            <p><input class="input_blank inputs" type="text" name="description" value="{{i.description}}" disabled="disabled"></p>
           </div>
           <div class="accrodion-regular">
             <div id="accordion{{forloop.counter}}">
               <div class="card">
                 <div class="card-header" id="heading{{forloop.counter}}1">
                   <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{forloop.counter}}1" aria-expanded="true" aria-controls="collapse{{forloop.counter}}1">
+                    <button type="button"class="btn btn-link" data-toggle="collapse" data-target="#collapse{{forloop.counter}}1" aria-expanded="true" aria-controls="collapse{{forloop.counter}}1">
                       <span class="fas fa-angle-down mr-3"></span>Responsible for
                     </button>
                   </h5>
@@ -80,7 +83,7 @@
                 <div id="collapse{{forloop.counter}}1" class="collapse" aria-labelledby="heading{{forloop.counter}}1" data-parent="#accordion{{forloop.counter}}">
                   <div class="card-body">
                     <p class="lead">
-                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answer{{forloop.counter}}" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="responsible" disabled="disabled">{{i.responsible}}</textarea>
                     </p>
                   </div>
                 </div>
@@ -88,14 +91,14 @@
               <div class="card mb-2">
                 <div class="card-header" id="heading{{forloop.counter}}2">
                   <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{forloop.counter}}2" aria-expanded="false" aria-controls="collapse{{forloop.counter}}2">
+                    <button type="button"class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{forloop.counter}}2" aria-expanded="false" aria-controls="collapse{{forloop.counter}}2">
                       <span class="fas fa-angle-down mr-3"></span>Skills
                     </button> </h5>
                 </div>
                 <div id="collapse{{forloop.counter}}2" class="collapse" aria-labelledby="heading{{forloop.counter}}2" data-parent="#accordion{{forloop.counter}}">
                   <div class="card-body">
                     <p class="lead">
-                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answer{{forloop.counter}}" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="skills" disabled="disabled">{{i.skills}}</textarea>
                     </p>
                   </div>
                 </div>
@@ -103,7 +106,7 @@
               <div class="card mb-2">
                 <div class="card-header" id="heading{{forloop.counter}}3">
                   <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{forloop.counter}}3" aria-expanded="false" aria-controls="collapse{{forloop.counter}}3">
+                    <button type="button"class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapse{{forloop.counter}}3" aria-expanded="false" aria-controls="collapse{{forloop.counter}}3">
                       <span class="fas fa-angle-down mr-3"></span>Benefits
                     </button>
                   </h5>
@@ -111,7 +114,7 @@
                 <div id="collapse{{forloop.counter}}3" class="collapse" aria-labelledby="heading{{forloop.counter}}3" data-parent="#accordion{{forloop.counter}}">
                   <div class="card-body">
                     <p class="lead">
-                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answer{{forloop.counter}}" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="benefits" disabled="disabled">{{i.benefits}}</textarea>
                     </p>
                   </div>
                 </div>
@@ -119,19 +122,20 @@
             </div>
           </div>
         </div>
+        {% endfor %}
         <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12" style="display:none" id="newsoln">
           <div class="section-block">
             <h5 class="section-title">
-              <input class="input_blank inputs" type="text" name="description" value="Position" disabled="disabled">
+              <input class="input_blank inputs" type="text" name="position" disabled="disabled">
             </h5>
-            <p><input class="input_blank inputs" type="text" name="description" value="desc" disabled="disabled"></p>
+            <p><input class="input_blank inputs" type="text" name="description" disabled="disabled"></p>
           </div>
           <div class="accrodion-regular">
             <div id="accordionnew">
               <div class="card">
                 <div class="card-header" id="headingnew1">
                   <h5 class="mb-0">
-                    <button class="btn btn-link" data-toggle="collapse" data-target="#collapsenew1" aria-expanded="true" aria-controls="collapsenew1">
+                    <button type="button" class="btn btn-link" data-toggle="collapse" data-target="#collapsenew1" aria-expanded="true" aria-controls="collapsenew1">
                       <span class="fas fa-angle-down mr-3"></span>Responsible for
                     </button>
                   </h5>
@@ -139,7 +143,7 @@
                 <div id="collapsenew1" class="collapse" aria-labelledby="headingnew1" data-parent="#accordionnew">
                   <div class="card-body">
                     <p class="lead">
-                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answernew" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="responsible" disabled="disabled"></textarea>
                     </p>
                   </div>
                 </div>
@@ -147,14 +151,14 @@
               <div class="card mb-2">
                 <div class="card-header" id="headingnew2">
                   <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsenew2" aria-expanded="false" aria-controls="collapsenew2">
+                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsenew2" aria-expanded="false" aria-controls="collapsenew2">
                       <span class="fas fa-angle-down mr-3"></span>Skills
                     </button> </h5>
                 </div>
                 <div id="collapsenew2" class="collapse" aria-labelledby="headingnew2" data-parent="#accordionnew">
                   <div class="card-body">
                     <p class="lead">
-                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answernew" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="skills" disabled="disabled"></textarea>
                     </p>
                   </div>
                 </div>
@@ -162,7 +166,7 @@
               <div class="card mb-2">
                 <div class="card-header" id="headingnew3">
                   <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsenew3" aria-expanded="false" aria-controls="collapsenew3">
+                    <button type="button" class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapsenew3" aria-expanded="false" aria-controls="collapsenew3">
                       <span class="fas fa-angle-down mr-3"></span>Benefits
                     </button>
                   </h5>
@@ -170,7 +174,7 @@
                 <div id="collapsenew3" class="collapse" aria-labelledby="headingnew3" data-parent="#accordionnew">
                   <div class="card-body">
                     <p class="lead">
-                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="answernew" disabled="disabled">Somethinge Moshi mohsi</textarea>
+                      <textarea style="height:12vh" class="input_blank inputs" type="text" name="benefits" disabled="disabled"></textarea>
                     </p>
                   </div>
                 </div>
@@ -184,8 +188,8 @@
           <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="soln">ADD NEW JOB</div>
         </div>
       </div>
+      </form>
     </div>
   </div>
-</div>
 </div>
 {% endblock content %}

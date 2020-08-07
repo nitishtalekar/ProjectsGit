@@ -37,6 +37,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-ecommerce">
     <div class="container-fluid dashboard-content ">
+      <form action="/hr/portals/" method="POST">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -67,34 +69,36 @@
             <p>Add an optional header and/or footer within a card.</p>
           </div>
         </div>
+        {% for i in cards %}
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
           <div class="card">
             <div class="card-header">
-              <input class="input_blank inputs" type="text" name="name{{forloop.counter}}" value="{{i.name}}" disabled="disabled">
+              <input class="input_blank inputs" type="text" name="card" value="{{i.card}}" disabled="disabled">
             </div>
             <div class="card-body">
-              <p class="card-text"><textarea style="min-height:7vh" class="input_blank inputs" name="description{{forloop.counter}}" disabled="disabled">{{i.description}}</textarea></p>
+              <p class="card-text"><textarea style="min-height:7vh" class="input_blank inputs" name="description" disabled="disabled">{{i.description}}</textarea></p>
               <div class="d-flex justify-content-end">
                 <a href="{{i.link}}" class="btn btn-primary links">Click here</a>
               </div>
               <div class="mt-3 displink" style="display:none">
-                <input class="input_blank inputs text-right" style="width:80%" type="text" name="link{{forloop.counter}}" value="{{i.link}}" disabled="disabled">
+                <input class="input_blank inputs text-right" style="width:80%" type="text" name="link" value="{{i.link}}" disabled="disabled">
               </div>
             </div>
           </div>
         </div>
+        {% endfor %}
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12" id="clone1" style="display:none">
           <div class="card">
             <div class="card-header">
-              <input class="input_blank inputs" type="text" name="name0" value="" disabled="disabled">
+              <input class="input_blank inputs" type="text" name="card" value="" disabled="disabled">
             </div>
             <div class="card-body">
-              <p class="card-text"><textarea style="min-height:7vh" class="input_blank inputs" name="description0" disabled="disabled">{{i.description}}</textarea></p>
+              <p class="card-text"><textarea style="min-height:7vh" class="input_blank inputs" name="description" disabled="disabled"></textarea></p>
               <div class="d-flex justify-content-end">
                 <a href="{{i.link}}" class="btn btn-primary links">Click here</a>
               </div>
               <div class="mt-3">
-                <input class="input_blank inputs text-right" style="width:80%" type="text" name="link0" value="" disabled="disabled">
+                <input class="input_blank inputs text-right" style="width:80%" type="text" name="link" value="" disabled="disabled">
               </div>
             </div>
           </div>
@@ -105,20 +109,7 @@
           <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD</div>
         </div>
       </div>
-    </div>
-    <div clas=="row">
-      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 px-5">
-        <div class="card">
-          <div class="card-header">
-            <input class="input_blank inputs" type="text" name="name0" value="" disabled="disabled">
-          </div>
-          <div class="card-body">
-            <blockquote class="blockquote mb-0">
-              <p><textarea style="min-height:12vh" class="input_blank inputs" name="description0" disabled="disabled">{{i.description}}</textarea></p>
-            </blockquote>
-          </div>
-        </div>
-      </div>
+      </form>
     </div>
   </div>
 </div>

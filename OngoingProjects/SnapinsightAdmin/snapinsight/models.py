@@ -110,4 +110,21 @@ class SEO_Keyword(models.Model):
     name = models.CharField(max_length=500)
     keyword = models.CharField(max_length=500)
 
+class Job_Description(models.Model):
+    position = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
+    responsible = models.CharField(max_length=500)
+    skills = models.CharField(max_length=500)
+    benefits = models.CharField(max_length=500)
+
+class Job_Portal(models.Model):
+    card = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
+    link = models.CharField(max_length=500)
+
+class Contentwriter_PTD(models.Model):
+    name = models.CharField(max_length=500)
+    description = models.CharField(max_length=500)
+    link = models.CharField(max_length=500)
+
 # Create your models here.
