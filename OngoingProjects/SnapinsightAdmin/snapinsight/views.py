@@ -6,6 +6,9 @@ from django.core.files.storage import FileSystemStorage
 
 def index(request):
     return render(request, 'snapinsight/index.html')
+    
+def profile(request):
+    return render(request, 'snapinsight/profile.html')
 
 def overview(request):
     if request.method == "POST":

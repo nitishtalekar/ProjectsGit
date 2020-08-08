@@ -9,6 +9,7 @@ urlpatterns = [
     path('services/',views.services),
     path('legal/',views.legal),
     path('ideas/',views.ideas),
+    path('profile/',views.profile),
 
     path('moodish/overview/',views.moodish_overview),
     path('moodish/projects/',views.moodish_projects),

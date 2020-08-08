@@ -14,3 +14,15 @@
 .input_border:focus{
   outline: none;
 }
+.login_input{
+  background: none;
+  border:none;
+  border-bottom: 4px #1B4485 solid;
+  width:100%;
+  transition: all 1s;
+  color:#1B4485;
+}
+.login_input:focus{
+  outline: none;
+  border-bottom: 4px #4684E6 solid;
+}
