@@ -51,6 +51,8 @@
 <div class="dashboard-wrapper">
   <div class="dashboard-finance">
     <div class="container-fluid dashboard-content">
+      <form action="/moodish/projects/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="page-header">
@@ -75,13 +77,12 @@
       </div>
       <div class="row">
         <div class="offset-xl-10 col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
-          <form>
             <div class="form-group">
               <input class="form-control text-center" type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
             </div>
-          </form>
         </div>
       </div>
+
       <div class="row">
         <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
           <div class="section-block">
@@ -89,14 +90,16 @@
             <p>All documents uploaded under the section main in projects file appear here here</p>
           </div>
         </div>
+        {% for i in doc %}
+        {% if i.tag == 'Main Documents' %}
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
           <div class="card">
             <center>
               <div class="card-header">
-                Design 1
+                {{i.doc_name}}
               </div>
               <div class="card-body">
-                <a href="#" class="btn btn-primary links">Open Document</a>
+                <a href="{{i.doc_link}}" target="_blank" class="btn btn-primary links">Open Document</a>
               </div>
               <div class="col-12 addbtn" style="display:none">
                 <div class="input-group mb-3">
@@ -109,10 +112,13 @@
             </center>
           </div>
         </div>
+        {% endif %}
+        {% endfor %}
+
         <div class="col-12 addbtn" style="display:none">
           <div class="input-group mb-3">
             <div class="custom-file">
-              <input type="file" class="custom-file-input upload" id="inputGroupFile" multiple="multiple">
+              <input type="file" class="custom-file-input upload" name="main_doc" id="inputGroupFile" multiple="multiple" />
               <label class="custom-file-label" for="inputGroupFile">Choose file</label>
             </div>
           </div>
@@ -125,14 +131,16 @@
             <p>Upload all files related to graphics, design, animation</p>
           </div>
         </div>
+        {% for i in doc %}
+        {% if i.tag == 'Design Documents' %}
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
           <div class="card">
             <center>
               <div class="card-header">
-                Design 1
+                {{i.doc_name}}
               </div>
               <div class="card-body">
-                <a href="#" class="btn btn-primary links">Open Document</a>
+                <a href="{{i.doc_link}}" target="_blank" class="btn btn-primary links">Open Document</a>
               </div>
               <div class="col-12 addbtn" style="display:none">
                 <div class="input-group mb-3">
@@ -145,10 +153,12 @@
             </center>
           </div>
         </div>
+        {% endif %}
+        {% endfor %}
         <div class="col-12 addbtn" style="display:none">
           <div class="input-group mb-3">
             <div class="custom-file">
-              <input type="file" class="custom-file-input upload" id="inputGroupFile" multiple="multiple">
+              <input type="file" class="custom-file-input upload" name="design_doc" id="inputGroupFile" multiple="multiple"/>
               <label class="custom-file-label" for="inputGroupFile">Choose file</label>
             </div>
           </div>
@@ -161,14 +171,16 @@
             <p>Add an optional header and/or footer within a card.</p>
           </div>
         </div>
+        {% for i in doc %}
+        {% if i.tag == 'Full Design Documents' %}
         <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
           <div class="card">
             <div class="card-header">
-              Design 1
+              {{i.doc_name}}
             </div>
             <div class="card-body">
               <p class="card-text">Some description of this design</p>
-              <a href="#" class="btn btn-primary links">Link to design</a>
+              <a href="{{i.doc_link}}" target="_blank" class="btn btn-primary links">Link to desigh</a>
             </div>
             <div class="col-12 addbtn" style="display:none">
               <div class="input-group mb-3">
@@ -180,10 +192,12 @@
             </div>
           </div>
         </div>
+        {% endif %}
+        {% endfor %}
         <div class="col-12 addbtn" style="display:none">
           <div class="input-group mb-3">
             <div class="custom-file">
-              <input type="file" class="custom-file-input upload" id="inputGroupFile" multiple="multiple">
+              <input type="file" class="custom-file-input upload" name="full_doc" id="inputGroupFile" multiple="multiple">
               <label class="custom-file-label" for="inputGroupFile">Choose file</label>
             </div>
           </div>
@@ -196,14 +210,16 @@
             <p>All documents uploaded under the section main in projects file appear here here</p>
           </div>
         </div>
+        {% for i in doc %}
+        {% if i.tag == 'Code Documents' %}
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
           <div class="card">
             <center>
               <div class="card-header">
-                Design 1
+                {{i.doc_name}}
               </div>
               <div class="card-body">
-                <a href="#" class="btn btn-primary links">Open Document</a>
+                <a href="{{i.doc_link}}" target="_blank" class="btn btn-primary links">Open Document</a>
               </div>
               <div class="col-12 addbtn" style="display:none">
                 <div class="input-group mb-3">
@@ -216,10 +232,12 @@
             </center>
           </div>
         </div>
+        {% endif %}
+        {% endfor %}
         <div class="col-12 addbtn" style="display:none">
           <div class="input-group mb-3">
             <div class="custom-file">
-              <input type="file" class="custom-file-input upload" id="inputGroupFile" multiple="multiple">
+              <input type="file" class="custom-file-input upload" name="code_doc" id="inputGroupFile" multiple="multiple">
               <label class="custom-file-label" for="inputGroupFile">Choose file</label>
             </div>
           </div>
@@ -232,14 +250,16 @@
             <p>All documents uploaded under this will be for ML</p>
           </div>
         </div>
+        {% for i in doc %}
+        {% if i.tag == 'Requirement Documents' %}
         <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
           <div class="card">
             <center>
               <div class="card-header">
-                Design 1
+                {{i.doc_name}}
               </div>
               <div class="card-body">
-                <a href="#" class="btn btn-primary links">Open Document</a>
+                <a href="{{i.doc_link}}" target="_blank" class="btn btn-primary links">Open Document</a>
               </div>
               <div class="col-12 addbtn" style="display:none">
                 <div class="input-group mb-3">
@@ -252,15 +272,19 @@
             </center>
           </div>
         </div>
+        {% endif %}
+        {% endfor %}
         <div class="col-12 addbtn" style="display:none">
           <div class="input-group mb-3">
             <div class="custom-file">
-              <input type="file" class="custom-file-input upload" id="inputGroupFile" multiple="multiple">
+              <input type="file" class="custom-file-input upload" name="requirement_doc" id="inputGroupFile" multiple="multiple">
               <label class="custom-file-label" for="inputGroupFile">Choose file</label>
             </div>
           </div>
         </div>
       </div>
+      </form>
     </div>
   </div>
+</div>
   {% endblock content %}

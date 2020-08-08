@@ -70,6 +70,7 @@ class Service_Document(models.Model):
     name = models.CharField(max_length=500)
     doc_name = models.CharField(max_length=500)
     doc_link = models.CharField(max_length=500)
+    tag = models.CharField(max_length=500, default="")
 
 class Service_Roadmap(models.Model):
     name = models.CharField(max_length=500)

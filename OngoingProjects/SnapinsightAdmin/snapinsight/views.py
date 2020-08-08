@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import *
 from .models import *
+from django.core.files.storage import FileSystemStorage
 
 
 def index(request):
@@ -45,13 +46,6 @@ def solutions(request):
         Solution_desc.objects.create(description=description, principle="^".join(principle))
         sol = Solutions.objects.all().count()
         Solutions.objects.all().delete()
-        # sol_name = request.POST.get('sol_name')
-        # sol_description = request.POST.get('sol_description')
-        # sol_some_point = request.POST.getlist('sol_some_point')
-        # sol_what = request.POST.get('sol_what')
-        # sol_why = request.POST.get('sol_why')
-        # sol_how = request.POST.get('sol_how')
-        # sol_keyword = request.POST.get('sol_keyword')
         for i in range(sol+1):
             sol_name = "sol_name" + str(i)
             sol_description = "sol_description" + str(i)
@@ -71,10 +65,7 @@ def solutions(request):
             s_how = request.POST.get(sol_how)
             s_keyword = request.POST.getlist(sol_keyword)
             s_keyword = list(filter(lambda a: a != "", s_keyword))
-            # print(request.POST.get(sol_name), request.POST.get(sol_description), request.POST.getlist(sol_some_point), request.POST.get(sol_what), request.POST.get(sol_why), request.POST.get(sol_how), request.POST.getlist(sol_keyword))
-            # print(s_some_point, s_keyword)
             Solutions.objects.create(name=s_name, description=s_description, some_point="^".join(s_some_point), what=s_what, why=s_why, how=s_how, keyword="^".join(s_keyword))
-        # print(description, principle, sol_name, sol_description, sol_some_point, sol_what, sol_why, sol_how, sol_keyword)
 
 
     sol_desc = Solution_desc.objects.all()
@@ -117,7 +108,6 @@ def games(request):
             game_why = "game_why" + str(i)
             game_how = "game_how" + str(i)
             game_keyword = "game_keyword" + str(i)
-            # print(game_name, request.POST.get(game_name), request.POST.get(game_description))
             if request.POST.get(game_name) == "":
                 continue
             g_name = request.POST.get(game_name)
@@ -220,7 +210,6 @@ def moodish_overview(request):
         start_date = request.POST.get('start_date')
         end_date = request.POST.get('end_date')
         Service_Overview.objects.filter(name="Moodish").update(description=description, version=version, features=features, start_date=start_date, end_date=end_date)
-        # print(description, version, features, start_date, end_date)
         faq_count = Service_FAQ.objects.filter(name="Moodish").count()
         Service_FAQ.objects.filter(name="Moodish").delete()
         for i in range(faq_count + 1):
@@ -245,7 +234,6 @@ def moodish_overview(request):
             question = request.POST.get(ques)
             answer = request.POST.get(ans)
             Service_FAQ.objects.create(name="Moodish", question=question, answer=answer)
-            # print(question, answer)
 
 
     overview = Service_Overview.objects.filter(name="Moodish")
@@ -254,7 +242,49 @@ def moodish_overview(request):
     return render(request, 'snapinsight/moodish/overview.html', {'overview':overview[0], 'faq':faq, 'documents':documents})
 
 def moodish_projects(request):
-    return render(request, 'snapinsight/moodish/projects.html')
+    if request.method == "POST":
+        main_doc = request.FILES.getlist("main_doc")
+        code_doc = request.FILES.getlist("code_doc")
+        full_doc = request.FILES.getlist("full_doc")
+        design_doc = request.FILES.getlist("design_doc")
+        requirement_doc = request.FILES.getlist("requirement_doc")
+
+        fs = FileSystemStorage(location='snapinsight/media/Moodish/Main Documents/')
+        for i in main_doc:
+            og_name = i.name
+            link = "snapinsight/media/ML/Main Documents/" + i.name
+            Service_Document.objects.create(name="Moodish", doc_name=og_name.split(".")[0], doc_link=link, tag="Main Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/Moodish/Code Documents/')
+        for i in code_doc:
+            og_name = i.name
+            link = "snapinsight/media/ML/Code Documents/" + i.name
+            Service_Document.objects.create(name="Moodish", doc_name=og_name.split(".")[0], doc_link=link, tag="Code Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/Moodish/Design Documents/')
+        for i in full_doc:
+            og_name = i.name
+            link = "snapinsight/media/ML/Design Documents/" + i.name
+            Service_Document.objects.create(name="Moodish", doc_name=og_name.split(".")[0], doc_link=link, tag="Design Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/Moodish/Full Design Documents/')
+        for i in design_doc:
+            og_name = i.name
+            link = "snapinsight/media/ML/Full Design Documents/" + i.name
+            Service_Document.objects.create(name="Moodish", doc_name=og_name.split(".")[0], doc_link=link, tag="Full Design Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/Moodish/Requirement Documents/')
+        for i in requirement_doc:
+            og_name = i.name
+            link = "snapinsight/media/ML/Requirement Documents/" + i.name
+            Service_Document.objects.create(name="Moodish", doc_name=og_name.split(".")[0], doc_link=link, tag="Requirement Documents")
+            filename = fs.save(og_name, i)
+    doc = Service_Document.objects.filter(name="Moodish")
+    return render(request, 'snapinsight/moodish/projects.html', {'doc':doc})
 
 def moodish_resources(request):
     return render(request, 'snapinsight/moodish/resources.html')
@@ -270,14 +300,12 @@ def moodish_roadmap(request):
                 continue
             step = request.POST.get(s)
             date = request.POST.get(d)
-            # print(step, date)
             Service_Roadmap.objects.create(name="Moodish", step=step, date=date, tag="0")
         new_step = request.POST.getlist("step-1")
         new_date = request.POST.getlist("date-1")
         for i in range(len(new_step)):
             if new_step[i] == "":
                 continue
-            # print(new_step[i], new_date[i])
             Service_Roadmap.objects.create(name="Moodish", step=new_step[i], date=new_date[i], tag="0")
         final_step = request.POST.get("final_step")
         final_date = request.POST.get("final_date")
@@ -304,7 +332,6 @@ def runner_overview(request):
         start_date = request.POST.get('start_date')
         end_date = request.POST.get('end_date')
         Service_Overview.objects.filter(name="Runner").update(description=description, version=version, features=features, start_date=start_date, end_date=end_date)
-        # print(description, version, features, start_date, end_date)
         faq_count = Service_FAQ.objects.filter(name="Runner").count()
         Service_FAQ.objects.filter(name="Runner").delete()
         for i in range(faq_count + 1):
@@ -320,8 +347,6 @@ def runner_overview(request):
                 for i in range(len(question)):
                     if question[i] == "":
                         continue
-                    # print(question[i])
-                    # print(answer[i])
                     Service_FAQ.objects.create(name="Runner", question=question[i], answer=answer[i])
                 continue
             if request.POST.get(ques) == "":
@@ -354,19 +379,16 @@ def runner_roadmap(request):
                 continue
             step = request.POST.get(s)
             date = request.POST.get(d)
-            # print(step, date)
             Service_Roadmap.objects.create(name="Runner", step=step, date=date, tag="0")
         new_step = request.POST.getlist("step-1")
         new_date = request.POST.getlist("date-1")
         for i in range(len(new_step)):
             if new_step[i] == "":
                 continue
-            # print(new_step[i], new_date[i])
             Service_Roadmap.objects.create(name="Runner", step=new_step[i], date=new_date[i], tag="0")
         final_step = request.POST.get("final_step")
         final_date = request.POST.get("final_date")
         if final_step != "":
-            # print(final_date, final_step)
             Service_Roadmap.objects.create(name="Runner", step=final_step, date=final_date, tag="1")
     roadmap = Service_Roadmap.objects.filter(name="Runner", tag="0")
     try:
@@ -391,7 +413,6 @@ def ml_overview(request):
         start_date = request.POST.get('start_date')
         end_date = request.POST.get('end_date')
         Service_Overview.objects.filter(name="ML").update(description=description, version=version, features=features, start_date=start_date, end_date=end_date)
-        # print(description, version, features, start_date, end_date)
         faq_count = Service_FAQ.objects.filter(name="ML").count()
         Service_FAQ.objects.filter(name="ML").delete()
         for i in range(faq_count + 1):
@@ -407,8 +428,6 @@ def ml_overview(request):
                 for i in range(len(question)):
                     if question[i] == "":
                         continue
-                    # print(question[i])
-                    # print(answer[i])
                     Service_FAQ.objects.create(name="ML", question=question[i], answer=answer[i])
                 continue
             if request.POST.get(ques) == "":
@@ -416,7 +435,6 @@ def ml_overview(request):
             question = request.POST.get(ques)
             answer = request.POST.get(ans)
             Service_FAQ.objects.create(name="ML", question=question, answer=answer)
-            # print(question, answer)
 
 
     overview = Service_Overview.objects.filter(name="ML")
@@ -441,14 +459,12 @@ def ml_roadmap(request):
                 continue
             step = request.POST.get(s)
             date = request.POST.get(d)
-            # print(step, date)
             Service_Roadmap.objects.create(name="ML", step=step, date=date, tag="0")
         new_step = request.POST.getlist("step-1")
         new_date = request.POST.getlist("date-1")
         for i in range(len(new_step)):
             if new_step[i] == "":
                 continue
-            # print(new_step[i], new_date[i])
             Service_Roadmap.objects.create(name="ML", step=new_step[i], date=new_date[i], tag="0")
         final_step = request.POST.get("final_step")
         final_date = request.POST.get("final_date")
@@ -473,12 +489,7 @@ def ml_tasks(request):
 def marketing_overview(request):
     if request.method == "POST":
         description = request.POST.get('description')
-        # version = request.POST.get('version')
-        # features = request.POST.get('features')
-        # start_date = request.POST.get('start_date')
-        # end_date = request.POST.get('end_date')
         Service_Overview.objects.filter(name="Marketing").update(description=description, version="", features="", start_date="", end_date="")
-        # print(description, version, features, start_date, end_date)
         faq_count = Service_FAQ.objects.filter(name="Marketing").count()
         Service_FAQ.objects.filter(name="Marketing").delete()
         for i in range(faq_count + 1):
@@ -494,8 +505,6 @@ def marketing_overview(request):
                 for i in range(len(question)):
                     if question[i] == "":
                         continue
-                    # print(question[i])
-                    # print(answer[i])
                     Service_FAQ.objects.create(name="Marketing", question=question[i], answer=answer[i])
                 continue
             if request.POST.get(ques) == "":
@@ -503,7 +512,6 @@ def marketing_overview(request):
             question = request.POST.get(ques)
             answer = request.POST.get(ans)
             Service_FAQ.objects.create(name="Marketing", question=question, answer=answer)
-            # print(question, answer)
 
 
     overview = Service_Overview.objects.filter(name="Marketing")
@@ -549,19 +557,16 @@ def marketing_roadmap(request):
                 continue
             step = request.POST.get(s)
             date = request.POST.get(d)
-            # print(step, date)
             Service_Roadmap.objects.create(name="Marketing", step=step, date=date, tag="0")
         new_step = request.POST.getlist("step-1")
         new_date = request.POST.getlist("date-1")
         for i in range(len(new_step)):
             if new_step[i] == "":
                 continue
-            # print(new_step[i], new_date[i])
             Service_Roadmap.objects.create(name="Marketing", step=new_step[i], date=new_date[i], tag="0")
         final_step = request.POST.get("final_step")
         final_date = request.POST.get("final_date")
         if final_step != "":
-            # print(final_date, final_step)
             Service_Roadmap.objects.create(name="Marketing", step=final_step, date=final_date, tag="1")
     roadmap = Service_Roadmap.objects.filter(name="Marketing", tag="0")
     try:
@@ -582,7 +587,6 @@ def marketing_social_design_templates(request):
             n = "name" + str(i)
             d = "description" + str(i)
             l = "link" + str(i)
-            # print(i)
             if i == 0:
                 if len(request.POST.getlist(n)) == 0:
                     continue
@@ -665,12 +669,7 @@ def marketing_email_list(request):
 def hr_overview(request):
     if request.method == "POST":
         description = request.POST.get('description')
-        # version = request.POST.get('version')
-        # features = request.POST.get('features')
-        # start_date = request.POST.get('start_date')
-        # end_date = request.POST.get('end_date')
         Service_Overview.objects.filter(name="HR").update(description=description, version="", features="", start_date="", end_date="")
-        # print(description, version, features, start_date, end_date)
         faq_count = Service_FAQ.objects.filter(name="HR").count()
         Service_FAQ.objects.filter(name="HR").delete()
         for i in range(faq_count + 1):
@@ -686,8 +685,6 @@ def hr_overview(request):
                 for i in range(len(question)):
                     if question[i] == "":
                         continue
-                    # print(question[i])
-                    # print(answer[i])
                     Service_FAQ.objects.create(name="HR", question=question[i], answer=answer[i])
                 continue
             if request.POST.get(ques) == "":
@@ -695,7 +692,6 @@ def hr_overview(request):
             question = request.POST.get(ques)
             answer = request.POST.get(ans)
             Service_FAQ.objects.create(name="HR", question=question, answer=answer)
-            # print(question, answer)
 
 
     overview = Service_Overview.objects.filter(name="HR")
@@ -730,19 +726,16 @@ def hr_roadmap(request):
                 continue
             step = request.POST.get(s)
             date = request.POST.get(d)
-            # print(step, date)
             Service_Roadmap.objects.create(name="HR", step=step, date=date, tag="0")
         new_step = request.POST.getlist("step-1")
         new_date = request.POST.getlist("date-1")
         for i in range(len(new_step)):
             if new_step[i] == "":
                 continue
-            # print(new_step[i], new_date[i])
             Service_Roadmap.objects.create(name="HR", step=new_step[i], date=new_date[i], tag="0")
         final_step = request.POST.get("final_step")
         final_date = request.POST.get("final_date")
         if final_step != "":
-            # print(final_date, final_step)
             Service_Roadmap.objects.create(name="HR", step=final_step, date=final_date, tag="1")
     roadmap = Service_Roadmap.objects.filter(name="HR", tag="0")
     try:
@@ -771,7 +764,6 @@ def hr_jd(request):
             if position[i] == "":
                 continue
             Job_Description.objects.create(position=position[i], description=description[i], responsible=responsible[i], skills=skills[i], benefits=benefits[i])
-            # print(position[i], description[i], responsible[i], skills[i], benefits[i])
     jd = Job_Description.objects.all()
     return render(request, 'snapinsight/hr/jd.html', {'jd':jd})
 
@@ -779,12 +771,7 @@ def hr_jd(request):
 def contentwriter_overview(request):
     if request.method == "POST":
         description = request.POST.get('description')
-        # version = request.POST.get('version')
-        # features = request.POST.get('features')
-        # start_date = request.POST.get('start_date')
-        # end_date = request.POST.get('end_date')
         Service_Overview.objects.filter(name="Content Writer").update(description=description, version="", features="", start_date="", end_date="")
-        # print(description, version, features, start_date, end_date)
         faq_count = Service_FAQ.objects.filter(name="Content Writer").count()
         Service_FAQ.objects.filter(name="Content Writer").delete()
         for i in range(faq_count + 1):
@@ -800,8 +787,6 @@ def contentwriter_overview(request):
                 for i in range(len(question)):
                     if question[i] == "":
                         continue
-                    # print(question[i])
-                    # print(answer[i])
                     Service_FAQ.objects.create(name="Content Writer", question=question[i], answer=answer[i])
                 continue
             if request.POST.get(ques) == "":
@@ -809,7 +794,6 @@ def contentwriter_overview(request):
             question = request.POST.get(ques)
             answer = request.POST.get(ans)
             Service_FAQ.objects.create(name="Content Writer", question=question, answer=answer)
-            # print(question, answer)
 
 
     overview = Service_Overview.objects.filter(name="Content Writer")
@@ -831,7 +815,6 @@ def contentwriter_postdesign(request):
             n = "name" + str(i)
             d = "description" + str(i)
             l = "link" + str(i)
-            # print(i)
             if i == 0:
                 if len(request.POST.getlist(n)) == 0:
                     continue

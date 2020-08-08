@@ -1,0 +1,98 @@
+{% extends 'snapinsight/base.html' %}
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#edit").click(function() {
+      $(".addbtn").each(function() {
+        $(this).slideDown("slow");
+      });
+      $(".inputs").each(function() {
+        $(this).attr('disabled', false);
+        $(this).attr('class', 'input_border inputs');
+      });
+      $("#close").show();
+      $("#save").show();
+      $(".links").each(function(){
+        $(this).prop("href","#");
+        $(this).prop("class","btn btn-dark");
+      });
+    });
+    $("#close").click(function() {
+      location.reload(true);
+    });
+    $(".addbtn").each(function() {
+      $(this).click(function() {
+        var id = $(this).attr('id');
+        var clone = "#clone" + id;
+        var append = "#append" + id;
+        $(clone).clone().prop("style", "").appendTo(append);
+      });
+    });
+    $('.upload').on('change', function() {
+      console.log("Here");
+      var names = [];
+      for (var i = 0; i < $(this).get(0).files.length; ++i) {
+          names.push($(this).get(0).files[i].name);
+      }
+      console.log(names);
+      $(this).next('.custom-file-label').html(names.join());
+    });
+    $('.reupload').on('change', function() {
+      var fileName = $(this).val();
+      var fl = fileName.split("\\");
+      var name = fl[fl.length - 1];
+      $(this).next('.custom-file-label').html(name);
+    });
+  });
+</script>
+{% endblock script %}
+
+{% block content %}
+<div class="dashboard-wrapper">
+  <div class="dashboard-finance">
+    <div class="container-fluid dashboard-content">
+      <form action="/moodish/projects/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+      <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+          <div class="page-header">
+            <div class="d-flex justify-content-between">
+              <h2 class="pageheader-title">Moodish</h2>
+              <div class="d-flex justify-content-end">
+                <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" value="test" type="submit" name="button">Save</button>
+                <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
+              </div>
+            </div>
+            <div class="page-breadcrumb">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Tasks</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 addbtn" style="display:none">
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input upload" name="mdoc" id="inputGroupFile" multiple="multiple">
+            <label class="custom-file-label" for="inputGroupFile">Choose file</label>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 addbtn" style="display:none">
+        <div class="input-group mb-3">
+          <div class="custom-file">
+            <input type="file" class="custom-file-input upload" id="inputGroupFile" multiple="multiple">
+            <label class="custom-file-label" for="inputGroupFile">Choose file</label>
+          </div>
+        </div>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+  {% endblock content %}
