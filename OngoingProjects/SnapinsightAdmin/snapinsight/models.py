@@ -128,4 +128,12 @@ class Contentwriter_PTD(models.Model):
     description = models.CharField(max_length=500)
     link = models.CharField(max_length=500)
 
+class Resources(models.Model):
+    id = models.AutoField(primary_key=True)
+    description = models.CharField(max_length=500)
+    link = models.CharField(max_length=500, default="")
+    file = models.CharField(max_length=500, default="")
+    name = models.CharField(max_length=500, default="")
+    file_name = models.CharField(max_length=500, default="")
+
 # Create your models here.

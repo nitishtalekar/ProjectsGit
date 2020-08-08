@@ -2,11 +2,12 @@ from django.shortcuts import render
 from .forms import *
 from .models import *
 from django.core.files.storage import FileSystemStorage
+from os import listdir
 
 
 def index(request):
     return render(request, 'snapinsight/index.html')
-    
+
 def profile(request):
     return render(request, 'snapinsight/profile.html')
 
@@ -246,6 +247,19 @@ def moodish_overview(request):
 
 def moodish_projects(request):
     if request.method == "POST":
+        if request.POST.get("delete") != "add":
+            id = request.POST.get("delete")
+            # print(id)
+            file = Service_Document.objects.get(id=id).doc_link
+            name = file.split("/")[-1]
+            # print(name)
+            path = "/".join(file.split("/")[:-1])
+            fs = FileSystemStorage(location=path)
+            dir = listdir(path)
+            [fs.delete(i) for i in dir if i == name]
+            Service_Document.objects.filter(id=id).delete()
+            doc = Service_Document.objects.filter(name="Moodish")
+            return render(request, 'snapinsight/moodish/projects.html', {'doc':doc})
         main_doc = request.FILES.getlist("main_doc")
         code_doc = request.FILES.getlist("code_doc")
         full_doc = request.FILES.getlist("full_doc")
@@ -290,7 +304,8 @@ def moodish_projects(request):
     return render(request, 'snapinsight/moodish/projects.html', {'doc':doc})
 
 def moodish_resources(request):
-    return render(request, 'snapinsight/moodish/resources.html')
+    resource = Resources.objects.filter(name="Moodish")
+    return render(request, 'snapinsight/moodish/resources.html', {'resource':resource})
 
 def moodish_roadmap(request):
     if request.method == "POST":
