@@ -21,16 +21,16 @@
                 <img src="{% static 'assets/images/avatar-1.jpg' %}" alt="User Avatar" class="rounded-circle user-avatar-xxl">
               </div>
               <div class="text-center">
-                <h2 class="font-24 mb-0">Michael J. Christy</h2>
-                <p>Project Manager @Influnce</p>
+                <h2 class="font-24 mb-0">{{user.fname}} {{user.lname}}</h2>
+                <p>{{user.position}} @Influnce</p>
               </div>
             </div>
             <div class="card-body border-top">
               <h3 class="font-16">Contact Information</h3>
               <div class="">
                 <ul class="list-unstyled mb-0">
-                  <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>michaelchristy@gmail.com</li>
-                  <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>(900) 123 4567</li>
+                  <li class="mb-2"><i class="fas fa-fw fa-envelope mr-2"></i>{{user.email}}</li>
+                  <li class="mb-0"><i class="fas fa-fw fa-phone mr-2"></i>{{user.phone}}</li>
                 </ul>
               </div>
             </div>
@@ -39,12 +39,12 @@
               <h3 class="font-16">Social Channels</h3>
               <div class="">
                 <ul class="mb-0 list-unstyled">
-                  <li class="mb-1"><a href="#"><i class="fab fa-fw fa-facebook-square mr-1 facebook-color"></i>fb.me/michaelchristy</a></li>
-                  <li class="mb-1"><a href="#"><i class="fab fa-fw fa-twitter-square mr-1 twitter-color"></i>twitter.com/michaelchristy</a></li>
-                  <li class="mb-1"><a href="#"><i class="fab fa-fw fa-instagram mr-1 instagram-color"></i>instagram.com/michaelchristy</a></li>
-                  <li class="mb-1"><a href="#"><i class="fas fa-fw fa-rss-square mr-1 rss-color"></i>michaelchristy.com/blog</a></li>
-                  <li class="mb-1"><a href="#"><i class="fab fa-fw fa-pinterest-square mr-1 pinterest-color"></i>pinterest.com/michaelchristy</a></li>
-                  <li class="mb-1"><a href="#"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>youtube/michaelchristy</a></li>
+                  <li class="mb-1"><a href="{{user.fb}}"><i class="fab fa-fw fa-facebook-square mr-1 facebook-color"></i>{{user.fb}}</a></li>
+                  <li class="mb-1"><a href="{{user.twitter}}"><i class="fab fa-fw fa-twitter-square mr-1 twitter-color"></i>{{user.twitter}}</a></li>
+                  <li class="mb-1"><a href="{{user.insta}}"><i class="fab fa-fw fa-instagram mr-1 instagram-color"></i>{{user.insta}}</a></li>
+                  <li class="mb-1"><a href="{{user.blog}}"><i class="fas fa-fw fa-rss-square mr-1 rss-color"></i>{{user.blog}}</a></li>
+                  <li class="mb-1"><a href="{{user.pintrest}}"><i class="fab fa-fw fa-pinterest-square mr-1 pinterest-color"></i>{{user.pintrest}}</a></li>
+                  <li class="mb-1"><a href="{{user.youtube}}"><i class="fab fa-fw fa-youtube mr-1 youtube-color"></i>{{user.youtube}}</a></li>
                 </ul>
               </div>
             </div>
@@ -187,7 +187,7 @@
                           </div>
                         </div>
                       </div>
-                      
+
                       <div class="card-body">
                         <center>
                         <div class="table-responsive">

@@ -30,23 +30,27 @@
       <div class="row d-flex justify-content-center align-items-center" style="min-height:100vh">
         <div class="col-lg-6 col-10 d-flex justify-content-center align-items-center py-5">
           <div class="container-fluid mb-2">
+            <form action="/" method="POST">
+              {% csrf_token %}
             <div class="row">
               <div class="col-12 d-flex justify-content-center mb-5">
                 <p class="navbar-brand">
                   SNAPINSIGHT
                 </p>
               </div>
+
               <div class="col-12 d-flex justify-content-center mb-5">
-                <input class="login_input" type="text" name="" value="" placeholder="Postion">
+                <input class="login_input" type="text" name="uname" value="" placeholder="User Name">
               </div>
               <div class="col-12 d-flex justify-content-center mb-5">
-                <input class="login_input" type="password" name="" value="" placeholder="Password">
+                <input class="login_input" type="password" name="password" value="" placeholder="Password">
               </div>
               <div class="col-12 d-flex justify-content-center mb-5">
                 <!-- <button type="submit" class="btn btn-primary" name="button" style="width:50%"> LOG IN </button> -->
-                <a href="profile/" type="submit" class="btn btn-primary" name="button" style="width:50%"> LOG IN </a>
+                <button type="submit" class="btn btn-primary" name="button" style="width:50%"> LOG IN </button>
               </div>
             </div>
+            </form>
           </div>
         </div>
       </div>

@@ -136,4 +136,24 @@ class Resources(models.Model):
     name = models.CharField(max_length=500, default="")
     file_name = models.CharField(max_length=500, default="")
 
+class Users(models.Model):
+    uname = models.CharField(max_length=500)
+    fname = models.CharField(max_length=500)
+    lname = models.CharField(max_length=500)
+    position = models.CharField(max_length=500)
+    email = models.CharField(max_length=500)
+    phone = models.CharField(max_length=500)
+    fb = models.CharField(max_length=500)
+    twitter = models.CharField(max_length=500)
+    insta = models.CharField(max_length=500)
+    blog = models.CharField(max_length=500)
+    pintrest = models.CharField(max_length=500)
+    youtube = models.CharField(max_length=500)
+    tag = models.CharField(max_length=500)
+    password = models.CharField(max_length=500, default="")
+
+class Position_Map(models.Model):
+    position = models.CharField(max_length=500)
+    tag = models.CharField(max_length=500)
+
 # Create your models here.
