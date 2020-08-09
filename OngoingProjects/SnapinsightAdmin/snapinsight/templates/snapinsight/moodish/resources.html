@@ -27,6 +27,12 @@
         $(clone).clone().prop("style", "").appendTo(append);
       });
     });
+    $("#soln").click(function(){
+      $('#newsoln').slideDown('slow');
+      $("#soln").html("Save solution to add another");
+      $("#soln").prop('disabled',true);
+      $("#soln").prop("class","btn btn-dark px-3 mb-3 text-uppercase")
+    });
     $('.upload').on('change', function() {
       var fileName = $(this).val();
       var fl = fileName.split("\\");
@@ -49,7 +55,7 @@
               <h2 class="pageheader-title">Moodish</h2>
               <div class="d-flex justify-content-end">
                 <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
-                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="submit" name="button">Save</button>
+                <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" type="submit" name="delete" value="add">Save</button>
                 <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
               </div>
             </div>
@@ -82,10 +88,10 @@
                       <th class="remove" style="display:none">Remove</th>
                     </tr>
                   </thead>
-                  <tbody id="append1">
+                  <tbody>
                     {% for i in resource %}
                     <tr>
-                      <th>i.description</th>
+                      <th>{{i.description}}</th>
                       <th>
                         <div class="d-flex justify-content-start align-items-center">
                           <a href="{{i.link}}" class="btn btn-primary">Visit</a>
@@ -109,18 +115,18 @@
                       </th>
                     </tr>
                     {% endfor %}
-                    <tr id="clone1" style="display:none">
-                      <th><input class="input_blank inputs" type="text" name="question0" value="" disabled="disabled"></th>
+                    <tr id="newsoln" style="display:none">
+                      <th><input class="input_blank inputs" type="text" name="description" value="" disabled="disabled"></th>
                       <th>
                         <div class="d-flex justify-content-start align-items-center">
                           <a href="#" class="btn btn-dark">Visit</a>
                           &nbsp;&nbsp;
-                          <input class="input_blank inputs" type="text" name="question0" value="" disabled="disabled">
+                          <input class="input_blank inputs" type="text" name="link" value="" disabled="disabled">
                         </div>
                       </th>
                       <th>
                         <div class="d-flex justify-content-start align-items-center">
-                          <input class="btn btn-dark" type="file" name="" value="">
+                          <input class="btn btn-dark" type="file" name="resource_doc" />
                         </div>
                       </th>
                       <th class="remove" style="display:none">
@@ -143,7 +149,7 @@
           </div>
         </div>
         <div class="col-12 d-flex justify-content-center">
-          <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="1">ADD New Resource</div>
+          <div class="btn btn-primary px-3 mb-3 text-uppercase addbtn" style="display:none" id="soln">ADD New Resource</div>
         </div>
       </div>
     </form>

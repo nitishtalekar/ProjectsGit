@@ -1,201 +1,264 @@
 {% extends 'snapinsight/base.html' %}
+{% block script %}
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#edit").click(function() {
+      $(".addbtn").each(function() {
+        $(this).slideDown("slow");
+      });
+      $(".inputs").each(function() {
+        $(this).attr('disabled', false);
+        $(this).attr('class', 'input_border inputs');
+      });
+      $("#close").show();
+      $("#save").show();
+      $(".links").each(function() {
+        $(this).prop("href", "#");
+        $(this).prop("class", "btn btn-dark");
+      });
+    });
+    $("#close").click(function() {
+      location.reload(true);
+    });
+    $(".addbtn").each(function() {
+      $(this).click(function() {
+        var id = $(this).attr('id');
+        var clone = "#clone" + id;
+        var append = "#append" + id;
+        $(clone).clone().prop("style", "").appendTo(append);
+      });
+    });
+    $('.upload').on('change', function() {
+      console.log("Here");
+      var names = [];
+      for (var i = 0; i < $(this).get(0).files.length; ++i) {
+        names.push($(this).get(0).files[i].name);
+      }
+      console.log(names);
+      $(this).next('.custom-file-label').html(names.join());
+    });
+    $('.reupload').on('change', function() {
+      var fileName = $(this).val();
+      var fl = fileName.split("\\");
+      var name = fl[fl.length - 1];
+      $(this).next('.custom-file-label').html(name);
+    });
+  });
+</script>
+{% endblock script %}
+
 {% block content %}
-
-
 <div class="dashboard-wrapper">
   <div class="dashboard-finance">
     <div class="container-fluid dashboard-content">
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <div class="page-header">
-            <h3 class="mb-2">Runner </h3>
-            <div class="page-breadcrumb">
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Tasks</li>
-                </ol>
-              </nav>
+      <form action="/runner/projects/" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="page-header">
+              <div class="d-flex justify-content-between">
+                <h2 class="pageheader-title">Runner</h2>
+                <div class="d-flex justify-content-end">
+                  <button style="display:none" class="btn btn-danger text-uppercase px-2 py-2 mx-3 my-2" id="close" type="button" name="button">Close</button>
+                  <button style="display:none" type="submit" class="btn btn-primary text-uppercase px-2 py-2 mx-3 my-2" id="save" value="add" type="submit" name="delete">Save</button>
+                  <button class="btn btn-dark text-uppercase px-2 py-2 mx-3 my-2" id="edit" type="button" name="button">Edit</button>
+                </div>
+              </div>
+              <div class="page-breadcrumb">
+                <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#" class="breadcrumb-link">Dashboard</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Tasks</li>
+                  </ol>
+                </nav>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="offset-xl-10 col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
-          <form>
+        <div class="row">
+          <div class="offset-xl-10 col-xl-2 col-lg-2 col-md-6 col-sm-12 col-12">
             <div class="form-group">
               <input class="form-control text-center" type="text" name="daterange" value="01/01/2018 - 01/15/2018" />
             </div>
-          </form>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <div class="section-block">
-            <h5 class="section-title">Main Documents</h5>
-            <p>All documents uploaded under the section main in projects file appear here here</p>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <center>
-              <div class="card-header">
-                Design 1
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">Open Document</a>
-              </div>
-            </center>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <center>
-              <div class="card-header">
-                Design 1
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">Open Document</a>
-              </div>
-            </center>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <div class="section-block">
-            <h5 class="section-title">Design/ Graphic related Documents</h5>
-            <p>Upload all files related to graphics, design, animation</p>
-          </div>
-
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <center>
-              <div class="card-header">
-                Design 1
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">Open Document</a>
-              </div>
-            </center>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <center>
-              <div class="card-header">
-                Design 1
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">Open Document</a>
-              </div>
-            </center>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <div class="section-block" id="headerfooter">
-            <h3 class="section-title">Full design</h3>
-            <p>Add an optional header and/or footer within a card.</p>
           </div>
         </div>
 
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-          <div class="card">
+        <div class="row">
+          <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+            <div class="section-block">
+              <h5 class="section-title">Main Documents</h5>
+              <p>All documents uploaded under the section main in projects file appear here here</p>
+            </div>
+          </div>
+          {% for i in doc %}
+          {% if i.tag == 'Main Documents' %}
+          <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+            <div class="card">
+              <center>
+                <div class="card-header">
+                  {{i.doc_name}}
+                </div>
+                <div class="card-body">
+                  <a href="{{i.doc_link}}" target="_blank" class="btn btn-primary links">Open Document</a>
+                </div>
+                <div class="col-12 addbtn mb-2" style="display:none">
+                  <button type="submit" class="btn btn-danger" name="delete" value="{{i.id}}">Remove</button>
+                </div>
+            </div>
+            </center>
+          </div>
+        {% endif %}
+        {% endfor %}
+        <div class="col-12 addbtn" style="display:none">
+          <div class="input-group mb-3">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input upload" name="main_doc" id="inputGroupFile" multiple="multiple" />
+              <label class="custom-file-label" for="inputGroupFile">Choose file</label>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+        <div class="section-block">
+          <h5 class="section-title">Design/ Graphic related Documents</h5>
+          <p>Upload all files related to graphics, design, animation</p>
+        </div>
+      </div>
+      {% for i in doc %}
+      {% if i.tag == 'Design Documents' %}
+      <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+        <div class="card">
+          <center>
             <div class="card-header">
-              Design 1
+              {{i.doc_name}}
             </div>
             <div class="card-body">
-              <p class="card-text">Some description of this design</p>
-              <a href="#" class="btn btn-primary">Link to design</a>
+              <a href="{{i.doc_link}}" target="_blank" class="btn btn-primary links">Open Document</a>
             </div>
-
-          </div>
+            <div class="col-12 addbtn mb-2" style="display:none">
+              <button type="submit" class="btn btn-danger" name="delete" value="{{i.id}}">Remove</button>
+            </div>
         </div>
-        <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <div class="card-header">
-              Design 2
-            </div>
-            <div class="card-body">
-              <p class="card-text">Some description of this design</p>
-              <a href="#" class="btn btn-primary">Link to design</a>
-            </div>
-
-          </div>
+        </center>
+      </div>
+    {% endif %}
+    {% endfor %}
+    <div class="col-12 addbtn" style="display:none">
+      <div class="input-group mb-3">
+        <div class="custom-file">
+          <input type="file" class="custom-file-input upload" name="design_doc" id="inputGroupFile" multiple="multiple" />
+          <label class="custom-file-label" for="inputGroupFile">Choose file</label>
         </div>
       </div>
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <div class="section-block">
-            <h5 class="section-title">Code Folders</h5>
-            <p>All documents uploaded under the section main in projects file appear here here</p>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <center>
-              <div class="card-header">
-                Design 1
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">Open Document</a>
-              </div>
-            </center>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <center>
-              <div class="card-header">
-                Design 1
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">Open Document</a>
-              </div>
-            </center>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-          <div class="section-block">
-            <h5 class="section-title">ML project requirement files </h5>
-            <p>All documents uploaded under this will be for ML</p>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <center>
-              <div class="card-header">
-                Design 1
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">Open Document</a>
-              </div>
-            </center>
-          </div>
-        </div>
-        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
-          <div class="card">
-            <center>
-              <div class="card-header">
-                Design 1
-              </div>
-              <div class="card-body">
-                <a href="#" class="btn btn-primary">Open Document</a>
-              </div>
-            </center>
-          </div>
-        </div>
-      </div>
-
-
-
-
     </div>
   </div>
-
-  {% endblock content %}
+  <div class="row">
+    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+      <div class="section-block" id="headerfooter">
+        <h3 class="section-title">Full design</h3>
+        <p>Add an optional header and/or footer within a card.</p>
+      </div>
+    </div>
+    {% for i in doc %}
+    {% if i.tag == 'Full Design Documents' %}
+    <div class="col-xl-4 col-lg-4 col-md-6 col-sm-12 col-12">
+      <div class="card">
+        <div class="card-header">
+          {{i.doc_name}}
+        </div>
+        <div class="card-body">
+          <p class="card-text">Some description of this design</p>
+          <a href="{{i.doc_link}}" target="_blank" class="btn btn-primary links">Link to desigh</a>
+        </div>
+        <div class="col-12 addbtn mb-2" style="display:none">
+          <button type="submit" class="btn btn-danger" name="delete" value="{{i.id}}">Remove</button>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+  {% endfor %}
+  <div class="col-12 addbtn" style="display:none">
+    <div class="input-group mb-3">
+      <div class="custom-file">
+        <input type="file" class="custom-file-input upload" name="full_doc" id="inputGroupFile" multiple="multiple">
+        <label class="custom-file-label" for="inputGroupFile">Choose file</label>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="section-block">
+      <h5 class="section-title">Code Folders</h5>
+      <p>All documents uploaded under the section main in projects file appear here here</p>
+    </div>
+  </div>
+  {% for i in doc %}
+  {% if i.tag == 'Code Documents' %}
+  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+    <div class="card">
+      <center>
+        <div class="card-header">
+          {{i.doc_name}}
+        </div>
+        <div class="card-body">
+          <a href="{{i.doc_link}}" target="_blank" class="btn btn-primary links">Open Document</a>
+        </div>
+        <div class="col-12 addbtn mb-2" style="display:none">
+          <button type="submit" class="btn btn-danger" name="delete" value="{{i.id}}">Remove</button>
+        </div>
+    </div>
+    </center>
+  </div>
+{% endif %}
+{% endfor %}
+<div class="col-12 addbtn" style="display:none">
+  <div class="input-group mb-3">
+    <div class="custom-file">
+      <input type="file" class="custom-file-input upload" name="code_doc" id="inputGroupFile" multiple="multiple">
+      <label class="custom-file-label" for="inputGroupFile">Choose file</label>
+    </div>
+  </div>
+</div>
+</div>
+<div class="row">
+  <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="section-block">
+      <h5 class="section-title">ML project requirement files </h5>
+      <p>All documents uploaded under this will be for ML</p>
+    </div>
+  </div>
+  {% for i in doc %}
+  {% if i.tag == 'Requirement Documents' %}
+  <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 col-12">
+    <div class="card">
+      <center>
+        <div class="card-header">
+          {{i.doc_name}}
+        </div>
+        <div class="card-body">
+          <a href="{{i.doc_link}}" target="_blank" class="btn btn-primary links">Open Document</a>
+        </div>
+        <div class="col-12 addbtn mb-2" style="display:none">
+          <button type="submit" class="btn btn-danger" name="delete" value="{{i.id}}">Remove</button>
+        </div>
+    </div>
+    </center>
+  </div>
+{% endif %}
+{% endfor %}
+<div class="col-12 addbtn" style="display:none">
+  <div class="input-group mb-3">
+    <div class="custom-file">
+      <input type="file" class="custom-file-input upload" name="requirement_doc" id="inputGroupFile" multiple="multiple">
+      <label class="custom-file-label" for="inputGroupFile">Choose file</label>
+    </div>
+  </div>
+</div>
+</div>
+</form>
+</div>
+</div>
+</div>
+{% endblock content %}

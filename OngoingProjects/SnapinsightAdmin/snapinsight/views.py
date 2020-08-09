@@ -269,41 +269,72 @@ def moodish_projects(request):
         fs = FileSystemStorage(location='snapinsight/media/Moodish/Main Documents/')
         for i in main_doc:
             og_name = i.name
-            link = "snapinsight/media/ML/Main Documents/" + i.name
+            link = "snapinsight/media/Moodish/Main Documents/" + i.name
             Service_Document.objects.create(name="Moodish", doc_name=og_name.split(".")[0], doc_link=link, tag="Main Documents")
             filename = fs.save(og_name, i)
 
         fs = FileSystemStorage(location='snapinsight/media/Moodish/Code Documents/')
         for i in code_doc:
             og_name = i.name
-            link = "snapinsight/media/ML/Code Documents/" + i.name
+            link = "snapinsight/media/Moodish/Code Documents/" + i.name
             Service_Document.objects.create(name="Moodish", doc_name=og_name.split(".")[0], doc_link=link, tag="Code Documents")
             filename = fs.save(og_name, i)
 
         fs = FileSystemStorage(location='snapinsight/media/Moodish/Design Documents/')
         for i in full_doc:
             og_name = i.name
-            link = "snapinsight/media/ML/Design Documents/" + i.name
+            link = "snapinsight/media/Moodish/Design Documents/" + i.name
             Service_Document.objects.create(name="Moodish", doc_name=og_name.split(".")[0], doc_link=link, tag="Design Documents")
             filename = fs.save(og_name, i)
 
         fs = FileSystemStorage(location='snapinsight/media/Moodish/Full Design Documents/')
         for i in design_doc:
             og_name = i.name
-            link = "snapinsight/media/ML/Full Design Documents/" + i.name
+            link = "snapinsight/media/Moodish/Full Design Documents/" + i.name
             Service_Document.objects.create(name="Moodish", doc_name=og_name.split(".")[0], doc_link=link, tag="Full Design Documents")
             filename = fs.save(og_name, i)
 
         fs = FileSystemStorage(location='snapinsight/media/Moodish/Requirement Documents/')
         for i in requirement_doc:
             og_name = i.name
-            link = "snapinsight/media/ML/Requirement Documents/" + i.name
+            link = "snapinsight/media/Moodish/Requirement Documents/" + i.name
             Service_Document.objects.create(name="Moodish", doc_name=og_name.split(".")[0], doc_link=link, tag="Requirement Documents")
             filename = fs.save(og_name, i)
     doc = Service_Document.objects.filter(name="Moodish")
     return render(request, 'snapinsight/moodish/projects.html', {'doc':doc})
 
 def moodish_resources(request):
+    if request.method == "POST":
+        if request.POST.get("delete") != "add":
+            id = request.POST.get("delete")
+            file = Resources.objects.get(id=id).file
+            name = file.split("/")[-1]
+            path = "/".join(file.split("/")[:-1])
+            fs = FileSystemStorage(location=path)
+            if file != "":
+                dir = listdir(path)
+                [fs.delete(i) for i in dir if i == name]
+            Resources.objects.get(id=id).delete()
+            resource = Resources.objects.filter(name="Moodish")
+            return render(request, 'snapinsight/moodish/resources.html', {'resource':resource})
+        description = request.POST.getlist("description")
+        link = request.POST.getlist("link")
+        res = request.FILES.getlist("resource_doc")
+        print(res)
+        fs = FileSystemStorage(location='snapinsight/media/Moodish/Resources/')
+        k = 0
+        for i in range(len(description)):
+            print(i)
+            if description[i] == "":
+                continue
+            if len(res) !=0 :
+                og_name = res[k].name
+                fs.save(og_name, res[k])
+                Resources.objects.create(name="Moodish", description=description[i], link=link[i], file='snapinsight/media/Moodish/Resources/'+og_name, file_name=og_name.split(".")[0])
+            else:
+                Resources.objects.create(name="Moodish", description=description[i], link=link[i], file="", file_name="")
+            k+=1
+
     resource = Resources.objects.filter(name="Moodish")
     return render(request, 'snapinsight/moodish/resources.html', {'resource':resource})
 
@@ -381,10 +412,97 @@ def runner_overview(request):
     return render(request, 'snapinsight/runner/overview.html', {'overview':overview[0], 'faq':faq, 'documents':documents})
 
 def runner_projects(request):
-    return render(request, 'snapinsight/runner/projects.html')
+    if request.method == "POST":
+        if request.POST.get("delete") != "add":
+            id = request.POST.get("delete")
+            # print(id)
+            file = Service_Document.objects.get(id=id).doc_link
+            name = file.split("/")[-1]
+            # print(name)
+            path = "/".join(file.split("/")[:-1])
+            fs = FileSystemStorage(location=path)
+            dir = listdir(path)
+            [fs.delete(i) for i in dir if i == name]
+            Service_Document.objects.filter(id=id).delete()
+            doc = Service_Document.objects.filter(name="Runner")
+            return render(request, 'snapinsight/runner/projects.html', {'doc':doc})
+        main_doc = request.FILES.getlist("main_doc")
+        code_doc = request.FILES.getlist("code_doc")
+        full_doc = request.FILES.getlist("full_doc")
+        design_doc = request.FILES.getlist("design_doc")
+        requirement_doc = request.FILES.getlist("requirement_doc")
+
+        fs = FileSystemStorage(location='snapinsight/media/Runner/Main Documents/')
+        for i in main_doc:
+            og_name = i.name
+            link = "snapinsight/media/Runner/Main Documents/" + i.name
+            Service_Document.objects.create(name="Runner", doc_name=og_name.split(".")[0], doc_link=link, tag="Main Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/Runner/Code Documents/')
+        for i in code_doc:
+            og_name = i.name
+            link = "snapinsight/media/Runner/Code Documents/" + i.name
+            Service_Document.objects.create(name="Runner", doc_name=og_name.split(".")[0], doc_link=link, tag="Code Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/Runner/Design Documents/')
+        for i in full_doc:
+            og_name = i.name
+            link = "snapinsight/media/Runner/Design Documents/" + i.name
+            Service_Document.objects.create(name="Runner", doc_name=og_name.split(".")[0], doc_link=link, tag="Design Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/Runner/Full Design Documents/')
+        for i in design_doc:
+            og_name = i.name
+            link = "snapinsight/media/Runner/Full Design Documents/" + i.name
+            Service_Document.objects.create(name="Runner", doc_name=og_name.split(".")[0], doc_link=link, tag="Full Design Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/Runner/Requirement Documents/')
+        for i in requirement_doc:
+            og_name = i.name
+            link = "snapinsight/media/Runner/Requirement Documents/" + i.name
+            Service_Document.objects.create(name="Runner", doc_name=og_name.split(".")[0], doc_link=link, tag="Requirement Documents")
+            filename = fs.save(og_name, i)
+    doc = Service_Document.objects.filter(name="Runner")
+    return render(request, 'snapinsight/runner/projects.html', {'doc':doc})
 
 def runner_resources(request):
-    return render(request, 'snapinsight/runner/resources.html')
+    if request.method == "POST":
+        if request.POST.get("delete") != "add":
+            id = request.POST.get("delete")
+            file = Resources.objects.get(id=id).file
+            name = file.split("/")[-1]
+            path = "/".join(file.split("/")[:-1])
+            fs = FileSystemStorage(location=path)
+            if file != "":
+                dir = listdir(path)
+                [fs.delete(i) for i in dir if i == name]
+            Resources.objects.get(id=id).delete()
+            resource = Resources.objects.filter(name="Runner")
+            return render(request, 'snapinsight/runner/resources.html', {'resource':resource})
+        description = request.POST.getlist("description")
+        link = request.POST.getlist("link")
+        res = request.FILES.getlist("resource_doc")
+        print(res)
+        fs = FileSystemStorage(location='snapinsight/media/Runner/Resources/')
+        k = 0
+        for i in range(len(description)):
+            print(i)
+            if description[i] == "":
+                continue
+            if len(res) !=0 :
+                og_name = res[k].name
+                fs.save(og_name, res[k])
+                Resources.objects.create(name="Runner", description=description[i], link=link[i], file='snapinsight/media/Runner/Resources/'+og_name, file_name=og_name.split(".")[0])
+            else:
+                Resources.objects.create(name="Runner", description=description[i], link=link[i], file="", file_name="")
+            k+=1
+
+    resource = Resources.objects.filter(name="Runner")
+    return render(request, 'snapinsight/runner/resources.html', {'resource':resource})
 
 def runner_roadmap(request):
     if request.method == "POST":
@@ -461,10 +579,97 @@ def ml_overview(request):
     return render(request, 'snapinsight/ml/overview.html', {'overview':overview[0], 'faq':faq, 'documents':documents})
 
 def ml_projects(request):
-    return render(request, 'snapinsight/ml/projects.html')
+    if request.method == "POST":
+        if request.POST.get("delete") != "add":
+            id = request.POST.get("delete")
+            # print(id)
+            file = Service_Document.objects.get(id=id).doc_link
+            name = file.split("/")[-1]
+            # print(name)
+            path = "/".join(file.split("/")[:-1])
+            fs = FileSystemStorage(location=path)
+            dir = listdir(path)
+            [fs.delete(i) for i in dir if i == name]
+            Service_Document.objects.filter(id=id).delete()
+            doc = Service_Document.objects.filter(name="ML")
+            return render(request, 'snapinsight/ml/projects.html', {'doc':doc})
+        main_doc = request.FILES.getlist("main_doc")
+        code_doc = request.FILES.getlist("code_doc")
+        full_doc = request.FILES.getlist("full_doc")
+        design_doc = request.FILES.getlist("design_doc")
+        requirement_doc = request.FILES.getlist("requirement_doc")
+
+        fs = FileSystemStorage(location='snapinsight/media/ML/Main Documents/')
+        for i in main_doc:
+            og_name = i.name
+            link = "snapinsight/media/ML/Main Documents/" + i.name
+            Service_Document.objects.create(name="ML", doc_name=og_name.split(".")[0], doc_link=link, tag="Main Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/ML/Code Documents/')
+        for i in code_doc:
+            og_name = i.name
+            link = "snapinsight/media/ML/Code Documents/" + i.name
+            Service_Document.objects.create(name="ML", doc_name=og_name.split(".")[0], doc_link=link, tag="Code Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/ML/Design Documents/')
+        for i in full_doc:
+            og_name = i.name
+            link = "snapinsight/media/ML/Design Documents/" + i.name
+            Service_Document.objects.create(name="ML", doc_name=og_name.split(".")[0], doc_link=link, tag="Design Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/ML/Full Design Documents/')
+        for i in design_doc:
+            og_name = i.name
+            link = "snapinsight/media/ML/Full Design Documents/" + i.name
+            Service_Document.objects.create(name="ML", doc_name=og_name.split(".")[0], doc_link=link, tag="Full Design Documents")
+            filename = fs.save(og_name, i)
+
+        fs = FileSystemStorage(location='snapinsight/media/ML/Requirement Documents/')
+        for i in requirement_doc:
+            og_name = i.name
+            link = "snapinsight/media/ML/Requirement Documents/" + i.name
+            Service_Document.objects.create(name="ML", doc_name=og_name.split(".")[0], doc_link=link, tag="Requirement Documents")
+            filename = fs.save(og_name, i)
+    doc = Service_Document.objects.filter(name="ML")
+    return render(request, 'snapinsight/ml/projects.html', {'doc':doc})
 
 def ml_resources(request):
-    return render(request, 'snapinsight/ml/resources.html')
+    if request.method == "POST":
+        if request.POST.get("delete") != "add":
+            id = request.POST.get("delete")
+            file = Resources.objects.get(id=id).file
+            name = file.split("/")[-1]
+            path = "/".join(file.split("/")[:-1])
+            fs = FileSystemStorage(location=path)
+            if file != "":
+                dir = listdir(path)
+                [fs.delete(i) for i in dir if i == name]
+            Resources.objects.get(id=id).delete()
+            resource = Resources.objects.filter(name="ML")
+            return render(request, 'snapinsight/ml/resources.html', {'resource':resource})
+        description = request.POST.getlist("description")
+        link = request.POST.getlist("link")
+        res = request.FILES.getlist("resource_doc")
+        print(res)
+        fs = FileSystemStorage(location='snapinsight/media/ML/Resources/')
+        k = 0
+        for i in range(len(description)):
+            print(i)
+            if description[i] == "":
+                continue
+            if len(res) !=0 :
+                og_name = res[k].name
+                fs.save(og_name, res[k])
+                Resources.objects.create(name="ML", description=description[i], link=link[i], file='snapinsight/media/ML/Resources/'+og_name, file_name=og_name.split(".")[0])
+            else:
+                Resources.objects.create(name="ML", description=description[i], link=link[i], file="", file_name="")
+            k+=1
+
+    resource = Resources.objects.filter(name="ML")
+    return render(request, 'snapinsight/ml/resources.html', {'resource':resource})
 
 def ml_roadmap(request):
     if request.method == "POST":
@@ -562,7 +767,39 @@ def marketing_seo(request):
     return render(request, 'snapinsight/marketing/seo.html', {'keyword':keyword, 'faq':faq})
 
 def marketing_resources(request):
-    return render(request, 'snapinsight/marketing/resources.html')
+    if request.method == "POST":
+        if request.POST.get("delete") != "add":
+            id = request.POST.get("delete")
+            file = Resources.objects.get(id=id).file
+            name = file.split("/")[-1]
+            path = "/".join(file.split("/")[:-1])
+            fs = FileSystemStorage(location=path)
+            if file != "":
+                dir = listdir(path)
+                [fs.delete(i) for i in dir if i == name]
+            Resources.objects.get(id=id).delete()
+            resource = Resources.objects.filter(name="Marketing")
+            return render(request, 'snapinsight/marketing/resources.html', {'resource':resource})
+        description = request.POST.getlist("description")
+        link = request.POST.getlist("link")
+        res = request.FILES.getlist("resource_doc")
+        print(res)
+        fs = FileSystemStorage(location='snapinsight/media/Marketing/Resources/')
+        k = 0
+        for i in range(len(description)):
+            print(i)
+            if description[i] == "":
+                continue
+            if len(res) !=0 :
+                og_name = res[k].name
+                fs.save(og_name, res[k])
+                Resources.objects.create(name="Marketing", description=description[i], link=link[i], file='snapinsight/media/Marketing/Resources/'+og_name, file_name=og_name.split(".")[0])
+            else:
+                Resources.objects.create(name="Marketing", description=description[i], link=link[i], file="", file_name="")
+            k+=1
+
+    resource = Resources.objects.filter(name="Marketing")
+    return render(request, 'snapinsight/marketing/resources.html', {'resource':resource})
 
 def marketing_roadmap(request):
     if request.method == "POST":
@@ -731,7 +968,39 @@ def hr_portals(request):
     return render(request, 'snapinsight/hr/portals.html', {"cards":cards})
 
 def hr_resources(request):
-    return render(request, 'snapinsight/hr/resources.html')
+    if request.method == "POST":
+        if request.POST.get("delete") != "add":
+            id = request.POST.get("delete")
+            file = Resources.objects.get(id=id).file
+            name = file.split("/")[-1]
+            path = "/".join(file.split("/")[:-1])
+            fs = FileSystemStorage(location=path)
+            if file != "":
+                dir = listdir(path)
+                [fs.delete(i) for i in dir if i == name]
+            Resources.objects.get(id=id).delete()
+            resource = Resources.objects.filter(name="HR")
+            return render(request, 'snapinsight/hr/resources.html', {'resource':resource})
+        description = request.POST.getlist("description")
+        link = request.POST.getlist("link")
+        res = request.FILES.getlist("resource_doc")
+        print(res)
+        fs = FileSystemStorage(location='snapinsight/media/HR/Resources/')
+        k = 0
+        for i in range(len(description)):
+            print(i)
+            if description[i] == "":
+                continue
+            if len(res) !=0 :
+                og_name = res[k].name
+                fs.save(og_name, res[k])
+                Resources.objects.create(name="HR", description=description[i], link=link[i], file='snapinsight/media/HR/Resources/'+og_name, file_name=og_name.split(".")[0])
+            else:
+                Resources.objects.create(name="HR", description=description[i], link=link[i], file="", file_name="")
+            k+=1
+
+    resource = Resources.objects.filter(name="HR")
+    return render(request, 'snapinsight/hr/resources.html', {'resource':resource})
 
 def hr_roadmap(request):
     if request.method == "POST":
@@ -823,7 +1092,39 @@ def contentwriter_articles(request):
     return render(request, 'snapinsight/contentwriter/article.html')
 
 def contentwriter_resources(request):
-    return render(request, 'snapinsight/contentwriter/resources.html')
+    if request.method == "POST":
+        if request.POST.get("delete") != "add":
+            id = request.POST.get("delete")
+            file = Resources.objects.get(id=id).file
+            name = file.split("/")[-1]
+            path = "/".join(file.split("/")[:-1])
+            fs = FileSystemStorage(location=path)
+            if file != "":
+                dir = listdir(path)
+                [fs.delete(i) for i in dir if i == name]
+            Resources.objects.get(id=id).delete()
+            resource = Resources.objects.filter(name="Content")
+            return render(request, 'snapinsight/contentwriter/resources.html', {'resource':resource})
+        description = request.POST.getlist("description")
+        link = request.POST.getlist("link")
+        res = request.FILES.getlist("resource_doc")
+        print(res)
+        fs = FileSystemStorage(location='snapinsight/media/Content/Resources/')
+        k = 0
+        for i in range(len(description)):
+            print(i)
+            if description[i] == "":
+                continue
+            if len(res) !=0 :
+                og_name = res[k].name
+                fs.save(og_name, res[k])
+                Resources.objects.create(name="Content", description=description[i], link=link[i], file='snapinsight/media/Content/Resources/'+og_name, file_name=og_name.split(".")[0])
+            else:
+                Resources.objects.create(name="Content", description=description[i], link=link[i], file="", file_name="")
+            k+=1
+
+    resource = Resources.objects.filter(name="Content")
+    return render(request, 'snapinsight/contentwriter/resources.html', {'resource':resource})
 
 def contentwriter_postdesign(request):
     if request.method == "POST":
