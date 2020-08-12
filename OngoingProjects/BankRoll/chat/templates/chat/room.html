@@ -54,11 +54,26 @@
         }  
         return time*500;
     }
+    function removePosition(id,color){
+      console.log("REMOVE");
+      var num = $("#"+id).find(".color").length;
+      // var num = $("#"+id+" > .color").length;
+      console.log(num);
+      if( num == 1){
+        $("#"+id+" > #empty").remove();
+      }
+      else{
+        // $("#"+id+" > #"+color).remove();
+        var x = $("#"+id).find("#"+color).length;
+        $("#"+id).find("#"+color).remove();
+        console.log(x);
+      }
+    }
     function position(id,colors){
-      $("#"+id) > $(".empty").remove();
+      $("#"+id+" > #empty").remove();
       var col = ""  
-      var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap empty"><div class="row overlap block mx-0 px-0">';
-      if (colors.length < 2){
+      var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap" id="empty"><div class="row overlap block mx-0 px-0">';
+      if (colors.length < 3){
         col = "12";
       }
       else{
@@ -66,7 +81,7 @@
       }
       var coin = "";
       for (i = 0; i < colors.length; i++) {
-        coin = coin + '<div class="col-'+ col +' px-1 d-flex justify-content-center align-items-center"><div class="small-coin" style="--color:'+ colors[i]+';"></div></div>'
+        coin = coin + '<div class="col-'+ col +' px-1 d-flex justify-content-center align-items-center color" id="'+colors[i]+'"><div class="small-coin" style="--color:'+ colors[i]+';"></div></div>'
       }
       var end = '</div></div>';
       $("#"+id).append(start+coin+end);
@@ -74,7 +89,7 @@
     $(document).ready(function() {
       console.log("HELLO");
       var i;
-      var pos = 5;
+      var pos = 19;
       var score = 23;
       var color = "red";
       var colors = ['red'];
@@ -84,10 +99,34 @@
       });
       $("#next").click(function(){
         console.log("Bhenchod");
-        var pos = 2;
+        var pos = 13;
+        var score = 16;
+        var color = "black";
+        var colors = ['black'];
+        var delay = move(pos,score,color); 
+        $("#body").animate({opacity: 1}, delay+500, function(){
+          position(score,colors);
+        });
+      });
+      $("#next2").click(function(){
+        console.log("Bhenchod2");
+        removePosition(16,'black');
+        var pos = 16;
         var score = 23;
         var color = "black";
         var colors = ['red','black'];
+        var delay = move(pos,score,color); 
+        $("#body").animate({opacity: 1}, delay+500, function(){
+          position(score,colors);
+        });
+      });
+      $("#next3").click(function(){
+        console.log("Bhenchod2");
+        removePosition(23,'red');
+        var pos = 23;
+        var score = 27;
+        var color = "red";
+        var colors = ['red'];
         var delay = move(pos,score,color); 
         $("#body").animate({opacity: 1}, delay+500, function(){
           position(score,colors);
@@ -303,6 +342,8 @@
     </div>
   </div>
 <button type="button" id="next" name="button">NEXT</button>
+<button type="button" id="next2" name="button">NEXT2</button>
+<button type="button" id="next3" name="button">NEXT3</button>
   
   
   <!-- <textarea id="chat-log"></textarea><br>
