@@ -1,0 +1,31 @@
+.coin {
+  background: var(--color);
+  z-index: 20;
+  border-radius: 50%;
+  border: 2px solid white;
+  width: 3vh;
+  height: 3vh;
+  position: absolute;
+  opacity: 1;
+  display:none;
+}
+.small-coin{
+  background: var(--color);
+  z-index: 20;
+  border-radius: 50%;
+  border: 2px solid white;
+  width: 2vh;
+  height: 2vh;
+  opacity: 1;
+  /* display:none; */
+}
+.overlap{
+  z-index:20;
+  position:absolute;
+}
+.block{
+  height:10vh;
+}
+.background{
+  background-color:  var(--bgcolor)
+}

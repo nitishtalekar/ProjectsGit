@@ -1,4 +1,6 @@
 <!-- chat/templates/chat/room.html -->
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,34 +10,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Chat Room</title>
-  <style media="screen">
-    .coin {
-      background: var(--color);
-      z-index: 20;
-      border-radius: 50%;
-      width: 3vh;
-      height: 3vh;
-      position: absolute;
-      opacity: 1;
-      display:none;
-    }
-    .small-coin{
-      background: var(--color);
-      z-index: 20;
-      border-radius: 50%;
-      width: 2vh;
-      height: 2vh;
-      opacity: 1;
-      /* display:none; */
-    }
-    .overlap{
-      z-index:20;
-      position:absolute;
-    }
-    .block{
-      height:10vh;
-    }
-  </style>
+  
+  <link rel="stylesheet" href="{% static 'main.css' %}">
 
   <script type="text/javascript">
       function move(pos, score, color) {
@@ -146,7 +122,7 @@
             {% for j in i %}
             
             {% if j.num != -1 %}
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="{{j.num}}" style="height:10vh">
+            <div class="col-3 background d-flex justify-content-center align-items-center" id="{{j.num}}" style="height:10vh;--bgcolor:{{j.bgcolor}}">
               {{j.num}} 
               {{ j.place }}
             </div>
