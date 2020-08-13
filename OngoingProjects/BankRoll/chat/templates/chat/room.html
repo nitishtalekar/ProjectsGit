@@ -23,8 +23,8 @@
       background: var(--color);
       z-index: 20;
       border-radius: 50%;
-      width: 1.5vh;
-      height: 1.5vh;
+      width: 2vh;
+      height: 2vh;
       opacity: 1;
       /* display:none; */
     }
@@ -126,7 +126,7 @@
         var pos = 23;
         var score = 27;
         var color = "red";
-        var colors = ['red'];
+        var colors = ['red','black','green','yellow'];
         var delay = move(pos,score,color); 
         $("#body").animate({opacity: 1}, delay+500, function(){
           position(score,colors);
@@ -140,204 +140,24 @@
   <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height:100vh">
     <div style="width:90vw">
       <div class="row">
+        {% for i in info %}
         <div class="col-6">
           <div class="row">
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="7" style="height:10vh">
-              7
+            {% for j in i %}
+            
+            {% if j.num != -1 %}
+            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="{{j.num}}" style="height:10vh">
+              {{j.num}} 
+              {{ j.place }}
             </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="8" style="height:10vh">
-              8
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="9" style="height:10vh">
-              9
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="10" style="height:10vh">
-              10
-            </div>
+            {% else %}
+            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
+            {% endif %}
+            
+            {% endfor %}
           </div>
         </div>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="11" style="height:10vh">
-              11
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="12" style="height:10vh">
-              12
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="13" style="height:10vh">
-              13
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="14" style="height:10vh">
-              14
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="6" style="height:10vh">
-              6
-            </div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="15" style="height:10vh">
-              15
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="5" style="height:10vh">
-              5
-            </div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="16" style="height:10vh">
-              16
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="4" style="height:10vh">
-              4
-            </div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="17" style="height:10vh">
-              17
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="3" style="height:10vh">
-              3
-            </div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="18" style="height:10vh">
-              18
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="2" style="height:10vh">
-              2
-            </div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="19" style="height:10vh">
-              19
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="1" style="height:10vh">
-              1
-            </div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="20" style="height:10vh">
-              20
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center block px-0" id="0">
-              0
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="27" style="height:10vh">
-              27
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="26" style="height:10vh">
-              26
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="25" style="height:10vh">
-              25
-            </div>
-          </div>
-        </div>
-        <div class="col-6">
-          <div class="row">
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="24" style="height:10vh">
-              24
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="23" style="height:10vh">
-              23
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="22" style="height:10vh">
-              22
-            </div>
-            <div class="col-3 bg-primary d-flex justify-content-center align-items-center" id="21" style="height:10vh">
-              21
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </div>
