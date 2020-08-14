@@ -1,25 +1,40 @@
 from django.shortcuts import render
+from .models import *
+import random
 
 def index(request):
+    id = [7,8,9,10,11,12,13,14,6,15,5,16,4,17,3,18,2,19,1,20,0,27,26,25,24,23,22,21]
+    data = "QWERTYUIOPASDFGHJKLZXCVBNM?@"
+    bg = ["rgb(203, 63, 63)","rgb(90, 218, 207)","rgb(189, 199, 79)"]
+    bg2 = ["white"]+[ x for x in bg for i in range(9)]
+    sl = list(data)
+    Board.objects.all().delete()
+    for i in range(28):
+        if i == 0:
+            Board.objects.create(id=id[i], name=sl[i], color="#FFFFFF", buy=random.randint(100,3000))
+        else:
+            Board.objects.create(id=id[i], name=sl[i], color=bg[i%3], buy=random.randint(100,3000))
     return render(request, 'chat/index.html')
 
 def room(request, room_name):
     id = [[7,8,9,10],[11,12,13,14],[6,15],[5,16],[4,17],[3,18],[2,19],[1,20],[0,27,26,25],[24,23,22,21]]
-    
+
+    board = Board.objects.all()
+
     # FORM DATA
-    
+
     data = "QWERTYUIOPASDFGHJKLZXCVBNM?@"
-    bg = ["rgb(203, 63, 63)","rgb(90, 218, 207)","rgb(189, 199, 79)"]  
-    bg2 = ["white"]+[ x for x in bg for i in range(9)] 
+    bg = ["rgb(203, 63, 63)","rgb(90, 218, 207)","rgb(189, 199, 79)"]
+    bg2 = ["white"]+[ x for x in bg for i in range(9)]
     sl = list(data)
     info_dict = {}
     col = {}
     for i in range(28):
         info_dict[i] = sl[i]
         col[i] = bg2[i]
-        
+
     # FORM DATA
-        
+
     info = []
     dummy = {"num":-1}
     for i in id:
@@ -31,7 +46,7 @@ def room(request, room_name):
         else:
             temp = []
             for x in i:
-                temp.append({"num":x,'place':info_dict[x],'bgcolor':col[x]}) 
+                temp.append({"num":x,'place':info_dict[x],'bgcolor':col[x]})
             info.append(temp)
-    return render(request, 'chat/room.html', {'room_name': room_name,'info':info})
+    return render(request, 'chat/room.html', {'room_name': room_name,'info':info, 'board':board})
 # Create your views here.

@@ -13,7 +13,7 @@ def index(request):
             password = lf.cleaned_data["password"]
             auth = Room.objects.filter(name=rname, password=password)
             if auth.count() == 1:
-                request.session['id'] = auth[0].id
+                request.session['name'] = uname
                 return HttpResponseRedirect('/chat/' + rname + '/')
             error = "Invalid Room Name or password"
             return render(request, 'chat/index.html', {'error':error})
@@ -22,7 +22,7 @@ def index(request):
     return render(request, 'chat/index.html')
 
 def room(request, room_name):
-    if 'id' in request.session:
+    if 'name' in request.session:
         return render(request, 'chat/room.html', {
             'room_name': room_name
             })

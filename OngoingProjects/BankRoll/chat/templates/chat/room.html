@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <title>Chat Room</title>
-  
+
   <link rel="stylesheet" href="{% static 'main.css' %}">
 
   <script type="text/javascript">
@@ -27,7 +27,7 @@
           $("#"+coinid).delay(time*500).fadeIn();
           $("#"+coinid).delay(150).fadeOut();
           time++;
-        }  
+        }
         return time*500;
     }
     function removePosition(id,color){
@@ -47,7 +47,7 @@
     }
     function position(id,colors){
       $("#"+id+" > #empty").remove();
-      var col = ""  
+      var col = ""
       var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap" id="empty"><div class="row overlap block mx-0 px-0">';
       if (colors.length < 3){
         col = "12";
@@ -69,7 +69,7 @@
       var score = 23;
       var color = "red";
       var colors = ['red'];
-      var delay = move(pos,score,color); 
+      var delay = move(pos,score,color);
       $("#body").animate({opacity: 1}, delay+500, function(){
         position(score,colors);
       });
@@ -79,7 +79,7 @@
         var score = 16;
         var color = "black";
         var colors = ['black'];
-        var delay = move(pos,score,color); 
+        var delay = move(pos,score,color);
         $("#body").animate({opacity: 1}, delay+500, function(){
           position(score,colors);
         });
@@ -91,7 +91,7 @@
         var score = 23;
         var color = "black";
         var colors = ['red','black'];
-        var delay = move(pos,score,color); 
+        var delay = move(pos,score,color);
         $("#body").animate({opacity: 1}, delay+500, function(){
           position(score,colors);
         });
@@ -103,14 +103,14 @@
         var score = 27;
         var color = "red";
         var colors = ['red','black','green','yellow'];
-        var delay = move(pos,score,color); 
+        var delay = move(pos,score,color);
         $("#body").animate({opacity: 1}, delay+500, function(){
           position(score,colors);
         });
       });
     });
   </script>
-  
+
 </head>
 <body id="body">
   <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height:100vh">
@@ -120,16 +120,16 @@
         <div class="col-6">
           <div class="row">
             {% for j in i %}
-            
+
             {% if j.num != -1 %}
             <div class="col-3 background d-flex justify-content-center align-items-center" id="{{j.num}}" style="height:10vh;--bgcolor:{{j.bgcolor}}">
-              {{j.num}} 
+              {{j.num}}
               {{ j.place }}
             </div>
             {% else %}
             <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
             {% endif %}
-            
+
             {% endfor %}
           </div>
         </div>
@@ -140,15 +140,15 @@
 <button type="button" id="next" name="button">NEXT</button>
 <button type="button" id="next2" name="button">NEXT2</button>
 <button type="button" id="next3" name="button">NEXT3</button>
-  
-  
+
+
   <!-- <textarea id="chat-log"></textarea><br>
   <input id="chat-message-input" type="text" size="100"><br>
   <input id="chat-message-submit" type="button" value="Send"> -->
-  
+
   {{ room_name|json_script:"room-name" }}
-  
-  
+
+
   <script>
     const roomName = JSON.parse(document.getElementById('room-name').textContent);
     const chatSocket = new WebSocket(
