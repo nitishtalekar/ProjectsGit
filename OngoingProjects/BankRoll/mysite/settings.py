@@ -74,10 +74,10 @@ ASGI_APPLICATION = 'mysite.routing.application'
 
 CHANNEL_LAYERS = {
     'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        'CONFIG': {
-            "hosts": [("redis://:M2dmFrX9mRAThG517NdxfFXvFZ0WFGOm@redis-11343.c238.us-central1-2.gce.cloud.redislabs.com:11343/0")],
-        },
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+        # 'CONFIG': {
+        #     "hosts": [("redis://:M2dmFrX9mRAThG517NdxfFXvFZ0WFGOm@redis-11343.c238.us-central1-2.gce.cloud.redislabs.com:11343/0")],
+        # },
     },
 }
 
