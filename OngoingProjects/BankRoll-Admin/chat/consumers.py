@@ -70,6 +70,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         text_data_json = json.loads(text_data)
         message = text_data_json['message']
         # Send message to room group
+        print(self.channel_name)
         if message == "roll":
             print("roll")
         await self.send(text_data=json.dumps({
