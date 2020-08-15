@@ -122,12 +122,17 @@
             {% for j in i %}
 
             {% if j.num != -1 %}
-            <div class="col-3 background d-flex justify-content-center align-items-center" id="{{j.num}}" style="height:10vh;--bgcolor:{{j.bgcolor}}">
-              {{j.num}}
-              {{ j.place }}
+            <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0 border border-light" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+              
+              <!-- <div class="d-flex justify-content-center align-items-start block" style="width:100%">
+                <span class="bg-light place text-uppercase text-center border border-dark">{{ j.place }}</span>
+              </div> -->
+              
+              <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+              
             </div>
             {% else %}
-            <div class="col-3 bg-light d-flex justify-content-center align-items-center" style="height:10vh"></div>
+            <div class="col-3 gamecard bg-light d-flex justify-content-center align-items-center"></div>
             {% endif %}
 
             {% endfor %}

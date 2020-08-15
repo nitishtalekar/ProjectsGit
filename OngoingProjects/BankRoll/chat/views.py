@@ -3,17 +3,20 @@ from .models import *
 import random
 
 def index(request):
-    id = [7,8,9,10,11,12,13,14,6,15,5,16,4,17,3,18,2,19,1,20,0,27,26,25,24,23,22,21]
+    id = [i for i in range(28)]
     data = "QWERTYUIOPASDFGHJKLZXCVBNM?@"
-    bg = ["rgb(203, 63, 63)","rgb(90, 218, 207)","rgb(189, 199, 79)"]
-    bg2 = ["white"]+[ x for x in bg for i in range(9)]
-    sl = list(data)
+    data = ['Start','Delhi','Rio','Bangkok','Harbor','Madrid','Cairo','Random','Jakarta','Berlin']
+    data = data + ['Moscow','Railway','Toronto','Seoul','Jail','Zurich','Riyadh','Sydney','Electric Co.','Beijing','Dubai']
+    data = data + ['Auction','Paris','Hong Kong','London','Airport','Tokyo','New York']
+    bg = ["#CBCBCB","#73CF94","#73CF94","#909090","#547BB3","#547BB3","#547BB3","#CBCBCB","#D12944","#D12944","#C6D949","#909090","#C6D949","#C6D949"]
+    bg = bg + ["#CBCBCB","#087E25","#087E25","#935B10","#909090","#935B10","#935B10","#CBCBCB","#52087A","#52087A","#EC4540","#909090","#EC4540","#EC4540"]
+    print(data,len(data))
+
     Board.objects.all().delete()
     for i in range(28):
-        if i == 0:
-            Board.objects.create(id=id[i], name=sl[i], color="#FFFFFF", buy=random.randint(100,3000))
-        else:
-            Board.objects.create(id=id[i], name=sl[i], color=bg[i%3], buy=random.randint(100,3000))
+        Board.objects.create(id=id[i], name=data[i], color=bg[i], buy=random.randint(100,3000))
+    board = Board.objects.all()
+    print(board)
     return render(request, 'chat/index.html')
 
 def room(request, room_name):
@@ -23,15 +26,17 @@ def room(request, room_name):
 
     # FORM DATA
 
-    data = "QWERTYUIOPASDFGHJKLZXCVBNM?@"
-    bg = ["rgb(203, 63, 63)","rgb(90, 218, 207)","rgb(189, 199, 79)"]
-    bg2 = ["white"]+[ x for x in bg for i in range(9)]
-    sl = list(data)
+    data = ['Start','Delhi','Rio','Bangkok','Harbor','Madrid','Cairo','Random','Jakarta','Berlin']
+    data = data + ['Moscow','Railway','Toronto','Seoul','Jail','Zurich','Riyadh','Sydney','Electric Co.','Beijing','Dubai']
+    data = data + ['Auction','Paris','Hong Kong','London','Airport','Tokyo','New York']
+    bg = ["#CBCBCB","#3CD627","#3CD627","#547BB3","#909090","#547BB3","#547BB3","#CBCBCB","#D12944","#D12944","#D3F014","#909090","#D3F014","#D3F014"]
+    bg = bg + ["#CBCBCB","#087E25","#087E25","#935B10","#909090","#935B10","#935B10","#CBCBCB","#52087A","#52087A","#EC4540","#909090","#EC4540","#EC4540"]
+
     info_dict = {}
     col = {}
     for i in range(28):
-        info_dict[i] = sl[i]
-        col[i] = bg2[i]
+        info_dict[i] = data[i]
+        col[i] = bg[i]
 
     # FORM DATA
 

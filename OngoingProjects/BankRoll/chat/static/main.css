@@ -26,6 +26,10 @@
 .block{
   height:10vh;
 }
-.background{
+.gamecard{
+  height:8vh;
   background-color:  var(--bgcolor)
+}
+.place{
+  font-size:1.75vw;width:90%;
 }
