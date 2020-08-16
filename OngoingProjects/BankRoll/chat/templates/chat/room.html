@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -14,53 +15,51 @@
   <link rel="stylesheet" href="{% static 'main.css' %}">
 
   <script type="text/javascript">
-      function move(pos, score, color) {
-        console.log(color);
-        $(".coin").each(function(){
-          $(this).remove();
-        });
-        time = 0;
-        for (i = pos; i < score+1; i++) {
-          var id = "#"+i;
-          var coinid = "coin"+i;
-          $('<div>').prop("class","coin").prop("id",coinid).prop("style","--color:"+color).appendTo(id);
-          $("#"+coinid).delay(time*500).fadeIn();
-          $("#"+coinid).delay(150).fadeOut();
-          time++;
-        }
-        return time*500;
-    }
-    function removePosition(id,color){
-      console.log("REMOVE");
-      var num = $("#"+id).find(".color").length;
-      // var num = $("#"+id+" > .color").length;
-      console.log(num);
-      if( num == 1){
-        $("#"+id+" > #empty").remove();
+    function move(pos, score, color) {
+      console.log(color);
+      $(".coin").each(function() {
+        $(this).remove();
+      });
+      time = 0;
+      for (i = pos; i < score + 1; i++) {
+        var id = "#" + i;
+        var coinid = "coin" + i;
+        $('<div>').prop("class", "coin").prop("id", coinid).prop("style", "--color:" + color).appendTo(id);
+        $("#" + coinid).delay(time * 500).fadeIn();
+        $("#" + coinid).delay(150).fadeOut();
+        time++;
       }
-      else{
-        // $("#"+id+" > #"+color).remove();
-        var x = $("#"+id).find("#"+color).length;
-        $("#"+id).find("#"+color).remove();
+      return time * 500;
+    }
+
+    function removePosition(id, color) {
+      console.log("REMOVE");
+      var num = $("#" + id).find(".color").length;
+      console.log(num);
+      if (num == 1) {
+        $("#" + id + " > #empty").remove();
+      } else {
+        var x = $("#" + id).find("#" + color).length;
+        $("#" + id).find("#" + color).remove();
         console.log(x);
       }
     }
-    function position(id,colors){
-      $("#"+id+" > #empty").remove();
+
+    function position(id, colors) {
+      $("#" + id + " > #empty").remove();
       var col = ""
       var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap" id="empty"><div class="row overlap block mx-0 px-0">';
-      if (colors.length < 3){
+      if (colors.length < 3) {
         col = "12";
-      }
-      else{
+      } else {
         col = "6";
       }
       var coin = "";
       for (i = 0; i < colors.length; i++) {
-        coin = coin + '<div class="col-'+ col +' px-1 d-flex justify-content-center align-items-center color" id="'+colors[i]+'"><div class="small-coin" style="--color:'+ colors[i]+';"></div></div>'
+        coin = coin + '<div class="col-' + col + ' px-1 d-flex justify-content-center align-items-center color" id="' + colors[i] + '"><div class="small-coin" style="--color:' + colors[i] + ';"></div></div>'
       }
       var end = '</div></div>';
-      $("#"+id).append(start+coin+end);
+      $("#" + id).append(start + coin + end);
     }
     $(document).ready(function() {
       console.log("HELLO");
@@ -69,49 +68,58 @@
       var score = 23;
       var color = "red";
       var colors = ['red'];
-      var delay = move(pos,score,color);
-      $("#body").animate({opacity: 1}, delay+500, function(){
-        position(score,colors);
+      var delay = move(pos, score, color);
+      $("#body").animate({
+        opacity: 1
+      }, delay + 500, function() {
+        position(score, colors);
       });
-      $("#next").click(function(){
+      $("#next").click(function() {
         console.log("Bhenchod");
         var pos = 13;
         var score = 16;
         var color = "black";
         var colors = ['black'];
-        var delay = move(pos,score,color);
-        $("#body").animate({opacity: 1}, delay+500, function(){
-          position(score,colors);
+        var delay = move(pos, score, color);
+        $("#body").animate({
+          opacity: 1
+        }, delay + 500, function() {
+          position(score, colors);
         });
       });
-      $("#next2").click(function(){
+      $("#next2").click(function() {
         console.log("Bhenchod2");
-        removePosition(16,'black');
+        removePosition(16, 'black');
         var pos = 16;
         var score = 23;
         var color = "black";
-        var colors = ['red','black'];
-        var delay = move(pos,score,color);
-        $("#body").animate({opacity: 1}, delay+500, function(){
-          position(score,colors);
+        var colors = ['red', 'black'];
+        var delay = move(pos, score, color);
+        $("#body").animate({
+          opacity: 1
+        }, delay + 500, function() {
+          position(score, colors);
         });
       });
-      $("#next3").click(function(){
+      $("#next3").click(function() {
         console.log("Bhenchod2");
-        removePosition(23,'red');
+        removePosition(23, 'red');
         var pos = 23;
         var score = 27;
         var color = "red";
-        var colors = ['red','black','green','yellow'];
-        var delay = move(pos,score,color);
-        $("#body").animate({opacity: 1}, delay+500, function(){
-          position(score,colors);
+        var colors = ['red', 'black', 'green', 'yellow'];
+        var delay = move(pos, score, color);
+        $("#body").animate({
+          opacity: 1
+        }, delay + 500, function() {
+          position(score, colors);
         });
       });
     });
   </script>
 
 </head>
+
 <body id="body">
   <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height:100vh">
     <div style="width:90vw">
@@ -122,17 +130,41 @@
             {% for j in i %}
 
             {% if j.num != -1 %}
-            <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0 border border-light" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
-              
-              <!-- <div class="d-flex justify-content-center align-items-start block" style="width:100%">
-                <span class="bg-light place text-uppercase text-center border border-dark">{{ j.place }}</span>
-              </div> -->
-              
-              <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
-              
+
+            {% if j.tag == 0 %}
+            <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+              <div class="just">
+                <div class="d-flex justify-content-center align-items-center price">
+                  <span class="text-white place text-uppercase text-center font-weight-bold">$100</span>
+                </div>
+                <div class="d-flex justify-content-center align-items-center" style="height:6vh">
+                  <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                </div>
+              </div>
             </div>
+            {% elif j.tag == 1 %}
+            <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+              <div class="just">
+                <div class="d-flex justify-content-center align-items-center price">
+                  <span class="place text-uppercase text-center font-weight-bold">$100</span>
+                </div>
+                <div class="d-flex justify-content-center align-items-center" style="height:6vh">
+                  <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                </div>
+              </div>
+            </div>
+            {% elif j.tag == 2 %}
+            <div class="col-3 gamecard2 d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+              <div class="just">
+                <div class="d-flex justify-content-center align-items-center" style="height:8vh">
+                  <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+
             {% else %}
-            <div class="col-3 gamecard bg-light d-flex justify-content-center align-items-center"></div>
+            <div class="col-3 gamecard-blank d-flex justify-content-center align-items-center"></div>
             {% endif %}
 
             {% endfor %}
@@ -142,15 +174,44 @@
       </div>
     </div>
   </div>
-<button type="button" id="next" name="button">NEXT</button>
-<button type="button" id="next2" name="button">NEXT2</button>
-<button type="button" id="next3" name="button">NEXT3</button>
+  <button type="button" id="next" name="button">NEXT</button>
+  <button type="button" id="next2" name="button">NEXT2</button>
+  <button type="button" id="next3" name="button">NEXT3</button>
+  
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
-
-  <textarea id="chat-log"></textarea><br>
+  <!-- <textarea id="chat-log"></textarea><br>
   <input id="chat-message-input" type="text" size="100"><br>
-  <input id="chat-message-submit" type="button" value="Send">
+  <input id="chat-message-submit" type="button" value="Send"> -->
 
+
+  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   {{ room_name|json_script:"room-name" }}
 
 
@@ -185,5 +246,7 @@
       messageInputDom.value = '';
     };
   </script>
+
 </body>
+
 </html>
