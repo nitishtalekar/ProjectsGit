@@ -59,3 +59,12 @@
   height:8vh;
   /* background-color:  white; */
 }
+.buy-btn{
+  width:40%;
+  background-color:  var(--col);
+  border:none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 3px;
+  color: white;
+}

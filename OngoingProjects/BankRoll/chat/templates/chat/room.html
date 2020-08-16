@@ -180,18 +180,23 @@
             <div class="modal fade" id="CardModal{{j.num}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
-                  <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">{{ j.place }}</h5>
+                  <center>
+                  <div class="mt-1" style="width:90%">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                   </div>
+                </center>
+                  <div class="d-flex justify-content-center align-items-center">
+                    <h5 class="font-weight-bold text-uppercase py-0 my-0">{{ j.place }}</h5>
+                  </div>
+                  <center><hr style="width:80%;height:5px;background:{{j.bgcolor}}"></center>
                   <div class="modal-body">
                     ...
                   </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                  <div class="modal-footer d-flex justify-content-around align-items-center">
+                    <button type="button" class="buy-btn text-uppercase font-weight-bold" style="--col:#5E5E5E">Close</button>
+                    <button type="button" class="buy-btn text-uppercase font-weight-bold" style="--col:{{j.bgcolor}}">Buy</button>
                   </div>
                 </div>
               </div>
