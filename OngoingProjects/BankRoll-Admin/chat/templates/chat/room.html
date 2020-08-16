@@ -1,11 +1,135 @@
 <!-- chat/templates/chat/room.html -->
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
-    <title>Chat Room</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <title>Chat Room</title>
+
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+
+  <script type="text/javascript">
+    function move(pos, score, color) {
+      $(".coin").each(function() {
+        $(this).remove();
+      });
+      time = 0;
+      for (i = pos; i < score + 1; i++) {
+        var id = "#" + i;
+        var coinid = "coin" + i;
+        $('<div>').prop("class", "coin").prop("id", coinid).prop("style", "--color:" + color).appendTo(id);
+        $("#" + coinid).delay(time * 500).fadeIn();
+        $("#" + coinid).delay(150).fadeOut();
+        time++;
+      }
+      return time * 500;
+    }
+
+    function removePosition(id, color) {
+      var num = $("#" + id).find(".color").length;
+      if (num == 1) {
+        $("#" + id + " > #empty").remove();
+      } else {
+        var x = $("#" + id).find("#" + color).length;
+        if(num == 3){
+          var k = $("#" + id).find(".color").length;
+          $("#" + id).find(".color").each(function(){
+            $(this).removeClass('col-6');
+            $(this).addClass('col-12');
+          });
+        }
+        $("#" + id).find("#" + color).remove();
+      }
+    }
+
+    function position(id, colors) {
+      $("#" + id + " > #empty").remove();
+      var col = ""
+      var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap" id="empty"><div class="row overlap block mx-0 px-0">';
+      if (colors.length < 3) {
+        col = "12";
+      } else {
+        col = "6";
+      }
+      var coin = "";
+      for (i = 0; i < colors.length; i++) {
+        coin = coin + '<div class="col-' + col + ' px-1 d-flex justify-content-center align-items-center color" id="' + colors[i] + '"><div class="small-coin" style="--color:' + colors[i] + ';"></div></div>'
+      }
+      var end = '</div></div>';
+      $("#" + id).append(start + coin + end);
+    }
+
+    function play(pos,score,col,colors){
+      removePosition(pos,col);
+      var delay = move(pos, score, col);
+      $("#body").animate({
+        opacity: 1
+      }, delay + 500, function() {
+        position(score, colors);
+      });
+      $("#body").animate({
+        opacity: 1
+      }, 500, function() {
+        $('#city').html("Id is" + score);
+        $("#open_card").click();
+      });
+    }
+
+    $(document).ready(function() {
+      console.log("HELLO");
+      var start_colors = ['red','green','blue'];
+      position(0, start_colors);
+      $("#next0").click(function() {
+        var pos = 0;
+        var score = 5;
+        var color = "red";
+        var colors = ['red'];
+        play(pos,score,color,colors);
+      });
+      $("#next1").click(function() {
+        var pos = 0;
+        var score = 5;
+        var color = "green";
+        var colors = ['red','green'];
+        play(pos,score,color,colors);
+      });
+      $("#next2").click(function() {
+        var pos = 0;
+        var score = 5;
+        var color = "blue";
+        var colors = ['red', 'green','blue'];
+        play(pos,score,color,colors);
+      });
+      $("#next3").click(function() {
+        var pos = 5;
+        var score = 9;
+        var color = "red";
+        var colors = ['red'];
+        play(pos,score,color,colors);
+      });
+      $("#next4").click(function() {
+        var pos = 5;
+        var score = 9;
+        var color = "green";
+        var colors = ['red',"green"];
+        play(pos,score,color,colors);
+      });
+      $(".in_card").each(function() {
+        $(this).click(function() {
+          var id = $(this).attr("id").split("_")[1];
+          $("#card" + id).click();
+        });
+      });
+    });
+  </script>
+
 </head>
-<body>
+<!-- <body>
     <textarea id="chat-log" cols="100" rows="20"></textarea><br>
     <input id="chat-message-input" type="text" size="100"><br>
     <input id="chat-message-submit" type="button" value="Send">
@@ -62,5 +186,179 @@
             }));
         };
     </script>
+</body> -->
+
+<body id="body">
+  <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height:100vh">
+    <div style="width:90vw">
+      <div class="row">
+        {% for i in info %}
+        <div class="col-6">
+          <div class="row">
+            {% for j in i %}
+
+            {% if j.num != -1 %}
+
+            {% if j.tag == 0 %}
+            <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+              <div class="in_card" id="innercard_{{j.num}}">
+                <div class="d-flex justify-content-center align-items-center price">
+                  <span class="text-white place text-uppercase text-center font-weight-bold">$100</span>
+                </div>
+                <div class="d-flex justify-content-center align-items-center" style="height:6vh">
+                  <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                </div>
+              </div>
+              <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+            </div>
+            {% elif j.tag == 1 %}
+            <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+              <div class="in_card" id="innercard_{{j.num}}">
+                <div class="d-flex justify-content-center align-items-center price">
+                  <span class="place text-uppercase text-center font-weight-bold">$100</span>
+                </div>
+                <div class="d-flex justify-content-center align-items-center" style="height:6vh">
+                  <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                </div>
+              </div>
+              <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+            </div>
+            {% elif j.tag == 2 %}
+            <div class="col-3 gamecard2 d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+              <div class="in_card" id="innercard_{{j.num}}">
+                <div class="d-flex justify-content-center align-items-center" style="height:8vh">
+                  <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                </div>
+              </div>
+              <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+            </div>
+            {% endif %}
+
+            <div class="modal fade" id="CardModal{{j.num}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <center>
+                  <div class="mt-1" style="width:90%">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </center>
+                  <div class="d-flex justify-content-center align-items-center">
+                    <h5 class="font-weight-bold text-uppercase py-0 my-0">{{ j.place }}</h5>
+                  </div>
+                  <center><hr style="width:80%;height:5px;background:{{j.bgcolor}}"></center>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer d-flex justify-content-around align-items-center">
+                    <button type="button" class="buy-btn text-uppercase font-weight-bold" style="--col:#5E5E5E">Close</button>
+                    <button type="button" class="buy-btn text-uppercase font-weight-bold" style="--col:{{j.bgcolor}}">Buy</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% else %}
+            <div class="col-3 gamecard-blank d-flex justify-content-center align-items-center"></div>
+            {% endif %}
+
+            {% endfor %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+  <button type="button" id="next0" name="button">NEXT0</button>
+  <button type="button" id="next1" name="button">NEXT1</button>
+  <button type="button" id="next2" name="button">NEXT2</button>
+  <button type="button" id="next3" name="button">NEXT3</button>
+  <button type="button" id="next4" name="button">NEXT4</button>
+
+  <!-- Button trigger modal -->
+  <button type="button" id="open_card" class="btn btn-primary" data-toggle="modal" data-target="#CardModal"></button>
+
+  <!-- Modal -->
+  <div class="modal fade" id="CardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="">BUY CARD</h5>
+          <h5 class="modal-title" id="city"></h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <textarea id="chat-log" cols="100" rows="20"></textarea><br>
+  <input id="chat-message-input" type="text" size="100"><br>
+  <input id="chat-message-submit" type="button" value="Send">
+  <input id="roll" type="button" value="ROLL">
+  <input type="text" id="count-log"></span>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  {{ room_name|json_script:"room-name" }}
+  hihihih
+  {{name}}
+  <script>
+      const roomName = JSON.parse(document.getElementById('room-name').textContent);
+      console.log(roomName);
+
+      const chatSocket = new WebSocket(
+          'ws://'
+          + window.location.host
+          + '/ws/chat/'
+          + roomName
+          + '/'
+      );
+
+      chatSocket.onmessage = function(e) {
+          console.log(e);
+          const data = JSON.parse(e.data);
+          console.log(data);
+          document.querySelector('#chat-log').value += (data.message + '\n');
+          document.querySelector('#count-log').value = (data.count);
+          log$('#body').
+      };
+
+      chatSocket.onclose = function(e) {
+          console.error('Chat socket closed unexpectedly');
+      };
+
+      document.querySelector('#chat-message-input').focus();
+      document.querySelector('#chat-message-input').onkeyup = function(e) {
+          if (e.keyCode === 13) {  // enter, return
+              document.querySelector('#chat-message-submit').click();
+          }
+      };
+
+      document.querySelector('#chat-message-submit').onclick = function(e) {
+          const messageInputDom = document.querySelector('#chat-message-input');
+          const message = messageInputDom.value;
+          chatSocket.send(JSON.stringify({
+              'message': message
+          }));
+          messageInputDom.value = '';
+      };
+
+      document.querySelector('#roll').onclick = function(e) {
+          chatSocket.send(JSON.stringify({
+              'message': "roll"
+          }));
+      };
+  </script>
+
 </body>
 </html>
