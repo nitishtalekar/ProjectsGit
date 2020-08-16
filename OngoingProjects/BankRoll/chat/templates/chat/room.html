@@ -16,7 +16,6 @@
 
   <script type="text/javascript">
     function move(pos, score, color) {
-      console.log(color);
       $(".coin").each(function() {
         $(this).remove();
       });
@@ -33,15 +32,19 @@
     }
 
     function removePosition(id, color) {
-      console.log("REMOVE");
       var num = $("#" + id).find(".color").length;
-      console.log(num);
       if (num == 1) {
         $("#" + id + " > #empty").remove();
       } else {
         var x = $("#" + id).find("#" + color).length;
+        if(num == 3){
+          var k = $("#" + id).find(".color").length;
+          $("#" + id).find(".color").each(function(){
+            $(this).removeClass('col-6');
+            $(this).addClass('col-12');
+          });
+        }
         $("#" + id).find("#" + color).remove();
-        console.log(x);
       }
     }
 
@@ -61,58 +64,66 @@
       var end = '</div></div>';
       $("#" + id).append(start + coin + end);
     }
-    $(document).ready(function() {
-      console.log("HELLO");
-      var i;
-      var pos = 19;
-      var score = 23;
-      var color = "red";
-      var colors = ['red'];
-      var delay = move(pos, score, color);
+    
+    function play(pos,score,col,colors){
+      removePosition(pos,col);
+      var delay = move(pos, score, col);
       $("#body").animate({
         opacity: 1
       }, delay + 500, function() {
         position(score, colors);
       });
-      $("#next").click(function() {
-        console.log("Bhenchod");
-        var pos = 13;
-        var score = 16;
-        var color = "black";
-        var colors = ['black'];
-        var delay = move(pos, score, color);
-        $("#body").animate({
-          opacity: 1
-        }, delay + 500, function() {
-          position(score, colors);
-        });
+      $("#body").animate({
+        opacity: 1
+      }, 500, function() {
+        $('#city').html("Id is" + score);
+        $("#open_card").click();
+      });
+    }
+    
+    $(document).ready(function() {
+      console.log("HELLO");
+      var start_colors = ['red','green','blue'];
+      position(0, start_colors);
+      $("#next0").click(function() {
+        var pos = 0;
+        var score = 5;
+        var color = "red";
+        var colors = ['red'];
+        play(pos,score,color,colors);
+      });
+      $("#next1").click(function() {
+        var pos = 0;
+        var score = 5;
+        var color = "green";
+        var colors = ['red','green'];
+        play(pos,score,color,colors);
       });
       $("#next2").click(function() {
-        console.log("Bhenchod2");
-        removePosition(16, 'black');
-        var pos = 16;
-        var score = 23;
-        var color = "black";
-        var colors = ['red', 'black'];
-        var delay = move(pos, score, color);
-        $("#body").animate({
-          opacity: 1
-        }, delay + 500, function() {
-          position(score, colors);
-        });
+        var pos = 0;
+        var score = 5;
+        var color = "blue";
+        var colors = ['red', 'green','blue'];
+        play(pos,score,color,colors);
       });
       $("#next3").click(function() {
-        console.log("Bhenchod2");
-        removePosition(23, 'red');
-        var pos = 23;
-        var score = 27;
+        var pos = 5;
+        var score = 9;
         var color = "red";
-        var colors = ['red', 'black', 'green', 'yellow'];
-        var delay = move(pos, score, color);
-        $("#body").animate({
-          opacity: 1
-        }, delay + 500, function() {
-          position(score, colors);
+        var colors = ['red'];
+        play(pos,score,color,colors);
+      });
+      $("#next4").click(function() {
+        var pos = 5;
+        var score = 9;
+        var color = "green";
+        var colors = ['red',"green"];
+        play(pos,score,color,colors);
+      });
+      $(".in_card").each(function() {
+        $(this).click(function() {
+          var id = $(this).attr("id").split("_")[1];
+          $("#card" + id).click();
         });
       });
     });
@@ -133,7 +144,7 @@
 
             {% if j.tag == 0 %}
             <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
-              <div class="just">
+              <div class="in_card" id="innercard_{{j.num}}">
                 <div class="d-flex justify-content-center align-items-center price">
                   <span class="text-white place text-uppercase text-center font-weight-bold">$100</span>
                 </div>
@@ -141,10 +152,11 @@
                   <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
                 </div>
               </div>
+              <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
             </div>
             {% elif j.tag == 1 %}
             <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
-              <div class="just">
+              <div class="in_card" id="innercard_{{j.num}}">
                 <div class="d-flex justify-content-center align-items-center price">
                   <span class="place text-uppercase text-center font-weight-bold">$100</span>
                 </div>
@@ -152,16 +164,38 @@
                   <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
                 </div>
               </div>
+              <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
             </div>
             {% elif j.tag == 2 %}
             <div class="col-3 gamecard2 d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
-              <div class="just">
+              <div class="in_card" id="innercard_{{j.num}}">
                 <div class="d-flex justify-content-center align-items-center" style="height:8vh">
                   <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
                 </div>
               </div>
+              <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
             </div>
             {% endif %}
+
+            <div class="modal fade" id="CardModal{{j.num}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">{{ j.place }}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {% else %}
             <div class="col-3 gamecard-blank d-flex justify-content-center align-items-center"></div>
@@ -174,21 +208,22 @@
       </div>
     </div>
   </div>
-  <button type="button" id="next" name="button">NEXT</button>
+  <button type="button" id="next0" name="button">NEXT0</button>
+  <button type="button" id="next1" name="button">NEXT1</button>
   <button type="button" id="next2" name="button">NEXT2</button>
   <button type="button" id="next3" name="button">NEXT3</button>
-  
+  <button type="button" id="next4" name="button">NEXT4</button>
+
   <!-- Button trigger modal -->
-  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
-    Launch demo modal
-  </button>
-  
+  <button type="button" id="open_card" class="btn btn-primary" data-toggle="modal" data-target="#CardModal"></button>
+
   <!-- Modal -->
-  <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal fade" id="CardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+          <h5 class="modal-title" id="">BUY CARD</h5>
+          <h5 class="modal-title" id="city"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -208,8 +243,6 @@
   <input id="chat-message-input" type="text" size="100"><br>
   <input id="chat-message-submit" type="button" value="Send"> -->
 
-
-  <!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
   {{ room_name|json_script:"room-name" }}

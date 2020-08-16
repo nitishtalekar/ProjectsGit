@@ -13,7 +13,7 @@
   background: var(--color);
   z-index: 20;
   border-radius: 50%;
-  border: 2px solid white;
+  border: 2px solid rgb(210, 210, 210);
   width: 2vh;
   height: 2vh;
   opacity: 1;
@@ -52,7 +52,7 @@
   height:2vh;
   width:100%;
 }
-.just{
+.in_card{
   width:100%;
 }
 .gamecard-blank{
