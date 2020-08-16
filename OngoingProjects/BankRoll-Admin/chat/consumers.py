@@ -20,6 +20,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
         Room.objects.filter(name=name).update(count=str(count-1))
         return 0
 
+    @database_sync_to_async
+    def add_user(self, name, channel_name):
+        User.objects.filter(name=name).update(channel_name=channel_name, tag="1")
+        return 0
+
+    @database_sync_to_async
+    def del_user(self, name, channel_name):
+        User.objects.filter(name=name).update(channel_name="", tag="-1")
+        return 0
+
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
@@ -32,6 +42,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         await self.accept()
         await self.add_count(self.room_name)
+        await self.add_user(self.scope["session"]["name"], self.channel_name)
         # print(self.username)
         # count = Room.objects.filter(name=self.room_name).count()
         # print(count)
@@ -49,6 +60,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         await self.del_count(self.room_name)
         count = await self.get_count(self.room_name)
+        await self.del_user(self.scope["session"]["name"], self.channel_name)
 
         await self.channel_layer.group_send(
             self.room_group_name,

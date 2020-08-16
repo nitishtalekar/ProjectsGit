@@ -33,6 +33,7 @@
             console.log(data);
             document.querySelector('#chat-log').value += (data.message + '\n');
             document.querySelector('#count-log').value = (data.count);
+            log$('#body').
         };
 
         chatSocket.onclose = function(e) {

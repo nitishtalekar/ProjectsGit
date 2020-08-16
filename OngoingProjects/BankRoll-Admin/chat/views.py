@@ -13,6 +13,11 @@ def index(request):
             password = lf.cleaned_data["password"]
             auth = Room.objects.filter(name=rname, password=password)
             if auth.count() == 1:
+                user = User.objects.filter(name=uname)
+                if user.count() == 1 and user[0].tag == "-1":
+                    request.session['name'] = uname
+                    return HttpResponseRedirect('/chat/' + rname + '/')
+                User.objects.create(name=uname, channel_name="", tag="-1")
                 request.session['name'] = uname
                 return HttpResponseRedirect('/chat/' + rname + '/')
             error = "Invalid Room Name or password"
