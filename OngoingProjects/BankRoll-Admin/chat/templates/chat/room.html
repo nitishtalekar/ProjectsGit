@@ -3,6 +3,7 @@
 
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -36,9 +37,9 @@
         $("#" + id + " > #empty").remove();
       } else {
         var x = $("#" + id).find("#" + color).length;
-        if(num == 3){
+        if (num == 3) {
           var k = $("#" + id).find(".color").length;
-          $("#" + id).find(".color").each(function(){
+          $("#" + id).find(".color").each(function() {
             $(this).removeClass('col-6');
             $(this).addClass('col-12');
           });
@@ -64,8 +65,8 @@
       $("#" + id).append(start + coin + end);
     }
 
-    function play(pos,score,col,colors){
-      removePosition(pos,col);
+    function play(pos, score, col, colors) {
+      removePosition(pos, col);
       var delay = move(pos, score, col);
       $("#body").animate({
         opacity: 1
@@ -82,42 +83,42 @@
 
     $(document).ready(function() {
       console.log("HELLO");
-      var start_colors = ['red','green','blue'];
+      var start_colors = ['red', 'green', 'blue'];
       position(0, start_colors);
       $("#next0").click(function() {
         var pos = 0;
         var score = 5;
         var color = "red";
         var colors = ['red'];
-        play(pos,score,color,colors);
+        play(pos, score, color, colors);
       });
       $("#next1").click(function() {
         var pos = 0;
         var score = 5;
         var color = "green";
-        var colors = ['red','green'];
-        play(pos,score,color,colors);
+        var colors = ['red', 'green'];
+        play(pos, score, color, colors);
       });
       $("#next2").click(function() {
         var pos = 0;
         var score = 5;
         var color = "blue";
-        var colors = ['red', 'green','blue'];
-        play(pos,score,color,colors);
+        var colors = ['red', 'green', 'blue'];
+        play(pos, score, color, colors);
       });
       $("#next3").click(function() {
         var pos = 5;
         var score = 9;
         var color = "red";
         var colors = ['red'];
-        play(pos,score,color,colors);
+        play(pos, score, color, colors);
       });
       $("#next4").click(function() {
         var pos = 5;
         var score = 9;
         var color = "green";
-        var colors = ['red',"green"];
-        play(pos,score,color,colors);
+        var colors = ['red', "green"];
+        play(pos, score, color, colors);
       });
       $(".in_card").each(function() {
         $(this).click(function() {
@@ -238,16 +239,18 @@
               <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                   <center>
-                  <div class="mt-1" style="width:90%">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                      <span aria-hidden="true">&times;</span>
-                    </button>
-                  </div>
-                </center>
+                    <div class="mt-1" style="width:90%">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                  </center>
                   <div class="d-flex justify-content-center align-items-center">
                     <h5 class="font-weight-bold text-uppercase py-0 my-0">{{ j.place }}</h5>
                   </div>
-                  <center><hr style="width:80%;height:5px;background:{{j.bgcolor}}"></center>
+                  <center>
+                    <hr style="width:80%;height:5px;background:{{j.bgcolor}}">
+                  </center>
                   <div class="modal-body">
                     ...
                   </div>
@@ -270,14 +273,18 @@
       </div>
     </div>
   </div>
-  <button type="button" id="next0" name="button">NEXT0</button>
-  <button type="button" id="next1" name="button">NEXT1</button>
-  <button type="button" id="next2" name="button">NEXT2</button>
-  <button type="button" id="next3" name="button">NEXT3</button>
-  <button type="button" id="next4" name="button">NEXT4</button>
+  <div class="container">
+    <div class="row my-2">
+      <div class="col-2"><button type="button" id="next0" name="button">NEXT0</button></div>
+      <div class="col-2"><button type="button" id="next1" name="button">NEXT1</button></div>
+      <div class="col-2"><button type="button" id="next2" name="button">NEXT2</button></div>
+      <div class="col-2"><button type="button" id="next3" name="button">NEXT3</button></div>
+      <div class="col-2"><button type="button" id="next4" name="button">NEXT4</button></div>
+    </div>
+  </div>
 
   <!-- Button trigger modal -->
-  <button type="button" id="open_card" class="btn btn-primary" data-toggle="modal" data-target="#CardModal"></button>
+  <button type="button" id="open_card" class="btn btn-primary" data-toggle="modal" data-target="#CardModal" style="display:none"></button>
 
   <!-- Modal -->
   <div class="modal fade" id="CardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -301,64 +308,78 @@
     </div>
   </div>
 
-  <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-  <input id="chat-message-input" type="text" size="100"><br>
-  <input id="chat-message-submit" type="button" value="Send">
-  <input id="roll" type="button" value="ROLL">
-  <input type="text" id="count-log"></span>
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <textarea id="chat-log" style="width:100%"></textarea><br>
+        <input id="chat-message-input" type="text" style="width:100%"><br><br>
+        <center><input id="chat-message-submit" type="button" value="Send">
+          <input id="roll" type="button" value="ROLL"></center><br>
+        <input type="text" id="count-log" style="width:100%"></span>
+      </div>
+    </div>
+  </div>
+
+
+
 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-  {{ room_name|json_script:"room-name" }}
-  hihihih
-  {{name}}
+  <div class="container mt-0 mb-5">
+    <center>
+      {{ room_name|json_script:"room-name" }}
+      hihihih
+      {{name}}
+    </center>
+  </div>
+
   <script>
-      const roomName = JSON.parse(document.getElementById('room-name').textContent);
-      console.log(roomName);
+    const roomName = JSON.parse(document.getElementById('room-name').textContent);
+    console.log(roomName);
 
-      const chatSocket = new WebSocket(
-          'ws://'
-          + window.location.host
-          + '/ws/chat/'
-          + roomName
-          + '/'
-      );
+    const chatSocket = new WebSocket(
+      'ws://' +
+      window.location.host +
+      '/ws/chat/' +
+      roomName +
+      '/'
+    );
 
-      chatSocket.onmessage = function(e) {
-          console.log(e);
-          const data = JSON.parse(e.data);
-          console.log(data);
-          document.querySelector('#chat-log').value += (data.message + '\n');
-          document.querySelector('#count-log').value = (data.count);
-          log$('#body').
-      };
+    chatSocket.onmessage = function(e) {
+      console.log(e);
+      const data = JSON.parse(e.data);
+      console.log(data);
+      document.querySelector('#chat-log').value += (data.message + '\n');
+      document.querySelector('#count-log').value = (data.count);
+    };
 
-      chatSocket.onclose = function(e) {
-          console.error('Chat socket closed unexpectedly');
-      };
+    chatSocket.onclose = function(e) {
+      console.error('Chat socket closed unexpectedly');
+    };
 
-      document.querySelector('#chat-message-input').focus();
-      document.querySelector('#chat-message-input').onkeyup = function(e) {
-          if (e.keyCode === 13) {  // enter, return
-              document.querySelector('#chat-message-submit').click();
-          }
-      };
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+      if (e.keyCode === 13) { // enter, return
+        document.querySelector('#chat-message-submit').click();
+      }
+    };
 
-      document.querySelector('#chat-message-submit').onclick = function(e) {
-          const messageInputDom = document.querySelector('#chat-message-input');
-          const message = messageInputDom.value;
-          chatSocket.send(JSON.stringify({
-              'message': message
-          }));
-          messageInputDom.value = '';
-      };
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+      const messageInputDom = document.querySelector('#chat-message-input');
+      const message = messageInputDom.value;
+      chatSocket.send(JSON.stringify({
+        'message': message
+      }));
+      messageInputDom.value = '';
+    };
 
-      document.querySelector('#roll').onclick = function(e) {
-          chatSocket.send(JSON.stringify({
-              'message': "roll"
-          }));
-      };
+    document.querySelector('#roll').onclick = function(e) {
+      chatSocket.send(JSON.stringify({
+        'message': "roll"
+      }));
+    };
   </script>
 
 </body>
+
 </html>
