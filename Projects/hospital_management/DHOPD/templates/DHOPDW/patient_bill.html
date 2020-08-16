@@ -1,0 +1,546 @@
+{% extends 'DHOPDW/base.html' %}
+{% load static %}
+{% block head %}
+
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="">
+<meta name="author" content="">
+
+<title>Dehankar - Add Patient - Male</title>
+
+<!-- Custom fonts for this template-->
+<link href="{% static 'style/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+
+<!-- Custom styles for this template-->
+<link href="{% static 'style/css/sb-admin-2.min.css' %}" rel="stylesheet">
+<link href="{% static 'style/css/sb-admin-2.css' %}" rel="stylesheet">
+
+<style media="screen">
+  .big-check {
+    height: 20px;
+    width: 20px;
+    vertical-align: center;
+  }
+
+  .big-label {
+    font-size: 20px;
+    vertical-align: center;
+  }
+</style>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#Vaccine').change(function() {
+      if (!this.checked) {
+        $('#v_name').fadeOut('fast');
+        $('#vacc').removeAttr('required');
+        $('#cost').removeAttr('required');
+      }
+      //  ^
+      else {
+        $('#v_name').fadeIn('fast');
+        $('#vacc').attr('required', '');
+        $('#cost').attr('required', '');
+      }
+
+    });
+
+    $('#p_add_btn').click(function() {
+      checked = $("input[type=checkbox]:checked").length;
+
+      if (!checked) {
+        alert("You must check at least one checkbox.");
+        return false;
+      }
+
+    });
+    $(function(){
+    $('#enable').click(function() {
+      // $("input").prop('disabled', true);
+
+      $("input").prop('disabled', false);
+      $("select").prop('disabled', false);
+      $("textarea").prop('disabled', false);
+    });
+});
+
+  });
+</script>
+
+{% endblock head %}
+
+
+{% block content %}
+
+<body id="page-top">
+
+
+  <!-- Page Wrapper -->
+  <div id="wrapper">
+
+    <!-- Sidebar -->
+
+    <!-- End of Sidebar -->
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+
+      <!-- Main Content -->
+      <div id="content">
+
+        <!-- Topbar -->
+        <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+          <!-- Sidebar Toggle (Topbar) -->
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
+
+          <h1 class="h3 mb-2 text-gray-800 pt-3">Dehankar Hospital OPD</h1>
+
+          <!-- Topbar Navbar -->
+          <ul class="navbar-nav ml-auto">
+
+            <div class="topbar-divider d-none d-sm-block"></div>
+
+            <!-- Nav Item - User Information -->
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="btn btn-dark"><i class="fa fa-user"></i> &nbsp; &nbsp; {{ log.fname }}</span>
+              </a>
+
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#">
+                  <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Settings
+                </a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#passModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Change Password
+                </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+
+          </ul>
+
+        </nav>
+        <!-- End of Topbar -->
+
+        <!-- Begin Page Content -->
+        <!-- <div class="container-fluid"> -->
+
+        <!-- Page Heading -->
+        <div class="container" style="min-height: calc(100vh - 180px)">
+
+          <h1 class="h3 mb-2 text-gray-800">Generate Bill</h1>
+
+
+          <!-- Collapsable Card Example -->
+          <div class="card shadow mb-4">
+            <!-- Card Header - Accordion -->
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary text-uppercase">Final Edit Information</h6>
+            </div>
+
+            <!-- Card Content - Collapse -->
+            <!-- <div class="collapse show" id="collapseCardExample"> -->
+            {% if status == '0' %}
+            <form action="/DHOPD/patient_bill/?pid={{pid}}&auth={{tag}}&status={{1}}" method="POST">
+              {% csrf_token %}
+
+              <div class="card-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Title</label>
+                        <select class="js-example-basic-single custom-select mr-sm-2" name="title" style="width:55%;height:10vh" required disabled>
+                          <option value="" selected disabled>Select Title</option>
+                          {% if patient.0.10.0 == 1 %}
+                          <option value="Mr." selected>Mr.</option>
+                          {% else %}
+                          <option value="Mr.">Mr.</option>
+                          {% endif %}
+
+                          {% if patient.0.10.1 == 1 %}
+                          <option value="Ms." selected>Ms.</option>
+                          {% else %}
+                          <option value="Ms.">Ms.</option>
+                          {% endif %}
+
+                          {% if patient.0.10.2 == 1 %}
+                          <option value="Mrs." selected>Mrs.</option>
+                          {% else %}
+                          <option value="Mrs.">Mrs.</option>
+                          {% endif %}
+
+                          {% if patient.0.10.3 == 1 %}
+                          <option value="Baby Girl" selected>Baby Girl</option>
+                          {% else %}
+                          <option value="Baby Girl">Baby Girl</option>
+                          {% endif %}
+
+                          {% if patient.0.10.4 == 1 %}
+                          <option value="Baby Boy" selected>Baby Boy</option>
+                          {% else %}
+                          <option value="Baby Boy">Baby Boy</option>
+                          {% endif %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">First Name</label>
+                        <input type="text" name="f_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter FirstName" value="{{patient.0.1}}" disabled>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Middle Name</label>
+                        <input type="text" name="m_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter MiddleName" value="{{patient.0.2}}" disabled>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Last Name</label>
+                        <input type="text" name="l_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter LastName" value="{{patient.0.3}}" disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                  <label class="text-uppercase" style="font-size:15px;">Address</label>
+                  <textarea name="addr" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Address" disabled>{{patient.0.5}}</textarea>
+                </div>
+
+                <div class="container-fluid">
+                  <div class="row">
+
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
+                        <input type="tel" pattern="[0-9]{10}" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" value="{{patient.0.7}}" required disabled>
+                      </div>
+                    </div>
+
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Place</label>
+                        <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town" value="{{patient.0.6}}" required disabled>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container">
+                  <div class="row">
+                    {% for i in service %}
+                    {% if i.service_id in patient.0.11 %}
+                    <div class="col-4 mt-3">
+                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ i.service_name }}" value="{{ i.service_id }}" checked disabled>&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }} </label>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                  </div>
+                </div>
+
+                {% if 8 in patient.0.11 %}
+                <div class="container-fluid mt-3" id="v_name">
+                  <div class="d-flex justify-content-around mb-3">
+                    <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
+                    <input type="text" name="vacc" id="vacc" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Vaccine" value="{{patient.0.12}}" disabled>
+                    <label class="text-uppercase" style="font-size:15px;">Amount</label>
+                    <input type="text" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Amount" value="{{patient.0.13}}" disabled>
+                  </div>
+                </div>
+                {% endif %}
+
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:20px;">Total</label>
+                        <label style="font-size:20px;"><b>{{patient.0.9}} ₹</b></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container mb-3 mt-5">
+                  <div class="row">
+                    <div class="col-6 d-flex justify-content-center">
+                      <a class="btn btn-primary" href="/DHOPD/patient_bill/?pid={{pid}}&auth={{tag}}&status={{1}}" style="width:70%" name='p_add' id="p_add_btn">
+                        Update
+                      </a>
+                    </div>
+                    <div class="col-6 d-flex justify-content-center">
+                      <button class="btn btn-success" type="submit" style="width:70%" name='p_add' id="enable" onclick="return confirm('Are you sure you want to Print?')">
+                        Print
+                      </button>
+                    </div>
+                    <!-- <div class="col-6 d-flex justify-content-center">
+                      <button class="btn btn-success" type="button" style="width:70%" name='p_add' id="enable" onclick="return confirm('Are you sure you want to Print?')">
+                        enable
+                      </button>
+                    </div> -->
+                  </div>
+                </div>
+              </div>
+
+            </form>
+            <!-- </div> -->
+            {% elif status == '1' %}
+            <form action="/DHOPD/patient_bill/?pid={{pid}}&auth={{tag}}&status={{0}}" method="POST">
+              {% csrf_token %}
+
+              <div class="card-body">
+                <div class="container-fluid">
+                  <div class="row">
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Title</label>
+                        <select class="js-example-basic-single custom-select mr-sm-2" name="title" style="width:55%;height:10vh" required>
+                          <option value="" selected disabled>Select Title</option>
+                          {% if patient.0.10.0 == 1 %}
+                          <option value="Mr." selected>Mr.</option>
+                          {% else %}
+                          <option value="Mr.">Mr.</option>
+                          {% endif %}
+
+                          {% if patient.0.10.1 == 1 %}
+                          <option value="Ms." selected>Ms.</option>
+                          {% else %}
+                          <option value="Ms.">Ms.</option>
+                          {% endif %}
+
+                          {% if patient.0.10.2 == 1 %}
+                          <option value="Mrs." selected>Mrs.</option>
+                          {% else %}
+                          <option value="Mrs.">Mrs.</option>
+                          {% endif %}
+
+                          {% if patient.0.10.3 == 1 %}
+                          <option value="Baby Girl" selected>Baby Girl</option>
+                          {% else %}
+                          <option value="Baby Girl">Baby Girl</option>
+                          {% endif %}
+
+                          {% if patient.0.10.4 == 1 %}
+                          <option value="Baby Boy" selected>Baby Boy</option>
+                          {% else %}
+                          <option value="Baby Boy">Baby Boy</option>
+                          {% endif %}
+                        </select>
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">First Name</label>
+                        <input type="text" name="f_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter FirstName" value="{{patient.0.1}}">
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Middle Name</label>
+                        <input type="text" name="m_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter MiddleName" value="{{patient.0.2}}">
+                      </div>
+                    </div>
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Last Name</label>
+                        <input type="text" name="l_name" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter LastName" value="{{patient.0.3}}">
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                  <label class="text-uppercase" style="font-size:15px;">Address</label>
+                  <textarea name="addr" class="form-control bg-light border-0 small" style="width:90%;" placeholder="Enter Address">{{patient.0.5}}</textarea>
+                </div>
+
+                <div class="container-fluid">
+                  <div class="row">
+
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Mobile number</label>
+                        <input type="tel" pattern="[0-9]{10}" name="number" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Number" value="{{patient.0.7}}" required>
+                      </div>
+                    </div>
+
+                    <div class="col-6">
+                      <div class="d-flex justify-content-around mb-3" style="align-items:center;">
+                        <label class="text-uppercase" style="font-size:15px;">Place</label>
+                        <input type="text" name="town" class="form-control bg-light border-0 small" style="width:65%;" placeholder="Enter Town" value="{{patient.0.6}}" required>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="container">
+                  <div class="row">
+                    {% for i in service %}
+                    <div class="col-4 mt-3">
+                      {% if i.service_id in patient.0.11 %}
+                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ i.service_name }}" value="{{ i.service_id }}" checked>&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }}</label>
+                      {% else %}
+                      <label class="big-label"><input type="checkbox" class="big-check" name="service" id="{{ i.service_name }}" value="{{ i.service_id }}">&nbsp;&nbsp;&nbsp;&nbsp;{{ i.service_name }} </label>
+                      {% endif %}
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+
+                {% if 8 in patient.0.11 %}
+                <div class="container-fluid mt-3" id="v_name">
+                  <div class="d-flex justify-content-around mb-3">
+                    <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
+                    <input type="text" name="vacc" id="vacc" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Vaccine" value="{{patient.0.12}}">
+                    <label class="text-uppercase" style="font-size:15px;">Amount</label>
+                    <input type="text" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Amount" value="{{patient.0.13}}">
+                  </div>
+                </div>
+                {% else %}
+                <div class="container-fluid mt-3" id="v_name" style="display:none;">
+                  <div class="d-flex justify-content-around mb-3">
+                    <label class="text-uppercase" style="font-size:15px;">Vaccine :-</label>
+                    <input type="text" name="vacc" id="vacc" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Vaccine" value="{{patient.0.12}}">
+                    <label class="text-uppercase" style="font-size:15px;">Amount</label>
+                    <input type="text" name="cost" id="cost" class="form-control bg-light border-0 small" style="width:30%;" placeholder="Enter Amount" value="{{patient.0.13}}">
+                  </div>
+                </div>
+                {% endif %}
+
+                <div class="d-flex justify-content-around mb-3 mt-5">
+                  <button class="btn btn-primary" type="submit" style="width:90%" name='p_add' id="p_add_btn" onclick="return confirm('Are you sure you want to Print?')">
+                    Update
+                  </button>
+                </div>
+              </div>
+
+            </form>
+            <!-- </div> -->
+
+            {% endif %}
+          </div>
+        </div>
+
+        <!-- </div> -->
+        <!-- /.container-fluid -->
+
+      </div>
+      <!-- End of Main Content -->
+
+      <!-- Footer -->
+      <footer class="sticky-footer bg-dark">
+        <div class="container-fluid">
+          <div class="text-right text-uppercase text-white font-weight-bold">
+            <img src="{% static 'style/images/cclogo.png' %}" style="width:0.9rem;height:0.9rem" alt="CC-Logo">
+            <span style="font-size:0.7rem">CoffeeCoders</span>
+            <span style="font-size:0.6rem">Dehankar Hospital</span>
+            <span style="font-size:0.6rem"><i class="fa fa-copyright" aria-hidden="true"></i></span>
+          </div>
+        </div>
+      </footer>
+      <!-- End of Footer -->
+
+    </div>
+    <!-- End of Content Wrapper -->
+
+  </div>
+  <!-- End of Page Wrapper -->
+
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+
+  <!-- Logout Modal-->
+  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+          <a class="btn btn-dark" href="/DHOPD/logout/">Logout</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="passModal" tabindex="-1" role="dialog" aria-labelledby="passModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="passModalLabel">Change Password?</h5>
+          <button class="close" type="submit" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div>
+          <form class="" action="" method="post">
+            <div class="mt-3">
+              <center>
+                <!-- <input type="text" class="form-control bg-light border-0 small" name="oldpwd" style="width:80%;" placeholder="Enter Old Password"><br> -->
+                <input type="text" class="form-control bg-light border-0 small" name="newpwd" style="width:80%;" placeholder="Enter New Password"><br>
+                <input type="text" class="form-control bg-light border-0 small" name="cnewpwd" style="width:80%;" placeholder="Confirm New Password"><br>
+                <button class="btn btn-secondary" type="submit" data-dismiss="modal">Cancel</button>
+                <button class="btn btn-primary" name="change_pwd" type="submit">Change</button>
+              </center>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap core JavaScript-->
+  <script src="{% static 'style/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/popper.js' %}"></script>
+  <script src="{% static 'style/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'style/vendor/select2/select2.min.js' %}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('.js-example-basic-single').select2();
+    });
+  </script>
+
+  <!-- Core plugin JavaScript-->
+  <script src="{% static 'style/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+
+  <!-- Custom scripts for all pages-->
+  <script src="{% static 'style/js/sb-admin-2.min.js' %}"></script>
+
+</body>
+
+{% endblock content %}
