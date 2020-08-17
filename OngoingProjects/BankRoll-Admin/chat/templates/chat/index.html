@@ -7,6 +7,22 @@
 </head>
 <body>
     What chat room would you like to enter?<br>
+    dddddddkkk{{game}}dsda
+
+    {% if game == 1 %}
+    <form action="/chat/" method="POST">
+      {% csrf_token %}
+      <input type="radio" id="2" name="type" value="2">
+      <label for="2">2</label><br>
+      <input type="radio" id="3" name="type" value="3">
+      <label for="3">3</label><br>
+      <input type="radio" id="4" name="type" value="4">
+      <label for="4">4</label>
+      <button type="submit" name="room" value="{{room}}"> Start game  </button>
+      {{error}}
+    </form>
+
+    {% else %}
     <form action="/chat/" method="POST">
       {% csrf_token %}
       <input type="text" name="uname"size="100" required><br>
@@ -15,6 +31,7 @@
       <button type="submit" value="Enter"> Enter Room  </button>
       {{error}}
     </form>
+    {% endif %}
 
     <script>
         document.querySelector('#room-name-input').focus();

@@ -311,10 +311,10 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <textarea id="chat-log" style="width:100%"></textarea><br>
+        <textarea id="chat-log" style="width:100%;height:50vh"></textarea><br>
         <input id="chat-message-input" type="text" style="width:100%"><br><br>
         <center><input id="chat-message-submit" type="button" value="Send">
-          <input id="roll" type="button" value="ROLL"></center><br>
+          <input id="roll" type="button" value="ROLL" style="display:none"></center><br>
         <input type="text" id="count-log" style="width:100%"></span>
       </div>
     </div>
@@ -346,10 +346,28 @@
     );
 
     chatSocket.onmessage = function(e) {
-      console.log(e);
       const data = JSON.parse(e.data);
       console.log(data);
-      document.querySelector('#chat-log').value += (data.message + '\n');
+      console.log('{{name}}');
+      console.log(data.name);
+      if(data.name != ""){
+        if ('{{name}}' == data.name){
+          document.querySelector('#chat-log').value += ("you are added" + '\n');
+        }
+          else{
+          document.querySelector('#chat-log').value += (data.name + "is added" + '\n');
+          }
+      }
+      var roll = document.getElementById("roll");
+      if(data.roll == '{{name}}'){
+        roll.style.display = "block";
+      }
+      else{
+         roll.style.display = "none";
+      }
+      if(data.message!= ""){
+      document.querySelector('#chat-log').value += (data.message + '\n');  
+      }
       document.querySelector('#count-log').value = (data.count);
     };
 
@@ -374,8 +392,12 @@
     };
 
     document.querySelector('#roll').onclick = function(e) {
+      const messageInputDom = document.querySelector('#chat-message-input');
+      const message = messageInputDom.value;
       chatSocket.send(JSON.stringify({
-        'message': "roll"
+        'message': message,
+        'name':'{{name}}',
+        'roll':'roll'
       }));
     };
   </script>

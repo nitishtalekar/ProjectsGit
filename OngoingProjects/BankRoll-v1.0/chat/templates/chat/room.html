@@ -65,7 +65,7 @@
       var end = '</div></div>';
       $("#" + id).append(start + coin + end);
     }
-    
+
     function getColor(c){
       if (c == 'red'){
         return '#E65B5B';
@@ -80,7 +80,7 @@
         return '#EBED61';
       }
     }
-    
+
     function getColorList(clist){
       var i;
       var dlist = [];
@@ -110,7 +110,7 @@
 
     $(document).ready(function() {
       console.log("HELLO");
-      var start_colors = ['yellow','red','blue', 'green'];
+      var start_colors = ['yellow','red','blue'];
       var start_list = getColorList(start_colors);
       position(0, start_colors, start_list);
       for(i=0;i<start_colors.length;i++){
@@ -167,7 +167,7 @@
 </head>
 
 <body id="body">
-  
+
   <div class="container-fluid d-flex justify-content-center align-items-center bg-dark px-0 py-0 mx-0 my-0 pb-4" style="min-height:100vh">
     <div class="bg-dark d-flex align-items-center justify-content-center" style="width:90vw">
       <div class="center-image d-flex justify-content-center align-items-center">
@@ -201,9 +201,9 @@
           <div class="col-6">
             <div class="row">
               {% for j in i %}
-  
+
               {% if j.num != -1 %}
-  
+
               {% if j.tag == 0 %}
               <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
                 <div class="in_card" id="innercard_{{j.num}}">
@@ -241,7 +241,7 @@
                 <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
               </div>
               {% endif %}
-  
+
               <div class="modal fade" id="CardModal{{j.num}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                   <div class="modal-content">
@@ -268,11 +268,11 @@
                   </div>
                 </div>
               </div>
-  
+
               {% else %}
               <div class="col-3 gamecard-blank d-flex justify-content-center align-items-center"></div>
               {% endif %}
-  
+
               {% endfor %}
             </div>
           </div>
@@ -301,7 +301,7 @@
           </div>
         </div>
       </div>
-      
+
     </div>
   </div>
   <div class="container">

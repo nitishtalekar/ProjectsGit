@@ -20,6 +20,7 @@ class Game(models.Model):
     player_count = models.CharField(max_length=500)
     turn = models.CharField(max_length=500)
     tag = models.CharField(max_length=500, default="0")
+    type = models.CharField(max_length=500, default="2")
 
 class Board(models.Model):
     id = models.CharField(primary_key=True, max_length=500)
