@@ -130,147 +130,131 @@
   </script>
 
 </head>
-<!-- <body>
-    <textarea id="chat-log" cols="100" rows="20"></textarea><br>
-    <input id="chat-message-input" type="text" size="100"><br>
-    <input id="chat-message-submit" type="button" value="Send">
-    <input id="roll" type="button" value="ROLL">
-    <input type="text" id="count-log"></span>
-
-    {{ room_name|json_script:"room-name" }}
-    hihihih
-    {{name}}
-    <script>
-        const roomName = JSON.parse(document.getElementById('room-name').textContent);
-        console.log(roomName);
-
-        const chatSocket = new WebSocket(
-            'ws://'
-            + window.location.host
-            + '/ws/chat/'
-            + roomName
-            + '/'
-        );
-
-        chatSocket.onmessage = function(e) {
-            console.log(e);
-            const data = JSON.parse(e.data);
-            console.log(data);
-            document.querySelector('#chat-log').value += (data.message + '\n');
-            document.querySelector('#count-log').value = (data.count);
-            log$('#body').
-        };
-
-        chatSocket.onclose = function(e) {
-            console.error('Chat socket closed unexpectedly');
-        };
-
-        document.querySelector('#chat-message-input').focus();
-        document.querySelector('#chat-message-input').onkeyup = function(e) {
-            if (e.keyCode === 13) {  // enter, return
-                document.querySelector('#chat-message-submit').click();
-            }
-        };
-
-        document.querySelector('#chat-message-submit').onclick = function(e) {
-            const messageInputDom = document.querySelector('#chat-message-input');
-            const message = messageInputDom.value;
-            chatSocket.send(JSON.stringify({
-                'message': message
-            }));
-            messageInputDom.value = '';
-        };
-
-        document.querySelector('#roll').onclick = function(e) {
-            chatSocket.send(JSON.stringify({
-                'message': "roll"
-            }));
-        };
-    </script>
-</body> -->
 
 <body id="body">
-  <div class="container-fluid d-flex justify-content-center align-items-center" style="min-height:100vh">
-    <div style="width:90vw">
-      <div class="row">
-        {% for i in info %}
-        <div class="col-6">
-          <div class="row">
-            {% for j in i %}
-
-            {% if j.num != -1 %}
-
-            {% if j.tag == 0 %}
-            <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
-              <div class="in_card" id="innercard_{{j.num}}">
-                <div class="d-flex justify-content-center align-items-center price">
-                  <span class="text-white place text-uppercase text-center font-weight-bold">₹{{j.price}}</span>
-                </div>
-                <div class="d-flex justify-content-center align-items-center" style="height:6vh">
-                  <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
-                </div>
-              </div>
-              <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+  
+  <div class="container-fluid d-flex justify-content-center align-items-center bg-dark px-0 py-0 mx-0 my-0" style="min-height:100vh">
+    <div class="bg-dark d-flex align-items-center justify-content-center" style="width:90vw">
+      <div class="center-image d-flex justify-content-center align-items-center">
+        <img class="c-img" src="{% static 'img/center.png' %}" alt="">
+      </div>
+      <div class="container-fluid px-0 py-0 mx-0 my-0">
+        <div class="row mb-2 b8">
+          <div class="col-6 px-0 d-flex align-items-center justify-content-start">
+            <div class="profile mx-2"></div>
+            <div>
+              <span class="font-weight-bold text-uppercase text-white">NAME</span><br>
+              <span class="font-weight-bold text-uppercase text-white">AMOUNT</span><br>
             </div>
-            {% elif j.tag == 1 %}
-            <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
-              <div class="in_card" id="innercard_{{j.num}}">
-                <div class="d-flex justify-content-center align-items-center price">
-                  <span class="place text-uppercase text-center font-weight-bold">₹{{j.price}}</span>
-                </div>
-                <div class="d-flex justify-content-center align-items-center" style="height:6vh">
-                  <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
-                </div>
-              </div>
-              <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+          </div>
+          <div class="col-6 px-0 d-flex align-items-center justify-content-end">
+            <div class="text-right">
+              <span class="font-weight-bold text-uppercase text-white">NAME</span><br>
+              <span class="font-weight-bold text-uppercase text-white">AMOUNT</span><br>
             </div>
-            {% elif j.tag == 2 %}
-            <div class="col-3 gamecard2 d-flex justify-content-center align-items-center px-0 py-0 mx-0 py-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
-              <div class="in_card" id="innercard_{{j.num}}">
-                <div class="d-flex justify-content-center align-items-center" style="height:8vh">
-                  <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
-                </div>
-              </div>
-              <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
-            </div>
-            {% endif %}
-
-            <div class="modal fade" id="CardModal{{j.num}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-              <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                  <center>
-                    <div class="mt-1" style="width:90%">
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                  </center>
-                  <div class="d-flex justify-content-center align-items-center">
-                    <h5 class="font-weight-bold text-uppercase py-0 my-0">{{ j.place }}</h5>
-                  </div>
-                  <center>
-                    <hr style="width:80%;height:5px;background:{{j.bgcolor}}">
-                  </center>
-                  <div class="modal-body">
-                    ...
-                  </div>
-                  <div class="modal-footer d-flex justify-content-around align-items-center">
-                    <button type="button" class="buy-btn text-uppercase font-weight-bold" style="--col:#5E5E5E">Close</button>
-                    <button type="button" class="buy-btn text-uppercase font-weight-bold" style="--col:{{j.bgcolor}}">Buy</button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {% else %}
-            <div class="col-3 gamecard-blank d-flex justify-content-center align-items-center"></div>
-            {% endif %}
-
-            {% endfor %}
+            <div class="profile mx-2"></div>
           </div>
         </div>
-        {% endfor %}
+        <div class="row">
+          {% for i in info %}
+          <div class="col-6">
+            <div class="row">
+              {% for j in i %}
+  
+              {% if j.num != -1 %}
+  
+              {% if j.tag == 0 %}
+              <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+                <div class="in_card" id="innercard_{{j.num}}">
+                  <div class="buy d-flex justify-content-center align-items-center">
+                    <span class="text-white place text-uppercase text-center font-weight-bold">₹{{j.price}}</span>
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center" style="height:6vh">
+                    <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                  </div>
+                </div>
+                <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+              </div>
+              {% elif j.tag == 1 %}
+              <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+                <div class="in_card" id="innercard_{{j.num}}">
+                  <div class="buy d-flex justify-content-center align-items-center">
+                    <span class="place text-uppercase text-center font-weight-bold">₹{{j.price}}</span>
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center" style="height:6vh">
+                    <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                  </div>
+                </div>
+                <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+              </div>
+              {% elif j.tag == 2 %}
+              <div class="col-3 gamecard2 d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+                <div class="in_card" id="innercard_{{j.num}}">
+                  <div class="buy d-flex justify-content-center align-items-center">
+                    <!-- <span class="place text-uppercase text-center font-weight-bold">₹{{j.price}}</span> -->
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center" style="height:6vh">
+                    <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                  </div>
+                </div>
+                <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+              </div>
+              {% endif %}
+  
+              <div class="modal fade" id="CardModal{{j.num}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <center>
+                      <div class="mt-1" style="width:90%">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                    </center>
+                    <div class="d-flex justify-content-center align-items-center">
+                      <h5 class="font-weight-bold text-uppercase py-0 my-0">{{ j.place }}</h5>
+                    </div>
+                    <center>
+                      <hr style="width:80%;height:5px;background:{{j.bgcolor}}">
+                    </center>
+                    <div class="modal-body">
+                      ...
+                    </div>
+                    <div class="modal-footer d-flex justify-content-around align-items-center">
+                      <button type="button" class="buy-btn text-uppercase font-weight-bold" style="--col:#5E5E5E">Close</button>
+                      <button type="button" class="buy-btn text-uppercase font-weight-bold" style="--col:{{j.bgcolor}}">Buy</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              {% else %}
+              <div class="col-3 gamecard-blank d-flex justify-content-center align-items-center"></div>
+              {% endif %}
+  
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row mt-2 b8">
+          <div class="col-6 px-0 d-flex align-items-center justify-content-start">
+            <div class="profile mx-2"></div>
+            <div>
+              <span class="font-weight-bold text-uppercase text-white">NAME</span><br>
+              <span class="font-weight-bold text-uppercase text-white">AMOUNT</span><br>
+            </div>
+          </div>
+          <div class="col-6 px-0 d-flex align-items-center justify-content-end">
+            <div class="text-right">
+              <span class="font-weight-bold text-uppercase text-white">NAME</span><br>
+              <span class="font-weight-bold text-uppercase text-white">AMOUNT</span><br>
+            </div>
+            <div class="profile mx-2"></div>
+          </div>
+        </div>
       </div>
+      
     </div>
   </div>
   <div class="container">

@@ -29,35 +29,34 @@
 .gamecard{
   height:8vh;
   background-color:  var(--bgcolor);
-  /* border: 3px solid white; */
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  border: 1px solid white;
+  border-radius: 5px;  
+  width:50%;
+  border: 0.5px solid #343a40;
 }
 .gamecard2{
   height:8vh;
   background-color:  var(--bgcolor);
-  /* border: 3px solid white; */
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  border: 1px solid black;
+  border: 0.5px solid #343a40;
+  border-radius: 5px;
 }
 .place{
   font-size:1.75vw;width:90%;
 }
-.price{
-  background-color: rgba(255, 255, 255, 0.4);
+.buy{
   height:2vh;
-  width:100%;
+  background:rgba(255,255,255,0.3);
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
 }
 .in_card{
+  height:8vh;
   width:100%;
+  border-radius: 5px;
+  border: 0.5px solid #343a40;
 }
 .gamecard-blank{
   height:8vh;
-  /* background-color:  white; */
+  border: 0.5px solid #343a40;
 }
 .buy-btn{
   width:40%;
@@ -67,4 +66,24 @@
   padding-bottom: 5px;
   border-radius: 3px;
   color: white;
+}
+.center-image{
+  background-color: white;
+  z-index: +10;
+  position: absolute;
+  height: 46vh;
+  width:70%;
+  border-radius: 5px;
+}
+.c-img{
+  height: 25vh;
+}
+.b8{
+  height:8vh;
+}
+.profile{
+  height:7vh;
+  width:7vh;
+  border-radius: 50%;
+  border: 2px solid white;
 }
