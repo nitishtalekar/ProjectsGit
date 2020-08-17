@@ -10,6 +10,7 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <title>Chat Room</title>
 
   <link rel="stylesheet" href="{% static 'main.css' %}">
@@ -48,7 +49,7 @@
       }
     }
 
-    function position(id, colors) {
+    function position(id, colors, dispColors) {
       $("#" + id + " > #empty").remove();
       var col = ""
       var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap" id="empty"><div class="row overlap block mx-0 px-0">';
@@ -59,19 +60,45 @@
       }
       var coin = "";
       for (i = 0; i < colors.length; i++) {
-        coin = coin + '<div class="col-' + col + ' px-1 d-flex justify-content-center align-items-center color" id="' + colors[i] + '"><div class="small-coin" style="--color:' + colors[i] + ';"></div></div>'
+        coin = coin + '<div class="col-' + col + ' px-1 d-flex justify-content-center align-items-center color" id="' + colors[i] + '"><div class="small-coin" style="--color:' + dispColors[i] + ';"></div></div>'
       }
       var end = '</div></div>';
       $("#" + id).append(start + coin + end);
     }
+    
+    function getColor(c){
+      if (c == 'red'){
+        return '#E65B5B';
+      }
+      if (c == 'blue'){
+        return '#3C9FDD';
+      }
+      if (c == 'green'){
+        return '#54EC64';
+      }
+      if (c == 'yellow'){
+        return '#EBED61';
+      }
+    }
+    
+    function getColorList(clist){
+      var i;
+      var dlist = [];
+      for(i=0;i<clist.length;i++){
+        dlist.push(getColor(clist[i]));
+      }
+      return dlist;
+    }
 
     function play(pos, score, col, colors) {
       removePosition(pos, col);
-      var delay = move(pos, score, col);
+      var dcol = getColor(col);
+      var delay = move(pos, score, dcol);
+      var dispColor = getColorList(colors);
       $("#body").animate({
         opacity: 1
       }, delay + 500, function() {
-        position(score, colors);
+        position(score, colors, dispColor);
       });
       $("#body").animate({
         opacity: 1
@@ -83,8 +110,16 @@
 
     $(document).ready(function() {
       console.log("HELLO");
-      var start_colors = ['red', 'green', 'blue'];
-      position(0, start_colors);
+      var start_colors = ['yellow','red','blue', 'green'];
+      var start_list = getColorList(start_colors);
+      position(0, start_colors, start_list);
+      for(i=0;i<start_colors.length;i++){
+        var pid = "#profile-" + start_colors[i];
+        var uid = "#username-" + start_colors[i];
+        $(pid).fadeIn('slow');
+        $(pid).prop('class','profile mx-2 d-flex justify-content-center align-items-center');
+        $(uid).fadeIn('slow');
+      }
       $("#next0").click(function() {
         var pos = 0;
         var score = 5;
@@ -133,26 +168,32 @@
 
 <body id="body">
   
-  <div class="container-fluid d-flex justify-content-center align-items-center bg-dark px-0 py-0 mx-0 my-0" style="min-height:100vh">
+  <div class="container-fluid d-flex justify-content-center align-items-center bg-dark px-0 py-0 mx-0 my-0 pb-4" style="min-height:100vh">
     <div class="bg-dark d-flex align-items-center justify-content-center" style="width:90vw">
       <div class="center-image d-flex justify-content-center align-items-center">
         <img class="c-img" src="{% static 'img/center.png' %}" alt="">
       </div>
       <div class="container-fluid px-0 py-0 mx-0 my-0">
-        <div class="row mb-2 b8">
+        <div class="row mb-3 b8">
           <div class="col-6 px-0 d-flex align-items-center justify-content-start">
-            <div class="profile mx-2"></div>
-            <div>
-              <span class="font-weight-bold text-uppercase text-white">NAME</span><br>
-              <span class="font-weight-bold text-uppercase text-white">AMOUNT</span><br>
+            <div id="profile-red" class="profile mx-2" style="--col:#E65B5B;display:none">
+                <i class="fa fa-user usericon" aria-hidden="true" style="--col:#E65B5B"></i>
+            </div>
+            <div style="display:none" id="username-red">
+              <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#E65B5B">NAME</h1>
+              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt" style="--text:#E65B5B">(Worth)</h1>
             </div>
           </div>
           <div class="col-6 px-0 d-flex align-items-center justify-content-end">
-            <div class="text-right">
-              <span class="font-weight-bold text-uppercase text-white">NAME</span><br>
-              <span class="font-weight-bold text-uppercase text-white">AMOUNT</span><br>
+            <div class="text-right" style="display:none" id="username-blue">
+              <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#3C9FDD">NAME</h1>
+              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt" style="--text:#3C9FDD">(Worth)</h1>
             </div>
-            <div class="profile mx-2"></div>
+            <div id="profile-blue" class="profile mx-2" style="--col:#3C9FDD;display:none">
+              <i class="fa fa-user usericon" aria-hidden="true" style="--col:#3C9FDD"></i>
+            </div>
           </div>
         </div>
         <div class="row">
@@ -237,20 +278,26 @@
           </div>
           {% endfor %}
         </div>
-        <div class="row mt-2 b8">
+        <div class="row mt-3 b8">
           <div class="col-6 px-0 d-flex align-items-center justify-content-start">
-            <div class="profile mx-2"></div>
-            <div>
-              <span class="font-weight-bold text-uppercase text-white">NAME</span><br>
-              <span class="font-weight-bold text-uppercase text-white">AMOUNT</span><br>
+            <div id="profile-green" class="profile mx-2" style="--col:#54EC64;display:none">
+              <i class="fa fa-user usericon" aria-hidden="true" style="--col:#54EC64"></i>
+            </div>
+            <div style="display:none" id="username-green">
+              <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#54EC64">NAME</h1>
+              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt" style="--text:#54EC64">(Worth)</h1>
             </div>
           </div>
           <div class="col-6 px-0 d-flex align-items-center justify-content-end">
-            <div class="text-right">
-              <span class="font-weight-bold text-uppercase text-white">NAME</span><br>
-              <span class="font-weight-bold text-uppercase text-white">AMOUNT</span><br>
+            <div class="text-right" style="display:none" id="username-yellow">
+              <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#EBED61">NAME</h1>
+              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt" style="--text:#EBED61">(Worth)</h1>
             </div>
-            <div class="profile mx-2"></div>
+            <div id="profile-yellow" class="profile mx-2" style="--col:#EBED61;display:none">
+              <i class="fa fa-user usericon" aria-hidden="true" style="--col:#EBED61"></i>
+            </div>
           </div>
         </div>
       </div>
