@@ -4,6 +4,16 @@ from channels.db import database_sync_to_async
 from .models import *
 import random
 
+
+
+# 0 - Message
+# 1 - Add
+# 2 - Remove
+# 3 - Roll-btn
+# 4 - Roll-value
+
+
+
 class ChatConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def get_count(self, name):
@@ -70,14 +80,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.add_count(self.room_name)
         await self.add_user(self.scope["session"]["name"], self.channel_name)
         game = await self.roll(self.room_name)
+        print("game",game)
 
         await self.channel_layer.group_send(
             self.room_group_name,
             {
                 'type': 'chat_message',
-                'message':"",
+                'tag': 1,
                 'name':self.scope["session"]["name"],
-                'roll':0
             }
         )
 
@@ -90,8 +100,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 self.room_group_name,
                 {
                     'type': 'chat_message',
-                    'message':"",
-                    'name':"",
+                    'tag':3,
                     'roll':str(name)
                 }
             )
@@ -109,6 +118,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             {
                 'type': 'chat_message',
                 'message':self.scope["session"]["name"],
+                'tag':2,
                 'count':count
             }
         )
@@ -122,12 +132,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
     # Receive message from WebSocket
     async def receive(self, text_data):
         text_data_json = json.loads(text_data)
-        message = text_data_json['message']
-        curr_player = text_data_json['name']
-        roll = text_data_json['roll']
-        # Send message to room group
-
-        if roll == "roll":
+        tag = text_data_json['tag']
+        if tag == 3:
+            curr_player = text_data_json['name']
+            roll = text_data_json['roll']
             roll = random.randint(1,6)
             game = await self.roll(self.room_name)
             await self.change_turn(game.id)
@@ -142,28 +150,97 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 self.room_group_name,
                 {
                     'type': 'chat_message',
-                    'message': str(roll) + "#" + curr_player,
-                    'name':'',
+                    'tag':4,
+                    'curr_player':curr_player,
+                    'roll_value':roll
+                }
+            )
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {
+                    'type': 'chat_message',
+                    'tag':3,
                     'roll':name
                 }
             )
             return
 
-        await self.send(text_data=json.dumps({
-            'type': "yo",
-            'message': "sender"
-        }))
-        await self.channel_layer.group_send(
-            self.room_group_name,
-            {
-                'type': 'chat_message',
-                'message': message,
-            }
-        )
+        if tag == 0:
+            message = text_data_json['message']
+
+            await self.send(text_data=json.dumps({
+                'type': "yo",
+                'tag':0,
+                'message': "sender"
+            }))
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {
+                    'type': 'chat_message',
+                    'tag':0,
+                    'message': message,
+                }
+            )
+            return
 
     # Receive message from room group
     async def chat_message(self, event):
-        message = event['message']
+        tag = event['tag']
+        type = event['type']
+        if tag == 0:
+            message = event['message']
+            count = await self.get_count(self.room_name)
+            await self.send(text_data=json.dumps({
+                'type': type,
+                'tag':0,
+                'message':message,
+                'count':count,
+            }))
+            return
+
+        if tag == 1:
+            name = event['name']
+            count = await self.get_count(self.room_name)
+            await self.send(text_data=json.dumps({
+                'type': type,
+                'tag':tag,
+                'count':count,
+                'name':name,
+            }))
+            return
+
+        if tag == 2:
+            message = event['message']
+            count = await self.get_count(self.room_name)
+            await self.send(text_data=json.dumps({
+                'type': type,
+                'tag':tag,
+                'count':count,
+                'message':message,
+            }))
+            return
+
+        if tag == 3:
+            roll = event['roll']
+            count = await self.get_count(self.room_name)
+            await self.send(text_data=json.dumps({
+                'type': type,
+                'tag': tag,
+                'count':count,
+                'roll':roll
+            }))
+            return
+        if tag == 4:
+            roll_value = event['roll_value']
+            curr_player = event['curr_player']
+            count = await self.get_count(self.room_name)
+            await self.send(text_data=json.dumps({
+                'type': type,
+                'tag': tag,
+                'curr_player':curr_player,
+                'roll_value':roll_value
+            }))
+            return
         type = event['type']
         roll = event['roll']
         # count = event['count']

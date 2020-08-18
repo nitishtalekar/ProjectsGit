@@ -348,27 +348,38 @@
     chatSocket.onmessage = function(e) {
       const data = JSON.parse(e.data);
       console.log(data);
-      console.log('{{name}}');
-      console.log(data.name);
-      if(data.name != ""){
+      if(data.tag == 1){
         if ('{{name}}' == data.name){
           document.querySelector('#chat-log').value += ("you are added" + '\n');
         }
           else{
-          document.querySelector('#chat-log').value += (data.name + "is added" + '\n');
+          document.querySelector('#chat-log').value += (data.name + " is added" + '\n');
           }
       }
-      var roll = document.getElementById("roll");
-      if(data.roll == '{{name}}'){
-        roll.style.display = "block";
+      else if (data.tag == 3){
+
+        var roll = document.getElementById("roll");
+        if(data.roll == '{{name}}'){
+          roll.style.display = "block";
+        }
+        else{
+           roll.style.display = "none";
+        }
+
       }
-      else{
-         roll.style.display = "none";
+      else if(data.tag == 4){
+        document.querySelector('#chat-log').value += (data.roll_value+ " " + data.curr_player + '\n');
       }
-      if(data.message!= ""){
-      document.querySelector('#chat-log').value += (data.message + '\n');  
+      else if(data.tag == 0){
+        console.log(data.message);
+        document.querySelector('#chat-log').value += (data.message + '\n');
+      }
+      else if(data.tag == 2){
+        console.log(data.message);
+        document.querySelector('#chat-log').value += (data.message+ " left" + '\n');
       }
       document.querySelector('#count-log').value = (data.count);
+
     };
 
     chatSocket.onclose = function(e) {
@@ -386,16 +397,15 @@
       const messageInputDom = document.querySelector('#chat-message-input');
       const message = messageInputDom.value;
       chatSocket.send(JSON.stringify({
+        'tag':0,
         'message': message
       }));
       messageInputDom.value = '';
     };
 
     document.querySelector('#roll').onclick = function(e) {
-      const messageInputDom = document.querySelector('#chat-message-input');
-      const message = messageInputDom.value;
       chatSocket.send(JSON.stringify({
-        'message': message,
+        'tag': 3,
         'name':'{{name}}',
         'roll':'roll'
       }));
