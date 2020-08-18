@@ -177,12 +177,16 @@
 
 <body id="body">
 
-  <div class="container-fluid d-flex justify-content-center align-items-center bg-dark px-0 py-0 mx-0 my-0 pb-4" style="min-height:100vh">
+  <div class="container-fluid d-flex justify-content-center align-items-center bg-dark px-0 py-0 mx-0 my-0 pb-0" style="min-height:100vh">
     <div class="bg-dark d-flex align-items-center justify-content-center" style="width:90vw">
       <div class="center-image d-flex justify-content-center align-items-center">
         <img class="c-img" src="{% static 'img/center.png' %}" alt="">
       </div>
       <div class="container-fluid px-0 py-0 mx-0 my-0">
+        <div class="row d-flex mb-2 justify-content-around align-items-center b4">
+          <div class="col-6 text-center">
+          </div>
+        </div>
         <div class="row mb-3 b8">
           <div class="col-6 px-0 d-flex align-items-center justify-content-start">
             <div id="profile-red" class="profile mx-2" style="--col:#E65B5B;display:none">
@@ -458,7 +462,7 @@
           {% endfor %}
         </div>
         <div class="row mt-3 b8">
-          <div class="col-6 px-0 d-flex align-items-center justify-content-start">
+          <div class="col-4 px-0 d-flex align-items-center justify-content-start">
             <div id="profile-green" class="profile mx-2" style="--col:#54EC64;display:none">
               <i class="fa fa-user usericon" aria-hidden="true" style="--col:#54EC64"></i>
             </div>
@@ -468,7 +472,10 @@
               <h1 class="font-weight-bold text-uppercase amt" style="--text:#54EC64">(Worth)</h1>
             </div>
           </div>
-          <div class="col-6 px-0 d-flex align-items-center justify-content-end">
+          <div class="col-4 px-0 py-0 d-flex align-items-center justify-content-center">
+            <button type="button" class="rollbtn" style="--bgcolor:#54EC64"> ROLL </button>
+          </div>
+          <div class="col-4 px-0 d-flex align-items-center justify-content-end">
             <div class="text-right" style="display:none" id="username-yellow">
               <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#EBED61">NAME</h1>
               <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
@@ -479,8 +486,12 @@
             </div>
           </div>
         </div>
+        <div class="row d-flex mt-2 justify-content-around align-items-center b4">
+          <div class="col-6 text-center">
+            <button type="button" class="optbtn" style="--bgcolor:#54EC64" name="button">Options</button>
+          </div>
+        </div>
       </div>
-
     </div>
   </div>
   <div class="container">

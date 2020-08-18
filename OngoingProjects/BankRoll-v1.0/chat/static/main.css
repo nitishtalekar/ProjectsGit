@@ -97,6 +97,9 @@
 .b8{
   height:8vh;
 }
+.b4{
+  height:4vh;
+}
 .profile{
   height:7vh;
   width:7vh;
@@ -175,5 +178,37 @@
   border-radius: 5px;
 }
 .cardbtn:focus{
+  outline: none;
+}
+.rollbtn{
+  background-color: rgba(0, 0, 0, 0.5);
+  width:80%;
+  color: var(--bgcolor);
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 4vw;
+  margin: 0px;
+  border: 2px solid var(--bgcolor);
+  border-radius: 5px;
+}
+.rollbtn:focus{
+  outline: none;
+}
+.optbtn{
+  background-color: rgba(0, 0, 0, 0.5);
+  width:80%;
+  color: var(--bgcolor);
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 3vw;
+  margin: 0px;
+  border: 2px solid var(--bgcolor);
+  border-radius: 3px;
+}
+.optbtn:focus{
   outline: none;
 }
