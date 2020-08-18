@@ -152,8 +152,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if tag == 3:
             curr_player = text_data_json['name']
             roll = text_data_json['roll']
-            # roll = random.randint(1,6)
-            roll = 2
+            roll = random.randint(1,6)
+            # roll = 2
             game = await self.roll(self.room_name)
             curr_loc, curr_color, new_loc, colors = await self.change_roll(game.id, roll)
             await self.change_turn(game.id)
@@ -161,6 +161,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
             player = game.player.split("#")
             turn = player[int(game.turn)]
             name = await self.get_name(turn)
+            color = game.color.split("#")
+            next_color = color[int(game.turn)]
 
             await self.channel_layer.group_send(
                 self.room_group_name,
@@ -172,6 +174,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'curr_color':curr_color,
                     'roll_value':roll,
                     'new_loc':new_loc,
+                    'next_color':next_color,
                     'colors':colors
                 }
             )
@@ -257,6 +260,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             curr_color = event['curr_color']
             new_loc = event['new_loc']
             colors = event['colors']
+            next_color = event['next_color']
             count = await self.get_count(self.room_name)
             await self.send(text_data=json.dumps({
                 'type': type,
@@ -266,6 +270,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'curr_color':curr_color,
                 'roll_value':roll_value,
                 'new_loc':new_loc,
+                'next_color':next_color,
                 'colors':colors
             }))
             return
