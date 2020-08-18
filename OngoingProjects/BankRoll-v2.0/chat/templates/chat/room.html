@@ -1,0 +1,614 @@
+<!-- chat/templates/chat/room.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <title>Chat Room</title>
+
+  <link rel="stylesheet" href="{% static 'main.css' %}">
+
+  <script type="text/javascript">
+    function move(pos, score, color) {
+      $(".coin").each(function() {
+        $(this).remove();
+      });
+      time = 0;
+      for (i = pos; i < score + 1; i++) {
+        var id = "#" + i;
+        var coinid = "coin" + i;
+        $('<div>').prop("class", "coin").prop("id", coinid).prop("style", "--color:" + color).appendTo(id);
+        $("#" + coinid).delay(time * 500).fadeIn();
+        $("#" + coinid).delay(150).fadeOut();
+        time++;
+      }
+      return time * 500;
+    }
+
+    function removePosition(id, color) {
+      var num = $("#" + id).find(".color").length;
+      if (num == 1) {
+        $("#" + id + " > #empty").remove();
+      } else {
+        var x = $("#" + id).find("#" + color).length;
+        if (num == 3) {
+          var k = $("#" + id).find(".color").length;
+          $("#" + id).find(".color").each(function() {
+            $(this).removeClass('col-6');
+            $(this).addClass('col-12');
+          });
+        }
+        $("#" + id).find("#" + color).remove();
+      }
+    }
+
+    function position(id, colors, dispColors) {
+      $("#" + id + " > .empty").remove();
+      var col = ""
+      var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap empty"><div class="row overlap block mx-0 px-0">';
+      if (colors.length < 3) {
+        col = "12";
+      } else {
+        col = "6";
+      }
+      var coin = "";
+      for (i = 0; i < colors.length; i++) {
+        coin = coin + '<div class="col-' + col + ' px-1 d-flex justify-content-center align-items-center color" id="' + colors[i] + '"><div class="small-coin" style="--color:' + dispColors[i] + ';"></div></div>'
+      }
+      var end = '</div></div>';
+      $("#" + id).append(start + coin + end);
+    }
+
+    function getColor(c) {
+      if (c == 'red') {
+        return '#E65B5B';
+      }
+      if (c == 'blue') {
+        return '#3C9FDD';
+      }
+      if (c == 'green') {
+        return '#54EC64';
+      }
+      if (c == 'yellow') {
+        return '#EBED61';
+      }
+    }
+
+    function getColorList(clist) {
+      var i;
+      var dlist = [];
+      for (i = 0; i < clist.length; i++) {
+        dlist.push(getColor(clist[i]));
+      }
+      return dlist;
+    }
+
+    function play(pos, score, col, colors) {
+      removePosition(pos, col);
+      var dcol = getColor(col);
+      var delay = move(pos, score, dcol);
+      var dispColor = getColorList(colors);
+      $("#body").animate({
+        opacity: 1
+      }, delay + 500, function() {
+        position(score, colors, dispColor);
+      });
+      $("#body").animate({
+        opacity: 1
+      }, 500, function() {
+        $('#city').html("Id is" + score);
+        $("#buybtn" + score).show();
+        $("#card" + score).click();
+      });
+    }
+
+    $(document).ready(function() {
+      console.log("HELLO");
+      var start_colors = ['yellow', 'red', 'blue', 'green'];
+      var start_list = getColorList(start_colors);
+      position(0, start_colors, start_list);
+      for (i = 0; i < start_colors.length; i++) {
+        var pid = "#profile-" + start_colors[i];
+        var uid = "#username-" + start_colors[i];
+        $(pid).fadeIn('slow');
+        $(pid).prop('class', 'profile mx-2 d-flex justify-content-center align-items-center');
+        $(uid).fadeIn('slow');
+      }
+      $("#next0").click(function() {
+        var pos = 0;
+        var score = 5;
+        var color = "red";
+        var colors = ['red'];
+        play(pos, score, color, colors);
+      });
+      $("#next1").click(function() {
+        var pos = 0;
+        var score = 5;
+        var color = "green";
+        var colors = ['red', 'green'];
+        play(pos, score, color, colors);
+      });
+      $("#next2").click(function() {
+        var pos = 0;
+        var score = 5;
+        var color = "blue";
+        var colors = ['red', 'green', 'blue'];
+        play(pos, score, color, colors);
+      });
+      $("#next3").click(function() {
+        var pos = 5;
+        var score = 9;
+        var color = "red";
+        var colors = ['red'];
+        play(pos, score, color, colors);
+      });
+      $("#next4").click(function() {
+        var pos = 5;
+        var score = 9;
+        var color = "green";
+        var colors = ['red', "green"];
+        play(pos, score, color, colors);
+      });
+      $(".in_card").each(function() {
+        $(this).click(function() {
+          var id = $(this).attr("id").split("_")[1];
+          $("#card" + id).click();
+        });
+      });
+    });
+    $(document).on("click", ".empty", function() {
+      var parent = $(this).parent().attr('id');
+      $("#card" + parent).click();
+    });
+    $(document).on("click", ".rent-div", function() {
+      var parent = $(this).parent().attr('id');
+      $("#card" + parent).click();
+    });
+  </script>
+
+</head>
+
+<body id="body">
+
+  <div class="container-fluid d-flex justify-content-center align-items-center bg-dark px-0 py-0 mx-0 my-0 pb-0" style="min-height:100vh">
+    <div class="bg-dark d-flex align-items-center justify-content-center" style="width:90vw">
+      <div class="center-image d-flex justify-content-center align-items-center">
+        <img class="c-img" src="{% static 'img/center.png' %}" alt="">
+      </div>
+      <div class="container-fluid px-0 py-0 mx-0 my-0">
+        <div class="row d-flex mb-2 justify-content-around align-items-center b4">
+          <div class="col-6 text-center">
+          </div>
+        </div>
+        <div class="row mb-3 b8">
+          <div class="col-6 px-0 d-flex align-items-center justify-content-start">
+            <div id="profile-red" class="profile mx-2" style="--col:#E65B5B;display:none">
+              <i class="fa fa-user usericon" aria-hidden="true" style="--col:#E65B5B"></i>
+            </div>
+            <div style="display:none" id="username-red">
+              <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#E65B5B">NAME</h1>
+              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt" style="--text:#E65B5B">(Worth)</h1>
+            </div>
+          </div>
+          <div class="col-6 px-0 d-flex align-items-center justify-content-end">
+            <div class="text-right" style="display:none" id="username-blue">
+              <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#3C9FDD">NAME</h1>
+              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt" style="--text:#3C9FDD">(Worth)</h1>
+            </div>
+            <div id="profile-blue" class="profile mx-2" style="--col:#3C9FDD;display:none">
+              <i class="fa fa-user usericon" aria-hidden="true" style="--col:#3C9FDD"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          {% for i in info %}
+          <div class="col-6">
+            <div class="row">
+              {% for j in i %}
+
+              {% if j.num != -1 %}
+
+              {% if j.tag == 0 %}
+              <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+                <div class="d-flex overlap2 justify-content-center align-items-start rent-div" style="height:7vh;width:100%;">
+                  <div class="rentcard text-center py-1 px-1" id="rent{{j.num}}" style="display:none;--color:#F0D35B">
+                    $400
+                  </div>
+                </div>
+                <div class="in_card" id="innercard_{{j.num}}">
+                  <div class="buy d-flex justify-content-center align-items-center">
+                    <span class="text-white place text-uppercase text-center font-weight-bold">₹{{j.price}}</span>
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center" style="height:6vh">
+                    <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                  </div>
+                </div>
+                <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+              </div>
+              <div class="modal fade my-0 py-0" id="CardModal{{j.num}}" style="--bcolor:{{j.bgcolor}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
+                  <div class="modal-content modal-border modalcard my-0 py-0" style="--bcolor:{{j.bgcolor}}">
+                    <div class="d-flex justify-content-center align-items-center pt-1 pb-2" style="background:{{j.bgcolor}}">
+                      <h5 class="font-weight-bold text-white text-uppercase py-0 my-0">{{ j.place }}</h5>
+                    </div>
+                    <div class="modal-body pt-2 my-0 pb-0">
+                      <div class="container-fluid mt-0">
+                        <div class="row mt-0">
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Cost</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Sell</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Rent</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 text-center text-uppercase font-weight-bold">
+                            Build
+                            <hr class="py-0 my-0">
+                          </div>
+                        </div>
+                        <div class="row mt-1" id="build{{j.num}}">
+                          <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/lodge.png' %}" style="width:70%" alt="">
+                            <span>Lodge</span><br>
+                            <span>$440</span><br>
+                            <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
+                            <button class="build" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                          </div>
+                          <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/hotel.png' %}" style="width:70%" alt="">
+                            <span>Hotel</span><br>
+                            <span>$440</span><br>
+                            <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
+                            <button class="build" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                          </div>
+                          <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/resort.png' %}" style="width:70%" alt="">
+                            <span>Resort</span><br>
+                            <span>$440</span><br>
+                            <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
+                            <button class="build" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                          <div class="col-5">
+                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                          <div class="col-5" id="buybtn{{j.num}}" style="display:none">
+                            <button type="button" class="cardbtn" style="--btncol:{{j.bgcolor}}">
+                              Buy
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% elif j.tag == 1 %}
+              <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+                <div class="d-flex overlap2 justify-content-center align-items-start rent-div" style="height:7vh;width:100%;">
+                  <div class="rentcard text-center py-1 px-1" id="rent{{j.num}}" style="display:none;--color:#F0D35B">
+                    $400
+                  </div>
+                </div>
+                <div class="in_card" id="innercard_{{j.num}}">
+                  <div class="buy d-flex justify-content-center align-items-center">
+                    <span class="place text-uppercase text-center font-weight-bold">₹{{j.price}}</span>
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center" style="height:6vh">
+                    <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                  </div>
+                </div>
+                <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+              </div>
+              <div class="modal fade my-0 py-0" id="CardModal{{j.num}}" style="--bcolor:{{j.bgcolor}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
+                  <div class="modal-content modal-border modalcard my-0 py-0" style="--bcolor:{{j.bgcolor}}">
+                    <div class="d-flex justify-content-center align-items-center pt-1 pb-2" style="background:{{j.bgcolor}}">
+                      <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0">{{ j.place }}</h5>
+                    </div>
+                    <div class="modal-body pt-2 my-0 pb-0">
+                      <div class="container-fluid mt-0">
+                        <div class="row mt-0">
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Cost</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Sell</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Rent</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 text-center text-uppercase font-weight-bold">
+                            Start
+                            <hr class="py-0 my-0">
+                          </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col-6 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/cargo.png' %}" style="width:70%" alt="">
+                            <span>Cargo</span><br>
+                            <span>$440</span><br>
+                            <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
+                            <button class="build text-dark" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                          </div>
+                          <div class="col-6 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/tour.png' %}" style="width:70%" alt="">
+                            <span>Tour</span><br>
+                            <span>$440</span><br>
+                            <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
+                            <button class="build text-dark" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                          <div class="col-5">
+                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                          <div class="col-5" id="buybtn{{j.num}}" style="display:none">
+                            <button type="button" class="cardbtn text-dark" style="--btncol:{{j.bgcolor}}">
+                              Buy
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% elif j.tag == 2 %}
+              <div class="col-3 gamecard2 d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+                <div class="in_card" id="innercard_{{j.num}}">
+                  <div class="d-flex justify-content-center align-items-end" style="height:5vh">
+                    {% if j.place == 'Start' %}
+                    <img src="{% static 'img/Start.png' %}" style="width:60%" alt="">
+                    {% endif %}
+                    {% if j.place == 'Random' %}
+                    <img src="{% static 'img/Random.png' %}" style="width:60%" alt="">
+                    {% endif %}
+                    {% if j.place == 'Jail' %}
+                    <img src="{% static 'img/Jail.png' %}" style="width:60%" alt="">
+                    {% endif %}
+                    {% if j.place == 'Auction' %}
+                    <img src="{% static 'img/Auction.png' %}" style="width:60%" alt="">
+                    {% endif %}
+                  </div>
+                  <div class="d-flex justify-content-center align-items-center" style="height:3vh">
+                    <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                  </div>
+                </div>
+                <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+              </div>
+              <div class="modal fade my-0 py-0" id="CardModal{{j.num}}" style="--bcolor:{{j.bgcolor}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
+                  <div class="modal-content modal-border modalcard my-0 py-0" style="--bcolor:{{j.bgcolor}}">
+                    <div class="d-flex justify-content-center align-items-center pt-1 pb-2" style="background:{{j.bgcolor}}">
+                      <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0">{{ j.place }}</h5>
+                    </div>
+                    <div class="modal-body pt-2 my-0 pb-0">
+                      <div class="container-fluid mt-0">
+                        <div class="row">
+                          <div class="col-12 text-center">
+                            {% if j.place == 'Start' %}
+                            <img src="{% static 'img/Start.png' %}" style="width:70%" alt="">
+                            {% endif %}
+                            {% if j.place == 'Random' %}
+                            <img src="{% static 'img/Random.png' %}" style="width:70%" alt="">
+                            {% endif %}
+                            {% if j.place == 'Jail' %}
+                            <img src="{% static 'img/Jail.png' %}" style="width:70%" alt="">
+                            {% endif %}
+                            {% if j.place == 'Auction' %}
+                            <img src="{% static 'img/Auction.png' %}" style="width:70%" alt="">
+                            {% endif %}
+                          </div>
+                          <div class="col-12 text-center text-uppercase font-weight-bold card-label">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. in voluptate v
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                          <div class="col-5">
+                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endif %}
+
+
+
+              {% else %}
+              <div class="col-3 gamecard-blank d-flex justify-content-center align-items-center"></div>
+              {% endif %}
+
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+        <div class="row mt-3 b8">
+          <div class="col-4 px-0 d-flex align-items-center justify-content-start">
+            <div id="profile-green" class="profile mx-2" style="--col:#54EC64;display:none">
+              <i class="fa fa-user usericon" aria-hidden="true" style="--col:#54EC64"></i>
+            </div>
+            <div style="display:none" id="username-green">
+              <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#54EC64">NAME</h1>
+              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt" style="--text:#54EC64">(Worth)</h1>
+            </div>
+          </div>
+          <div class="col-4 px-0 py-0 d-flex align-items-center justify-content-center">
+            <button type="button" class="rollbtn" style="--bgcolor:#54EC64"> ROLL </button>
+          </div>
+          <div class="col-4 px-0 d-flex align-items-center justify-content-end">
+            <div class="text-right" style="display:none" id="username-yellow">
+              <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#EBED61">NAME</h1>
+              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt" style="--text:#EBED61">(Worth)</h1>
+            </div>
+            <div id="profile-yellow" class="profile mx-2" style="--col:#EBED61;display:none">
+              <i class="fa fa-user usericon" aria-hidden="true" style="--col:#EBED61"></i>
+            </div>
+          </div>
+        </div>
+        <div class="row d-flex mt-2 justify-content-around align-items-center b4">
+          <div class="col-6 text-center">
+            <button type="button" class="optbtn" style="--bgcolor:#54EC64" name="button">Options</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row my-2">
+      <div class="col-2"><button type="button" id="next0" name="button">NEXT0</button></div>
+      <div class="col-2"><button type="button" id="next1" name="button">NEXT1</button></div>
+      <div class="col-2"><button type="button" id="next2" name="button">NEXT2</button></div>
+      <div class="col-2"><button type="button" id="next3" name="button">NEXT3</button></div>
+      <div class="col-2"><button type="button" id="next4" name="button">NEXT4</button></div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <textarea id="chat-log" style="width:100%"></textarea><br>
+        <input id="chat-message-input" type="text" style="width:100%"><br><br>
+        <center><input id="chat-message-submit" type="button" value="Send">
+          <input id="roll" type="button" value="ROLL"></center><br>
+        <input type="text" id="count-log" style="width:100%"></span>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+  <div class="container mt-0 mb-5">
+    <center>
+      {{ room_name|json_script:"room-name" }}
+      hihihih
+      {{name}}
+    </center>
+  </div>
+
+  <script>
+    const roomName = JSON.parse(document.getElementById('room-name').textContent);
+    console.log(roomName);
+
+    const chatSocket = new WebSocket(
+      'ws://' +
+      window.location.host +
+      '/ws/chat/' +
+      roomName +
+      '/'
+    );
+
+    chatSocket.onmessage = function(e) {
+      const data = JSON.parse(e.data);
+      console.log(data);
+      if(data.tag == 1){
+        if ('{{name}}' == data.name){
+          document.querySelector('#chat-log').value += ("you are added" + '\n');
+        }
+          else{
+          document.querySelector('#chat-log').value += (data.name + " is added" + '\n');
+          }
+      }
+      else if (data.tag == 3){
+
+        var roll = document.getElementById("roll");
+        if(data.roll == '{{name}}'){
+          roll.style.display = "block";
+        }
+        else{
+           roll.style.display = "none";
+        }
+
+      }
+      else if(data.tag == 4){
+        document.querySelector('#chat-log').value += (data.roll_value+ " " + data.curr_player + " " + data.curr_color +'\n');
+        document.querySelector('#chat-log').value += ("Move from: "+ data.curr_loc + " to " + data.new_loc +'\n');
+
+      }
+      else if(data.tag == 0){
+        console.log(data.message);
+        document.querySelector('#chat-log').value += (data.message + '\n');
+      }
+      else if(data.tag == 2){
+        console.log(data.message);
+        document.querySelector('#chat-log').value += (data.message+ " left" + '\n');
+      }
+      document.querySelector('#count-log').value = (data.count);
+
+    };
+
+    chatSocket.onclose = function(e) {
+      console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+      if (e.keyCode === 13) { // enter, return
+        document.querySelector('#chat-message-submit').click();
+      }
+    };
+
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+      const messageInputDom = document.querySelector('#chat-message-input');
+      const message = messageInputDom.value;
+      chatSocket.send(JSON.stringify({
+        'tag':0,
+        'message': message
+      }));
+      messageInputDom.value = '';
+    };
+
+    document.querySelector('#roll').onclick = function(e) {
+      chatSocket.send(JSON.stringify({
+        'tag': 3,
+        'name':'{{name}}',
+        'roll':'roll'
+      }));
+    };
+  </script>
+
+</body>
+
+</html>

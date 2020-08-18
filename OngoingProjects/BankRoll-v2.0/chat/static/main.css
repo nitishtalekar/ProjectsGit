@@ -1,0 +1,214 @@
+.coin {
+  background: var(--color);
+  z-index: 20;
+  border-radius: 50%;
+  border: 2px solid #D6D6D6;
+  width: 3vh;
+  height: 3vh;
+  position: absolute;
+  opacity: 1;
+  display:none;
+  box-shadow: 2px 2px #525252;
+}
+.small-coin{
+  background: var(--color);
+  z-index: 20;
+  border-radius: 50%;
+  border: 2px solid #D6D6D6;
+  width: 2vh;
+  height: 2vh;
+  opacity: 1;
+  box-shadow: 2px 2px #525252;
+  /* display:none; */
+}
+.overlap{
+  z-index:20;
+  position:absolute;
+}
+.overlap2{
+  z-index:15;
+  position:absolute;
+}
+.block{
+  height:10vh;
+}
+.gamecard{
+  height:8vh;
+  background-color:  var(--bgcolor);
+  border-radius: 5px;  
+  width:50%;
+  border: 0.5px solid #343a40;
+}
+.gamecard2{
+  height:8vh;
+  background-color:  var(--bgcolor);
+  border: 0.5px solid #343a40;
+  border-radius: 5px;
+}
+.rentcard{
+  font-size: 1.5vw;
+  line-height: 1.5vw;
+  background-color: var(--color);
+  color: white;
+  font-weight: bold;
+  width:70%;
+  border: 0.5px solid white;
+}
+.place{
+  font-size:1.75vw;
+  width:90%;
+}
+.buy{
+  height:2vh;
+  background:rgba(255,255,255,0.3);
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.in_card{
+  height:8vh;
+  width:100%;
+  border-radius: 5px;
+  border: 0.5px solid #343a40;
+}
+.gamecard-blank{
+  height:8vh;
+  border: 0.5px solid #343a40;
+}
+.buy-btn{
+  width:40%;
+  background-color:  var(--col);
+  border:none;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 3px;
+  color: white;
+}
+.center-image{
+  background-color: white;
+  z-index: +10;
+  position: absolute;
+  height: 46vh;
+  width:70%;
+  border-radius: 5px;
+}
+.c-img{
+  height: 25vh;
+}
+.b8{
+  height:8vh;
+}
+.b4{
+  height:4vh;
+}
+.profile{
+  height:7vh;
+  width:7vh;
+  border-radius: 50%;
+  border: 4px solid var(--col);
+}
+.usericon{
+  color: var(--col);
+  font-size: 6vw;
+}
+.name{
+  margin:0px;
+  padding: 0px;
+  font-size:4vw;
+  color: var(--text);
+}
+.amt{
+  margin:0px;
+  padding: 0px;
+  font-size:2.5vw;
+  color: var(--text);
+}
+.modal-border{
+  border: 5px solid var(--bcolor);
+}
+.divider{
+  width:80%;
+  height:5px;
+  background: var(--color);
+  padding-bottom:0px;
+  margin-bottom:0px;
+}
+.modalcard{
+  min-height: 48vh;
+  width:80%;
+}
+.card-label{
+  font-size: 3.5vw;
+}
+.card-label2{
+  font-size: 3.5vw;
+  line-height: 4vw;
+}
+.rent{
+  font-size:1.75vw;
+}
+.build{
+  color:white;
+  text-transform: uppercase;
+  background-color: var(--btncol);
+  padding: 2px;
+  font-size: 2.5vw;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  width:90%;
+  margin-top: 3px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+.build:focus{
+  outline: none;
+}
+.cardbtn{
+  color:white;
+  text-transform: uppercase;
+  background-color: var(--btncol);
+  padding: 3px;
+  font-size: 3.5vw;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  width:90%;
+  margin-top: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.cardbtn:focus{
+  outline: none;
+}
+.rollbtn{
+  background-color: rgba(0, 0, 0, 0.5);
+  width:80%;
+  color: var(--bgcolor);
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  font-size: 4vw;
+  margin: 0px;
+  border: 2px solid var(--bgcolor);
+  border-radius: 5px;
+}
+.rollbtn:focus{
+  outline: none;
+}
+.optbtn{
+  background-color: rgba(0, 0, 0, 0.5);
+  width:80%;
+  color: var(--bgcolor);
+  font-weight: bold;
+  text-transform: uppercase;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  font-size: 3vw;
+  margin: 0px;
+  border: 2px solid var(--bgcolor);
+  border-radius: 3px;
+}
+.optbtn:focus{
+  outline: none;
+}
