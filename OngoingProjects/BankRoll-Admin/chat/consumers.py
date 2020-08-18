@@ -63,6 +63,18 @@ class ChatConsumer(AsyncWebsocketConsumer):
         return 1
 
     @database_sync_to_async
+    def change_roll(self, id, roll):
+        game = Game.objects.get(id=id)
+        curr_loc_all = game.roll.split("#")
+        curr_loc = curr_loc_all[int(game.turn)]
+        curr_color = game.color.split("#")
+        curr_color = curr_color[int(game.turn)]
+        new_loc = (int(curr_loc) + roll) % 28
+        curr_loc_all[int(game.turn)] = str(new_loc)
+        Game.objects.filter(id=id).update(roll="#".join(curr_loc_all))
+        return curr_loc, curr_color, new_loc
+
+    @database_sync_to_async
     def get_turn(self, id):
         return int(Game.objects.get(id=id).turn)
 
@@ -138,6 +150,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             roll = text_data_json['roll']
             roll = random.randint(1,6)
             game = await self.roll(self.room_name)
+            curr_loc, curr_color, new_loc = await self.change_roll(game.id, roll)
             await self.change_turn(game.id)
             game = await self.roll(self.room_name)
             player = game.player.split("#")
@@ -152,7 +165,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'type': 'chat_message',
                     'tag':4,
                     'curr_player':curr_player,
-                    'roll_value':roll
+                    'curr_loc':curr_loc,
+                    'curr_color':curr_color,
+                    'roll_value':roll,
+                    'new_loc':new_loc
                 }
             )
             await self.channel_layer.group_send(
@@ -233,12 +249,18 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if tag == 4:
             roll_value = event['roll_value']
             curr_player = event['curr_player']
+            curr_loc = event['curr_loc']
+            curr_color = event['curr_color']
+            new_loc = event['new_loc']
             count = await self.get_count(self.room_name)
             await self.send(text_data=json.dumps({
                 'type': type,
                 'tag': tag,
                 'curr_player':curr_player,
-                'roll_value':roll_value
+                'curr_loc':curr_loc,
+                'curr_color':curr_color,
+                'roll_value':roll_value,
+                'new_loc':new_loc
             }))
             return
         type = event['type']

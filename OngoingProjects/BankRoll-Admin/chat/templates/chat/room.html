@@ -368,7 +368,9 @@
 
       }
       else if(data.tag == 4){
-        document.querySelector('#chat-log').value += (data.roll_value+ " " + data.curr_player + '\n');
+        document.querySelector('#chat-log').value += (data.roll_value+ " " + data.curr_player + " " + data.curr_color +'\n');
+        document.querySelector('#chat-log').value += ("Move from: "+ data.curr_loc + " to " + data.new_loc +'\n');
+
       }
       else if(data.tag == 0){
         console.log(data.message);

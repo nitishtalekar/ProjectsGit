@@ -19,6 +19,9 @@ def index(request):
     #     r = b//2
     #     s = b - 50
     #     Board.objects.create(id=id[i], name=data[i], color=bgs[i], buy=b, rent=r, tag=tags[i], sell=s)
+    color = ["red", "blue", "yellow", "green"]
+    c = random.sample(color, 2)
+    print(c)
     if request.method == "POST":
         lf = LoginForm(request.POST)
         gf = GameForm(request.POST)
@@ -42,9 +45,11 @@ def index(request):
                         return render(request, 'chat/index.html',{"game":1, 'room':rname})
 
                     player = game.player.split("#")
+                    roll = game.roll.split("#")
+                    roll.append("0")
                     count = int(game.player_count)
                     player.append(str(user[0].id))
-                    Game.objects.filter(id=auth[0].game).update(player="#".join(player), player_count=str(count+1))
+                    Game.objects.filter(id=auth[0].game).update(player="#".join(player), player_count=str(count+1), roll="#".join(roll))
                     return HttpResponseRedirect('/chat/' + rname + '/')
 
                 User.objects.create(name=uname, channel_name="", tag="-1")
@@ -54,9 +59,11 @@ def index(request):
                     return render(request, 'chat/index.html',{"game":1, 'room':rname})
 
                 player = game.player.split("#")
+                roll = game.roll.split("#")
+                roll.append("0")
                 count = int(game.player_count)
                 player.append(str(user[0].id))
-                Game.objects.filter(id=auth[0].game).update(player="#".join(player), player_count=str(count+1))
+                Game.objects.filter(id=auth[0].game).update(player="#".join(player), player_count=str(count+1), roll="#".join(roll))
                 return HttpResponseRedirect('/chat/' + rname + '/')
             error = "Invalid Room Name or password"
             return render(request, 'chat/index.html', {'error':error})
@@ -64,7 +71,9 @@ def index(request):
             type = gf.cleaned_data["type"]
             room = gf.cleaned_data["room"]
             player = User.objects.filter(name=request.session['name'])[0].id
-            game = Game.objects.create(player=player, player_count="1", turn="0", type=type)
+            c = random.sample(color, int(type))
+            print(c)
+            game = Game.objects.create(player=player, player_count="1", turn="0", type=type, color="#".join(c), roll="0")
             Room.objects.filter(name=room).update(game=game.id, tag="1")
             User.objects.filter(name=request.session['name']).update(tag="1")
 

@@ -21,6 +21,8 @@ class Game(models.Model):
     turn = models.CharField(max_length=500)
     tag = models.CharField(max_length=500, default="0")
     type = models.CharField(max_length=500, default="2")
+    roll = models.CharField(max_length=500, default="")
+    color = models.CharField(max_length=500, default="")
 
 class Board(models.Model):
     id = models.CharField(primary_key=True, max_length=500)
