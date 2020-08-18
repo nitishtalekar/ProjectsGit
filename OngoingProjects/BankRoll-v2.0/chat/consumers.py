@@ -67,12 +67,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
         game = Game.objects.get(id=id)
         curr_loc_all = game.roll.split("#")
         curr_loc = curr_loc_all[int(game.turn)]
-        curr_color = game.color.split("#")
-        curr_color = curr_color[int(game.turn)]
+        curr_color_all = game.color.split("#")
+        curr_color = curr_color_all[int(game.turn)]
         new_loc = (int(curr_loc) + roll) % 28
         curr_loc_all[int(game.turn)] = str(new_loc)
+        colors = []
+        for i in range(len(curr_loc_all)):
+            if curr_loc_all[i] == str(new_loc):
+                colors.append(curr_color_all[i])
         Game.objects.filter(id=id).update(roll="#".join(curr_loc_all))
-        return curr_loc, curr_color, new_loc
+        return curr_loc, curr_color, new_loc, colors
 
     @database_sync_to_async
     def get_turn(self, id):
@@ -148,9 +152,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if tag == 3:
             curr_player = text_data_json['name']
             roll = text_data_json['roll']
-            roll = random.randint(1,6)
+            # roll = random.randint(1,6)
+            roll = 2
             game = await self.roll(self.room_name)
-            curr_loc, curr_color, new_loc = await self.change_roll(game.id, roll)
+            curr_loc, curr_color, new_loc, colors = await self.change_roll(game.id, roll)
             await self.change_turn(game.id)
             game = await self.roll(self.room_name)
             player = game.player.split("#")
@@ -166,7 +171,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'curr_loc':curr_loc,
                     'curr_color':curr_color,
                     'roll_value':roll,
-                    'new_loc':new_loc
+                    'new_loc':new_loc,
+                    'colors':colors
                 }
             )
             await self.channel_layer.group_send(
@@ -250,6 +256,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             curr_loc = event['curr_loc']
             curr_color = event['curr_color']
             new_loc = event['new_loc']
+            colors = event['colors']
             count = await self.get_count(self.room_name)
             await self.send(text_data=json.dumps({
                 'type': type,
@@ -258,7 +265,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'curr_loc':curr_loc,
                 'curr_color':curr_color,
                 'roll_value':roll_value,
-                'new_loc':new_loc
+                'new_loc':new_loc,
+                'colors':colors
             }))
             return
         type = event['type']
