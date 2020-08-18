@@ -25,6 +25,10 @@
   z-index:20;
   position:absolute;
 }
+.overlap2{
+  z-index:15;
+  position:absolute;
+}
 .block{
   height:10vh;
 }
@@ -41,8 +45,18 @@
   border: 0.5px solid #343a40;
   border-radius: 5px;
 }
+.rentcard{
+  font-size: 1.5vw;
+  line-height: 1.5vw;
+  background-color: var(--color);
+  color: white;
+  font-weight: bold;
+  width:70%;
+  border: 0.5px solid white;
+}
 .place{
-  font-size:1.75vw;width:90%;
+  font-size:1.75vw;
+  width:90%;
 }
 .buy{
   height:2vh;
@@ -104,4 +118,62 @@
   padding: 0px;
   font-size:2.5vw;
   color: var(--text);
+}
+.modal-border{
+  border: 5px solid var(--bcolor);
+}
+.divider{
+  width:80%;
+  height:5px;
+  background: var(--color);
+  padding-bottom:0px;
+  margin-bottom:0px;
+}
+.modalcard{
+  min-height: 48vh;
+  width:80%;
+}
+.card-label{
+  font-size: 3.5vw;
+}
+.card-label2{
+  font-size: 3.5vw;
+  line-height: 4vw;
+}
+.rent{
+  font-size:1.75vw;
+}
+.build{
+  color:white;
+  text-transform: uppercase;
+  background-color: var(--btncol);
+  padding: 2px;
+  font-size: 2.5vw;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  width:90%;
+  margin-top: 3px;
+  font-weight: bold;
+  border-radius: 3px;
+}
+.build:focus{
+  outline: none;
+}
+.cardbtn{
+  color:white;
+  text-transform: uppercase;
+  background-color: var(--btncol);
+  padding: 3px;
+  font-size: 3.5vw;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  width:90%;
+  margin-top: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.cardbtn:focus{
+  outline: none;
 }

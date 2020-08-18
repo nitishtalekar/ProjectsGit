@@ -50,9 +50,9 @@
     }
 
     function position(id, colors, dispColors) {
-      $("#" + id + " > #empty").remove();
+      $("#" + id + " > .empty").remove();
       var col = ""
-      var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap" id="empty"><div class="row overlap block mx-0 px-0">';
+      var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap empty"><div class="row overlap block mx-0 px-0">';
       if (colors.length < 3) {
         col = "12";
       } else {
@@ -66,25 +66,25 @@
       $("#" + id).append(start + coin + end);
     }
 
-    function getColor(c){
-      if (c == 'red'){
+    function getColor(c) {
+      if (c == 'red') {
         return '#E65B5B';
       }
-      if (c == 'blue'){
+      if (c == 'blue') {
         return '#3C9FDD';
       }
-      if (c == 'green'){
+      if (c == 'green') {
         return '#54EC64';
       }
-      if (c == 'yellow'){
+      if (c == 'yellow') {
         return '#EBED61';
       }
     }
 
-    function getColorList(clist){
+    function getColorList(clist) {
       var i;
       var dlist = [];
-      for(i=0;i<clist.length;i++){
+      for (i = 0; i < clist.length; i++) {
         dlist.push(getColor(clist[i]));
       }
       return dlist;
@@ -104,20 +104,21 @@
         opacity: 1
       }, 500, function() {
         $('#city').html("Id is" + score);
-        $("#open_card").click();
+        $("#buybtn" + score).show();
+        $("#card" + score).click();
       });
     }
 
     $(document).ready(function() {
       console.log("HELLO");
-      var start_colors = ['yellow','red','blue'];
+      var start_colors = ['yellow', 'red', 'blue', 'green'];
       var start_list = getColorList(start_colors);
       position(0, start_colors, start_list);
-      for(i=0;i<start_colors.length;i++){
+      for (i = 0; i < start_colors.length; i++) {
         var pid = "#profile-" + start_colors[i];
         var uid = "#username-" + start_colors[i];
         $(pid).fadeIn('slow');
-        $(pid).prop('class','profile mx-2 d-flex justify-content-center align-items-center');
+        $(pid).prop('class', 'profile mx-2 d-flex justify-content-center align-items-center');
         $(uid).fadeIn('slow');
       }
       $("#next0").click(function() {
@@ -162,6 +163,14 @@
         });
       });
     });
+    $(document).on("click", ".empty", function() {
+      var parent = $(this).parent().attr('id');
+      $("#card" + parent).click();
+    });
+    $(document).on("click", ".rent-div", function() {
+      var parent = $(this).parent().attr('id');
+      $("#card" + parent).click();
+    });
   </script>
 
 </head>
@@ -177,7 +186,7 @@
         <div class="row mb-3 b8">
           <div class="col-6 px-0 d-flex align-items-center justify-content-start">
             <div id="profile-red" class="profile mx-2" style="--col:#E65B5B;display:none">
-                <i class="fa fa-user usericon" aria-hidden="true" style="--col:#E65B5B"></i>
+              <i class="fa fa-user usericon" aria-hidden="true" style="--col:#E65B5B"></i>
             </div>
             <div style="display:none" id="username-red">
               <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#E65B5B">NAME</h1>
@@ -206,6 +215,11 @@
 
               {% if j.tag == 0 %}
               <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+                <div class="d-flex overlap2 justify-content-center align-items-start rent-div" style="height:7vh;width:100%;">
+                  <div class="rentcard text-center py-1 px-1" id="rent{{j.num}}" style="display:none;--color:#F0D35B">
+                    $400
+                  </div>
+                </div>
                 <div class="in_card" id="innercard_{{j.num}}">
                   <div class="buy d-flex justify-content-center align-items-center">
                     <span class="text-white place text-uppercase text-center font-weight-bold">₹{{j.price}}</span>
@@ -216,8 +230,84 @@
                 </div>
                 <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
               </div>
+              <div class="modal fade my-0 py-0" id="CardModal{{j.num}}" style="--bcolor:{{j.bgcolor}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
+                  <div class="modal-content modal-border modalcard my-0 py-0" style="--bcolor:{{j.bgcolor}}">
+                    <div class="d-flex justify-content-center align-items-center pt-1 pb-2" style="background:{{j.bgcolor}}">
+                      <h5 class="font-weight-bold text-white text-uppercase py-0 my-0">{{ j.place }}</h5>
+                    </div>
+                    <div class="modal-body pt-2 my-0 pb-0">
+                      <div class="container-fluid mt-0">
+                        <div class="row mt-0">
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Cost</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Sell</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Rent</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 text-center text-uppercase font-weight-bold">
+                            Build
+                            <hr class="py-0 my-0">
+                          </div>
+                        </div>
+                        <div class="row mt-1" id="build{{j.num}}">
+                          <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/lodge.png' %}" style="width:70%" alt="">
+                            <span>Lodge</span><br>
+                            <span>$440</span><br>
+                            <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
+                            <button class="build" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                          </div>
+                          <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/hotel.png' %}" style="width:70%" alt="">
+                            <span>Hotel</span><br>
+                            <span>$440</span><br>
+                            <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
+                            <button class="build" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                          </div>
+                          <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/resort.png' %}" style="width:70%" alt="">
+                            <span>Resort</span><br>
+                            <span>$440</span><br>
+                            <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
+                            <button class="build" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                          <div class="col-5">
+                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                          <div class="col-5" id="buybtn{{j.num}}" style="display:none">
+                            <button type="button" class="cardbtn" style="--btncol:{{j.bgcolor}}">
+                              Buy
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               {% elif j.tag == 1 %}
               <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
+                <div class="d-flex overlap2 justify-content-center align-items-start rent-div" style="height:7vh;width:100%;">
+                  <div class="rentcard text-center py-1 px-1" id="rent{{j.num}}" style="display:none;--color:#F0D35B">
+                    $400
+                  </div>
+                </div>
                 <div class="in_card" id="innercard_{{j.num}}">
                   <div class="buy d-flex justify-content-center align-items-center">
                     <span class="place text-uppercase text-center font-weight-bold">₹{{j.price}}</span>
@@ -228,46 +318,135 @@
                 </div>
                 <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
               </div>
+              <div class="modal fade my-0 py-0" id="CardModal{{j.num}}" style="--bcolor:{{j.bgcolor}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
+                  <div class="modal-content modal-border modalcard my-0 py-0" style="--bcolor:{{j.bgcolor}}">
+                    <div class="d-flex justify-content-center align-items-center pt-1 pb-2" style="background:{{j.bgcolor}}">
+                      <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0">{{ j.place }}</h5>
+                    </div>
+                    <div class="modal-body pt-2 my-0 pb-0">
+                      <div class="container-fluid mt-0">
+                        <div class="row mt-0">
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Cost</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Sell</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Rent</b>
+                            <hr class="py-0 my-0">
+                            <b>$400</b>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 text-center text-uppercase font-weight-bold">
+                            Start
+                            <hr class="py-0 my-0">
+                          </div>
+                        </div>
+                        <div class="row mt-1">
+                          <div class="col-6 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/cargo.png' %}" style="width:70%" alt="">
+                            <span>Cargo</span><br>
+                            <span>$440</span><br>
+                            <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
+                            <button class="build text-dark" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                          </div>
+                          <div class="col-6 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/tour.png' %}" style="width:70%" alt="">
+                            <span>Tour</span><br>
+                            <span>$440</span><br>
+                            <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
+                            <button class="build text-dark" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                          <div class="col-5">
+                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                          <div class="col-5" id="buybtn{{j.num}}" style="display:none">
+                            <button type="button" class="cardbtn text-dark" style="--btncol:{{j.bgcolor}}">
+                              Buy
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               {% elif j.tag == 2 %}
               <div class="col-3 gamecard2 d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
                 <div class="in_card" id="innercard_{{j.num}}">
-                  <div class="buy d-flex justify-content-center align-items-center">
-                    <!-- <span class="place text-uppercase text-center font-weight-bold">₹{{j.price}}</span> -->
+                  <div class="d-flex justify-content-center align-items-end" style="height:5vh">
+                    {% if j.place == 'Start' %}
+                    <img src="{% static 'img/Start.png' %}" style="width:60%" alt="">
+                    {% endif %}
+                    {% if j.place == 'Random' %}
+                    <img src="{% static 'img/Random.png' %}" style="width:60%" alt="">
+                    {% endif %}
+                    {% if j.place == 'Jail' %}
+                    <img src="{% static 'img/Jail.png' %}" style="width:60%" alt="">
+                    {% endif %}
+                    {% if j.place == 'Auction' %}
+                    <img src="{% static 'img/Auction.png' %}" style="width:60%" alt="">
+                    {% endif %}
                   </div>
-                  <div class="d-flex justify-content-center align-items-center" style="height:6vh">
+                  <div class="d-flex justify-content-center align-items-center" style="height:3vh">
                     <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
                   </div>
                 </div>
                 <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
               </div>
-              {% endif %}
-
-              <div class="modal fade" id="CardModal{{j.num}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <center>
-                      <div class="mt-1" style="width:90%">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
+              <div class="modal fade my-0 py-0" id="CardModal{{j.num}}" style="--bcolor:{{j.bgcolor}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
+                  <div class="modal-content modal-border modalcard my-0 py-0" style="--bcolor:{{j.bgcolor}}">
+                    <div class="d-flex justify-content-center align-items-center pt-1 pb-2" style="background:{{j.bgcolor}}">
+                      <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0">{{ j.place }}</h5>
+                    </div>
+                    <div class="modal-body pt-2 my-0 pb-0">
+                      <div class="container-fluid mt-0">
+                        <div class="row">
+                          <div class="col-12 text-center">
+                            {% if j.place == 'Start' %}
+                            <img src="{% static 'img/Start.png' %}" style="width:70%" alt="">
+                            {% endif %}
+                            {% if j.place == 'Random' %}
+                            <img src="{% static 'img/Random.png' %}" style="width:70%" alt="">
+                            {% endif %}
+                            {% if j.place == 'Jail' %}
+                            <img src="{% static 'img/Jail.png' %}" style="width:70%" alt="">
+                            {% endif %}
+                            {% if j.place == 'Auction' %}
+                            <img src="{% static 'img/Auction.png' %}" style="width:70%" alt="">
+                            {% endif %}
+                          </div>
+                          <div class="col-12 text-center text-uppercase font-weight-bold card-label">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. in voluptate v
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                          <div class="col-5">
+                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                        </div>
                       </div>
-                    </center>
-                    <div class="d-flex justify-content-center align-items-center">
-                      <h5 class="font-weight-bold text-uppercase py-0 my-0">{{ j.place }}</h5>
-                    </div>
-                    <center>
-                      <hr style="width:80%;height:5px;background:{{j.bgcolor}}">
-                    </center>
-                    <div class="modal-body">
-                      ...
-                    </div>
-                    <div class="modal-footer d-flex justify-content-around align-items-center">
-                      <button type="button" class="buy-btn text-uppercase font-weight-bold" style="--col:#5E5E5E">Close</button>
-                      <button type="button" class="buy-btn text-uppercase font-weight-bold" style="--col:{{j.bgcolor}}">Buy</button>
                     </div>
                   </div>
                 </div>
               </div>
+              {% endif %}
+
+
 
               {% else %}
               <div class="col-3 gamecard-blank d-flex justify-content-center align-items-center"></div>
@@ -314,31 +493,6 @@
     </div>
   </div>
 
-  <!-- Button trigger modal -->
-  <button type="button" id="open_card" class="btn btn-primary" data-toggle="modal" data-target="#CardModal" style="display:none"></button>
-
-  <!-- Modal -->
-  <div class="modal fade" id="CardModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="">BUY CARD</h5>
-          <h5 class="modal-title" id="city"></h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="container">
     <div class="row">
       <div class="col-12">
@@ -350,7 +504,6 @@
       </div>
     </div>
   </div>
-
 
 
 
