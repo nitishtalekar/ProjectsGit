@@ -106,23 +106,36 @@
         var u = $('#gameuser').val();
         if( u == '{{name}}'){
           $("#buybtn" + score).show();
+          $("#passbtn" + score).show();
+          $("#closebtn" + score).hide();
           $("#card" + score).click();
         }
       });
     }
-
-    $(document).ready(function() {
-      console.log("HELLO");
-      var start_colors = ['red', 'blue'];
+    
+    function startplay(start_color_list,player_list){
+      var start_colors = start_color_list.split(",");
       var start_list = getColorList(start_colors);
+      var players = player_list.split(",");
       position(0, start_colors, start_list);
       for (i = 0; i < start_colors.length; i++) {
         var pid = "#profile-" + start_colors[i];
         var uid = "#username-" + start_colors[i];
+        $(uid+" .name").html(players[i]);
         $(pid).fadeIn('slow');
         $(pid).prop('class', 'profile mx-2 d-flex justify-content-center align-items-center');
         $(uid).fadeIn('slow');
       }
+    }
+
+    $(document).ready(function() {
+      console.log("HELLO");
+      $('#start').click(function(){
+        var st_col = $("#player_colors").val();
+        var st_name = $("#player_names").val();
+        startplay(st_col,st_name);
+      });
+      
       $("#next0").click(function() {
         var pos = 0;
         var score = 5;
@@ -164,6 +177,14 @@
         var color = $('#col').val();
         var colors = $('#colors').val().split(",");
         play(pos, score, color, colors);
+      });
+      $(".gamebtn").each(function(){
+        $(this).click(function(){
+          var id = $(this).attr("id").split("-");
+          var card_info = id[1] + "#" + id[2];
+          $("#card_info").val(card_info);
+          $('#card').click();
+        })
       });
       $(".in_card").each(function() {
         $(this).click(function() {
@@ -298,13 +319,18 @@
                           </div>
                         </div>
                         <div class="row d-flex justify-content-around align items center mb-2 mt-3">
-                          <div class="col-5">
+                          <div class="col-5" id="closebtn{{j.num}}">
                             <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
                               Close
                             </button>
                           </div>
+                          <div class="col-5" id="passbtn{{j.num}}" style="display:none">
+                            <button type="button" id="cardbtn-pass-{{j.num}}" class="cardbtn gamebtn" style="--btncol:grey" data-dismiss="modal">
+                              Pass
+                            </button>
+                          </div>
                           <div class="col-5" id="buybtn{{j.num}}" style="display:none">
-                            <button type="button" class="cardbtn" style="--btncol:{{j.bgcolor}}">
+                            <button type="button" id="cardbtn-buy-{{j.num}}" class="cardbtn gamebtn" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
                               Buy
                             </button>
                           </div>
@@ -379,13 +405,18 @@
                           </div>
                         </div>
                         <div class="row d-flex justify-content-around align items center mb-2 mt-3">
-                          <div class="col-5">
+                          <div class="col-5" id="closebtn{{j.num}}">
                             <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
                               Close
                             </button>
                           </div>
+                          <div class="col-5" id="passbtn{{j.num}}" style="display:none">
+                            <button type="button" id="cardbtn-pass-{{j.num}}" class="cardbtn gamebtn" style="--btncol:grey" data-dismiss="modal">
+                              Pass
+                            </button>
+                          </div>
                           <div class="col-5" id="buybtn{{j.num}}" style="display:none">
-                            <button type="button" class="cardbtn text-dark" style="--btncol:{{j.bgcolor}}">
+                            <button type="button" id="cardbtn-buy-{{j.num}}" class="cardbtn gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
                               Buy
                             </button>
                           </div>
@@ -446,9 +477,14 @@
                           </div>
                         </div>
                         <div class="row d-flex justify-content-around align items center mb-2 mt-3">
-                          <div class="col-5">
-                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                          <div class="col-5" id="closebtn{{j.num}}">
+                            <button type="button"  class="cardbtn" style="--btncol:grey" data-dismiss="modal">
                               Close
+                            </button>
+                          </div>
+                          <div class="col-5" id="passbtn{{j.num}}" style="display:none">
+                            <button type="button" id="cardbtn-pass-{{j.num}}" class="cardbtn gamebtn" style="--btncol:grey" data-dismiss="modal">
+                              Pass
                             </button>
                           </div>
                         </div>
@@ -519,7 +555,12 @@
       <!-- <input type="text" id="username" value="{{name}}"> -->
       <input type="text" id="gameuser">
       <br>
-      <button type="button" id="move-coin" name="button">move</button>
+      <button type="button" id="move-coin">move</button>
+      <button type="button" id="start">start</button>
+      <input type="text" id="player_colors">
+      <input type="text" id="player_names">
+      <input type="text" id="card_info">
+      <button type="button" id="card">card</button>
     </div>
   </div>
 
@@ -580,16 +621,21 @@
       if(data.tag == 1){
         console.log(data.player);
         console.log(data.color);
+        
         if ('{{name}}' == data.name){
           document.querySelector('#chat-log').value += ("you are added" + '\n');
         }
           else{
           document.querySelector('#chat-log').value += (data.name + " is added" + '\n');
           }
+          document.querySelector('#player_names').value = data.player;
+          document.querySelector('#player_colors').value = data.color;
+          document.querySelector('#start').click();
       }
       else if (data.tag == 3){
         console.log(data.color);
-
+        document.getElementById("roll").style.setProperty('--bgcolor', getBtnColor(data.color));
+        document.getElementById("opt").style.setProperty('--bgcolor', getBtnColor(data.color));
         if(data.roll == '{{name}}'){
            document.getElementById("roll").style.display = "block";
            document.getElementById("opt").style.display = "block";
