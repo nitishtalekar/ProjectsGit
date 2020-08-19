@@ -21,7 +21,7 @@
         $(this).remove();
       });
       time = 0;
-      for (i = pos; i != score + 1; i = (i+1)%28) {
+      for (i = pos; i != score + 1; i = (i + 1) % 28) {
         var id = "#" + i;
         var coinid = "coin" + i;
         $('<div>').prop("class", "coin").prop("id", coinid).prop("style", "--color:" + color).appendTo(id);
@@ -51,7 +51,7 @@
 
     function position(id, colors, dispColors) {
       $("#" + id + " > .empty").remove();
-      var col = ""
+      var col = "";
       var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap empty"><div class="row overlap block mx-0 px-0">';
       if (colors.length < 3) {
         col = "12";
@@ -104,7 +104,7 @@
         opacity: 1
       }, 500, function() {
         var u = $('#gameuser').val();
-        if( u == '{{name}}'){
+        if (u == '{{name}}') {
           $("#buybtn" + score).show();
           $("#passbtn" + score).show();
           $("#closebtn" + score).hide();
@@ -113,15 +113,19 @@
       });
     }
 
-    function startplay(start_color_list,player_list){
+    function startplay(start_color_list, player_list,amount_list,worth_list) {
       var start_colors = start_color_list.split(",");
       var start_list = getColorList(start_colors);
       var players = player_list.split(",");
+      var amounts = amount_list.split(",");
+      var worths = worth_list.split(",");
       position(0, start_colors, start_list);
       for (i = 0; i < start_colors.length; i++) {
         var pid = "#profile-" + start_colors[i];
         var uid = "#username-" + start_colors[i];
-        $(uid+" .name").html(players[i]);
+        $(uid + " .name").html(players[i]);
+        $(uid + " .amount").html("₹" + amounts[i]);
+        $(uid + " .worth").html("₹" + worths[i]);
         $(pid).fadeIn('slow');
         $(pid).prop('class', 'profile mx-2 d-flex justify-content-center align-items-center');
         $(uid).fadeIn('slow');
@@ -130,60 +134,38 @@
 
     $(document).ready(function() {
       console.log("HELLO");
-      $('#start').click(function(){
+      $('#start').click(function() {
         var st_col = $("#player_colors").val();
         var st_name = $("#player_names").val();
-        startplay(st_col,st_name);
+        var st_amt = $("#player_amount").val();
+        var st_worth = $("#player_worth").val();
+        startplay(st_col, st_name, st_amt, st_worth);
       });
-
-      $("#next0").click(function() {
-        var pos = 0;
-        var score = 5;
-        var color = "red";
-        var colors = ['red'];
-        play(pos, score, color, colors);
-      });
-      $("#next1").click(function() {
-        var pos = 0;
-        var score = 5;
-        var color = "green";
-        var colors = ['red', 'green'];
-        play(pos, score, color, colors);
-      });
-      $("#next2").click(function() {
-        var pos = 0;
-        var score = 5;
-        var color = "blue";
-        var colors = ['red', 'green', 'blue'];
-        play(pos, score, color, colors);
-      });
-      $("#next3").click(function() {
-        var pos = 5;
-        var score = 9;
-        var color = "red";
-        var colors = ['red'];
-        play(pos, score, color, colors);
-      });
-      $("#next4").click(function() {
-        var pos = 5;
-        var score = 9;
-        var color = "green";
-        var colors = ['red', "green"];
-        play(pos, score, color, colors);
-      });
-      $('#move-coin').click(function(){
+      $('#move-coin').click(function() {
+        $("#dice-row").show();
+        $(".roll-d").each(function(){
+          $(this).hide();
+        });
         var pos = parseInt($('#pos').val());
         var score = parseInt($('#score').val());
         var color = $('#col').val();
         var colors = $('#colors').val().split(",");
+        var rolled = score - pos;
+        $(".d-"+rolled.toString()).each(function(){
+          $(this).show();
+        });
+        var darr = ['#left','#right'];
+        var rollid  = darr[Math.floor(Math.random() * darr.length)]
+        $(rollid).click();
         play(pos, score, color, colors);
       });
-      $(".gamebtn").each(function(){
-        $(this).click(function(){
+      $(".gamebtn").each(function() {
+        $(this).click(function() {
           var id = $(this).attr("id").split("-");
           var card_info = id[1] + "#" + id[2];
           $("#card_info").val(card_info);
           $('#card').click();
+          $('#reset').click();
         })
       });
       $(".in_card").each(function() {
@@ -191,6 +173,31 @@
           var id = $(this).attr("id").split("_")[1];
           $("#card" + id).click();
         });
+      });
+      $('#left').click(function() {
+        $('#dice-left').show();
+        $("#dice-left").animate({
+          left: '90%',
+        }, 200);
+        $('#dice-left').css("transform", "rotate(360deg)");
+      });
+      $('#right').click(function() {
+        $('#dice-right').show();
+        $("#dice-right").animate({
+          left: '-90%',
+        }, 200);
+        $('#dice-right').css("transform", "rotate(-360deg)");
+      });
+      $('#reset').click(function(){
+        $('#dice-row').hide();
+        $("#dice-right").animate({
+          left: '90%',
+        },100);
+        $('#dice-right').css("transform","rotate(360deg)");
+        $("#dice-left").animate({
+          left: '-90%',
+        },100);
+        $('#dice-left').css("transform","rotate(-360deg)");
       });
     });
     $(document).on("click", ".empty", function() {
@@ -212,6 +219,164 @@
       <div class="center-image d-flex justify-content-center align-items-center">
         <img class="c-img" src="{% static 'img/center.png' %}" alt="">
       </div>
+      <div class="dice-div d-flex justify-content-center align-items-end">
+        <div class="row mb-3" style="width:100%;height:15vh;overflow:hidden" id="dice-row">
+          <div class="col-6 full d-flex justify-content-start align-items-center px-0">
+            <div id="dice-left" class="dice dleft d-flex justify-content-center align-items-center">
+              <div class="container px-2 roll-d d-1" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-center align-items-center">
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="container px-2 roll-d d-2" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-end align-items-center mb-2">
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-start align-items-center mt-2">
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="container px-2 roll-d d-3" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-end align-items-center">
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-center align-items-center mt-1 mb-1">
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-start align-items-center">
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="container px-2 roll-d d-4" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-between align-items-center mb-2">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-between align-items-center mt-2">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="container px-2 roll-d d-5" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-between align-items-center">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-center align-items-center mt-1 mb-1">
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-between align-items-center">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="container px-2 roll-d d-6" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-between align-items-center">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-between align-items-center mt-1 mb-1">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-between align-items-center">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 d-flex justify-content-end align-items-center full px-0">
+            <div id="dice-right" class="dice dright d-flex justify-content-center align-items-center">
+              <div class="container px-2 roll-d d-1" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-center align-items-center">
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="container px-2 roll-d d-2" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-end align-items-center mb-2">
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-start align-items-center mt-2">
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="container px-2 roll-d d-3" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-end align-items-center">
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-center align-items-center mt-1 mb-1">
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-start align-items-center">
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="container px-2 roll-d d-4" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-between align-items-center mb-2">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-between align-items-center mt-2">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="container px-2 roll-d d-5" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-between align-items-center">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-center align-items-center mt-1 mb-1">
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-between align-items-center">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+              <div class="container px-2 roll-d d-6" style="display:none">
+                <div class="row">
+                  <div class="col-12 d-flex justify-content-between align-items-center">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-between align-items-center mt-1 mb-1">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                  <div class="col-12 d-flex justify-content-between align-items-center">
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
       <div class="container-fluid px-0 py-0 mx-0 my-0">
         <div class="row d-flex mb-2 justify-content-around align-items-center b4">
           <div class="col-6 text-center">
@@ -224,15 +389,15 @@
             </div>
             <div style="display:none" id="username-red">
               <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#E65B5B">NAME</h1>
-              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
-              <h1 class="font-weight-bold text-uppercase amt" style="--text:#E65B5B">(Worth)</h1>
+              <h1 class="font-weight-bold text-uppercase amt amount mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt worth" style="--text:#E65B5B">(Worth)</h1>
             </div>
           </div>
           <div class="col-6 px-0 d-flex align-items-center justify-content-end">
             <div class="text-right" style="display:none" id="username-blue">
               <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#3C9FDD">NAME</h1>
-              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
-              <h1 class="font-weight-bold text-uppercase amt" style="--text:#3C9FDD">(Worth)</h1>
+              <h1 class="font-weight-bold text-uppercase amt amount mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt worth" style="--text:#3C9FDD">(Worth)</h1>
             </div>
             <div id="profile-blue" class="profile mx-2" style="--col:#3C9FDD;display:none">
               <i class="fa fa-user usericon" aria-hidden="true" style="--col:#3C9FDD"></i>
@@ -478,7 +643,7 @@
                         </div>
                         <div class="row d-flex justify-content-around align items center mb-2 mt-3">
                           <div class="col-5" id="closebtn{{j.num}}">
-                            <button type="button"  class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
                               Close
                             </button>
                           </div>
@@ -513,8 +678,8 @@
             </div>
             <div style="display:none" id="username-green">
               <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#54EC64">NAME</h1>
-              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
-              <h1 class="font-weight-bold text-uppercase amt" style="--text:#54EC64">(Worth)</h1>
+              <h1 class="font-weight-bold text-uppercase amt amount mb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt worth" style="--text:#54EC64">(Worth)</h1>
             </div>
           </div>
           <div class="col-4 px-0 py-0 d-flex align-items-center justify-content-center">
@@ -523,8 +688,8 @@
           <div class="col-4 px-0 d-flex align-items-center justify-content-end">
             <div class="text-right" style="display:none" id="username-yellow">
               <h1 class="font-weight-bold text-uppercase name mb-1" style="--text:#EBED61">NAME</h1>
-              <h1 class="font-weight-bold text-uppercase amt mb-1" style="--text:white">AMOUNT</h1>
-              <h1 class="font-weight-bold text-uppercase amt" style="--text:#EBED61">(Worth)</h1>
+              <h1 class="font-weight-bold text-uppercase amt amountmb-1" style="--text:white">AMOUNT</h1>
+              <h1 class="font-weight-bold text-uppercase amt worth" style="--text:#EBED61">(Worth)</h1>
             </div>
             <div id="profile-yellow" class="profile mx-2" style="--col:#EBED61;display:none">
               <i class="fa fa-user usericon" aria-hidden="true" style="--col:#EBED61"></i>
@@ -559,8 +724,13 @@
       <button type="button" id="start">start</button>
       <input type="text" id="player_colors">
       <input type="text" id="player_names">
+      <input type="text" id="player_amount">
+      <input type="text" id="player_worth">
       <input type="text" id="card_info">
       <button type="button" id="card">card</button>
+      <button class="text-uppercase" id="left">left</button>
+      <button class="text-uppercase" id="right">right</button>
+      <button class="text-uppercase" id="reset">reset</button>
     </div>
   </div>
 
@@ -571,7 +741,7 @@
         <input id="chat-message-input" type="text" style="width:100%"><br><br>
         <center><input id="chat-message-submit" type="button" value="Send"><br>
           <!-- <input id="roll" type="button" value="ROLL"></center><br> -->
-        <input type="text" id="count-log" style="width:100%"></span>
+          <input type="text" id="count-log" style="width:100%"></span>
       </div>
     </div>
   </div>
@@ -589,20 +759,20 @@
   </div>
 
   <script>
-      function getBtnColor(c) {
-        if (c == 'red') {
-          return '#E65B5B';
-        }
-        if (c == 'blue') {
-          return '#3C9FDD';
-        }
-        if (c == 'green') {
-          return '#54EC64';
-        }
-        if (c == 'yellow') {
-          return '#EBED61';
-        }
+    function getBtnColor(c) {
+      if (c == 'red') {
+        return '#E65B5B';
       }
+      if (c == 'blue') {
+        return '#3C9FDD';
+      }
+      if (c == 'green') {
+        return '#54EC64';
+      }
+      if (c == 'yellow') {
+        return '#EBED61';
+      }
+    }
 
     const roomName = JSON.parse(document.getElementById('room-name').textContent);
     console.log(roomName);
@@ -618,36 +788,44 @@
     chatSocket.onmessage = function(e) {
       const data = JSON.parse(e.data);
       console.log(data);
-      if(data.tag == 1){
+      if (data.tag == 1) {
         console.log(data.amount);
         console.log(data.worth);
-
-        if ('{{name}}' == data.name){
+        
+        if ('{{name}}' == data.name) {
           document.querySelector('#chat-log').value += ("you are added" + '\n');
-        }
-          else{
+        } else {
           document.querySelector('#chat-log').value += (data.name + " is added" + '\n');
-          }
-          document.querySelector('#player_names').value = data.player;
-          document.querySelector('#player_colors').value = data.color;
-          document.querySelector('#start').click();
-      }
-      else if (data.tag == 3){
+        }
+        document.querySelector('#player_names').value = data.player;
+        document.querySelector('#player_colors').value = data.color;
+        document.querySelector('#player_amount').value = data.amount;
+        document.querySelector('#player_worth').value = data.worth;
+        
+        document.querySelector('#start').click();
+      } else if (data.tag == 3) {
+        document.querySelector('#reset').click();
         document.getElementById("roll").style.setProperty('--bgcolor', getBtnColor(data.color));
         document.getElementById("opt").style.setProperty('--bgcolor', getBtnColor(data.color));
-        if(data.roll == '{{name}}'){
-           document.getElementById("roll").style.display = "block";
-           document.getElementById("opt").style.display = "block";
+        var dice = document.getElementsByClassName("dice");
+        for (var i = 0; i < dice.length; i++) {
+          dice[i].style.setProperty('--dcol', getBtnColor(data.color));
         }
-        else{
-            document.getElementById("roll").style.display = "none";
-            document.getElementById("opt").style.display = "none";
+        var dots = document.getElementsByClassName("dot");
+        for (var i = 0; i < dots.length; i++) {
+          dots[i].style.setProperty('--dcol', getBtnColor(data.color));
+        }
+        if (data.roll == '{{name}}') {
+          document.getElementById("roll").style.display = "block";
+          document.getElementById("opt").style.display = "block";
+        } else {
+          document.getElementById("roll").style.display = "none";
+          document.getElementById("opt").style.display = "none";
         }
 
-      }
-      else if(data.tag == 4){
-        document.querySelector('#chat-log').value += (data.roll_value+ " " + data.curr_player + " " + data.curr_color +'\n');
-        document.querySelector('#chat-log').value += ("Move from: "+ data.curr_loc + " to " + data.new_loc + " " + data.colors +'\n');
+      } else if (data.tag == 4) {
+        document.querySelector('#chat-log').value += (data.roll_value + " " + data.curr_player + " " + data.curr_color + '\n');
+        document.querySelector('#chat-log').value += ("Move from: " + data.curr_loc + " to " + data.new_loc + " " + data.colors + '\n');
         document.querySelector('#pos').value = data.curr_loc;
         document.querySelector('#score').value = data.new_loc;
         document.querySelector('#col').value = data.curr_color;
@@ -656,16 +834,15 @@
         document.getElementById("roll").style.display = "none";
         document.getElementById("opt").style.display = "none";
         document.querySelector('#move-coin').click();
-      }
-      else if(data.tag == 0){
+        // document.querySelector('#reset').click();
+      } else if (data.tag == 0) {
         console.log(data.message);
         document.querySelector('#chat-log').value += (data.message + '\n');
-      }
-      else if(data.tag == 2){
+      } else if (data.tag == 2) {
         console.log(data.message);
-        document.querySelector('#chat-log').value += (data.message+ " left" + '\n');
-      }
-      else if(data.tag == 5){
+        document.querySelector('#chat-log').value += (data.message + " left" + '\n');
+      } else if (data.tag == 5) {
+        
         console.log("5buy");
         console.log(data);
       }
@@ -688,7 +865,7 @@
       const messageInputDom = document.querySelector('#chat-message-input');
       const message = messageInputDom.value;
       chatSocket.send(JSON.stringify({
-        'tag':0,
+        'tag': 0,
         'message': message
       }));
       messageInputDom.value = '';
@@ -697,8 +874,8 @@
     document.querySelector('#roll').onclick = function(e) {
       chatSocket.send(JSON.stringify({
         'tag': 3,
-        'name':'{{name}}',
-        'roll':'roll'
+        'name': '{{name}}',
+        'roll': 'roll'
       }));
     };
 
@@ -710,7 +887,7 @@
       chatSocket.send(JSON.stringify({
         'tag': 5,
         'card': message,
-        'name':'{{name}}'
+        'name': '{{name}}'
       }));
       messageInputDom.value = '';
     };

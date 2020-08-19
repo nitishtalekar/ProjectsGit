@@ -83,6 +83,13 @@
   border-radius: 3px;
   color: white;
 }
+.dice-div{
+  z-index: +20;
+  position: absolute;
+  height: 46vh;
+  width:70%;
+  border-radius: 5px;
+}
 .center-image{
   background-color: white;
   z-index: +10;
@@ -211,4 +218,29 @@
 }
 .optbtn:focus{
   outline: none;
+}
+
+.dice{
+  height:10vh;
+  width:10vh;
+  border: 3px solid var(--dcol);
+  /* border: 3px solid red; */
+  background-color: rgba(0, 0, 0, 0.8);
+  border-radius: 10px;
+  position:relative;
+  transition: all 1.5s;
+  right:15vh;
+}
+.dleft{
+  right:15vh;
+}
+.dright{
+  left:15vh;
+}
+.dot{
+  background: var(--dcol);
+  /* background: red; */
+  height:2vh;
+  width:2vh;
+  border-radius: 50%;
 }
