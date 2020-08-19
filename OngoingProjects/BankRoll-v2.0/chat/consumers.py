@@ -51,6 +51,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
         return 0
 
     @database_sync_to_async
+    def get_game(self, name):
+        room = Room.objects.filter(name=name)
+        id = room[0].game
+        game = Game.objects.get(id=id)
+        return game
+
+    @database_sync_to_async
     def get_name(self, id):
         user = User.objects.get(id=id)
         return user.name
@@ -95,8 +102,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
         await self.accept()
         await self.add_count(self.room_name)
         await self.add_user(self.scope["session"]["name"], self.channel_name)
-        game = await self.roll(self.room_name)
-        print("game",game)
+        game = await self.get_game(self.room_name)
+        player_all = game.player.split("#")
+        color = game.color.split("#")
+        player = []
+        for i in player_all:
+            player.append(await self.get_name(i))
 
         await self.channel_layer.group_send(
             self.room_group_name,
@@ -104,20 +115,27 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'type': 'chat_message',
                 'tag': 1,
                 'name':self.scope["session"]["name"],
+                'player':player,
+                'color':color
             }
         )
 
+        game = await self.roll(self.room_name)
+
         if game != 0:
             player = game.player.split("#")
+            colors = game.color.split("#")
             turn = player[int(game.turn)]
             name = await self.get_name(turn)
+            color = colors[int(game.turn)]
 
             await self.channel_layer.group_send(
                 self.room_group_name,
                 {
                     'type': 'chat_message',
                     'tag':3,
-                    'roll':str(name)
+                    'roll':str(name),
+                    'color':color
                 }
             )
 
@@ -183,7 +201,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 {
                     'type': 'chat_message',
                     'tag':3,
-                    'roll':name
+                    'roll':name,
+                    'color':next_color
                 }
             )
             return
@@ -223,12 +242,16 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         if tag == 1:
             name = event['name']
+            player = event['player']
+            color = event['color']
             count = await self.get_count(self.room_name)
             await self.send(text_data=json.dumps({
                 'type': type,
                 'tag':tag,
                 'count':count,
                 'name':name,
+                'player':player,
+                'color':color
             }))
             return
 
@@ -245,12 +268,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         if tag == 3:
             roll = event['roll']
+            color = event['color']
             count = await self.get_count(self.room_name)
             await self.send(text_data=json.dumps({
                 'type': type,
                 'tag': tag,
                 'count':count,
-                'roll':roll
+                'roll':roll,
+                'color':color
             }))
             return
         if tag == 4:
