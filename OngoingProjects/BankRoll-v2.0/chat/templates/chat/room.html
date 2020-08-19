@@ -21,7 +21,7 @@
         $(this).remove();
       });
       time = 0;
-      for (i = pos; i < score + 1; i++) {
+      for (i = pos; i != score + 1; i = (i+1)%28) {
         var id = "#" + i;
         var coinid = "coin" + i;
         $('<div>').prop("class", "coin").prop("id", coinid).prop("style", "--color:" + color).appendTo(id);
@@ -159,12 +159,10 @@
         play(pos, score, color, colors);
       });
       $('#move-coin').click(function(){
-        console.log("MOVE");
         var pos = parseInt($('#pos').val());
         var score = parseInt($('#score').val());
         var color = $('#col').val();
         var colors = $('#colors').val().split(",");
-        console.log(colors);
         play(pos, score, color, colors);
       });
       $(".in_card").each(function() {
