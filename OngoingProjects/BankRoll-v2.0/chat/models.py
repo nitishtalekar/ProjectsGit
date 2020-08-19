@@ -21,8 +21,14 @@ class Game(models.Model):
     turn = models.CharField(max_length=500)
     tag = models.CharField(max_length=500, default="0")
     type = models.CharField(max_length=500, default="2")
-    roll = models.CharField(max_length=500, default="")
+    roll = models.CharField(max_length=500, default="0")
     color = models.CharField(max_length=500, default="")
+    card = models.CharField(max_length=500, default="")
+    cost = models.CharField(max_length=500, default="")
+    amount = models.CharField(max_length=500, default="1000")
+    worth = models.CharField(max_length=500, default="1000")
+
+
 
 class Board(models.Model):
     id = models.CharField(primary_key=True, max_length=500)

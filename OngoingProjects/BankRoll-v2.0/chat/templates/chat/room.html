@@ -619,8 +619,8 @@
       const data = JSON.parse(e.data);
       console.log(data);
       if(data.tag == 1){
-        console.log(data.player);
-        console.log(data.color);
+        console.log(data.amount);
+        console.log(data.worth);
 
         if ('{{name}}' == data.name){
           document.querySelector('#chat-log').value += ("you are added" + '\n');
@@ -633,8 +633,6 @@
           document.querySelector('#start').click();
       }
       else if (data.tag == 3){
-        console.log(data.color);
-        console.log(data.roll);
         document.getElementById("roll").style.setProperty('--bgcolor', getBtnColor(data.color));
         document.getElementById("opt").style.setProperty('--bgcolor', getBtnColor(data.color));
         if(data.roll == '{{name}}'){
@@ -666,6 +664,10 @@
       else if(data.tag == 2){
         console.log(data.message);
         document.querySelector('#chat-log').value += (data.message+ " left" + '\n');
+      }
+      else if(data.tag == 5){
+        console.log("5buy");
+        console.log(data);
       }
       document.querySelector('#count-log').value = (data.count);
 

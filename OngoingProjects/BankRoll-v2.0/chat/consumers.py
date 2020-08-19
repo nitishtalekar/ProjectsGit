@@ -11,7 +11,7 @@ import random
 # 2 - Remove
 # 3 - Roll-btn
 # 4 - Roll-value
-#5 - Card-data
+# 5 - Card-data
 
 
 
@@ -90,6 +90,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def get_turn(self, id):
         return int(Game.objects.get(id=id).turn)
 
+    @database_sync_to_async
+    def get_card(self, id):
+        return Board.objects.get(id=id)
+
+    @database_sync_to_async
+    def game_update(self, id, card, amount, worth, cost):
+        Game.objects.filter(id=id).update(card=card, amount=amount, worth=worth, cost=cost)
+        return 1
+
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
@@ -106,6 +115,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         game = await self.get_game(self.room_name)
         player_all = game.player.split("#")
         color = game.color.split("#")
+        amount = game.amount.split("#")
+        worth = game.worth.split("#")
         player = []
         for i in player_all:
             player.append(await self.get_name(i))
@@ -117,7 +128,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'tag': 1,
                 'name':self.scope["session"]["name"],
                 'player':player,
-                'color':color
+                'color':color,
+                'amount':amount,
+                'worth':worth,
             }
         )
 
@@ -219,22 +232,67 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
         if tag == 5:
             name = text_data_json['name']
-            card = text_data_json['card']
+            card_id = text_data_json['card'].split("#")
+            print(card_id)
             game = await self.roll(self.room_name)
             players = game.player.split("#")
             color = game.color.split("#")
             curr_color = color[int(game.turn)]
             name = players[int(game.turn)]
             name = await self.get_name(name)
+            if card_id[0] == "buy":
+                turn = (int(game.turn) - 1) % int(game.type)
+                cards = await self.get_card(card_id[1])
+                user_card = game.card.split("#")
+                card = user_card[turn].split(";")
+                if card[0] == "-1":
+                    card[0] = str(card_id[1])
+                else:
+                    card.append(str(card_id[1]))
+                user_card[turn] = ";".join(card)
+                print("card", "#".join(user_card))
 
-            # await self.channel_layer.group_send(
-            #     self.room_group_name,
-            #     {
-            #         'type': 'chat_message',
-            #         'tag':5,
-            #         'message': message,
-            #     }
-            # )
+                amounts = game.amount.split("#")
+                amount = int(amounts[turn])
+                amount = amount - int(cards.buy)
+                amounts[turn] = str(amount)
+                print("amount", "#".join(amounts))
+
+                worths = game.worth.split("#")
+                worth = int(worths[turn])
+                worth = worth - int(cards.buy)
+                worths[turn] = str(worth)
+                print("worth", "#".join(worths))
+
+                user_cost = game.cost.split("#")
+                cost = user_cost[turn].split(";")
+                if cost[0] == "-1":
+                    cost[0] = str(cards.rent)
+                else:
+                    cost.append(str(cards.rent))
+                user_cost[turn] = ";".join(cost)
+                print("cost", "#".join(user_cost))
+
+                await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost))
+                names = []
+                for i in players:
+                    names.append(await self.get_name(i))
+
+
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {
+                        'type': 'chat_message',
+                        'tag':5,
+                        'names': names,
+                        'color':color,
+                        'curr_color':color[turn],
+                        'user_card':user_card,
+                        'amount':amounts,
+                        'worth':worths,
+                        'user_cost':user_cost
+                    }
+                )
 
             await self.channel_layer.group_send(
                 self.room_group_name,
@@ -266,6 +324,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
             name = event['name']
             player = event['player']
             color = event['color']
+            amount = event['amount']
+            worth = event['worth']
             count = await self.get_count(self.room_name)
             await self.send(text_data=json.dumps({
                 'type': type,
@@ -273,7 +333,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'count':count,
                 'name':name,
                 'player':player,
-                'color':color
+                'color':color,
+                'amount':amount,
+                'worth':worth
             }))
             return
 
@@ -318,7 +380,31 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'roll_value':roll_value,
                 'new_loc':new_loc,
                 'next_color':next_color,
-                'colors':colors
+                'colors':colors,
+                'count':count
+            }))
+            return
+
+        if tag == 5:
+            names = event['names']
+            color = event['color']
+            curr_color = event['curr_color']
+            user_card = event['user_card']
+            amount = event['amount']
+            worth = event['worth']
+            user_cost = event['user_cost']
+            count = await self.get_count(self.room_name)
+            await self.send(text_data=json.dumps({
+                'type': type,
+                'tag': tag,
+                'names': names,
+                'color':color,
+                'curr_color':curr_color,
+                'user_card':user_card,
+                'amount':amount,
+                'worth':worth,
+                'user_cost':user_cost,
+                'count':count
             }))
             return
 
