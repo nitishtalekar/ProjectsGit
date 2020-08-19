@@ -112,7 +112,7 @@
         }
       });
     }
-    
+
     function startplay(start_color_list,player_list){
       var start_colors = start_color_list.split(",");
       var start_list = getColorList(start_colors);
@@ -135,7 +135,7 @@
         var st_name = $("#player_names").val();
         startplay(st_col,st_name);
       });
-      
+
       $("#next0").click(function() {
         var pos = 0;
         var score = 5;
@@ -621,7 +621,7 @@
       if(data.tag == 1){
         console.log(data.player);
         console.log(data.color);
-        
+
         if ('{{name}}' == data.name){
           document.querySelector('#chat-log').value += ("you are added" + '\n');
         }
@@ -634,6 +634,7 @@
       }
       else if (data.tag == 3){
         console.log(data.color);
+        console.log(data.roll);
         document.getElementById("roll").style.setProperty('--bgcolor', getBtnColor(data.color));
         document.getElementById("opt").style.setProperty('--bgcolor', getBtnColor(data.color));
         if(data.roll == '{{name}}'){
@@ -654,8 +655,8 @@
         document.querySelector('#col').value = data.curr_color;
         document.querySelector('#colors').value = data.colors;
         document.querySelector('#gameuser').value = data.curr_player;
-        document.getElementById("roll").style.setProperty('--bgcolor', getBtnColor(data.next_color));
-        document.getElementById("opt").style.setProperty('--bgcolor', getBtnColor(data.next_color));
+        document.getElementById("roll").style.display = "none";
+        document.getElementById("opt").style.display = "none";
         document.querySelector('#move-coin').click();
       }
       else if(data.tag == 0){
@@ -697,6 +698,19 @@
         'name':'{{name}}',
         'roll':'roll'
       }));
+    };
+
+    document.querySelector('#card').onclick = function(e) {
+      const messageInputDom = document.querySelector('#card_info');
+      const message = messageInputDom.value;
+      console.log("yo");
+      console.log(message);
+      chatSocket.send(JSON.stringify({
+        'tag': 5,
+        'card': message,
+        'name':'{{name}}'
+      }));
+      messageInputDom.value = '';
     };
   </script>
 

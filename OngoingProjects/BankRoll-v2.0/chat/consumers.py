@@ -11,6 +11,7 @@ import random
 # 2 - Remove
 # 3 - Roll-btn
 # 4 - Roll-value
+#5 - Card-data
 
 
 
@@ -196,15 +197,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'colors':colors
                 }
             )
-            await self.channel_layer.group_send(
-                self.room_group_name,
-                {
-                    'type': 'chat_message',
-                    'tag':3,
-                    'roll':name,
-                    'color':next_color
-                }
-            )
             return
 
         if tag == 0:
@@ -221,6 +213,36 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'type': 'chat_message',
                     'tag':0,
                     'message': message,
+                }
+            )
+            return
+
+        if tag == 5:
+            name = text_data_json['name']
+            card = text_data_json['card']
+            game = await self.roll(self.room_name)
+            players = game.player.split("#")
+            color = game.color.split("#")
+            curr_color = color[int(game.turn)]
+            name = players[int(game.turn)]
+            name = await self.get_name(name)
+
+            # await self.channel_layer.group_send(
+            #     self.room_group_name,
+            #     {
+            #         'type': 'chat_message',
+            #         'tag':5,
+            #         'message': message,
+            #     }
+            # )
+
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {
+                    'type': 'chat_message',
+                    'tag':3,
+                    'roll':name,
+                    'color':curr_color
                 }
             )
             return
@@ -299,6 +321,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'colors':colors
             }))
             return
+
+
         type = event['type']
         roll = event['roll']
         # count = event['count']
