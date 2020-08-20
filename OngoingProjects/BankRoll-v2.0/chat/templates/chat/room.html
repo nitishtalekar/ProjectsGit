@@ -66,7 +66,23 @@
       $("#" + id).append(start + coin + end);
     }
     
-    function cardbuttonShow(id,tag,order){
+    function build_btns(id,order,tag){
+      var b_id = order.split("-");
+      var i;
+      if(id != "-1"){
+        if(tag == 'show'){
+          for(i=0;i<b_id.length;i++){
+            $("#build"+id+" .bld"+b_id[i]).show();
+          }
+        } 
+      }
+      else if(tag == "hide"){
+        $("#build"+id+" .build").hide();
+      }
+      console.log("OKAY");
+    }
+    
+    function cardbuttonShow(id,tag){
       if(tag == 'buy'){
         $("#buybtn" + id).show();
         $("#passbtn" + id).show();
@@ -80,6 +96,11 @@
         $("#passbtn" + id).hide();
         $("#closebtn" + id).show();
         $("#sellbtn" + id).show();
+      }else if (tag == 'reset-sell'){
+        $("#buybtn" + id).hide();
+        $("#passbtn" + id).hide();
+        $("#sellbtn" + id).hide();
+        $("#closebtn" + id).show();
       }
     }
 
@@ -106,8 +127,28 @@
       }
       return dlist;
     }
+    
+    function pay_rent(score){
+      var status = $('#status-string').val().split("--");
+      if(status != ""){
+        var name_list = status[0].split(',');
+        var card_list = status[4].split(',');
+        var index = name_list.indexOf('{{name}}');
+        name_list.splice(index,1);
+        card_list.splice(index,1);
+        for(i=0;i<card_list.length;i++){
+          var prop = card_list[i].split(';');
+          if(prop.indexOf(score.toString()) != -1){
+            var card_info = "rent#"+score+"#"+'{{name}}'+">"+name_list[i];
+            $("#card_info").val(card_info);
+            return 1;
+          } 
+        }
+      }
+      return 0;
+    }
 
-    function play(pos, score, col, colors) {
+    function play(pos, score, col, colors, pay) {
       removePosition(pos, col);
       var dcol = getColor(col);
       var delay = move(pos, score, dcol);
@@ -122,8 +163,14 @@
       }, 500, function() {
         var u = $('#gameuser').val();
         if (u == '{{name}}') {
-          cardbuttonShow(score,'buy','none');
-          $("#card" + score).click();
+          if(pay == 0){
+            cardbuttonShow(score,'buy');
+            $("#card" + score).click();
+          }
+          else if (pay == 1) {
+            $('#card').click();
+            $('#reset-dice').click();
+          }
         }
       });
     }
@@ -152,6 +199,20 @@
           $('#rent'+property[j]).fadeIn('slow');
         }
       }
+    }
+    
+    function showsell(sell,tag){
+      var owned = sell[1].split(';');
+      for (i = 0; i < owned.length; i++) {
+        if(tag == 1){
+          cardbuttonShow(owned[i],'sell');
+          build_btns(owned[i],"1-2-3",'show');
+        }
+        else{
+          cardbuttonShow(owned[i],'reset-sell');
+          build_btns(owned[i],"1-2-3",'hide');
+        }
+      }  
     }
 
     function startplay(start_color_list, player_list,amount_list,worth_list) {
@@ -203,16 +264,19 @@
         var darr = ['#left','#right'];
         var rollid  = darr[Math.floor(Math.random() * darr.length)]
         $(rollid).click();
-        play(pos, score, color, colors);
+        var rent_pay = pay_rent(score);
+        console.log("payment --- " + rent_pay);
+        play(pos, score, color, colors,rent_pay);
       });
       $(".gamebtn").each(function() {
         $(this).click(function() {
           var id = $(this).attr("id").split("-");
           var card_info = id[1] + "#" + id[2];
-          cardbuttonShow(id[2],'reset-buy','none');
+          cardbuttonShow(id[2],'reset-buy');
+          $('#reset-sell').click();
           $("#card_info").val(card_info);
           $('#card').click();
-          $('#reset').click();
+          $('#reset-dice').click();
         })
       });
       $(".in_card").each(function() {
@@ -235,7 +299,7 @@
         }, 200);
         $('#dice-right').css("transform", "rotate(-360deg)");
       });
-      $('#reset').click(function(){
+      $('#reset-dice').click(function(){
         $('#dice-row').hide();
         $("#dice-right").animate({
           left: '90%',
@@ -245,6 +309,24 @@
           left: '-90%',
         },100);
         $('#dice-left').css("transform","rotate(-360deg)");
+      });
+      $('#show-sell').click(function(){
+        var status = $('#status-string').val().split("--");
+        if(status != ""){
+          var index = status[0].split(',').indexOf('{{name}}');
+          var i;
+          var sell_arr = [status[1].split(',')[index],status[4].split(',')[index],status[5].split(',')[index]];
+          showsell(sell_arr,1);
+        }
+      });
+      $('#reset-sell').click(function(){
+        var status = $('#status-string').val().split("--");
+        if(status != ""){
+          var index = status[0].split(',').indexOf('{{name}}');
+          var i;
+          var sell_arr = [status[1].split(',')[index],status[4].split(',')[index],status[5].split(',')[index]];
+          showsell(sell_arr,0);
+        }
       });
       $('#update-board').click(function(){
         console.log("UPDATEEEEEE");
@@ -518,21 +600,21 @@
                             <span>Lodge</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
-                            <button class="build" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build bld1" style="--btncol:{{j.bgcolor}};display:none">Build</button>
                           </div>
                           <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
                             <img src="{% static 'img/hotel.png' %}" style="width:70%" alt="">
                             <span>Hotel</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
-                            <button class="build" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build bld2" style="--btncol:{{j.bgcolor}};display:none">Build</button>
                           </div>
                           <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
                             <img src="{% static 'img/resort.png' %}" style="width:70%" alt="">
                             <span>Resort</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
-                            <button class="build" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build bld3" style="--btncol:{{j.bgcolor}};display:none">Build</button>
                           </div>
                         </div>
                         <div class="row d-flex justify-content-around align items center mb-2 mt-3">
@@ -610,20 +692,20 @@
                             <hr class="py-0 my-0">
                           </div>
                         </div>
-                        <div class="row mt-1">
+                        <div class="row mt-1" id="build{{j.num}}">
                           <div class="col-6 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
                             <img src="{% static 'img/cargo.png' %}" style="width:70%" alt="">
                             <span>Cargo</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
-                            <button class="build text-dark" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                            <button class="build text-dark bld1" style="--btncol:{{j.bgcolor}};display:none">Start</button>
                           </div>
                           <div class="col-6 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
                             <img src="{% static 'img/tour.png' %}" style="width:70%" alt="">
                             <span>Tour</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
-                            <button class="build text-dark" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                            <button class="build text-dark bld2" style="--btncol:{{j.bgcolor}};display:none">Start</button>
                           </div>
                         </div>
                         <div class="row d-flex justify-content-around align items center mb-2 mt-3">
@@ -792,8 +874,10 @@
       <button type="button" id="card">card</button>
       <button class="text-uppercase" id="left">left</button>
       <button class="text-uppercase" id="right">right</button>
-      <button class="text-uppercase" id="reset">reset</button>
+      <button class="text-uppercase" id="reset-dice">reset</button>
       
+      <button class="text-uppercase" id="show-sell">show-sell</button>
+      <button class="text-uppercase" id="reset-sell">reset-sell</button>
       <input type="text" id="status-string">
       <button class="text-uppercase" id="update-board">Update</button>
     </div>
@@ -870,7 +954,7 @@
         
         document.querySelector('#start').click();
       } else if (data.tag == 3) {
-        document.querySelector('#reset').click();
+        document.querySelector('#reset-dice').click();
         document.getElementById("roll").style.setProperty('--bgcolor', getBtnColor(data.color));
         document.getElementById("opt").style.setProperty('--bgcolor', getBtnColor(data.color));
         var dice = document.getElementsByClassName("dice");
@@ -884,6 +968,7 @@
         if (data.roll == '{{name}}') {
           document.getElementById("roll").style.display = "block";
           document.getElementById("opt").style.display = "block";
+          document.getElementById('show-sell').click();
         } else {
           document.getElementById("roll").style.display = "none";
           document.getElementById("opt").style.display = "none";
