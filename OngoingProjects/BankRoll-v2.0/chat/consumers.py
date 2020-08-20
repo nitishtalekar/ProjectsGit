@@ -250,19 +250,19 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 else:
                     card.append(str(card_id[1]))
                 user_card[turn] = ";".join(card)
-                print("card", "#".join(user_card))
+                # print("card", "#".join(user_card))
 
                 amounts = game.amount.split("#")
                 amount = int(amounts[turn])
                 amount = amount - int(cards.buy)
                 amounts[turn] = str(amount)
-                print("amount", "#".join(amounts))
+                # print("amount", "#".join(amounts))
 
                 worths = game.worth.split("#")
                 worth = int(worths[turn])
                 worth = worth - int(cards.buy)
                 worths[turn] = str(worth)
-                print("worth", "#".join(worths))
+                # print("worth", "#".join(worths))
 
                 user_cost = game.cost.split("#")
                 cost = user_cost[turn].split(";")
@@ -271,7 +271,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 else:
                     cost.append(str(cards.rent))
                 user_cost[turn] = ";".join(cost)
-                print("cost", "#".join(user_cost))
+                # print("cost", "#".join(user_cost))
 
                 await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost))
                 names = []

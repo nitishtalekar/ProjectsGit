@@ -65,7 +65,7 @@
       var end = '</div></div>';
       $("#" + id).append(start + coin + end);
     }
-    
+
     function build_btns(id,order,tag){
       var b_id = order.split("-");
       var i;
@@ -74,14 +74,14 @@
           for(i=0;i<b_id.length;i++){
             $("#build"+id+" .bld"+b_id[i]).show();
           }
-        } 
+        }
       }
       else if(tag == "hide"){
         $("#build"+id+" .build").hide();
       }
       console.log("OKAY");
     }
-    
+
     function cardbuttonShow(id,tag){
       if(tag == 'buy'){
         $("#buybtn" + id).show();
@@ -127,7 +127,7 @@
       }
       return dlist;
     }
-    
+
     function pay_rent(score){
       var status = $('#status-string').val().split("--");
       if(status != ""){
@@ -143,17 +143,17 @@
             var card_info = "rent#"+score+"#"+'{{name}}'+">"+name_list[i];
             $("#card_info").val(card_info);
             return 1;
-          } 
-        }
-        var owned = owned_cards[0].split(';');
-        for(i=0;i<owned.length;i++){
-          if(owned[i].indexOf(score.toString()) != -1){
-            var card_info = "self#"+score;
-            $("#card_info").val(card_info);
-            return 2;
           }
         }
-        
+        var owned = owned_cards[0].split(';');
+        // for(i=0;i<owned.length;i++){
+        //   if(owned[i].indexOf(score.toString()) != -1){
+        //     var card_info = "self#"+score;
+        //     $("#card_info").val(card_info);
+        //     return 2;
+        //   }
+        // }
+
       }
       return 0;
     }
@@ -188,7 +188,7 @@
         }
       });
     }
-    
+
     function update_amount(color_list,amount_list,worth_list){
       var colors = color_list.split(',');
       var amounts = amount_list.split(',');
@@ -214,7 +214,7 @@
         }
       }
     }
-    
+
     function showsell(sell,tag){
       var owned = sell[1].split(';');
       for (i = 0; i < owned.length; i++) {
@@ -226,7 +226,7 @@
           cardbuttonShow(owned[i],'reset-sell');
           build_btns(owned[i],"1-2-3",'hide');
         }
-      }  
+      }
     }
 
     function startplay(start_color_list, player_list,amount_list,worth_list) {
@@ -247,7 +247,7 @@
         $(uid).fadeIn('slow');
       }
     }
-    
+
     function update(status){
       update_amount(status[1],status[2],status[3]);
       update_rent(status[1],status[4],status[5]);
@@ -279,7 +279,7 @@
         var rollid  = darr[Math.floor(Math.random() * darr.length)]
         $(rollid).click();
         var rent_pay = pay_rent(score);
-        // console.log("PAY - " + rent_pay);
+        console.log("PAY - " + rent_pay);
         play(pos, score, color, colors,rent_pay);
       });
       $(".gamebtn").each(function() {
@@ -889,7 +889,7 @@
       <button class="text-uppercase" id="left">left</button>
       <button class="text-uppercase" id="right">right</button>
       <button class="text-uppercase" id="reset-dice">reset</button>
-      
+
       <button class="text-uppercase" id="show-sell">show-sell</button>
       <button class="text-uppercase" id="reset-sell">reset-sell</button>
       <input type="text" id="status-string">
@@ -955,7 +955,7 @@
       if (data.tag == 1) {
         // console.log(data.amount);
         // console.log(data.worth);
-        
+
         if ('{{name}}' == data.name) {
           document.querySelector('#chat-log').value += ("you are added" + '\n');
         } else {
@@ -965,7 +965,7 @@
         document.querySelector('#player_colors').value = data.color;
         document.querySelector('#player_amount').value = data.amount;
         document.querySelector('#player_worth').value = data.worth;
-        
+
         document.querySelector('#start').click();
       } else if (data.tag == 3) {
         document.querySelector('#reset-dice').click();
