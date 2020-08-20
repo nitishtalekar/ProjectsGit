@@ -185,7 +185,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             curr_player = text_data_json['name']
             roll = text_data_json['roll']
             roll = random.randint(1,6)
-            # roll = 2
+            # roll = 12
             game = await self.roll(self.room_name)
             curr_loc, curr_color, new_loc, colors = await self.change_roll(game.id, roll)
             await self.change_turn(game.id)

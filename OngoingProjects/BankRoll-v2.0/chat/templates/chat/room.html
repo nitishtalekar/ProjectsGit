@@ -135,7 +135,8 @@
         var card_list = status[4].split(',');
         var index = name_list.indexOf('{{name}}');
         name_list.splice(index,1);
-        card_list.splice(index,1);
+        var owned_cards = card_list.splice(index,1);
+        console.log(owned_cards);
         for(i=0;i<card_list.length;i++){
           var prop = card_list[i].split(';');
           if(prop.indexOf(score.toString()) != -1){
@@ -144,6 +145,15 @@
             return 1;
           } 
         }
+        var owned = owned_cards[0].split(';');
+        for(i=0;i<owned.length;i++){
+          if(owned[i].indexOf(score.toString()) != -1){
+            var card_info = "self#"+score;
+            $("#card_info").val(card_info);
+            return 2;
+          }
+        }
+        
       }
       return 0;
     }
@@ -170,6 +180,10 @@
           else if (pay == 1) {
             $('#card').click();
             $('#reset-dice').click();
+          }
+          else if (pay == 2) {
+            cardbuttonShow(score,'sell');
+            $("#card" + score).click();
           }
         }
       });
@@ -257,7 +271,7 @@
         var score = parseInt($('#score').val());
         var color = $('#col').val();
         var colors = $('#colors').val().split(",");
-        var rolled = score - pos;
+        var rolled = parseInt($('#rolled').val());
         $(".d-"+rolled.toString()).each(function(){
           $(this).show();
         });
@@ -265,7 +279,7 @@
         var rollid  = darr[Math.floor(Math.random() * darr.length)]
         $(rollid).click();
         var rent_pay = pay_rent(score);
-        console.log("payment --- " + rent_pay);
+        // console.log("PAY - " + rent_pay);
         play(pos, score, color, colors,rent_pay);
       });
       $(".gamebtn").each(function() {
@@ -329,7 +343,6 @@
         }
       });
       $('#update-board').click(function(){
-        console.log("UPDATEEEEEE");
         var status = $('#status-string').val().split("--");
         update(status);
       });
@@ -866,6 +879,7 @@
       <br>
       <button type="button" id="move-coin">move</button>
       <button type="button" id="start">start</button>
+      <input type="text" id="rolled">
       <input type="text" id="player_colors">
       <input type="text" id="player_names">
       <input type="text" id="player_amount">
@@ -936,8 +950,8 @@
 
     chatSocket.onmessage = function(e) {
       const data = JSON.parse(e.data);
-      console.log('THIS');
-      console.log(data);
+      // console.log('THIS');
+      // console.log(data);
       if (data.tag == 1) {
         // console.log(data.amount);
         // console.log(data.worth);
@@ -981,20 +995,21 @@
         document.querySelector('#score').value = data.new_loc;
         document.querySelector('#col').value = data.curr_color;
         document.querySelector('#colors').value = data.colors;
+        document.querySelector('#rolled').value = data.roll_value;
         document.querySelector('#gameuser').value = data.curr_player;
         document.getElementById("roll").style.display = "none";
         document.getElementById("opt").style.display = "none";
         document.querySelector('#move-coin').click();
         // document.querySelector('#reset').click();
       } else if (data.tag == 0) {
-        console.log(data.message);
+        // console.log(data.message);
         document.querySelector('#chat-log').value += (data.message + '\n');
       } else if (data.tag == 2) {
-        console.log(data.message);
+        // console.log(data.message);
         document.querySelector('#chat-log').value += (data.message + " left" + '\n');
       } else if (data.tag == 5) {
-        console.log("5buy");
-        console.log(data);
+        // console.log("5buy");
+        // console.log(data);
         var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost + "--" + data.curr_color;
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
