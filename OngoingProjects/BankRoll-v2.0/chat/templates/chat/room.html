@@ -35,6 +35,8 @@
     function removePosition(id, color) {
       var num = $("#" + id).find(".color").length;
       if (num == 1) {
+        // console.log("REMOVE");
+        // console.log($("#" + id + " .empty").length);
         $("#" + id + " > .empty").remove();
       } else {
         var x = $("#" + id).find("#" + color).length;
@@ -51,8 +53,10 @@
 
     function position(id, colors, dispColors) {
       $("#" + id + " > .empty").remove();
+      // console.log("POS");
+      // console.log($("#" + id + " .empty").length);
       var col = "";
-      var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap empty"><div class="row overlap block mx-0 px-0">';
+      var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap empty" style="background:rgba(0,0,0,0.2)"><div class="row overlap block mx-0 px-0">';
       if (colors.length < 3) {
         col = "12";
       } else {
@@ -79,7 +83,6 @@
       else if(tag == "hide"){
         $("#build"+id+" .build").hide();
       }
-      console.log("OKAY");
     }
 
     function cardbuttonShow(id,tag){
@@ -136,7 +139,7 @@
         var index = name_list.indexOf('{{name}}');
         name_list.splice(index,1);
         var owned_cards = card_list.splice(index,1);
-        console.log(owned_cards);
+        // console.log(owned_cards);
         for(i=0;i<card_list.length;i++){
           var prop = card_list[i].split(';');
           if(prop.indexOf(score.toString()) != -1){
@@ -279,7 +282,7 @@
         var rollid  = darr[Math.floor(Math.random() * darr.length)]
         $(rollid).click();
         var rent_pay = pay_rent(score);
-        console.log("PAY - " + rent_pay);
+        // console.log("PAY - " + rent_pay);
         play(pos, score, color, colors,rent_pay);
       });
       $(".gamebtn").each(function() {
@@ -938,7 +941,7 @@
     }
 
     const roomName = JSON.parse(document.getElementById('room-name').textContent);
-    console.log(roomName);
+    // console.log(roomName);
 
     const chatSocket = new WebSocket(
       'ws://' +
@@ -1050,8 +1053,7 @@
     document.querySelector('#card').onclick = function(e) {
       const messageInputDom = document.querySelector('#card_info');
       const message = messageInputDom.value;
-      console.log("yo");
-      console.log(message);
+      // console.log(message);
       chatSocket.send(JSON.stringify({
         'tag': 5,
         'card': message,
