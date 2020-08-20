@@ -187,6 +187,26 @@
 .cardbtn:focus{
   outline: none;
 }
+
+.cardbtn2{
+  color: var(--btncol);
+  text-transform: uppercase;
+  background-color: none;
+  padding: 3px;
+  font-size: 3.5vw;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  width:90%;
+  margin-top: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+  border: 1px solid var(--btncol);
+}
+.cardbtn2:focus{
+  outline: none;
+}
+
 .rollbtn{
   background-color: rgba(0, 0, 0, 0.5);
   width:80%;

@@ -65,6 +65,23 @@
       var end = '</div></div>';
       $("#" + id).append(start + coin + end);
     }
+    
+    function cardbuttonShow(id,tag,order){
+      if(tag == 'buy'){
+        $("#buybtn" + id).show();
+        $("#passbtn" + id).show();
+        $("#closebtn" + id).hide();
+      }else if (tag == 'reset-buy'){
+        $("#buybtn" + id).hide();
+        $("#passbtn" + id).hide();
+        $("#closebtn" + id).show();
+      }else if (tag == 'sell'){
+        $("#buybtn" + id).hide();
+        $("#passbtn" + id).hide();
+        $("#closebtn" + id).show();
+        $("#sellbtn" + id).show();
+      }
+    }
 
     function getColor(c) {
       if (c == 'red') {
@@ -105,12 +122,36 @@
       }, 500, function() {
         var u = $('#gameuser').val();
         if (u == '{{name}}') {
-          $("#buybtn" + score).show();
-          $("#passbtn" + score).show();
-          $("#closebtn" + score).hide();
+          cardbuttonShow(score,'buy','none');
           $("#card" + score).click();
         }
       });
+    }
+    
+    function update_amount(color_list,amount_list,worth_list){
+      var colors = color_list.split(',');
+      var amounts = amount_list.split(',');
+      var worths = worth_list.split(',');
+      for (i = 0; i < colors.length; i++) {
+        var uid = "#username-" + colors[i];
+        $(uid + " .amount").html("₹" + amounts[i]);
+        $(uid + " .worth").html("₹" + worths[i]);
+      }
+    }
+    function update_rent(color_list,card_list,rent_list){
+      var colors = color_list.split(',');
+      var cards = card_list.split(',');
+      var rents = rent_list.split(',');
+      for (i = 0; i < colors.length; i++) {
+        var col = getColor(colors[i]);
+        var property = cards[i].split(';');
+        var prop_rents = rents[i].split(';');
+        for (j = 0; j < property.length; j++){
+          $('#rent'+property[j]).css('--color',col);
+          $('#rent'+property[j]).html("₹" + prop_rents[j]);
+          $('#rent'+property[j]).fadeIn('slow');
+        }
+      }
     }
 
     function startplay(start_color_list, player_list,amount_list,worth_list) {
@@ -130,6 +171,11 @@
         $(pid).prop('class', 'profile mx-2 d-flex justify-content-center align-items-center');
         $(uid).fadeIn('slow');
       }
+    }
+    
+    function update(status){
+      update_amount(status[1],status[2],status[3]);
+      update_rent(status[1],status[4],status[5]);
     }
 
     $(document).ready(function() {
@@ -163,6 +209,7 @@
         $(this).click(function() {
           var id = $(this).attr("id").split("-");
           var card_info = id[1] + "#" + id[2];
+          cardbuttonShow(id[2],'reset-buy','none');
           $("#card_info").val(card_info);
           $('#card').click();
           $('#reset').click();
@@ -198,6 +245,11 @@
           left: '-90%',
         },100);
         $('#dice-left').css("transform","rotate(-360deg)");
+      });
+      $('#update-board').click(function(){
+        console.log("UPDATEEEEEE");
+        var status = $('#status-string').val().split("--");
+        update(status);
       });
     });
     $(document).on("click", ".empty", function() {
@@ -489,6 +541,11 @@
                               Close
                             </button>
                           </div>
+                          <div class="col-5" id="sellbtn{{j.num}}" style="display:none">
+                            <button type="button" id="cardbtn-sell-{{j.num}}" class="cardbtn2 gamebtn" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
+                              Sell
+                            </button>
+                          </div>
                           <div class="col-5" id="passbtn{{j.num}}" style="display:none">
                             <button type="button" id="cardbtn-pass-{{j.num}}" class="cardbtn gamebtn" style="--btncol:grey" data-dismiss="modal">
                               Pass
@@ -573,6 +630,11 @@
                           <div class="col-5" id="closebtn{{j.num}}">
                             <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
                               Close
+                            </button>
+                          </div>
+                          <div class="col-5" id="sellbtn{{j.num}}" style="display:none">
+                            <button type="button" id="cardbtn-sell-{{j.num}}" class="cardbtn2 gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
+                              Sell
                             </button>
                           </div>
                           <div class="col-5" id="passbtn{{j.num}}" style="display:none">
@@ -731,6 +793,9 @@
       <button class="text-uppercase" id="left">left</button>
       <button class="text-uppercase" id="right">right</button>
       <button class="text-uppercase" id="reset">reset</button>
+      
+      <input type="text" id="status-string">
+      <button class="text-uppercase" id="update-board">Update</button>
     </div>
   </div>
 
@@ -787,10 +852,11 @@
 
     chatSocket.onmessage = function(e) {
       const data = JSON.parse(e.data);
+      console.log('THIS');
       console.log(data);
       if (data.tag == 1) {
-        console.log(data.amount);
-        console.log(data.worth);
+        // console.log(data.amount);
+        // console.log(data.worth);
         
         if ('{{name}}' == data.name) {
           document.querySelector('#chat-log').value += ("you are added" + '\n');
@@ -842,9 +908,11 @@
         console.log(data.message);
         document.querySelector('#chat-log').value += (data.message + " left" + '\n');
       } else if (data.tag == 5) {
-        
         console.log("5buy");
         console.log(data);
+        var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost + "--" + data.curr_color;
+        document.querySelector('#status-string').value = status;
+        document.querySelector('#update-board').click();
       }
       document.querySelector('#count-log').value = (data.count);
 
