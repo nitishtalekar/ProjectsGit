@@ -133,6 +133,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'worth':worth,
             }
         )
+        print("add")
 
         game = await self.roll(self.room_name)
 
@@ -152,6 +153,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'color':color
                 }
             )
+            print("roll1")
 
 
     async def disconnect(self, close_code):
@@ -175,6 +177,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             self.room_group_name,
             self.channel_name
         )
+        print("delete")
 
 
     # Receive message from WebSocket
@@ -210,6 +213,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'colors':colors
                 }
             )
+            print("next_roll", curr_player, curr_loc, curr_color, roll, new_loc, next_color)
             return
 
         if tag == 0:
@@ -228,6 +232,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'message': message,
                 }
             )
+            print("message")
             return
 
         if tag == 5:
@@ -293,6 +298,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'user_cost':user_cost
                     }
                 )
+                print("buy")
 
             await self.channel_layer.group_send(
                 self.room_group_name,
@@ -303,6 +309,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'color':curr_color
                 }
             )
+            print("roll")
             return
 
     # Receive message from room group
@@ -318,6 +325,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'message':message,
                 'count':count,
             }))
+            print("group message")
             return
 
         if tag == 1:
@@ -337,6 +345,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'amount':amount,
                 'worth':worth
             }))
+            print("group add")
             return
 
         if tag == 2:
@@ -348,6 +357,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'count':count,
                 'message':message,
             }))
+            print("group remove")
             return
 
         if tag == 3:
@@ -361,6 +371,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'roll':roll,
                 'color':color
             }))
+            print("group roll")
             return
         if tag == 4:
             roll_value = event['roll_value']
@@ -383,6 +394,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'colors':colors,
                 'count':count
             }))
+            print("group next_roll")
             return
 
         if tag == 5:
@@ -406,6 +418,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'user_cost':user_cost,
                 'count':count
             }))
+            print("group buy")
             return
 
 

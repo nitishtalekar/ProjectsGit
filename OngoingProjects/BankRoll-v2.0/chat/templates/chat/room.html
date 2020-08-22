@@ -266,24 +266,32 @@
         startplay(st_col, st_name, st_amt, st_worth);
       });
       $('#move-coin').click(function() {
+        console.log("mc 1");
         $("#dice-row").show();
         $(".roll-d").each(function(){
           $(this).hide();
         });
+        console.log("mc 2");
         var pos = parseInt($('#pos').val());
         var score = parseInt($('#score').val());
         var color = $('#col').val();
         var colors = $('#colors').val().split(",");
         var rolled = parseInt($('#rolled').val());
+        console.log(pos, score, color, colors, rolled);
         $(".d-"+rolled.toString()).each(function(){
           $(this).show();
         });
+        console.log("mc 3");
         var darr = ['#left','#right'];
         var rollid  = darr[Math.floor(Math.random() * darr.length)]
+        console.log((darr, rollid));
         $(rollid).click();
         var rent_pay = pay_rent(score);
+
+        console.log(rent_pay);
         // console.log("PAY - " + rent_pay);
         play(pos, score, color, colors,rent_pay);
+        console.log("mc end");
       });
       $(".gamebtn").each(function() {
         $(this).click(function() {
@@ -992,18 +1000,31 @@
         }
 
       } else if (data.tag == 4) {
+        console.log(data);
         document.querySelector('#chat-log').value += (data.roll_value + " " + data.curr_player + " " + data.curr_color + '\n');
+        console.log("1");
         document.querySelector('#chat-log').value += ("Move from: " + data.curr_loc + " to " + data.new_loc + " " + data.colors + '\n');
+        console.log("2");
         document.querySelector('#pos').value = data.curr_loc;
+        console.log("3");
         document.querySelector('#score').value = data.new_loc;
+        console.log("4");
         document.querySelector('#col').value = data.curr_color;
+        console.log("5");
         document.querySelector('#colors').value = data.colors;
+        console.log("6");
         document.querySelector('#rolled').value = data.roll_value;
+        console.log("7");
         document.querySelector('#gameuser').value = data.curr_player;
+        console.log("8");
         document.getElementById("roll").style.display = "none";
+        console.log("9");
         document.getElementById("opt").style.display = "none";
+        console.log("10");
         document.querySelector('#move-coin').click();
+        console.log("11");
         // document.querySelector('#reset').click();
+        console.log("nextroll");
       } else if (data.tag == 0) {
         // console.log(data.message);
         document.querySelector('#chat-log').value += (data.message + '\n');
@@ -1051,15 +1072,17 @@
     };
 
     document.querySelector('#card').onclick = function(e) {
+      console.log("buy");
       const messageInputDom = document.querySelector('#card_info');
       const message = messageInputDom.value;
-      // console.log(message);
+      console.log(message);
       chatSocket.send(JSON.stringify({
         'tag': 5,
         'card': message,
         'name': '{{name}}'
       }));
       messageInputDom.value = '';
+      console.log("exit buy");
     };
   </script>
 
