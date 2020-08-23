@@ -16,39 +16,56 @@
   <link rel="stylesheet" href="{% static 'main.css' %}">
 
   <script type="text/javascript">
-    function move(pos, score, color) {
+    function move(pos, score, color , rolled) {
+      console.log("move 1");
       $(".coin").each(function() {
         $(this).remove();
       });
-      time = 0;
-      for (i = pos; i != score + 1; i = (i + 1) % 28) {
-        var id = "#" + i;
-        var coinid = "coin" + i;
+      console.log("move 2");
+      var time = 0;
+      var x = pos;
+      for (i = 0; i <= rolled; i++) {
+        console.log(i);
+        var id = "#" + x;
+        var coinid = "coin" + x;
         $('<div>').prop("class", "coin").prop("id", coinid).prop("style", "--color:" + color).appendTo(id);
         $("#" + coinid).delay(time * 500).fadeIn();
         $("#" + coinid).delay(150).fadeOut();
-        time++;
+        console.log(time);
+        x = (x + 1) % 28;
+        time = time + 1;
       }
+      console.log("move 3");
       return time * 500;
     }
 
     function removePosition(id, color) {
+      console.log("rp 1");
       var num = $("#" + id).find(".color").length;
+      console.log(num);
       if (num == 1) {
         // console.log("REMOVE");
         // console.log($("#" + id + " .empty").length);
+        console.log("rp if");
         $("#" + id + " > .empty").remove();
       } else {
+        console.log("rp else");
         var x = $("#" + id).find("#" + color).length;
+        console.log(x);
         if (num == 3) {
+          console.log(" rp else if");
           var k = $("#" + id).find(".color").length;
+          console.log(k);
           $("#" + id).find(".color").each(function() {
             $(this).removeClass('col-6');
             $(this).addClass('col-12');
           });
         }
+        console.log("rp end elseif");
         $("#" + id).find("#" + color).remove();
+        console.log("rp remove");
       }
+      console.log("rp end else");
     }
 
     function position(id, colors, dispColors) {
@@ -63,6 +80,7 @@
         col = "6";
       }
       var coin = "";
+      var i ;
       for (i = 0; i < colors.length; i++) {
         coin = coin + '<div class="col-' + col + ' px-1 d-flex justify-content-center align-items-center color" id="' + colors[i] + '"><div class="small-coin" style="--color:' + dispColors[i] + ';"></div></div>'
       }
@@ -140,6 +158,7 @@
         name_list.splice(index,1);
         var owned_cards = card_list.splice(index,1);
         // console.log(owned_cards);
+        var i;
         for(i=0;i<card_list.length;i++){
           var prop = card_list[i].split(';');
           if(prop.indexOf(score.toString()) != -1){
@@ -161,20 +180,27 @@
       return 0;
     }
 
-    function play(pos, score, col, colors, pay) {
+    function play(pos, score, col, colors, pay,rolled) {
+      console.log("p 1");
       removePosition(pos, col);
+      console.log("p 2");
       var dcol = getColor(col);
-      var delay = move(pos, score, dcol);
+      console.log(dcol);
+      var delay = move(pos, score, dcol , rolled);
+      console.log(delay);
       var dispColor = getColorList(colors);
+      console.log(dispColor);
       $("#body").animate({
         opacity: 1
       }, delay + 500, function() {
         position(score, colors, dispColor);
       });
+      console.log("p 3");
       $("#body").animate({
         opacity: 1
       }, 500, function() {
         var u = $('#gameuser').val();
+        console.log(u);
         if (u == '{{name}}') {
           if(pay == 0){
             cardbuttonShow(score,'buy');
@@ -190,12 +216,14 @@
           }
         }
       });
+      console.log("p end");
     }
 
     function update_amount(color_list,amount_list,worth_list){
       var colors = color_list.split(',');
       var amounts = amount_list.split(',');
       var worths = worth_list.split(',');
+      var i;
       for (i = 0; i < colors.length; i++) {
         var uid = "#username-" + colors[i];
         $(uid + " .amount").html("₹" + amounts[i]);
@@ -206,6 +234,8 @@
       var colors = color_list.split(',');
       var cards = card_list.split(',');
       var rents = rent_list.split(',');
+      var i;
+      var j;
       for (i = 0; i < colors.length; i++) {
         var col = getColor(colors[i]);
         var property = cards[i].split(';');
@@ -220,6 +250,7 @@
 
     function showsell(sell,tag){
       var owned = sell[1].split(';');
+      var i;
       for (i = 0; i < owned.length; i++) {
         if(tag == 1){
           cardbuttonShow(owned[i],'sell');
@@ -239,6 +270,7 @@
       var amounts = amount_list.split(",");
       var worths = worth_list.split(",");
       position(0, start_colors, start_list);
+      var i;
       for (i = 0; i < start_colors.length; i++) {
         var pid = "#profile-" + start_colors[i];
         var uid = "#username-" + start_colors[i];
@@ -290,7 +322,7 @@
 
         console.log(rent_pay);
         // console.log("PAY - " + rent_pay);
-        play(pos, score, color, colors,rent_pay);
+        play(pos, score, color, colors,rent_pay,rolled);
         console.log("mc end");
       });
       $(".gamebtn").each(function() {
