@@ -90,6 +90,24 @@
   width:70%;
   border-radius: 5px;
 }
+.msg-div{
+  z-index: +30;
+  position: absolute;
+  height: 46vh;
+  width:70%;
+  border-radius: 5px;
+}
+.msg-disp{
+  z-index: +30;
+  position: absolute;
+  border: 2px solid black;
+  font-size: 3.5vw;
+  font-weight: bold;
+  text-align: center;
+  text-transform: capitalize;
+  border-radius: 10px;
+  box-shadow: 2px 2px #525252;
+}
 .center-image{
   background-color: white;
   z-index: +10;
