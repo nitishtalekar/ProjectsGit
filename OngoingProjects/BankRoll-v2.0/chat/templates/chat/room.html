@@ -54,7 +54,7 @@
     function position(id, colors, dispColors) {
       $("#" + id + " > .empty").remove();
       var col = "";
-      var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap empty" style="background:rgba(0,0,0,0.2)"><div class="row overlap block mx-0 px-0">';
+      var start = '<div class="container block px-0 d-flex justify-content-center align-items-center overlap empty"><div class="row overlap block mx-0 px-0">';
       if (colors.length < 3) {
         col = "12";
       } else {
@@ -83,26 +83,26 @@
       }
     }
 
-    function cardbuttonShow(id, tag) {
-      if (tag == 'buy') {
-        $("#buybtn" + id).show();
-        $("#passbtn" + id).show();
-        $("#closebtn" + id).hide();
-      } else if (tag == 'reset-buy') {
-        $("#buybtn" + id).hide();
-        $("#passbtn" + id).hide();
-        $("#closebtn" + id).show();
-      } else if (tag == 'sell') {
-        $("#buybtn" + id).hide();
-        $("#passbtn" + id).show();
-        $("#closebtn" + id).hide();
-        $("#sellbtn" + id).show();
-      } else if (tag == 'reset-sell') {
-        $("#buybtn" + id).hide();
-        $("#passbtn" + id).hide();
-        $("#sellbtn" + id).hide();
-        $("#closebtn" + id).show();
-      }
+    function cardbuttonShow(id, tags) {
+      taglist = tags.split(',');
+      $("#buybtn" + id).hide();
+      $("#passbtn" + id).hide();
+      $("#closebtn" + id).hide();
+      $("#sellbtn" + id).hide();
+      for (x of taglist) {
+        if (x == "buy"){
+          $("#buybtn" + id).show();
+        }
+        if (x == "sell"){
+          $("#sellbtn" + id).show();
+        }
+        if (x == "pass"){
+          $("#passbtn" + id).show();
+        }
+        if (x == "close"){
+          $("#closebtn" + id).show();
+        }
+      } 
     }
 
     function getColor(c) {
@@ -150,8 +150,8 @@
         // console.log(owned);
         for(i=0;i<owned.length;i++){
           if(owned[i].indexOf(score.toString()) != -1){
-            var card_info = "self#"+score;
-            $("#card_info").val(card_info);
+            // var card_info = "self#"+score;
+            // $("#card_info").val(card_info);
             return 2;
             // console.log("YESSS ISKA HAI");
           }
@@ -177,13 +177,13 @@
         var u = $('#gameuser').val();
         if (u == '{{name}}') {
           if (pay == 0) {
-            cardbuttonShow(score, 'buy');
+            cardbuttonShow(score, 'buy,pass');
             $("#card" + score).click();
           } else if (pay == 1) {
             $('#card').click();
             $('#reset-dice').click();
           } else if (pay == 2) {
-            cardbuttonShow(score, 'sell');
+            cardbuttonShow(score, 'sell,pass');
             $("#card" + score).click();
           }
         }
@@ -225,10 +225,10 @@
       var i;
       for (i = 0; i < owned.length; i++) {
         if (tag == 1) {
-          cardbuttonShow(owned[i], 'sell');
+          cardbuttonShow(owned[i], 'sell,close');
           build_btns(owned[i], "1-2-3", 'show');
         } else {
-          cardbuttonShow(owned[i], 'reset-sell');
+          cardbuttonShow(owned[i], 'close');
           build_btns(owned[i], "1-2-3", 'hide');
         }
       }
@@ -296,7 +296,7 @@
         $(this).click(function() {
           var id = $(this).attr("id").split("-");
           var card_info = id[1] + "#" + id[2];
-          cardbuttonShow(id[2], 'reset-buy');
+          cardbuttonShow(id[2], 'close');
           $('#reset-sell').click();
           $("#card_info").val(card_info);
           $('#card').click();
@@ -873,6 +873,7 @@
   </div>
   <div class="container">
     <div class="row my-2">
+      <div class="col-12 bg-dark mb-3"><input type="number" class="border border-primary" id="custom_roll" style="width:100%"></div>
       <div class="col-2"><button type="button" id="next0" name="button">NEXT0</button></div>
       <div class="col-2"><button type="button" id="next1" name="button">NEXT1</button></div>
       <div class="col-2"><button type="button" id="next2" name="button">NEXT2</button></div>
@@ -1060,7 +1061,7 @@
     document.querySelector('#card').onclick = function(e) {
       const messageInputDom = document.querySelector('#card_info');
       const message = messageInputDom.value;
-      // console.log(message);
+      console.log(message);
       chatSocket.send(JSON.stringify({
         'tag': 5,
         'card': message,
