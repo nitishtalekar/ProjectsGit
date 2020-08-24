@@ -102,7 +102,7 @@
         if (x == "close"){
           $("#closebtn" + id).show();
         }
-      } 
+      }
     }
 
     function getColor(c) {
@@ -1062,10 +1062,14 @@
       const messageInputDom = document.querySelector('#card_info');
       const message = messageInputDom.value;
       console.log(message);
+      const rollInputDom = document.querySelector('#rolled');
+      const roll = rollInputDom.value;
+      console.log(roll);
       chatSocket.send(JSON.stringify({
         'tag': 5,
         'card': message,
-        'name': '{{name}}'
+        'name': '{{name}}',
+        'roll':roll
       }));
       messageInputDom.value = '';
     };
