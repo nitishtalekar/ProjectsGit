@@ -915,6 +915,7 @@
         <center><input id="chat-message-submit" type="button" value="Send"><br>
           <!-- <input id="roll" type="button" value="ROLL"></center><br> -->
           <input type="text" id="count-log" style="width:100%"></span>
+          <input type="number" id="custom_roll" style="width:100%"></span>
       </div>
     </div>
   </div>
@@ -1045,11 +1046,15 @@
     };
 
     document.querySelector('#roll').onclick = function(e) {
+      const messageInputDom = document.querySelector('#custom_roll');
+      const message = messageInputDom.value;
       chatSocket.send(JSON.stringify({
         'tag': 3,
         'name': '{{name}}',
-        'roll': 'roll'
+        'roll': 'roll',
+        'value': message
       }));
+      messageInputDom.value = '';
     };
 
     document.querySelector('#card').onclick = function(e) {

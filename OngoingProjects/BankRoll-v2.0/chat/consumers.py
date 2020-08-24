@@ -184,7 +184,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
         if tag == 3:
             curr_player = text_data_json['name']
             roll = text_data_json['roll']
-            roll = random.randint(1,6)
+            value = text_data_json['value']
+            print("value",value)
+            if value == "":
+                roll = random.randint(1,6)
+            else:
+                roll = int(value)
             # roll = 12
             game = await self.roll(self.room_name)
             curr_loc, curr_color, new_loc, colors = await self.change_roll(game.id, roll)
