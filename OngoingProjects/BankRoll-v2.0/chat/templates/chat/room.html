@@ -94,8 +94,8 @@
         $("#closebtn" + id).show();
       } else if (tag == 'sell') {
         $("#buybtn" + id).hide();
-        $("#passbtn" + id).hide();
-        $("#closebtn" + id).show();
+        $("#passbtn" + id).show();
+        $("#closebtn" + id).hide();
         $("#sellbtn" + id).show();
       } else if (tag == 'reset-sell') {
         $("#buybtn" + id).hide();
@@ -147,13 +147,15 @@
           }
         }
         var owned = owned_cards[0].split(';');
-        // for(i=0;i<owned.length;i++){
-        //   if(owned[i].indexOf(score.toString()) != -1){
-        //     var card_info = "self#"+score;
-        //     $("#card_info").val(card_info);
-        //     return 2;
-        //   }
-        // }
+        // console.log(owned);
+        for(i=0;i<owned.length;i++){
+          if(owned[i].indexOf(score.toString()) != -1){
+            var card_info = "self#"+score;
+            $("#card_info").val(card_info);
+            return 2;
+            // console.log("YESSS ISKA HAI");
+          }
+        }
 
       }
       return 0;
@@ -282,7 +284,12 @@
         var darr = ['#left', '#right'];
         var rollid = darr[Math.floor(Math.random() * darr.length)]
         $(rollid).click();
-        var rent_pay = pay_rent(score);
+        var u = $('#gameuser').val();
+        var rent_pay;
+        if (u == '{{name}}') {
+          console.log("THIS");
+          rent_pay = pay_rent(score);
+        }
         play(pos, score, color, colors, rent_pay, rolled);
       });
       $(".gamebtn").each(function() {
