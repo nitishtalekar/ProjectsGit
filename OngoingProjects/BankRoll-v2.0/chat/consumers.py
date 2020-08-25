@@ -103,6 +103,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def game_update(self, id, card, amount, worth, cost):
         Game.objects.filter(id=id).update(card=card, amount=amount, worth=worth, cost=cost)
         return 1
+    
+    @database_sync_to_async
+    def get_player_name(self, turn, id):
+        players = Game.objects.get(id=id).player
+        this_player = players.split('#')[turn]
+        username = User.objects.filter(id=this_player)[0].name
+        return username
 
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
@@ -252,6 +259,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             curr_color = color[int(game.turn)]
             name = players[int(game.turn)]
             name = await self.get_name(name)
+            
             if card_id[0] == "buy":
                 turn = (int(game.turn) - 1) % int(game.type)
                 if roll == 6:
@@ -291,8 +299,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 names = []
                 for i in players:
                     names.append(await self.get_name(i))
-
-
+                
+                player = await self.get_player_name(turn,game.id)
+                print(player)
+                    
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {

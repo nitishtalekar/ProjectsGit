@@ -604,7 +604,7 @@
                     <div class="d-flex justify-content-center align-items-center pt-1 pb-2" style="background:{{j.bgcolor}}">
                       <h5 class="font-weight-bold text-white text-uppercase py-0 my-0">{{ j.place }}</h5>
                     </div>
-                    <div class="modal-body pt-2 my-0 pb-0">
+                    <div class="modal-body pt-2 my-0 pb-0 d-flex justify-content-center align-items-center">
                       <div class="container-fluid mt-0">
                         <div class="row mt-0">
                           <div class="col-4 text-center text-uppercase card-label">
@@ -702,7 +702,7 @@
                     <div class="d-flex justify-content-center align-items-center pt-1 pb-2" style="background:{{j.bgcolor}}">
                       <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0">{{ j.place }}</h5>
                     </div>
-                    <div class="modal-body pt-2 my-0 pb-0">
+                    <div class="modal-body pt-2 my-0 pb-0 d-flex justify-content-center align-items-center">
                       <div class="container-fluid mt-0">
                         <div class="row mt-0">
                           <div class="col-4 text-center text-uppercase card-label">
@@ -886,18 +886,12 @@
   <div class="container">
     <div class="row my-2">
       <div class="col-12 bg-dark mb-3"><input type="number" class="border border-primary" id="custom_roll" style="width:100%"></div>
-      <div class="col-2"><button type="button" id="next0" name="button">NEXT0</button></div>
-      <div class="col-2"><button type="button" id="next1" name="button">NEXT1</button></div>
-      <div class="col-2"><button type="button" id="next2" name="button">NEXT2</button></div>
-      <div class="col-2"><button type="button" id="next3" name="button">NEXT3</button></div>
-      <div class="col-2"><button type="button" id="next4" name="button">NEXT4</button></div>
     </div>
     <div class="row">
       <input type="text" id="pos">
       <input type="text" id="score">
       <input type="text" id="col">
       <input type="text" id="colors">
-      <!-- <input type="text" id="username" value="{{name}}"> -->
       <input type="text" id="gameuser">
       <br>
       <button type="button" id="move-coin">move</button>
@@ -1029,7 +1023,8 @@
         document.querySelector('#chat-log').value += (data.message + " left" + '\n');
       } else if (data.tag == 5) {
         // console.log(data);
-        var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost + "--" + data.curr_color;
+        var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost;
+        status = status + "--" + data.curr_color;
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
       }
@@ -1076,7 +1071,6 @@
       console.log(message);
       const rollInputDom = document.querySelector('#rolled');
       const roll = rollInputDom.value;
-      console.log(roll);
       chatSocket.send(JSON.stringify({
         'tag': 5,
         'card': message,
