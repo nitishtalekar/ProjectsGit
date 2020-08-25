@@ -105,11 +105,13 @@ class ChatConsumer(AsyncWebsocketConsumer):
         return 1
     
     @database_sync_to_async
-    def get_player_name(self, turn, id):
+    def get_player_details(self, turn, id):
         players = Game.objects.get(id=id).player
         this_player = players.split('#')[turn]
+        colors = Game.objects.get(id=id).color
+        this_color = colors.split('#')[turn]
         username = User.objects.filter(id=this_player)[0].name
-        return username
+        return [username , this_color]
 
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
@@ -300,8 +302,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 for i in players:
                     names.append(await self.get_name(i))
                 
-                player = await self.get_player_name(turn,game.id)
-                print(player)
+                details = await self.get_player_details(turn,game.id)
+                
+                # disp_msg = [details,['bought'],[cards.name,cards.color]]
+                disp_msg = details[0]+"##"+details[1]+"$bought$"+cards.name+"##"+cards.color
                     
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -314,7 +318,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'user_card':user_card,
                         'amount':amounts,
                         'worth':worths,
-                        'user_cost':user_cost
+                        'user_cost':user_cost,
+                        'display':disp_msg,
                     }
                 )
 
@@ -480,6 +485,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             amount = event['amount']
             worth = event['worth']
             user_cost = event['user_cost']
+            display = event['display']
             count = await self.get_count(self.room_name)
             await self.send(text_data=json.dumps({
                 'type': type,
@@ -491,7 +497,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'amount':amount,
                 'worth':worth,
                 'user_cost':user_cost,
-                'count':count
+                'count':count,
+                'display':display
             }))
             return
 

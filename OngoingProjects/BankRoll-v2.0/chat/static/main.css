@@ -104,7 +104,7 @@
   font-size: 3.5vw;
   font-weight: bold;
   text-align: center;
-  text-transform: capitalize;
+  text-transform: uppercase;
   border-radius: 10px;
   box-shadow: 2px 2px #525252;
 }

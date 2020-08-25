@@ -68,6 +68,31 @@
       var end = '</div></div>';
       $("#" + id).append(start + coin + end);
     }
+    
+    function getColor(c) {
+      if (c == 'red') {
+        return '#E65B5B';
+      }
+      if (c == 'blue') {
+        return '#3C9FDD';
+      }
+      if (c == 'green') {
+        return '#54EC64';
+      }
+      if (c == 'yellow') {
+        return '#EBED61';
+      }
+      return 0;
+    }
+
+    function getColorList(clist) {
+      var i;
+      var dlist = [];
+      for (i = 0; i < clist.length; i++) {
+        dlist.push(getColor(clist[i]));
+      }
+      return dlist;
+    }
 
     function build_btns(id, order, tag) {
       var b_id = order.split("-");
@@ -104,29 +129,19 @@
         }
       }
     }
-
-    function getColor(c) {
-      if (c == 'red') {
-        return '#E65B5B';
-      }
-      if (c == 'blue') {
-        return '#3C9FDD';
-      }
-      if (c == 'green') {
-        return '#54EC64';
-      }
-      if (c == 'yellow') {
-        return '#EBED61';
-      }
-    }
-
-    function getColorList(clist) {
+    
+    function showsell(sell, tag) {
+      var owned = sell[1].split(';');
       var i;
-      var dlist = [];
-      for (i = 0; i < clist.length; i++) {
-        dlist.push(getColor(clist[i]));
+      for (i = 0; i < owned.length; i++) {
+        if (tag == 1) {
+          cardbuttonShow(owned[i], 'sell,close');
+          build_btns(owned[i], "1-2-3", 'show');
+        } else {
+          cardbuttonShow(owned[i], 'close');
+          build_btns(owned[i], "1-2-3", 'hide');
+        }
       }
-      return dlist;
     }
 
     function pay(score) {
@@ -193,6 +208,28 @@
         }
       });
     }
+    
+    function update_msg(msg_list){
+      $("#msg_display").fadeOut('fast');
+      var section = msg_list.split('$');
+      var disp_string = ""
+      for(x of section){
+        var elements = x.split("##");
+        if(elements.length == 2){
+          var col = getColor(elements[1]);
+          if(col == 0){
+            col = elements[1];
+          }
+          disp_string = disp_string + "<span style=color:"+ col +">"+elements[0]+"</span>"+" ";
+        }
+        else{
+          disp_string = disp_string + elements[0]+" ";
+        }
+      }
+      string = disp_string.slice(0, -1)
+      $("#msg_display").html(string);
+      $("#msg_display").fadeIn('fast');
+    }
 
     function update_amount(color_list, amount_list, worth_list) {
       var colors = color_list.split(',');
@@ -224,20 +261,6 @@
       }
     }
 
-    function showsell(sell, tag) {
-      var owned = sell[1].split(';');
-      var i;
-      for (i = 0; i < owned.length; i++) {
-        if (tag == 1) {
-          cardbuttonShow(owned[i], 'sell,close');
-          build_btns(owned[i], "1-2-3", 'show');
-        } else {
-          cardbuttonShow(owned[i], 'close');
-          build_btns(owned[i], "1-2-3", 'hide');
-        }
-      }
-    }
-
     function startplay(start_color_list, player_list, amount_list, worth_list) {
       var start_colors = start_color_list.split(",");
       var start_list = getColorList(start_colors);
@@ -261,6 +284,7 @@
     function update(status) {
       update_amount(status[1], status[2], status[3]);
       update_rent(status[1], status[4], status[5]);
+      update_msg(status[6]);
     }
 
     $(document).ready(function() {
@@ -382,9 +406,8 @@
       </div>
       <div class="msg-div d-flex justify-content-center align-items-start">
         <div class="row mt-3 d-flex justify-content-center align-items-center" style="width:100%;height:5vh;overflow:hidden">
-          <div class="col-11 msg-disp py-1" style="display:none">
-            HELLOO <br>
-            HELLO
+          <div class="col-11 msg-disp py-1" style="display:none" id="msg_display">
+            
           </div>
         </div>
       </div>
@@ -1022,9 +1045,8 @@
         // console.log(data.message);
         document.querySelector('#chat-log').value += (data.message + " left" + '\n');
       } else if (data.tag == 5) {
-        // console.log(data);
         var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost;
-        status = status + "--" + data.curr_color;
+        status = status + "--" + data.display + "--" + data.curr_color;
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
       }
