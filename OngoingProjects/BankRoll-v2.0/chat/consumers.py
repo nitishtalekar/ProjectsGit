@@ -103,7 +103,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
     def game_update(self, id, card, amount, worth, cost):
         Game.objects.filter(id=id).update(card=card, amount=amount, worth=worth, cost=cost)
         return 1
-    
+
     @database_sync_to_async
     def get_player_details(self, turn, id):
         players = Game.objects.get(id=id).player
@@ -261,7 +261,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             curr_color = color[int(game.turn)]
             name = players[int(game.turn)]
             name = await self.get_name(name)
-            
+
             if card_id[0] == "buy":
                 turn = (int(game.turn) - 1) % int(game.type)
                 if roll == 6:
@@ -301,12 +301,12 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 names = []
                 for i in players:
                     names.append(await self.get_name(i))
-                
+
                 details = await self.get_player_details(turn,game.id)
-                
+
                 # disp_msg = [details,['bought'],[cards.name,cards.color]]
                 disp_msg = details[0]+"##"+details[1]+"$bought$"+cards.name+"##"+cards.color
-                    
+
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {
@@ -342,6 +342,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 rent = user_rent[to_index].split(";")[card_index]
 
                 amounts = game.amount.split("#")
+                print("old", amounts)
                 from_amount = int(amounts[from_index])
                 from_amount = from_amount - int(rent)
                 amounts[from_index] = str(from_amount)
@@ -351,6 +352,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 print("amount", "#".join(amounts))
 
                 worths = game.worth.split("#")
+                print("old", worths)
                 from_worth = int(worths[from_index])
                 from_worth = from_worth - int(rent)
                 worths[from_index] = str(from_worth)
@@ -382,7 +384,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'user_card':user_card,
                         'amount':amounts,
                         'worth':worths,
-                        'user_cost':user_rent
+                        'user_cost':user_rent,
+                        'display':"rent"
                     }
                 )
 

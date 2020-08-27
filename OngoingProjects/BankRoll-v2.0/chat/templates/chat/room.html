@@ -68,7 +68,7 @@
       var end = '</div></div>';
       $("#" + id).append(start + coin + end);
     }
-    
+
     function getColor(c) {
       if (c == 'red') {
         return '#E65B5B';
@@ -129,7 +129,7 @@
         }
       }
     }
-    
+
     function showsell(sell, tag) {
       var owned = sell[1].split(';');
       var i;
@@ -204,11 +204,11 @@
           } else if (pay == 2) {
             cardbuttonShow(score, 'sell,pass');
             $("#card" + score).click();
-          } 
+          }
         }
       });
     }
-    
+
     function update_msg(msg_list){
       $("#msg_display").fadeOut('fast');
       var section = msg_list.split('$');
@@ -407,7 +407,7 @@
       <div class="msg-div d-flex justify-content-center align-items-start">
         <div class="row mt-3 d-flex justify-content-center align-items-center" style="width:100%;height:5vh;overflow:hidden">
           <div class="col-11 msg-disp py-1" style="display:none" id="msg_display">
-            
+
           </div>
         </div>
       </div>
@@ -1090,6 +1090,7 @@
     document.querySelector('#card').onclick = function(e) {
       const messageInputDom = document.querySelector('#card_info');
       const message = messageInputDom.value;
+      console.log("rent/buy");
       console.log(message);
       const rollInputDom = document.querySelector('#rolled');
       const roll = rollInputDom.value;

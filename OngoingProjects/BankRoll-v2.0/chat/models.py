@@ -27,6 +27,7 @@ class Game(models.Model):
     cost = models.CharField(max_length=500, default="")
     amount = models.CharField(max_length=500, default="1000")
     worth = models.CharField(max_length=500, default="1000")
+    build = models.CharField(max_length=500, default="")
 
 
 
