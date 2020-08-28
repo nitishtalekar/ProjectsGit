@@ -133,14 +133,17 @@
     function showsell(sell, tag) {
       var owned = sell[1].split(';');
       console.log(owned);
-      var i;
-      for (i = 0; i < owned.length; i++) {
-        if (tag == 1) {
-          cardbuttonShow(owned[i], 'sell,close');
-          build_btns(owned[i], "1-2-3", 'show');
-        } else {
-          cardbuttonShow(owned[i], 'close');
-          build_btns(owned[i], "1-2-3", 'hide');
+      if(owned[0] != "-1"){
+        var i;
+        for (i = 0; i < owned.length; i++) {
+          if (tag == 1) {
+            console.log(owned[i]);
+            cardbuttonShow(owned[i], 'sell,close');
+            build_btns(owned[i], "1-2-3", 'show');
+          } else {
+            cardbuttonShow(owned[i], 'close');
+            build_btns(owned[i], "1-2-3", 'hide');
+          }
         }
       }
     }
@@ -171,12 +174,13 @@
           return 1;
         }
         var owned = owned_cards[0].split(';');
-        for(i=0;i<owned.length;i++){
-          if(owned[i].indexOf(score.toString()) != -1){
-            return 2;
+        if(owned[0] != "-1"){
+          for(i=0;i<owned.length;i++){
+            if(owned[i].indexOf(score.toString()) != -1){
+              return 2;
+            }
           }
         }
-
       }
       return 0;
     }
@@ -1024,6 +1028,7 @@
         } else {
           document.getElementById("roll").style.display = "none";
           document.getElementById("opt").style.display = "none";
+          // document.getElementById('reset-sell').click();
         }
 
       } else if (data.tag == 4) {
@@ -1092,8 +1097,6 @@
     document.querySelector('#card').onclick = function(e) {
       const messageInputDom = document.querySelector('#card_info');
       const message = messageInputDom.value;
-      console.log("rent/buy");
-      console.log(message);
       const rollInputDom = document.querySelector('#rolled');
       const roll = rollInputDom.value;
       chatSocket.send(JSON.stringify({
