@@ -100,8 +100,17 @@ class ChatConsumer(AsyncWebsocketConsumer):
         return Board.objects.get(id=id)
 
     @database_sync_to_async
-    def game_update(self, id, card, amount, worth, cost):
-        Game.objects.filter(id=id).update(card=card, amount=amount, worth=worth, cost=cost)
+    def get_build_card(self, color):
+        print(color)
+        build = Board.objects.filter(color=color)
+        id = []
+        for i in build:
+            id.append(i.id)
+        return id
+
+    @database_sync_to_async
+    def game_update(self, id, card, amount, worth, cost, build):
+        Game.objects.filter(id=id).update(card=card, amount=amount, worth=worth, cost=cost, build=build)
         return 1
 
     @database_sync_to_async
@@ -288,6 +297,22 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 worths[turn] = str(int(worth))
                 # print("worth", "#".join(worths))
 
+                builds = game.build.split("#")
+                build = builds[turn].split(";")
+                print(build)
+                build_cards = await self.get_build_card(cards.color)
+                print("return")
+                print(build_cards)
+                check = [i for i in build_cards if str(i) in user_card[turn]]
+                print(check)
+                if build[0] == "-1":
+                    build[0] = "0"
+                else:
+                    build.append("0")
+                builds[turn] = ";".join(build)
+                print("build", "#".join(builds))
+
+
                 user_cost = game.cost.split("#")
                 cost = user_cost[turn].split(";")
                 if cost[0] == "-1":
@@ -295,9 +320,24 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 else:
                     cost.append(str(cards.rent))
                 user_cost[turn] = ";".join(cost)
-                # print("cost", "#".join(user_cost))
+                print("cost", "#".join(user_cost))
 
-                await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost))
+                if len(check) > 1:
+                    for i in range(len(card)):
+                        if str(card[i]) in build_cards:
+                            print("yo")
+                            cost[i] = str(len(check) * (int(cost[i]) // (len(check) - 1)))
+                            if len(check) == len(build_cards):
+                                build[i] = "X-Y-Z"
+                user_cost[turn] = ";".join(cost)
+                print("cost", "#".join(user_cost))
+
+                builds[turn] = ";".join(build)
+                print("build", "#".join(builds))
+
+
+
+                await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost), "#".join(builds))
                 names = []
                 for i in players:
                     names.append(await self.get_name(i))
@@ -320,6 +360,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'worth':worths,
                         'user_cost':user_cost,
                         'display':disp_msg,
+                        'build':builds
                     }
                 )
 
@@ -342,32 +383,32 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 rent = user_rent[to_index].split(";")[card_index]
 
                 amounts = game.amount.split("#")
-                print("old", amounts)
+                # print("old", amounts)
                 from_amount = int(amounts[from_index])
                 from_amount = from_amount - int(rent)
                 amounts[from_index] = str(from_amount)
                 to_amount = int(amounts[to_index])
                 to_amount = to_amount + int(rent)
                 amounts[to_index] = str(to_amount)
-                print("amount", "#".join(amounts))
+                # print("amount", "#".join(amounts))
 
                 worths = game.worth.split("#")
-                print("old", worths)
+                # print("old", worths)
                 from_worth = int(worths[from_index])
                 from_worth = from_worth - int(rent)
                 worths[from_index] = str(from_worth)
                 to_worth = int(worths[to_index])
                 to_worth = to_worth + int(rent)
                 worths[to_index] = str(to_worth)
-                print("worth", "#".join(worths))
+                # print("worth", "#".join(worths))
 
-                await self.game_update(game.id, game.card, "#".join(amounts), "#".join(worths), game.cost)
+                await self.game_update(game.id, game.card, "#".join(amounts), "#".join(worths), game.cost, game.build)
 
 
-                print(card_index, rent)
-                print(card_rent)
-                print(from_name, from_id, from_index)
-                print(to_name, to_id, to_index)
+                # print(card_index, rent)
+                # print(card_rent)
+                # print(from_name, from_id, from_index)
+                # print(to_name, to_id, to_index)
 
                 names = []
                 for i in players:
@@ -385,7 +426,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'amount':amounts,
                         'worth':worths,
                         'user_cost':user_rent,
-                        'display':"rent"
+                        'display':"rent",
+                        'build':game.build.split("#")
                     }
                 )
 
@@ -489,6 +531,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             worth = event['worth']
             user_cost = event['user_cost']
             display = event['display']
+            build = event['build']
             count = await self.get_count(self.room_name)
             await self.send(text_data=json.dumps({
                 'type': type,
@@ -501,7 +544,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'worth':worth,
                 'user_cost':user_cost,
                 'count':count,
-                'display':display
+                'display':display,
+                'build':build
             }))
             return
 

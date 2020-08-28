@@ -1048,6 +1048,7 @@
       } else if (data.tag == 5) {
         var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost;
         status = status + "--" + data.display + "--" + data.curr_color;
+        console.log(data.build);
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
       }
