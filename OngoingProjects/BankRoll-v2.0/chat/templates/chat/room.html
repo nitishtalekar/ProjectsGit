@@ -29,6 +29,11 @@
         $("#" + coinid).delay(time * 500).fadeIn();
         $("#" + coinid).delay(150).fadeOut();
         x = (x + 1) % 28;
+        if(x == 0){
+          console.log("PASSED");
+          $('#start_pass').val("start#"+"{{name}}");
+          $("#passing_start").click();
+        }
         time = time + 1;
       }
       return time * 500;
@@ -187,10 +192,8 @@
         }
         var owned = owned_cards[0].split(';');
         if(owned[0] != "-1"){
-          for(i=0;i<owned.length;i++){
-            if(owned[i].indexOf(score.toString()) != -1){
-              return 2;
-            }
+          if(owned.indexOf(score.toString()) != -1){
+            return 2;
           }
         }
       }
@@ -228,7 +231,7 @@
 
     function update_msg(msg_list){
       $("#msg_display").fadeOut('fast');
-      var section = msg_list.split('$');
+      var section = msg_list.split('**');
       var disp_string = ""
       for(x of section){
         var elements = x.split("##");
@@ -341,6 +344,7 @@
         $(this).click(function() {
           var id = $(this).attr("id").split("-");
           var card_info = id[1] + "#" + id[2];
+          console.log(card_info);
           cardbuttonShow(id[2], 'close');
           $('#reset-sell').click();
           $("#card_info").val(card_info);
@@ -620,7 +624,7 @@
               {% for j in i %}
 
               {% if j.num != -1 %}
-
+              
               {% if j.tag == 0 %}
               <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
                 <div class="d-flex overlap2 justify-content-center align-items-start rent-div" style="height:7vh;width:100%;">
@@ -675,24 +679,24 @@
                             <span>Lodge</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
-                            <button class="build bldX" style="--btncol:{{j.bgcolor}};display:none">Build</button>
-                            <button class="build-sell bsellX" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
+                            <button class="build bldX cardbtn-build>X-{{j.num}} gamebtn" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build-sell bsellX cardbtn-build_sell>X-{{j.num}} gamebtn" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
                           </div>
                           <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
                             <img src="{% static 'img/hotel.png' %}" style="width:70%" alt="">
                             <span>Hotel</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
-                            <button class="build bldY" style="--btncol:{{j.bgcolor}};display:none">Build</button>
-                            <button class="build-sell bsellY" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
+                            <button class="build bldY cardbtn-build>Y-{{j.num}} gamebtn" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build-sell bsellY cardbtn-build_sell>Y-{{j.num}} gamebtn" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
                           </div>
                           <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
                             <img src="{% static 'img/resort.png' %}" style="width:70%" alt="">
                             <span>Resort</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
-                            <button class="build bldZ" style="--btncol:{{j.bgcolor}};display:none">Build</button>
-                            <button class="build-sell bsellZ" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
+                            <button class="build bldZ cardbtn-build>Z-{{j.num}} gamebtn" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build-sell bsellZ cardbtn-build_sell>Z-{{j.num}} gamebtn" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
                           </div>
                         </div>
                         <div class="row d-flex justify-content-around align items center mb-2 mt-3">
@@ -776,16 +780,16 @@
                             <span>Cargo</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
-                            <button class="build text-dark bldX" style="--btncol:{{j.bgcolor}};display:none">Start</button>
-                            <button class="build-sell text-dark bsellX" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
+                            <button class="build text-dark bldX cardbtn-build>X-{{j.num}} gamebtn" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                            <button class="build-sell text-dark bsellX cardbtn-build_sell>X-{{j.num}} gamebtn" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
                           </div>
                           <div class="col-6 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
                             <img src="{% static 'img/tour.png' %}" style="width:70%" alt="">
                             <span>Tour</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
-                            <button class="build text-dark bldY" style="--btncol:{{j.bgcolor}};display:none">Start</button>
-                            <button class="build-sell text-dark bsellY" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
+                            <button class="build text-dark bldY cardbtn-build>Y-{{j.num}} gamebtn" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                            <button class="build-sell text-dark bsellY cardbtn-build_sell>Y-{{j.num}} gamebtn" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
                           </div>
                         </div>
                         <div class="row d-flex justify-content-around align items center mb-2 mt-3">
@@ -956,6 +960,9 @@
       <button class="text-uppercase" id="reset-sell">reset-sell</button>
       <input type="text" id="status-string">
       <button class="text-uppercase" id="update-board">Update</button>
+      
+      <input type="text" id="start_pass">
+      <button type="button" id="passing_start">PassStart</button>
     </div>
   </div>
 
@@ -1113,6 +1120,20 @@
 
     document.querySelector('#card').onclick = function(e) {
       const messageInputDom = document.querySelector('#card_info');
+      const message = messageInputDom.value;
+      const rollInputDom = document.querySelector('#rolled');
+      const roll = rollInputDom.value;
+      chatSocket.send(JSON.stringify({
+        'tag': 5,
+        'card': message,
+        'name': '{{name}}',
+        'roll':roll
+      }));
+      messageInputDom.value = '';
+    };
+    
+    document.querySelector('#passing_start').onclick = function(e) {
+      const messageInputDom = document.querySelector('#start_pass');
       const message = messageInputDom.value;
       const rollInputDom = document.querySelector('#rolled');
       const roll = rollInputDom.value;

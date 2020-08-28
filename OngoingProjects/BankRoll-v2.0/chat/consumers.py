@@ -101,7 +101,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
     @database_sync_to_async
     def get_build_card(self, color):
-        print(color)
         build = Board.objects.filter(color=color)
         id = []
         for i in build:
@@ -208,7 +207,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             curr_player = text_data_json['name']
             roll = text_data_json['roll']
             value = text_data_json['value']
-            print("value",value)
+            # print("value",value)
             if value == "":
                 roll = random.randint(1,6)
             else:
@@ -263,7 +262,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             name = text_data_json['name']
             roll = int(text_data_json['roll'])
             card_id = text_data_json['card'].split("#")
-            print(card_id)
             game = await self.roll(self.room_name)
             players = game.player.split("#")
             color = game.color.split("#")
@@ -299,18 +297,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 builds = game.build.split("#")
                 build = builds[turn].split(";")
-                print(build)
                 build_cards = await self.get_build_card(cards.color)
-                print("return")
-                print(build_cards)
                 check = [i for i in build_cards if str(i) in user_card[turn]]
-                print(check)
                 if build[0] == "-1":
                     build[0] = "0"
                 else:
                     build.append("0")
                 builds[turn] = ";".join(build)
-                print("build", "#".join(builds))
+                # print("build", "#".join(builds))
 
 
                 user_cost = game.cost.split("#")
@@ -320,22 +314,19 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 else:
                     cost.append(str(cards.rent))
                 user_cost[turn] = ";".join(cost)
-                print("cost", "#".join(user_cost))
+                # print("cost", "#".join(user_cost))
 
                 if len(check) > 1:
                     for i in range(len(card)):
                         if str(card[i]) in build_cards:
-                            print("yo")
                             cost[i] = str(len(check) * (int(cost[i]) // (len(check) - 1)))
                             if len(check) == len(build_cards):
                                 build[i] = "X-Y-Z"
                 user_cost[turn] = ";".join(cost)
-                print("cost", "#".join(user_cost))
+                # print("cost", "#".join(user_cost))
 
                 builds[turn] = ";".join(build)
-                print("build", "#".join(builds))
-
-
+                # print("build", "#".join(builds))
 
                 await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost), "#".join(builds))
                 names = []
@@ -343,9 +334,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     names.append(await self.get_name(i))
 
                 details = await self.get_player_details(turn,game.id)
-
-                # disp_msg = [details,['bought'],[cards.name,cards.color]]
-                disp_msg = details[0]+"##"+details[1]+"$bought$"+cards.name+"##"+cards.color
+                disp_msg = details[0]+"##"+details[1]+"**bought**"+cards.name+"##"+cards.color
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -404,7 +393,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 await self.game_update(game.id, game.card, "#".join(amounts), "#".join(worths), game.cost, game.build)
 
-
                 # print(card_index, rent)
                 # print(card_rent)
                 # print(from_name, from_id, from_index)
@@ -413,6 +401,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 names = []
                 for i in players:
                     names.append(await self.get_name(i))
+                    
+                details = await self.get_player_details(turn,game.id)
+                details_pay = await self.get_player_details(to_index,game.id)
+                disp_msg = details[0]+"##"+details[1]+"**paid $"+rent+" to**"+details_pay[0]+"##"+details_pay[1]
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -426,7 +418,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'amount':amounts,
                         'worth':worths,
                         'user_cost':user_rent,
-                        'display':"rent",
+                        'display':disp_msg,
                         'build':game.build.split("#")
                     }
                 )
