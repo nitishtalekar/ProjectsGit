@@ -95,16 +95,29 @@
     }
 
     function build_btns(id, order, tag) {
-      var b_id = order.split("-");
-      var i;
-      if (id != "-1") {
-        if (tag == 'show') {
-          for (i = 0; i < b_id.length; i++) {
-            $("#build" + id + " .bld" + b_id[i]).show();
+      if(order != "0"){
+        var b_id = order.split("-");
+        var xyz = ["X","Y","Z"];
+        for (i = 0; i < b_id.length; i++) {
+          if(xyz.indexOf(b_id[i]) != -1){
+            var x = xyz.indexOf(b_id[i]);
+            xyz.splice(x,1);
           }
         }
-      } else if (tag == "hide") {
-        $("#build" + id + " .build").hide();
+        var i;
+        if (id != "-1") {
+          if (tag == 'show') {
+            for (i = 0; i < b_id.length; i++) {
+              $("#build" + id + " .bld" + b_id[i]).show();
+            }
+            for (i = 0; i < xyz.length; i++) {
+              $("#build" + id + " .bsell" + xyz[i]).show();
+            }
+          }
+        } else if (tag == "hide") {
+          $("#build" + id + " .build").hide();
+          $("#build" + id + " .build-sell").hide();
+        }
       }
     }
 
@@ -132,17 +145,16 @@
 
     function showsell(sell, tag) {
       var owned = sell[1].split(';');
-      console.log(owned);
+      var bld_owned = sell[3].split(';');
       if(owned[0] != "-1"){
         var i;
         for (i = 0; i < owned.length; i++) {
           if (tag == 1) {
-            console.log(owned[i]);
             cardbuttonShow(owned[i], 'sell,close');
-            build_btns(owned[i], "1-2-3", 'show');
+            build_btns(owned[i], bld_owned[i], 'show');
           } else {
             cardbuttonShow(owned[i], 'close');
-            build_btns(owned[i], "1-2-3", 'hide');
+            build_btns(owned[i], bld_owned[i], 'hide');
           }
         }
       }
@@ -288,7 +300,7 @@
 
     function update(status) {
       update_amount(status[1], status[2], status[3]);
-      update_rent(status[1], status[4], status[5]);
+      update_rent(status[1], status[4], status[5], status[7]);
       update_msg(status[6]);
     }
 
@@ -372,7 +384,7 @@
         if (status != "") {
           var index = status[0].split(',').indexOf('{{name}}');
           var i;
-          var sell_arr = [status[1].split(',')[index], status[4].split(',')[index], status[5].split(',')[index]];
+          var sell_arr = [status[1].split(',')[index], status[4].split(',')[index], status[5].split(',')[index], status[7].split(',')[index]];
           showsell(sell_arr, 1);
         }
       });
@@ -381,7 +393,7 @@
         if (status != "") {
           var index = status[0].split(',').indexOf('{{name}}');
           var i;
-          var sell_arr = [status[1].split(',')[index], status[4].split(',')[index], status[5].split(',')[index]];
+          var sell_arr = [status[1].split(',')[index], status[4].split(',')[index], status[5].split(',')[index], status[7].split(',')[index]];
           showsell(sell_arr, 0);
         }
       });
@@ -663,21 +675,24 @@
                             <span>Lodge</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
-                            <button class="build bld1" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build bldX" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build-sell bsellX" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
                           </div>
                           <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
                             <img src="{% static 'img/hotel.png' %}" style="width:70%" alt="">
                             <span>Hotel</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
-                            <button class="build bld2" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build bldY" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build-sell bsellY" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
                           </div>
                           <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
                             <img src="{% static 'img/resort.png' %}" style="width:70%" alt="">
                             <span>Resort</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
-                            <button class="build bld3" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build bldZ" style="--btncol:{{j.bgcolor}};display:none">Build</button>
+                            <button class="build-sell bsellZ" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
                           </div>
                         </div>
                         <div class="row d-flex justify-content-around align items center mb-2 mt-3">
@@ -686,14 +701,14 @@
                               Close
                             </button>
                           </div>
-                          <div class="col-5" id="sellbtn{{j.num}}" style="display:none">
-                            <button type="button" id="cardbtn-sell-{{j.num}}" class="cardbtn2 gamebtn" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
-                              Sell
-                            </button>
-                          </div>
                           <div class="col-5" id="passbtn{{j.num}}" style="display:none">
                             <button type="button" id="cardbtn-pass-{{j.num}}" class="cardbtn gamebtn" style="--btncol:grey" data-dismiss="modal">
                               Pass
+                            </button>
+                          </div>
+                          <div class="col-5" id="sellbtn{{j.num}}" style="display:none">
+                            <button type="button" id="cardbtn-sell-{{j.num}}" class="cardbtn2 gamebtn" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
+                              Sell
                             </button>
                           </div>
                           <div class="col-5" id="buybtn{{j.num}}" style="display:none">
@@ -761,14 +776,16 @@
                             <span>Cargo</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
-                            <button class="build text-dark bld1" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                            <button class="build text-dark bldX" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                            <button class="build-sell text-dark bsellX" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
                           </div>
                           <div class="col-6 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
                             <img src="{% static 'img/tour.png' %}" style="width:70%" alt="">
                             <span>Tour</span><br>
                             <span>$440</span><br>
                             <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
-                            <button class="build text-dark bld2" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                            <button class="build text-dark bldY" style="--btncol:{{j.bgcolor}};display:none">Start</button>
+                            <button class="build-sell text-dark bsellY" style="--btncol:{{j.bgcolor}};display:none">Sell</button>
                           </div>
                         </div>
                         <div class="row d-flex justify-content-around align items center mb-2 mt-3">
@@ -777,14 +794,14 @@
                               Close
                             </button>
                           </div>
-                          <div class="col-5" id="sellbtn{{j.num}}" style="display:none">
-                            <button type="button" id="cardbtn-sell-{{j.num}}" class="cardbtn2 gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
-                              Sell
-                            </button>
-                          </div>
                           <div class="col-5" id="passbtn{{j.num}}" style="display:none">
                             <button type="button" id="cardbtn-pass-{{j.num}}" class="cardbtn gamebtn" style="--btncol:grey" data-dismiss="modal">
                               Pass
+                            </button>
+                          </div>
+                          <div class="col-5" id="sellbtn{{j.num}}" style="display:none">
+                            <button type="button" id="cardbtn-sell-{{j.num}}" class="cardbtn2 gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
+                              Sell
                             </button>
                           </div>
                           <div class="col-5" id="buybtn{{j.num}}" style="display:none">
@@ -1052,8 +1069,8 @@
         document.querySelector('#chat-log').value += (data.message + " left" + '\n');
       } else if (data.tag == 5) {
         var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost;
-        status = status + "--" + data.display + "--" + data.curr_color;
-        console.log(data.build);
+        status = status + "--" + data.display + "--" + data.build + "--" + data.curr_color;
+        // console.log(data.build);
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
       }
