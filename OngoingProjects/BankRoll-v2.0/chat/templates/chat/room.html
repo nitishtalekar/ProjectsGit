@@ -132,6 +132,7 @@
 
     function showsell(sell, tag) {
       var owned = sell[1].split(';');
+      console.log(owned);
       var i;
       for (i = 0; i < owned.length; i++) {
         if (tag == 1) {
@@ -155,11 +156,6 @@
         var owned_cards = card_list.splice(index, 1);
         var owned_amount = amount_list.splice(index, 1);
         var price = $("#price_"+score).text();
-        if(parseInt(owned_amount[0]) < parseInt(price.substring(1))){
-          var card_info = "pass#" + score;
-          $("#card_info").val(card_info);
-          return 1;
-        }
         var i;
         for (i = 0; i < card_list.length; i++) {
           var prop = card_list[i].split(';');
@@ -168,6 +164,11 @@
             $("#card_info").val(card_info);
             return 1;
           }
+        }
+        if(parseInt(owned_amount[0]) < parseInt(price.substring(1))){
+          var card_info = "pass#" + score;
+          $("#card_info").val(card_info);
+          return 1;
         }
         var owned = owned_cards[0].split(';');
         for(i=0;i<owned.length;i++){
