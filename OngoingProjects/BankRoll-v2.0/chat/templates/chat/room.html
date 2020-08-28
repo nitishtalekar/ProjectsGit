@@ -98,6 +98,11 @@
       }
       return dlist;
     }
+    
+    function roundToFive(x){
+      var a = Math.round(x*0.7);
+      return Math.ceil(a/5)*5;
+    }
 
     function build_btns(id, order, tag) {
       if(order != "0"){
@@ -274,9 +279,14 @@
         var property = cards[i].split(';');
         var prop_rents = rents[i].split(';');
         for (j = 0; j < property.length; j++) {
-          $('#rent' + property[j]).css('--color', col);
-          $('#rent' + property[j]).html("₹" + prop_rents[j]);
-          $('#rent' + property[j]).fadeIn('slow');
+          if(prop_rents[j] != "-1"){
+            $('#rent' + property[j]).css('--color', col);
+            $('#rent' + property[j]).html("₹" + prop_rents[j]);
+            $('#rent' + property[j]).fadeIn('slow');
+            $('#rent_price-'+ property[j]).html("₹" + prop_rents[j]);
+            var sell_pr = roundToFive(parseInt(prop_rents[j]));
+            $('#sell_price-'+ property[j]).html("₹" + sell_pr.toString());
+          }
         }
       }
     }
@@ -629,7 +639,7 @@
               <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
                 <div class="d-flex overlap2 justify-content-center align-items-start rent-div" style="height:7vh;width:100%;">
                   <div class="rentcard text-center py-1 px-1" id="rent{{j.num}}" style="display:none;--color:#F0D35B">
-                    $400
+                    
                   </div>
                 </div>
                 <div class="in_card" id="innercard_{{j.num}}">
@@ -654,17 +664,17 @@
                           <div class="col-4 text-center text-uppercase card-label">
                             <b>Cost</b>
                             <hr class="py-0 my-0">
-                            <b>$400</b>
+                            <b>₹{{j.price}}</b>
                           </div>
                           <div class="col-4 text-center text-uppercase card-label">
                             <b>Sell</b>
                             <hr class="py-0 my-0">
-                            <b>$400</b>
+                            <b id="sell_price-{{j.num}}">₹{{j.sell}}</b>
                           </div>
                           <div class="col-4 text-center text-uppercase card-label">
                             <b>Rent</b>
                             <hr class="py-0 my-0">
-                            <b>$400</b>
+                            <b id="rent_price-{{j.num}}">₹{{j.rent}}</b>
                           </div>
                         </div>
                         <div class="row">
@@ -730,7 +740,7 @@
               <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
                 <div class="d-flex overlap2 justify-content-center align-items-start rent-div" style="height:7vh;width:100%;">
                   <div class="rentcard text-center py-1 px-1" id="rent{{j.num}}" style="display:none;--color:#F0D35B">
-                    $400
+                    
                   </div>
                 </div>
                 <div class="in_card" id="innercard_{{j.num}}">
@@ -755,17 +765,17 @@
                           <div class="col-4 text-center text-uppercase card-label">
                             <b>Cost</b>
                             <hr class="py-0 my-0">
-                            <b>$400</b>
+                            <b>₹{{j.price}}</b>
                           </div>
                           <div class="col-4 text-center text-uppercase card-label">
                             <b>Sell</b>
                             <hr class="py-0 my-0">
-                            <b>$400</b>
+                            <b id="sell_price-{{j.num}}">₹{{j.sell}}</b>
                           </div>
                           <div class="col-4 text-center text-uppercase card-label">
                             <b>Rent</b>
                             <hr class="py-0 my-0">
-                            <b>$400</b>
+                            <b id="rent_price-{{j.num}}">₹{{j.rent}}</b>
                           </div>
                         </div>
                         <div class="row">

@@ -83,17 +83,22 @@ def room(request, room_name):
         bgs = list(Board.objects.values_list('color', flat=True))
         tags = [int(i) for i in list(Board.objects.values_list('tag', flat=True))]
         prices = list(Board.objects.values_list('buy', flat=True))
-
+        rents = list(Board.objects.values_list('rent', flat=True))
+        sells = list(Board.objects.values_list('sell', flat=True))
 
         place = {}
         bg = {}
         tag = {}
         price = {}
+        rent = {}
+        sell = {}
         for i in range(28):
             place[i] = places[i]
             bg[i] = bgs[i]
             tag[i] = tags[i]
             price[i] = prices[i]
+            rent[i] = rents[i]
+            sell[i] = sells[i]
 
         # FORM DATA
 
@@ -101,14 +106,14 @@ def room(request, room_name):
         dummy = {"num":-1}
         for i in id:
             if len(i) == 2:
-                one = {"num":i[0],'place':place[i[0]],'bgcolor':bg[i[0]],'tag':tag[i[0]], 'price':price[i[0]]}
-                two = {"num":i[1],'place':place[i[1]],'bgcolor':bg[i[1]],'tag':tag[i[1]], 'price':price[i[1]]}
+                one = {"num":i[0],'place':place[i[0]],'bgcolor':bg[i[0]],'tag':tag[i[0]], 'price':price[i[0]],'rent':rent[i[0]],'sell':sell[i[0]]}
+                two = {"num":i[1],'place':place[i[1]],'bgcolor':bg[i[1]],'tag':tag[i[1]], 'price':price[i[1]],'rent':rent[i[1]],'sell':sell[i[1]]}
                 info.append([one,dummy,dummy,dummy])
                 info.append([dummy,dummy,dummy,two])
             else:
                 temp = []
                 for x in i:
-                    temp.append({"num":x,'place':place[x],'bgcolor':bg[x],'tag':tag[x], 'price':price[x]})
+                    temp.append({"num":x,'place':place[x],'bgcolor':bg[x],'tag':tag[x], 'price':price[x],'rent':rent[x],'sell':sell[x]})
                 info.append(temp)
     return render(request, 'chat/room.html', {'room_name': room_name,'info':info, 'name':request.session['name']})
 # Create your views here.
