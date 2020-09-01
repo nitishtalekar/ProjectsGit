@@ -37,4 +37,7 @@ class Board(models.Model):
     rent = models.CharField(max_length=500)
     sell = models.CharField(max_length=500)
     tag = models.CharField(max_length=500)
+    build1 = models.CharField(max_length=500, default="")
+    build2 = models.CharField(max_length=500, default="")
+    build3 = models.CharField(max_length=500, default="")
 # Create your models here.
