@@ -29,12 +29,15 @@
         $("#" + coinid).delay(time * 500).fadeIn();
         $("#" + coinid).delay(150).fadeOut();
         x = (x + 1) % 28;
-        if(x == 0){
+        time = time + 1;
+      }
+      if((score - pos) < 0){
+        var u = $('#gameuser').val();
+        if (u == '{{name}}') {
           console.log("PASSED");
           $('#start_pass').val("start#"+"{{name}}");
           $("#passing_start").click();
         }
-        time = time + 1;
       }
       return time * 500;
     }
@@ -1148,7 +1151,7 @@
       const rollInputDom = document.querySelector('#rolled');
       const roll = rollInputDom.value;
       chatSocket.send(JSON.stringify({
-        'tag': 5,
+        'tag': 6,
         'card': message,
         'name': '{{name}}',
         'roll':roll
