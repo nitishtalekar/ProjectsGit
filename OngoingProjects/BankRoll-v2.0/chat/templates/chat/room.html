@@ -101,7 +101,7 @@
       }
       return dlist;
     }
-    
+
     function roundToFive(x){
       var a = Math.round(x*0.7);
       return Math.ceil(a/5)*5;
@@ -637,12 +637,12 @@
               {% for j in i %}
 
               {% if j.num != -1 %}
-              
+
               {% if j.tag == 0 %}
               <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
                 <div class="d-flex overlap2 justify-content-center align-items-start rent-div" style="height:7vh;width:100%;">
                   <div class="rentcard text-center py-1 px-1" id="rent{{j.num}}" style="display:none;--color:#F0D35B">
-                    
+
                   </div>
                 </div>
                 <div class="in_card" id="innercard_{{j.num}}">
@@ -743,7 +743,7 @@
               <div class="col-3 gamecard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" id="{{j.num}}" style="--bgcolor:{{j.bgcolor}}">
                 <div class="d-flex overlap2 justify-content-center align-items-start rent-div" style="height:7vh;width:100%;">
                   <div class="rentcard text-center py-1 px-1" id="rent{{j.num}}" style="display:none;--color:#F0D35B">
-                    
+
                   </div>
                 </div>
                 <div class="in_card" id="innercard_{{j.num}}">
@@ -973,7 +973,7 @@
       <button class="text-uppercase" id="reset-sell">reset-sell</button>
       <input type="text" id="status-string">
       <button class="text-uppercase" id="update-board">Update</button>
-      
+
       <input type="text" id="start_pass">
       <button type="button" id="passing_start">PassStart</button>
     </div>
@@ -1094,6 +1094,9 @@
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
       }
+      else if(data.tag == 6){
+        console.log(data);
+      }
       document.querySelector('#count-log').value = (data.count);
 
     };
@@ -1144,7 +1147,7 @@
       }));
       messageInputDom.value = '';
     };
-    
+
     document.querySelector('#passing_start').onclick = function(e) {
       const messageInputDom = document.querySelector('#start_pass');
       const message = messageInputDom.value;

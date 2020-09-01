@@ -108,6 +108,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
         return id
 
     @database_sync_to_async
+    def get_rent(self, id):
+        return Board.objects.get(id=id).rent
+
+    @database_sync_to_async
     def game_update(self, id, card, amount, worth, cost, build):
         Game.objects.filter(id=id).update(card=card, amount=amount, worth=worth, cost=cost, build=build)
         return 1
@@ -258,6 +262,56 @@ class ChatConsumer(AsyncWebsocketConsumer):
             )
             return
 
+        if tag == 6:
+            name = text_data_json['name']
+            roll = int(text_data_json['roll'])
+            card_id = text_data_json['card'].split("#")
+            print(card_id)
+            game = await self.roll(self.room_name)
+            players = game.player.split("#")
+            color = game.color.split("#")
+            curr_color = color[int(game.turn)]
+            name = players[int(game.turn)]
+            name = await self.get_name(name)
+            turn = (int(game.turn) - 1) % int(game.type)
+            if roll == 6:
+                turn = int(game.turn)
+
+            amounts = game.amount.split("#")
+            amount = int(amounts[turn])
+            amount = amount + 2000
+            amounts[turn] = str(amount)
+            # print("amount", "#".join(amounts))
+
+            worths = game.worth.split("#")
+            worth = int(worths[turn])
+            worth = worth + 2000
+            worths[turn] = str(int(worth))
+
+            await self.game_update(game.id, game.card, "#".join(amounts), "#".join(worths), game.cost, game.build)
+            details = await self.get_player_details(turn,game.id)
+            disp_msg = details[0]+"##"+details[1]+"**got ₹2000**"
+
+            names = []
+            for i in players:
+                names.append(await self.get_name(i))
+
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {
+                    'type': 'chat_message',
+                    'tag':6,
+                    'names': names,
+                    'color':color,
+                    'amount':amounts,
+                    'worth':worths,
+                    'display':disp_msg,
+                }
+            )
+            return
+
+
+
         if tag == 5:
             name = text_data_json['name']
             roll = int(text_data_json['roll'])
@@ -268,8 +322,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             curr_color = color[int(game.turn)]
             name = players[int(game.turn)]
             name = await self.get_name(name)
-            print(card_id)
-
 
             if card_id[0] == "buy":
                 turn = (int(game.turn) - 1) % int(game.type)
@@ -321,7 +373,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 if len(check) > 1:
                     for i in range(len(card)):
                         if str(card[i]) in build_cards:
-                            cost[i] = str(len(check) * (int(cost[i]) // (len(check) - 1)))
+                            rent = await self.get_rent(card[i])
+                            # cost[i] = str(len(check) * (int(cost[i]) // (len(check) - 1)))
+                            cost[i] = str(len(check) * int(rent))
                             if len(check) == len(build_cards):
                                 build[i] = "X-Y-Z"
                 user_cost[turn] = ";".join(cost)
@@ -543,6 +597,24 @@ class ChatConsumer(AsyncWebsocketConsumer):
             }))
             return
 
+        if tag == 6:
+            names = event['names']
+            color = event['color']
+            amount = event['amount']
+            worth = event['worth']
+            display = event['display']
+            count = await self.get_count(self.room_name)
+            await self.send(text_data=json.dumps({
+                'type': type,
+                'tag': tag,
+                'names': names,
+                'color':color,
+                'amount':amount,
+                'worth':worth,
+                'count':count,
+                'display':display,
+            }))
+            return
 
         type = event['type']
         roll = event['roll']
