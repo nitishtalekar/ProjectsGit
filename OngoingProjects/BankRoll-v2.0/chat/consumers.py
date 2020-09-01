@@ -268,6 +268,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
             curr_color = color[int(game.turn)]
             name = players[int(game.turn)]
             name = await self.get_name(name)
+            print(card_id)
+
 
             if card_id[0] == "buy":
                 turn = (int(game.turn) - 1) % int(game.type)
@@ -401,7 +403,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 names = []
                 for i in players:
                     names.append(await self.get_name(i))
-                    
+
                 details = await self.get_player_details(turn,game.id)
                 details_pay = await self.get_player_details(to_index,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**paid $"+rent+" to**"+details_pay[0]+"##"+details_pay[1]
