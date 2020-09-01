@@ -22,6 +22,7 @@
       });
       var time = 0;
       var x = pos;
+      var delay = 0;
       for (i = 0; i <= rolled; i++) {
         var id = "#" + x;
         var coinid = "coin" + x;
@@ -29,6 +30,9 @@
         $("#" + coinid).delay(time * 500).fadeIn();
         $("#" + coinid).delay(150).fadeOut();
         x = (x + 1) % 28;
+        if(x == 0){
+          delay = (time+1)*500;
+        }
         time = time + 1;
       }
       if((score - pos) < 0){
@@ -36,7 +40,11 @@
         if (u == '{{name}}') {
           console.log("PASSED");
           $('#start_pass').val("start#"+"{{name}}");
-          $("#passing_start").click();
+          $("#body").animate({
+            opacity: 1
+          }, delay+500, function() {
+            $("#passing_start").click();
+          });
         }
       }
       return time * 500;
@@ -413,6 +421,10 @@
           var sell_arr = [status[1].split(',')[index], status[4].split(',')[index], status[5].split(',')[index], status[7].split(',')[index]];
           showsell(sell_arr, 0);
         }
+      });
+      $('#update-start').click(function() {
+        var status_start = $('#status-start').val().split("--");
+        update_amount(status_start[0], status_start[1], status_start[2]);
       });
       $('#update-board').click(function() {
         var status = $('#status-string').val().split("--");
@@ -976,6 +988,8 @@
 
       <input type="text" id="start_pass">
       <button type="button" id="passing_start">PassStart</button>
+      <input type="text" id="status-start">
+      <button class="text-uppercase" id="update-start">Update</button>
     </div>
   </div>
 
@@ -1096,6 +1110,9 @@
       }
       else if(data.tag == 6){
         console.log(data);
+        var start = data.color + "--" + data.amount + "--" + data.worth;
+        document.querySelector('#status-start').value = start;
+        document.querySelector('#update-start').click();
       }
       document.querySelector('#count-log').value = (data.count);
 
