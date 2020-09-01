@@ -3,6 +3,7 @@ from channels.generic.websocket import AsyncWebsocketConsumer
 from channels.db import database_sync_to_async
 from .models import *
 import random
+import math
 
 
 
@@ -478,6 +479,65 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'build':game.build.split("#")
                     }
                 )
+
+            if card_id[0] == "sell":
+                print(card_id)
+                turn = (int(game.turn) - 1) % int(game.type)
+                if roll == 6:
+                    turn = int(game.turn)
+                card_rent = card_id[1]
+                cards = await self.get_card(card_id[1])
+                user_rent = game.cost.split("#")
+                user_card = game.card.split("#")
+                sell = user_rent[turn].split(";")[user_card[turn].split(";").index(card_id[1])]
+                sell_val = math.ceil((int(sell)*0.7)/5)*5
+                print(sell_val)
+                print("index", user_card[turn].split(";").index(card_id[1]))
+
+                amounts = game.amount.split("#")
+                amount = int(amounts[turn])
+                amount = amount + sell_val
+                amounts[turn] = str(amount)
+                print("amount", "#".join(amounts))
+
+                worths = game.worth.split("#")
+                worth = int(worths[turn])
+                worth = worth + 0
+                worths[turn] = str(int(worth))
+                print("worth", "#".join(worths))
+
+                builds = game.build.split("#")
+                build = builds[turn].split(";")
+                build_cards = await self.get_build_card(cards.color)
+                check = [i for i in build_cards if str(i) in user_card[turn]]
+                if len(build) == 1:
+                    build[0] = "-1"
+                else:
+                    build.pop(user_card[turn].split(";").index(card_id[1]))
+                builds[turn] = ";".join(build)
+                print("build", "#".join(builds))
+
+                user_cost = game.cost.split("#")
+                cost = user_cost[turn].split(";")
+                if len(cost) == 1:
+                    cost[0] = "-1"
+                else:
+                    cost.pop(user_card[turn].split(";").index(card_id[1]))
+                user_cost[turn] = ";".join(cost)
+                print("cost", "#".join(user_cost))
+
+                cards = await self.get_card(card_id[1])
+                user_card = game.card.split("#")
+                card = user_card[turn].split(";")
+                if len(card) == 1:
+                    card[0] = "-1"
+                else:
+                    card.remove(card_id[1])
+                user_card[turn] = ";".join(card)
+                print("card", "#".join(user_card))
+
+
+
 
             await self.channel_layer.group_send(
                 self.room_group_name,
