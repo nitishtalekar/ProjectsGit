@@ -57,7 +57,7 @@ def index(request):
                     Game.objects.filter(id=auth[0].game).update(player="#".join(player), player_count=str(count+1), roll="#".join(roll), amount="#".join(cost), worth="#".join(cost))
                     return HttpResponseRedirect('/chat/' + rname + '/')
 
-                User.objects.create(name=uname, channel_name="", tag="-1")
+                # User.objects.create(name=uname, channel_name="", tag="-1")
                 request.session['name'] = uname
                 print(auth[0].count,"yo")
                 if auth[0].count == "0":
