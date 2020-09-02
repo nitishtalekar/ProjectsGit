@@ -114,6 +114,20 @@
       var a = Math.round(x*0.7);
       return Math.ceil(a/5)*5;
     }
+    
+    function isEnough(amount) {
+      var status = $('#status-string').val().split("--");
+      if (status != "") {
+        var name_list = status[0].split(',');
+        var amount_list = status[2].split(',');
+        var index = name_list.indexOf('{{name}}');
+        var owned_amount = amount_list.splice(index, 1);
+        if(parseInt(owned_amount[0]) < parseInt(amount)){
+          return 1;
+        }
+      }
+      return 0;
+    }
 
     function build_btns(id, order, tag) {
       if(order != "0"){
@@ -129,16 +143,23 @@
         if (id != "-1") {
           if (tag == 'show') {
             for (i = 0; i < b_id.length; i++) {
-              $("#build" + id + " .bld" + b_id[i]).show();
+              var amt = $("#build" + id + " .price_bld" + b_id[i]).val();
+              if(isEnough(amt) == 0){
+                $("#build" + id + " .bld" + b_id[i]).show();
+              }
+              else{
+                $("#build" + id + " .bld" + b_id[i]).hide();
+              }
             }
             for (i = 0; i < xyz.length; i++) {
               $("#build" + id + " .bsell" + xyz[i]).show();
             }
           }
-        } else if (tag == "hide") {
-          $("#build" + id + " .build").hide();
-          $("#build" + id + " .build-sell").hide();
-        }
+          else if (tag == "hide") {
+            $("#build" + id + " .build").hide();
+            $("#build" + id + " .build-sell").hide();
+          }
+        } 
       }
     }
 
@@ -703,6 +724,7 @@
                             <img src="{% static 'img/lodge.png' %}" style="width:70%" alt="">
                             <span>Lodge</span><br>
                             <span>₹{{j.build1}}</span><br>
+                            <input type="text" value="{{j.build1}}" class="price_bldX" style="display:none">
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
                             <button class="build bldX gamebtn" id="cardbtn-build#X-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Build</button>
                             <button class="build-sell bsellX gamebtn" id="cardbtn-build_sell#X-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Sell</button>
@@ -711,6 +733,7 @@
                             <img src="{% static 'img/hotel.png' %}" style="width:70%" alt="">
                             <span>Hotel</span><br>
                             <span>₹{{j.build2}}</span><br>
+                            <input type="text" value="{{j.build2}}" class="price_bldY" style="display:none">
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
                             <button class="build bldY gamebtn" id="cardbtn-build#Y-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Build</button>
                             <button class="build-sell bsellY gamebtn" id="cardbtn-build_sell#Y-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Sell</button>
@@ -719,6 +742,7 @@
                             <img src="{% static 'img/resort.png' %}" style="width:70%" alt="">
                             <span>Resort</span><br>
                             <span>₹{{j.build3}}</span><br>
+                            <input type="text" value="{{j.build3}}" class="price_bldZ" style="display:none">
                             <span>[+80%]</span><span class="rent vertical-align-middle">rent</span>
                             <button class="build bldZ gamebtn" id="cardbtn-build#Z-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Build</button>
                             <button class="build-sell bsellZ gamebtn" id="cardbtn-build_sell#Z-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Sell</button>
@@ -804,6 +828,7 @@
                             <img src="{% static 'img/cargo.png' %}" style="width:70%" alt="">
                             <span>Cargo</span><br>
                             <span>₹{{j.build1}}</span><br>
+                            <input type="text" value="{{j.build1}}" class="price_bldX" style="display:none">
                             <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
                             <button class="build text-dark bldX gamebtn" id="cardbtn-build#X-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Start</button>
                             <button class="build-sell text-dark bsellX gamebtn" id="cardbtn-build_sell#X-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Sell</button>
@@ -812,6 +837,7 @@
                             <img src="{% static 'img/tour.png' %}" style="width:70%" alt="">
                             <span>Tour</span><br>
                             <span>₹{{j.build2}}</span><br>
+                            <input type="text" value="{{j.build2}}" class="price_bldY" style="display:none">
                             <span>[+80%]</span><span class="rent vertical-align-middle">/round</span>
                             <button class="build text-dark bldY gamebtn" id="cardbtn-build#Y-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Start</button>
                             <button class="build-sell text-dark bsellY gamebtn" id="cardbtn-build_sell#Y-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Sell</button>
@@ -1079,7 +1105,7 @@
         } else {
           document.getElementById("roll").style.display = "none";
           document.getElementById("opt").style.display = "none";
-          // document.getElementById('reset-sell').click();
+          document.getElementById('reset-sell').click();
         }
 
       } else if (data.tag == 4) {
@@ -1109,7 +1135,6 @@
         document.querySelector('#update-board').click();
       }
       else if(data.tag == 6){
-        console.log(data);
         var start = data.color + "--" + data.amount + "--" + data.worth;
         document.querySelector('#status-start').value = start;
         document.querySelector('#update-start').click();
