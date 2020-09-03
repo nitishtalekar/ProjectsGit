@@ -899,7 +899,7 @@
                     <div class="d-flex justify-content-center align-items-center pt-1 pb-2" style="background:{{j.bgcolor}}">
                       <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0">{{ j.place }}</h5>
                     </div>
-                    <div class="modal-body pt-2 my-0 pb-0">
+                    <div class="modal-body pt-2 my-0 pb-0 d-flex justify-content-center align-items-center">
                       <div class="container-fluid mt-0">
                         <div class="row">
                           <div class="col-12 text-center">
@@ -977,9 +977,58 @@
         </div>
         <div class="row d-flex mt-2 justify-content-around align-items-center b4">
           <div class="col-6 text-center">
-            <button type="button" class="optbtn" id="opt" style="--bgcolor:#54EC64;display:none" name="button">Options</button>
+            <button type="button" class="optbtn" data-toggle="modal" data-target="#optionModal" id="opt" style="--bgcolor:#54EC64;display:none" name="button">Options</button>
           </div>
         </div>
+        <div class="modal fade my-0 py-0" id="optionModal" style="--bcolor:#FFFFFF" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+          <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
+            <div class="modal-content modal-border modalcard my-0 py-0" id="optModal-content" style="--bcolor:#FFFFFF">
+              <div class="d-flex justify-content-center align-items-center pt-1 pb-2" id="optModal-head" style="background:#FFFFFF">
+                <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0">Options</h5>
+              </div>
+              <div class="modal-body d-flex justify-content-center align-items-center pt-2 my-0 pb-0">
+                <div class="container-fluid mt-0">
+                  <div class="row">
+                    <div class="col-4 text-center text-uppercase card-label">
+                      <b>Action1</b>
+                      <hr class="py-0 my-0">
+                      <button type="button" class="cardbtn-opt" style="--btncol:#FFFFFF" data-dismiss="modal">
+                        Action1
+                      </button>
+                    </div>
+                    <div class="col-4 text-center text-uppercase card-label">
+                      <b>Action2</b>
+                      <hr class="py-0 my-0">
+                      <button type="button" class="cardbtn-opt" style="--btncol:#FFFFFF" data-dismiss="modal">
+                        Action2
+                      </button>
+                    </div>
+                    <div class="col-4 text-center text-uppercase card-label">
+                      <b>Action3</b>
+                      <hr class="py-0 my-0">
+                      <button type="button" class="cardbtn-opt" style="--btncol:#FFFFFF" data-dismiss="modal">
+                        Action3
+                      </button>
+                    </div>
+                    <!-- <div class="col-12 text-center">
+                      <img src="{% static 'img/Auction.png' %}" style="width:70%" alt="">
+                    </div> -->
+                    <!-- <div class="col-12 text-center text-uppercase font-weight-bold card-label">
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
+                    </div> -->
+                  </div>
+                  <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                    <div class="col-5" id="closebtn{{j.num}}">
+                      <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                        Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>      
       </div>
     </div>
   </div>
@@ -1101,6 +1150,15 @@
           document.getElementById("roll").style.display = "block";
           document.getElementById("opt").style.display = "block";
           document.getElementById('show-sell').click();
+          document.getElementById("optionModal").style.setProperty('--bcolor', getBtnColor(data.color));
+          document.getElementById("optModal-content").style.setProperty('--bcolor', getBtnColor(data.color));
+          document.getElementById("optModal-head").style.setProperty('background', getBtnColor(data.color));
+          // document.getElementsByClassName("cardbtn-opt").style.setProperty('--btncol', getBtnColor(data.color));
+          var x = document.getElementsByClassName("cardbtn-opt")
+          var i;
+          for (i = 0; i < x.length; i++) {
+            x[i].style.setProperty('--btncol', getBtnColor(data.color));
+          }
         } else {
           document.getElementById("roll").style.display = "none";
           document.getElementById("opt").style.display = "none";
@@ -1129,7 +1187,6 @@
       } else if (data.tag == 5) {
         var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost;
         status = status + "--" + data.display + "--" + data.build + "--" + data.curr_color;
-        console.log(data.build);
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
         document.getElementById('show-sell').click();

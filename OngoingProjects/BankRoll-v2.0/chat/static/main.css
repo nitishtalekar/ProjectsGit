@@ -243,6 +243,24 @@
   outline: none;
 }
 
+.cardbtn-opt{
+  color:white;
+  text-transform: uppercase;
+  background-color: var(--btncol);
+  padding: 2px;
+  font-size: 2vw;
+  outline: none;
+  box-shadow: none;
+  border: none;
+  width:90%;
+  margin-top: 5px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+.cardbtn-opt:focus{
+  outline: none;
+}
+
 .rollbtn{
   background-color: rgba(0, 0, 0, 0.5);
   width:80%;
