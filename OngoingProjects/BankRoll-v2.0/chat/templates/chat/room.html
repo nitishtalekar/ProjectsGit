@@ -114,7 +114,7 @@
       var a = Math.round(x*y);
       return Math.ceil(a/5)*5;
     }
-    
+
     function isEnough(amount) {
       var status = $('#status-string').val().split("--");
       if (status != "") {
@@ -159,7 +159,7 @@
             $("#build" + id + " .build").hide();
             $("#build" + id + " .build-sell").hide();
           }
-        } 
+        }
       }
     }
 
@@ -1034,7 +1034,7 @@
               </div>
             </div>
           </div>
-        </div>      
+        </div>
       </div>
     </div>
   </div>
@@ -1153,6 +1153,7 @@
           dots[i].style.setProperty('--dcol', getBtnColor(data.color));
         }
         if (data.roll == '{{name}}') {
+          document.getElementById('roll').disabled = false;
           document.getElementById("roll").style.display = "block";
           document.getElementById("opt").style.display = "block";
           document.getElementById('show-sell').click();
@@ -1230,6 +1231,7 @@
     document.querySelector('#roll').onclick = function(e) {
       const messageInputDom = document.querySelector('#custom_roll');
       const message = messageInputDom.value;
+      document.getElementById('roll').disabled = true;
       chatSocket.send(JSON.stringify({
         'tag': 3,
         'name': '{{name}}',

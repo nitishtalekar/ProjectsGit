@@ -28,6 +28,7 @@ class Game(models.Model):
     amount = models.CharField(max_length=500, default="1000")
     worth = models.CharField(max_length=500, default="1000")
     build = models.CharField(max_length=500, default="")
+    start = models.CharField(max_length=500, default="200")
 
 class Board(models.Model):
     id = models.CharField(primary_key=True, max_length=500)

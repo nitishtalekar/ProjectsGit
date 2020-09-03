@@ -92,7 +92,7 @@ def index(request):
 def room(request, room_name):
     if 'name' in request.session:
 
-        Game.objects.filter(id=1).update(roll="0#0", amount="1000#1050", worth="1000#1050", card="-1#-1", cost="-1#-1", build="-1#-1")
+        Game.objects.filter(id=1).update(roll="0#0", amount="1000#1050", worth="1000#1050", card="-1#-1", cost="-1#-1", build="-1#-1", start="200#200")
         id = [[7,8,9,10],[11,12,13,14],[6,15],[5,16],[4,17],[3,18],[2,19],[1,20],[0,27,26,25],[24,23,22,21]]
 
 
