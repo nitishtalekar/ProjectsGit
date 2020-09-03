@@ -110,8 +110,8 @@
       return dlist;
     }
 
-    function roundToFive(x){
-      var a = Math.round(x*0.7);
+    function roundToFive(x,y){
+      var a = Math.round(x*y);
       return Math.ceil(a/5)*5;
     }
     
@@ -316,8 +316,14 @@
             $('#rent' + property[j]).html("₹" + prop_rents[j]);
             $('#rent' + property[j]).fadeIn('slow');
             $('#rent_price-'+ property[j]).html("₹" + prop_rents[j]);
-            var sell_pr = roundToFive(parseInt(prop_rents[j]));
+            var sell_pr = roundToFive(parseInt(prop_rents[j]),0.7);
             $('#sell_price-'+ property[j]).html("₹" + sell_pr.toString());
+            var b1 = roundToFive(parseInt(prop_rents[j]),1.8);
+            var b2 = roundToFive(parseInt(prop_rents[j]),1.9);
+            var b3 = roundToFive(parseInt(prop_rents[j]),2);
+            $('#bldX-'+ property[j]).html("[₹" + b1.toString() + "]");
+            $('#bldY-'+ property[j]).html("[₹" + b2.toString() + "]");
+            $('#bldZ-'+ property[j]).html("[₹" + b3.toString() + "]");
           }
         }
       }
@@ -734,7 +740,7 @@
                             <span>Hotel</span><br>
                             <span>₹{{j.build2}}</span><br>
                             <input type="text" value="{{j.build2}}" class="price_bldY" style="display:none">
-                            <span id="bldY-{{j.num}}">[+80%]</span><span class="rent vertical-align-middle">rent</span>
+                            <span id="bldY-{{j.num}}">[+90%]</span><span class="rent vertical-align-middle">rent</span>
                             <button class="build bldY gamebtn" id="cardbtn-build#Y-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Build</button>
                             <button class="build-sell bsellY gamebtn" id="cardbtn-build_sell#Y-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Sell</button>
                           </div>
@@ -743,7 +749,7 @@
                             <span>Resort</span><br>
                             <span>₹{{j.build3}}</span><br>
                             <input type="text" value="{{j.build3}}" class="price_bldZ" style="display:none">
-                            <span id="bldZ-{{j.num}}">[+80%]</span><span class="rent vertical-align-middle">rent</span>
+                            <span id="bldZ-{{j.num}}">[+100%]</span><span class="rent vertical-align-middle">rent</span>
                             <button class="build bldZ gamebtn" id="cardbtn-build#Z-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Build</button>
                             <button class="build-sell bsellZ gamebtn" id="cardbtn-build_sell#Z-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Sell</button>
                           </div>
