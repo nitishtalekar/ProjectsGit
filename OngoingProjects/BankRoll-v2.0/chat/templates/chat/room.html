@@ -345,7 +345,7 @@
 
     function update(status) {
       update_amount(status[1], status[2], status[3]);
-      update_rent(status[1], status[4], status[5], status[7]);
+      update_rent(status[1], status[4], status[5]);
       update_msg(status[6]);
     }
 
@@ -1039,7 +1039,6 @@
   <div class="container mt-0 mb-5">
     <center>
       {{ room_name|json_script:"room-name" }}
-      hihihih
       {{name}}
     </center>
   </div>
@@ -1130,9 +1129,10 @@
       } else if (data.tag == 5) {
         var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost;
         status = status + "--" + data.display + "--" + data.build + "--" + data.curr_color;
-        // console.log(data.build);
+        console.log(data.build);
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
+        document.getElementById('show-sell').click();
       }
       else if(data.tag == 6){
         var start = data.color + "--" + data.amount + "--" + data.worth;
