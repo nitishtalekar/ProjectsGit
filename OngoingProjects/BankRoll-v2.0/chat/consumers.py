@@ -580,7 +580,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
             if card_id[0] == "sell":
                 print(card_id)
-                turn = (int(game.turn) - 1) % int(game.type)
+                # turn = (int(game.turn) - 1) % int(game.type)
+                turn = int(game.turn)
                 if roll == 6:
                     turn = int(game.turn)
                 card_rent = card_id[1]
@@ -638,6 +639,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 names = [await self.get_name(i) for i in players]
                 details = await self.get_player_details(turn,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**Sold "+" on**"+cards.name+"##"+cards.color
+                
+                turn = (int(game.turn) - 1) % int(game.type)
 
                 await self.channel_layer.group_send(
                     self.room_group_name,

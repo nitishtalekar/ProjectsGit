@@ -114,7 +114,7 @@
       var a = Math.round(x*y);
       return Math.ceil(a/5)*5;
     }
-
+    
     function isEnough(amount) {
       var status = $('#status-string').val().split("--");
       if (status != "") {
@@ -159,7 +159,7 @@
             $("#build" + id + " .build").hide();
             $("#build" + id + " .build-sell").hide();
           }
-        }
+        } 
       }
     }
 
@@ -301,6 +301,9 @@
     }
 
     function update_rent(color_list, card_list, rent_list) {
+      $(".rentcard").each(function(){
+        $(this).hide();
+      });
       var colors = color_list.split(',');
       var cards = card_list.split(',');
       var rents = rent_list.split(',');
@@ -314,7 +317,7 @@
           if(prop_rents[j] != "-1"){
             $('#rent' + property[j]).css('--color', col);
             $('#rent' + property[j]).html("₹" + prop_rents[j]);
-            $('#rent' + property[j]).fadeIn('slow');
+            $('#rent' + property[j]).fadeIn('fast');
             $('#rent_price-'+ property[j]).html("₹" + prop_rents[j]);
             var sell_pr = roundToFive(parseInt(prop_rents[j]),0.7);
             $('#sell_price-'+ property[j]).html("₹" + sell_pr.toString());
@@ -861,12 +864,12 @@
                             </button>
                           </div>
                           <div class="col-5" id="sellbtn{{j.num}}" style="display:none">
-                            <button type="button" id="cardbtn-tsell-{{j.num}}" class="cardbtn2 gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
+                            <button type="button" id="cardbtn-sell-{{j.num}}" class="cardbtn2 gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
                               Sell
                             </button>
                           </div>
                           <div class="col-5" id="buybtn{{j.num}}" style="display:none">
-                            <button type="button" id="cardbtn-tbuy-{{j.num}}" class="cardbtn gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
+                            <button type="button" id="cardbtn-buy-{{j.num}}" class="cardbtn gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
                               Buy
                             </button>
                           </div>
@@ -1034,7 +1037,7 @@
               </div>
             </div>
           </div>
-        </div>
+        </div>      
       </div>
     </div>
   </div>
@@ -1153,7 +1156,6 @@
           dots[i].style.setProperty('--dcol', getBtnColor(data.color));
         }
         if (data.roll == '{{name}}') {
-          document.getElementById('roll').disabled = false;
           document.getElementById("roll").style.display = "block";
           document.getElementById("opt").style.display = "block";
           document.getElementById('show-sell').click();
@@ -1231,7 +1233,6 @@
     document.querySelector('#roll').onclick = function(e) {
       const messageInputDom = document.querySelector('#custom_roll');
       const message = messageInputDom.value;
-      document.getElementById('roll').disabled = true;
       chatSocket.send(JSON.stringify({
         'tag': 3,
         'name': '{{name}}',
