@@ -47,6 +47,11 @@
           });
         }
       }
+      // $("#body").animate({
+      //   opacity: 1
+      // }, time*500, function() {
+      //   $("#showsell").click();
+      // });
       return time * 500;
     }
 
@@ -237,32 +242,43 @@
       return 0;
     }
 
-    function play(pos, score, col, colors, pay, rolled) {
+    function play(pos, score, col, colors, rolled) {
       removePosition(pos, col);
       var dcol = getColor(col);
       var delay = move(pos, score, dcol, rolled);
       var dispColor = getColorList(colors);
+      var user_pay
+      // $("#body").animate({
+      //   opacity: 1
+      // }, delay + 500, function() {
+      //   var u = $('#gameuser').val();
+      //   if (u == '{{name}}') {
+      //     console.log("THIS");
+      //     user_pay = pay(score);
+      //   }
+      //   $("#showsell").click();
+      //   position(score, colors, dispColor);
+      // });
       $("#body").animate({
         opacity: 1
       }, delay + 500, function() {
-        position(score, colors, dispColor);
-      });
-      $("#body").animate({
-        opacity: 1
-      }, 500, function() {
         var u = $('#gameuser').val();
         if (u == '{{name}}') {
-          if (pay == 0) {
+          console.log("THIS");
+          user_pay = pay(score);
+          if (user_pay == 0) {
             cardbuttonShow(score, 'buy,pass');
             $("#card" + score).click();
-          } else if (pay == 1) {
+          } else if (user_pay == 1) {
             $('#card').click();
             $('#reset-dice').click();
-          } else if (pay == 2) {
+          } else if (user_pay == 2) {
             cardbuttonShow(score, 'sell,pass');
             $("#card" + score).click();
           }
         }
+        $("#showsell").click();
+        position(score, colors, dispColor);
       });
     }
 
@@ -383,13 +399,12 @@
         var darr = ['#left', '#right'];
         var rollid = darr[Math.floor(Math.random() * darr.length)]
         $(rollid).click();
-        var u = $('#gameuser').val();
-        var user_pay;
-        if (u == '{{name}}') {
-          console.log("THIS");
-          user_pay = pay(score);
-        }
-        play(pos, score, color, colors, user_pay, rolled);
+        // var u = $('#gameuser').val();
+        // if (u == '{{name}}') {
+        //   console.log("THIS");
+        //   user_pay = pay(score);
+        // }
+        play(pos, score, color, colors, rolled);
       });
       $(".gamebtn").each(function() {
         $(this).click(function() {
@@ -1198,12 +1213,20 @@
         status = status + "--" + data.display + "--" + data.build + "--" + data.curr_color;
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
-        document.getElementById('show-sell').click();
+        // document.getElementById('show-sell').click();
       }
       else if(data.tag == 6){
-        var start = data.color + "--" + data.amount + "--" + data.worth;
-        document.querySelector('#status-start').value = start;
-        document.querySelector('#update-start').click();
+        // var start = data.color + "--" + data.amount + "--" + data.worth;
+        var stat = document.getElementById("status-string").value;
+        var stat_arr = stat.split("--");
+        stat_arr[1] = data.color;
+        stat_arr[2] = data.amount;
+        stat_arr[3] = data.worth;
+        var status = stat_arr.join("--");
+        document.querySelector('#status-string').value = status;
+        document.querySelector('#update-board').click();
+        // document.querySelector('#status-start').value = start;
+        // document.querySelector('#update-start').click();
       }
       document.querySelector('#count-log').value = (data.count);
 
