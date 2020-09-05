@@ -114,7 +114,7 @@
       var a = Math.round(x*y);
       return Math.ceil(a/5)*5;
     }
-    
+
     function isEnough(amount) {
       var status = $('#status-string').val().split("--");
       if (status != "") {
@@ -159,7 +159,7 @@
             $("#build" + id + " .build").hide();
             $("#build" + id + " .build-sell").hide();
           }
-        } 
+        }
       }
     }
 
@@ -858,12 +858,12 @@
                             </button>
                           </div>
                           <div class="col-5" id="sellbtn{{j.num}}" style="display:none">
-                            <button type="button" id="cardbtn-sell-{{j.num}}" class="cardbtn2 gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
+                            <button type="button" id="cardbtn-tsell-{{j.num}}" class="cardbtn2 gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
                               Sell
                             </button>
                           </div>
                           <div class="col-5" id="buybtn{{j.num}}" style="display:none">
-                            <button type="button" id="cardbtn-buy-{{j.num}}" class="cardbtn gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
+                            <button type="button" id="cardbtn-tbuy-{{j.num}}" class="cardbtn gamebtn text-dark" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
                               Buy
                             </button>
                           </div>
@@ -1031,7 +1031,7 @@
               </div>
             </div>
           </div>
-        </div>      
+        </div>
       </div>
     </div>
   </div>
@@ -1248,6 +1248,7 @@
       const message = messageInputDom.value;
       const rollInputDom = document.querySelector('#rolled');
       const roll = rollInputDom.value;
+      console.log(message);
       chatSocket.send(JSON.stringify({
         'tag': 5,
         'card': message,
