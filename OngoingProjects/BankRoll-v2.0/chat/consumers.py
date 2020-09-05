@@ -680,7 +680,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     building = "Resort"
                     rent_value = math.ceil((int(rent) * 2)/5)*5
 
-                print(rent_value)
+                # print(rent_value)
 
                 amounts = game.amount.split("#")
                 amount = int(amounts[turn])
@@ -698,19 +698,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 build = builds[turn].split(";")
                 build_cards = await self.get_build_card(cards.color)
                 xyz = build[user_card[turn].split(";").index(card_id[2])].split("-")
-                print(build[user_card[turn].split(";").index(card_id[2])])
                 xyz.remove(card_id[1])
                 build[user_card[turn].split(";").index(card_id[2])] = "-".join(xyz)
-                print(build[user_card[turn].split(";").index(card_id[2])])
                 builds[turn] = ";".join(build)
                 print("build", "#".join(builds))
 
                 user_cost = game.cost.split("#")
                 cost = user_cost[turn].split(";")
                 cost[user_card[turn].split(";").index(card_id[2])]
-                print(cost[user_card[turn].split(";").index(card_id[2])])
                 cost[user_card[turn].split(";").index(card_id[2])] = str(rent_value)
-                print(cost[user_card[turn].split(";").index(card_id[2])])
                 user_cost[turn] = ";".join(cost)
                 print("cost", "#".join(user_cost))
 
@@ -752,8 +748,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     building = "Tour"
                     rent_value = math.ceil((int(rent) * 0.50)/5)*5
 
-                print(rent_value)
-
                 amounts = game.amount.split("#")
                 amount = int(amounts[turn])
                 amount = amount - build_amount
@@ -770,10 +764,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 build = builds[turn].split(";")
                 build_cards = await self.get_build_card(cards.color)
                 xyz = build[user_card[turn].split(";").index(card_id[2])].split("-")
-                print(build[user_card[turn].split(";").index(card_id[2])])
                 xyz.remove(card_id[1])
                 build[user_card[turn].split(";").index(card_id[2])] = "-".join(xyz)
-                print(build[user_card[turn].split(";").index(card_id[2])])
                 builds[turn] = ";".join(build)
                 print("build", "#".join(builds))
 
@@ -781,7 +773,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 start = int(starts[turn])
                 start = start + rent_value
                 starts[turn] = str(start)
-                print("strat", "#".join(starts))
+                # print("start", "#".join(starts))
 
 
                 await self.game_update(game.id, game.card, "#".join(amounts), "#".join(worths), game.cost, "#".join(builds), "#".join(starts))

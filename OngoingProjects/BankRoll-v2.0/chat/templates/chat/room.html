@@ -47,11 +47,6 @@
           });
         }
       }
-      // $("#body").animate({
-      //   opacity: 1
-      // }, time*500, function() {
-      //   $("#showsell").click();
-      // });
       return time * 500;
     }
 
@@ -247,18 +242,7 @@
       var dcol = getColor(col);
       var delay = move(pos, score, dcol, rolled);
       var dispColor = getColorList(colors);
-      var user_pay
-      // $("#body").animate({
-      //   opacity: 1
-      // }, delay + 500, function() {
-      //   var u = $('#gameuser').val();
-      //   if (u == '{{name}}') {
-      //     console.log("THIS");
-      //     user_pay = pay(score);
-      //   }
-      //   $("#showsell").click();
-      //   position(score, colors, dispColor);
-      // });
+      var user_pay;
       $("#body").animate({
         opacity: 1
       }, delay + 500, function() {
@@ -399,11 +383,6 @@
         var darr = ['#left', '#right'];
         var rollid = darr[Math.floor(Math.random() * darr.length)]
         $(rollid).click();
-        // var u = $('#gameuser').val();
-        // if (u == '{{name}}') {
-        //   console.log("THIS");
-        //   user_pay = pay(score);
-        // }
         play(pos, score, color, colors, rolled);
       });
       $(".gamebtn").each(function() {
@@ -1087,8 +1066,6 @@
 
       <input type="text" id="start_pass">
       <button type="button" id="passing_start">PassStart</button>
-      <input type="text" id="status-start">
-      <button class="text-uppercase" id="update-start">Update</button>
     </div>
   </div>
 
@@ -1211,6 +1188,7 @@
       } else if (data.tag == 5) {
         var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost;
         status = status + "--" + data.display + "--" + data.build + "--" + data.curr_color;
+        console.log(data.build);
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
         // document.getElementById('show-sell').click();
