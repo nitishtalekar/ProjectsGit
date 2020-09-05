@@ -620,7 +620,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 if len(cost) == 1:
                     cost[0] = "-1"
                 else:
-                    cost.pop(user_card[turn].split(";").index(card_id[1]))
+                    rent = cost.pop(user_card[turn].split(";").index(card_id[1]))
                 user_cost[turn] = ";".join(cost)
                 # print("cost", "#".join(user_cost))
 
@@ -633,6 +633,117 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     card.remove(card_id[1])
                 user_card[turn] = ";".join(card)
                 # print("card", "#".join(user_card))
+
+                if len(check) > 1:
+                    for i in range(len(card)):
+                        if str(card[i]) in build_cards:
+                            # cost[i] = str(len(check) * (int(cost[i]) // (len(check) - 1)))
+                            c = (len(check) - 1) * int(cost[i]) / len(build_cards)
+                            cost[i] = str(math.ceil(c / 5) * 5)
+                            if len(check) == len(build_cards):
+                                build[i] = "0"
+                user_cost[turn] = ";".join(cost)
+                # print("cost", "#".join(user_cost))
+
+                builds[turn] = ";".join(build)
+                # print("build", "#".join(builds))
+
+
+
+                await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost), "#".join(builds), game.start)
+                names = [await self.get_name(i) for i in players]
+                details = await self.get_player_details(turn,game.id)
+                disp_msg = details[0]+"##"+details[1]+"**Sold "+" on**"+cards.name+"##"+cards.color
+
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {
+                        'type': 'chat_message',
+                        'tag':5,
+                        'names': names,
+                        'color':color,
+                        'curr_color':color[turn],
+                        'user_card':user_card,
+                        'amount':amounts,
+                        'worth':worths,
+                        'user_cost':user_cost,
+                        'display':disp_msg,
+                        'build':builds
+                    }
+                )
+
+            if card_id[0] == "tsell":
+                print(card_id)
+                names = [await self.get_name(i) for i in players]
+                turn = names.index(name)
+                card_rent = card_id[1]
+                cards = await self.get_card(card_id[1])
+                user_rent = game.cost.split("#")
+                user_card = game.card.split("#")
+                sell = user_rent[turn].split(";")[user_card[turn].split(";").index(card_id[1])]
+                sell_val = math.ceil((int(sell)*0.7)/5)*5
+                # print(sell_val)
+                # print("index", user_card[turn].split(";").index(card_id[1]))
+
+                amounts = game.amount.split("#")
+                amount = int(amounts[turn])
+                amount = amount + sell_val
+                amounts[turn] = str(amount)
+                # print("amount", "#".join(amounts))
+
+                worths = game.worth.split("#")
+                worth = int(worths[turn])
+                worth = worth + 0
+                worths[turn] = str(int(worth))
+                # print("worth", "#".join(worths))
+
+                builds = game.build.split("#")
+                build = builds[turn].split(";")
+                build_cards = await self.get_build_card(cards.color)
+                check = [i for i in build_cards if str(i) in user_card[turn]]
+                if len(build) == 1:
+                    build[0] = "-1"
+                else:
+                    build.pop(user_card[turn].split(";").index(card_id[1]))
+                builds[turn] = ";".join(build)
+                # print("build", "#".join(builds))
+
+                user_cost = game.cost.split("#")
+                cost = user_cost[turn].split(";")
+                if len(cost) == 1:
+                    cost[0] = "-1"
+                else:
+                    rent = cost.pop(user_card[turn].split(";").index(card_id[1]))
+                user_cost[turn] = ";".join(cost)
+                # print("cost", "#".join(user_cost))
+
+                cards = await self.get_card(card_id[1])
+                user_card = game.card.split("#")
+                card = user_card[turn].split(";")
+                if len(card) == 1:
+                    card[0] = "-1"
+                else:
+                    card.remove(card_id[1])
+                user_card[turn] = ";".join(card)
+                # print("card", "#".join(user_card))
+
+                if len(check) > 1:
+                    for i in range(len(card)):
+                        if str(card[i]) in build_cards:
+                            # cost[i] = str(len(check) * (int(cost[i]) // (len(check) - 1)))
+                            c = (len(check) - 1) * int(cost[i]) / len(build_cards)
+                            cost[i] = str(math.ceil(c / 5) * 5)
+                            if len(check) == 3:
+                                build[i] = "X>A"
+                            elif len(check) < 3:
+                                build[i] = "0"
+                user_cost[turn] = ";".join(cost)
+                # print("cost", "#".join(user_cost))
+
+                builds[turn] = ";".join(build)
+                # print("build", "#".join(builds))
+
+
 
                 await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost), "#".join(builds), game.start)
                 names = [await self.get_name(i) for i in players]
@@ -696,6 +807,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 build_cards = await self.get_build_card(cards.color)
                 xyz = build[user_card[turn].split(";").index(card_id[2])].split("-")
                 xyz.remove(card_id[1])
+                if len(xyz) == 0:
+                    xyz.append("1")
                 build[user_card[turn].split(";").index(card_id[2])] = "-".join(xyz)
                 builds[turn] = ";".join(build)
                 print("build", "#".join(builds))
