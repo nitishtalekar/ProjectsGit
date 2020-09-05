@@ -132,14 +132,26 @@
     function build_btns(id, order, tag) {
       if(order != "0"){
         var b_id = order.split("-");
+        console.log(b_id);
         var xyz = ["X","Y","Z"];
-        for (i = 0; i < b_id.length; i++) {
-          if(xyz.indexOf(b_id[i]) != -1){
-            var x = xyz.indexOf(b_id[i]);
-            xyz.splice(x,1);
+        if(b_id[0] == '1'){
+          b_id.splice(0,b_id.length);
+        }
+        else if (b_id[0] == 'X>A'){
+          b_id[0] = "X";
+          xyz.splice(0,xyz.length);
+        }
+        else{
+          var i;
+          for (i = 0; i < b_id.length; i++) {
+            if(xyz.indexOf(b_id[i]) != -1){
+              var x = xyz.indexOf(b_id[i]);
+              xyz.splice(x,1);
+            }
           }
         }
-        var i;
+        console.log(b_id);
+        console.log(xyz);
         if (id != "-1") {
           if (tag == 'show') {
             for (i = 0; i < b_id.length; i++) {
@@ -1188,7 +1200,7 @@
       } else if (data.tag == 5) {
         var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost;
         status = status + "--" + data.display + "--" + data.build + "--" + data.curr_color;
-        console.log(data.build);
+        // console.log(data.build);
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
         // document.getElementById('show-sell').click();
@@ -1203,8 +1215,6 @@
         var status = stat_arr.join("--");
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
-        // document.querySelector('#status-start').value = start;
-        // document.querySelector('#update-start').click();
       }
       document.querySelector('#count-log').value = (data.count);
 
@@ -1248,7 +1258,6 @@
       const message = messageInputDom.value;
       const rollInputDom = document.querySelector('#rolled');
       const roll = rollInputDom.value;
-      console.log(message);
       chatSocket.send(JSON.stringify({
         'tag': 5,
         'card': message,
