@@ -318,3 +318,8 @@
   width:2vh;
   border-radius: 50%;
 }
+.jail-opt{
+  font-size: 3vw;
+  font-weight: bold;
+  text-transform: uppercase;
+}

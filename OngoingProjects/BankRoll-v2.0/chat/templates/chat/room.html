@@ -35,19 +35,8 @@
         }
         time = time + 1;
       }
-      if((score - pos) < 0){
-        var u = $('#gameuser').val();
-        if (u == '{{name}}') {
-          console.log("PASSED");
-          $('#start_pass').val("start#"+"{{name}}");
-          $("#body").animate({
-            opacity: 1
-          }, delay+500, function() {
-            $("#passing_start").click();
-          });
-        }
-      }
-      return time * 500;
+      var return_arr = [time * 500 , delay+500]
+      return return_arr;
     }
 
     function removePosition(id, color) {
@@ -132,7 +121,6 @@
     function build_btns(id, order, tag) {
       if(order != "0"){
         var b_id = order.split("-");
-        console.log(b_id);
         var xyz = ["X","Y","Z"];
         if(b_id[0] == '1'){
           b_id.splice(0,b_id.length);
@@ -150,8 +138,6 @@
             }
           }
         }
-        console.log(b_id);
-        console.log(xyz);
         if (id != "-1") {
           if (tag == 'show') {
             for (i = 0; i < b_id.length; i++) {
@@ -172,6 +158,31 @@
             $("#build" + id + " .build-sell").hide();
           }
         }
+      }
+    }
+    
+    function jail_function(){
+      var u = $('#gameuser').val();
+      if (u == '{{name}}') {
+        var chances = ['3','4','5'];
+        var bails = [0.1,0.2,0.3];
+        var chance = chances[Math.floor(Math.random() * chances.length)];
+        var bail = bails[Math.floor(Math.random() * chances.length)];
+        var status = $('#status-string').val().split("--");
+        if (status != "") {
+          var name_list = status[0].split(',');
+          var amount_list = status[2].split(',');
+          var index = name_list.indexOf('{{name}}');
+          var amt = amount_list.splice(index, 1);
+        }
+        var bail_amount = roundToFive(parseInt(amt),bail);
+        $('#miss_text').html(chance + " Chances");
+        $('#bail_text').html("₹" + bail_amount);
+        $('#jail-miss').val(chance);
+        $("#jail-bail").val(bail_amount);
+        $('#missbtn').show();
+        $('#bailbtn').show();
+        $('#closebtn14').hide();
       }
     }
 
@@ -255,27 +266,81 @@
       var delay = move(pos, score, dcol, rolled);
       var dispColor = getColorList(colors);
       var user_pay;
-      $("#body").animate({
-        opacity: 1
-      }, delay + 500, function() {
+      
+      if(score == 0){
+        $("#passbtn-start .cardbtn").click();
+        $("#body").animate({
+          opacity: 1
+        }, delay[0] + 500, function() {
+          $("#showsell").click();
+          position(score, colors, dispColor);
+        });
+      }
+      else if((score - pos) < 0){
         var u = $('#gameuser').val();
-        if (u == '{{name}}') {
-          console.log("THIS");
-          user_pay = pay(score);
-          if (user_pay == 0) {
-            cardbuttonShow(score, 'buy,pass');
-            $("#card" + score).click();
-          } else if (user_pay == 1) {
-            $('#card').click();
-            $('#reset-dice').click();
-          } else if (user_pay == 2) {
-            cardbuttonShow(score, 'sell,pass');
-            $("#card" + score).click();
+          if (u == '{{name}}') {
+            console.log("PASSED");
+            $('#start_pass').val("start#"+"{{name}}");
+            $("#body").animate({
+              opacity: 1
+            }, delay[1], function() {
+              $("#passing_start").click();
+            });
+            var new_delay = delay[0] - delay[1] - 500;
+            $("#body").animate({
+              opacity: 1
+            }, new_delay + 500, function() {
+              var u = $('#gameuser').val();
+              if (u == '{{name}}') {
+                console.log("THIS");
+                user_pay = pay(score);
+                if (user_pay == 0) {
+                  if(score != 0){
+                    cardbuttonShow(score, 'buy,pass');
+                    $("#card" + score).click();
+                  }
+                } else if (user_pay == 1) {
+                  $('#card').click();
+                  $('#reset-dice').click();
+                } else if (user_pay == 2) {
+                  cardbuttonShow(score, 'sell,pass');
+                  if(score != 0){
+                    $("#card" + score).click();
+                  }
+                }
+              }
+              $("#showsell").click();
+              position(score, colors, dispColor);
+            });
           }
-        }
-        $("#showsell").click();
-        position(score, colors, dispColor);
-      });
+      }
+      else{
+        $("#body").animate({
+          opacity: 1
+        }, delay[0] + 500, function() {
+          var u = $('#gameuser').val();
+          if (u == '{{name}}') {
+            console.log("THIS");
+            user_pay = pay(score);
+            if (user_pay == 0) {
+              if(score != 0){
+                cardbuttonShow(score, 'buy,pass');
+                $("#card" + score).click();
+              }
+            } else if (user_pay == 1) {
+              $('#card').click();
+              $('#reset-dice').click();
+            } else if (user_pay == 2) {
+              cardbuttonShow(score, 'sell,pass');
+              if(score != 0){
+                $("#card" + score).click();
+              }
+            }
+          }
+          $("#showsell").click();
+          position(score, colors, dispColor);
+        });
+      }
     }
 
     function update_msg(msg_list){
@@ -389,6 +454,9 @@
         var color = $('#col').val();
         var colors = $('#colors').val().split(",");
         var rolled = parseInt($('#rolled').val());
+        if(score == 14){
+          jail_function();
+        }
         $(".d-" + rolled.toString()).each(function() {
           $(this).show();
         });
@@ -407,6 +475,21 @@
           $("#card_info").val(card_info);
           $('#card').click();
           $('#reset-dice').click();
+        })
+      });
+      $(".jailgamebtn").each(function() {
+        $(this).click(function() {
+          var id = $(this).attr("id").split("-");
+          var value = $("#jail-"+id[1]).val();
+          var card_info = id[1] + "#" + value;
+          console.log(card_info);
+          cardbuttonShow(id[2], 'close');
+          $('#reset-sell').click();
+          $("#card_info").val(card_info);
+          $('#card').click();
+          $('#reset-dice').click();
+          $('#missbtn').hide();
+          $('#bailbtn').hide();
         })
       });
       $(".in_card").each(function() {
@@ -444,7 +527,6 @@
         var status = $('#status-string').val().split("--");
         if (status != "") {
           var index = status[0].split(',').indexOf('{{name}}');
-          var i;
           var sell_arr = [status[1].split(',')[index], status[4].split(',')[index], status[5].split(',')[index], status[7].split(',')[index]];
           showsell(sell_arr, 1);
         }
@@ -453,7 +535,6 @@
         var status = $('#status-string').val().split("--");
         if (status != "") {
           var index = status[0].split(',').indexOf('{{name}}');
-          var i;
           var sell_arr = [status[1].split(',')[index], status[4].split(',')[index], status[5].split(',')[index], status[7].split(',')[index]];
           showsell(sell_arr, 0);
         }
@@ -915,21 +996,36 @@
                       <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0">{{ j.place }}</h5>
                     </div>
                     <div class="modal-body pt-2 my-0 pb-0 d-flex justify-content-center align-items-center">
+                      {% if j.place == 'Start' %}
                       <div class="container-fluid mt-0">
                         <div class="row">
                           <div class="col-12 text-center">
-                            {% if j.place == 'Start' %}
                             <img src="{% static 'img/Start.png' %}" style="width:70%" alt="">
-                            {% endif %}
-                            {% if j.place == 'Random' %}
+                          </div>
+                          <div class="col-12 text-center text-uppercase font-weight-bold card-label">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. in voluptate v
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                          <div class="col-5" id="closebtn{{j.num}}">
+                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                          <div class="col-5" id="passbtn-start" style="display:none">
+                            <button type="button" id="cardbtn-pass-{{j.num}}" class="cardbtn gamebtn">
+                              Pass
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
+                      
+                      {% if j.place == 'Random' %}
+                      <div class="container-fluid mt-0">
+                        <div class="row">
+                          <div class="col-12 text-center">
                             <img src="{% static 'img/Random.png' %}" style="width:70%" alt="">
-                            {% endif %}
-                            {% if j.place == 'Jail' %}
-                            <img src="{% static 'img/Jail.png' %}" style="width:70%" alt="">
-                            {% endif %}
-                            {% if j.place == 'Auction' %}
-                            <img src="{% static 'img/Auction.png' %}" style="width:70%" alt="">
-                            {% endif %}
                           </div>
                           <div class="col-12 text-center text-uppercase font-weight-bold card-label">
                             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. in voluptate v
@@ -948,6 +1044,42 @@
                           </div>
                         </div>
                       </div>
+                      {% endif %}
+                      
+                      {% if j.place == 'Jail' %}
+                      <div class="container-fluid mt-0">
+                        <div class="row">
+                          <div class="col-12 text-center">
+                            <img src="{% static 'img/Jail.png' %}" style="width:70%" alt="">
+                          </div>
+                          <div class="col-12 text-center text-uppercase font-weight-bold card-label">
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. in voluptate v
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                          <div class="col-5" id="closebtn{{j.num}}">
+                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                          <div class="col-6" id="missbtn" style="display:none">
+                            <center><span class="jail-opt" id="miss_text">3 Chances</span></center>
+                            <button type="button" id="cardbtn-miss-{{j.num}}" class="cardbtn jailgamebtn" style="--btncol:grey" data-dismiss="modal">
+                              Miss
+                            </button>
+                            <input type="text" id="jail-miss" style="display:none;">
+                          </div>
+                          <div class="col-6" id="bailbtn" style="display:none">
+                            <center><span class="jail-opt" id="bail_text">$400</span></center>
+                            <button type="button" id="cardbtn-bail-{{j.num}}" class="cardbtn jailgamebtn" style="--btncol:grey" data-dismiss="modal">
+                              Bail
+                            </button>
+                            <input type="text" id="jail-bail" style="display:none;">
+                          </div>
+                        </div>
+                      </div>
+                      {% endif %}
+                      
                     </div>
                   </div>
                 </div>
@@ -1206,7 +1338,6 @@
         // document.getElementById('show-sell').click();
       }
       else if(data.tag == 6){
-        // var start = data.color + "--" + data.amount + "--" + data.worth;
         var stat = document.getElementById("status-string").value;
         var stat_arr = stat.split("--");
         stat_arr[1] = data.color;
