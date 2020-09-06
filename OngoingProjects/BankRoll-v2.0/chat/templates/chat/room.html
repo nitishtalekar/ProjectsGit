@@ -481,7 +481,7 @@
         $(this).click(function() {
           var id = $(this).attr("id").split("-");
           var value = $("#jail-"+id[1]).val();
-          var card_info = id[1] + "#" + value;
+          var card_info = "jail#"+id[1] + "#" + value;
           console.log(card_info);
           cardbuttonShow(id[2], 'close');
           $('#reset-sell').click();
