@@ -160,7 +160,7 @@
         }
       }
     }
-    
+
     function jail_function(){
       var u = $('#gameuser').val();
       if (u == '{{name}}') {
@@ -266,7 +266,7 @@
       var delay = move(pos, score, dcol, rolled);
       var dispColor = getColorList(colors);
       var user_pay;
-      
+
       if(score == 0){
         $("#passbtn-start .cardbtn").click();
         $("#body").animate({
@@ -1020,7 +1020,7 @@
                         </div>
                       </div>
                       {% endif %}
-                      
+
                       {% if j.place == 'Random' %}
                       <div class="container-fluid mt-0">
                         <div class="row">
@@ -1045,7 +1045,7 @@
                         </div>
                       </div>
                       {% endif %}
-                      
+
                       {% if j.place == 'Jail' %}
                       <div class="container-fluid mt-0">
                         <div class="row">
@@ -1079,7 +1079,7 @@
                         </div>
                       </div>
                       {% endif %}
-                      
+
                     </div>
                   </div>
                 </div>
@@ -1311,6 +1311,7 @@
         }
 
       } else if (data.tag == 4) {
+        console.log(data);
         document.querySelector('#chat-log').value += (data.roll_value + " " + data.curr_player + " " + data.curr_color + '\n');
         document.querySelector('#chat-log').value += ("Move from: " + data.curr_loc + " to " + data.new_loc + " " + data.colors + '\n');
         document.querySelector('#pos').value = data.curr_loc;
