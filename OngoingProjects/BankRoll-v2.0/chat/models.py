@@ -42,4 +42,11 @@ class Board(models.Model):
     build1 = models.CharField(max_length=500, default="")
     build2 = models.CharField(max_length=500, default="")
     build3 = models.CharField(max_length=500, default="")
+
+class Random(models.Model):
+    id = models.CharField(primary_key=True, max_length=500)
+    reason = models.CharField(max_length=500)
+    quants = models.CharField(max_length=500)
+    tag = models.CharField(max_length=500)
+    
 # Create your models here.
