@@ -203,7 +203,7 @@
         }
       }
     }
-
+    
     function build_rent_price(xyz,bs,rent){
       if(bs == "build"){
         if(xyz == 'X'){
@@ -228,14 +228,14 @@
         }
       }
     }
-
+    
     function update_build_rent(id,rent,build){
       var b_id;
       if (build == 0){
         b_id = ["X", "Y", "Z"];
       } else{
         b_id = build.split("-");
-      }
+      } 
       var xyz = ["X", "Y", "Z"];
       if (b_id[0] == '1') {
         b_id.splice(0, b_id.length);
@@ -546,13 +546,16 @@
         });
       });
       $('#jail-pass').click(function(){
-        console.log("HEllo jil");
-        var card_info = "jail_pass#" + '{{name}}';
-        console.log(card_info);
-        $('#reset-sell').click();
-        $("#card_info").val(card_info);
-        $('#card').click();
-        $('#reset-dice').click();
+        $("#body").animate({
+          opacity: 1
+        }, 2000, function() {
+          var card_info = "jail_pass#" + '{{name}}';
+          console.log(card_info);
+          $('#reset-sell').click();
+          $("#card_info").val(card_info);
+          $('#card').click();
+          $('#reset-dice').click();
+        });
       });
       $('#left').click(function() {
         $('#dice-left').show();
@@ -1349,14 +1352,12 @@
         for (var i = 0; i < dots.length; i++) {
           dots[i].style.setProperty('--dcol', getBtnColor(data.color));
         }
-        console.log(data.jail);
         var jail_check = 0;
         for (x of data.jail) {
             if (x == '{{name}}'){
               jail_check = 1;
             }
           }
-        console.log("jail_check = " + jail_check);
         if (data.roll == '{{name}}') {
           if (jail_check == 0){
             document.getElementById("roll").style.display = "block";
@@ -1373,7 +1374,6 @@
             }
           }
           else{
-            console.log("HERE");
             document.getElementById("roll").style.display = "none";
             document.getElementById("opt").style.display = "none";
             document.getElementById('reset-sell').click();
