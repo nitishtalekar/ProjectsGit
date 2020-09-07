@@ -197,6 +197,25 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 }
             )
 
+            names = [await self.get_name(i) for i in player]
+
+            await self.channel_layer.group_send(
+                self.room_group_name,
+                {
+                    'type': 'chat_message',
+                    'tag':5,
+                    'names': names,
+                    'color':colors,
+                    'curr_color':colors[int(game.turn)],
+                    'user_card':game.card.split("#"),
+                    'amount':game.amount.split("#"),
+                    'worth':game.worth.split("#"),
+                    'user_cost':game.cost.split("#"),
+                    'display':"",
+                    'build':game.build.split("#")
+                }
+            )
+
 
     async def disconnect(self, close_code):
         # Leave room group
@@ -237,53 +256,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             names = [await self.get_name(i) for i in players]
             turn = names.index(curr_player)
             print(curr_player)
-
-            # if game.jail.split("#")[turn] !="0":
-            #     color = game.color.split("#")
-            #     jails = game.jail.split("#")
-            #     jails[turn] = str(int(jails[turn]) - 1)
-            # 
-            #     await self.game_jail(game.id, "#".join(jails))
-            # 
-            #     details = await self.get_player_details(turn,game.id)
-            #     disp_msg = details[0]+"##"+details[1]+"**pass "+jails[turn]+" on**"+"cards.name"+"##"+"cards.color"
-            # 
-            #     await self.channel_layer.group_send(
-            #         self.room_group_name,
-            #         {
-            #             'type': 'chat_message',
-            #             'tag':5,
-            #             'names': names,
-            #             'color':color,
-            #             'curr_color':color[turn],
-            #             'user_card':game.card.split("#"),
-            #             'amount':game.amount.split("#"),
-            #             'worth':game.worth.split("#"),
-            #             'user_cost':game.cost.split("#"),
-            #             'display':disp_msg,
-            #             'build':game.build.split("#")
-            #         }
-            #     )
-            #     await self.change_turn(game.id)
-            #     await self.change_roll(game.id, 0)
-            # 
-            #     game = await self.roll(self.room_name)
-            #     # print(turn)
-            #     name = names[int(game.turn)]
-            #     # print(name)
-            #     curr_color = color[int(game.turn)]
-            #     # print(curr_color)
-            # 
-            # 
-            #     await self.channel_layer.group_send(
-            #         self.room_group_name,
-            #         {
-            #             'type': 'chat_message',
-            #             'tag':3,
-            #             'roll':name,
-            #             'color':curr_color
-            #         }
-            #     )
 
             if value == "":
                 roll = random.randint(1,6)
