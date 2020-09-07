@@ -396,23 +396,25 @@
 
     function update_msg(msg_list) {
       $("#msg_display").fadeOut('fast');
-      var section = msg_list.split('**');
-      var disp_string = ""
-      for (x of section) {
-        var elements = x.split("##");
-        if (elements.length == 2) {
-          var col = getColor(elements[1]);
-          if (col == 0) {
-            col = elements[1];
+      if(msg_list != ""){
+        var section = msg_list.split('**');
+        var disp_string = ""
+        for (x of section) {
+          var elements = x.split("##");
+          if (elements.length == 2) {
+            var col = getColor(elements[1]);
+            if (col == 0) {
+              col = elements[1];
+            }
+            disp_string = disp_string + "<span style=color:" + col + ">" + elements[0] + "</span>" + " ";
+          } else {
+            disp_string = disp_string + elements[0] + " ";
           }
-          disp_string = disp_string + "<span style=color:" + col + ">" + elements[0] + "</span>" + " ";
-        } else {
-          disp_string = disp_string + elements[0] + " ";
         }
+        string = disp_string.slice(0, -1)
+        $("#msg_display").html(string);
+        $("#msg_display").fadeIn('fast');
       }
-      string = disp_string.slice(0, -1)
-      $("#msg_display").html(string);
-      $("#msg_display").fadeIn('fast');
     }
 
     function update_amount(color_list, amount_list, worth_list) {
@@ -597,10 +599,6 @@
           var sell_arr = [status[1].split(',')[index], status[4].split(',')[index], status[5].split(',')[index], status[7].split(',')[index]];
           showsell(sell_arr, 0);
         }
-      });
-      $('#update-start').click(function() {
-        var status_start = $('#status-start').val().split("--");
-        update_amount(status_start[0], status_start[1], status_start[2]);
       });
       $('#update-board').click(function() {
         var status = $('#status-string').val().split("--");

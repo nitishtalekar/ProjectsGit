@@ -238,52 +238,52 @@ class ChatConsumer(AsyncWebsocketConsumer):
             turn = names.index(curr_player)
             print(curr_player)
 
-            if game.jail.split("#")[turn] !="0":
-                color = game.color.split("#")
-                jails = game.jail.split("#")
-                jails[turn] = str(int(jails[turn]) - 1)
-
-                await self.game_jail(game.id, "#".join(jails))
-
-                details = await self.get_player_details(turn,game.id)
-                disp_msg = details[0]+"##"+details[1]+"**pass "+jails[turn]+" on**"+"cards.name"+"##"+"cards.color"
-
-                await self.channel_layer.group_send(
-                    self.room_group_name,
-                    {
-                        'type': 'chat_message',
-                        'tag':5,
-                        'names': names,
-                        'color':color,
-                        'curr_color':color[turn],
-                        'user_card':game.card.split("#"),
-                        'amount':game.amount.split("#"),
-                        'worth':game.worth.split("#"),
-                        'user_cost':game.cost.split("#"),
-                        'display':disp_msg,
-                        'build':game.build.split("#")
-                    }
-                )
-                await self.change_turn(game.id)
-                await self.change_roll(game.id, 0)
-
-                game = await self.roll(self.room_name)
-                # print(turn)
-                name = names[int(game.turn)]
-                # print(name)
-                curr_color = color[int(game.turn)]
-                # print(curr_color)
-
-
-                await self.channel_layer.group_send(
-                    self.room_group_name,
-                    {
-                        'type': 'chat_message',
-                        'tag':3,
-                        'roll':name,
-                        'color':curr_color
-                    }
-                )
+            # if game.jail.split("#")[turn] !="0":
+            #     color = game.color.split("#")
+            #     jails = game.jail.split("#")
+            #     jails[turn] = str(int(jails[turn]) - 1)
+            # 
+            #     await self.game_jail(game.id, "#".join(jails))
+            # 
+            #     details = await self.get_player_details(turn,game.id)
+            #     disp_msg = details[0]+"##"+details[1]+"**pass "+jails[turn]+" on**"+"cards.name"+"##"+"cards.color"
+            # 
+            #     await self.channel_layer.group_send(
+            #         self.room_group_name,
+            #         {
+            #             'type': 'chat_message',
+            #             'tag':5,
+            #             'names': names,
+            #             'color':color,
+            #             'curr_color':color[turn],
+            #             'user_card':game.card.split("#"),
+            #             'amount':game.amount.split("#"),
+            #             'worth':game.worth.split("#"),
+            #             'user_cost':game.cost.split("#"),
+            #             'display':disp_msg,
+            #             'build':game.build.split("#")
+            #         }
+            #     )
+            #     await self.change_turn(game.id)
+            #     await self.change_roll(game.id, 0)
+            # 
+            #     game = await self.roll(self.room_name)
+            #     # print(turn)
+            #     name = names[int(game.turn)]
+            #     # print(name)
+            #     curr_color = color[int(game.turn)]
+            #     # print(curr_color)
+            # 
+            # 
+            #     await self.channel_layer.group_send(
+            #         self.room_group_name,
+            #         {
+            #             'type': 'chat_message',
+            #             'tag':3,
+            #             'roll':name,
+            #             'color':curr_color
+            #         }
+            #     )
 
             if value == "":
                 roll = random.randint(1,6)
@@ -362,8 +362,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
             worths[turn] = str(int(worth))
 
             await self.game_update(game.id, game.card, "#".join(amounts), "#".join(worths), game.cost, game.build, game.start)
+            startmoney = int(game.start.split("#")[turn])
             details = await self.get_player_details(turn,game.id)
-            disp_msg = details[0]+"##"+details[1]+"**got ₹2000**"
+            disp_msg = details[0]+"##"+details[1]+"**got ₹"+startmoney+" Salary**"
 
             names = []
             for i in players:
@@ -559,7 +560,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     names.append(await self.get_name(i))
 
                 details = await self.get_player_details(turn,game.id)
-                disp_msg = details[0]+"##"+details[1]+"**bought**"+cards.name+"##"+cards.color
+                disp_msg = details[0]+"##"+details[1]+"**bought**"+cards.name+"##"+"#407B87"
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -631,7 +632,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     details = await self.get_player_details(turn,game.id)
                     details_pay = await self.get_player_details(to_index,game.id)
-                    disp_msg = details[0]+"##"+details[1]+"**paid $"+rent+" to**"+details_pay[0]+"##"+details_pay[1]
+                    disp_msg = details[0]+"##"+details[1]+"**paid ₹"+rent+" to**"+details_pay[0]+"##"+details_pay[1]
 
                     await self.channel_layer.group_send(
                         self.room_group_name,
@@ -652,7 +653,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 else:
                     details = await self.get_player_details(turn,game.id)
-                    disp_msg = details[0]+"##"+details[1]+"**jail paid $"+"0"+" to**"
+                    # details_pay = await self.get_player_details(to_index,game.id)
+                    disp_msg = ""
 
                     names = []
                     for i in players:
@@ -751,7 +753,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost), "#".join(builds), game.start)
                 names = [await self.get_name(i) for i in players]
                 details = await self.get_player_details(turn,game.id)
-                disp_msg = details[0]+"##"+details[1]+"**Sold "+" on**"+cards.name+"##"+cards.color
+                disp_msg = details[0]+"##"+details[1]+"**Sold**"+cards.name+"##"+cards.color
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -846,7 +848,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost), "#".join(builds), game.start)
                 names = [await self.get_name(i) for i in players]
                 details = await self.get_player_details(turn,game.id)
-                disp_msg = details[0]+"##"+details[1]+"**Sold "+" on**"+cards.name+"##"+cards.color
+                disp_msg = details[0]+"##"+details[1]+"**Sold "+" on**"+cards.name+"##"+"#407B87"
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -996,7 +998,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 await self.game_update(game.id, game.card, "#".join(amounts), "#".join(worths), "#".join(user_cost), "#".join(builds), game.start)
 
                 details = await self.get_player_details(turn,game.id)
-                disp_msg = details[0]+"##"+details[1]+"**sell "+building+" on**"+cards.name+"##"+cards.color
+                disp_msg = details[0]+"##"+details[1]+"**sold "+building+" on**"+cards.name+"##"+cards.color
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -1076,7 +1078,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 await self.game_update(game.id, game.card, "#".join(amounts), "#".join(worths), "#".join(user_cost), "#".join(builds), "#".join(starts))
 
                 details = await self.get_player_details(turn,game.id)
-                disp_msg = details[0]+"##"+details[1]+"**sell "+building+" on**"+cards.name+"##"+cards.color
+                disp_msg = details[0]+"##"+details[1]+"**stopped "+building+" on**"+cards.name+"##"+"#407B87"
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -1142,7 +1144,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 await self.game_update(game.id, game.card, "#".join(amounts), "#".join(worths), game.cost, "#".join(builds), "#".join(starts))
 
                 details = await self.get_player_details(turn,game.id)
-                disp_msg = details[0]+"##"+details[1]+"**built "+building+" on**"+cards.name+"##"+cards.color
+                disp_msg = details[0]+"##"+details[1]+"**started "+building+" on**"+cards.name+"##"+"#407B87"
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -1181,7 +1183,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     await self.game_update(game.id, game.card, "#".join(amounts), "#".join(worths), game.cost, game.build, game.start)
 
                     details = await self.get_player_details(turn,game.id)
-                    disp_msg = details[0]+"##"+details[1]+"**bail "+card_id[2]+" on**"+"cards.name"+"##"+"cards.color"
+                    disp_msg = details[0]+"##"+details[1]+"**bailed out by paying ₹"+card_id[2]+"**"
 
                     await self.channel_layer.group_send(
                         self.room_group_name,
@@ -1214,7 +1216,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     await self.game_jail(game.id,"#".join(jails))
 
                     details = await self.get_player_details(turn,game.id)
-                    disp_msg = details[0]+"##"+details[1]+"**miss "+card_id[2]+" on**"+"cards.name"+"##"+"cards.color"
+                    disp_msg = details[0]+"##"+details[1]+"**is in Jail for "+card_id[2]+" chances**"
 
                     await self.channel_layer.group_send(
                         self.room_group_name,
@@ -1275,7 +1277,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     jail.pop(jail.index(name1))
 
                 details = await self.get_player_details(turn,game.id)
-                disp_msg = details[0]+"##"+details[1]+"**pass "+jails[turn]+" on**"+"cards.name"+"##"+"cards.color"
+                disp_msg = details[0]+"##"+details[1]+"**is in jail for "+jails[turn]+" chances**"
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
