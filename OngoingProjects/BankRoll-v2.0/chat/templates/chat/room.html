@@ -161,10 +161,6 @@
     function jail_function() {
       var u = $('#gameuser').val();
       if (u == '{{name}}') {
-        var chances = ['3', '4', '5'];
-        var bails = [0.1, 0.2, 0.3];
-        var chance = chances[Math.floor(Math.random() * chances.length)];
-        var bail = bails[Math.floor(Math.random() * chances.length)];
         var status = $('#status-string').val().split("--");
         if (status != "") {
           var name_list = status[0].split(',');
@@ -172,7 +168,15 @@
           var index = name_list.indexOf('{{name}}');
           var amt = amount_list.splice(index, 1);
         }
-        var bail_amount = roundToFive(parseInt(amt), bail);
+        var chances = ['3', '4', '5'];  
+        var bails = [0.1, 0.2, 0.3];
+        var bail = 0;
+        var bail_amount = 0;
+        if(parseInt(amt) > 50){
+          bail = bails[Math.floor(Math.random() * chances.length)];
+          bail_amount = roundToFive(parseInt(amt), bail);
+        }
+        var chance = chances[Math.floor(Math.random() * chances.length)];
         $('#miss_text').html(chance + " Chances");
         $('#bail_text').html("₹" + bail_amount);
         $('#jail-miss').val(chance);
@@ -378,8 +382,23 @@
             user_pay = pay(score);
             if (user_pay == 0) {
               if (score != 0) {
-                cardbuttonShow(score, 'buy,pass');
-                $("#card" + score).click();
+                if (score != 0) {
+                if(score == 14){
+                  if(isEnough(50) == 1){
+                    $("#missbtn .cardbtn").click();
+                  }
+                  else{
+                    $("#card" + score).click();
+                  }
+                }
+                else if(score == 7 || score == 21){
+                  console.log("RANDOM");
+                }
+                else{
+                  cardbuttonShow(score, 'buy,pass');
+                  $("#card" + score).click();
+                }
+              }
               }
             } else if (user_pay == 1) {
               $('#card').click();
