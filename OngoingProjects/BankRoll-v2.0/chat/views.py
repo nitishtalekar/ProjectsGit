@@ -107,6 +107,7 @@ def room(request, room_name):
         build1s = list(Board.objects.values_list('build1', flat=True))
         build2s = list(Board.objects.values_list('build2', flat=True))
         build3s = list(Board.objects.values_list('build3', flat=True))
+        
 
         place = {}
         bg = {}
@@ -134,8 +135,14 @@ def room(request, room_name):
         dummy = {"num":-1}
         for i in id:
             if len(i) == 2:
-                one = {"num":i[0],'place':place[i[0]],'bgcolor':bg[i[0]],'tag':tag[i[0]], 'price':price[i[0]],'rent':rent[i[0]],'sell':sell[i[0]], 'build1':build1[i[0]], 'build2':build2[i[0]], 'build3':build3[i[0]]}
-                two = {"num":i[1],'place':place[i[1]],'bgcolor':bg[i[1]],'tag':tag[i[1]], 'price':price[i[1]],'rent':rent[i[1]],'sell':sell[i[1]], 'build1':build1[i[1]], 'build2':build2[i[0]], 'build3':build3[i[0]]}
+                one = {"num":i[0],'place':place[i[0]],'bgcolor':bg[i[0]],'tag':tag[i[0]], 'price':price[i[0]],'rent':rent[i[0]],'sell':sell[i[0]]}
+                two = {"num":i[1],'place':place[i[1]],'bgcolor':bg[i[1]],'tag':tag[i[1]], 'price':price[i[1]],'rent':rent[i[1]],'sell':sell[i[1]]}
+                one['build1'] = build1[i[0]]
+                one['build2'] = build2[i[0]]
+                one['build3'] = build3[i[0]]
+                two['build1'] = build1[i[1]]
+                two['build2'] = build2[i[1]]
+                two['build3'] = build3[i[1]]
                 info.append([one,dummy,dummy,dummy])
                 info.append([dummy,dummy,dummy,two])
             else:

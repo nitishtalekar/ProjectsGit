@@ -30,12 +30,12 @@
         $("#" + coinid).delay(time * 500).fadeIn();
         $("#" + coinid).delay(150).fadeOut();
         x = (x + 1) % 28;
-        if(x == 0){
-          delay = (time+1)*500;
+        if (x == 0) {
+          delay = (time + 1) * 500;
         }
         time = time + 1;
       }
-      var return_arr = [time * 500 , delay+500]
+      var return_arr = [time * 500, delay + 500]
       return return_arr;
     }
 
@@ -99,9 +99,9 @@
       return dlist;
     }
 
-    function roundToFive(x,y){
-      var a = Math.round(x*y);
-      return Math.ceil(a/5)*5;
+    function roundToFive(x, y) {
+      var a = Math.round(x * y);
+      return Math.ceil(a / 5) * 5;
     }
 
     function isEnough(amount) {
@@ -111,7 +111,7 @@
         var amount_list = status[2].split(',');
         var index = name_list.indexOf('{{name}}');
         var owned_amount = amount_list.splice(index, 1);
-        if(parseInt(owned_amount[0]) < parseInt(amount)){
+        if (parseInt(owned_amount[0]) < parseInt(amount)) {
           return 1;
         }
       }
@@ -119,22 +119,20 @@
     }
 
     function build_btns(id, order, tag) {
-      if(order != "0"){
+      if (order != "0") {
         var b_id = order.split("-");
-        var xyz = ["X","Y","Z"];
-        if(b_id[0] == '1'){
-          b_id.splice(0,b_id.length);
-        }
-        else if (b_id[0] == 'X>A'){
+        var xyz = ["X", "Y", "Z"];
+        if (b_id[0] == '1') {
+          b_id.splice(0, b_id.length);
+        } else if (b_id[0] == 'X>A') {
           b_id[0] = "X";
-          xyz.splice(0,xyz.length);
-        }
-        else{
+          xyz.splice(0, xyz.length);
+        } else {
           var i;
           for (i = 0; i < b_id.length; i++) {
-            if(xyz.indexOf(b_id[i]) != -1){
+            if (xyz.indexOf(b_id[i]) != -1) {
               var x = xyz.indexOf(b_id[i]);
-              xyz.splice(x,1);
+              xyz.splice(x, 1);
             }
           }
         }
@@ -142,18 +140,16 @@
           if (tag == 'show') {
             for (i = 0; i < b_id.length; i++) {
               var amt = $("#build" + id + " .price_bld" + b_id[i]).val();
-              if(isEnough(amt) == 0){
+              if (isEnough(amt) == 0) {
                 $("#build" + id + " .bld" + b_id[i]).show();
-              }
-              else{
+              } else {
                 $("#build" + id + " .bld" + b_id[i]).hide();
               }
             }
             for (i = 0; i < xyz.length; i++) {
               $("#build" + id + " .bsell" + xyz[i]).show();
             }
-          }
-          else if (tag == "hide") {
+          } else if (tag == "hide") {
             $("#build" + id + " .build").hide();
             $("#build" + id + " .build-sell").hide();
           }
@@ -161,11 +157,11 @@
       }
     }
 
-    function jail_function(){
+    function jail_function() {
       var u = $('#gameuser').val();
       if (u == '{{name}}') {
-        var chances = ['3','4','5'];
-        var bails = [0.1,0.2,0.3];
+        var chances = ['3', '4', '5'];
+        var bails = [0.1, 0.2, 0.3];
         var chance = chances[Math.floor(Math.random() * chances.length)];
         var bail = bails[Math.floor(Math.random() * chances.length)];
         var status = $('#status-string').val().split("--");
@@ -175,7 +171,7 @@
           var index = name_list.indexOf('{{name}}');
           var amt = amount_list.splice(index, 1);
         }
-        var bail_amount = roundToFive(parseInt(amt),bail);
+        var bail_amount = roundToFive(parseInt(amt), bail);
         $('#miss_text').html(chance + " Chances");
         $('#bail_text').html("₹" + bail_amount);
         $('#jail-miss').val(chance);
@@ -193,16 +189,16 @@
       $("#closebtn" + id).hide();
       $("#sellbtn" + id).hide();
       for (x of taglist) {
-        if (x == "buy"){
+        if (x == "buy") {
           $("#buybtn" + id).show();
         }
-        if (x == "sell"){
+        if (x == "sell") {
           $("#sellbtn" + id).show();
         }
-        if (x == "pass"){
+        if (x == "pass") {
           $("#passbtn" + id).show();
         }
-        if (x == "close"){
+        if (x == "close") {
           $("#closebtn" + id).show();
         }
       }
@@ -211,7 +207,7 @@
     function showsell(sell, tag) {
       var owned = sell[1].split(';');
       var bld_owned = sell[3].split(';');
-      if(owned[0] != "-1"){
+      if (owned[0] != "-1") {
         var i;
         for (i = 0; i < owned.length; i++) {
           if (tag == 1) {
@@ -235,7 +231,7 @@
         name_list.splice(index, 1);
         var owned_cards = card_list.splice(index, 1);
         var owned_amount = amount_list.splice(index, 1);
-        var price = $("#price_"+score).text();
+        var price = $("#price_" + score).text();
         var i;
         for (i = 0; i < card_list.length; i++) {
           var prop = card_list[i].split(';');
@@ -245,14 +241,14 @@
             return 1;
           }
         }
-        if(parseInt(owned_amount[0]) < parseInt(price.substring(1))){
+        if (parseInt(owned_amount[0]) < parseInt(price.substring(1))) {
           var card_info = "pass#" + score;
           $("#card_info").val(card_info);
           return 1;
         }
         var owned = owned_cards[0].split(';');
-        if(owned[0] != "-1"){
-          if(owned.indexOf(score.toString()) != -1){
+        if (owned[0] != "-1") {
+          if (owned.indexOf(score.toString()) != -1) {
             return 2;
           }
         }
@@ -267,7 +263,7 @@
       var dispColor = getColorList(colors);
       var user_pay;
 
-      if(score == 0){
+      if (score == 0) {
         $("#passbtn-start .cardbtn").click();
         $("#body").animate({
           opacity: 1
@@ -275,46 +271,44 @@
           $("#showsell").click();
           position(score, colors, dispColor);
         });
-      }
-      else if((score - pos) < 0){
+      } else if ((score - pos) < 0) {
         var u = $('#gameuser').val();
-          if (u == '{{name}}') {
-            console.log("PASSED");
-            $('#start_pass').val("start#"+"{{name}}");
-            $("#body").animate({
-              opacity: 1
-            }, delay[1], function() {
-              $("#passing_start").click();
-            });
-            var new_delay = delay[0] - delay[1] - 500;
-            $("#body").animate({
-              opacity: 1
-            }, new_delay + 500, function() {
-              var u = $('#gameuser').val();
-              if (u == '{{name}}') {
-                console.log("THIS");
-                user_pay = pay(score);
-                if (user_pay == 0) {
-                  if(score != 0){
-                    cardbuttonShow(score, 'buy,pass');
-                    $("#card" + score).click();
-                  }
-                } else if (user_pay == 1) {
-                  $('#card').click();
-                  $('#reset-dice').click();
-                } else if (user_pay == 2) {
-                  cardbuttonShow(score, 'sell,pass');
-                  if(score != 0){
-                    $("#card" + score).click();
-                  }
+        if (u == '{{name}}') {
+          console.log("PASSED");
+          $('#start_pass').val("start#" + "{{name}}");
+          $("#body").animate({
+            opacity: 1
+          }, delay[1], function() {
+            $("#passing_start").click();
+          });
+          var new_delay = delay[0] - delay[1] - 500;
+          $("#body").animate({
+            opacity: 1
+          }, new_delay + 500, function() {
+            var u = $('#gameuser').val();
+            if (u == '{{name}}') {
+              console.log("THIS");
+              user_pay = pay(score);
+              if (user_pay == 0) {
+                if (score != 0) {
+                  cardbuttonShow(score, 'buy,pass');
+                  $("#card" + score).click();
+                }
+              } else if (user_pay == 1) {
+                $('#card').click();
+                $('#reset-dice').click();
+              } else if (user_pay == 2) {
+                cardbuttonShow(score, 'sell,pass');
+                if (score != 0) {
+                  $("#card" + score).click();
                 }
               }
-              $("#showsell").click();
-              position(score, colors, dispColor);
-            });
-          }
-      }
-      else{
+            }
+            $("#showsell").click();
+            position(score, colors, dispColor);
+          });
+        }
+      } else {
         $("#body").animate({
           opacity: 1
         }, delay[0] + 500, function() {
@@ -323,7 +317,7 @@
             console.log("THIS");
             user_pay = pay(score);
             if (user_pay == 0) {
-              if(score != 0){
+              if (score != 0) {
                 cardbuttonShow(score, 'buy,pass');
                 $("#card" + score).click();
               }
@@ -332,7 +326,7 @@
               $('#reset-dice').click();
             } else if (user_pay == 2) {
               cardbuttonShow(score, 'sell,pass');
-              if(score != 0){
+              if (score != 0) {
                 $("#card" + score).click();
               }
             }
@@ -343,21 +337,20 @@
       }
     }
 
-    function update_msg(msg_list){
+    function update_msg(msg_list) {
       $("#msg_display").fadeOut('fast');
       var section = msg_list.split('**');
       var disp_string = ""
-      for(x of section){
+      for (x of section) {
         var elements = x.split("##");
-        if(elements.length == 2){
+        if (elements.length == 2) {
           var col = getColor(elements[1]);
-          if(col == 0){
+          if (col == 0) {
             col = elements[1];
           }
-          disp_string = disp_string + "<span style=color:"+ col +">"+elements[0]+"</span>"+" ";
-        }
-        else{
-          disp_string = disp_string + elements[0]+" ";
+          disp_string = disp_string + "<span style=color:" + col + ">" + elements[0] + "</span>" + " ";
+        } else {
+          disp_string = disp_string + elements[0] + " ";
         }
       }
       string = disp_string.slice(0, -1)
@@ -378,7 +371,7 @@
     }
 
     function update_rent(color_list, card_list, rent_list) {
-      $(".rentcard").each(function(){
+      $(".rentcard").each(function() {
         $(this).hide();
       });
       var colors = color_list.split(',');
@@ -391,19 +384,19 @@
         var property = cards[i].split(';');
         var prop_rents = rents[i].split(';');
         for (j = 0; j < property.length; j++) {
-          if(prop_rents[j] != "-1"){
+          if (prop_rents[j] != "-1") {
             $('#rent' + property[j]).css('--color', col);
             $('#rent' + property[j]).html("₹" + prop_rents[j]);
             $('#rent' + property[j]).fadeIn('fast');
-            $('#rent_price-'+ property[j]).html("₹" + prop_rents[j]);
-            var sell_pr = roundToFive(parseInt(prop_rents[j]),0.7);
-            $('#sell_price-'+ property[j]).html("₹" + sell_pr.toString());
-            var b1 = roundToFive(parseInt(prop_rents[j]),1.8);
-            var b2 = roundToFive(parseInt(prop_rents[j]),1.9);
-            var b3 = roundToFive(parseInt(prop_rents[j]),2);
-            $('#bldX-'+ property[j]).html("[₹" + b1.toString() + "]");
-            $('#bldY-'+ property[j]).html("[₹" + b2.toString() + "]");
-            $('#bldZ-'+ property[j]).html("[₹" + b3.toString() + "]");
+            $('#rent_price-' + property[j]).html("₹" + prop_rents[j]);
+            var sell_pr = roundToFive(parseInt(prop_rents[j]), 0.7);
+            $('#sell_price-' + property[j]).html("₹" + sell_pr.toString());
+            var b1 = roundToFive(parseInt(prop_rents[j]), 1.8);
+            var b2 = roundToFive(parseInt(prop_rents[j]), 1.9);
+            var b3 = roundToFive(parseInt(prop_rents[j]), 2);
+            $('#bldX-' + property[j]).html("[₹" + b1.toString() + "]");
+            $('#bldY-' + property[j]).html("[₹" + b2.toString() + "]");
+            $('#bldZ-' + property[j]).html("[₹" + b3.toString() + "]");
           }
         }
       }
@@ -454,7 +447,7 @@
         var color = $('#col').val();
         var colors = $('#colors').val().split(",");
         var rolled = parseInt($('#rolled').val());
-        if(score == 14){
+        if (score == 14) {
           jail_function();
         }
         $(".d-" + rolled.toString()).each(function() {
@@ -480,8 +473,8 @@
       $(".jailgamebtn").each(function() {
         $(this).click(function() {
           var id = $(this).attr("id").split("-");
-          var value = $("#jail-"+id[1]).val();
-          var card_info = "jail#"+id[1] + "#" + value;
+          var value = $("#jail-" + id[1]).val();
+          var card_info = "jail#" + id[1] + "#" + value;
           console.log(card_info);
           cardbuttonShow(id[2], 'close');
           $('#reset-sell').click();
@@ -779,7 +772,7 @@
                     <span class="text-white place text-uppercase text-center font-weight-bold" id="price_{{j.num}}">₹{{j.price}}</span>
                   </div>
                   <div class="d-flex justify-content-center align-items-center" style="height:6vh">
-                    <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                    <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }} - {{j.num}}</span>
                   </div>
                 </div>
                 <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
@@ -811,7 +804,7 @@
                         </div>
                         <div class="row">
                           <div class="col-12 text-center text-uppercase font-weight-bold">
-                            Build
+                            Build {{j.num}}
                             <hr class="py-0 my-0">
                           </div>
                         </div>
@@ -883,7 +876,7 @@
                     <span class="place text-uppercase text-center font-weight-bold" id="price_{{j.num}}">₹{{j.price}}</span>
                   </div>
                   <div class="d-flex justify-content-center align-items-center" style="height:6vh">
-                    <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
+                    <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}  - {{j.num}}</span>
                   </div>
                 </div>
                 <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
@@ -915,7 +908,7 @@
                         </div>
                         <div class="row">
                           <div class="col-12 text-center text-uppercase font-weight-bold">
-                            Start
+                            Start {{j.num}}
                             <hr class="py-0 my-0">
                           </div>
                         </div>
@@ -1337,8 +1330,7 @@
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
         // document.getElementById('show-sell').click();
-      }
-      else if(data.tag == 6){
+      } else if (data.tag == 6) {
         var stat = document.getElementById("status-string").value;
         var stat_arr = stat.split("--");
         stat_arr[1] = data.color;
@@ -1394,7 +1386,7 @@
         'tag': 5,
         'card': message,
         'name': '{{name}}',
-        'roll':roll
+        'roll': roll
       }));
       messageInputDom.value = '';
     };
@@ -1408,7 +1400,7 @@
         'tag': 6,
         'card': message,
         'name': '{{name}}',
-        'roll':roll
+        'roll': roll
       }));
       messageInputDom.value = '';
     };
