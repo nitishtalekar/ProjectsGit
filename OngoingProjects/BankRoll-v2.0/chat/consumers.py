@@ -1230,7 +1230,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     )
 
                     if roll == 6:
-                        print("miss rool", roll, turn)
+                        print("miss roll", roll, turn)
                         await self.change_turn(game.id)
                         game = await self.roll(self.room_name)
                         # print(turn)

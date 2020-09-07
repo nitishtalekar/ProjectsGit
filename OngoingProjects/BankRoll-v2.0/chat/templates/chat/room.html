@@ -203,7 +203,7 @@
         }
       }
     }
-
+    
     function build_rent_price(xyz,bs,rent){
       if(bs == "build"){
         if(xyz == 'X'){
@@ -228,14 +228,14 @@
         }
       }
     }
-
+    
     function update_build_rent(id,rent,build){
       var b_id;
       if (build == 0){
         b_id = ["X", "Y", "Z"];
       } else{
         b_id = build.split("-");
-      }
+      } 
       var xyz = ["X", "Y", "Z"];
       if (b_id[0] == '1') {
         b_id.splice(0, b_id.length);
@@ -450,12 +450,6 @@
             $('#rent_price-' + property[j]).html("₹" + prop_rents[j]);
             var sell_pr = roundToFive(parseInt(prop_rents[j]), 0.7);
             $('#sell_price-' + property[j]).html("₹" + sell_pr.toString());
-            // var b1 = roundToFive(parseInt(prop_rents[j]), 1.8);
-            // var b2 = roundToFive(parseInt(prop_rents[j]), 1.9);
-            // var b3 = roundToFive(parseInt(prop_rents[j]), 2);
-            // $('#bldX-' + property[j]).html("[₹" + b1.toString() + "]");
-            // $('#bldY-' + property[j]).html("[₹" + b2.toString() + "]");
-            // $('#bldZ-' + property[j]).html("[₹" + b3.toString() + "]");
             update_build_rent(property[j],prop_rents[j],prop_builds[j]);
           }
         }
@@ -550,6 +544,15 @@
           var id = $(this).attr("id").split("_")[1];
           $("#card" + id).click();
         });
+      });
+      $('#jail-pass').click(function(){
+        console.log("HEllo jil");
+        var card_info = "jail#pass#" + '{{name}}';
+        console.log(card_info);
+        $('#reset-sell').click();
+        $("#card_info").val(card_info);
+        $('#card').click();
+        $('#reset-dice').click();
       });
       $('#left').click(function() {
         $('#dice-left').show();
@@ -1255,6 +1258,7 @@
       <button class="text-uppercase" id="left">left</button>
       <button class="text-uppercase" id="right">right</button>
       <button class="text-uppercase" id="reset-dice">reset</button>
+      <button type="button" id="jail-pass">jail-pass</button>
 
       <button class="text-uppercase" id="show-sell">show-sell</button>
       <button class="text-uppercase" id="reset-sell">reset-sell</button>
@@ -1333,7 +1337,7 @@
 
         document.querySelector('#start').click();
       } else if (data.tag == 3) {
-        console.log(data);
+        // console.log(data);
         document.querySelector('#reset-dice').click();
         document.getElementById("roll").style.setProperty('--bgcolor', getBtnColor(data.color));
         document.getElementById("opt").style.setProperty('--bgcolor', getBtnColor(data.color));
@@ -1345,18 +1349,35 @@
         for (var i = 0; i < dots.length; i++) {
           dots[i].style.setProperty('--dcol', getBtnColor(data.color));
         }
+        console.log(data.jail);
+        var jail_check = 0;
+        for (x of data.jail) {
+            if (x == '{{name}}'){
+              jail_check = 1;
+            }
+          }
+        console.log("jail_check = " + jail_check);
         if (data.roll == '{{name}}') {
-          document.getElementById("roll").style.display = "block";
-          document.getElementById("opt").style.display = "block";
-          document.getElementById('show-sell').click();
-          document.getElementById("optionModal").style.setProperty('--bcolor', getBtnColor(data.color));
-          document.getElementById("optModal-content").style.setProperty('--bcolor', getBtnColor(data.color));
-          document.getElementById("optModal-head").style.setProperty('background', getBtnColor(data.color));
-          // document.getElementsByClassName("cardbtn-opt").style.setProperty('--btncol', getBtnColor(data.color));
-          var x = document.getElementsByClassName("cardbtn-opt")
-          var i;
-          for (i = 0; i < x.length; i++) {
-            x[i].style.setProperty('--btncol', getBtnColor(data.color));
+          if (jail_check == 0){
+            document.getElementById("roll").style.display = "block";
+            document.getElementById("opt").style.display = "block";
+            document.getElementById('show-sell').click();
+            document.getElementById("optionModal").style.setProperty('--bcolor', getBtnColor(data.color));
+            document.getElementById("optModal-content").style.setProperty('--bcolor', getBtnColor(data.color));
+            document.getElementById("optModal-head").style.setProperty('background', getBtnColor(data.color));
+            // document.getElementsByClassName("cardbtn-opt").style.setProperty('--btncol', getBtnColor(data.color));
+            var x = document.getElementsByClassName("cardbtn-opt")
+            var i;
+            for (i = 0; i < x.length; i++) {
+              x[i].style.setProperty('--btncol', getBtnColor(data.color));
+            }
+          }
+          else{
+            console.log("HERE");
+            document.getElementById("roll").style.display = "none";
+            document.getElementById("opt").style.display = "none";
+            document.getElementById('reset-sell').click();
+            document.getElementById('jail-pass').click();
           }
         } else {
           document.getElementById("roll").style.display = "none";
@@ -1365,7 +1386,7 @@
         }
 
       } else if (data.tag == 4) {
-        console.log(data);
+        // console.log(data);
         document.querySelector('#chat-log').value += (data.roll_value + " " + data.curr_player + " " + data.curr_color + '\n');
         document.querySelector('#chat-log').value += ("Move from: " + data.curr_loc + " to " + data.new_loc + " " + data.colors + '\n');
         document.querySelector('#pos').value = data.curr_loc;
