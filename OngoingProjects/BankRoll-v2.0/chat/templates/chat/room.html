@@ -203,6 +203,63 @@
         }
       }
     }
+    
+    function build_rent_price(xyz,bs,rent){
+      if(bs == "build"){
+        if(xyz == 'X'){
+          return roundToFive(parseInt(rent), 1.8);
+        }
+        if(xyz == 'Y'){
+          return roundToFive(parseInt(rent), 1.9);
+        }
+        if(xyz == 'Z'){
+          return roundToFive(parseInt(rent), 2);
+        }
+      }
+      if(bs == "sell"){
+        if(xyz == 'X'){
+          return roundToFive(parseInt(rent), 0.6);
+        }
+        if(xyz == 'Y'){
+          return roundToFive(parseInt(rent), 0.55);
+        }
+        if(xyz == 'Z'){
+          return roundToFive(parseInt(rent), 0.5);
+        }
+      }
+    }
+    
+    function update_build_rent(id,rent,build){
+      var b_id;
+      if (build == 0){
+        b_id = ["X", "Y", "Z"];
+      } else{
+        b_id = build.split("-");
+      } 
+      var xyz = ["X", "Y", "Z"];
+      if (b_id[0] == '1') {
+        b_id.splice(0, b_id.length);
+      } else if (b_id[0] == 'X>A') {
+        b_id[0] = "X";
+        xyz.splice(0, xyz.length);
+      }  else {
+        var i;
+        for (i = 0; i < b_id.length; i++) {
+          if (xyz.indexOf(b_id[i]) != -1) {
+            var x = xyz.indexOf(b_id[i]);
+            xyz.splice(x, 1);
+          }
+        }
+      }
+      for (i = 0; i < b_id.length; i++) {
+        var b = build_rent_price(b_id[i],"build",rent);
+        $('#bld' + b_id[i] + '-' + id).html("[₹" + b.toString() + "]");
+      }
+      for (i = 0; i < xyz.length; i++) {
+        var b = build_rent_price(xyz[i],"sell",rent);
+        $('#bld' + xyz[i] + '-' + id).html("[₹" + b.toString() + "]");
+      }
+    }
 
     function showsell(sell, tag) {
       var owned = sell[1].split(';');
@@ -370,33 +427,36 @@
       }
     }
 
-    function update_rent(color_list, card_list, rent_list) {
+    function update_rent(color_list, card_list, rent_list, build_list) {
       $(".rentcard").each(function() {
         $(this).hide();
       });
       var colors = color_list.split(',');
       var cards = card_list.split(',');
       var rents = rent_list.split(',');
+      var builds = build_list.split(',');
       var i;
       var j;
       for (i = 0; i < colors.length; i++) {
         var col = getColor(colors[i]);
         var property = cards[i].split(';');
         var prop_rents = rents[i].split(';');
+        var prop_builds = builds[i].split(';');
         for (j = 0; j < property.length; j++) {
           if (prop_rents[j] != "-1") {
             $('#rent' + property[j]).css('--color', col);
             $('#rent' + property[j]).html("₹" + prop_rents[j]);
-            $('#rent' + property[j]).fadeIn('fast');
+            $('#rent' + property[j]).show();
             $('#rent_price-' + property[j]).html("₹" + prop_rents[j]);
             var sell_pr = roundToFive(parseInt(prop_rents[j]), 0.7);
             $('#sell_price-' + property[j]).html("₹" + sell_pr.toString());
-            var b1 = roundToFive(parseInt(prop_rents[j]), 1.8);
-            var b2 = roundToFive(parseInt(prop_rents[j]), 1.9);
-            var b3 = roundToFive(parseInt(prop_rents[j]), 2);
-            $('#bldX-' + property[j]).html("[₹" + b1.toString() + "]");
-            $('#bldY-' + property[j]).html("[₹" + b2.toString() + "]");
-            $('#bldZ-' + property[j]).html("[₹" + b3.toString() + "]");
+            // var b1 = roundToFive(parseInt(prop_rents[j]), 1.8);
+            // var b2 = roundToFive(parseInt(prop_rents[j]), 1.9);
+            // var b3 = roundToFive(parseInt(prop_rents[j]), 2);
+            // $('#bldX-' + property[j]).html("[₹" + b1.toString() + "]");
+            // $('#bldY-' + property[j]).html("[₹" + b2.toString() + "]");
+            // $('#bldZ-' + property[j]).html("[₹" + b3.toString() + "]");
+            update_build_rent(property[j],prop_rents[j],prop_builds[j]);
           }
         }
       }
@@ -424,7 +484,7 @@
 
     function update(status) {
       update_amount(status[1], status[2], status[3]);
-      update_rent(status[1], status[4], status[5]);
+      update_rent(status[1], status[4], status[5],status[7]);
       update_msg(status[6]);
     }
 
@@ -772,7 +832,7 @@
                     <span class="text-white place text-uppercase text-center font-weight-bold" id="price_{{j.num}}">₹{{j.price}}</span>
                   </div>
                   <div class="d-flex justify-content-center align-items-center" style="height:6vh">
-                    <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }} - {{j.num}}</span>
+                    <span class="text-white place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
                   </div>
                 </div>
                 <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
@@ -804,7 +864,7 @@
                         </div>
                         <div class="row">
                           <div class="col-12 text-center text-uppercase font-weight-bold">
-                            Build {{j.num}}
+                            Build
                             <hr class="py-0 my-0">
                           </div>
                         </div>
@@ -876,7 +936,7 @@
                     <span class="place text-uppercase text-center font-weight-bold" id="price_{{j.num}}">₹{{j.price}}</span>
                   </div>
                   <div class="d-flex justify-content-center align-items-center" style="height:6vh">
-                    <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}  - {{j.num}}</span>
+                    <span class="place text-uppercase text-center font-weight-bold">{{ j.place }}</span>
                   </div>
                 </div>
                 <button type="button" id="card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
@@ -908,7 +968,7 @@
                         </div>
                         <div class="row">
                           <div class="col-12 text-center text-uppercase font-weight-bold">
-                            Start {{j.num}}
+                            Start
                             <hr class="py-0 my-0">
                           </div>
                         </div>
@@ -1304,7 +1364,7 @@
         }
 
       } else if (data.tag == 4) {
-        console.log(data);
+        // console.log(data);
         document.querySelector('#chat-log').value += (data.roll_value + " " + data.curr_player + " " + data.curr_color + '\n');
         document.querySelector('#chat-log').value += ("Move from: " + data.curr_loc + " to " + data.new_loc + " " + data.colors + '\n');
         document.querySelector('#pos').value = data.curr_loc;
