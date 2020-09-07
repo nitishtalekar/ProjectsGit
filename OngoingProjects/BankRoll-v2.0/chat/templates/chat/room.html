@@ -203,7 +203,7 @@
         }
       }
     }
-    
+
     function build_rent_price(xyz,bs,rent){
       if(bs == "build"){
         if(xyz == 'X'){
@@ -228,14 +228,14 @@
         }
       }
     }
-    
+
     function update_build_rent(id,rent,build){
       var b_id;
       if (build == 0){
         b_id = ["X", "Y", "Z"];
       } else{
         b_id = build.split("-");
-      } 
+      }
       var xyz = ["X", "Y", "Z"];
       if (b_id[0] == '1') {
         b_id.splice(0, b_id.length);
@@ -1333,6 +1333,7 @@
 
         document.querySelector('#start').click();
       } else if (data.tag == 3) {
+        console.log(data);
         document.querySelector('#reset-dice').click();
         document.getElementById("roll").style.setProperty('--bgcolor', getBtnColor(data.color));
         document.getElementById("opt").style.setProperty('--bgcolor', getBtnColor(data.color));
@@ -1364,7 +1365,7 @@
         }
 
       } else if (data.tag == 4) {
-        // console.log(data);
+        console.log(data);
         document.querySelector('#chat-log').value += (data.roll_value + " " + data.curr_player + " " + data.curr_color + '\n');
         document.querySelector('#chat-log').value += ("Move from: " + data.curr_loc + " to " + data.new_loc + " " + data.colors + '\n');
         document.querySelector('#pos').value = data.curr_loc;
