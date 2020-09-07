@@ -392,7 +392,7 @@
                   }
                 }
                 else if(score == 7 || score == 21){
-                  console.log("RANDOM");
+                  $("#randombtn .random" + score).click();
                 }
                 else{
                   cardbuttonShow(score, 'buy,pass');
@@ -1118,8 +1118,8 @@
                               Close
                             </button>
                           </div>
-                          <div class="col-5" id="passbtn{{j.num}}" style="display:none">
-                            <button type="button" id="cardbtn-pass-{{j.num}}" class="cardbtn gamebtn" style="--btncol:grey" data-dismiss="modal">
+                          <div class="col-5" id="randombtn" style="display:none">
+                            <button type="button" id="cardbtn-random-{{j.num}}" class="cardbtn gamebtn random{{j.num}}" style="--btncol:grey" data-dismiss="modal">
                               Pass
                             </button>
                           </div>
