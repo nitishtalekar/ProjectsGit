@@ -17,6 +17,7 @@
 
   <script type="text/javascript">
     function move(pos, score, color, rolled) {
+      $("#cover").show();
       $(".coin").each(function() {
         $(this).remove();
       });
@@ -327,6 +328,7 @@
         }, delay[0] + 500, function() {
           $("#showsell").click();
           position(score, colors, dispColor);
+          $("#cover").hide();
         });
       } else if ((score - pos) < 0) {
         var u = $('#gameuser').val();
@@ -363,6 +365,7 @@
             }
             $("#showsell").click();
             position(score, colors, dispColor);
+            $("#cover").hide();
           });
         }
       } else {
@@ -390,6 +393,7 @@
           }
           $("#showsell").click();
           position(score, colors, dispColor);
+          $("#cover").hide();
         });
       }
     }
@@ -618,7 +622,8 @@
 </head>
 
 <body id="body">
-
+  <div class="container-fluid px-0 py-0 mx-0 my-0 pb-0 coversheet" id="cover" style="display:none">
+  </div>
   <div class="container-fluid d-flex justify-content-center align-items-center bg-dark px-0 py-0 mx-0 my-0 pb-0" style="min-height:100vh">
     <div class="bg-dark d-flex align-items-center justify-content-center" style="width:90vw">
       <div class="center-image d-flex justify-content-center align-items-center">
