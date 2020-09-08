@@ -30,6 +30,7 @@ class Game(models.Model):
     build = models.CharField(max_length=500, default="")
     start = models.CharField(max_length=500, default="200")
     jail = models.CharField(max_length=500, default="0")
+    random = models.CharField(max_length=500, default="")
 
 class Board(models.Model):
     id = models.CharField(primary_key=True, max_length=500)
@@ -48,5 +49,5 @@ class Random(models.Model):
     reason = models.CharField(max_length=500)
     quants = models.CharField(max_length=500)
     tag = models.CharField(max_length=500)
-    
+
 # Create your models here.
