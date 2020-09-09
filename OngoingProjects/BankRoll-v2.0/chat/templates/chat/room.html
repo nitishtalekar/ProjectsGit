@@ -186,6 +186,24 @@
         $('#closebtn14').hide();
       }
     }
+    
+    function show_owned(type){
+      var status = $('#status-string').val().split("--");
+      if (status != "") {
+        var name_list = status[0].split(',');
+        var card_list = status[4].split(',');
+        var index = name_list.indexOf('{{name}}');
+        var owned_cards = card_list.splice(index, 1);
+        console.log(owned_cards);
+        var o_card_list = owned_cards[0].split(";");
+        for (x of o_card_list){
+          // console.log(x);
+          $("#"+type+"-"+x).prop("style","background:none");
+          $("#"+type+"-"+x).addClass("open");
+          console.log($("#"+type+"-"+x).attr('class'));
+        }
+      }
+    }
 
     function cardbuttonShow(id, tags) {
       taglist = tags.split(',');
@@ -586,6 +604,12 @@
           $('#reset-dice').click();
         });
       });
+      $("#exchange").click(function(){
+        var type = "exchange";
+        show_owned(type);
+        $("#exchange-cover").show();
+      });
+      
       $('#left').click(function() {
         $('#dice-left').show();
         $("#dice-left").animate({
@@ -639,6 +663,10 @@
     $(document).on("click", ".rent-div", function() {
       var parent = $(this).parent().attr('id');
       $("#card" + parent).click();
+    });
+    $(document).on("click", ".open", function() {
+      console.log($(this).attr('id'));
+      $("#exchange-cover").hide();
     });
   </script>
 
@@ -845,6 +873,119 @@
           </div>
         </div>
 
+        <div class="row exchange" style="display:none" id="exchange-cover">
+          {% for i in info %}
+          <div class="col-6">
+            <div class="row">
+              {% for j in i %}
+        
+              {% if j.num != -1 %}
+        
+              {% if j.tag == 0 or j.tag == 1 %}
+              <div class="col-3 featcard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" style="background:rgba(0, 0, 0, 0.5)" id="exchange-{{j.num}}" >
+                <span style="font-size:2vw">{{j.num}}</span>
+                <button type="button" id="exchange-card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
+              </div>
+              <!-- <div class="modal fade my-0 py-0" id="CardModal{{j.num}}" style="--bcolor:{{j.bgcolor}}" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+                <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
+                  <div class="modal-content modal-border modalcard my-0 py-0" style="--bcolor:{{j.bgcolor}}">
+                    <div class="d-flex justify-content-center align-items-center pt-1 pb-2" style="background:{{j.bgcolor}}">
+                      <h5 class="font-weight-bold text-white text-uppercase py-0 my-0">{{ j.place }}</h5>
+                    </div>
+                    <div class="modal-body pt-2 my-0 pb-0 d-flex justify-content-center align-items-center">
+                      <div class="container-fluid mt-0">
+                        <div class="row mt-0">
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Cost</b>
+                            <hr class="py-0 my-0">
+                            <b>₹{{j.price}}</b>
+                          </div>
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Sell</b>
+                            <hr class="py-0 my-0">
+                            <b id="sell_price-{{j.num}}">₹{{j.sell}}</b>
+                          </div>
+                          <div class="col-4 text-center text-uppercase card-label">
+                            <b>Rent</b>
+                            <hr class="py-0 my-0">
+                            <b id="rent_price-{{j.num}}">₹{{j.rent}}</b>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-12 text-center text-uppercase font-weight-bold">
+                            Build
+                            <hr class="py-0 my-0">
+                          </div>
+                        </div>
+                        <div class="row mt-1" id="build{{j.num}}">
+                          <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/lodge.png' %}" style="width:70%" alt="">
+                            <span>Lodge</span><br>
+                            <span>₹{{j.build1}}</span><br>
+                            <input type="text" value="{{j.build1}}" class="price_bldX" style="display:none">
+                            <span id="bldX-{{j.num}}">[+80%]</span><span class="rent vertical-align-middle">rent</span>
+                            <button class="build bldX gamebtn" id="cardbtn-build#X-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Build</button>
+                            <button class="build-sell bsellX gamebtn" id="cardbtn-build_sell#X-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Sell</button>
+                          </div>
+                          <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/hotel.png' %}" style="width:70%" alt="">
+                            <span>Hotel</span><br>
+                            <span>₹{{j.build2}}</span><br>
+                            <input type="text" value="{{j.build2}}" class="price_bldY" style="display:none">
+                            <span id="bldY-{{j.num}}">[+90%]</span><span class="rent vertical-align-middle">rent</span>
+                            <button class="build bldY gamebtn" id="cardbtn-build#Y-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Build</button>
+                            <button class="build-sell bsellY gamebtn" id="cardbtn-build_sell#Y-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Sell</button>
+                          </div>
+                          <div class="col-4 px-0 mx-0 card-label text-center text-uppercase font-weight-bold">
+                            <img src="{% static 'img/resort.png' %}" style="width:70%" alt="">
+                            <span>Resort</span><br>
+                            <span>₹{{j.build3}}</span><br>
+                            <input type="text" value="{{j.build3}}" class="price_bldZ" style="display:none">
+                            <span id="bldZ-{{j.num}}">[+100%]</span><span class="rent vertical-align-middle">rent</span>
+                            <button class="build bldZ gamebtn" id="cardbtn-build#Z-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Build</button>
+                            <button class="build-sell bsellZ gamebtn" id="cardbtn-build_sell#Z-{{j.num}}" style="--btncol:{{j.bgcolor}};display:none" data-dismiss="modal">Sell</button>
+                          </div>
+                        </div>
+                        <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                          <div class="col-5" id="closebtn{{j.num}}">
+                            <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                              Close
+                            </button>
+                          </div>
+                          <div class="col-5" id="passbtn{{j.num}}" style="display:none">
+                            <button type="button" id="cardbtn-pass-{{j.num}}" class="cardbtn gamebtn" style="--btncol:grey" data-dismiss="modal">
+                              Pass
+                            </button>
+                          </div>
+                          <div class="col-5" id="sellbtn{{j.num}}" style="display:none">
+                            <button type="button" id="cardbtn-sell-{{j.num}}" class="cardbtn2 gamebtn" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
+                              Sell
+                            </button>
+                          </div>
+                          <div class="col-5" id="buybtn{{j.num}}" style="display:none">
+                            <button type="button" id="cardbtn-buy-{{j.num}}" class="cardbtn gamebtn" style="--btncol:{{j.bgcolor}}" data-dismiss="modal">
+                              Buy
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> -->
+              {% else %}
+              <div class="col-3 featcard-blank d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" style="background:rgba(0,0,0,0.5)"></div>
+              {% endif %}
+        
+              {% else %}
+              <div class="col-3 featcard-blank d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" style=""></div>
+              {% endif %}
+        
+              {% endfor %}
+            </div>
+          </div>
+          {% endfor %}
+        </div>
         <div class="row">
           {% for i in info %}
           <div class="col-6">
@@ -1241,6 +1382,13 @@
                       <hr class="py-0 my-0">
                       <button type="button" class="cardbtn-opt" style="--btncol:#FFFFFF" data-dismiss="modal">
                         Action3
+                      </button>
+                    </div>
+                    <div class="col-4 text-center text-uppercase card-label">
+                      <b>Exchange</b>
+                      <hr class="py-0 my-0">
+                      <button type="button" class="cardbtn-opt" style="--btncol:#FFFFFF" data-dismiss="modal" id="exchange">
+                        Exchange
                       </button>
                     </div>
                     <!-- <div class="col-12 text-center">
