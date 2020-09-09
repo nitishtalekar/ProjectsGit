@@ -1313,7 +1313,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 turn = names.index(name1)
                 game_random = game.random.split("#")
                 random_id = random.choice(game_random)
-                random_card = await self.get_random(random_id)
+                random_card = await self.get_random(9)
                 flag = 0
                 # random_card = await self.get_random(random_id)
 

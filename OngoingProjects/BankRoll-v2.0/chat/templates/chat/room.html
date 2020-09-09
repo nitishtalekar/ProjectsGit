@@ -336,6 +336,7 @@
         });
       } else if ((score - pos) < 0) {
         var u = $('#gameuser').val();
+        var new_delay = 0; 
         if (u == '{{name}}') {
           console.log("PASSED");
           $('#start_pass').val("start#" + "{{name}}");
@@ -344,7 +345,11 @@
           }, delay[1], function() {
             $("#passing_start").click();
           });
-          var new_delay = delay[0] - delay[1] - 500;
+          new_delay = delay[0] - delay[1];
+        }
+        else{
+          new_delay = delay[0];
+        }
           $("#body").animate({
             opacity: 1
           }, new_delay + 500, function() {
@@ -371,7 +376,6 @@
             position(score, colors, dispColor);
             $("#cover").hide();
           });
-        }
       } else {
         $("#body").animate({
           opacity: 1
@@ -1436,7 +1440,7 @@
         document.querySelector('#update-board').click();
         // document.getElementById('show-sell').click();
       } else if (data.tag == 6) {
-        console.log(data);
+        // console.log(data);
         var stat = document.getElementById("status-string").value;
         var stat_arr = stat.split("--");
         stat_arr[1] = data.color;
