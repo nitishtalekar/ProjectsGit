@@ -1409,7 +1409,7 @@
         }
 
       } else if (data.tag == 4) {
-        console.log(data);
+        // console.log(data);
         document.querySelector('#chat-log').value += (data.roll_value + " " + data.curr_player + " " + data.curr_color + '\n');
         document.querySelector('#chat-log').value += ("Move from: " + data.curr_loc + " to " + data.new_loc + " " + data.colors + '\n');
         document.querySelector('#pos').value = data.curr_loc;
@@ -1436,6 +1436,7 @@
         document.querySelector('#update-board').click();
         // document.getElementById('show-sell').click();
       } else if (data.tag == 6) {
+        console.log(data);
         var stat = document.getElementById("status-string").value;
         var stat_arr = stat.split("--");
         stat_arr[1] = data.color;
