@@ -345,8 +345,10 @@
   /* border: 1px solid white; */
 }
 
-.font-5{
+.exchange_names{
   font-size: 5vw;
+  text-transform: uppercase;
+  font-weight: bold;
 }
 
 .featcard-blank{
@@ -356,6 +358,6 @@
 }
 
 .confirmcard{
-  min-height: 30vh;
+  height: 30vh;
   width:80%;
 }

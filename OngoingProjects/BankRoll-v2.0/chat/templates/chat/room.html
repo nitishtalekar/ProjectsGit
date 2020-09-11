@@ -635,7 +635,16 @@
         show_owned(type,'exchange1');
         $("#exchange-cover").show();
       });
-      
+      $('#deal').click(function(){
+        $('#feature_info').val($("#exchange").val());
+        $('#feature').click();
+      });
+      $('exchange_deal').click(function(){
+        
+      });
+      $('#deal_accept').click(function(){
+        
+      });
       $('#left').click(function() {
         $('#dice-left').show();
         $("#dice-left").animate({
@@ -698,6 +707,7 @@
       $("#exchange").val(card_num+";"+card_own);
       $("#exchange_color").val(card_col);
       $('#ex1modal').html($('#exchange_name-'+card_num).val());
+      $('#ex1modal').prop('style','color:'+card_col);
       reset_covers();
       var type = "exchange";
       show_other_owned(type,'exchange2');
@@ -710,9 +720,8 @@
       var card_col = $('#exchange_color-'+card_num).val();
       var ex = $("#exchange").val();
       $("#exchange").val(ex+"#"+card_num+";"+card_own);
-      var excol = $("#exchange_color").val();
       $('#ex2modal').html($('#exchange_name-'+card_num).val());
-      $("#exchange_color").val(excol + "#" + card_col);
+      $('#ex2modal').prop('style','color:'+card_col);
       $("#exchange-cover").hide();
       $('#exchangeModal').click();
     });
@@ -1409,7 +1418,7 @@
           <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
             <div class="modal-content modal-border modalcard my-0 py-0" id="optModal-content" style="--bcolor:#FFFFFF">
               <div class="d-flex justify-content-center align-items-center pt-1 pb-2" id="optModal-head" style="background:#FFFFFF">
-                <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0 text-white">Options</h5>
+                <h5 class="font-weight-bold text-uppercase py-0 my-0 text-white">Options</h5>
               </div>
               <div class="modal-body d-flex justify-content-center align-items-center pt-2 my-0 pb-0">
                 <div class="container-fluid mt-0">
@@ -1459,30 +1468,66 @@
           <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
             <div class="modal-content modal-border confirmcard my-0 py-0" id="exModal-content" style="--bcolor:#FFFFFF">
               <div class="d-flex justify-content-center align-items-center pt-1 pb-2" id="exModal-head" style="background:#FFFFFF">
-                <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0 text-white">DEAL</h5>
+                <h5 class="font-weight-bold text-uppercase py-0 my-0 text-white">DEAL</h5>
               </div>
-              <div class="modal-body d-flex justify-content-center align-items-center pt-2 my-0 pb-0">
+              <div class="modal-body d-flex justify-content-center align-items-center pt-1 my-0 pb-0">
                 <div class="container-fluid mt-0">
                   <div class="row">
                     <div class="col-12 text-center">
-                      <span id="ex1modal" style="color:black;" class="font-5">EX</span>
+                      <span id="ex1modal" style="color:black;" class="exchange_names">EX</span>
                     </div>
                     <div class="col-12 text-center">
-                      <i  style="color:black;" class="fa fa-exchange" aria-hidden="true"></i>
+                      <i  style="color:black;font-size:8vw" class="fa fa-exchange" aria-hidden="true"></i>
                     </div>
                     <div class="col-12 text-center">
-                      <span id="ex2modal" style="color:black;" class="font-5">EX</span>
+                      <span id="ex2modal" style="color:black;" class="exchange_names">EX</span>
                     </div>
                   </div>
-                  <div class="row d-flex justify-content-around align items center mb-2 mt-3">
-                    <div class="col-5">
+                  <div class="row d-flex justify-content-around align items center mt-2">
+                    <div class="col-6">
                       <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
                         Close
                       </button>
                     </div>
-                    <div class="col-5">
-                      <button type="button" class="cardbtn-opt" style="--btncol:grey" data-dismiss="modal">
+                    <div class="col-6">
+                      <button type="button" class="cardbtn-opt" id="deal" style="--btncol:grey" data-dismiss="modal">
                         Deal
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade my-0 py-0" id="ex_acceptModal" style="--bcolor:#FFFFFF" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+          <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
+            <div class="modal-content modal-border confirmcard my-0 py-0" id="exaModal-content" style="--bcolor:#FFFFFF">
+              <div class="d-flex justify-content-center align-items-center pt-1 pb-2" id="exaModal-head" style="background:#FFFFFF">
+                <h5 class="font-weight-bold text-uppercase py-0 my-0 text-white">DEAL</h5>
+              </div>
+              <div class="modal-body d-flex justify-content-center align-items-center pt-1 my-0 pb-0">
+                <div class="container-fluid mt-0">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <span id="ex1modal" style="color:black;" class="exchange_names">EX</span>
+                    </div>
+                    <div class="col-12 text-center">
+                      <i  style="color:black;font-size:8vw" class="fa fa-exchange" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-12 text-center">
+                      <span id="ex2modal" style="color:black;" class="exchange_names">EX</span>
+                    </div>
+                  </div>
+                  <div class="row d-flex justify-content-around align items center mt-2">
+                    <div class="col-6">
+                      <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                        Close
+                      </button>
+                    </div>
+                    <div class="col-6">
+                      <button type="button" class="cardbtn-opt" id="deal" style="--btncol:grey" data-dismiss="modal">
+                        Accept
                       </button>
                     </div>
                   </div>
@@ -1529,9 +1574,11 @@
       
       <!-- Features -->
       <input type="text" id="exchange">
-      <input type="text" id="exchange_color">
-      <input type="text" id="final_exchange">
-      <button type="button" id="exchangeModal" class="btn btn-primary" data-toggle="modal" data-target="#ex_confirmModal"></button>
+      <button type="button" id="exchange_deal">deal</button>
+      <button type="button" id="exchangeModal" data-toggle="modal" data-target="#ex_confirmModal"></button>
+      
+      <input type="text" id="feature_info">
+      <button type="button" id="feature">feature</button>
     </div>
   </div>
 
@@ -1631,6 +1678,9 @@
             document.getElementById("ex_confirmModal").style.setProperty('--bcolor', getBtnColor(data.color));
             document.getElementById("exModal-content").style.setProperty('--bcolor', getBtnColor(data.color));
             document.getElementById("exModal-head").style.setProperty('background', getBtnColor(data.color));
+            document.getElementById("ex_acceptconfirmModal").style.setProperty('--bcolor', getBtnColor(data.color));
+            document.getElementById("exaModal-content").style.setProperty('--bcolor', getBtnColor(data.color));
+            document.getElementById("exaModal-head").style.setProperty('background', getBtnColor(data.color));
             // document.getElementsByClassName("cardbtn-opt").style.setProperty('--btncol', getBtnColor(data.color));
             var x = document.getElementsByClassName("cardbtn-opt")
             var i;
@@ -1732,6 +1782,20 @@
       const roll = rollInputDom.value;
       chatSocket.send(JSON.stringify({
         'tag': 5,
+        'card': message,
+        'name': '{{name}}',
+        'roll': roll
+      }));
+      messageInputDom.value = '';
+    };
+    
+    document.querySelector('#feature').onclick = function(e) {
+      const messageInputDom = document.querySelector('#feature_info');
+      const message = messageInputDom.value;
+      const rollInputDom = document.querySelector('#rolled');
+      const roll = rollInputDom.value;
+      chatSocket.send(JSON.stringify({
+        'tag': 7,
         'card': message,
         'name': '{{name}}',
         'roll': roll
