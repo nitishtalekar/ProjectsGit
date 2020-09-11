@@ -130,6 +130,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
         return 1
 
     @database_sync_to_async
+    def game_mask(self, id, mask):
+        Game.objects.filter(id=id).update(cost_mask=mask)
+        return 1
+
+    @database_sync_to_async
     def get_random(self, id):
         r = Random.objects.get(id=int(id))
         return r
@@ -225,6 +230,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             names = [await self.get_name(i) for i in player]
             await self.relode_random(game.id)
 
+
             await self.channel_layer.group_send(
                 self.room_group_name,
                 {
@@ -238,7 +244,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'worth':game.worth.split("#"),
                     'user_cost':game.cost.split("#"),
                     'display':"",
-                    'build':game.build.split("#")
+                    'build':game.build.split("#"),
+                    'mask':game.cost_mask.split("#")
                 }
             )
 
@@ -402,6 +409,24 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     jail.append(await self.get_name(players[i]))
                     jail_count.append(game.jail.split("#")[i])
 
+            names = [await self.get_name(i) for i in players]
+            turn = names.index(name1)
+            user_mask = game.cost_mask.split("#")
+            masks = user_mask[turn].split(";")
+            for i in range(len(masks)):
+                mask = masks[i].split(".")
+                print(mask)
+                if mask[0] == "0" or mask[0] == "-1":
+                    break
+                if int(mask[0]) - 1 == 0:
+                    masks[i] = str(int(mask[0]) - 1) + "." + "1"
+                else:
+                    masks[i] = str(int(mask[0]) - 1) + "." + mask[1]
+            user_mask[turn] = ";".join(masks)
+            print("user_mask turn", "#".join(user_mask))
+            await self.game_mask(game.id, "#".join(user_mask))
+            game = await self.roll(self.room_name)
+
             if card_id[0] == "buy":
                 turn = (int(game.turn) - 1) % int(game.type)
                 if roll == 6:
@@ -416,14 +441,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 user_card[turn] = ";".join(card)
                 # print("card", "#".join(user_card))
 
-                user_mask = game.card.split("#")
+                user_mask = game.cost_mask.split("#")
                 mask = user_mask[turn].split(";")
                 if mask[0] == "-1":
                     mask[0] = "0.1"
                 else:
-                    mask.append("0.1")
-                user_mask[turn] = ";".join(card)
-                # print("card", "#".join(user_card))
+
+                    mask.append(mask[-1])
+                user_mask[turn] = ";".join(mask)
+                print("user_mask buy", "#".join(user_mask))
 
                 amounts = game.amount.split("#")
                 amount = int(amounts[turn])
@@ -433,7 +459,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 worths = game.worth.split("#")
                 worth = int(worths[turn])
-                worth = worth + (int(cards.buy) * 0.7)
+                worth = worth + math.ceil((int(cards.buy) * 0.7) / 5) * 5
                 worths[turn] = str(int(worth))
                 # print("worth", "#".join(worths))
 
@@ -473,6 +499,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 # print("build", "#".join(builds))
 
                 await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost), "#".join(builds), game.start)
+                await self.game_mask(game.id, "#".join(user_mask))
                 names = []
                 for i in players:
                     names.append(await self.get_name(i))
@@ -510,6 +537,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     card.append(str(card_id[1]))
                 user_card[turn] = ";".join(card)
                 # print("card", "#".join(user_card))
+
+                user_mask = game.cost_mask.split("#")
+                mask = user_mask[turn].split(";")
+                if mask[0] == "-1":
+                    mask[0] = "0.1"
+                else:
+                    mask.append(mask[-1])
+                user_mask[turn] = ";".join(mask)
+                print("user_mask buy", "#".join(user_mask))
 
                 amounts = game.amount.split("#")
                 amount = int(amounts[turn])
@@ -561,6 +597,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 # print("build", "#".join(builds))
 
                 await self.game_update(game.id, "#".join(user_card), "#".join(amounts), "#".join(worths), "#".join(user_cost), "#".join(builds), game.start)
+                await self.game_mask(game.id, "#".join(user_mask))
                 names = []
                 for i in players:
                     names.append(await self.get_name(i))
@@ -605,23 +642,34 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     card_index = user_card[to_index].split(";").index(card_rent)
                     rent = user_rent[to_index].split(";")[card_index]
 
+                    user_mask = game.cost_mask.split("#")
+                    masks = user_mask[to_index].split(";")[card_index].split(".")
+                    print(masks)
+                    mask = int(masks[1])
+                    if mask < 0:
+                        mask = -mask * 0.01
+                    elif mask > 0:
+                        mask = 1 + (mask * 0.01)
+
+                    # print("user_mask", "#".join(user_mask))
+
                     amounts = game.amount.split("#")
                     # print("old", amounts)
                     from_amount = int(amounts[from_index])
-                    from_amount = from_amount - int(rent)
+                    from_amount = from_amount - int( mask * int(rent) )
                     amounts[from_index] = str(from_amount)
                     to_amount = int(amounts[to_index])
-                    to_amount = to_amount + int(rent)
+                    to_amount = to_amount + int( mask * int(rent) )
                     amounts[to_index] = str(to_amount)
                     # print("amount", "#".join(amounts))
 
                     worths = game.worth.split("#")
                     # print("old", worths)
                     from_worth = int(worths[from_index])
-                    from_worth = from_worth - int(rent)
+                    from_worth = from_worth - int( mask * int(rent) )
                     worths[from_index] = str(from_worth)
                     to_worth = int(worths[to_index])
-                    to_worth = to_worth + int(rent)
+                    to_worth = to_worth + int( mask * int(rent) )
                     worths[to_index] = str(to_worth)
                     # print("worth", "#".join(worths))
 
@@ -1322,7 +1370,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 turn = names.index(name1)
                 game_random = game.random.split("#")
                 random_id = random.choice(game_random)
-                random_card = await self.get_random(random_id)
+                random_card = await self.get_random(11)
                 flag = 0
                 # random_card = await self.get_random(random_id)
 
@@ -1560,14 +1608,81 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 if random_card.tag == "6":
 
-                    user_cost = game.cost.split("#")
-                    cost = user_cost[turn].split(";")
-                    if cost[0] == "-1":
-                        cost[0] = str(cards.rent)
-                    else:
-                        cost.append(str(cards.rent))
-                    user_cost[turn] = ";".join(cost)
-                    # print("cost", "#".join(user_cost))
+                    ratios = [50, 75, 25]
+                    # ratio = random.choice(50)
+                    ratio = 50
+                    chance = random.choice(random_card.quants.split("#"))
+
+                    user_mask = game.cost_mask.split("#")
+                    masks = user_mask[turn].split(";")
+                    mask = []
+                    for i in range(len(masks)):
+                        print(i)
+                        mask.append(str(chance) + ".-" + str(ratio))
+
+                    user_mask[turn] = ";".join(mask)
+                    print("mask", "#".join(user_mask))
+
+                    await self.game_mask(game.id, "#".join(user_mask))
+
+                    details = await self.get_player_details(turn,game.id)
+                    disp_msg = details[0]+"##"+details[1]+"** **"+random_card.reason+random_card.quants +"##"
+
+                    await self.channel_layer.group_send(
+                        self.room_group_name,
+                        {
+                            'type': 'chat_message',
+                            'tag':5,
+                            'names': names,
+                            'color':color,
+                            'curr_color':color[turn],
+                            'user_card':game.card.split("#"),
+                            'amount':game.amount.split("#"),
+                            'worth':game.worth.split("#"),
+                            'user_cost':game.cost.split("#"),
+                            'display':disp_msg,
+                            'build':game.build.split("#")
+                        }
+                    )
+
+                if random_card.tag == "7":
+
+                    ratios = [50, 75, 25]
+                    # ratio = random.choice(50)
+                    ratio = 50
+                    chance = random.choice(random_card.quants.split("#"))
+
+                    user_mask = game.cost_mask.split("#")
+                    masks = user_mask[turn].split(";")
+                    mask = []
+                    for i in range(len(masks)):
+                        print(i)
+                        mask.append(str(chance) + "." + str(ratio))
+
+                    user_mask[turn] = ";".join(mask)
+                    print("mask", "#".join(user_mask))
+
+                    await self.game_mask(game.id, "#".join(user_mask))
+
+                    details = await self.get_player_details(turn,game.id)
+                    disp_msg = details[0]+"##"+details[1]+"** **"+random_card.reason+random_card.quants +"##"
+
+                    await self.channel_layer.group_send(
+                        self.room_group_name,
+                        {
+                            'type': 'chat_message',
+                            'tag':5,
+                            'names': names,
+                            'color':color,
+                            'curr_color':color[turn],
+                            'user_card':game.card.split("#"),
+                            'amount':game.amount.split("#"),
+                            'worth':game.worth.split("#"),
+                            'user_cost':game.cost.split("#"),
+                            'display':disp_msg,
+                            'build':game.build.split("#")
+                        }
+                    )
 
 
                 game_random.remove(str(random_id))
