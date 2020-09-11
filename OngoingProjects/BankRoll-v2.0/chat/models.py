@@ -31,6 +31,7 @@ class Game(models.Model):
     start = models.CharField(max_length=500, default="200")
     jail = models.CharField(max_length=500, default="0")
     random = models.CharField(max_length=500, default="")
+    cost_mask = models.CharField(max_length=500, default="1")
 
 class Board(models.Model):
     id = models.CharField(primary_key=True, max_length=500)

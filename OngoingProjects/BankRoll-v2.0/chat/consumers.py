@@ -416,6 +416,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 user_card[turn] = ";".join(card)
                 # print("card", "#".join(user_card))
 
+                user_mask = game.card.split("#")
+                mask = user_mask[turn].split(";")
+                if mask[0] == "-1":
+                    mask[0] = "0.1"
+                else:
+                    mask.append("0.1")
+                user_mask[turn] = ";".join(card)
+                # print("card", "#".join(user_card))
+
                 amounts = game.amount.split("#")
                 amount = int(amounts[turn])
                 amount = amount - int(cards.buy)
@@ -1313,7 +1322,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 turn = names.index(name1)
                 game_random = game.random.split("#")
                 random_id = random.choice(game_random)
-                random_card = await self.get_random(9)
+                random_card = await self.get_random(random_id)
                 flag = 0
                 # random_card = await self.get_random(random_id)
 
@@ -1548,6 +1557,18 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'build':game.build.split("#")
                         }
                     )
+
+                if random_card.tag == "6":
+
+                    user_cost = game.cost.split("#")
+                    cost = user_cost[turn].split(";")
+                    if cost[0] == "-1":
+                        cost[0] = str(cards.rent)
+                    else:
+                        cost.append(str(cards.rent))
+                    user_cost[turn] = ";".join(cost)
+                    # print("cost", "#".join(user_cost))
+
 
                 game_random.remove(str(random_id))
                 if len(game_random) == 0:
