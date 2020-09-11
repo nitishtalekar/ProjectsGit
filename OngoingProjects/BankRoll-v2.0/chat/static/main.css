@@ -351,6 +351,12 @@
   font-weight: bold;
 }
 
+.deal_name{
+  font-size: 5vw;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
 .featcard-blank{
   height:8vh;
   border-radius: 5px;  
@@ -358,6 +364,6 @@
 }
 
 .confirmcard{
-  height: 30vh;
+  min-height: 30vh;
   width:80%;
 }
