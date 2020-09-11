@@ -187,7 +187,7 @@
       }
     }
     
-    function show_owned(type){
+    function show_owned(type,classes){
       var status = $('#status-string').val().split("--");
       if (status != "") {
         var name_list = status[0].split(',');
@@ -197,12 +197,38 @@
         console.log(owned_cards);
         var o_card_list = owned_cards[0].split(";");
         for (x of o_card_list){
-          // console.log(x);
+          $("#"+type+"_owner-"+x).val("{{name}}");
           $("#"+type+"-"+x).prop("style","background:none");
-          $("#"+type+"-"+x).addClass("open");
-          console.log($("#"+type+"-"+x).attr('class'));
+          $("#"+type+"-"+x).addClass(classes);
         }
       }
+    }
+    
+    function show_other_owned(type,classes){
+      var status = $('#status-string').val().split("--");
+      if (status != "") {
+        var name_list = status[0].split(',');
+        var card_list = status[4].split(',');
+        var index = name_list.indexOf('{{name}}');
+        card_list.splice(index, 1);
+        name_list.splice(index, 1);
+        var i;
+        for(i=0;i<name_list.length;i++){
+          var cards = card_list[i].split(";");
+          for (x of cards){
+            $("#"+type+"_owner-"+x).val(name_list[i]);
+            $("#"+type+"-"+x).prop("style","background:none");
+            $("#"+type+"-"+x).addClass(classes);
+          }
+        }
+      }
+    }
+    
+    function reset_covers(){
+      $('.featcard').each(function(){
+        $(this).prop('class','col-3 featcard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0');
+        $(this).prop("style","background:rgba(0, 0, 0, 0.5)");
+      });
     }
 
     function cardbuttonShow(id, tags) {
@@ -606,7 +632,7 @@
       });
       $("#exchange").click(function(){
         var type = "exchange";
-        show_owned(type);
+        show_owned(type,'exchange1');
         $("#exchange-cover").show();
       });
       
@@ -664,9 +690,31 @@
       var parent = $(this).parent().attr('id');
       $("#card" + parent).click();
     });
-    $(document).on("click", ".open", function() {
-      console.log($(this).attr('id'));
+    $(document).on("click", ".exchange1", function() {
+      var card_num = $(this).attr('id').split('-')[1];
+      console.log(card_num);
+      var card_own = $('#exchange_owner-'+card_num).val();
+      var card_col = $('#exchange_color-'+card_num).val();
+      $("#exchange").val(card_num+";"+card_own);
+      $("#exchange_color").val(card_col);
+      $('#ex1modal').html($('#exchange_name-'+card_num).val());
+      reset_covers();
+      var type = "exchange";
+      show_other_owned(type,'exchange2');
+      $("#exchange-cover").show();
+    });
+    $(document).on("click", ".exchange2", function() {
+      var card_num = $(this).attr('id').split('-')[1];
+      console.log(card_num);
+      var card_own = $('#exchange_owner-'+card_num).val();
+      var card_col = $('#exchange_color-'+card_num).val();
+      var ex = $("#exchange").val();
+      $("#exchange").val(ex+"#"+card_num+";"+card_own);
+      var excol = $("#exchange_color").val();
+      $('#ex2modal').html($('#exchange_name-'+card_num).val());
+      $("#exchange_color").val(excol + "#" + card_col);
       $("#exchange-cover").hide();
+      $('#exchangeModal').click();
     });
   </script>
 
@@ -883,7 +931,10 @@
         
               {% if j.tag == 0 or j.tag == 1 %}
               <div class="col-3 featcard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" style="background:rgba(0, 0, 0, 0.5)" id="exchange-{{j.num}}" >
-                <span style="font-size:2vw">{{j.num}}</span>
+                <!-- <span style="font-size:2vw">{{j.num}}</span> -->
+                <input type="text" id="exchange_owner-{{j.num}}" style="display:none">
+                <input type="text" id="exchange_name-{{j.num}}" value="{{j.place}}" style="display:none">
+                <input type="text" id="exchange_color-{{j.num}}" value="{{j.bgcolor}}" style="display:none">
                 <button type="button" id="exchange-card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
               </div>
               <!-- <div class="modal fade my-0 py-0" id="CardModal{{j.num}}" style="--bcolor:{{j.bgcolor}}" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
@@ -1358,50 +1409,80 @@
           <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
             <div class="modal-content modal-border modalcard my-0 py-0" id="optModal-content" style="--bcolor:#FFFFFF">
               <div class="d-flex justify-content-center align-items-center pt-1 pb-2" id="optModal-head" style="background:#FFFFFF">
-                <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0">Options</h5>
+                <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0 text-white">Options</h5>
               </div>
               <div class="modal-body d-flex justify-content-center align-items-center pt-2 my-0 pb-0">
                 <div class="container-fluid mt-0">
                   <div class="row">
-                    <div class="col-4 text-center text-uppercase card-label">
+                    <div class="col-6 text-center text-uppercase card-label mt-3">
                       <b>Action1</b>
                       <hr class="py-0 my-0">
                       <button type="button" class="cardbtn-opt" style="--btncol:#FFFFFF" data-dismiss="modal">
                         Action1
                       </button>
                     </div>
-                    <div class="col-4 text-center text-uppercase card-label">
+                    <div class="col-6 text-center text-uppercase card-label mt-3">
                       <b>Action2</b>
                       <hr class="py-0 my-0">
                       <button type="button" class="cardbtn-opt" style="--btncol:#FFFFFF" data-dismiss="modal">
                         Action2
                       </button>
                     </div>
-                    <div class="col-4 text-center text-uppercase card-label">
+                    <div class="col-6 text-center text-uppercase card-label mt-3">
                       <b>Action3</b>
                       <hr class="py-0 my-0">
                       <button type="button" class="cardbtn-opt" style="--btncol:#FFFFFF" data-dismiss="modal">
                         Action3
                       </button>
                     </div>
-                    <div class="col-4 text-center text-uppercase card-label">
+                    <div class="col-6 text-center text-uppercase card-label mt-3">
                       <b>Exchange</b>
                       <hr class="py-0 my-0">
                       <button type="button" class="cardbtn-opt" style="--btncol:#FFFFFF" data-dismiss="modal" id="exchange">
                         Exchange
                       </button>
                     </div>
-                    <!-- <div class="col-12 text-center">
-                      <img src="{% static 'img/Auction.png' %}" style="width:70%" alt="">
-                    </div> -->
-                    <!-- <div class="col-12 text-center text-uppercase font-weight-bold card-label">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor
-                    </div> -->
                   </div>
                   <div class="row d-flex justify-content-around align items center mb-2 mt-3">
                     <div class="col-5" id="closebtn{{j.num}}">
                       <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
                         Close
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade my-0 py-0" id="ex_confirmModal" style="--bcolor:#FFFFFF" tabindex="-1" role="dialog" aria-hidden="true" data-keyboard="false" data-backdrop="static">
+          <div class="modal-dialog modal-dialog-centered d-flex justify-content-center align-items-center my-0 py-0" role="document">
+            <div class="modal-content modal-border confirmcard my-0 py-0" id="exModal-content" style="--bcolor:#FFFFFF">
+              <div class="d-flex justify-content-center align-items-center pt-1 pb-2" id="exModal-head" style="background:#FFFFFF">
+                <h5 class="font-weight-bold text-dark text-uppercase py-0 my-0 text-white">DEAL</h5>
+              </div>
+              <div class="modal-body d-flex justify-content-center align-items-center pt-2 my-0 pb-0">
+                <div class="container-fluid mt-0">
+                  <div class="row">
+                    <div class="col-12 text-center">
+                      <span id="ex1modal" style="color:black;" class="font-5">EX</span>
+                    </div>
+                    <div class="col-12 text-center">
+                      <i  style="color:black;" class="fa fa-exchange" aria-hidden="true"></i>
+                    </div>
+                    <div class="col-12 text-center">
+                      <span id="ex2modal" style="color:black;" class="font-5">EX</span>
+                    </div>
+                  </div>
+                  <div class="row d-flex justify-content-around align items center mb-2 mt-3">
+                    <div class="col-5">
+                      <button type="button" class="cardbtn" style="--btncol:grey" data-dismiss="modal">
+                        Close
+                      </button>
+                    </div>
+                    <div class="col-5">
+                      <button type="button" class="cardbtn-opt" style="--btncol:grey" data-dismiss="modal">
+                        Deal
                       </button>
                     </div>
                   </div>
@@ -1445,6 +1526,12 @@
 
       <input type="text" id="start_pass">
       <button type="button" id="passing_start">PassStart</button>
+      
+      <!-- Features -->
+      <input type="text" id="exchange">
+      <input type="text" id="exchange_color">
+      <input type="text" id="final_exchange">
+      <button type="button" id="exchangeModal" class="btn btn-primary" data-toggle="modal" data-target="#ex_confirmModal"></button>
     </div>
   </div>
 
@@ -1541,6 +1628,9 @@
             document.getElementById("optionModal").style.setProperty('--bcolor', getBtnColor(data.color));
             document.getElementById("optModal-content").style.setProperty('--bcolor', getBtnColor(data.color));
             document.getElementById("optModal-head").style.setProperty('background', getBtnColor(data.color));
+            document.getElementById("ex_confirmModal").style.setProperty('--bcolor', getBtnColor(data.color));
+            document.getElementById("exModal-content").style.setProperty('--bcolor', getBtnColor(data.color));
+            document.getElementById("exModal-head").style.setProperty('background', getBtnColor(data.color));
             // document.getElementsByClassName("cardbtn-opt").style.setProperty('--btncol', getBtnColor(data.color));
             var x = document.getElementsByClassName("cardbtn-opt")
             var i;

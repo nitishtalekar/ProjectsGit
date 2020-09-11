@@ -253,8 +253,8 @@
   color:white;
   text-transform: uppercase;
   background-color: var(--btncol);
-  padding: 2px;
-  font-size: 2vw;
+  padding: 4px;
+  font-size: 3.5vw;
   outline: none;
   box-shadow: none;
   border: none;
@@ -345,8 +345,17 @@
   /* border: 1px solid white; */
 }
 
+.font-5{
+  font-size: 5vw;
+}
+
 .featcard-blank{
   height:8vh;
   border-radius: 5px;  
   /* border: 0.5px solid white; */
+}
+
+.confirmcard{
+  min-height: 30vh;
+  width:80%;
 }
