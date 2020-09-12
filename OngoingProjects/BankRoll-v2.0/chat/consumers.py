@@ -413,8 +413,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             )
             return
 
-
-
         if tag == 5:
             name = text_data_json['name']
             name1 = name
@@ -448,7 +446,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 else:
                     masks[i] = str(int(mask[0]) - 1) + "." + mask[1]
             user_mask[turn] = ";".join(masks)
-            print("user_mask turn", "#".join(user_mask))
+            # print("user_mask turn", "#".join(user_mask))
             await self.game_mask(game.id, "#".join(user_mask))
             game = await self.roll(self.room_name)
 
@@ -474,7 +472,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     mask.append(mask[-1])
                 user_mask[turn] = ";".join(mask)
-                print("user_mask buy", "#".join(user_mask))
+                # print("user_mask buy", "#".join(user_mask))
 
                 amounts = game.amount.split("#")
                 amount = int(amounts[turn])
@@ -573,7 +571,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 else:
                     mask.append(mask[-1])
                 user_mask[turn] = ";".join(mask)
-                print("user_mask buy", "#".join(user_mask))
+                # print("user_mask buy", "#".join(user_mask))
 
                 amounts = game.amount.split("#")
                 amount = int(amounts[turn])
@@ -675,7 +673,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     user_mask = game.cost_mask.split("#")
                     masks = user_mask[to_index].split(";")[card_index].split(".")
-                    print(masks)
+                    # print(masks)
                     mask = int(masks[1])
                     if mask < 0:
                         mask = -mask * 0.01
@@ -771,6 +769,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 names = [await self.get_name(i) for i in players]
                 turn = names.index(name1)
                 card_rent = card_id[1]
+
                 cards = await self.get_card(card_id[1])
                 user_rent = game.cost.split("#")
                 user_card = game.card.split("#")
@@ -1695,7 +1694,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         mask.append(str(chance) + ".-" + str(ratio))
 
                     user_mask[turn] = ";".join(mask)
-                    print("mask", "#".join(user_mask))
+                    # print("mask", "#".join(user_mask))
 
                     await self.game_mask(game.id, "#".join(user_mask))
 
@@ -1735,7 +1734,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         mask.append(str(chance) + "." + str(ratio))
 
                     user_mask[turn] = ";".join(mask)
-                    print("mask", "#".join(user_mask))
+                    # print("mask", "#".join(user_mask))
 
                     await self.game_mask(game.id, "#".join(user_mask))
 
@@ -1794,6 +1793,120 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 }
             )
             return
+
+        if tag == 7:
+            message = text_data_json['message'].split("--")
+            name = text_data_json['name']
+            roll = text_data_json['roll']
+            print(message, name, roll)
+            if message[0] == "deal":
+                await self.channel_layer.group_send(
+                    self.room_group_name,
+                    {
+                        'type': 'chat_message',
+                        'tag':7,
+                        'message':"--".join(message),
+                        'name':name,
+                        'roll':roll,
+                        'ex_tag':"deal"
+                    }
+                )
+            elif message[0] == "exchange":
+                game = await self.roll(self.room_name)
+                players = game.player.split("#")
+                color = game.color.split("#")
+                names = [await self.get_name(i) for i in players]
+                user_rent = game.cost.split("#")
+                user_card = game.card.split("#")
+
+                p1 = message[1].split(";")
+                turn1 = names.index(p1[1])
+                card1 = await self.get_card(p1[0])
+                p2 = message[2].split(";")
+                turn2 = names.index(p2[1])
+                card2 = await self.get_card(p2[0])
+
+                builds = game.build.split("#")
+                build = builds[turn1].split(";")
+                build_cards = await self.get_build_card(card1.color)
+                check1 = [i for i in build_cards if str(i) in user_card[turn1]]
+                if len(build) == 1:
+                    build[0] = "-1"
+                else:
+                    build.pop(user_card[turn1].split(";").index(p1[0]))
+                builds[turn1] = ";".join(build)
+
+                build = builds[turn2].split(";")
+                build_cards = await self.get_build_card(card2.color)
+                check2 = [i for i in build_cards if str(i) in user_card[turn2]]
+                if len(build) == 1:
+                    build[0] = "-1"
+                else:
+                    build.pop(user_card[turn2].split(";").index(p2[0]))
+                builds[turn2] = ";".join(build)
+                # print("build", "#".join(builds))
+
+
+                cost = user_cost[turn1].split(";")
+                if len(cost) == 1:
+                    cost[0] = "-1"
+                else:
+                    rent = cost.pop(user_card[turn1].split(";").index(p1[0]))
+                user_cost[turn1] = ";".join(cost)
+
+                cost = user_cost[turn2].split(";")
+                if len(cost) == 1:
+                    cost[0] = "-1"
+                else:
+                    rent = cost.pop(user_card[turn2].split(";").index(p2[0]))
+                user_cost[turn2] = ";".join(cost)
+                # print("cost", "#".join(user_cost))
+
+
+                card1 = user_card[turn1].split(";")
+                if len(card1) == 1:
+                    card1[0] = "-1"
+                else:
+                    card1.remove(p1[0])
+                user_card[turn1] = ";".join(card1)
+
+                card2 = user_card[turn2].split(";")
+                if len(card2) == 1:
+                    card2[0] = "-1"
+                else:
+                    card2.remove(p2[0])
+                user_card[turn2] = ";".join(card2)
+
+                # print("card", "#".join(user_card))
+
+                if len(check1) > 1:
+                    for i in range(len(card1)):
+                        if str(card1[i]) in build_cards:
+                            # cost[i] = str(len(check) * (int(cost[i]) // (len(check) - 1)))
+                            c = (len(check1) - 1) * int(cost[i]) / len(build_cards)
+                            cost[i] = str(math.ceil(c / 5) * 5)
+                            if len(check) == len(build_cards):
+                                build[i] = "0"
+                user_cost[turn] = ";".join(cost)
+                # print("cost", "#".join(user_cost))
+                builds[turn] = ";".join(build)
+                # print("build", "#".join(builds))
+
+                if len(check) > 1:
+                    for i in range(len(card)):
+                        if str(card[i]) in build_cards:
+                            # cost[i] = str(len(check) * (int(cost[i]) // (len(check) - 1)))
+                            c = (len(check) - 1) * int(cost[i]) / len(build_cards)
+                            cost[i] = str(math.ceil(c / 5) * 5)
+                            if len(check) == len(build_cards):
+                                build[i] = "0"
+                user_cost[turn] = ";".join(cost)
+                # print("cost", "#".join(user_cost))
+                builds[turn] = ";".join(build)
+                # print("build", "#".join(builds))
+
+
+
 
     # Receive message from room group
     async def chat_message(self, event):
@@ -1924,6 +2037,21 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'worth':worth,
                 'count':count,
                 'display':display,
+            }))
+            return
+
+        if tag == 7:
+            message = event['message']
+            name = event['name']
+            roll = event['roll']
+            ex_tag = event['ex_tag']
+            await self.send(text_data=json.dumps({
+                'type': type,
+                'tag': tag,
+                'message':message,
+                'roll':roll,
+                'name':name,
+                'ex_tag':ex_tag
             }))
             return
 

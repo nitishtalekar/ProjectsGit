@@ -1737,6 +1737,13 @@
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
       }
+      else if (data.tag == 7){
+        console.log(data);
+        if (data.ex_tag == "deal"){
+          document.querySelector('#exchange_status').value = data.message;
+          document.querySelector('#exchange_deal').click();
+        }
+      }
       document.querySelector('#count-log').value = (data.count);
 
     };
@@ -1795,7 +1802,7 @@
       const roll = rollInputDom.value;
       chatSocket.send(JSON.stringify({
         'tag': 7,
-        'card': message,
+        'message': message,
         'name': '{{name}}',
         'roll': roll
       }));
