@@ -186,7 +186,7 @@
         $('#closebtn14').hide();
       }
     }
-    
+
     function show_owned(type,classes){
       var status = $('#status-string').val().split("--");
       if (status != "") {
@@ -203,7 +203,7 @@
         }
       }
     }
-    
+
     function show_other_owned(type,classes){
       var status = $('#status-string').val().split("--");
       if (status != "") {
@@ -223,7 +223,7 @@
         }
       }
     }
-    
+
     function reset_covers(){
       $('.featcard').each(function(){
         $(this).prop('class','col-3 featcard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0');
@@ -380,7 +380,7 @@
         });
       } else if ((score - pos) < 0) {
         var u = $('#gameuser').val();
-        var new_delay = 0; 
+        var new_delay = 0;
         if (u == '{{name}}') {
           console.log("PASSED");
           $('#start_pass').val("start#" + "{{name}}");
@@ -644,7 +644,7 @@
         var ex_status = $('#exchange_status').val();
         var exstat = ex_status.split('--');
         if(exstat[0] == 'deal'){
-          var name = ex_status.split('--')[2].split(';')[1]; 
+          var name = ex_status.split('--')[2].split(';')[1];
           if(name == '{{name}}'){
             var d1 = exstat[1].split(';');
             var d2 = exstat[2].split(';');
@@ -657,7 +657,7 @@
           }
         }
         else if(exstat[0] == 'reject'){
-          var name = ex_status.split('--')[1].split(';')[1]; 
+          var name = ex_status.split('--')[1].split(';')[1];
           if(name == '{{name}}'){
             var d1 = exstat[1].split(';');
             var d2 = exstat[2].split(';');
@@ -969,11 +969,11 @@
           <div class="col-6">
             <div class="row">
               {% for j in i %}
-        
+
               {% if j.num != -1 %}
-        
+
               {% if j.tag == 0 or j.tag == 1 %}
-              
+
               <div class="col-3 featcard d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" style="background:rgba(0, 0, 0, 0.5)" id="exchange-{{j.num}}" >
                 <!-- <span style="font-size:2vw">{{j.num}}</span> -->
                 <input type="text" id="exchange_owner-{{j.num}}" style="display:none">
@@ -981,15 +981,15 @@
                 <input type="text" id="exchange_color-{{j.num}}" value="{{j.bgcolor}}" style="display:none">
                 <button type="button" id="exchange-card{{j.num}}" class="btn btn-primary" data-toggle="modal" data-target="#CardModal{{j.num}}" style="display:none"></button>
               </div>
-              
+
               {% else %}
               <div class="col-3 featcard-blank d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" style="background:rgba(0,0,0,0.5)"></div>
               {% endif %}
-        
+
               {% else %}
               <div class="col-3 featcard-blank d-flex justify-content-center align-items-center px-0 py-0 mx-0 my-0" style=""></div>
               {% endif %}
-        
+
               {% endfor %}
             </div>
           </div>
@@ -1561,7 +1561,7 @@
 
       <input type="text" id="start_pass">
       <button type="button" id="passing_start">PassStart</button>
-      
+
       <!-- Features -->
       <input type="text" id="exchange">
       <input type="text" id="exchange_status">
@@ -1569,7 +1569,7 @@
       <button type="button" id="exchangeModal" data-toggle="modal" data-target="#ex_confirmModal"></button>
       <button type="button" id="exchangeacceptModal" data-toggle="modal" data-target="#ex_acceptModal">ACCEPT</button>
       <button type="button" id="exchangerejectModal" data-toggle="modal" data-target="#ex_rejectModal">Reject</button>
-      
+
       <input type="text" id="feature_info">
       <button type="button" id="feature">feature</button>
     </div>
@@ -1717,6 +1717,7 @@
         // console.log(data.message);
         document.querySelector('#chat-log').value += (data.message + " left" + '\n');
       } else if (data.tag == 5) {
+        console.log(data.mask);
         var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost;
         status = status + "--" + data.display + "--" + data.build + "--" + data.curr_color;
         // console.log(data.build);
@@ -1784,7 +1785,7 @@
       }));
       messageInputDom.value = '';
     };
-    
+
     document.querySelector('#feature').onclick = function(e) {
       const messageInputDom = document.querySelector('#feature_info');
       const message = messageInputDom.value;

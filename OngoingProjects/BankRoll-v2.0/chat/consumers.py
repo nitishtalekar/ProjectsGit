@@ -171,6 +171,28 @@ class ChatConsumer(AsyncWebsocketConsumer):
         username = User.objects.filter(id=this_player)[0].name
         return [username , this_color]
 
+    def get_mask(self, masks):
+        mask = []
+        for i in masks.split("#"):
+            temp = []
+            for j in i.split(";"):
+                if j == "-1":
+                    temp.append("-1")
+                    continue
+                turn = j.split(".")[0]
+                p = int(j.split(".")[1])
+                if turn != "0":
+                    if p > 1:
+                        print("p",p)
+                        p = 1 + p * 0.01
+                        print("p",p)
+                    elif p < 0:
+                        p = p * 0.01
+                temp.append(str(p))
+            mask.append(";".join(temp))
+        return mask
+
+
     async def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
         self.room_group_name = 'chat_%s' % self.room_name
@@ -230,6 +252,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
             names = [await self.get_name(i) for i in player]
             await self.relode_random(game.id)
 
+            mask = self.get_mask(game.cost_mask)
+            print(mask)
+
 
             await self.channel_layer.group_send(
                 self.room_group_name,
@@ -245,7 +270,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'user_cost':game.cost.split("#"),
                     'display':"",
                     'build':game.build.split("#"),
-                    'mask':game.cost_mask.split("#")
+                    'mask':mask
                 }
             )
 
@@ -507,6 +532,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 details = await self.get_player_details(turn,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**bought**"+cards.name+"##"+cards.color
 
+                mask = self.get_mask("#".join(user_mask))
+
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {
@@ -520,7 +547,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'worth':worths,
                         'user_cost':user_cost,
                         'display':disp_msg,
-                        'build':builds
+                        'build':builds,
+                        'mask':mask
                     }
                 )
 
@@ -605,6 +633,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 details = await self.get_player_details(turn,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**bought**"+cards.name+"##"+"#407B87"
 
+                mask = self.get_mask("#".join(user_mask))
+
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {
@@ -618,7 +648,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'worth':worths,
                         'user_cost':user_cost,
                         'display':disp_msg,
-                        'build':builds
+                        'build':builds,
+                        'mask':mask
                     }
                 )
 
@@ -648,7 +679,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     mask = int(masks[1])
                     if mask < 0:
                         mask = -mask * 0.01
-                    elif mask > 0:
+                    elif mask > 1:
                         mask = 1 + (mask * 0.01)
 
                     # print("user_mask", "#".join(user_mask))
@@ -687,6 +718,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     details = await self.get_player_details(turn,game.id)
                     details_pay = await self.get_player_details(to_index,game.id)
                     disp_msg = details[0]+"##"+details[1]+"**paid ₹"+rent+" to**"+details_pay[0]+"##"+details_pay[1]
+                    mask = self.get_mask(game.cost_mask)
 
                     await self.channel_layer.group_send(
                         self.room_group_name,
@@ -701,7 +733,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':worths,
                             'user_cost':user_rent,
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -713,6 +746,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     names = []
                     for i in players:
                         names.append(await self.get_name(i))
+
+                    mask = self.get_mask(game.cost_mask)
 
                     await self.channel_layer.group_send(
                         self.room_group_name,
@@ -727,7 +762,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':game.worth.split("#"),
                             'user_cost':game.cost.split("#"),
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -785,6 +821,15 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 user_card[turn] = ";".join(card)
                 # print("card", "#".join(user_card))
 
+                user_masks = game.cost_mask.split("#")
+                masks = user_masks[turn].split(";")
+                if len(masks) == 1:
+                    masks[0] = "-1"
+                else:
+                    masks.pop()
+                user_masks[turn] = ";".join(masks)
+                # print("card", "#".join(user_masks))
+
                 if len(check) > 1:
                     for i in range(len(card)):
                         if str(card[i]) in build_cards:
@@ -805,6 +850,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 details = await self.get_player_details(turn,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**Sold**"+cards.name+"##"+cards.color
 
+                mask = self.get_mask("#".join(user_masks))
+
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {
@@ -818,7 +865,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'worth':worths,
                         'user_cost':user_cost,
                         'display':disp_msg,
-                        'build':builds
+                        'build':builds,
+                        'mask':mask
                     }
                 )
 
@@ -876,6 +924,14 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 user_card[turn] = ";".join(card)
                 # print("card", "#".join(user_card))
 
+                user_masks = game.cost_mask.split("#")
+                masks = user_masks[turn].split(";")
+                if len(masks) == 1:
+                    masks[0] = "-1"
+                else:
+                    masks.pop()
+                user_masks[turn] = ";".join(masks)
+
                 if len(check) > 1:
                     for i in range(len(card)):
                         if str(card[i]) in build_cards:
@@ -898,6 +954,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 details = await self.get_player_details(turn,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**Sold "+" on**"+cards.name+"##"+"#407B87"
 
+                mask = self.get_mask("#".join(user_masks))
+
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {
@@ -911,7 +969,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'worth':worths,
                         'user_cost':user_cost,
                         'display':disp_msg,
-                        'build':builds
+                        'build':builds,
+                        'mask':mask
                     }
                 )
 
@@ -971,7 +1030,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 details = await self.get_player_details(turn,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**built "+building+" on**"+cards.name+"##"+cards.color
-
+                mask = self.get_mask(game.cost_mask)
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {
@@ -985,7 +1044,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'worth':worths,
                         'user_cost':user_cost,
                         'display':disp_msg,
-                        'build':builds
+                        'build':builds,
+                        'mask':mask
                     }
                 )
 
@@ -1046,7 +1106,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 details = await self.get_player_details(turn,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**sold "+building+" on**"+cards.name+"##"+cards.color
-
+                mask = self.get_mask(game.cost_mask)
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {
@@ -1060,7 +1120,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'worth':worths,
                         'user_cost':user_cost,
                         'display':disp_msg,
-                        'build':builds
+                        'build':builds,
+                        'mask':mask
                     }
                 )
 
@@ -1126,6 +1187,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 details = await self.get_player_details(turn,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**stopped "+building+" on**"+cards.name+"##"+"#407B87"
+                mask = self.get_mask(game.cost_mask)
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -1140,7 +1202,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'worth':worths,
                         'user_cost':user_cost,
                         'display':disp_msg,
-                        'build':builds
+                        'build':builds,
+                        'mask':mask
                     }
                 )
 
@@ -1192,7 +1255,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 details = await self.get_player_details(turn,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**started "+building+" on**"+cards.name+"##"+"#407B87"
-
+                mask = self.get_mask(game.cost_mask)
                 await self.channel_layer.group_send(
                     self.room_group_name,
                     {
@@ -1206,7 +1269,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'worth':worths,
                         'user_cost':game.cost.split("#"),
                         'display':disp_msg,
-                        'build':builds
+                        'build':builds,
+                        'mask':mask
                     }
                 )
 
@@ -1231,7 +1295,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     details = await self.get_player_details(turn,game.id)
                     disp_msg = details[0]+"##"+details[1]+"**bailed out by paying ₹"+card_id[2]+"**"
-
+                    mask = self.get_mask(game.cost_mask)
                     await self.channel_layer.group_send(
                         self.room_group_name,
                         {
@@ -1245,7 +1309,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':worths,
                             'user_cost':game.cost.split("#"),
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -1265,6 +1330,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     details = await self.get_player_details(turn,game.id)
                     disp_msg = details[0]+"##"+details[1]+"**is in Jail for "+card_id[2]+" chances**"
 
+                    mask = self.get_mask(game.cost_mask)
                     await self.channel_layer.group_send(
                         self.room_group_name,
                         {
@@ -1278,7 +1344,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':worths,
                             'user_cost':game.cost.split("#"),
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -1324,6 +1391,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                 details = await self.get_player_details(turn,game.id)
                 disp_msg = details[0]+"##"+details[1]+"**is in jail for "+jails[turn]+" chances**"
+                mask = self.get_mask(game.cost_mask)
 
                 await self.channel_layer.group_send(
                     self.room_group_name,
@@ -1338,7 +1406,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                         'worth':game.worth.split("#"),
                         'user_cost':game.cost.split("#"),
                         'display':disp_msg,
-                        'build':game.build.split("#")
+                        'build':game.build.split("#"),
+                        'mask':mask
                     }
                 )
                 if jails[turn] != "0":
@@ -1394,7 +1463,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     details = await self.get_player_details(turn,game.id)
                     disp_msg = details[0]+"##"+details[1]+"** **"+random_card.reason+random_card.quants +"##"
-
+                    mask = self.get_mask(game.cost_mask)
                     await self.channel_layer.group_send(
                         self.room_group_name,
                         {
@@ -1408,7 +1477,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':worths,
                             'user_cost':game.cost.split("#"),
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -1432,7 +1502,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     details = await self.get_player_details(turn,game.id)
                     disp_msg = details[0]+"##"+details[1]+"** **"+random_card.reason+random_card.quants +"##"
-
+                    mask = self.get_mask(game.cost_mask)
                     await self.channel_layer.group_send(
                         self.room_group_name,
                         {
@@ -1446,7 +1516,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':worths,
                             'user_cost':game.cost.split("#"),
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -1483,7 +1554,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     details = await self.get_player_details(turn,game.id)
                     disp_msg = details[0]+"##"+details[1]+"** **"+random_card.reason+random_card.quants +"##"
-
+                    mask = self.get_mask(game.cost_mask)
                     await self.channel_layer.group_send(
                         self.room_group_name,
                         {
@@ -1497,7 +1568,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':worths,
                             'user_cost':game.cost.split("#"),
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -1532,7 +1604,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     details = await self.get_player_details(turn,game.id)
                     disp_msg = details[0]+"##"+details[1]+"** **"+random_card.reason+random_card.quants +"##"
-
+                    mask = self.get_mask(game.cost_mask)
                     await self.channel_layer.group_send(
                         self.room_group_name,
                         {
@@ -1546,7 +1618,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':worths,
                             'user_cost':game.cost.split("#"),
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -1588,7 +1661,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     details = await self.get_player_details(turn,game.id)
                     disp_msg = details[0]+"##"+details[1]+"** **"+random_card.reason+card.name +"##"
-
+                    mask = self.get_mask(game.cost_mask)
                     await self.channel_layer.group_send(
                         self.room_group_name,
                         {
@@ -1602,7 +1675,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':game.worth.split("#"),
                             'user_cost':game.cost.split("#"),
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -1627,7 +1701,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     details = await self.get_player_details(turn,game.id)
                     disp_msg = details[0]+"##"+details[1]+"** **"+random_card.reason+random_card.quants +"##"
-
+                    mask = self.get_mask("#".join(user_mask))
                     await self.channel_layer.group_send(
                         self.room_group_name,
                         {
@@ -1641,7 +1715,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':game.worth.split("#"),
                             'user_cost':game.cost.split("#"),
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -1666,7 +1741,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
 
                     details = await self.get_player_details(turn,game.id)
                     disp_msg = details[0]+"##"+details[1]+"** **"+random_card.reason+random_card.quants +"##"
-
+                    mask = self.get_mask("#".join(user_mask))
+                    print(mask)
                     await self.channel_layer.group_send(
                         self.room_group_name,
                         {
@@ -1680,7 +1756,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                             'worth':game.worth.split("#"),
                             'user_cost':game.cost.split("#"),
                             'display':disp_msg,
-                            'build':game.build.split("#")
+                            'build':game.build.split("#"),
+                            'mask':mask
                         }
                     )
 
@@ -1812,6 +1889,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             user_cost = event['user_cost']
             display = event['display']
             build = event['build']
+            mask = event['mask']
             count = await self.get_count(self.room_name)
             await self.send(text_data=json.dumps({
                 'type': type,
@@ -1825,7 +1903,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 'user_cost':user_cost,
                 'count':count,
                 'display':display,
-                'build':build
+                'build':build,
+                'mask':mask
             }))
             return
 
