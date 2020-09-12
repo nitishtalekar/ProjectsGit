@@ -155,6 +155,7 @@
 }
 .modal-border{
   border: 5px solid var(--bcolor);
+  outline:none;
 }
 .divider{
   width:80%;

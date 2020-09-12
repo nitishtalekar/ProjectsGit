@@ -500,7 +500,7 @@
       }
     }
 
-    function update_rent(color_list, card_list, rent_list, build_list) {
+    function update_rent(color_list, card_list, rent_list, build_list, mask_list) {
       $(".rentcard").each(function() {
         $(this).hide();
       });
@@ -508,6 +508,7 @@
       var cards = card_list.split(',');
       var rents = rent_list.split(',');
       var builds = build_list.split(',');
+      var masks = mask_list.split(',');
       var i;
       var j;
       for (i = 0; i < colors.length; i++) {
@@ -515,10 +516,12 @@
         var property = cards[i].split(';');
         var prop_rents = rents[i].split(';');
         var prop_builds = builds[i].split(';');
+        var prop_masks = masks[i].split(';');
         for (j = 0; j < property.length; j++) {
           if (prop_rents[j] != "-1") {
+            var show_rent = roundToFive(parseInt(prop_rents[j]), parseFloat(prop_masks[j]));
             $('#rent' + property[j]).css('--color', col);
-            $('#rent' + property[j]).html("₹" + prop_rents[j]);
+            $('#rent' + property[j]).html("₹" + show_rent);
             $('#rent' + property[j]).show();
             $('#rent_price-' + property[j]).html("₹" + prop_rents[j]);
             var sell_pr = roundToFive(parseInt(prop_rents[j]), 0.7);
@@ -551,7 +554,7 @@
 
     function update(status) {
       update_amount(status[1], status[2], status[3]);
-      update_rent(status[1], status[4], status[5],status[7]);
+      update_rent(status[1], status[4], status[5],status[7],status[8]);
       update_msg(status[6]);
     }
 
@@ -1717,9 +1720,8 @@
         // console.log(data.message);
         document.querySelector('#chat-log').value += (data.message + " left" + '\n');
       } else if (data.tag == 5) {
-        console.log(data.mask);
         var status = data.names + "--" + data.color + "--" + data.amount + "--" + data.worth + "--" + data.user_card + "--" + data.user_cost;
-        status = status + "--" + data.display + "--" + data.build + "--" + data.curr_color;
+        status = status + "--" + data.display + "--" + data.build + "--" + data.mask + "--" + data.curr_color;
         // console.log(data.build);
         document.querySelector('#status-string').value = status;
         document.querySelector('#update-board').click();
