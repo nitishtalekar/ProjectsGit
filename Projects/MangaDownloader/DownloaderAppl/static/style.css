@@ -1,0 +1,182 @@
+@font-face {
+  font-family: Montserrat;
+  src: url(Montserrat-Regular.ttf);
+  }
+
+body{
+  font-family: Montserrat;
+  font-size: 20px;
+}
+
+.title{
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 5px;
+}
+
+.chp-title{
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  letter-spacing: 5px;
+  font-size: 18px;
+}
+
+.manga-box{
+  height: 200px;
+  width: 150px;
+  border: 2px solid white;
+}
+
+.manga-title{
+  text-transform: uppercase;
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.dw-title{
+  text-transform: uppercase;
+  color: black;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.manga-title-selected{
+  text-transform: uppercase;
+  color: black;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.manga-chapter-selected{
+  background: white;
+  opacity: 0.7;
+}
+
+.manga-chapter-selected:hover{
+  cursor: pointer;
+}
+
+.manga-box:hover{
+  cursor: pointer;
+}
+
+.manga-chapter:hover{
+  cursor: pointer;
+}
+
+.create-btn:hover{
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.create-btn{
+  border-radius: 20px;
+  background: white;
+  text-transform: uppercase;
+  color: black;
+  font-weight: bold;
+  letter-spacing: 5px;
+  font-size: 18px;
+}
+
+.background{
+  background-position: center;
+  background-repeat: no-repeat; 
+  background-size: cover; 
+}
+
+.main-box{
+  background-color: rgba(0, 0, 0, 0.8);
+}
+
+.popup-box{
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px white solid;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: black;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: lightgrey;
+  opacity: 0.4;
+  border-radius: 4px;
+}
+
+
+.loader {
+  /* position: absolute;
+  top: calc(50% - 32px);
+  left: calc(50% - 32px); */
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  perspective: 800px;
+}
+
+.inner {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;  
+}
+
+.inner.one {
+  left: 0%;
+  top: 0%;
+  animation: rotate-one 1s linear infinite;
+  border-bottom: 3px solid #EFEFFA;
+}
+
+.inner.two {
+  right: 0%;
+  top: 0%;
+  animation: rotate-two 1s linear infinite;
+  border-right: 3px solid #EFEFFA;
+}
+
+.inner.three {
+  right: 0%;
+  bottom: 0%;
+  animation: rotate-three 1s linear infinite;
+  border-top: 3px solid #EFEFFA;
+}
+
+@keyframes rotate-one {
+  0% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(-45deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-two {
+  0% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(50deg) rotateY(10deg) rotateZ(360deg);
+  }
+}
+
+@keyframes rotate-three {
+  0% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(0deg);
+  }
+  100% {
+    transform: rotateX(35deg) rotateY(55deg) rotateZ(360deg);
+  }
+}
