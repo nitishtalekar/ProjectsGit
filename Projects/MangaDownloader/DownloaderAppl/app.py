@@ -61,15 +61,31 @@ def chpselect():
         chapter_link = request.form['chapter-value']
         chp_nos = request.form['chapter-numbers'].split(",")[::-1]
         print(chp_nos)
+        missing = 0
         chp_links = chapter_link.split(",")[::-1]
         image_links = []
         number = []
         for chp in chp_links:
             chapter_site = requests.get(chp).text
             chapter = chapter_site.split(' ')
+            check_len = len(image_links)
+            checklinks = []
             for i in chapter:
                 if "jpg" in i and "src" in i and "page" in i:
                     image_links.append(i[5:-1])
+            if check_len == len(image_links):
+                for i in chapter:
+                    if "jpg" in i and "src" in i:
+                        checklinks.append(i)
+                # print(checklinks)
+                similar = checklinks[0].split("/")
+                # print("sim")
+                # print(similar)
+                # print("sim")
+                for cl in checklinks:
+                    # print(cl.split("/")[:-1])
+                    if similar[:-1] == cl.split("/")[:-1]:
+                        image_links.append(cl[5:-1])
             print(str(len(image_links)) + " links found")
         page_list = []
         for page in range(len(image_links)):
@@ -77,15 +93,19 @@ def chpselect():
             try:
                 image = Image.open(io.BytesIO(image_data))
             except:
-                return redirect("/")
+                print(image_links[page])
+                print("1 page missing")
+                missing = missing + 1
+                # return redirect("/")
             page_list.append(image)
             print(str(page+1) + " / " + str(len(image_links)))
-        chp_str = "(" + chp_nos[1] + " - " + chp_nos[-1] + ")"
+        chp_str = "(" + chp_nos[0] + " - " + chp_nos[-1] + ")"
         pdf_name = "CC-" + name + "-" + chp_str + ".pdf"
         cover = Image.open("cover.jpg")
         pdf_filename = "static/pdf/CC-manga.pdf"
         cover.save(pdf_filename, "PDF" ,resolution=100.0, save_all=True, append_images=page_list)
         # os.remove(pdf_filename)
+        print(missing , " pages missing")
         print("Done!")
         chp_data = load_chapters(manga_link)
         return render_template('index.html',mode="chapter",chapters=chp_data,pdf="pdf/CC-manga.pdf",pdf_name=pdf_name,link=manga_link,name=name,cover=cover_page,download="true")
