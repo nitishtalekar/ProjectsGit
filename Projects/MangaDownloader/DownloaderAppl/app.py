@@ -3,7 +3,7 @@ from __future__ import division, print_function
 import sys
 import os
 import glob
-import cv2
+# import cv2
 
 # Flask utils
 from flask import Flask, redirect, url_for, request, render_template
@@ -80,7 +80,7 @@ def chpselect():
                     image_links.append(i.split('"')[1])
             print(str(len(image_links)) + " links found")
         page_list = []
-        page_list_cv2 = []
+        # page_list_cv2 = []
         print(image_links)
         for page in range(len(image_links)):
             image_data = requests.get(image_links[page]).content
@@ -90,7 +90,7 @@ def chpselect():
             except:
                 return redirect("/")
             page_list.append(image)
-            page_list_cv2.append(image_cv2)
+            # page_list_cv2.append(image_cv2)
             print(str(page+1) + " / " + str(len(image_links)))
         # print(chp_nos)
         # image_conc = cv2.vconcat(page_list_cv2)
